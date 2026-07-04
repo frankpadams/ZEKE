@@ -1,0 +1,70 @@
+[
+  {
+    "id": "NL-001",
+    "input": "I have NOT taken atorvastatin today.",
+    "expected": {
+      "item": "atorvastatin",
+      "status": "not_taken",
+      "must_not_create": "medication_taken"
+    }
+  },
+  {
+    "id": "NL-002",
+    "input": "I took atorvastatin and 3 creatine pills.",
+    "expected": {
+      "events": [
+        {
+          "type": "medication",
+          "item": "atorvastatin",
+          "status": "taken"
+        },
+        {
+          "type": "supplement",
+          "item": "creatine",
+          "quantity": 3,
+          "unit": "pills"
+        }
+      ]
+    }
+  },
+  {
+    "id": "NL-003",
+    "input": "I plan to go to the gym tomorrow.",
+    "expected": {
+      "type": "planned_event",
+      "must_not_create": "completed_workout"
+    }
+  },
+  {
+    "id": "NL-004",
+    "input": "My shoulder hurt after my workout.",
+    "expected": {
+      "type": "user_observation",
+      "body_region": "shoulder",
+      "must_not_create": "diagnosis"
+    }
+  },
+  {
+    "id": "NL-005",
+    "input": "I have PT on Monday at 3.",
+    "expected": {
+      "type": "scheduled_event",
+      "event": "physical_therapy",
+      "must_not_create": "appointment_completed"
+    }
+  },
+  {
+    "id": "NL-006",
+    "input": "This past June 8th, I was driving my 2018 Honda Odyssey when it was hit by another vehicle in the front right side. I was found at-fault and had to pay the $1000 deductible. I didn't feel like I sustained any injuries.",
+    "expected": {
+      "type": "cross_domain_event",
+      "domains": [
+        "vehicle",
+        "finance",
+        "health_context"
+      ],
+      "must_not_infer": "injury",
+      "health_observation": "no immediate injuries noticed"
+    }
+  }
+]
