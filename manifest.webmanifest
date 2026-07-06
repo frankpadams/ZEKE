@@ -1,0 +1,10 @@
+{
+  "name": "Project Zeke",
+  "short_name": "Zeke",
+  "start_url": "./#/health/dashboard",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f8fb",
+  "theme_color": "#071629",
+  "icons": []
+}

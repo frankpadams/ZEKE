@@ -1,0 +1,9 @@
+PROJECT ZEKE v0.3.0 — STATIC SITE PACKAGE
+
+Upload the CONTENTS of this folder to the document root of the HTTPS domain or subdomain where Zeke should run.
+
+Important:
+- index.html must be directly in the document root.
+- Upload the assets folder and all files together.
+- After upload, open READ_THIS_FIRST.md for the Google account connection steps.
+- The host serves application code. Personal Zeke event data is not bundled in this package.
