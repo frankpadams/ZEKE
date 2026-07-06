@@ -1,103 +1,87 @@
-# Project Zeke v0.3.0 Architecture
+# Project Zeke v0.5.0 Alpha Architecture
 
-## Core principle
+## Alpha scope
 
-The application is browser-first and host-agnostic. The host serves code. The user's durable personal records live in storage the user controls.
+This release is intentionally single-user for the alpha test. It connects to one existing Google account through a real Google OAuth browser flow.
 
-## Layers
+The alpha user experience is:
 
-### Browser application
+1. acknowledge data ownership and limits;
+2. connect the existing Google account;
+3. Zeke creates or reopens its Project Zeke Drive repository;
+4. Zeke verifies Drive write/read/delete;
+5. Zeke verifies read-only primary Calendar access;
+6. optional historical import;
+7. AI choice, including the manual AI packet workflow;
+8. enter the Health module.
 
-- React interface.
-- Responsive dashboard.
-- Quick capture.
-- Event ledger cache in IndexedDB.
-- Pending synchronization queue.
-- Local deterministic analysis.
-- Historical import parsing.
-- Trend and evidence views.
+## Persistence boundary
 
-### User-owned Google storage
+The browser is an interface and temporary in-memory analytical workspace. Personal records are not persistently stored in localStorage, sessionStorage, IndexedDB, or Cache Storage.
 
-- `Project Zeke Data` spreadsheet.
-- Event ledger plus structured projections.
-- Discoveries.
-- Dashboard configuration.
+Durable personal data is written to the connected Google Drive repository.
 
-### Optional integrations
+## Canonical repository
 
-- Google Calendar read-only.
-- Apple Health import / bridge.
-- External AI proxy endpoint.
+Conceptual hierarchy:
 
-## Data flow
+Project Zeke/
+- system/
+  - manifest.json
+  - preferences.json
+  - dashboard-layout.json
+  - actions.json
+  - ai-connection.json
+  - ai-exchanges.json
+- health/
+  - events.json
+  - discoveries.json
+  - investigations.json
+  - injuries.json
+  - factors.json
+  - exercise-catalog.json
+  - documents/
+- imports/
+  - batches.json
+  - originals/
+  - reports/
+- pets/
+- vehicles/
+- house/
+- finances/
+- projects/
 
-```text
-User action
-  ↓
-Browser event ledger + pending queue
-  ↓
-Immediate dashboard update
-  ↓
-Google synchronization when authorized
-  ↓
-Project Zeke Data in the user's Google account
-```
+Health is the first deep-intelligence module. The core remains domain-agnostic for future modules.
 
-On another device:
+## Event ledger
 
-```text
-Open browser app
-  ↓
-Authorize Google account
-  ↓
-Discover Project Zeke Data
-  ↓
-Pull events and state
-  ↓
-Render dashboard
-```
+Raw observations and imported facts are represented as events with stable IDs, timestamps, raw text, structured interpretation, schema version, and provenance. Derived charts, narratives, recommendations, and AI findings are replaceable views.
 
-## Historical import flow
+## Historical import
 
-```text
-CSV / TSV / XLSX / JSON / Google Sheet
-  ↓
-Workbook inventory
-  ↓
-Header-row detection
-  ↓
-Known-column mapping
-  ↓
-Preview counts and destinations
-  ↓
-User approval
-  ↓
-Duplicate filtering
-  ↓
-Event creation with provenance
-  ↓
-Import batch history
-  ↓
-Google synchronization
-```
+Supported alpha file formats: CSV, TSV, XLSX, JSON, plus directly downloadable URLs.
 
-## Evidence model
+The importer:
 
-Every structured event preserves:
+- inventories sheets;
+- detects headers;
+- maps known fields deterministically;
+- shows ambiguous mappings;
+- previews normalized events;
+- waits for user approval;
+- preserves file/sheet/row provenance;
+- copies the original source file to Drive;
+- records an import batch;
+- supports batch undo without deleting the preserved original.
 
-- source;
-- timestamp;
-- raw text;
-- structured interpretation;
-- schema version;
-- import batch ID when applicable;
-- source file;
-- source sheet;
-- source row.
+## AI architecture
 
-Dashboard trends are views over events. Evidence drill-down exposes dated points and sources rather than treating a generated narrative as primary evidence.
+Tier 0: Zeke Local for deterministic analysis.
 
-## Expandability
+Tier 1: Manual AI packet exchange. The packet is task-specific and includes a response schema. Uploaded AI responses are reviewed before selected findings, discoveries, investigation questions, or actions are applied.
 
-The event core is domain-agnostic. Health is the first deeply implemented module. Pets, Vehicles, House, Finances, and Projects are reserved modules that can add domain schemas without replacing the event ledger.
+Tier 2+: Optional direct provider integrations through a secure relay. Private AI API secrets are not embedded in the public browser application.
+
+## Exercise intelligence
+
+The Health module supports exercise progression views by exercise and muscle group. Recommendations consider available progression variables plus active injuries, pain trends, recovery measurements, and other exercise-relevant health factors. Recommendations are conservative decision support and are evidence-linked.
