@@ -1,0 +1,17 @@
+ZEKE v0.6.0 Alpha Static Site Patch
+
+Deployment:
+1. Unzip this package.
+2. Drag the unzipped contents into the same hosted directory that currently contains index.html.
+3. Allow files to replace existing files.
+4. Refresh the site.
+
+Included changes:
+- Renamed Tell ZEKE to Talk to ZEKE.
+- Talk to ZEKE now acts as the unified entry point for notes/data and can also route question-style entries into ZEKE response handling.
+- Legacy Ask ZEKE input is hidden to reduce duplicate fields.
+- Today Actions tiles are smaller and use hover/pressed/focus feedback.
+- Empty/insufficient dashboard charts are hidden instead of showing blank metric cards.
+- Evidence wording is simplified to reduce duplicate evidence-count language.
+
+Note: This is a direct static-site patch against the built v0.5.0 alpha files. It is appropriate for deployment testing. Deeper architectural changes, such as a full Knowledge Inbox database and workout parser learning engine, should still be implemented in source code when the source project is available.
