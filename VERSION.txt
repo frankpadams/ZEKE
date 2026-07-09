@@ -1,0 +1,4 @@
+ZEKE v0.6.0 Experience Alpha
+Build: 2026-07-09
+Base: recovered v0.5 compiled static application
+Spec authority: ZEKE Next Chat Handoff Package and integrated architecture requirements

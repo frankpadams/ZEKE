@@ -1,68 +1,52 @@
-# Project Zeke v0.5.0 Alpha Test Report
+# ZEKE v0.6.0 Experience Alpha — Test Report
 
-Build date: 2026-07-06
+Build date: 2026-07-09
 
-## Automated tests
+## Passed checks
 
-- Test files: 6 passed
-- Tests: 13 passed
+- AI Router JavaScript syntax check passed with Node.
+- Experience enhancement ES-module syntax check passed with Node.
+- AI Router loaded in an isolated JavaScript runtime with a mocked browser storage environment.
+- Router exposes 12 provider adapters/paths.
+- 9 of the 12 configured provider paths are classified by the alpha router as free-like or rate-limited free-first candidates; paid OpenAI, Claude relay, and custom relay remain optional.
+- Natural escalation detection passed for `look deeper` and `that's not right` style language.
+- Static-site asset reference validation passed: all local scripts, stylesheets, manifest, and configuration references used by `index.html` exist in the package.
+- Plain static HTTP serving returned HTTP 200 for:
+  - `/`
+  - `/assets/zeke-ai-router-v060.js`
+  - `/assets/zeke-experience-v060.js`
+  - `/assets/zeke-experience-v060.css`
 
-Covered areas include:
+## Browser automation limitation
 
-- local natural-language interpretation;
-- trend calculations;
-- historical import header/mapping detection;
-- exercise analytics and injury/context-aware recommendation logic;
-- storage runtime behavior;
-- manual AI packet generation and response validation.
+An automated Chromium screenshot pass was attempted in the build container but the container's headless Chromium process did not terminate cleanly. This is recorded as an environment limitation, not as a successful visual acceptance test.
 
-## Dependency audit at build time
+The release should therefore receive manual visual acceptance testing in the actual deployed ZEKE browser environment, including desktop and mobile widths.
 
-`npm install` reported 0 known vulnerabilities in the installed dependency set at packaging time.
+## Live-service tests not performed
 
-## Production build
+The build environment did not contain the user's provider credentials or live authorization sessions. Therefore the following require real-user acceptance testing:
 
-`npm run build` completed successfully.
+- Google OAuth/Drive/Calendar authorization;
+- Gemini API response;
+- Groq API response;
+- OpenRouter API response;
+- all other AI provider API tests;
+- family-history persistence to the connected ZEKE repository;
+- AI fallback behavior under real rate limits;
+- browser CORS behavior for each direct provider path.
 
-Vite emitted a performance warning that the main JavaScript chunk is larger than ideal. This is a performance optimization item for a later release; the build completed successfully.
+## Recommended acceptance test
 
-## Static-host checks
-
-The built static site was served through a plain HTTP static server for package validation. HTTP 200 was confirmed for:
-
-- `/`
-- `/zeke-config.js`
-- `/alpha-connection-setup.html`
-- `/ALPHA_GOOGLE_CONNECTION.md`
-- `/AI_PACKET_WORKFLOW.md`
-
-## Historical data import test
-
-The importer was run against the supplied `SJN1 - Full Data Sheet.csv` source.
-
-Detected:
-
-- 1 sheet
-- 419 nonblank data rows
-- header row 6
-- 31 recognized columns
-- approximately 345 normalized events
-
-Preview categories:
-
-- measurement: 259
-- lab: 43
-- medication: 36
-- workout: 2
-- nutrition: 4
-- note: 1
-
-## Important uncompleted live test
-
-A live Google OAuth login, Drive write/read/delete, and Calendar read test could not be executed in the isolated build environment because those operations require a Google-issued OAuth Web Client ID registered for the exact deployed Zeke origin and a real user authorization session.
-
-The release includes real Google Identity Services / Drive API / Calendar API connector code and an in-app verification sequence. Live provider acceptance testing must be performed after the one-time application registration in `ALPHA_GOOGLE_CONNECTION.md`.
-
-## Headless Chromium note
-
-An attempted automated headless Chromium screenshot test timed out in the build container. No browser UI pass is claimed from that test. Unit tests, production build, static-host response checks, and historical import checks passed as described above.
+1. Deploy the release over HTTPS.
+2. Verify Google connection and existing records.
+3. Verify dashboard metrics and charts populate from real records.
+4. Change each time range and verify charts update.
+5. Hover/focus chart points and bars.
+6. Ask a local ZEKE question.
+7. Use `look deeper` and verify router escalation.
+8. Test at least Gemini, Groq, and OpenRouter individually.
+9. Enter a statement and verify interpretation is reviewed before save.
+10. Reject a local interpretation and verify AI reinterpretation.
+11. Add a family-history record and verify it persists after reload/reconnect.
+12. Open Workouts and review Coach's Eye prompts and evidence details.
