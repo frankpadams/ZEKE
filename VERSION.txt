@@ -1,2 +1,2 @@
-Project ZEKE v0.6.4 Feedback Integration Alpha
-Build date: 2026-07-09
+ZEKE v0.6.5 Mockup-Aligned UI Alpha
+Build: 2026-07-09
