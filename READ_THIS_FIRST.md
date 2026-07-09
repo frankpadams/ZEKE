@@ -26,3 +26,9 @@ This is an upload-ready static-site alpha built on the recovered ZEKE v0.5 appli
 ## Security note
 
 This test build permits direct API-key entry for rapid alpha validation. Those AI keys are stored in localStorage in that browser. That is not the intended final production architecture. A production-grade ZEKE should prefer secure relays, provider-safe token flows, or other protected credential handling.
+
+## v0.6.2 UI compliance patch
+
+This package includes a full-width dashboard compliance pass, adaptive empty-card hiding, dashboard customization, conversational tracking preferences, personal/family history context, date-aware upcoming events, and the v0.6.1 AI Router with Groq Free visible in Fast free setup.
+
+See `PATCH_NOTES_v0.6.2.md` for known gaps that are not claimed as complete.
