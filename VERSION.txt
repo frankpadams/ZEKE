@@ -1,2 +1,1 @@
-ZEKE v0.6.5 Mockup-Aligned UI Alpha
-Build: 2026-07-09
+0.6.6-feedback-ui-fix-alpha
