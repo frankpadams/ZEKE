@@ -1,2 +1,2 @@
-Project ZEKE v0.6.2 UI Compliance Alpha
+Project ZEKE v0.6.4 Feedback Integration Alpha
 Build date: 2026-07-09
