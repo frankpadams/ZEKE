@@ -3,17 +3,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#f7f9fc" />
+  <meta name="theme-color" content="#f6f8fc" />
+  <meta name="description" content="Project ZEKE private alpha" />
   <title>ZEKE</title>
   <link rel="manifest" href="./manifest.webmanifest" />
-  <link rel="stylesheet" href="./assets/zeke-app-v066.css?v=066" />
-  <link rel="stylesheet" href="./assets/zeke-ai-router-v064.css?v=064" />
-  <script src="https://accounts.google.com/gsi/client" async defer></script>
+  <link rel="stylesheet" href="./assets/styles.css?v=2026.07.09.1" />
+  <script src="./version.js?v=2026.07.09.1"></script>
   <script src="./zeke-config.js"></script>
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
-  <div id="root"><div class="boot">Starting ZEKE…</div></div>
-  <script type="module" src="./assets/zeke-ai-router-v064.js?v=064"></script>
-  <script type="module" src="./assets/zeke-app-v066.js?v=066"></script>
+  <div id="root"><div style="padding:40px;font-family:system-ui">Starting ZEKE…</div></div>
+  <script src="./xlsx-bundle.js?v=2026.07.09.1"></script>
+  <script src="./assets/data-layer.js?v=2026.07.09.1"></script>
+  <script src="./assets/parser.js?v=2026.07.09.1"></script>
+  <script src="./assets/ai-router.js?v=2026.07.09.1"></script>
+  <script src="./assets/app.js?v=2026.07.09.1"></script>
 </body>
 </html>
