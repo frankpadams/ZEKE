@@ -8,7 +8,7 @@
     conversation:[], pending:null, context:{}, storage:null, ai:null,
     coachExpanded:false, customizeOpen:false, metricMenuOpen:false,
     hiddenWidgets:new Set(), busy:false, importStatus:'', importReport:null, importBatches:[],
-    conversationLoaded:false, preferences:{}, coachAI:null, coachAILoading:false, theme:'dark', draft:''
+    conversationLoaded:false, preferences:{}, coachAI:null, coachAILoading:false, theme:'dark', draft:'', auditQuery:'', auditCategory:'all'
   };
 
   const RANGE_DAYS = { week:7, month:31, quarter:92, '6months':183, year:366, all:null };
@@ -56,13 +56,13 @@
       '':'dashboard','health/dashboard':'dashboard','dashboard':'dashboard',
       'health':'health','health/overview':'health','fitness':'fitness','health/workouts':'fitness',
       'medications':'medications','health/medications':'medications','labs':'labs','health/labs':'labs',
-      'calendar':'calendar','settings':'settings'
+      'calendar':'calendar','settings':'settings','data-integrity':'data-integrity','system/data-integrity':'data-integrity'
     };
     return map[h] || 'dashboard';
   }
 
   function go(route) {
-    const hashes = {dashboard:'health/dashboard',health:'health',fitness:'fitness',medications:'medications',labs:'labs',calendar:'calendar',settings:'settings'};
+    const hashes = {dashboard:'health/dashboard',health:'health',fitness:'fitness',medications:'medications',labs:'labs',calendar:'calendar',settings:'settings','data-integrity':'data-integrity'};
     location.hash = `#/${hashes[route] || route}`;
   }
 
@@ -617,6 +617,72 @@
     return `<div class="provider-grid ai-grid">${Object.values(defs).filter(d=>d.id!=='relay').map(def=>{const st=statusMap.get(def.id);return `<article class="provider-card ai-card ${st?.connected?'connected':''}" data-provider="${def.id}"><div class="provider-card-head"><span class="provider-icon">AI</span><div><strong>${esc(def.label)}</strong><span class="provider-status">${st?.connected?'Test passed this session':st?.hasSessionKey?'Configured · not tested':'Not connected'}</span></div></div>${def.id==='ollama'?'':`<label>API key<input type="password" data-ai-key="${def.id}" placeholder="Paste key for this session"></label>`}${def.requiresEndpoint?`<label>Endpoint<input type="url" data-ai-endpoint="${def.id}" value="${esc(st?.endpoint||'')}" placeholder="Secure relay or compatible endpoint URL"></label>`:''}<label>Model<input type="text" data-ai-model="${def.id}" value="${esc(st?.model||def.suggestedModels?.[0]||'')}" list="models-${def.id}" placeholder="Model ID"><datalist id="models-${def.id}">${(def.suggestedModels||[]).map(m=>`<option value="${esc(m)}"></option>`).join('')}</datalist></label><div class="card-actions"><button class="secondary" data-save-ai="${def.id}">Connect & test</button><button class="text-action" data-test-ai="${def.id}">Test</button></div><small>ZEKE’s router chooses among connected services automatically for each task.</small></article>`}).join('')}</div>`;
   }
 
+
+  function eventDate(e) { return e?.timestamp || e?.recorded_at || e?.created_at || ''; }
+
+  function provenanceLabel(e) {
+    const p=e?.provenance||{}, st=e?.structured||{};
+    return p.sheet || p.file || p.source || st.source || e?.source || 'ZEKE';
+  }
+
+  function dataCensus() {
+    const categoryCounts={}, sourceCounts={}, metricCounts={}, fieldCounts={};
+    let recognizedWorkouts=0, possibleWorkouts=0, chartable=0, missingDate=0, missingProvenance=0, uncertain=0;
+    let earliest='', latest='';
+    const rows=state.events.map((e,index)=>{
+      const category=semanticCategory(e)||'uncategorized';
+      categoryCounts[category]=(categoryCounts[category]||0)+1;
+      const source=provenanceLabel(e); sourceCounts[source]=(sourceCounts[source]||0)+1;
+      const date=eventDate(e);
+      if(date){ if(!earliest||new Date(date)<new Date(earliest)) earliest=date; if(!latest||new Date(date)>new Date(latest)) latest=date; } else missingDate++;
+      if(source==='ZEKE' && !e?.provenance) missingProvenance++;
+      const status=String(e?.structured?.interpretation_status||e?.status||'').toLowerCase();
+      if(['pending','uncertain','needs_review','unconfirmed'].includes(status)) uncertain++;
+      if(['measurement','lab'].includes(category)){
+        const metric=canonicalMetric(metricId(e)); const value=metricValue(e);
+        if(metric) metricCounts[metric]=(metricCounts[metric]||0)+1;
+        if(metric && value!=null) chartable++;
+      }
+      const workout=isWorkoutEvent(e);
+      if(workout) recognizedWorkouts++;
+      else if(/workout|exercise|fitness|strength|cardio|stair|pulldown|curl|row|reps?|sets?/i.test([e.category,e.type,e.raw_text,e.summary,JSON.stringify(e.structured||{})].join(' '))) possibleWorkouts++;
+      Object.keys(e?.structured||{}).forEach(k=>fieldCounts[k]=(fieldCounts[k]||0)+1);
+      return {index,event:e,category,source,date,workout,metric:canonicalMetric(metricId(e)),value:metricValue(e)};
+    });
+    return {rows,categoryCounts,sourceCounts,metricCounts,fieldCounts,recognizedWorkouts,possibleWorkouts,chartable,missingDate,missingProvenance,uncertain,earliest,latest};
+  }
+
+  function auditRecordSummary(r) {
+    const e=r.event, st=e.structured||{};
+    if(r.workout){ const w=workoutStructured(e); return [w.exercise,w.weight!=null?`${w.weight} lb`:'',w.reps!=null?`${w.reps} reps`:'',w.sets!=null?`${w.sets} sets`:'',w.duration_min!=null?`${w.duration_min} min`:''].filter(Boolean).join(' · '); }
+    if(r.metric && r.value!=null) return `${METRICS[r.metric]?.label||r.metric.replaceAll('_',' ')}: ${r.value}${st.unit||st.value_unit?` ${st.unit||st.value_unit}`:''}`;
+    return humanEvent(e);
+  }
+
+  function dataIntegrityHTML() {
+    const a=dataCensus();
+    const cats=Object.entries(a.categoryCounts).sort((x,y)=>y[1]-x[1]);
+    const sources=Object.entries(a.sourceCounts).sort((x,y)=>y[1]-x[1]);
+    const metrics=Object.entries(a.metricCounts).sort((x,y)=>y[1]-x[1]);
+    const imports=[...(state.importBatches||[])].reverse();
+    const q=String(state.auditQuery||'').toLowerCase();
+    const filtered=a.rows.filter(r=>(state.auditCategory==='all'||r.category===state.auditCategory) && (!q||[r.category,r.source,auditRecordSummary(r),r.event.raw_text,JSON.stringify(r.event.structured||{})].join(' ').toLowerCase().includes(q))).sort((x,y)=>new Date(y.date||0)-new Date(x.date||0)).slice(0,150);
+    const fileRows=Object.entries(ZekeData.constants?.PATHS||{}).map(([key,path])=>`<tr><td>${esc(path)}</td><td>${esc(key)}</td><td>Canonical JSON</td><td>Read-only inspection</td></tr>`).join('');
+    return `<div class="page-head"><div><h1>Data Integrity</h1><p>A read-only census of what ZEKE loaded, recognized, and could not confidently classify. Nothing on this page changes your data.</p></div><button class="secondary" id="exportDataAudit">Export audit</button></div>
+      <section class="integrity-banner"><strong>Safety mode: read only</strong><span>No migration, deletion, merge, or source-file rewrite occurs here.</span></section>
+      <div class="census-grid">
+        <article><b>${a.rows.length}</b><span>loaded events</span></article><article><b>${a.chartable}</b><span>chartable health values</span></article><article><b>${a.recognizedWorkouts}</b><span>recognized workouts</span></article><article><b>${a.possibleWorkouts}</b><span>possible workouts</span></article><article><b>${a.uncertain}</b><span>need review</span></article><article><b>${sources.length}</b><span>data sources</span></article>
+      </div>
+      <div class="integrity-columns">
+        <section class="panel"><div class="section-head"><div><h2>Repository census</h2><p>Loaded record types and their date coverage.</p></div></div><div class="integrity-facts"><span><b>${esc(a.earliest?fmtDate(a.earliest,{month:'short',day:'numeric',year:'numeric'}):'—')}</b>earliest evidence</span><span><b>${esc(a.latest?fmtDate(a.latest,{month:'short',day:'numeric',year:'numeric'}):'—')}</b>latest evidence</span><span><b>${a.missingDate}</b>missing dates</span><span><b>${a.missingProvenance}</b>missing provenance</span></div><div class="audit-bars">${cats.map(([k,v])=>`<div><span>${esc(k.replaceAll('_',' '))}</span><meter min="0" max="${Math.max(...cats.map(x=>x[1]),1)}" value="${v}"></meter><b>${v}</b></div>`).join('')||'<p>No records loaded.</p>'}</div></section>
+        <section class="panel"><div class="section-head"><div><h2>Sources ZEKE can see</h2><p>Derived from preserved provenance on loaded records.</p></div></div><div class="source-audit">${sources.map(([k,v])=>`<span><b>${v}</b>${esc(k)}</span>`).join('')||'<p>No provenance was found.</p>'}</div></section>
+      </div>
+      <section class="panel"><div class="section-head"><div><h2>Metric registry</h2><p>Names ZEKE mapped for display. Unmapped records remain untouched.</p></div></div><div class="metric-registry">${metrics.map(([k,v])=>`<span><b>${v}</b>${esc(METRICS[k]?.label||k.replaceAll('_',' '))}<small>${esc(k)}</small></span>`).join('')||'<div class="empty-inline">No health metrics were mapped.</div>'}</div></section>
+      <section class="panel"><div class="section-head"><div><h2>Import diagnostics</h2><p>Previous import batches and reported outcomes.</p></div></div>${imports.length?`<div class="audit-table-wrap"><table class="audit-table"><thead><tr><th>Date</th><th>File/source</th><th>Type</th><th>Counts</th><th>Message</th></tr></thead><tbody>${imports.slice(0,25).map(b=>`<tr><td>${esc(fmtDate(b.created_at||b.timestamp,{month:'short',day:'numeric',year:'numeric'}))}</td><td>${esc(b.file||b.source||'—')}</td><td>${esc(b.type||'import')}</td><td>${esc(Object.entries(b.counts||{}).map(([k,v])=>`${k}: ${v}`).join(' · ')||'—')}</td><td>${esc(b.message||'—')}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty-inline">No saved import reports are available. This does not prove that source spreadsheets contain no additional data.</div>'}</section>
+      <section class="panel"><div class="section-head"><div><h2>Canonical repository map</h2><p>Files ZEKE expects inside Project Zeke. This list describes the application contract, not a destructive scan.</p></div></div><div class="audit-table-wrap"><table class="audit-table"><thead><tr><th>Path</th><th>Purpose</th><th>Format</th><th>Mode</th></tr></thead><tbody>${fileRows}</tbody></table></div></section>
+      <section class="panel record-browser"><div class="section-head"><div><h2>Repository browser</h2><p>Search loaded records and inspect how ZEKE classified them.</p></div><span class="badge">${filtered.length}${a.rows.length>150?' shown':''}</span></div><div class="audit-controls"><input id="auditSearch" type="search" placeholder="Search records, exercises, metrics, or sources" value="${esc(state.auditQuery)}"><select id="auditCategory"><option value="all">All categories</option>${cats.map(([k])=>`<option value="${esc(k)}" ${state.auditCategory===k?'selected':''}>${esc(k.replaceAll('_',' '))}</option>`).join('')}</select></div><div class="audit-table-wrap"><table class="audit-table"><thead><tr><th>Date</th><th>Classification</th><th>Summary</th><th>Source</th><th>Status</th></tr></thead><tbody>${filtered.map(r=>`<tr><td>${esc(r.date?fmtDate(r.date,{month:'short',day:'numeric',year:'numeric'}):'No date')}</td><td><span class="category-pill">${esc(r.category)}</span>${r.workout?'<small>workout recognized</small>':''}</td><td>${esc(auditRecordSummary(r))}</td><td>${esc(r.source)}</td><td>${esc(r.event.structured?.interpretation_status||r.event.status||'loaded')}</td></tr>`).join('')||'<tr><td colspan="5">No records match this filter.</td></tr>'}</tbody></table></div></section>`;
+  }
+
   function settingsPageHTML() {
     return `<div class="page-head"><div><h1>Settings</h1><p>Connections and preferences. ZEKE's router and provider managers handle the technical choices.</p></div></div>
       <section class="panel settings-section"><div class="section-head"><div><h2>Storage</h2><p>Choose where ZEKE keeps your workspace. Normal launches should reconnect silently when the provider allows it.</p></div></div>${storageCardsHTML()}<div class="settings-actions"><button class="secondary" id="reconnectStorage">Reconnect storage</button><button class="text-action danger" id="forgetStorage">Disconnect & forget setup</button></div></section>
@@ -629,7 +695,7 @@
   }
 
   function navHTML() {
-    const items=[['dashboard','⌂','Dashboard'],['health','♡','Health'],['fitness','⌁','Fitness'],['medications','✚','Medications'],['labs','⌬','Labs & Vitals'],['calendar','▣','Calendar'],['settings','⚙','Settings']];
+    const items=[['dashboard','⌂','Dashboard'],['health','♡','Health'],['fitness','⌁','Fitness'],['medications','✚','Medications'],['labs','⌬','Labs & Vitals'],['calendar','▣','Calendar'],['data-integrity','◎','Data Integrity'],['settings','⚙','Settings']];
     return `<aside class="sidebar"><div class="brand"><div class="brand-mark">Z</div><div><strong>ZEKE</strong><span>Your context engine</span></div></div><nav>${items.map(([id,icon,label])=>`<button class="nav-item ${state.route===id?'active':''}" data-route="${id}"><span>${icon}</span>${esc(label)}</button>`).join('')}</nav><div class="sidebar-spacer"></div><div class="privacy-note">Your records stay with your chosen storage provider.</div><div class="build-label">v${esc(BUILD.version)} · ${esc(BUILD.build)}</div></aside>`;
   }
 
@@ -646,6 +712,7 @@
     else if(state.route==='medications') content=medicationsPageHTML();
     else if(state.route==='labs') content=labsPageHTML();
     else if(state.route==='calendar') content=calendarPageHTML();
+    else if(state.route==='data-integrity') content=dataIntegrityHTML();
     else if(state.route==='settings') content=settingsPageHTML();
     return `<div class="app-shell">${navHTML()}<main class="main-shell">${topbarHTML()}<div class="content-shell">${content}</div></main>${customizeDrawerHTML()}<div class="toast" id="toast"></div><input type="file" id="conversationFile" hidden></div>`;
   }
@@ -1066,6 +1133,13 @@
   }
 
   function bind() {
+    $('#auditSearch')?.addEventListener('input',debounce((ev)=>{state.auditQuery=ev.target.value;render();},180));
+    $('#auditCategory')?.addEventListener('change',(ev)=>{state.auditCategory=ev.target.value;render();});
+    $('#exportDataAudit')?.addEventListener('click',()=>{
+      const a=dataCensus();
+      const payload={generated_at:new Date().toISOString(),build:BUILD,read_only:true,summary:{loaded_events:a.rows.length,chartable_health_values:a.chartable,recognized_workouts:a.recognizedWorkouts,possible_workouts:a.possibleWorkouts,needs_review:a.uncertain,earliest:a.earliest,latest:a.latest},categories:a.categoryCounts,sources:a.sourceCounts,metrics:a.metricCounts,import_batches:state.importBatches,records:a.rows.map(r=>({id:r.event.id,date:r.date,classification:r.category,source:r.source,recognized_workout:r.workout,metric:r.metric,summary:auditRecordSummary(r),status:r.event.structured?.interpretation_status||r.event.status||'loaded'}))};
+      const blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}); const url=URL.createObjectURL(blob); const aEl=document.createElement('a'); aEl.href=url; aEl.download=`ZEKE_Data_Audit_${localDay()}.json`; aEl.click(); setTimeout(()=>URL.revokeObjectURL(url),1000);
+    });
     $$('[data-route]').forEach(el=>el.onclick=()=>go(el.dataset.route));
     $$('[data-range]').forEach(el=>el.onclick=()=>{state.range=el.dataset.range;render()});
     $$('[data-select-metric]').forEach(el=>el.onclick=()=>{state.selectedMetric=el.dataset.selectMetric;render()});

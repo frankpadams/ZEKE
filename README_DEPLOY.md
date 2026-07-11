@@ -1,19 +1,14 @@
-# ZEKE v0.8.1 Evaluation Alpha — Deployment
+# ZEKE v0.9.0 Data Integrity Alpha — Deployment
 
-Build: **v0.8.1 · 2026.07.11.2**
+Build: **v0.9.0 · 2026.07.11.5**
 
-## Deploy to GitHub Pages
+1. Back up the currently deployed ZEKE folder.
+2. Extract this ZIP.
+3. Preserve your deployed `zeke-config.js` if it contains your Google OAuth client ID, or copy that value into the new file.
+4. Replace the GitHub Pages site files with the extracted contents.
+5. Commit and wait for GitHub Pages deployment to finish.
+6. Hard-refresh the browser.
+7. Confirm the sidebar shows `v0.9.0 · 2026.07.11.5`.
+8. Open **Data Integrity** in the sidebar.
 
-1. Back up the current repository and ZEKE workspace data.
-2. Unzip the release.
-3. Copy the **contents** of this folder into the GitHub Pages publishing root. Do not upload the ZIP itself and do not nest the build inside another directory.
-4. Preserve a newer working `zeke-config.js` only when it contains a deliberately newer Google OAuth client configuration.
-5. Commit and wait for GitHub Pages deployment to complete.
-6. Open ZEKE and confirm the sidebar shows `v0.8.1 · 2026.07.11.2`.
-7. Test storage restoration, import, AI connection, and Talk to ZEKE before relying on the build for daily use.
-
-## User data and upgrades
-
-Application files are replaceable. User history remains in the chosen ZEKE workspace. This build preserves the existing Google Drive repository paths and upgrades the repository manifest in place, retaining the stable `workspace_id` when one already exists.
-
-Do not delete the `Project Zeke` workspace folder to install an application update.
+Opening Data Integrity is read-only and does not rewrite the repository.

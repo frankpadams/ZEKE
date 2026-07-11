@@ -1,1 +1,5 @@
-window.ZEKE_BUILD = { version: '0.8.3', build: '2026.07.11.4', label: 'Data visibility and compact dashboard safety release' };
+window.ZEKE_BUILD = Object.freeze({
+  version: '0.9.0',
+  build: '2026.07.11.5',
+  label: 'Data Integrity Read-Only Alpha'
+});
