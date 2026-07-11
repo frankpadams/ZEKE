@@ -309,21 +309,48 @@
     </section>`;
   }
 
+  function isWorkoutEvent(e) {
+    const category=String(e?.category||e?.type||'').toLowerCase().replace(/[\s-]+/g,'_');
+    const st=e?.structured||{};
+    const subtype=String(st.category||st.type||st.event_type||st.record_type||'').toLowerCase().replace(/[\s-]+/g,'_');
+    const categoryMatch=['workout','workouts','exercise','exercise_set','exercise_sets','fitness','strength_training','resistance_training','cardio','training_session'].includes(category)
+      || ['workout','exercise','exercise_set','exercise_sets','fitness','strength_training','resistance_training','cardio','training_session'].includes(subtype);
+    const exerciseName=st.exercise||st.exercise_name||st.movement||st.activity||st.session_type||st.workout_type;
+    const workoutFields=st.workout_id||st.session_id||st.set_number!=null||st.sets!=null||st.reps!=null||st.weight!=null||st.load!=null||st.duration_min!=null||st.steps!=null||st.distance_mi!=null;
+    const raw=String(e?.raw_text||e?.summary||'').toLowerCase();
+    const rawMatch=/\b(workout|strength training|resistance training|stairclimber|stair climber|lat pulldown|seated row|leg curl|leg extension|bicep curl|abdominal|sets?\s*[x×]|reps?)\b/.test(raw);
+    return categoryMatch || Boolean(exerciseName && workoutFields) || rawMatch;
+  }
+
+  function workoutStructured(e) {
+    const st=e?.structured||{};
+    return {
+      ...st,
+      exercise: st.exercise||st.exercise_name||st.movement||st.activity||st.session_type||st.workout_type||'Workout',
+      weight: st.weight??st.load??st.weight_lbs??st.weight_lb??null,
+      reps: st.reps??st.repetitions??null,
+      sets: st.sets??st.set_count??null,
+      duration_min: st.duration_min??st.duration_minutes??st.minutes??null,
+      steps: st.steps??null,
+      distance_mi: st.distance_mi??st.distance??null
+    };
+  }
+
   function workoutGroups() {
     // Normalize summarized rows and one-row-per-set imports into exercise sessions.
     const byExercise=new Map();
-    for(const e of state.events.filter(e=>e.category==='workout')) {
-      const s=e.structured||{};
+    for(const e of state.events.filter(isWorkoutEvent)) {
+      const s=workoutStructured(e);
       const name=(s.exercise||s.session_type||s.exercise_name||'').trim();
       if(!name) continue;
       const day=localDay(new Date(e.timestamp||e.recorded_at||Date.now()));
       const sessionKey=String(s.workout_id||s.session_id||`${day}:${name.toLowerCase()}`);
       if(!byExercise.has(name)) byExercise.set(name,new Map());
       const sessions=byExercise.get(name);
-      const prev=sessions.get(sessionKey)||{event:e,date:e.timestamp,weight:0,reps:0,sets:0,rpe:0,pain:0,workout_id:s.workout_id||''};
+      const prev=sessions.get(sessionKey)||{event:e,date:e.timestamp,weight:0,reps:0,sets:0,rpe:0,pain:0,duration_min:0,steps:0,workout_id:s.workout_id||''};
       const weight=Number(s.weight||s.load||0), reps=Number(s.reps||0), sets=Number(s.sets||0);
       const setRows=Number(s.set_number||s.set_no||0)?1:0;
-      sessions.set(sessionKey,{...prev,event:e,date:e.timestamp||prev.date,weight:Math.max(prev.weight,weight),reps:Math.max(prev.reps,reps),sets:prev.sets+(sets||setRows||1),rpe:Math.max(prev.rpe,Number(s.rpe||0)),pain:Math.max(prev.pain,Number(s.pain||0))});
+      sessions.set(sessionKey,{...prev,event:e,date:e.timestamp||prev.date,weight:Math.max(prev.weight,weight),reps:Math.max(prev.reps,reps),sets:prev.sets+(sets||setRows||1),rpe:Math.max(prev.rpe,Number(s.rpe||0)),pain:Math.max(prev.pain,Number(s.pain||0)),duration_min:Math.max(prev.duration_min,Number(s.duration_min||0)),steps:Math.max(prev.steps,Number(s.steps||0))});
     }
     const map=new Map();
     for(const [name,sessions] of byExercise) map.set(name,[...sessions.values()].sort((a,b)=>new Date(a.date)-new Date(b.date)));
@@ -417,7 +444,7 @@
       const s=e.structured||{}; const confirmed=/confirmed/i.test(String(s.interpretation_status||s.confirmation_status||'')) || e.provenance?.source==='quick_action';
       if(!confirmed && e.category==='raw_input') return false;
       const med=String(s.medication_name||s.medication||s.name||'').toLowerCase(); const ex=String(s.exercise||'').toLowerCase();
-      return s.action_id===action.id || (label&&med&&label.includes(med)) || (action.kind==='workout'&&e.category==='workout') || (label&&ex&&label.includes(ex));
+      return s.action_id===action.id || (label&&med&&label.includes(med)) || (action.kind==='workout'&&isWorkoutEvent(e)) || (label&&ex&&label.includes(ex));
     });
   }
 
@@ -431,7 +458,7 @@
 
   function coverageHTML() {
     const structured=state.events.filter(e=>!['raw_input','correction'].includes(e.category));
-    const workouts=structured.filter(e=>e.category==='workout').length;
+    const workouts=structured.filter(isWorkoutEvent).length;
     const meds=structured.filter(e=>e.category==='medication').length;
     const health=structured.filter(e=>['measurement','lab'].includes(e.category)).length;
     const unresolved=openQuestions().length;
@@ -450,7 +477,7 @@
     const allText=state.events.map(e=>e.raw_text||'').join(' ').toLowerCase();
     const insights=[];
     for(const d of state.discoveries.slice(0,2)) insights.push({icon:'↗',title:d.title||'Pattern worth reviewing',text:d.summary||'A saved discovery is ready to explore.',action:'health'});
-    const workoutCount=state.events.filter(e=>e.category==='workout').length;
+    const workoutCount=state.events.filter(isWorkoutEvent).length;
     const metricCount=state.events.filter(e=>['measurement','lab'].includes(e.category)).length;
     if(workoutCount>=2) { const c=coachInsight(); if(c) insights.push({icon:'🏋',title:c.name,text:c.suggestion,action:'fitness'}); }
     if(metricCount && availableMetrics().length) {
@@ -504,9 +531,13 @@
 
   function fitnessPageHTML() {
     const groups=workoutGroups();
-    const exerciseCards=[...groups.entries()].map(([name,arr])=>{const last=arr.at(-1);return `<article class="exercise-card"><div><strong>${esc(name)}</strong><p>${arr.length} recorded session${arr.length===1?'':'s'}</p></div><div class="exercise-last">${last.weight?`${last.weight} lb`:''}${last.reps?` · ${last.reps} reps`:''}</div><button class="text-action" data-context-exercise="${esc(name)}">+ Log</button></article>`}).join('');
+    const exerciseCards=[...groups.entries()].map(([name,arr])=>{const last=arr.at(-1);return `<article class="exercise-card"><div><strong>${esc(name)}</strong><p>${arr.length} recorded session${arr.length===1?'':'s'}</p></div><div class="exercise-last">${last.weight?`${last.weight} lb`:''}${last.reps?` · ${last.reps} reps`:''}${last.duration_min?` · ${last.duration_min} min`:''}</div><button class="text-action" data-context-exercise="${esc(name)}">+ Log</button></article>`}).join('');
+    const workoutRows=state.events.filter(isWorkoutEvent).sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp));
+    const history=workoutRows.length?`<div class="table-wrap"><table><thead><tr><th>Date</th><th>Exercise / activity</th><th>Load</th><th>Reps × sets</th><th>Duration / steps</th><th>Source</th><th></th></tr></thead><tbody>${workoutRows.map(e=>{const w=workoutStructured(e);return `<tr><td>${esc(fmtDate(e.timestamp,{month:'short',day:'numeric',year:'numeric'}))}</td><td>${esc(w.exercise||'Workout')}</td><td>${esc(w.weight!=null?`${w.weight} ${w.weight_unit||'lb'}`:'—')}</td><td>${esc(w.reps!=null||w.sets!=null?`${w.reps??'—'} × ${w.sets??'—'}`:'—')}</td><td>${esc(w.duration_min!=null?`${w.duration_min} min`:w.steps!=null?`${w.steps} steps`:'—')}</td><td>${esc(e.provenance?.sheet||e.provenance?.file||e.provenance?.source||'ZEKE')}</td><td><button class="text-action" data-edit-event="${e.id}">Review / edit</button></td></tr>`}).join('')}</tbody></table></div>`:'<div class="empty-inline">No workout records were recognized. Use Settings → Import existing history if your workout source has not yet been imported.</div>';
     return `<div class="page-head"><div><h1>Fitness</h1><p>Workout history, progression, coaching observations, and exercise-specific trends.</p></div><button class="primary" data-context-exercise="">+ Log workout</button></div>
-      ${coachHTML()}<section class="panel"><div class="section-head"><div><h2>Exercises</h2><p>Log directly from an exercise to reduce ambiguity and preselect the correct fields.</p></div></div><div class="exercise-grid">${exerciseCards||'<div class="empty-inline">No workout history yet.</div>'}</div></section>`;
+      ${coachHTML()}
+      <section class="panel"><div class="section-head"><div><h2>Workout history</h2><p>${workoutRows.length} recognized workout entr${workoutRows.length===1?'y':'ies'}, shown chronologically from your connected records.</p></div></div>${history}</section>
+      <section class="panel"><div class="section-head"><div><h2>Exercises</h2><p>Summaries combine compatible exercise, set-level, session-level, cardio, and imported fitness records.</p></div></div><div class="exercise-grid">${exerciseCards||'<div class="empty-inline">No exercise summaries are available yet.</div>'}</div></section>`;
   }
 
   function medicationsPageHTML() {
@@ -612,7 +643,7 @@
   function humanEvent(e) {
     const s=e.structured||{};
     if(e.category==='measurement'||e.category==='lab') return `${METRICS[canonicalMetric(metricId(e))]?.label||metricId(e)||e.category}: ${metricValue(e)??'—'} ${s.unit||''}`.trim();
-    if(e.category==='workout') return `${s.exercise||'Workout'}${s.weight?` · ${s.weight} ${s.weight_unit||'lb'}`:''}${s.reps?` · ${s.reps} reps`:''}${s.sets?` · ${s.sets} sets`:''}`;
+    if(isWorkoutEvent(e)) { const ws=workoutStructured(e); return `${ws.exercise||'Workout'}${s.weight?` · ${s.weight} ${s.weight_unit||'lb'}`:''}${s.reps?` · ${s.reps} reps`:''}${ws.sets?` · ${ws.sets} sets`:''}${ws.duration_min?` · ${ws.duration_min} min`:''}`; }
     if(e.category==='medication') return `${s.medication_name||s.name||'Medication'}${s.dose?` ${s.dose}${s.unit||''}`:''} · ${s.status||'recorded'}`;
     return e.raw_text||e.category||'Record';
   }
