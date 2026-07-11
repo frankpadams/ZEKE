@@ -1,31 +1,19 @@
-# ZEKE v0.7.0 Repair Release
-Build: 2026.07.09.1
+# ZEKE v0.8.0 Milestone Alpha — Deployment
+
+Build: **v0.8.0 · 2026.07.11.1**
 
 ## Deploy to GitHub Pages
 
-1. Extract this ZIP.
-2. Upload the **contents** of the extracted folder to the GitHub Pages publishing root (normally the repository root for this project).
-3. Commit the changes.
-4. Wait for the Pages deployment to complete.
-5. Open ZEKE and confirm the visible build label reads:
-   `v0.7.0 · 2026.07.09.1`
+1. Back up the current repository and ZEKE workspace data.
+2. Unzip the release.
+3. Copy the **contents** of this folder into the GitHub Pages publishing root. Do not upload the ZIP itself and do not nest the build inside another directory.
+4. Preserve a newer working `zeke-config.js` only when it contains a deliberately newer Google OAuth client configuration.
+5. Commit and wait for GitHub Pages deployment to complete.
+6. Open ZEKE and confirm the sidebar shows `v0.8.0 · 2026.07.11.1`.
+7. Test storage restoration, import, AI connection, and Talk to ZEKE before relying on the build for daily use.
 
-The build identifier is visible in the sidebar and Settings/About, and a compact version badge remains available on narrow layouts.
+## User data and upgrades
 
-## Data behavior
+Application files are replaceable. User history remains in the chosen ZEKE workspace. This build preserves the existing Google Drive repository paths and upgrades the repository manifest in place, retaining the stable `workspace_id` when one already exists.
 
-- Dashboard values come from ZEKE's connected event repository (`health/events.json`).
-- No personal mock values are embedded in the production package.
-- Historical XLSX, CSV, TSV, and JSON files can be imported from Settings → Import existing history.
-- The importer maps common health/workout columns, preserves import provenance, and skips likely duplicates.
-- Continuous two-way synchronization with an arbitrary Google Sheet is not yet implemented. The current release imports spreadsheet history into the ZEKE event repository.
-
-## AI setup
-
-Settings → AI Connections lets the user connect and test Groq, Gemini, and OpenRouter connections. ZEKE's AI Router decides which configured service/model to use for a task. There is no ordinary “active AI” selector.
-
-Direct API keys are held in memory for the current page session and are not written to ZEKE's Drive JSON files or localStorage. The Manual AI Packet workflow remains available as a provider-neutral fallback.
-
-## Storage startup
-
-This static alpha stores only safe setup metadata in localStorage. Google access tokens remain in memory. On reload, ZEKE attempts silent authorization; if that cannot complete, ZEKE should show a simple reconnect screen rather than repeat the full storage setup flow.
+Do not delete the `Project Zeke` workspace folder to install an application update.

@@ -2,6 +2,7 @@
   'use strict';
 
   const SETUP_KEY = 'ZEKE_SETUP_META_V1';
+  const SESSION_TOKEN_KEY = 'ZEKE_GOOGLE_SESSION_TOKEN_V1';
   const ROOT_NAME = 'Project Zeke';
   const FOLDER_MIME = 'application/vnd.google-apps.folder';
   const DRIVE_SCOPE = 'https://www.googleapis.com/auth/drive.file';
@@ -26,7 +27,8 @@
     factors: 'health/factors.json',
     investigations: 'health/investigations.json',
     aiExchanges: 'system/ai-exchanges.json',
-    importBatches: 'imports/batches.json'
+    importBatches: 'imports/batches.json',
+    conversation: 'system/conversation.json'
   };
 
   const state = {
@@ -42,6 +44,7 @@
     investigations: [],
     aiExchanges: [],
     importBatches: [],
+    conversation: [],
     preferences: {},
     dashboardLayout: { widgets: [] },
     actions: { catalog: [], daily_states: {} },
@@ -96,6 +99,8 @@
       super('google-drive', 'Google Drive');
       this.clientId = config.clientId || window.ZEKE_CONFIG?.googleClientId || '';
       this.token = '';
+      this.tokenExpiresAt = 0;
+      try { sessionStorage.removeItem(SESSION_TOKEN_KEY); } catch {}
       this.rootId = '';
       this.folderIds = new Map();
       this.tokenClient = null;
@@ -124,6 +129,8 @@
               return;
             }
             this.token = result.access_token;
+            this.tokenExpiresAt = Date.now() + Number(result.expires_in || 3600) * 1000;
+            try { sessionStorage.setItem(SESSION_TOKEN_KEY, JSON.stringify({ accessToken:this.token, expiresAt:this.tokenExpiresAt })); } catch {}
             resolve({ connected: true, expiresIn: result.expires_in || null, scope: result.scope || SCOPES });
           },
           error_callback: (result) => {
@@ -137,12 +144,17 @@
     }
 
     async connect() { return this.requestToken('consent'); }
-    async reconnectSilently() { return this.requestToken(''); }
+    async reconnectSilently() {
+      if (this.token && this.tokenExpiresAt > Date.now() + 60_000) return { connected:true, restoredFromSession:true };
+      return this.requestToken('');
+    }
     async isConnected() { return Boolean(this.token); }
 
     async disconnect({ revoke = false } = {}) {
       const token = this.token;
       this.token = '';
+      this.tokenExpiresAt = 0;
+      try { sessionStorage.removeItem(SESSION_TOKEN_KEY); } catch {}
       this.rootId = '';
       this.folderIds.clear();
       if (revoke && token && window.google?.accounts?.oauth2?.revoke) {
@@ -158,6 +170,8 @@
       });
       if (response.status === 401) {
         this.token = '';
+        this.tokenExpiresAt = 0;
+        try { sessionStorage.removeItem(SESSION_TOKEN_KEY); } catch {}
         const err = new Error('Google authorization expired. Reconnect storage.');
         err.code = 'reauth_required';
         throw err;
@@ -232,6 +246,7 @@
       const file = await this.findFileByPath(path);
       if (!file) return clone(fallback);
       const raw = await this.api(`https://www.googleapis.com/drive/v3/files/${encodeURIComponent(file.id)}?alt=media`);
+      if (raw && typeof raw === 'object') return clone(raw);
       try { return JSON.parse(raw); } catch { return clone(fallback); }
     }
 
@@ -265,7 +280,8 @@
       }
       const currentManifest = await this.readJson(PATHS.manifest, {});
       const manifest = {
-        product: 'Project Zeke', repository_schema_version: 2,
+        product: 'Project Zeke', repository_schema_version: 3,
+        workspace_id: currentManifest.workspace_id || crypto.randomUUID(),
         created_at: currentManifest.created_at || nowIso(), updated_at: nowIso(),
         storage_provider: 'google-drive', root_folder_id: this.rootId,
         modules: { health: true, pets: false, vehicles: false, house: false, finances: false, projects: false },
@@ -323,6 +339,7 @@
     state.investigations = loaded.investigations || [];
     state.aiExchanges = loaded.aiExchanges || [];
     state.importBatches = loaded.importBatches || [];
+    state.conversation = loaded.conversation || [];
     state.preferences = loaded.preferences || {};
     state.dashboardLayout = loaded.dashboardLayout || { widgets: [] };
     state.actions = loaded.actions || { catalog: [], daily_states: {} };
@@ -414,7 +431,8 @@
         events: state.events.length,
         factors: state.factors.length,
         discoveries: state.discoveries.length,
-        investigations: state.investigations.length
+        investigations: state.investigations.length,
+        conversation: state.conversation.length
       }
     });
   }
@@ -503,15 +521,20 @@
   function duplicateScore(candidate, existing) {
     if (candidate.category !== existing.category) return 0;
     const a = candidate.structured || {}, b = existing.structured || {};
+    if (candidate.category === 'workout' && a.workout_id && b.workout_id && String(a.workout_id) === String(b.workout_id) && a.set_number != null && b.set_number != null && Number(a.set_number) !== Number(b.set_number)) return 0;
+    const timeDelta = Math.abs(new Date(candidate.timestamp || nowIso()) - new Date(existing.timestamp || 0));
+    // Equal values on different days are legitimate history, not duplicates.
+    const maxWindow = candidate.category === 'workout' ? 8 * 3600e3 : 24 * 3600e3;
+    if (!Number.isFinite(timeDelta) || timeDelta > maxWindow) return 0;
     const keys = ['metric_id','value','exercise','weight','reps','sets','medication_name','dose','duration_min','distance_mi'];
     const comparable = keys.filter(k => a[k] != null && b[k] != null);
     if (!comparable.length) return 0;
     const matched = comparable.filter(k => String(a[k]).toLowerCase() === String(b[k]).toLowerCase()).length;
-    const timeDelta = Math.abs(new Date(candidate.timestamp || nowIso()) - new Date(existing.timestamp || 0));
     let score = matched / comparable.length;
-    if (timeDelta < 10 * 60e3) score += 0.25;
-    else if (timeDelta < 6 * 3600e3) score += 0.10;
-    return Math.min(1, score);
+    if (timeDelta < 10 * 60e3) score += 0.30;
+    else if (timeDelta < 2 * 3600e3) score += 0.15;
+    else score -= 0.10;
+    return Math.max(0, Math.min(1, score));
   }
 
   async function findLikelyDuplicates(candidate, threshold = 0.75) {
@@ -548,6 +571,56 @@
   async function savePreferences(preferences) { state.preferences = clone(preferences); await persist('preferences'); emit(); return clone(state.preferences); }
   async function saveAIConnections(connections) { state.aiConnections = clone(connections); await persist('aiConnections'); emit('zeke:ai-connection-changed'); return clone(state.aiConnections); }
   async function addAIExchange(exchange) { state.aiExchanges = [...state.aiExchanges, { id: crypto.randomUUID(), timestamp: nowIso(), ...exchange }]; await persist('aiExchanges'); emit('zeke:ai-exchange-changed'); }
+
+  async function listConversation() { return clone([...state.conversation]); }
+  async function appendConversation(message) {
+    const normalized = { id:message.id || crypto.randomUUID(), at:message.at || nowIso(), role:message.role || 'zeke', text:String(message.text || ''), ...(message.meta || {}) };
+    state.conversation = [...state.conversation, normalized].slice(-300);
+    await persist('conversation');
+    emit('zeke:conversation-changed');
+    return clone(normalized);
+  }
+  async function saveConversation(messages) {
+    state.conversation = clone((messages || []).slice(-300));
+    await persist('conversation');
+    emit('zeke:conversation-changed');
+    return clone(state.conversation);
+  }
+  async function listImportBatches() { return clone([...state.importBatches]); }
+  async function saveImportBatch(batch) {
+    const normalized = { id:batch.id || crypto.randomUUID(), created_at:batch.created_at || nowIso(), ...batch };
+    state.importBatches = [...state.importBatches, normalized].slice(-100);
+    await persist('importBatches');
+    emit('zeke:import-batch-changed');
+    return clone(normalized);
+  }
+
+
+  async function mergeHistoryPackage(pkg = {}, meta = {}) {
+    const mergeById = (existing, incoming) => {
+      const map = new Map((existing || []).map(x => [x.id || crypto.randomUUID(), x]));
+      for (const item of incoming || []) {
+        const id = item.id || crypto.randomUUID();
+        if (!map.has(id)) map.set(id, { ...item, id });
+      }
+      return [...map.values()];
+    };
+    state.events = mergeById(state.events, pkg.events);
+    state.factors = mergeById(state.factors, pkg.factors);
+    state.discoveries = mergeById(state.discoveries, pkg.discoveries);
+    state.investigations = mergeById(state.investigations, pkg.investigations);
+    state.conversation = mergeById(state.conversation, pkg.conversation).slice(-300);
+    if (pkg.actions?.catalog) {
+      const catalog = mergeById(state.actions.catalog || [], pkg.actions.catalog);
+      state.actions = { ...state.actions, ...pkg.actions, catalog };
+    }
+    if (pkg.preferences && typeof pkg.preferences === 'object') state.preferences = { ...state.preferences, ...pkg.preferences };
+    await Promise.all(['events','factors','discoveries','investigations','conversation','actions','preferences'].map(k => persist(k)));
+    const report = await saveImportBatch({ type:'history-package', source:meta.source || 'json', file:meta.file || '', counts:{ events:(pkg.events||[]).length, factors:(pkg.factors||[]).length, discoveries:(pkg.discoveries||[]).length, conversation:(pkg.conversation||[]).length } });
+    emit();
+    return report;
+  }
+
   async function listCalendarEvents(days = 14) { return state.provider ? state.provider.listCalendarEvents(days) : []; }
 
   window.ZekeData = {
@@ -556,6 +629,8 @@
     listFactors, saveFactor, resolveFactor, listDiscoveries,
     getActions, saveActions, getPreferences, savePreferences,
     getAIConnections, saveAIConnections, addAIExchange,
+    listConversation, appendConversation, saveConversation,
+    listImportBatches, saveImportBatch, mergeHistoryPackage,
     listCalendarEvents,
     constants: { PATHS, SETUP_KEY }
   };

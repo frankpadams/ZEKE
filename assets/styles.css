@@ -31,3 +31,49 @@
 @media(max-width:760px){.top-build{display:inline-flex;margin-left:auto}.topbar .top-actions{display:none}}
 .provider-card-head>div{min-width:0}.provider-card-head strong{display:block}.provider-card-head .provider-status{display:block;margin-top:3px;white-space:normal;line-height:1.25}
 .file-button{display:inline-flex;align-items:center;cursor:pointer}
+
+/* v0.8 visual system */
+:root[data-theme="dark"]{
+  --bg:#070d18;--panel:#111a2a;--text:#eef4ff;--muted:#91a0b7;--line:#243149;--soft:#0d1625;
+  --blue:#4f7cff;--blue2:#6a8fff;--green:#2bc879;--red:#ff6b74;--amber:#f3b24f;--violet:#9b7cff;
+  --shadow:0 18px 46px rgba(0,0,0,.24);
+  color-scheme:dark;
+}
+:root[data-theme="dark"] body,:root[data-theme="dark"] #root{background:linear-gradient(180deg,#070d18 0%,#09111f 100%)}
+:root[data-theme="dark"] .sidebar{background:#0a1220;border-color:var(--line)}
+:root[data-theme="dark"] .topbar{background:rgba(7,13,24,.88);border-color:var(--line)}
+:root[data-theme="dark"] .panel,:root[data-theme="dark"] .metric-card,:root[data-theme="dark"] .provider-card,:root[data-theme="dark"] .action-tile,:root[data-theme="dark"] .secondary,:root[data-theme="dark"] .icon-btn,:root[data-theme="dark"] .range,:root[data-theme="dark"] .choice,:root[data-theme="dark"] .ai-card input,:root[data-theme="dark"] .ai-card select,:root[data-theme="dark"] .composer textarea,:root[data-theme="dark"] .attach{background:#111a2a;color:var(--text);border-color:var(--line)}
+:root[data-theme="dark"] .nav-item{color:#b8c4d7}:root[data-theme="dark"] .nav-item:hover{background:#111c2f}:root[data-theme="dark"] .nav-item.active{background:#172747;color:#7ea0ff}
+:root[data-theme="dark"] .metric-icon{background:#172746}:root[data-theme="dark"] .metric-change{color:#7bd9a8}
+:root[data-theme="dark"] .bubble{background:#172235}:root[data-theme="dark"] .bubble-row.user .bubble{background:#1a2d50}:root[data-theme="dark"] .bubble-row.user .avatar{background:#213a67;color:#a8c0ff}
+:root[data-theme="dark"] .grid-line{stroke:#253249}:root[data-theme="dark"] .axis-label{fill:#8fa0ba}
+:root[data-theme="dark"] .coach-stats div,:root[data-theme="dark"] .coach-rec,:root[data-theme="dark"] .manual-packet,:root[data-theme="dark"] .empty-inline,:root[data-theme="dark"] .empty-page,:root[data-theme="dark"] .chart-empty,:root[data-theme="dark"] .history-row{background:#0d1625;border-color:#253149;color:var(--muted)}
+:root[data-theme="dark"] .provider-card.connected{background:#10261d;border-color:#2c6d4b}
+:root[data-theme="dark"] .provider-card.planned{background:#0e1623;color:#8391a7}
+:root[data-theme="dark"] .question-pill{background:#14213a;border-color:#2d426a;color:#8eabff}
+:root[data-theme="dark"] .range-tabs{background:#0d1625;border-color:var(--line)}
+:root[data-theme="dark"] .range.active{background:var(--blue);color:white}
+:root[data-theme="dark"] .mini-tab{background:#172235;color:#9aa8bc}:root[data-theme="dark"] .mini-tab.active{background:var(--blue);color:white}
+:root[data-theme="dark"] .insight-tag{background:#123321;color:#72d9a1}
+:root[data-theme="dark"] .drawer{background:#0d1625}.theme-buttons{display:flex;gap:8px;flex-wrap:wrap}.theme-buttons .active{border-color:var(--blue);box-shadow:0 0 0 2px color-mix(in srgb,var(--blue) 25%,transparent)}
+
+@media(prefers-color-scheme:dark){
+  :root[data-theme="system"]{
+    --bg:#070d18;--panel:#111a2a;--text:#eef4ff;--muted:#91a0b7;--line:#243149;--soft:#0d1625;
+    --blue:#4f7cff;--blue2:#6a8fff;--green:#2bc879;--red:#ff6b74;--amber:#f3b24f;--violet:#9b7cff;
+    --shadow:0 18px 46px rgba(0,0,0,.24);color-scheme:dark;
+  }
+}
+
+/* Dashboard density and hierarchy */
+.content-shell{padding-top:18px}.dashboard-grid{grid-template-columns:minmax(400px,.9fr) minmax(620px,1.35fr);grid-template-areas:"conversation glance" "coach trend" "actions thinking";gap:18px}
+.health-glance .metrics-row{display:grid;grid-template-columns:repeat(3,minmax(150px,1fr));overflow:visible}.metric-card{max-width:none;min-width:0}.metric-card:hover{transform:translateY(-1px);transition:.16s;box-shadow:0 14px 36px rgba(0,0,0,.12)}
+.conversation-thread{height:280px}.trend-chart{min-height:240px}.chart-line{stroke-width:2.5}.chart-point{r:4px}.coach-panel{min-height:100%}.coach-actions{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px}.coach-ai-box{margin-top:10px;padding:12px;border-radius:12px;border:1px solid var(--line);background:var(--soft)}.coach-ai-box p{font-size:12px;line-height:1.5;color:var(--muted)}.ai-provenance{display:block;margin-top:6px;color:var(--muted);font-size:10px}
+.import-report{margin-top:14px;border:1px solid var(--line);background:var(--soft);border-radius:14px;padding:14px}.import-report>strong{display:block;margin-bottom:10px}.import-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}.import-stats span{border:1px solid var(--line);border-radius:10px;padding:9px 10px;font-size:10px;color:var(--muted)}.import-stats b{display:block;font-size:18px;color:var(--text);margin-bottom:2px}.import-report p{font-size:11px;color:var(--muted);line-height:1.5;margin:10px 0 0}
+
+/* Built-in mobile preview for desktop QA */
+body.mobile-preview-mode{background:#02060d}body.mobile-preview-mode .app-shell{width:430px;min-height:860px;margin:24px auto;border:1px solid var(--line);border-radius:28px;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.35)}body.mobile-preview-mode .sidebar{display:none}body.mobile-preview-mode .app-shell{display:block}body.mobile-preview-mode .dashboard-grid{grid-template-columns:1fr;grid-template-areas:"conversation" "glance" "coach" "trend" "actions" "thinking"}body.mobile-preview-mode .health-glance .metrics-row{display:flex;overflow-x:auto}body.mobile-preview-mode .metric-card{min-width:155px}body.mobile-preview-mode .topbar{position:relative;flex-wrap:wrap;height:auto;padding:12px}body.mobile-preview-mode .range-tabs{order:3;width:100%;overflow:auto}body.mobile-preview-mode .mobile-preview{display:none}body.mobile-preview-mode .content-shell{padding:12px}body.mobile-preview-mode .conversation-thread{height:330px}body.mobile-preview-mode .coach-grid{grid-template-columns:1fr}
+
+@media(max-width:1220px){.health-glance .metrics-row{grid-template-columns:repeat(2,minmax(150px,1fr))}.dashboard-grid{grid-template-columns:minmax(360px,.9fr) minmax(520px,1.2fr)}}
+@media(max-width:1020px){.health-glance .metrics-row{grid-template-columns:repeat(3,minmax(150px,1fr))}}
+@media(max-width:760px){.health-glance .metrics-row{display:flex;overflow-x:auto}.mobile-preview{display:none}}
