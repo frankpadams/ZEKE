@@ -429,58 +429,38 @@
 
   function scheduleText(s={}) { if(s.type==='daily')return'Daily'; if(s.type==='weekly')return'Weekly'; if(s.type==='date')return fmtDate(s.date,{month:'short',day:'numeric'}); return'Schedule unknown'; }
 
-  function dataPulse() {
-    const verified=state.events.filter(e=>e.category!=='raw_input');
-    const latest=verified.slice().sort((a,b)=>new Date(b.timestamp||b.recorded_at)-new Date(a.timestamp||a.recorded_at))[0];
-    const workoutSessions=new Set();
-    for(const e of state.events.filter(e=>e.category==='workout')) {
-      const s=e.structured||{}; workoutSessions.add(s.workout_id||s.session_id||localDay(new Date(e.timestamp||e.recorded_at)));
-    }
-    return {
-      records:verified.length,
-      metrics:availableMetrics().length,
-      workouts:workoutSessions.size,
-      labs:state.events.filter(e=>e.category==='lab').length,
-      openQuestions:openQuestions().length,
-      latest
-    };
-  }
-
-  function intelligenceStripHTML() {
-    const p=dataPulse();
-    const latestText=p.latest?fmtDate(p.latest.timestamp||p.latest.recorded_at,{month:'short',day:'numeric'}):'—';
-    return `<section class="intelligence-strip" aria-label="ZEKE data coverage">
-      <div><span>Verified records</span><strong>${p.records}</strong></div>
-      <div><span>Tracked metrics</span><strong>${p.metrics}</strong></div>
-      <div><span>Workout sessions</span><strong>${p.workouts}</strong></div>
-      <div><span>Lab observations</span><strong>${p.labs}</strong></div>
-      <div><span>Latest evidence</span><strong>${esc(latestText)}</strong></div>
-      <div class="${p.openQuestions?'needs-attention':''}"><span>Needs clarification</span><strong>${p.openQuestions}</strong></div>
+  function coverageHTML() {
+    const structured=state.events.filter(e=>!['raw_input','correction'].includes(e.category));
+    const workouts=structured.filter(e=>e.category==='workout').length;
+    const meds=structured.filter(e=>e.category==='medication').length;
+    const health=structured.filter(e=>['measurement','lab'].includes(e.category)).length;
+    const unresolved=openQuestions().length;
+    const latest=structured.map(e=>e.timestamp||e.recorded_at).filter(Boolean).sort().at(-1);
+    return `<section class="coverage-strip" aria-label="ZEKE data coverage">
+      <div><strong>${structured.length}</strong><span>verified records</span></div>
+      <div><strong>${health}</strong><span>health & lab</span></div>
+      <div><strong>${workouts}</strong><span>workout entries</span></div>
+      <div><strong>${meds}</strong><span>medication entries</span></div>
+      <div><strong>${unresolved}</strong><span>open questions</span></div>
+      <div><strong>${latest?esc(fmtDate(latest,{month:'short',day:'numeric'})):'—'}</strong><span>latest evidence</span></div>
     </section>`;
   }
 
   function thinkingHTML() {
     const allText=state.events.map(e=>e.raw_text||'').join(' ').toLowerCase();
-    const thoughts=[]; let buttons='';
-    if(state.discoveries.length) {
-      const d=state.discoveries[0]; thoughts.push({title:d.title||'Pattern worth exploring',text:d.summary||'ZEKE found a possible relationship in your recorded history.',tag:'Discovery'});
+    const insights=[];
+    for(const d of state.discoveries.slice(0,2)) insights.push({icon:'↗',title:d.title||'Pattern worth reviewing',text:d.summary||'A saved discovery is ready to explore.',action:'health'});
+    const workoutCount=state.events.filter(e=>e.category==='workout').length;
+    const metricCount=state.events.filter(e=>['measurement','lab'].includes(e.category)).length;
+    if(workoutCount>=2) { const c=coachInsight(); if(c) insights.push({icon:'🏋',title:c.name,text:c.suggestion,action:'fitness'}); }
+    if(metricCount && availableMetrics().length) {
+      const id=availableMetrics()[0], latest=latestMetric(id), meta=METRICS[id];
+      insights.push({icon:meta?.icon||'◈',title:`${meta?.label||id} is now usable`,text:`ZEKE has verified history through ${fmtDate(latest.date)} and can show changes without inventing missing values.`,action:'health'});
     }
-    const coach=coachInsight();
-    if(coach) thoughts.push({title:coach.name,text:coach.suggestion,tag:'Training'});
-    const available=availableMetrics();
-    if(available.length) {
-      const freshest=available.map(id=>({id,value:latestMetric(id)})).filter(x=>x.value).sort((a,b)=>new Date(b.value.date)-new Date(a.value.date))[0];
-      if(freshest) thoughts.push({title:`${METRICS[freshest.id].label}: ${freshest.value.value} ${freshest.value.unit||METRICS[freshest.id].unit}`,text:`Latest verified observation from ${fmtDate(freshest.value.date,{month:'short',day:'numeric',year:'numeric'})}. Open Health for the full evidence trail.`,tag:'Current'});
-    }
-    if(/nurri|protein shake/.test(allText) && !(state.actions.catalog||[]).some(a=>/nurri|protein shake/i.test(a.label||''))) {
-      thoughts.unshift({title:'Recurring nutrition signal',text:'You have mentioned protein shakes repeatedly. ZEKE can track them automatically when you mention one.',tag:'Suggestion'});
-      buttons=`<button class="choice" data-thinking="track-shakes">Track them</button><button class="choice" data-thinking="later">Later</button>`;
-    } else if(/creatine/.test(allText) && !(state.actions.catalog||[]).some(a=>/creatine/i.test(a.label||''))) {
-      thoughts.unshift({title:'Recurring supplement signal',text:'You have mentioned creatine more than once. ZEKE can track it as a recurring supplement.',tag:'Suggestion'});
-      buttons=`<button class="choice" data-thinking="track-creatine">Track it</button><button class="choice" data-thinking="later">Later</button>`;
-    }
-    if(!thoughts.length) thoughts.push({title:'Building your evidence base',text:'As you add or import observations, ZEKE will surface trends, gaps, and questions here without inventing missing data.',tag:'Status'});
-    return `<section class="panel thinking-panel"><div class="section-head"><div><h2>I've been thinking…</h2><p>Evidence-linked observations from your own record.</p></div><span class="live-dot">Live synthesis</span></div><div class="thought-list">${thoughts.slice(0,3).map(t=>`<article class="thought-item"><span>${esc(t.tag)}</span><div><strong>${esc(t.title)}</strong><p>${esc(t.text)}</p></div></article>`).join('')}</div>${buttons?`<div class="choice-row compact">${buttons}</div>`:''}</section>`;
+    if(/nurri|protein shake/.test(allText) && !(state.actions.catalog||[]).some(a=>/nurri|protein shake/i.test(a.label||''))) insights.push({icon:'🥤',title:'Repeated protein-shake mentions',text:'Would automatic recognition of these entries reduce logging friction?',thinking:'track-shakes'});
+    else if(/creatine/.test(allText) && !(state.actions.catalog||[]).some(a=>/creatine/i.test(a.label||''))) insights.push({icon:'＋',title:'Creatine appears repeatedly',text:'ZEKE can treat it as a recurring supplement after you confirm the schedule.',thinking:'track-creatine'});
+    if(!insights.length) insights.push({icon:'💡',title:'Building an evidence base',text:'ZEKE will surface a pattern here when your verified records support something useful.'});
+    return `<section class="panel thinking-panel"><div class="section-head"><div><h2>I've been thinking…</h2><p>Evidence-linked observations and low-friction suggestions.</p></div></div><div class="insight-list">${insights.slice(0,4).map(i=>`<article class="thought-row"><span class="thought-icon">${i.icon}</span><div><strong>${esc(i.title)}</strong><p>${esc(i.text)}</p>${i.action?`<button class="text-action" data-route="${i.action}">Explore evidence</button>`:''}${i.thinking?`<div class="choice-row compact"><button class="choice" data-thinking="${i.thinking}">Track it</button><button class="choice" data-thinking="later">Not now</button></div>`:''}</div></article>`).join('')}</div></section>`;
   }
 
   function upcomingHTML() {
@@ -491,7 +471,7 @@
 
   function dashboardHTML() {
     const trend=trendPanelHTML();
-    return `${intelligenceStripHTML()}<div class="dashboard-grid">
+    return `${coverageHTML()}<div class="dashboard-grid">
       <div class="conversation-zone">${conversationHTML()}</div>
       <div class="glance-zone">${healthGlanceHTML()}</div>
       ${trend?`<div class="trend-zone">${trend}</div>`:''}
