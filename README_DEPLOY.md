@@ -1,14 +1,11 @@
-# ZEKE v0.9.0 Data Integrity Alpha — Deployment
+# ZEKE v0.10.0 Deployment
 
-Build: **v0.9.0 · 2026.07.11.5**
+Build: **v0.10.0 · 2026.07.11.6**
 
-1. Back up the currently deployed ZEKE folder.
-2. Extract this ZIP.
-3. Preserve your deployed `zeke-config.js` if it contains your Google OAuth client ID, or copy that value into the new file.
-4. Replace the GitHub Pages site files with the extracted contents.
-5. Commit and wait for GitHub Pages deployment to finish.
-6. Hard-refresh the browser.
-7. Confirm the sidebar shows `v0.9.0 · 2026.07.11.5`.
-8. Open **Data Integrity** in the sidebar.
-
-Opening Data Integrity is read-only and does not rewrite the repository.
+1. Back up the currently deployed site.
+2. Replace all deployed files with the contents of this ZIP, including `assets/`.
+3. Do not copy an older `version.js`, `index.html`, or `assets/app.js` over this release.
+4. Hard-refresh the deployed page once.
+5. Confirm the sidebar shows `v0.10.0 · 2026.07.11.6`.
+6. Open Settings → Connected health workbook and select `SJN1.xlsx` once.
+7. After the first synchronization, future releases will reconnect to the managed workbook in Project Zeke Drive automatically.

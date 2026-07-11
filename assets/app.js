@@ -8,7 +8,7 @@
     conversation:[], pending:null, context:{}, storage:null, ai:null,
     coachExpanded:false, customizeOpen:false, metricMenuOpen:false,
     hiddenWidgets:new Set(), busy:false, importStatus:'', importReport:null, importBatches:[],
-    conversationLoaded:false, preferences:{}, coachAI:null, coachAILoading:false, theme:'dark', draft:'', auditQuery:'', auditCategory:'all'
+    conversationLoaded:false, preferences:{}, syncSource:null, syncBusy:false, syncReport:null, coachAI:null, coachAILoading:false, theme:'dark', draft:'', auditQuery:'', auditCategory:'all'
   };
 
   const RANGE_DAYS = { week:7, month:31, quarter:92, '6months':183, year:366, all:null };
@@ -75,6 +75,7 @@
     state.events=events; state.factors=factors; state.discoveries=discoveries; state.actions=actions;
     state.importBatches=importBatches; state.preferences=preferences||{}; state.importReport=state.importReport || importBatches?.at(-1) || null;
     if (!state.conversationLoaded || !state.conversation.length) { state.conversation=conversation||[]; state.conversationLoaded=true; }
+    state.syncSource=await ZekeData.getSyncSource();
     state.theme=state.preferences.theme || state.theme || 'dark';
     document.documentElement.dataset.theme=state.theme;
     try { state.calendar = await ZekeData.listCalendarEvents(21); } catch { state.calendar=[]; }
@@ -688,7 +689,7 @@
       <section class="panel settings-section"><div class="section-head"><div><h2>Storage</h2><p>Choose where ZEKE keeps your workspace. Normal launches should reconnect silently when the provider allows it.</p></div></div>${storageCardsHTML()}<div class="settings-actions"><button class="secondary" id="reconnectStorage">Reconnect storage</button><button class="text-action danger" id="forgetStorage">Disconnect & forget setup</button></div></section>
       <section class="panel settings-section"><div class="section-head"><div><h2>AI Connections</h2><p>Connect and test services. ZEKE's AI Router decides which available model to use based on task, privacy, availability, and free-first policy.</p></div><span class="badge">${(state.ai?.providers||[]).filter(x=>x.connected).length} connected</span></div>${aiConnectionCardsHTML()}<div class="manual-packet"><strong>Manual AI packet</strong><p>Export a structured packet for use with any external AI, then import the response back into ZEKE without treating it as raw fact.</p><div class="card-actions"><button class="secondary" id="exportAIPacket">Export packet</button><label class="secondary file-button">Import AI response<input type="file" id="importAIResponse" accept=".json,application/json" hidden></label></div><div id="aiImportStatus" class="status-line"></div></div></section>
       <section class="panel settings-section"><div class="section-head"><div><h2>Calendar connections</h2><p>Calendar providers are context sources. An event on a calendar does not prove that it happened.</p></div></div><div class="provider-grid"><article class="provider-card connected"><span class="provider-icon">▣</span><div><strong>Google Calendar</strong><p>Available with the current Google connection.</p><span class="provider-status">${state.storage?.providerId==='google-drive'?'Connected':'Available'}</span></div></article><article class="provider-card planned"><span class="provider-icon">◫</span><div><strong>Apple Calendar / iCloud</strong><p>CalDAV/ICS-compatible connector planned.</p><span class="provider-status">Planned</span></div></article><article class="provider-card planned"><span class="provider-icon">▤</span><div><strong>Outlook / Exchange</strong><p>Microsoft calendar connector planned.</p><span class="provider-status">Planned</span></div></article><article class="provider-card"><span class="provider-icon">ICS</span><div><strong>ICS import</strong><p>Import an exported calendar file as contextual history.</p><span class="provider-status">Coming next</span></div></article></div></section>
-      <section class="panel settings-section"><div class="section-head"><div><h2>Import existing history</h2><p>Import XLSX, JSON, CSV, or TSV history. ZEKE preserves source provenance and checks for likely duplicates.</p></div></div><input type="file" id="importFile" accept=".xlsx,.json,.csv,.tsv,text/csv,application/json,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"><div id="importStatus" class="status-line">${esc(state.importStatus||'')}</div>${state.importReport?`<div class="import-report"><strong>Latest import report</strong><div class="import-stats">${Object.entries(state.importReport.counts||{}).map(([k,v])=>`<span><b>${esc(v)}</b>${esc(k.replaceAll('_',' '))}</span>`).join('')}</div><p>${esc(state.importReport.message||'Dashboard data refreshed from accepted records.')}</p></div>`:''}</section>
+      <section class="panel settings-section"><div class="section-head"><div><h2>Connected health workbook</h2><p>Link the workbook once. ZEKE stores a managed copy in your Project Zeke Drive folder, reloads it after releases, and synchronizes it idempotently with events.json.</p></div><span class="badge">${state.syncSource?'Connected':'Not connected'}</span></div>${state.syncSource?`<div class="sync-source-card"><strong>${esc(state.syncSource.name)}</strong><p>Last synchronized: ${esc(state.syncSource.last_sync_at?fmtDate(state.syncSource.last_sync_at,{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}):'Not yet')}</p><div class="card-actions"><button class="secondary" id="syncWorkbookNow">Sync now</button><label class="secondary file-button">Replace connected source<input type="file" id="importFile" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden></label></div></div>`:`<label class="secondary file-button">Connect health workbook<input type="file" id="importFile" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden></label>`}<div id="importStatus" class="status-line">${esc(state.importStatus||'')}</div>${state.importReport?`<div class="import-report"><strong>Latest synchronization report</strong><div class="import-stats">${Object.entries(state.importReport.counts||{}).map(([k,v])=>`<span><b>${esc(v)}</b>${esc(k.replaceAll('_',' '))}</span>`).join('')}</div><p>${esc(state.importReport.message||'Synchronization completed.')}</p></div>`:''}<p class="safety-copy">Safety: a timestamped JSON backup is created before each sync. Blank spreadsheet cells do not delete JSON events. Conflicts are preserved for review, and repeated syncs do not append duplicates.</p></section>
       ${dataVisibilityHTML()}
       <section class="panel settings-section"><div class="section-head"><div><h2>Appearance</h2><p>Choose Dark, Light, or follow your system setting.</p></div></div><div class="theme-buttons"><button class="secondary ${state.theme==='dark'?'active':''}" data-theme="dark">Dark</button><button class="secondary ${state.theme==='light'?'active':''}" data-theme="light">Light</button><button class="secondary ${state.theme==='system'?'active':''}" data-theme="system">System</button></div></section>
       <section class="panel about"><h2>About this build</h2><p><strong>ZEKE v${esc(BUILD.version)}</strong> · build ${esc(BUILD.build)}</p><p>${esc(BUILD.label||'Repair release')}</p></section>`;
@@ -854,6 +855,7 @@
 
   async function savePendingConfirmed(p) {
     await ZekeData.confirmRawInput(p.rawId,p.parsed.events);
+    if(state.syncSource) syncConnectedWorkbook({quiet:true}).catch(()=>{});
     pushZeke(`Saved. I recorded ${p.parsed.summary}.`);
     state.pending=null; state.context={}; await refreshData(); render();
   }
@@ -929,7 +931,7 @@
     if(state.pending?.type!=='edit-confirm')return;
     if(value==='edit-cancel'){pushZeke('Canceled. I made no changes.');state.pending=null;render();return;}
     if(value==='edit-confirm'){
-      await ZekeData.updateEvent(state.pending.event.id,{category:state.pending.replacement.category,structured:state.pending.replacement.structured,correction_note:'Corrected through Talk to ZEKE'});pushZeke('Corrected. The previous version is preserved in the audit history.');state.pending=null;await refreshData();render();
+      await ZekeData.updateEvent(state.pending.event.id,{category:state.pending.replacement.category,structured:state.pending.replacement.structured,correction_note:'Corrected through Talk to ZEKE'});if(state.syncSource) syncConnectedWorkbook({quiet:true}).catch(()=>{});pushZeke('Corrected. The previous version is preserved in the audit history.');state.pending=null;await refreshData();render();
     }
   }
 
@@ -990,10 +992,10 @@
     }
 
     // Session-level workout/cardio rows such as Workout_Log and Cardio tabs.
-    const duration=asNum(get('duration_min','cardio_min','cardio_minutes','minutes','duration'));
+    const duration=asNum(get('duration_min','cardio_min','cardio_minutes','minutes','duration','exercise_duration'));
     const steps=asNum(get('cardio_steps','steps','step_count'));
     const distance=asNum(get('distance_mi','miles','distance'));
-    const activity=get('activity','cardio_type','modality','machine_or_modality');
+    const activity=get('activity','cardio_type','modality','machine_or_modality','exercise_desc','exercise_description','exercise');
     const notes=String(get('subjective_notes','notes','other_notes')||'');
     const cardioLike=/cardio|workout_log|workout log/i.test(sheetName) || activity || duration!=null || steps!=null || distance!=null;
     if(cardioLike && (duration!=null||steps!=null||distance!=null)) {
@@ -1008,9 +1010,22 @@
     addMetric('weight',get('body_weight','bodyweight','weight_lbs','weight_lb','weight'),'lb');
     addMetric('body_fat_pct',get('body_fat','body_fat_pct','body_fat_percentage'),'%');
     addMetric('waist_circumference',get('waist','waist_in','waist_inches'),'in');
-    addMetric('resting_hr',get('resting_hr','resting_heart_rate','rhr'),'bpm');
+    addMetric('resting_hr',get('resting_hr','resting_heart_rate','resting_heartbeat','rhr'),'bpm');
     addMetric('a1c',get('a1c','hba1c','hemoglobin_a1c'),'%','lab');
     addMetric('ldl',get('ldl','ldl_cholesterol','ldl_direct_measure'),'mg/dL','lab');
+    addMetric('average_glucose',get('average_glucose','estimated_average_glucose'),'mg/dL','lab');
+    addMetric('total_cholesterol',get('cholesterol','total_cholesterol'),'mg/dL','lab');
+    addMetric('hdl',get('highdensity_chol','high_density_chol','hdl','hdl_cholesterol'),'mg/dL','lab');
+    addMetric('triglycerides',get('triglicerides','triglycerides'),'mg/dL','lab');
+    addMetric('apob',get('apolipoprotein_b','apob'),'mg/dL','lab');
+    addMetric('lpa',get('lipoprotein_a','lpa','lp_a'),'mg/dL','lab');
+    addMetric('wbc',get('wbc'),'10^3/uL','lab');
+    addMetric('hgb',get('hgb','hemoglobin'),'g/dL','lab');
+    addMetric('hct',get('hct','hematocrit'),'%','lab');
+    addMetric('mcv',get('mcv'),'fL','lab');
+    addMetric('platelets',get('platelets'),'10^3/uL','lab');
+    addMetric('alt',get('alt_sgpt','alt'),'U/L','lab');
+    addMetric('vitamin_b12',get('vitamin_b12','b12'),'pg/mL','lab');
     addMetric('steps',get('steps','step_count'),'steps');
     addMetric('sleep_duration',get('sleep_duration','sleep_hours','hours_slept'),'hr');
     addMetric('energy',get('energy','energy_1_10'),'1-10');
@@ -1028,6 +1043,10 @@
       const metric=canonicalMetric(String(labName));
       out.push({category:'lab',timestamp,raw_text:'',structured:{metric_id:metric,value:labResult,unit:String(get('unit','units')||''),test_name:String(labName),reference_range:get('reference_range','range'),notes:get('notes'),interpretation_status:'confirmed'},provenance:source});
     }
+
+    // Daily intervention-dose columns in the longitudinal health workbook.
+    const givenDose=asNum(get('given_dose','tirzepatide_dose','mounjaro_dose','zepbound_dose'));
+    if(givenDose!=null) out.push({category:'medication',timestamp,raw_text:'',structured:{medication_name:'tirzepatide',dose:givenDose,unit:'mg',status:'taken',interpretation_status:'confirmed'},provenance:source});
 
     // Medication administrations and medication history rows.
     const medication=get('medication','medication_name','drug','medicine','name');
@@ -1056,17 +1075,94 @@
     return out;
   }
 
+
+  const normHeader=v=>String(v??'').trim().toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'');
+  async function sha256Text(value){const data=new TextEncoder().encode(String(value));const digest=await crypto.subtle.digest('SHA-256',data);return [...new Uint8Array(digest)].map(b=>b.toString(16).padStart(2,'0')).join('');}
+  async function sha256Buffer(buffer){const digest=await crypto.subtle.digest('SHA-256',buffer);return [...new Uint8Array(digest)].map(b=>b.toString(16).padStart(2,'0')).join('');}
+  function detectHeaderRow(matrix){
+    const anchors=['date','weight_lbs','given_dose','exercise_desc','exercise_duration','hemoglobin_a1c','ldl_direct_measure'];
+    let best={index:0,score:-1};
+    for(let i=0;i<Math.min(matrix.length,30);i++){
+      const headers=(matrix[i]||[]).map(normHeader); const nonempty=headers.filter(Boolean).length;
+      const score=anchors.filter(a=>headers.includes(a)).length*10 + Math.min(nonempty,20);
+      if(score>best.score)best={index:i,score};
+    }
+    return best.index;
+  }
+  function workbookRows(workbook){
+    const rows=[]; const diagnostics=[];
+    for(const sheetName of workbook.SheetNames){
+      const sheet=workbook.Sheets[sheetName];
+      const matrix=window.XLSX.utils.sheet_to_json(sheet,{header:1,defval:'',raw:false,blankrows:false});
+      if(!matrix.length)continue;
+      const headerIndex=detectHeaderRow(matrix); const headers=(matrix[headerIndex]||[]).map((h,i)=>String(h||`Column ${i+1}`).trim());
+      let accepted=0;
+      for(let r=headerIndex+1;r<matrix.length;r++){
+        const values=matrix[r]||[]; if(!values.some(v=>String(v??'').trim()!==''))continue;
+        const row={__sheet:sheetName,__source_row:r+1,__header_row:headerIndex+1};
+        headers.forEach((h,i)=>row[h]=values[i]??''); rows.push(row); accepted++;
+      }
+      diagnostics.push({sheet:sheetName,header_row:headerIndex+1,rows_read:accepted,columns:headers.filter(Boolean).length});
+    }
+    return {rows,diagnostics};
+  }
+  function eventSubkey(c){const st=c.structured||{};return [c.category,st.metric_id||'',st.exercise||'',st.medication_name||'',st.symptom||'',st.note_type||''].join(':').toLowerCase();}
+  async function enrichSourceIdentity(c,row,source){
+    const date=String(c.timestamp||'').slice(0,10); const logical=[source.id,normHeader(row.__sheet),date,eventSubkey(c)].join('|');
+    const payload=JSON.stringify({category:c.category,timestamp:c.timestamp,structured:c.structured,raw_text:c.raw_text||''});
+    c.provenance={...(c.provenance||{}),source:'connected-workbook',file:source.name,sheet:row.__sheet,source_row:row.__source_row,header_row:row.__header_row,source_id:source.id,source_key:await sha256Text(logical),source_fingerprint:await sha256Text(payload)};
+    return c;
+  }
+  async function buildWorkbookCandidates(workbook,source){
+    const parsed=workbookRows(workbook); const candidates=[]; let unmapped=0;
+    for(const row of parsed.rows){
+      const mapped=rowCandidates(row,source.name);
+      if(!mapped.length){unmapped++;continue;}
+      for(const c of mapped)candidates.push(await enrichSourceIdentity(c,row,source));
+    }
+    return {candidates,rows:parsed.rows,diagnostics:parsed.diagnostics,unmapped};
+  }
+  async function mirrorEventsIntoWorkbook(workbook){
+    const events=await ZekeData.listEvents();
+    const rows=[['ZEKE Event ID','Timestamp','Category','Metric / Exercise / Medication','Value','Unit','Details','Source','Updated At']];
+    for(const e of events.filter(x=>!['raw_input','correction'].includes(x.category))){const st=e.structured||{};rows.push([e.id,e.timestamp||'',e.category,st.metric_id||st.exercise||st.medication_name||st.symptom||st.note_type||'',st.value??st.dose??st.duration_min??'',st.unit||st.weight_unit||'',JSON.stringify(st),e.provenance?.source||'',e.updated_at||e.recorded_at||'']);}
+    const name='ZEKE Events'; if(workbook.Sheets[name])delete workbook.Sheets[name]; workbook.Sheets[name]=window.XLSX.utils.aoa_to_sheet(rows);
+    if(!workbook.SheetNames.includes(name))workbook.SheetNames.push(name);
+    workbook.Sheets[name]['!cols']=[{wch:38},{wch:24},{wch:16},{wch:28},{wch:12},{wch:12},{wch:60},{wch:22},{wch:24}];
+    return workbook;
+  }
+  async function synchronizeWorkbookBuffer(buffer,fileName,{link=false,quiet=false}={}){
+    if(!window.XLSX)throw new Error('Spreadsheet reader did not load. Refresh and try again.');
+    let source=await ZekeData.getSyncSource();
+    if(link||!source){source=await ZekeData.saveSyncSource(fileName,buffer,{})}
+    const workbook=window.XLSX.read(buffer,{type:'array',cellDates:true});
+    const built=await buildWorkbookCandidates(workbook,source);
+    if(!built.candidates.length)throw new Error('No safely interpretable health records were found. Nothing was changed.');
+    const report=await ZekeData.reconcileSourceEvents(built.candidates,{source:source.id,file:source.name});
+    // Build a separate human-readable mirror workbook. The connected source is kept byte-for-byte intact.
+    const mirror=window.XLSX.utils.book_new(); await mirrorEventsIntoWorkbook(mirror);
+    const output=window.XLSX.write(mirror,{type:'array',bookType:'xlsx',compression:true});
+    await ZekeData.updateSyncSourceWorkbook(output,{...report,diagnostics:built.diagnostics,rows_read:built.rows.length,unmapped_rows:built.unmapped});
+    state.syncReport={...report,diagnostics:built.diagnostics,rows_read:built.rows.length,unmapped_rows:built.unmapped}; state.syncSource=await ZekeData.getSyncSource();
+    if(!quiet)showToast(`Sync complete: ${report.created} created, ${report.updated} updated, ${report.unchanged} unchanged.`);
+    return state.syncReport;
+  }
+  async function syncConnectedWorkbook({quiet=false}={}){
+    if(state.syncBusy)return; state.syncBusy=true;
+    try{const linked=await ZekeData.readSyncSourceWorkbook();if(!linked?.buffer)return null;return await synchronizeWorkbookBuffer(linked.buffer,linked.source.name,{link:false,quiet});}
+    finally{state.syncBusy=false;}
+  }
+
   async function handleImport(file) {
     const status=$('#importStatus'); state.importStatus='Reading file…'; if(status)status.textContent=state.importStatus;
     try {
       const lowerName=file.name.toLowerCase(); let rows=[]; let historyPackage=null;
       if(lowerName.endsWith('.xlsx')) {
-        if(!window.XLSX) throw new Error('Spreadsheet reader did not load. Refresh and try again.');
-        const buffer=await file.arrayBuffer(); const workbook=window.XLSX.read(buffer,{type:'array',cellDates:true});
-        for(const sheetName of workbook.SheetNames) {
-          const sheet=workbook.Sheets[sheetName];
-          rows.push(...window.XLSX.utils.sheet_to_json(sheet,{defval:'',raw:false}).map(row=>({...row,__sheet:sheetName})));
-        }
+        const buffer=await file.arrayBuffer();
+        const report=await synchronizeWorkbookBuffer(buffer,file.name,{link:true,quiet:true});
+        state.importReport={file:file.name,counts:{rows_read:report.rows_read,records_created:report.created,records_updated:report.updated,unchanged:report.unchanged,linked_existing:report.linked_existing,conflicts:report.conflicts,unmapped_rows:report.unmapped_rows},message:'The workbook is now connected in your Project Zeke Drive folder. Future releases reload it automatically; repeated syncs are idempotent.'};
+        state.importStatus=`Connected and synchronized ${file.name}: ${report.created} created, ${report.updated} updated, ${report.unchanged} unchanged.`;
+        await refreshData(); render(); return;
       } else {
         const text=await file.text();
         if(lowerName.endsWith('.json')) {
@@ -1179,6 +1275,7 @@
     $('#exportAIPacket')?.addEventListener('click',()=>{const packet={packet_type:'ZEKE Manual AI Packet',build:BUILD,created_at:new Date().toISOString(),instructions:'Return analysis as observations, interpretations, evidence, limitations, and proposed actions. Do not treat inferred claims as raw facts.',context:{recent_events:state.events.slice(-50),open_questions:openQuestions(),discoveries:state.discoveries.slice(0,10)}};downloadJSON(packet,`zeke-ai-packet-${localDay()}.json`)});
     $('#importAIResponse')?.addEventListener('change',async e=>{const file=e.target.files?.[0];if(!file)return;const status=$('#aiImportStatus');try{const response=JSON.parse(await file.text());await ZekeData.saveFactor({type:'external_ai_response',status:'review',summary:response.summary||response.analysis||response.title||'Imported AI analysis awaiting review',response,provenance:{source:'manual-ai-packet',file:file.name}});if(status)status.textContent='Imported for review. ZEKE will not treat the AI response as raw fact.';await refreshData()}catch(err){if(status)status.textContent=`Import failed: ${err.message}`}});
     $('#importFile')?.addEventListener('change',e=>{const f=e.target.files?.[0];if(f)handleImport(f)});
+    $('#syncWorkbookNow')?.addEventListener('click',async()=>{try{state.importStatus='Synchronizing connected workbook…';render();const r=await syncConnectedWorkbook();state.importStatus=`Sync complete: ${r.created} created, ${r.updated} updated, ${r.unchanged} unchanged.`;await refreshData();render()}catch(e){state.importStatus=`Sync failed safely: ${e.message}`;render()}});
     $('#attachBtn')?.addEventListener('click',()=>$('#conversationFile')?.click());
     $('#conversationFile')?.addEventListener('change',e=>{const f=e.target.files?.[0];if(f){pushZeke(`I received ${f.name}. File interpretation through the conversation is not complete in this repair build yet; use Settings → Import existing history for XLSX, JSON, CSV, or TSV data.`);render()}});
     bindTooltips();
@@ -1194,7 +1291,7 @@
     await ZekeAIRouter.hydrateMetadata();
     render();
     await ZekeData.bootstrap();
-    if(ZekeData.snapshot().status==='connected') await refreshData();
+    if(ZekeData.snapshot().status==='connected'){ await refreshData(); state.syncSource=await ZekeData.getSyncSource(); if(state.syncSource){try{await syncConnectedWorkbook({quiet:true});await refreshData()}catch(e){state.importStatus=`Automatic sync was skipped safely: ${e.message}`;}} }
     render();
   }
 

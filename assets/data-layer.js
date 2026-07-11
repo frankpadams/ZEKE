@@ -28,7 +28,8 @@
     investigations: 'health/investigations.json',
     aiExchanges: 'system/ai-exchanges.json',
     importBatches: 'imports/batches.json',
-    conversation: 'system/conversation.json'
+    conversation: 'system/conversation.json',
+    syncSources: 'imports/sources.json'
   };
 
   const state = {
@@ -45,6 +46,7 @@
     aiExchanges: [],
     importBatches: [],
     conversation: [],
+    syncSources: { sources: [] },
     preferences: {},
     dashboardLayout: { widgets: [] },
     actions: { catalog: [], daily_states: {} },
@@ -90,6 +92,8 @@
     async initializeRepository() { throw new Error('initializeRepository() not implemented'); }
     async readJson() { throw new Error('readJson() not implemented'); }
     async writeJson() { throw new Error('writeJson() not implemented'); }
+    async readBinary() { throw new Error('readBinary() not implemented'); }
+    async writeBinary() { throw new Error('writeBinary() not implemented'); }
     async listCalendarEvents() { return []; }
     async describeConnection() { return { id: this.id, label: this.label }; }
   }
@@ -250,6 +254,40 @@
       try { return JSON.parse(raw); } catch { return clone(fallback); }
     }
 
+    async readBinary(path) {
+      const file = await this.findFileByPath(path);
+      if (!file) return null;
+      if (!this.token) throw new Error('Google Drive is not connected.');
+      const response = await fetch(`https://www.googleapis.com/drive/v3/files/${encodeURIComponent(file.id)}?alt=media`, { headers:{Authorization:`Bearer ${this.token}`} });
+      if (!response.ok) throw new Error(`Google API error ${response.status}: ${await response.text()}`);
+      return response.arrayBuffer();
+    }
+
+    async writeBinary(path, arrayBuffer, mimeType='application/octet-stream') {
+      const parts=path.split('/').filter(Boolean); const name=parts.pop();
+      const parentId=parts.length?await this.ensureFolderPath(parts.join('/')):this.rootId;
+      const existing=await this.findFileByPath(path); const blob=new Blob([arrayBuffer],{type:mimeType});
+      if(existing){
+        const response=await fetch(`https://www.googleapis.com/upload/drive/v3/files/${encodeURIComponent(existing.id)}?uploadType=media`,{method:'PATCH',headers:{Authorization:`Bearer ${this.token}`,'Content-Type':mimeType},body:blob});
+        if(!response.ok) throw new Error(`Google API error ${response.status}: ${await response.text()}`);
+        return response.json().catch(()=>({id:existing.id,name}));
+      }
+      const boundary=`zeke_${crypto.randomUUID()}`;
+      const meta=JSON.stringify({name,parents:[parentId],mimeType,appProperties:{zeke_path:path,zeke_managed_source:'true'}});
+      const body=new Blob([`--${boundary}
+Content-Type: application/json; charset=UTF-8
+
+${meta}
+--${boundary}
+Content-Type: ${mimeType}
+
+`,blob,`
+--${boundary}--`]);
+      const response=await fetch('https://www.googleapis.com/upload/drive/v3/files?uploadType=multipart&fields=id,name,modifiedTime',{method:'POST',headers:{Authorization:`Bearer ${this.token}`,'Content-Type':`multipart/related; boundary=${boundary}`},body});
+      if(!response.ok) throw new Error(`Google API error ${response.status}: ${await response.text()}`);
+      return response.json();
+    }
+
     async writeJson(path, value) {
       const parts = path.split('/').filter(Boolean);
       const name = parts.pop();
@@ -319,6 +357,8 @@
     async initializeRepository() { return { rootName: 'Test Workspace', rootId: 'test' }; }
     async readJson(path, fallback = null) { return clone(this.store.has(path) ? this.store.get(path) : fallback); }
     async writeJson(path, value) { this.store.set(path, clone(value)); return { path }; }
+    async readBinary(path) { return this.store.get(path) || null; }
+    async writeBinary(path, value) { this.store.set(path, value); return { path }; }
     async listCalendarEvents() { return clone(this.store.get('__calendar') || []); }
   }
 
@@ -340,6 +380,7 @@
     state.aiExchanges = loaded.aiExchanges || [];
     state.importBatches = loaded.importBatches || [];
     state.conversation = loaded.conversation || [];
+    state.syncSources = loaded.syncSources || { sources: [] };
     state.preferences = loaded.preferences || {};
     state.dashboardLayout = loaded.dashboardLayout || { widgets: [] };
     state.actions = loaded.actions || { catalog: [], daily_states: {} };
@@ -621,6 +662,59 @@
     return report;
   }
 
+
+  const cleanFileName = name => String(name || 'health-history.xlsx').replace(/[^a-zA-Z0-9._-]+/g,'_').slice(-120);
+  async function saveSyncSource(fileName, arrayBuffer, meta = {}) {
+    if (!state.provider) throw new Error('Connect storage before linking a spreadsheet.');
+    const current=(state.syncSources.sources||[]).find(x=>x.kind==='health-workbook');
+    const sourceId=current?.id || crypto.randomUUID();
+    const path=current?.path || `imports/originals/connected-health-history-${sourceId}.xlsx`;
+    await state.provider.writeBinary(path,arrayBuffer,'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    const source={id:sourceId,kind:'health-workbook',name:cleanFileName(fileName),path,linked_at:current?.linked_at||nowIso(),updated_at:nowIso(),last_sync_at:meta.last_sync_at||current?.last_sync_at||null,last_report:meta.last_report||current?.last_report||null,schema_version:1};
+    state.syncSources={sources:[...(state.syncSources.sources||[]).filter(x=>x.id!==sourceId&&x.kind!=='health-workbook'),source]};
+    await persist('syncSources'); emit('zeke:sync-source-changed'); return clone(source);
+  }
+  async function getSyncSource() { return clone((state.syncSources.sources||[]).find(x=>x.kind==='health-workbook')||null); }
+  async function readSyncSourceWorkbook() { const source=await getSyncSource(); if(!source)return null; return {source,buffer:await state.provider.readBinary(source.path)}; }
+  async function updateSyncSourceWorkbook(arrayBuffer, report = null) {
+    const source=await getSyncSource(); if(!source) throw new Error('No connected health workbook.');
+    // Never rewrite the source workbook during synchronization. Spreadsheet libraries can drop charts or formatting.
+    if(arrayBuffer) await state.provider.writeBinary('imports/ZEKE-Event-Mirror.xlsx',arrayBuffer,'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    source.updated_at=nowIso(); source.last_sync_at=nowIso(); if(report)source.last_report=report; source.mirror_path='imports/ZEKE-Event-Mirror.xlsx';
+    state.syncSources={sources:[...(state.syncSources.sources||[]).filter(x=>x.id!==source.id),source]}; await persist('syncSources'); emit('zeke:sync-source-changed'); return clone(source);
+  }
+  async function reconcileSourceEvents(candidates=[], meta={}) {
+    if(!state.provider) throw new Error('Connect storage before synchronizing.');
+    const backupPath=`imports/backups/events-${new Date().toISOString().replace(/[:.]/g,'-')}.json`;
+    await state.provider.writeJson(backupPath,{created_at:nowIso(),reason:'pre-sync-backup',source:meta.source||'',events:state.events});
+    const existingByKey=new Map();
+    state.events.forEach((e,i)=>{const k=e.provenance?.source_key;if(k)existingByKey.set(k,{e,i});});
+    const report={created:0,updated:0,unchanged:0,linked_existing:0,conflicts:0,skipped:0,backup_path:backupPath};
+    const semanticKey=e=>{const s=e.structured||{};return [e.category,String(e.timestamp||'').slice(0,10),s.metric_id||'',s.exercise||'',s.medication_name||'',s.value??'',s.dose??'',s.duration_min??''].map(x=>String(x).trim().toLowerCase()).join('|')};
+    const semantic=new Map(state.events.filter(e=>!['raw_input','correction'].includes(e.category)).map(e=>[semanticKey(e),e]));
+    for(const c0 of candidates){
+      const c=clone(c0); const key=c.provenance?.source_key; const fp=c.provenance?.source_fingerprint;
+      if(!key){report.skipped++;continue;}
+      const match=existingByKey.get(key);
+      if(match){
+        if(match.e.provenance?.source_fingerprint===fp){report.unchanged++;continue;}
+        const before=match.e; const updated={...before,...c,id:before.id,recorded_at:before.recorded_at||nowIso(),updated_at:nowIso(),provenance:{...(before.provenance||{}),...(c.provenance||{}),sync_updated_at:nowIso()}};
+        state.events[match.i]=updated; existingByKey.set(key,{e:updated,i:match.i}); report.updated++; continue;
+      }
+      const sem=semantic.get(semanticKey(c));
+      if(sem){
+        if(!sem.provenance?.source_key){sem.provenance={...(sem.provenance||{}),...(c.provenance||{}),linked_at:nowIso()}; report.linked_existing++; existingByKey.set(key,{e:sem,i:state.events.indexOf(sem)});}
+        else report.conflicts++;
+        continue;
+      }
+      const normalized={schema_version:2,id:c.id||crypto.randomUUID(),recorded_at:c.recorded_at||nowIso(),timestamp:c.timestamp||nowIso(),...c};
+      state.events.push(normalized); existingByKey.set(key,{e:normalized,i:state.events.length-1}); semantic.set(semanticKey(normalized),normalized); report.created++;
+    }
+    await persist('events');
+    const batch=await saveImportBatch({type:'idempotent-workbook-sync',source:meta.source||'connected-health-workbook',file:meta.file||'',counts:report,message:`Workbook sync completed: ${report.created} created, ${report.updated} updated, ${report.unchanged} unchanged, ${report.linked_existing} linked to existing records, ${report.conflicts} conflicts.`});
+    emit(); return {...report,batch_id:batch.id};
+  }
+
   async function listCalendarEvents(days = 14) { return state.provider ? state.provider.listCalendarEvents(days) : []; }
 
   window.ZekeData = {
@@ -631,6 +725,7 @@
     getAIConnections, saveAIConnections, addAIExchange,
     listConversation, appendConversation, saveConversation,
     listImportBatches, saveImportBatch, mergeHistoryPackage,
+    saveSyncSource, getSyncSource, readSyncSourceWorkbook, updateSyncSourceWorkbook, reconcileSourceEvents,
     listCalendarEvents,
     constants: { PATHS, SETUP_KEY }
   };
