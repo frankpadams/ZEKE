@@ -13,13 +13,15 @@
 
   const RANGE_DAYS = { week:7, month:31, quarter:92, '6months':183, year:366, all:null };
   const METRICS = {
-    weight:{label:'Weight',unit:'lb', icon:'⚖️'},
-    blood_pressure:{label:'Blood pressure',unit:'mmHg', icon:'❤'},
-    a1c:{label:'A1c',unit:'%', icon:'◈'},
-    resting_hr:{label:'Resting HR',unit:'bpm', icon:'♥'},
-    sleep_duration:{label:'Sleep',unit:'hr', icon:'☾'},
-    steps:{label:'Steps',unit:'steps', icon:'◌'},
-    ldl:{label:'LDL cholesterol',unit:'mg/dL', icon:'⬡'}
+    weight:{label:'Weight',unit:'lb', icon:'⚖️'}, blood_pressure:{label:'Blood pressure',unit:'mmHg', icon:'❤'},
+    a1c:{label:'A1c',unit:'%', icon:'◈'}, resting_hr:{label:'Resting HR',unit:'bpm', icon:'♥'},
+    sleep_duration:{label:'Sleep',unit:'hr', icon:'☾'}, steps:{label:'Steps',unit:'steps', icon:'◌'},
+    ldl:{label:'LDL cholesterol',unit:'mg/dL', icon:'⬡'}, hdl:{label:'HDL cholesterol',unit:'mg/dL',icon:'⬢'},
+    triglycerides:{label:'Triglycerides',unit:'mg/dL',icon:'◆'}, total_cholesterol:{label:'Total cholesterol',unit:'mg/dL',icon:'◇'},
+    apob:{label:'ApoB',unit:'mg/dL',icon:'⬡'}, lpa:{label:'Lp(a)',unit:'mg/dL',icon:'◉'},
+    glucose:{label:'Glucose',unit:'mg/dL',icon:'◫'}, average_glucose:{label:'Avg. glucose',unit:'mg/dL',icon:'▥'},
+    body_fat_pct:{label:'Body fat',unit:'%',icon:'◐'}, waist_circumference:{label:'Waist',unit:'in',icon:'↔'},
+    protein_g:{label:'Protein',unit:'g',icon:'P'}, cardio_minutes:{label:'Cardio',unit:'min',icon:'◴'}, pain_score:{label:'Pain',unit:'/10',icon:'!'}
   };
 
   const EVIDENCE = [
@@ -178,15 +180,30 @@
     return {relation,summary:String(text||'').trim(),history_type:relation==='self'?'personal_history':'family_history'};
   }
 
+  function semanticCategory(e) {
+    const st=e?.structured||{};
+    const raw=[e?.category,e?.type,st.category,st.type,st.event_type,st.record_type,st.domain].filter(Boolean).join(' ').toLowerCase();
+    if(/workout|exercise|fitness|strength|resistance|cardio|training/.test(raw)) return 'workout';
+    if(/lab|laboratory|bloodwork|blood test|panel|lipid/.test(raw)) return 'lab';
+    if(/medication|medicine|drug|supplement|dose|injection/.test(raw)) return 'medication';
+    if(/measurement|vital|weight|blood pressure|sleep|steps|heart rate/.test(raw)) return 'measurement';
+    return String(e?.category||e?.type||'uncategorized').toLowerCase().replace(/[^a-z0-9]+/g,'_');
+  }
+
   function metricId(e) {
-    const s=e.structured||{};
-    return String(s.metric_id||s.metricId||s.metric||s.test_id||'').toLowerCase().replace(/\s+/g,'_');
+    const st=e?.structured||{};
+    const candidate=st.metric_id||st.metricId||st.metric||st.test_id||st.test_name||st.analyte||st.lab_name||st.measurement||st.name||st.label||st.title||e?.metric_id||e?.name||'';
+    return String(candidate).toLowerCase().trim().replace(/\s+/g,'_');
   }
 
   function metricValue(e) {
-    const s=e.structured||{};
-    const v=s.value ?? s.result ?? s.measurement_value;
-    return Number.isFinite(Number(v)) ? Number(v) : null;
+    const st=e?.structured||{};
+    const candidates=[st.value,st.result,st.measurement_value,st.numeric_value,st.result_value,st.amount,e?.value,e?.result];
+    for(const v of candidates){
+      if(Number.isFinite(Number(v))) return Number(v);
+      if(typeof v==='string'){ const m=v.replace(/,/g,'').match(/-?\d+(?:\.\d+)?/); if(m) return Number(m[0]); }
+    }
+    return null;
   }
 
   function canonicalMetric(id) {
@@ -219,7 +236,7 @@
   }
 
   function allMetricSeries(id) {
-    return state.events.filter(e=>['measurement','lab'].includes(e.category)).map(e=>{
+    return state.events.filter(e=>['measurement','lab'].includes(semanticCategory(e))).map(e=>{
       const cid=canonicalMetric(metricId(e)); const value=metricValue(e); const s=e.structured||{};
       return {id:e.id,metric:cid,value,unit:s.unit||s.value_unit||'',date:e.timestamp||e.recorded_at,source:e.provenance?.source||s.source||'ZEKE'};
     }).filter(p=>p.metric===id && p.value!=null).sort((a,b)=>new Date(a.date)-new Date(b.date));
@@ -249,7 +266,10 @@
   }
 
   function availableMetrics() {
-    return Object.keys(METRICS).filter(id=>id==='blood_pressure'?(bloodPressureSeries(true).sys.length&&bloodPressureSeries(true).dia.length):allMetricSeries(id).length);
+    const known=Object.keys(METRICS).filter(id=>id==='blood_pressure'?(bloodPressureSeries(true).sys.length&&bloodPressureSeries(true).dia.length):allMetricSeries(id).length);
+    const discovered=[...new Set(state.events.filter(e=>['measurement','lab'].includes(semanticCategory(e))).map(e=>canonicalMetric(metricId(e))).filter(Boolean))]
+      .filter(id=>METRICS[id] && !known.includes(id));
+    return [...known,...discovered];
   }
 
   function miniSpark(points, id) {
@@ -456,56 +476,65 @@
 
   function scheduleText(s={}) { if(s.type==='daily')return'Daily'; if(s.type==='weekly')return'Weekly'; if(s.type==='date')return fmtDate(s.date,{month:'short',day:'numeric'}); return'Schedule unknown'; }
 
+  function repositoryInventory() {
+    const counts={}; const metricCounts={}; const sources={}; const unrecognized=[];
+    for(const e of state.events){
+      const cat=semanticCategory(e)||'uncategorized'; counts[cat]=(counts[cat]||0)+1;
+      const src=e?.provenance?.sheet||e?.provenance?.file||e?.provenance?.source||'ZEKE'; sources[src]=(sources[src]||0)+1;
+      if(['measurement','lab'].includes(cat)){
+        const rawId=metricId(e), cid=canonicalMetric(rawId); if(cid) metricCounts[cid]=(metricCounts[cid]||0)+1;
+        if(!rawId || metricValue(e)==null) unrecognized.push(e);
+      }
+    }
+    return {counts,metricCounts,sources,unrecognized};
+  }
+
   function coverageHTML() {
-    const structured=state.events.filter(e=>!['raw_input','correction'].includes(e.category));
-    const workouts=structured.filter(isWorkoutEvent).length;
-    const meds=structured.filter(e=>e.category==='medication').length;
-    const health=structured.filter(e=>['measurement','lab'].includes(e.category)).length;
-    const unresolved=openQuestions().length;
+    const inv=repositoryInventory(); const structured=state.events.filter(e=>!['raw_input','correction'].includes(semanticCategory(e)));
     const latest=structured.map(e=>e.timestamp||e.recorded_at).filter(Boolean).sort().at(-1);
+    const visibleMetrics=availableMetrics().length;
     return `<section class="coverage-strip" aria-label="ZEKE data coverage">
-      <div><strong>${structured.length}</strong><span>verified records</span></div>
-      <div><strong>${health}</strong><span>health & lab</span></div>
-      <div><strong>${workouts}</strong><span>workout entries</span></div>
-      <div><strong>${meds}</strong><span>medication entries</span></div>
-      <div><strong>${unresolved}</strong><span>open questions</span></div>
+      <div><strong>${structured.length}</strong><span>loaded records</span></div>
+      <div><strong>${(inv.counts.measurement||0)+(inv.counts.lab||0)}</strong><span>health & lab</span></div>
+      <div><strong>${inv.counts.workout||0}</strong><span>workout records</span></div>
+      <div><strong>${visibleMetrics}</strong><span>usable metrics</span></div>
+      <div><strong>${openQuestions().length}</strong><span>open questions</span></div>
       <div><strong>${latest?esc(fmtDate(latest,{month:'short',day:'numeric'})):'—'}</strong><span>latest evidence</span></div>
     </section>`;
   }
 
+  function recentHealthHTML() {
+    const rows=state.events.filter(e=>['measurement','lab','medication'].includes(semanticCategory(e))).sort((a,b)=>new Date(b.timestamp||b.recorded_at)-new Date(a.timestamp||a.recorded_at)).slice(0,7);
+    if(!rows.length) return '';
+    return `<section class="panel recent-evidence"><div class="section-head"><div><h2>Recent health evidence</h2><p>Latest loaded records, including items that do not yet form a chart.</p></div><button class="text-action" data-route="health">View all</button></div><div class="evidence-list">${rows.map(e=>`<article><time>${esc(fmtDate(e.timestamp||e.recorded_at,{month:'short',day:'numeric'}))}</time><div><strong>${esc(humanEvent(e))}</strong><small>${esc(semanticCategory(e))} · ${esc(e.provenance?.sheet||e.provenance?.file||e.provenance?.source||'ZEKE')}</small></div></article>`).join('')}</div></section>`;
+  }
+
+  function dataVisibilityHTML() {
+    const inv=repositoryInventory(); const cats=Object.entries(inv.counts).sort((a,b)=>b[1]-a[1]);
+    const metrics=Object.entries(inv.metricCounts).sort((a,b)=>b[1]-a[1]).slice(0,10);
+    return `<section class="panel data-visibility"><div class="section-head"><div><h2>What ZEKE can currently see</h2><p>A read-only inventory of the connected repository. This does not alter your records.</p></div><button class="text-action" data-route="settings">Inspect imports</button></div><div class="inventory-grid"><div><h3>Record types</h3>${cats.map(([k,v])=>`<span><b>${esc(v)}</b>${esc(k.replaceAll('_',' '))}</span>`).join('')||'<p>No loaded records.</p>'}</div><div><h3>Recognized health metrics</h3>${metrics.map(([k,v])=>`<span><b>${esc(v)}</b>${esc(METRICS[k]?.label||k.replaceAll('_',' '))}</span>`).join('')||'<p>No chartable metrics recognized.</p>'}</div></div>${inv.unrecognized.length?`<p class="audit-note">${inv.unrecognized.length} health/lab record${inv.unrecognized.length===1?'':'s'} loaded but missing a usable metric name or numeric value. They remain untouched and can be reviewed in Health or Settings.</p>`:''}</section>`;
+  }
+
   function thinkingHTML() {
-    const allText=state.events.map(e=>e.raw_text||'').join(' ').toLowerCase();
-    const insights=[];
+    const allText=state.events.map(e=>e.raw_text||'').join(' ').toLowerCase(); const insights=[];
     for(const d of state.discoveries.slice(0,2)) insights.push({icon:'↗',title:d.title||'Pattern worth reviewing',text:d.summary||'A saved discovery is ready to explore.',action:'health'});
-    const workoutCount=state.events.filter(isWorkoutEvent).length;
-    const metricCount=state.events.filter(e=>['measurement','lab'].includes(e.category)).length;
-    if(workoutCount>=2) { const c=coachInsight(); if(c) insights.push({icon:'🏋',title:c.name,text:c.suggestion,action:'fitness'}); }
-    if(metricCount && availableMetrics().length) {
-      const id=availableMetrics()[0], latest=latestMetric(id), meta=METRICS[id];
-      insights.push({icon:meta?.icon||'◈',title:`${meta?.label||id} is now usable`,text:`ZEKE has verified history through ${fmtDate(latest.date)} and can show changes without inventing missing values.`,action:'health'});
-    }
-    if(/nurri|protein shake/.test(allText) && !(state.actions.catalog||[]).some(a=>/nurri|protein shake/i.test(a.label||''))) insights.push({icon:'🥤',title:'Repeated protein-shake mentions',text:'Would automatic recognition of these entries reduce logging friction?',thinking:'track-shakes'});
-    else if(/creatine/.test(allText) && !(state.actions.catalog||[]).some(a=>/creatine/i.test(a.label||''))) insights.push({icon:'＋',title:'Creatine appears repeatedly',text:'ZEKE can treat it as a recurring supplement after you confirm the schedule.',thinking:'track-creatine'});
-    if(!insights.length) insights.push({icon:'💡',title:'Building an evidence base',text:'ZEKE will surface a pattern here when your verified records support something useful.'});
+    const workoutCount=state.events.filter(isWorkoutEvent).length; const metricCount=state.events.filter(e=>['measurement','lab'].includes(semanticCategory(e))).length;
+    if(workoutCount>=2){const c=coachInsight();if(c)insights.push({icon:'🏋',title:c.name,text:c.suggestion,action:'fitness'});}
+    if(metricCount&&availableMetrics().length){const id=availableMetrics()[0],latest=latestMetric(id),meta=METRICS[id];insights.push({icon:meta?.icon||'◈',title:`${meta?.label||id} history is available`,text:`Verified history is loaded through ${fmtDate(latest.date)}.`,action:'health'});}
+    if(/nurri|protein shake/.test(allText)&&!(state.actions.catalog||[]).some(a=>/nurri|protein shake/i.test(a.label||'')))insights.push({icon:'🥤',title:'Repeated protein-shake mentions',text:'Would automatic recognition reduce logging friction?',thinking:'track-shakes'});
+    else if(/creatine/.test(allText)&&!(state.actions.catalog||[]).some(a=>/creatine/i.test(a.label||'')))insights.push({icon:'＋',title:'Creatine appears repeatedly',text:'ZEKE can treat it as a recurring supplement after you confirm the schedule.',thinking:'track-creatine'});
+    if(!insights.length)insights.push({icon:'💡',title:'Building an evidence base',text:'ZEKE will surface a pattern when verified records support something useful.'});
     return `<section class="panel thinking-panel"><div class="section-head"><div><h2>I've been thinking…</h2><p>Evidence-linked observations and low-friction suggestions.</p></div></div><div class="insight-list">${insights.slice(0,4).map(i=>`<article class="thought-row"><span class="thought-icon">${i.icon}</span><div><strong>${esc(i.title)}</strong><p>${esc(i.text)}</p>${i.action?`<button class="text-action" data-route="${i.action}">Explore evidence</button>`:''}${i.thinking?`<div class="choice-row compact"><button class="choice" data-thinking="${i.thinking}">Track it</button><button class="choice" data-thinking="later">Not now</button></div>`:''}</div></article>`).join('')}</div></section>`;
   }
 
   function upcomingHTML() {
-    if(!state.calendar.length) return '';
-    const rows=state.calendar.slice(0,4).map(e=>`<div class="calendar-row"><div class="calendar-date"><strong>${esc(fmtDate(e.start,{month:'short',day:'numeric'}))}</strong><span>${esc(fmtTime(e.start))}</span></div><div><strong>${esc(e.title)}</strong>${e.location?`<small>${esc(e.location)}</small>`:''}</div></div>`).join('');
-    return `<section class="panel upcoming-panel"><div class="section-head"><div><h2>Upcoming</h2><p>Calendar events are scheduled context, not proof of completion.</p></div><button class="text-action" data-route="calendar">View all</button></div>${rows}</section>`;
+    if(!state.calendar.length)return''; const rows=state.calendar.slice(0,4).map(e=>`<div class="calendar-row"><div class="calendar-date"><strong>${esc(fmtDate(e.start,{month:'short',day:'numeric'}))}</strong><span>${esc(fmtTime(e.start))}</span></div><div><strong>${esc(e.title)}</strong>${e.location?`<small>${esc(e.location)}</small>`:''}</div></div>`).join('');
+    return `<section class="panel upcoming-panel"><div class="section-head"><div><h2>Upcoming</h2><p>Scheduled context, not proof of completion.</p></div><button class="text-action" data-route="calendar">View all</button></div>${rows}</section>`;
   }
 
   function dashboardHTML() {
     const trend=trendPanelHTML();
-    return `${coverageHTML()}<div class="dashboard-grid">
-      <div class="conversation-zone">${conversationHTML()}</div>
-      <div class="glance-zone">${healthGlanceHTML()}</div>
-      ${trend?`<div class="trend-zone">${trend}</div>`:''}
-      <div class="coach-zone">${coachHTML()}</div>
-      <div class="actions-zone">${todayActionsHTML()}</div>
-      <div class="thinking-zone">${thinkingHTML()}${upcomingHTML()}</div>
-    </div>`;
+    return `${coverageHTML()}<div class="dashboard-columns"><div class="dashboard-column primary-column">${conversationHTML()}${coachHTML()}${todayActionsHTML()}</div><div class="dashboard-column insight-column">${healthGlanceHTML(9)}${trend||''}${recentHealthHTML()}${thinkingHTML()}${upcomingHTML()}${dataVisibilityHTML()}</div></div>`;
   }
 
   function recordsTable(filterFn, columns) {
@@ -521,9 +550,9 @@
     return `<div class="page-head"><div><h1>Health</h1><p>Your health overview, including sleep, measurements, labs, medications, history, and context.</p></div><button class="primary" data-log-metric="weight">+ Log health data</button></div>
       <section class="panel"><div class="section-head"><div><h2>Health overview</h2><p>Sleep belongs here as part of health, not as a separate top-level domain.</p></div></div><div class="metrics-row">${cards||'<div class="empty-inline">No verified health metrics yet.</div>'}</div></section>
       <section class="panel"><div class="section-head"><div><h2>Personal & family health history</h2><p>Optional context that can improve discoveries. It stays off the main dashboard and surfaces only when relevant.</p></div><button class="secondary" id="addHealthHistory">+ Add context</button></div><div class="history-list">${historyRows}</div></section>
-      <section class="panel"><div class="section-head"><div><h2>Recent health record</h2><p>Review and correct entries while preserving provenance.</p></div></div>${recordsTable(e=>['measurement','lab','medication'].includes(e.category),[
+      <section class="panel"><div class="section-head"><div><h2>Recent health record</h2><p>Review and correct entries while preserving provenance.</p></div></div>${recordsTable(e=>['measurement','lab','medication'].includes(semanticCategory(e)),[
         {label:'Date',value:e=>fmtDate(e.timestamp,{month:'short',day:'numeric',year:'numeric'})},
-        {label:'Type',value:e=>e.category},
+        {label:'Type',value:e=>semanticCategory(e)},
         {label:'Summary',value:e=>humanEvent(e)},
         {label:'Source',value:e=>e.provenance?.source||'ZEKE'}
       ])}</section>`;
@@ -532,9 +561,14 @@
   function fitnessPageHTML() {
     const groups=workoutGroups();
     const exerciseCards=[...groups.entries()].map(([name,arr])=>{const last=arr.at(-1);return `<article class="exercise-card"><div><strong>${esc(name)}</strong><p>${arr.length} recorded session${arr.length===1?'':'s'}</p></div><div class="exercise-last">${last.weight?`${last.weight} lb`:''}${last.reps?` · ${last.reps} reps`:''}${last.duration_min?` · ${last.duration_min} min`:''}</div><button class="text-action" data-context-exercise="${esc(name)}">+ Log</button></article>`}).join('');
-    const workoutRows=state.events.filter(isWorkoutEvent).sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp));
+    const workoutRows=state.events.filter(isWorkoutEvent).sort((a,b)=>new Date(b.timestamp||b.recorded_at)-new Date(a.timestamp||a.recorded_at));
+    const inv=repositoryInventory();
+    const workoutCandidates=state.events.filter(e=>!isWorkoutEvent(e) && /workout|exercise|fitness|strength|cardio|stair|pulldown|curl|row|reps?|sets?/i.test([e.category,e.type,e.raw_text,e.summary,JSON.stringify(e.structured||{})].join(' ')));
+    const workoutSources={}; for(const e of workoutRows){const src=e.provenance?.sheet||e.provenance?.file||e.provenance?.source||'ZEKE';workoutSources[src]=(workoutSources[src]||0)+1;}
+    const diagnostic=`<section class="panel diagnostic-panel"><div class="section-head"><div><h2>Workout data status</h2><p>Read-only compatibility audit; no records are migrated or rewritten.</p></div></div><div class="diagnostic-stats"><span><b>${workoutRows.length}</b>recognized</span><span><b>${workoutCandidates.length}</b>possible but unrecognized</span><span><b>${Object.keys(workoutSources).length}</b>sources</span></div>${Object.keys(workoutSources).length?`<div class="source-chips">${Object.entries(workoutSources).map(([k,v])=>`<span>${esc(k)} · ${v}</span>`).join('')}</div>`:''}${!workoutRows.length?`<p class="audit-note">No workout events are currently accessible in the canonical repository. Your health/lab spreadsheet may be connected while workout history remains in another sheet or was skipped during import. Existing source files and repository records have not been changed.</p>`:''}</section>`;
     const history=workoutRows.length?`<div class="table-wrap"><table><thead><tr><th>Date</th><th>Exercise / activity</th><th>Load</th><th>Reps × sets</th><th>Duration / steps</th><th>Source</th><th></th></tr></thead><tbody>${workoutRows.map(e=>{const w=workoutStructured(e);return `<tr><td>${esc(fmtDate(e.timestamp,{month:'short',day:'numeric',year:'numeric'}))}</td><td>${esc(w.exercise||'Workout')}</td><td>${esc(w.weight!=null?`${w.weight} ${w.weight_unit||'lb'}`:'—')}</td><td>${esc(w.reps!=null||w.sets!=null?`${w.reps??'—'} × ${w.sets??'—'}`:'—')}</td><td>${esc(w.duration_min!=null?`${w.duration_min} min`:w.steps!=null?`${w.steps} steps`:'—')}</td><td>${esc(e.provenance?.sheet||e.provenance?.file||e.provenance?.source||'ZEKE')}</td><td><button class="text-action" data-edit-event="${e.id}">Review / edit</button></td></tr>`}).join('')}</tbody></table></div>`:'<div class="empty-inline">No workout records were recognized. Use Settings → Import existing history if your workout source has not yet been imported.</div>';
     return `<div class="page-head"><div><h1>Fitness</h1><p>Workout history, progression, coaching observations, and exercise-specific trends.</p></div><button class="primary" data-context-exercise="">+ Log workout</button></div>
+      ${diagnostic}
       ${coachHTML()}
       <section class="panel"><div class="section-head"><div><h2>Workout history</h2><p>${workoutRows.length} recognized workout entr${workoutRows.length===1?'y':'ies'}, shown chronologically from your connected records.</p></div></div>${history}</section>
       <section class="panel"><div class="section-head"><div><h2>Exercises</h2><p>Summaries combine compatible exercise, set-level, session-level, cardio, and imported fitness records.</p></div></div><div class="exercise-grid">${exerciseCards||'<div class="empty-inline">No exercise summaries are available yet.</div>'}</div></section>`;
@@ -542,7 +576,7 @@
 
   function medicationsPageHTML() {
     return `<div class="page-head"><div><h1>Medications & supplements</h1><p>Schedules, confirmed doses, supplements, injections, and corrections.</p></div><button class="primary" data-context-medication="">+ Log medication or supplement</button></div>
-      <section class="panel"><div class="section-head"><div><h2>Recorded entries</h2><p>ZEKE does not infer today’s completion from prior days.</p></div></div>${recordsTable(e=>e.category==='medication',[
+      <section class="panel"><div class="section-head"><div><h2>Recorded entries</h2><p>ZEKE does not infer today’s completion from prior days.</p></div></div>${recordsTable(e=>semanticCategory(e)==='medication',[
         {label:'Date',value:e=>fmtDate(e.timestamp,{month:'short',day:'numeric',year:'numeric'})},
         {label:'Medication / item',value:e=>e.structured?.medication_name||e.structured?.name||'Medication'},
         {label:'Dose',value:e=>e.structured?.dose?`${e.structured.dose}${e.structured.unit||''}`:'Not recorded'},
@@ -552,7 +586,7 @@
 
   function labsPageHTML() {
     return `<div class="page-head"><div><h1>Labs & vitals</h1><p>Verified results, reference context when available, and longitudinal trends.</p></div><button class="primary" data-log-metric="a1c">+ Log result</button></div>
-      <section class="panel"><div class="section-head"><div><h2>Lab results</h2><p>ZEKE shows source reference information when it exists; it does not imply one universal normal range.</p></div></div>${recordsTable(e=>e.category==='lab',[
+      <section class="panel"><div class="section-head"><div><h2>Lab results</h2><p>ZEKE shows source reference information when it exists; it does not imply one universal normal range.</p></div></div>${recordsTable(e=>semanticCategory(e)==='lab',[
         {label:'Date',value:e=>fmtDate(e.timestamp,{month:'short',day:'numeric',year:'numeric'})},
         {label:'Test',value:e=>METRICS[canonicalMetric(metricId(e))]?.label||metricId(e)||'Lab'},
         {label:'Value',value:e=>`${metricValue(e)??'—'} ${e.structured?.unit||''}`},
@@ -589,6 +623,7 @@
       <section class="panel settings-section"><div class="section-head"><div><h2>AI Connections</h2><p>Connect and test services. ZEKE's AI Router decides which available model to use based on task, privacy, availability, and free-first policy.</p></div><span class="badge">${(state.ai?.providers||[]).filter(x=>x.connected).length} connected</span></div>${aiConnectionCardsHTML()}<div class="manual-packet"><strong>Manual AI packet</strong><p>Export a structured packet for use with any external AI, then import the response back into ZEKE without treating it as raw fact.</p><div class="card-actions"><button class="secondary" id="exportAIPacket">Export packet</button><label class="secondary file-button">Import AI response<input type="file" id="importAIResponse" accept=".json,application/json" hidden></label></div><div id="aiImportStatus" class="status-line"></div></div></section>
       <section class="panel settings-section"><div class="section-head"><div><h2>Calendar connections</h2><p>Calendar providers are context sources. An event on a calendar does not prove that it happened.</p></div></div><div class="provider-grid"><article class="provider-card connected"><span class="provider-icon">▣</span><div><strong>Google Calendar</strong><p>Available with the current Google connection.</p><span class="provider-status">${state.storage?.providerId==='google-drive'?'Connected':'Available'}</span></div></article><article class="provider-card planned"><span class="provider-icon">◫</span><div><strong>Apple Calendar / iCloud</strong><p>CalDAV/ICS-compatible connector planned.</p><span class="provider-status">Planned</span></div></article><article class="provider-card planned"><span class="provider-icon">▤</span><div><strong>Outlook / Exchange</strong><p>Microsoft calendar connector planned.</p><span class="provider-status">Planned</span></div></article><article class="provider-card"><span class="provider-icon">ICS</span><div><strong>ICS import</strong><p>Import an exported calendar file as contextual history.</p><span class="provider-status">Coming next</span></div></article></div></section>
       <section class="panel settings-section"><div class="section-head"><div><h2>Import existing history</h2><p>Import XLSX, JSON, CSV, or TSV history. ZEKE preserves source provenance and checks for likely duplicates.</p></div></div><input type="file" id="importFile" accept=".xlsx,.json,.csv,.tsv,text/csv,application/json,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"><div id="importStatus" class="status-line">${esc(state.importStatus||'')}</div>${state.importReport?`<div class="import-report"><strong>Latest import report</strong><div class="import-stats">${Object.entries(state.importReport.counts||{}).map(([k,v])=>`<span><b>${esc(v)}</b>${esc(k.replaceAll('_',' '))}</span>`).join('')}</div><p>${esc(state.importReport.message||'Dashboard data refreshed from accepted records.')}</p></div>`:''}</section>
+      ${dataVisibilityHTML()}
       <section class="panel settings-section"><div class="section-head"><div><h2>Appearance</h2><p>Choose Dark, Light, or follow your system setting.</p></div></div><div class="theme-buttons"><button class="secondary ${state.theme==='dark'?'active':''}" data-theme="dark">Dark</button><button class="secondary ${state.theme==='light'?'active':''}" data-theme="light">Light</button><button class="secondary ${state.theme==='system'?'active':''}" data-theme="system">System</button></div></section>
       <section class="panel about"><h2>About this build</h2><p><strong>ZEKE v${esc(BUILD.version)}</strong> · build ${esc(BUILD.build)}</p><p>${esc(BUILD.label||'Repair release')}</p></section>`;
   }
