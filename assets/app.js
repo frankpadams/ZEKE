@@ -240,7 +240,7 @@
     return state.events.filter(e=>['measurement','lab'].includes(semanticCategory(e))).map(e=>{
       const cid=canonicalMetric(metricId(e)); const value=metricValue(e); const s=e.structured||{};
       return {id:e.id,metric:cid,value,unit:s.unit||s.value_unit||'',date:e.timestamp||e.recorded_at,source:e.provenance?.source||s.source||'ZEKE'};
-    }).filter(p=>p.metric===id && p.value!=null).sort((a,b)=>new Date(a.date)-new Date(b.date));
+    }).filter(p=>p.metric===id && p.value!=null && Number.isFinite(new Date(p.date).getTime())).sort((a,b)=>new Date(a.date)-new Date(b.date)).filter((p,i,a)=>i===0 || !(p.id===a[i-1].id && p.value===a[i-1].value && p.date===a[i-1].date));
   }
 
   function metricSeries(id) {
@@ -275,10 +275,36 @@
 
   function miniSpark(points, id) {
     if(points.length<2) return '';
-    const w=160,h=48,p=3, vals=points.map(x=>x.value), min=Math.min(...vals),max=Math.max(...vals),span=max-min||1;
-    const xy=points.map((x,i)=>[p+(w-2*p)*i/(points.length-1),h-p-(h-2*p)*(x.value-min)/span]);
+    const clean=points.filter(p=>Number.isFinite(Number(p.value))&&Number.isFinite(new Date(p.date).getTime()));
+    if(clean.length<2) return '';
+    const w=160,h=48,p=4, vals=clean.map(x=>Number(x.value)), min=Math.min(...vals),max=Math.max(...vals),span=max-min||1;
+    const times=clean.map(x=>new Date(x.date).getTime()), t0=Math.min(...times), t1=Math.max(...times), tspan=t1-t0||1;
+    const xy=clean.map((x,i)=>[p+(w-2*p)*(times[i]-t0)/tspan,h-p-(h-2*p)*(Number(x.value)-min)/span]);
     const d=xy.map((q,i)=>(i?'L':'M')+q.join(' ')).join(' ');
-    return `<svg class="spark" viewBox="0 0 ${w} ${h}" aria-label="${esc(METRICS[id]?.label||id)} trend"><path d="${d}"/>${xy.map((q,i)=>`<circle cx="${q[0]}" cy="${q[1]}" r="2.6" data-tip="${esc(fmtDate(points[i].date))}: ${esc(points[i].value)} ${esc(points[i].unit||'')}"/>`).join('')}</svg>`;
+    return `<svg class="spark" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(METRICS[id]?.label||id)} verified trend"><path d="${d}"/>${xy.map((q,i)=>`<circle tabindex="0" cx="${q[0]}" cy="${q[1]}" r="3.2" data-tip="${esc(fmtDate(clean[i].date,{month:'short',day:'numeric',year:'numeric'}))}: ${esc(clean[i].value)} ${esc(clean[i].unit||METRICS[id]?.unit||'')}"/>`).join('')}</svg>`;
+  }
+
+  function metricNarrative(id, points) {
+    const meta=METRICS[id]||{label:id};
+    if(!points.length) return `ZEKE has no verified ${meta.label.toLowerCase()} observations to interpret.`;
+    if(points.length===1) return `ZEKE has one verified ${meta.label.toLowerCase()} observation. That is enough to report the value, but not enough to infer a trend.`;
+    const first=points[0], last=points.at(-1), diff=Number(last.value)-Number(first.value);
+    const days=Math.max(1,Math.round((new Date(last.date)-new Date(first.date))/864e5));
+    const direction=Math.abs(diff)<1e-9?'stable':diff>0?'higher':'lower';
+    return `${meta.label} is ${direction} by ${Math.abs(diff).toFixed(Math.abs(diff)<1?1:0)} ${last.unit||meta.unit||''} across ${points.length} verified observations over ${days} day${days===1?'':'s'}. This is a descriptive summary of your recorded data, not a clinical conclusion.`;
+  }
+
+  function openMetricDetail(id) {
+    const points=id==='blood_pressure'?bloodPressureSeries(true).sys:allMetricSeries(id);
+    const latest=latestMetric(id), meta=METRICS[id]||{label:id,unit:''};
+    let overlay=$('#metricDetailOverlay');
+    if(!overlay){overlay=document.createElement('div');overlay.id='metricDetailOverlay';overlay.className='metric-detail-overlay';document.body.appendChild(overlay);}
+    const rows=points.slice().reverse().slice(0,20).map(p=>`<tr><td>${esc(fmtDate(p.date,{month:'short',day:'numeric',year:'numeric'}))}</td><td>${esc(p.value)} ${esc(p.unit||meta.unit||'')}</td><td>${esc(p.source||'ZEKE')}</td></tr>`).join('');
+    overlay.innerHTML=`<section class="metric-detail" role="dialog" aria-modal="true" aria-label="${esc(meta.label)} details"><button class="metric-detail-close" aria-label="Close">×</button><h2>${esc(meta.label)}</h2><p class="metric-detail-current">Latest verified value: <strong>${esc(latest?.value??'—')} ${esc(latest?.unit||meta.unit||'')}</strong></p><p>${esc(metricNarrative(id,points))}</p><div class="metric-detail-chart">${trendChartSVG(id)}</div><h3>Underlying verified observations</h3><div class="metric-detail-table-wrap"><table><thead><tr><th>Date</th><th>Value</th><th>Source</th></tr></thead><tbody>${rows||'<tr><td colspan="3">No verified observations.</td></tr>'}</tbody></table></div></section>`;
+    overlay.classList.add('show');
+    overlay.querySelector('.metric-detail-close')?.addEventListener('click',()=>overlay.classList.remove('show'));
+    overlay.addEventListener('click',e=>{if(e.target===overlay)overlay.classList.remove('show')},{once:true});
+    bindTooltips();
   }
 
   function metricCard(id) {
@@ -732,12 +758,57 @@
 
   function loadingHTML(message='Starting ZEKE…') { return `<div class="loading-screen"><div class="brand-mark big">Z</div><div class="spinner"></div><p>${esc(message)}</p><div class="build-label center">v${esc(BUILD.version)} · ${esc(BUILD.build)}</div></div>`; }
 
+  function editableKey(el) {
+    if(!el || !(el instanceof HTMLElement)) return null;
+    if(el.id) return `#${el.id}`;
+    for(const attr of ['data-ai-key','data-ai-model','data-ai-endpoint','name']) {
+      const value=el.getAttribute?.(attr);
+      if(value) return `[${attr}="${CSS.escape(value)}"]`;
+    }
+    return null;
+  }
+
+  function isEditableElement(el=document.activeElement) {
+    if(!el || !(el instanceof HTMLElement)) return false;
+    if(el.matches?.('input:not([type=file]):not([type=button]):not([type=submit]), textarea, select, [contenteditable=true]')) return true;
+    return false;
+  }
+
+  function captureEditableState() {
+    const values=[];
+    document.querySelectorAll('input:not([type=file]):not([type=button]):not([type=submit]), textarea, select, [contenteditable=true]').forEach(el=>{
+      const key=editableKey(el); if(!key) return;
+      values.push({key,value:el.matches('[contenteditable=true]')?el.innerHTML:el.value,checked:'checked' in el?el.checked:undefined});
+    });
+    const active=document.activeElement;
+    const activeKey=isEditableElement(active)?editableKey(active):null;
+    const selection=activeKey && typeof active.selectionStart==='number' ? {start:active.selectionStart,end:active.selectionEnd,direction:active.selectionDirection,scrollTop:active.scrollTop,scrollLeft:active.scrollLeft} : null;
+    return {values,activeKey,selection};
+  }
+
+  function restoreEditableState(snapshot) {
+    if(!snapshot) return;
+    for(const item of snapshot.values||[]) {
+      const el=document.querySelector(item.key); if(!el) continue;
+      if(el.matches?.('[contenteditable=true]')) el.innerHTML=item.value;
+      else if(el.type==='checkbox'||el.type==='radio') el.checked=Boolean(item.checked);
+      else el.value=item.value;
+    }
+    if(snapshot.activeKey) {
+      const active=document.querySelector(snapshot.activeKey);
+      if(active) {
+        active.focus({preventScroll:true});
+        if(snapshot.selection && typeof active.setSelectionRange==='function') {
+          try { active.setSelectionRange(snapshot.selection.start,snapshot.selection.end,snapshot.selection.direction); active.scrollTop=snapshot.selection.scrollTop; active.scrollLeft=snapshot.selection.scrollLeft; } catch {}
+        }
+      }
+    }
+  }
+
   function render() {
     const root=$('#root'); if(!root)return;
-    const active=document.activeElement;
-    const talkWasFocused=active?.id==='talkInput';
+    const editableSnapshot=captureEditableState();
     const existingDraft=$('#talkInput')?.value;
-    const selection=talkWasFocused ? {start:active.selectionStart,end:active.selectionEnd,direction:active.selectionDirection,scrollTop:active.scrollTop} : null;
     if(existingDraft!=null) state.draft=existingDraft;
     const storage=ZekeData.snapshot(); state.storage=storage; state.ai=ZekeAIRouter.status(); state.route=routeFromHash();
     if(['booting','connecting','reconnecting'].includes(storage.status)) root.innerHTML=loadingHTML(storage.status==='reconnecting'?'Reconnecting to your workspace…':'Starting ZEKE…');
@@ -748,10 +819,7 @@
       const t=$('#conversationThread'); if(t)t.scrollTop=t.scrollHeight;
       const input=$('#talkInput');
       if(input && state.draft && !input.value) input.value=state.draft;
-      if(input && talkWasFocused){
-        input.focus({preventScroll:true});
-        try { input.setSelectionRange(selection.start,selection.end,selection.direction); input.scrollTop=selection.scrollTop; } catch {}
-      }
+      restoreEditableState(editableSnapshot);
     });
   }
 
@@ -953,6 +1021,9 @@
       el.addEventListener('mouseenter',e=>{const t=tooltip||ensureGlobalTooltip(); t.textContent=el.dataset.tip; t.classList.add('show'); positionTooltip(t,e)});
       el.addEventListener('mousemove',e=>positionTooltip(tooltip||ensureGlobalTooltip(),e));
       el.addEventListener('mouseleave',()=>{(tooltip||$('#globalTooltip'))?.classList.remove('show')});
+      el.addEventListener('focus',e=>{const t=tooltip||ensureGlobalTooltip();t.textContent=el.dataset.tip;t.classList.add('show');const r=el.getBoundingClientRect();positionTooltip(t,{clientX:r.left+r.width/2,clientY:r.top});});
+      el.addEventListener('blur',()=>{(tooltip||$('#globalTooltip'))?.classList.remove('show')});
+      el.addEventListener('click',e=>{const t=tooltip||ensureGlobalTooltip();t.textContent=el.dataset.tip;t.classList.add('show');positionTooltip(t,e);e.stopPropagation();});
     });
   }
   function ensureGlobalTooltip(){let t=$('#globalTooltip');if(!t){t=document.createElement('div');t.id='globalTooltip';t.className='chart-tooltip';document.body.appendChild(t)}return t}
@@ -1251,6 +1322,7 @@
     $$('[data-route]').forEach(el=>el.onclick=()=>go(el.dataset.route));
     $$('[data-range]').forEach(el=>el.onclick=()=>{state.range=el.dataset.range;render()});
     $$('[data-select-metric]').forEach(el=>el.onclick=()=>{state.selectedMetric=el.dataset.selectMetric;render()});
+    $$('.metric-card[data-metric]').forEach(el=>el.addEventListener('click',e=>{if(e.target.closest('button'))return;e.preventDefault();e.stopPropagation();openMetricDetail(el.dataset.metric);}));
     $$('[data-log-metric]').forEach(el=>el.onclick=()=>startContextLog('metric',el.dataset.logMetric));
     $$('[data-context-exercise]').forEach(el=>el.onclick=()=>startContextLog('exercise',el.dataset.contextExercise));
     $$('[data-context-medication]').forEach(el=>el.onclick=()=>startContextLog('medication',el.dataset.contextMedication));
@@ -1259,7 +1331,7 @@
 
     $('#sendBtn')?.addEventListener('click',async()=>{const input=$('#talkInput');const text=input?.value||'';if(input)input.value='';if(await handlePendingAnswer(text))return;if(await handleEditAnswer(text))return;sendConversation(text)});
     $('#talkInput')?.addEventListener('input',e=>{state.draft=e.target.value;});
-    $('#talkInput')?.addEventListener('blur',()=>{if(state.deferredRender){state.deferredRender=false;render();}});
+    document.querySelectorAll('input:not([type=file]), textarea, select, [contenteditable=true]').forEach(el=>el.addEventListener('blur',()=>{if(state.deferredRender && !isEditableElement(document.activeElement)){state.deferredRender=false;render();}}));
     $('#talkInput')?.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('#sendBtn')?.click()}});
     $('#questionPill')?.addEventListener('click',openNextQuestion);
     $('#addHealthHistory')?.addEventListener('click',()=>{state.context={healthHistory:true};pushZeke('Tell me the personal or family health-history detail you want ZEKE to remember. You can say it naturally, for example: “My sister had a heart attack at 45.”');go('dashboard');render();setTimeout(()=>$('#talkInput')?.focus(),0)});
@@ -1300,8 +1372,8 @@
 
   async function init() {
     window.addEventListener('hashchange',()=>{state.route=routeFromHash();render()});
-    window.addEventListener('zeke:data-changed',debounce(async()=>{await refreshData();if(document.activeElement?.id==='talkInput'){state.deferredRender=true;return;}render()},100));
-    window.addEventListener('zeke:storage-state',()=>{if(document.activeElement?.id==='talkInput'){state.deferredRender=true;return;}render();});
+    window.addEventListener('zeke:data-changed',debounce(async()=>{await refreshData();if(isEditableElement()){state.deferredRender=true;return;}render()},100));
+    window.addEventListener('zeke:storage-state',()=>{if(isEditableElement()){state.deferredRender=true;return;}render();});
     await ZekeAIRouter.hydrateMetadata();
     render();
     await ZekeData.bootstrap();
