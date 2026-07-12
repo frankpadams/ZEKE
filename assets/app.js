@@ -236,8 +236,21 @@
     return String(id||'').toLowerCase().trim().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'');
   }
 
+  function suspectedArtifact(e) {
+    const raw=String(e?.raw_text||'').toLowerCase();
+    const file=String(e?.provenance?.file||'').toLowerCase();
+    const metric=canonicalMetric(metricId(e));
+    if ((metric==='bp_systolic'||metric==='bp_diastolic') && /normal\s*80\s*[-–]\s*100/.test(raw) && /sjn1\.xlsx/.test(file)) return {code:'reference-range-as-bp',reason:'Reference-range text was imported as blood pressure.'};
+    if (/i see a blood pressure reading of 80\/100[. ]*clarification:/i.test(String(e?.raw_text||'')) && semanticCategory(e)==='workout') return {code:'clarification-context-leak',reason:'Clarification text leaked into workout raw evidence.'};
+    return null;
+  }
+
+  function integrityIssues() {
+    return state.events.map(e=>({event:e,issue:suspectedArtifact(e)})).filter(x=>x.issue);
+  }
+
   function allMetricSeries(id) {
-    return state.events.filter(e=>['measurement','lab'].includes(semanticCategory(e))).map(e=>{
+    return state.events.filter(e=>['measurement','lab'].includes(semanticCategory(e)) && !suspectedArtifact(e)).map(e=>{
       const cid=canonicalMetric(metricId(e)); const value=metricValue(e); const s=e.structured||{};
       return {id:e.id,metric:cid,value,unit:s.unit||s.value_unit||'',date:e.timestamp||e.recorded_at,source:e.provenance?.source||s.source||'ZEKE'};
     }).filter(p=>p.metric===id && p.value!=null && Number.isFinite(new Date(p.date).getTime())).sort((a,b)=>new Date(a.date)-new Date(b.date)).filter((p,i,a)=>i===0 || !(p.id===a[i-1].id && p.value===a[i-1].value && p.date===a[i-1].date));
@@ -312,10 +325,10 @@
     const delta=metricDelta(id); let points=id==='blood_pressure'?bloodPressureSeries().sys:metricSeries(id); if(points.length<2) points=id==='blood_pressure'?bloodPressureSeries(true).sys:allMetricSeries(id); if(points.length>60){const keep=[points[0]];const step=(points.length-1)/58;for(let i=1;i<59;i++)keep.push(points[Math.round(i*step)]);keep.push(points.at(-1));points=keep;}
     let deltaText='Latest verified observation';
     if(delta!=null) deltaText=`${delta>0?'↑':'↓'} ${Math.abs(delta).toFixed(Math.abs(delta)<1?1:0)} ${latest.unit||meta.unit} over range`;
-    return `<article class="metric-card" data-metric="${id}">
+    return `<article class="metric-card metric-${id}" data-metric="${id}">
       <div class="metric-head"><span class="metric-icon">${meta.icon}</span><span>${esc(meta.label)}</span><button class="icon-btn metric-more" aria-label="More options">⋮</button></div>
       <div class="metric-number">${esc(latest.value)} <small>${esc(latest.unit||meta.unit)}</small></div>
-      <div class="metric-change">${esc(deltaText)}</div>
+      <div class="metric-change">${esc(deltaText)}</div><div class="metric-open-hint">Open analysis →</div>
       ${miniSpark(points,id)}
       <div class="metric-foot"><span>${esc(fmtDate(latest.date))}</span><button class="text-action" data-log-metric="${id}">+ Log</button></div>
     </article>`;
@@ -553,7 +566,7 @@
 
   function dashboardHTML() {
     const trend=trendPanelHTML();
-    return `${coverageHTML()}<div class="dashboard-columns"><div class="dashboard-column primary-column">${conversationHTML()}${coachHTML()}${todayActionsHTML()}</div><div class="dashboard-column insight-column">${healthGlanceHTML(9)}${trend||''}${recentHealthHTML()}${thinkingHTML()}${upcomingHTML()}</div></div>`;
+    return `${coverageHTML()}<div class="dashboard-conversation-top">${conversationHTML()}</div><div class="dashboard-columns"><div class="dashboard-column primary-column">${coachHTML()}${todayActionsHTML()}${thinkingHTML()}</div><div class="dashboard-column insight-column">${healthGlanceHTML(9)}${trend||''}${recentHealthHTML()}${upcomingHTML()}</div></div>`;
   }
 
   function recordsTable(filterFn, columns) {
@@ -583,8 +596,9 @@
     const cards=[...groups.entries()].map(([name,arr])=>{const first=arr[0],last=arr.at(-1);const loadChange=first.weight&&last.weight?last.weight-first.weight:null;let recommendation='More repeated sessions are needed before recommending a change.';let confidence='low';if(arr.length>=2&&last.pain>=4){recommendation='Hold load progression and review pain, technique, and clinician/PT guidance.';confidence='high';}else if(arr.length>=2&&last.weight&&last.reps>=12&&last.sets>=2){recommendation=`Consider ${last.weight+5} lb next session for 8–12 controlled reps, provided form and pain remain stable.`;confidence=arr.length>=3?'moderate':'low';}else if(arr.length>=2&&last.weight){recommendation=`Repeat ${last.weight} lb and aim to add 1–2 controlled reps before increasing load.`;confidence='moderate';}
       const pts=arr.filter(x=>x.weight);const spark=pts.length>1?miniSpark(pts.map((x,i)=>({value:x.weight,date:x.date,unit:'lb',id:`${name}-${i}`})),'weight'):'';
       return `<article class="fitness-progress-card"><div class="fitness-card-head"><div><strong>${esc(name)}</strong><span>${arr.length} session${arr.length===1?'':'s'}</span></div><b>${last.weight?`${last.weight} lb`:last.duration_min?`${last.duration_min} min`:'—'}</b></div>${spark}<div class="fitness-facts"><span>First: ${first.weight?`${first.weight} lb`:'—'}</span><span>Change: ${loadChange==null?'—':`${loadChange>0?'+':''}${loadChange} lb`}</span><span>Latest: ${last.reps||'—'} reps × ${last.sets||'—'}</span></div><p class="fitness-recommendation"><strong>Next step (${confidence} confidence):</strong> ${esc(recommendation)}</p></article>`}).join('');
-    const cardio=rows.map(e=>workoutStructured(e)).filter(w=>/stair|climb/i.test(w.exercise||'')&&(w.duration_min||w.steps));
-    const cardioSummary=cardio.length?`<section class="panel"><div class="section-head"><div><h2>Stairclimber progress</h2><p>Duration and steps are tracked as separate fields.</p></div></div><div class="fitness-facts large"><span><b>${cardio.length}</b> sessions</span><span><b>${cardio.at(-1).duration_min||'—'}</b> latest minutes</span><span><b>${cardio.at(-1).steps||'—'}</b> latest steps</span><span><b>${cardio.length>1&&cardio[0].steps&&cardio.at(-1).steps?`${cardio.at(-1).steps-cardio[0].steps>0?'+':''}${cardio.at(-1).steps-cardio[0].steps}`:'—'}</b> step change</span></div></section>`:'';
+    const cardio=rows.map(e=>({event:e,...workoutStructured(e),date:e.timestamp||e.recorded_at})).filter(w=>/stair|climb/i.test(w.exercise||'')&&(w.duration_min!=null||w.steps!=null)).sort((a,b)=>new Date(a.date)-new Date(b.date));
+    const firstCardio=cardio[0], latestCardio=cardio.at(-1); const cardioStepDelta=cardio.length>1&&firstCardio?.steps!=null&&latestCardio?.steps!=null?latestCardio.steps-firstCardio.steps:null;
+    const cardioSummary=cardio.length?`<section class="panel"><div class="section-head"><div><h2>Stairclimber progress</h2><p>Each duration and step count stays paired with its dated session.</p></div></div><div class="fitness-facts large"><span><b>${cardio.length}</b> sessions</span><span><b>${latestCardio?.duration_min??'—'}</b> latest minutes</span><span><b>${latestCardio?.steps??'—'}</b> latest steps</span><span><b>${cardioStepDelta==null?'—':`${cardioStepDelta>0?'+':''}${cardioStepDelta}`}</b> ${cardioStepDelta==null?'step change':`steps · ${fmtDate(firstCardio.date)} to ${fmtDate(latestCardio.date)}`}</span></div></section>`:'';
     const history=rows.length?`<div class="table-wrap"><table><thead><tr><th>Date</th><th>Exercise</th><th>Load</th><th>Reps × sets</th><th>Duration</th><th>Steps</th><th>Source</th></tr></thead><tbody>${rows.map(e=>{const w=workoutStructured(e);return `<tr><td>${esc(fmtDate(e.timestamp,{month:'short',day:'numeric',year:'numeric'}))}</td><td>${esc(w.exercise||'Workout')}</td><td>${esc(w.weight!=null?`${w.weight} ${w.weight_unit||'lb'}`:'—')}</td><td>${esc(w.reps!=null||w.sets!=null?`${w.reps??'—'} × ${w.sets??'—'}`:'—')}</td><td>${esc(w.duration_min!=null?`${w.duration_min} min`:'—')}</td><td>${esc(w.steps!=null?`${w.steps}`:'—')}</td><td>${esc(e.provenance?.sheet||e.provenance?.file||e.provenance?.source||'ZEKE')}</td></tr>`}).join('')}</tbody></table></div>`:'<div class="empty-inline">No workout records are available yet.</div>';
     return `<div class="page-head"><div><h1>Fitness</h1><p>Progress, exercise-specific trends, cardio performance, and evidence-linked next-session guidance.</p></div><button class="primary" data-context-exercise="">+ Log workout</button></div>${coachHTML()}${cardioSummary}<section class="panel"><div class="section-head"><div><h2>Exercise progression</h2><p>Recommendations use your recorded load, reps, sets, pain, and consistency. ZEKE explains when evidence is insufficient.</p></div></div><div class="fitness-progress-grid">${cards||'<div class="empty-inline">Repeated exercise entries will appear here.</div>'}</div></section><section class="panel"><div class="section-head"><div><h2>Workout history</h2><p>Each dated session remains distinct, including multiple sessions entered in one message.</p></div></div>${history}</section>`;
   }
@@ -685,6 +699,7 @@
     const fileRows=Object.entries(ZekeData.constants?.PATHS||{}).map(([key,path])=>`<tr><td>${esc(path)}</td><td>${esc(key)}</td><td>Canonical JSON</td><td>Read-only inspection</td></tr>`).join('');
     return `<div class="page-head"><div><h1>Data Integrity</h1><p>A read-only census of what ZEKE loaded, recognized, and could not confidently classify. Nothing on this page changes your data.</p></div><button class="secondary" id="exportDataAudit">Export audit</button></div>
       <section class="integrity-banner"><strong>Safety mode: read only</strong><span>No migration, deletion, merge, or source-file rewrite occurs here.</span></section>
+      ${integrityIssues().length?`<section class="panel integrity-alerts"><div class="section-head"><div><h2>Needs your clarification</h2><p>ZEKE found records that do not look trustworthy. They are excluded from charts while awaiting review.</p></div><span class="badge">${integrityIssues().length} item${integrityIssues().length===1?'':'s'}</span></div>${integrityIssues().map(({event,issue})=>`<article class="integrity-issue"><div><strong>${esc(issue.reason)}</strong><p><b>Why:</b> ${esc(event.raw_text||'The source and classification conflict.')}</p><small>${esc(event.provenance?.file||event.provenance?.source||'ZEKE')} · ${esc(event.id)}</small></div><button class="secondary" data-edit-event="${esc(event.id)}">Review</button></article>`).join('')}</section>`:''}
       <div class="census-grid">
         <article><b>${a.rows.length}</b><span>loaded events</span></article><article><b>${a.chartable}</b><span>chartable health values</span></article><article><b>${a.recognizedWorkouts}</b><span>recognized workouts</span></article><article><b>${a.possibleWorkouts}</b><span>possible workouts</span></article><article><b>${a.uncertain}</b><span>need review</span></article><article><b>${sources.length}</b><span>data sources</span></article>
       </div>
@@ -710,7 +725,7 @@
   }
 
   function navHTML() {
-    const items=[['dashboard','⌂','Dashboard'],['health','♡','Health'],['fitness','⌁','Fitness'],['medications','✚','Medications'],['labs','⌬','Labs & Vitals'],['calendar','▣','Calendar'],['data-integrity','◎','Data Integrity'],['settings','⚙','Settings']];
+    const items=[['dashboard','⌂','Dashboard'],['health','♡','Health'],['fitness','⌁','Fitness'],['data-integrity','◎','Integrity'],['settings','⚙','Settings'],['medications','✚','Medications'],['labs','⌬','Labs'],['calendar','▣','Calendar']];
     return `<aside class="sidebar"><div class="brand"><div class="brand-mark">Z</div><div><strong>ZEKE</strong><span>Your context engine</span></div></div><nav>${items.map(([id,icon,label])=>`<button class="nav-item ${state.route===id?'active':''}" data-route="${id}"><span>${icon}</span>${esc(label)}</button>`).join('')}</nav><div class="sidebar-spacer"></div><div class="privacy-note">Your records stay with your chosen storage provider.</div><div class="build-label">v${esc(BUILD.version)} · ${esc(BUILD.build)}</div></aside>`;
   }
 
