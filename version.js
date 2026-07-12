@@ -1,5 +1,5 @@
 window.ZEKE_BUILD = Object.freeze({
-  version: '0.10.3',
-  build: '2026.07.11.9',
-  label: 'Verified Metric Charts and Drill-Down'
+  version: '0.11.0',
+  build: '2026.07.12.1',
+  label: 'Fitness Intelligence, Reliable Parsing, and UX Clarity'
 });
