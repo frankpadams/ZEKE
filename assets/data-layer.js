@@ -104,7 +104,15 @@
       this.clientId = config.clientId || window.ZEKE_CONFIG?.googleClientId || '';
       this.token = '';
       this.tokenExpiresAt = 0;
-      try { sessionStorage.removeItem(SESSION_TOKEN_KEY); } catch {}
+      try {
+        const saved = JSON.parse(sessionStorage.getItem(SESSION_TOKEN_KEY) || 'null');
+        if (saved?.accessToken && Number(saved.expiresAt) > Date.now() + 60_000) {
+          this.token = saved.accessToken;
+          this.tokenExpiresAt = Number(saved.expiresAt);
+        } else if (saved) {
+          sessionStorage.removeItem(SESSION_TOKEN_KEY);
+        }
+      } catch { try { sessionStorage.removeItem(SESSION_TOKEN_KEY); } catch {} }
       this.rootId = '';
       this.folderIds = new Map();
       this.tokenClient = null;

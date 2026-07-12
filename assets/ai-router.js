@@ -2,6 +2,23 @@
   'use strict';
 
   const memoryConnections = new Map();
+  const DEVICE_CONNECTIONS_KEY = 'ZEKE_AI_DEVICE_CONNECTIONS_V1';
+
+  function loadDeviceConnections(){
+    try {
+      const parsed=JSON.parse(localStorage.getItem(DEVICE_CONNECTIONS_KEY)||'{}');
+      return parsed && typeof parsed==='object' ? parsed : {};
+    } catch { return {}; }
+  }
+  function saveDeviceConnections(){
+    const out={};
+    for(const [provider,c] of memoryConnections){
+      if(c.rememberOnDevice && c.key){
+        out[provider]={key:c.key,model:c.model||'',endpoint:c.endpoint||'',privacy:c.privacy||'minimum-necessary',enabled:c.enabled!==false,lastTestedAt:c.lastTestedAt||null,lastTestOk:Boolean(c.lastTestOk)};
+      }
+    }
+    try { localStorage.setItem(DEVICE_CONNECTIONS_KEY,JSON.stringify(out)); } catch {}
+  }
 
   const PROVIDERS = {
     groq:{id:'groq',label:'Groq',freeFirst:true,kind:'openai',endpoint:'https://api.groq.com/openai/v1/chat/completions',suggestedModels:['llama-3.3-70b-versatile','llama-3.1-8b-instant']},
@@ -50,26 +67,35 @@
 
   async function hydrateMetadata(){
     const meta=await loadMetadata();
-    for(const c of meta.connections||[]) memoryConnections.set(c.provider,{...c,key:'',connected:false});
+    const device=loadDeviceConnections();
+    const providers=new Set([...(meta.connections||[]).map(c=>c.provider),...Object.keys(device)]);
+    for(const provider of providers){
+      const cloud=(meta.connections||[]).find(c=>c.provider===provider)||{};
+      const local=device[provider]||{};
+      const key=local.key||'';
+      const lastTestOk=Boolean(local.lastTestOk ?? cloud.lastTestOk);
+      memoryConnections.set(provider,{...cloud,...local,provider,key,rememberOnDevice:Boolean(local.key),connected:Boolean(key&&lastTestOk),lastTestOk});
+    }
     return status();
   }
 
   function status(){
     return {providers:[...memoryConnections.values()].map(c=>({
-      provider:c.provider,enabled:c.enabled!==false,model:c.model||'',endpoint:c.endpoint||'',connected:Boolean(c.connected),hasSessionKey:Boolean(c.key),lastTestedAt:c.lastTestedAt||null,lastTestOk:Boolean(c.lastTestOk),privacy:c.privacy||'minimum-necessary'
+      provider:c.provider,enabled:c.enabled!==false,model:c.model||'',endpoint:c.endpoint||'',connected:Boolean(c.connected),hasSessionKey:Boolean(c.key),rememberOnDevice:Boolean(c.rememberOnDevice),lastTestedAt:c.lastTestedAt||null,lastTestOk:Boolean(c.lastTestOk),privacy:c.privacy||'minimum-necessary'
     }))};
   }
 
-  async function configure({provider,key='',model='',endpoint='',privacy='minimum-necessary',enabled=true}){
+  async function configure({provider,key='',model='',endpoint='',privacy='minimum-necessary',enabled=true,rememberOnDevice=false}){
     const def=providerDefinition(provider); if(!def) throw new Error(`Unknown AI provider: ${provider}`);
     const existing=memoryConnections.get(provider)||{};
-    memoryConnections.set(provider,{...existing,provider,key:key||existing.key||'',model:model||existing.model||def.suggestedModels?.[0]||'',endpoint:endpoint||existing.endpoint||def.endpoint||'',privacy,enabled,connected:false});
+    memoryConnections.set(provider,{...existing,provider,key:key||existing.key||'',model:model||existing.model||def.suggestedModels?.[0]||'',endpoint:endpoint||existing.endpoint||def.endpoint||'',privacy,enabled,rememberOnDevice:Boolean(rememberOnDevice),connected:Boolean(existing.connected&&(!key||key===existing.key))});
+    saveDeviceConnections();
     await saveMetadata();
     window.dispatchEvent(new CustomEvent('zeke:ai-router-changed',{detail:status()}));
     return status();
   }
 
-  async function remove(provider){memoryConnections.delete(provider);await saveMetadata();window.dispatchEvent(new CustomEvent('zeke:ai-router-changed',{detail:status()}));}
+  async function remove(provider){memoryConnections.delete(provider);saveDeviceConnections();await saveMetadata();window.dispatchEvent(new CustomEvent('zeke:ai-router-changed',{detail:status()}));}
 
   function taskWeight(task,c){
     let n=c.freeFirst?100:0;
@@ -240,7 +266,7 @@ Deterministic parser draft for comparison (may be incomplete; never copy invente
     if(def.kind!=='ollama' && !c.key && !def.requiresEndpoint) throw new Error('Enter an API key first.');
     if(def.requiresEndpoint && !c.endpoint) throw new Error('Enter the secure relay or service endpoint first.');
     const result=await callConnection(c,'Reply with exactly ZEKE_OK',{maxTokens:20,temperature:0});
-    const ok=/ZEKE_OK/i.test(result.text); c.lastTestedAt=new Date().toISOString(); c.lastTestOk=ok; c.connected=ok; memoryConnections.set(provider,c); await saveMetadata();
+    const ok=/ZEKE_OK/i.test(result.text); c.lastTestedAt=new Date().toISOString(); c.lastTestOk=ok; c.connected=ok; memoryConnections.set(provider,c); saveDeviceConnections(); await saveMetadata();
     if(!ok) throw new Error(`Connection responded, but validation was unexpected: ${result.text.slice(0,120)}`);
     return {ok:true,provider:result.provider,model:result.model};
   }
