@@ -545,15 +545,17 @@ Content-Type: ${mimeType}
   async function confirmRawInput(rawId, structuredEvents) {
     const raw = state.events.find(e => e.id === rawId);
     if (!raw) throw new Error('Original input record not found.');
-    const created = [];
+    const created = [], skippedDuplicates = [];
     for (const candidate of structuredEvents) {
+      const matches = await findLikelyDuplicates(candidate, 0.94);
+      if (matches.length) { skippedDuplicates.push(matches[0].event.id); continue; }
       created.push(await addEvent({
         ...candidate,
         provenance: { ...(candidate.provenance || {}), source: candidate.provenance?.source || 'interpreted', raw_event_id: rawId }
       }));
     }
     await updateEvent(rawId, {
-      structured: { ...(raw.structured || {}), interpretation_status: 'confirmed', structured_event_ids: created.map(e => e.id) },
+      structured: { ...(raw.structured || {}), interpretation_status: 'confirmed', structured_event_ids: created.map(e => e.id), skipped_duplicate_event_ids: skippedDuplicates },
       correction_note: 'Interpretation confirmed'
     }, { appendCorrection: false });
     return created;
@@ -567,7 +569,7 @@ Content-Type: ${mimeType}
     // Equal values on different days are legitimate history, not duplicates.
     const maxWindow = candidate.category === 'workout' ? 8 * 3600e3 : 24 * 3600e3;
     if (!Number.isFinite(timeDelta) || timeDelta > maxWindow) return 0;
-    const keys = ['metric_id','value','exercise','weight','reps','sets','medication_name','dose','duration_min','distance_mi'];
+    const keys = ['metric_id','value','exercise','weight','reps','sets','medication_name','dose','duration_min','steps','distance_mi','workout_id'];
     const comparable = keys.filter(k => a[k] != null && b[k] != null);
     if (!comparable.length) return 0;
     const matched = comparable.filter(k => String(a[k]).toLowerCase() === String(b[k]).toLowerCase()).length;

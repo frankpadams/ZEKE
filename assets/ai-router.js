@@ -74,7 +74,7 @@
   function taskWeight(task,c){
     let n=c.freeFirst?100:0;
     if(task==='research' && c.provider==='perplexity') n+=60;
-    if(task==='interpretation' && ['groq','gemini','anthropic','openai'].includes(c.provider)) n+=30;
+    if(['interpretation','workout-interpretation'].includes(task) && ['groq','gemini','anthropic','openai'].includes(c.provider)) n+=30;
     if(task==='analysis' && ['anthropic','openai','gemini','groq'].includes(c.provider)) n+=25;
     if(c.lastTestOk) n+=20;
     return n;
@@ -162,9 +162,68 @@
     const compactContext={...context}; delete compactContext.history;
     const prompt=`Interpret the user's latest turn for a personal context system. Use the preceding conversation and verified context. Preserve uncertainty; do not invent values. If ambiguous, ask one concise natural-language clarification question. Return ONLY JSON with keys: status (\"candidate\" or \"clarify\"), summary, clarificationQuestion, confidence (0-1), events (array). Each event may include category, timestamp, raw_text, and structured fields. Latest user input: ${JSON.stringify(rawText)}. Verified context: ${JSON.stringify(compactContext)}`;
     const result=await ask(prompt,{task:'interpretation',history,maxTokens:1100});
-    const cleaned=result.text.replace(/```json|```/gi,'').trim(); let parsed;
-    try{parsed=JSON.parse(cleaned);}catch{throw new Error('The AI response could not be parsed safely. ZEKE will not save it automatically.');}
+    const parsed=cleanJson(result.text);
     return {...parsed,provider:result.provider,model:result.model};
+  }
+
+
+  function cleanJson(text){
+    const cleaned=String(text||'').replace(/```json|```/gi,'').trim();
+    try{return JSON.parse(cleaned);}catch{}
+    const first=cleaned.indexOf('{'), last=cleaned.lastIndexOf('}');
+    if(first>=0&&last>first){try{return JSON.parse(cleaned.slice(first,last+1));}catch{}}
+    throw new Error('The AI response could not be parsed safely. ZEKE will not save it automatically.');
+  }
+
+  function normalizeWorkoutAI(parsed,rawText){
+    const sessions=Array.isArray(parsed.sessions)?parsed.sessions:[];
+    const events=[];
+    const validDate=/^\d{4}-\d{2}-\d{2}$/;
+    for(const session of sessions){
+      if(!validDate.test(String(session.date||''))) continue;
+      const timestamp=`${session.date}T12:00:00`;
+      const sessionId=String(session.session_id||`workout:${session.date}`);
+      const activities=Array.isArray(session.activities)?session.activities:[];
+      activities.forEach((a,index)=>{
+        const exercise=String(a.exercise||a.activity||'').trim(); if(!exercise)return;
+        const n=v=>v==null||v===''?null:Number(v);
+        const variants=Array.isArray(a.set_variants)?a.set_variants.map(v=>({weight:n(v.weight),reps:n(v.reps),sets:n(v.sets)||1})).filter(v=>Number.isFinite(v.reps)):[];
+        const structured={
+          workout_id:sessionId,session_id:sessionId,activity_index:index+1,
+          exercise,original_exercise:String(a.original_exercise||exercise),modality:String(a.modality||''),
+          weight:n(a.weight),weight_unit:a.weight!=null?(a.weight_unit||'lb'):'',reps:n(a.reps),sets:n(a.sets),
+          duration_min:n(a.duration_min),steps:n(a.steps),distance_mi:n(a.distance_mi),
+          set_variants:variants.length?variants:undefined,notes:String(a.notes||''),interpretation_status:'confirmed'
+        };
+        Object.keys(structured).forEach(k=>structured[k]===undefined&&delete structured[k]);
+        events.push({category:'workout',timestamp,raw_text:rawText,structured,provenance:{source:'ai-assisted-workout-interpretation'}});
+      });
+    }
+    if(!events.length) throw new Error('The AI did not return any safely structured workout activities.');
+    return {status:'candidate',summary:parsed.summary||`${sessions.length} workout session${sessions.length===1?'':'s'}, ${events.length} activities`,confidence:Number(parsed.confidence)||0.85,clarificationQuestion:parsed.clarificationQuestion||'',events};
+  }
+
+  async function interpretWorkout(rawText,context={}){
+    const history=context.history||[];
+    const today=String(context.today||new Date().toISOString().slice(0,10));
+    const localDraft=context.localDraft||null;
+    const prompt=`You are the workout-structuring component of ZEKE. Convert the user's plain-language workout log into separate dated sessions and activities without losing any stated detail. Today is ${today}.
+Rules:
+- Multiple explicit dates mean multiple distinct sessions.
+- Normalize M/D, M/D/YY, and M/D/YYYY to YYYY-MM-DD. A yearless past date normally uses the current year when reasonable.
+- Preserve BOTH cardio duration and steps when both are stated.
+- Parse forms such as 60lbs 15x3, 140x10x2, 85 12x2, and mixed sets such as 140x10x1, 140x8x1.
+- Do not invent weights, reps, sets, durations, steps, dates, or exercises.
+- Normalize obvious exercise spelling variants, but preserve original_exercise.
+- Massage chair or recovery activity may be recorded with duration and modality "recovery".
+- If a material fact is genuinely ambiguous, return status "clarify" and one concise clarificationQuestion. Otherwise status "candidate".
+Return ONLY JSON with: status, summary, confidence, clarificationQuestion, sessions. Each session: {date:"YYYY-MM-DD", session_id, activities:[{exercise,original_exercise,modality,weight,weight_unit,reps,sets,duration_min,steps,distance_mi,set_variants:[{weight,reps,sets}],notes}]}.
+User input: ${JSON.stringify(rawText)}
+Deterministic parser draft for comparison (may be incomplete; never copy invented nulls as facts): ${JSON.stringify(localDraft)}`;
+    const result=await ask(prompt,{task:'workout-interpretation',history,temperature:0,maxTokens:2200});
+    const parsed=cleanJson(result.text);
+    if(parsed.status==='clarify') return {...parsed,provider:result.provider,model:result.model,events:[]};
+    return {...normalizeWorkoutAI(parsed,rawText),provider:result.provider,model:result.model};
   }
 
   async function analyzeCoach(context){
@@ -186,5 +245,5 @@
     return {ok:true,provider:result.provider,model:result.model};
   }
 
-  window.ZekeAIRouter={hydrateMetadata,configure,remove,status,ask,interpret,analyzeCoach,testProvider,listProviderDefinitions,providerDefinition};
+  window.ZekeAIRouter={hydrateMetadata,configure,remove,status,ask,interpret,interpretWorkout,analyzeCoach,testProvider,listProviderDefinitions,providerDefinition};
 })();

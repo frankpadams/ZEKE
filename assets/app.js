@@ -819,6 +819,18 @@
     return e.raw_text||e.category||'Record';
   }
 
+
+  function looksLikeWorkoutInput(text){
+    const t=String(text||'').toLowerCase();
+    const hasExercise=/\b(workout|exercise|stair\s*climber|climbmill|lat\s*pull|seated\s*row|glute|leg\s*curl|leg\s*extension|bicep|abdominal|bench\s*press|massage\s*chair|steps?)\b/.test(t);
+    const hasTrainingNumbers=/\b\d+(?:\.\d+)?\s*(?:lb|lbs)?\s*[x×]\s*\d+(?:\s*[x×]\s*\d+)?\b|\b\d+\s*(?:min|mins|minutes|steps)\b/.test(t);
+    return hasExercise && hasTrainingNumbers;
+  }
+
+  function compactWorkoutDraft(parsed){
+    return {summary:parsed?.summary||'',events:(parsed?.events||[]).map(e=>({timestamp:e.timestamp,structured:e.structured}))};
+  }
+
   async function sendConversation(text) {
     text=String(text||'').trim(); if(!text||state.busy)return;
     state.busy=true; pushUser(text); render();
@@ -845,7 +857,16 @@
     }
 
     let parsed=null;
-    if(aiAvailable) {
+    const localParsed=ZekeParser.interpret(text,state.context);
+    if(aiAvailable && looksLikeWorkoutInput(text)) {
+      try {
+        const ai=await ZekeAIRouter.interpretWorkout(text,{today:localDay(),localDraft:compactWorkoutDraft(localParsed),history:state.conversation.slice(0,-1)});
+        if(ai.status==='clarify'||ai.clarificationQuestion){state.pending={type:'ai-clarify',rawId:raw.id,rawText:text,ai};pushZeke(`${ai.clarificationQuestion||'I need one more workout detail before I save this.'} I’m asking because the answer changes how the session is structured.`,{choices:[{label:'Answer now',value:'answer-pending'},{label:'Later',value:'pending-later'},{label:'Ignore',value:'pending-ignore'}]});state.busy=false;render();return;}
+        parsed={confidence:ai.confidence||0.88,summary:ai.summary||'the workout sessions you described',events:ai.events||[],aiSource:`${ai.provider}/${ai.model}`};
+      } catch(e) {
+        parsed=(localParsed.events||[]).length?localParsed:null;
+      }
+    } else if(aiAvailable) {
       try {
         const verifiedContext={active_context:state.context,open_question:state.pending?.question?.question||null,actions:(state.actions.catalog||[]).map(a=>({label:a.label,schedule:a.schedule})),recent_verified_events:state.events.filter(e=>!['raw_input','correction'].includes(e.category)).slice(-30).map(e=>({category:e.category,timestamp:e.timestamp,structured:e.structured}))};
         const ai=await ZekeAIRouter.interpret(text,{...verifiedContext,history:state.conversation.slice(0,-1)});
@@ -853,7 +874,7 @@
         parsed={confidence:ai.confidence||0.8,summary:ai.summary||'the information you described',events:ai.events||[],aiSource:`${ai.provider}/${ai.model}`};
       } catch(e) { parsed=null; }
     }
-    parsed ||= ZekeParser.interpret(text,state.context);
+    parsed ||= localParsed;
     if(parsed.type==='ambiguity') {
       state.pending={type:'ambiguity',rawId:raw.id,rawText:text};
       pushZeke("I'm not completely sure what you meant. Were you logging a blood-pressure reading, or a bench-press set?",{choices:[
