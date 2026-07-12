@@ -8,7 +8,7 @@
     conversation:[], pending:null, context:{}, storage:null, ai:null,
     coachExpanded:false, customizeOpen:false, metricMenuOpen:false,
     hiddenWidgets:new Set(), busy:false, importStatus:'', importReport:null, importBatches:[],
-    conversationLoaded:false, preferences:{}, syncSource:null, syncBusy:false, syncReport:null, coachAI:null, coachAILoading:false, theme:'dark', draft:'', auditQuery:'', auditCategory:'all'
+    conversationLoaded:false, preferences:{}, syncSource:null, syncBusy:false, syncReport:null, coachAI:null, coachAILoading:false, theme:'dark', draft:'', auditQuery:'', auditCategory:'all', deferredRender:false
   };
 
   const RANGE_DAYS = { week:7, month:31, quarter:92, '6months':183, year:366, all:null };
@@ -734,13 +734,25 @@
 
   function render() {
     const root=$('#root'); if(!root)return;
-    const existingDraft=$('#talkInput')?.value; if(existingDraft!=null) state.draft=existingDraft;
+    const active=document.activeElement;
+    const talkWasFocused=active?.id==='talkInput';
+    const existingDraft=$('#talkInput')?.value;
+    const selection=talkWasFocused ? {start:active.selectionStart,end:active.selectionEnd,direction:active.selectionDirection,scrollTop:active.scrollTop} : null;
+    if(existingDraft!=null) state.draft=existingDraft;
     const storage=ZekeData.snapshot(); state.storage=storage; state.ai=ZekeAIRouter.status(); state.route=routeFromHash();
     if(['booting','connecting','reconnecting'].includes(storage.status)) root.innerHTML=loadingHTML(storage.status==='reconnecting'?'Reconnecting to your workspace…':'Starting ZEKE…');
     else if(storage.status!=='connected') root.innerHTML=setupHTML(storage);
     else root.innerHTML=connectedAppHTML();
     bind();
-    requestAnimationFrame(()=>{const t=$('#conversationThread'); if(t)t.scrollTop=t.scrollHeight; const input=$('#talkInput'); if(input && state.draft && !input.value) input.value=state.draft;});
+    requestAnimationFrame(()=>{
+      const t=$('#conversationThread'); if(t)t.scrollTop=t.scrollHeight;
+      const input=$('#talkInput');
+      if(input && state.draft && !input.value) input.value=state.draft;
+      if(input && talkWasFocused){
+        input.focus({preventScroll:true});
+        try { input.setSelectionRange(selection.start,selection.end,selection.direction); input.scrollTop=selection.scrollTop; } catch {}
+      }
+    });
   }
 
   function humanEvent(e) {
@@ -1246,6 +1258,8 @@
     $$('[data-edit-event]').forEach(el=>el.onclick=()=>editEvent(el.dataset.editEvent));
 
     $('#sendBtn')?.addEventListener('click',async()=>{const input=$('#talkInput');const text=input?.value||'';if(input)input.value='';if(await handlePendingAnswer(text))return;if(await handleEditAnswer(text))return;sendConversation(text)});
+    $('#talkInput')?.addEventListener('input',e=>{state.draft=e.target.value;});
+    $('#talkInput')?.addEventListener('blur',()=>{if(state.deferredRender){state.deferredRender=false;render();}});
     $('#talkInput')?.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('#sendBtn')?.click()}});
     $('#questionPill')?.addEventListener('click',openNextQuestion);
     $('#addHealthHistory')?.addEventListener('click',()=>{state.context={healthHistory:true};pushZeke('Tell me the personal or family health-history detail you want ZEKE to remember. You can say it naturally, for example: “My sister had a heart attack at 45.”');go('dashboard');render();setTimeout(()=>$('#talkInput')?.focus(),0)});
@@ -1286,8 +1300,8 @@
 
   async function init() {
     window.addEventListener('hashchange',()=>{state.route=routeFromHash();render()});
-    window.addEventListener('zeke:data-changed',debounce(async()=>{await refreshData();render()},100));
-    window.addEventListener('zeke:storage-state',render);
+    window.addEventListener('zeke:data-changed',debounce(async()=>{await refreshData();if(document.activeElement?.id==='talkInput'){state.deferredRender=true;return;}render()},100));
+    window.addEventListener('zeke:storage-state',()=>{if(document.activeElement?.id==='talkInput'){state.deferredRender=true;return;}render();});
     await ZekeAIRouter.hydrateMetadata();
     render();
     await ZekeData.bootstrap();
