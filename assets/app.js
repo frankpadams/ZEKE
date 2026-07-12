@@ -482,9 +482,9 @@
     const last=msgs.at(-1);
     const choices=last?.choices||[];
     return `<section class="panel conversation-panel">
-      <div class="section-head conversation-head"><div><h2>Talk to ZEKE</h2><p>One ongoing conversation for questions, logging, clarification, and corrections.</p></div><button class="question-pill" id="questionPill">${openQuestions().length} question${openQuestions().length===1?'':'s'} for you</button></div>
+      <div class="section-head conversation-head"><div><h2>Talk to ZEKE</h2><p>Conversation first, with structured choices when ZEKE needs a safe decision.</p></div><div class="conversation-head-actions"><button class="secondary compact" id="expandConversation">Expand</button><button class="question-pill" id="questionPill">${openQuestions().length} question${openQuestions().length===1?'':'s'} for you</button></div></div>
       <div class="conversation-thread" id="conversationThread">${msgs.map(m=>`<div class="bubble-row ${m.role}"><div class="avatar">${m.role==='zeke'?'Z':'You'}</div><div class="bubble"><span class="bubble-name">${m.role==='zeke'?'ZEKE':'You'}</span><p>${esc(m.text)}</p></div></div>`).join('')}</div>
-      ${choices.length?`<div class="choice-row">${choices.map(c=>`<button class="choice" data-conversation-choice="${esc(c.value)}">${esc(c.label)}</button>`).join('')}</div>`:''}
+      ${choices.length?`<div class="choice-row">${choices.map(c=>`<button class="choice" data-conversation-choice="${esc(c.value)}" aria-live="polite">${esc(c.label)}</button>`).join('')}</div>`:''}
       <div class="composer"><textarea id="talkInput" rows="1" placeholder="Tell ZEKE anything…"></textarea><button class="attach" id="attachBtn" title="Attach a file">＋</button><button class="send" id="sendBtn" aria-label="Send">➤</button></div>
     </section>`;
   }
@@ -819,7 +819,7 @@
     else root.innerHTML=connectedAppHTML();
     bind();
     requestAnimationFrame(()=>{
-      const t=$('#conversationThread'); if(t)t.scrollTop=t.scrollHeight;
+      const t=$('#conversationThread'); if(t && t.dataset.userScrolled!=='true')t.scrollTop=t.scrollHeight;
       const input=$('#talkInput');
       if(input && state.draft && !input.value) input.value=state.draft;
       restoreEditableState(editableSnapshot);
@@ -846,12 +846,77 @@
     return {summary:parsed?.summary||'',events:(parsed?.events||[]).map(e=>({timestamp:e.timestamp,structured:e.structured}))};
   }
 
+
+  function recentMeasurementSession(metric='weight', minutes=20) {
+    const cutoff=Date.now()-minutes*60*1000;
+    return [...state.events].reverse().find(e=>{
+      const ts=new Date(e.recorded_at||e.timestamp||0).getTime();
+      return (e.category==='measurement'||e.category==='lab') && canonicalMetric(metricId(e))===metric && ts>=cutoff;
+    }) || null;
+  }
+
+  function contextualBodyFatInterpretation(text, rawId) {
+    const m=String(text||'').trim().match(/^(?:body\s*)?(\d{1,2}(?:\.\d+)?)\s*%?\s*(?:body\s*)?fat(?:\s*%|\s*percent)?$/i)
+      || String(text||'').trim().match(/^(\d{1,2}(?:\.\d+)?)\s*%\s*fat$/i);
+    if(!m) return null;
+    const value=Number(m[1]); if(!Number.isFinite(value)||value<1||value>80) return null;
+    const related=recentMeasurementSession('weight',30);
+    const sessionId=related?.structured?.measurement_session_id || related?.id || `measurement:${localDay()}`;
+    return {confidence:0.98,summary:`body fat ${value}%${related?' linked to the recent weight measurement':''}`,events:[{
+      category:'measurement',timestamp:related?.timestamp||new Date().toISOString(),raw_text:text,
+      structured:{metric_id:'body_fat_pct',value,unit:'%',measurement_session_id:sessionId,interpretation_status:'confirmed'},
+      provenance:{source:'conversation',context_link:related?.id||null}
+    }]};
+  }
+
+  function pendingQuestionChoices(q){
+    const key=String(q?.question_key||'');
+    if(key.startsWith('import_bp:')) return [
+      {label:'Mark as invalid',value:'question-bp-invalid'},
+      {label:'Reverse values',value:'question-bp-reverse'},
+      {label:'Keep as entered',value:'question-bp-keep'},
+      {label:'Why are you asking?',value:'question-why'},
+      {label:'None of these fit',value:'question-other'}
+    ];
+    if(key.startsWith('duplicate_import:')) return [
+      {label:'Same event — keep one',value:'question-duplicate-merge'},
+      {label:'Separate events',value:'question-duplicate-keep'},
+      {label:'Show differences',value:'question-why'},
+      {label:'None of these fit',value:'question-other'}
+    ];
+    return [
+      {label:'Answer',value:'question-answer'},
+      {label:'Later',value:'question-later'},
+      {label:"I don't know",value:'question-unknown'},
+      {label:'Why are you asking?',value:'question-why'},
+      {label:'None of these fit',value:'question-other'}
+    ];
+  }
+
+  async function invalidateBloodPressureQuestion(q){
+    const c=q.import_candidate||{}; const sys=Number(c.systolic), dia=Number(c.diastolic);
+    const affected=state.events.filter(e=>{
+      const id=canonicalMetric(metricId(e)); const v=Number(metricValue(e));
+      return ((id==='bp_systolic'&&v===sys)||(id==='bp_diastolic'&&v===dia)) && !['invalid','quarantined'].includes(String(e.structured?.interpretation_status||''));
+    });
+    for(const e of affected) await ZekeData.updateEvent(e.id,{structured:{...e.structured,interpretation_status:'invalid',data_quality_status:'quarantined'},correction_note:'User confirmed this was not a valid blood-pressure datapoint.'});
+    await ZekeData.resolveFactor(q.id,'resolved','Marked invalid by user');
+    return affected.length;
+  }
+
   async function sendConversation(text) {
     text=String(text||'').trim(); if(!text||state.busy)return;
     state.busy=true; pushUser(text); render();
     let raw=null;
     try { raw=await ZekeData.addRawInput(text,state.context); state.events=await ZekeData.listEvents(); }
     catch(e){ pushZeke(`I couldn't preserve that input in connected storage yet. I won't pretend it was saved. ${e.message}`); state.busy=false; render(); return; }
+
+    const bodyFatContext=contextualBodyFatInterpretation(text,raw.id);
+    if(bodyFatContext){
+      state.pending={type:'confirm',rawId:raw.id,rawText:text,parsed:bodyFatContext};
+      pushZeke(`I interpreted that as ${bodyFatContext.summary}. Is that right?`,{choices:[{label:'Yes, save it',value:'confirm-save'},{label:'Edit',value:'confirm-correct'},{label:'Not body fat',value:'confirm-ignore'}]});
+      state.busy=false; render(); return;
+    }
 
     if (state.context.healthHistory) {
       const history=historyContextFromText(text);
@@ -967,21 +1032,46 @@
   async function openNextQuestion() {
     const q=openQuestions()[0]; if(!q){pushZeke("I don't have any unresolved questions for you right now.");render();return;}
     state.pending={type:'question',question:q};
-    pushZeke(q.question,{choices:[{label:'Answer now',value:'question-answer'},{label:'Later',value:'question-later'},{label:"I don't know",value:'question-unknown'},{label:'Ignore this question',value:'question-ignore'}]}); render();
+    pushZeke(`${q.question}${q.why_it_matters?` Why I’m asking: ${q.why_it_matters}`:''}`,{choices:pendingQuestionChoices(q)}); render();
   }
 
   async function handleQuestionChoice(value) {
     const q=state.pending?.question; if(!q)return;
-    if(value==='question-answer'){pushZeke('Go ahead—answer in your own words.'); state.pending={type:'question-awaiting',question:q}; render();return;}
-    if(value==='question-later'){await ZekeData.resolveFactor(q.id,'deferred','');pushZeke('Okay. I’ll keep it for later without repeatedly nagging you.');state.pending=null;await refreshData();render();return;}
-    if(value==='question-unknown'){await ZekeData.resolveFactor(q.id,'unknown',"I don't know");pushZeke("That's fine. I’ll treat it as unknown rather than guessing.");state.pending=null;await refreshData();render();return;}
-    if(value==='question-ignore'){await ZekeData.resolveFactor(q.id,'dismissed','Ignored by user');pushZeke('Understood. I won’t keep asking about that unless new context makes it materially important, and then I’ll explain why.');state.pending=null;await refreshData();render();return;}
+    showToast('Working…');
+    if(value==='question-answer'){pushZeke('Go ahead—answer in your own words. I’ll interpret it in the context of this question.'); state.pending={type:'question-awaiting',question:q}; render();return;}
+    if(value==='question-other'){pushZeke("My choices did not fit. Tell me what you want to happen in your own words, and I’ll keep this question attached to your reply.");state.pending={type:'question-awaiting',question:q,other:true};render();return;}
+    if(value==='question-why'){pushZeke(q.why_it_matters||'I am asking because the answer changes whether this record is saved, excluded, merged, or corrected.');render();return;}
+    if(value==='question-later'){await ZekeData.resolveFactor(q.id,'deferred','');pushZeke('Moved to Data Integrity for later review. No data was changed.');state.pending=null;await refreshData();render();return;}
+    if(value==='question-unknown'){await ZekeData.resolveFactor(q.id,'unknown',"I don't know");pushZeke("Recorded as unknown. I will not guess, and the item will stay out of analysis if it is unsafe.");state.pending=null;await refreshData();render();return;}
+    if(value==='question-ignore'){await ZekeData.resolveFactor(q.id,'dismissed','Ignored by user');pushZeke('Dismissed. No structured data was changed.');state.pending=null;await refreshData();render();return;}
+    if(value==='question-bp-invalid'){
+      const n=await invalidateBloodPressureQuestion(q);
+      pushZeke(`Done. I marked ${n||'the'} related blood-pressure record${n===1?'':'s'} invalid and excluded ${n===1?'it':'them'} from charts, coaching, and AI evidence. The original import evidence remains in the audit history.`);
+      state.pending=null;await refreshData();render();return;
+    }
+    if(value==='question-bp-keep'){await ZekeData.resolveFactor(q.id,'resolved','Keep as entered');pushZeke('Kept as entered. I preserved the unusual values and their source.');state.pending=null;await refreshData();render();return;}
+    if(value==='question-bp-reverse'){
+      const c=q.import_candidate||{};
+      await ZekeData.resolveFactor(q.id,'resolved',`Reverse to ${c.diastolic}/${c.systolic}`);
+      pushZeke(`I recorded your choice to reverse the pair to ${c.diastolic}/${c.systolic}. Because this changes health data, the original remains in the audit history.`);
+      state.pending=null;await refreshData();render();return;
+    }
+    if(value==='question-duplicate-merge'){await ZekeData.resolveFactor(q.id,'resolved','Treat as duplicate; keep one canonical record');pushZeke('Resolved as one event. I kept the canonical record and preserved both sources.');state.pending=null;await refreshData();render();return;}
+    if(value==='question-duplicate-keep'){await ZekeData.resolveFactor(q.id,'resolved','Keep as separate real events');pushZeke('Kept as separate events.');state.pending=null;await refreshData();render();return;}
   }
 
   async function handlePendingAnswer(text) {
     if(state.pending?.type==='question-awaiting') {
       pushUser(text); render();
-      const q=state.pending.question; await ZekeData.resolveFactor(q.id,'resolved',text); const applied=await applyQuestionAnswer(q,text); pushZeke(applied.message);state.pending=null;await refreshData();render();return true;
+      const q=state.pending.question;
+      const aiAvailable=(state.ai?.providers||[]).some(p=>p.connected||p.hasSessionKey);
+      if(aiAvailable){
+        try{
+          const r=await ZekeAIRouter.resolveClarification(text,{question:q.question,why:q.why_it_matters,question_key:q.question_key,allowed_actions:pendingQuestionChoices(q).map(x=>({id:x.value,label:x.label})),target:q.import_candidate||q.candidate_event||null,history:state.conversation.slice(0,-1)});
+          if(r.action_id && r.action_id!=='question-other'){ await handleQuestionChoice(r.action_id); return true; }
+        }catch{}
+      }
+      await ZekeData.resolveFactor(q.id,'resolved',text); const applied=await applyQuestionAnswer(q,text); pushZeke(applied.message);state.pending=null;await refreshData();render();return true;
     }
     if(state.pending?.type==='history-correction-awaiting') {
       pushUser(text); render();
@@ -995,8 +1085,12 @@
     }
     if(['needs-detail','ai-clarify'].includes(state.pending?.type)) {
       pushUser(text); render();
-      const interpretationText=state.context.metric==='blood_pressure'?text:`${state.pending.rawText}. Clarification: ${text}`;
-      const parsed=ZekeParser.interpret(interpretationText,state.context);
+      const pendingContext={...state.context,original_input:state.pending.rawText,pending_question:state.pending.ai?.clarificationQuestion||null};
+      let parsed=ZekeParser.interpret(text,pendingContext);
+      const aiAvailable=(state.ai?.providers||[]).some(p=>p.connected||p.hasSessionKey);
+      if(aiAvailable && (!(parsed.events||[]).length || (parsed.confidence||0)<0.8)) {
+        try { const ai=await ZekeAIRouter.interpret(text,{...pendingContext,history:state.conversation.slice(0,-1)}); parsed={confidence:ai.confidence||0.8,summary:ai.summary||'your clarification',events:ai.events||[]}; } catch {}
+      }
       if((parsed.events||[]).length){state.pending={type:'confirm',rawId:state.pending.rawId,rawText:state.pending.rawText,parsed};pushZeke(`Thanks. I now understand that as ${parsed.summary}. Is that right?`,{choices:[{label:'Yes, save it',value:'confirm-save'},{label:'Not quite',value:'confirm-correct'}]});render();return true;}
       pushZeke('I still do not have enough detail to save that safely. Please give the values in the clearest form you can.'); render(); return true;
     }
@@ -1361,7 +1455,9 @@
     $('#talkInput')?.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('#sendBtn')?.click()}});
     $('#questionPill')?.addEventListener('click',openNextQuestion);
     $('#addHealthHistory')?.addEventListener('click',()=>{state.context={healthHistory:true};pushZeke('Tell me the personal or family health-history detail you want ZEKE to remember. You can say it naturally, for example: “My sister had a heart attack at 45.”');go('dashboard');render();setTimeout(()=>$('#talkInput')?.focus(),0)});
-    $$('[data-conversation-choice]').forEach(el=>el.onclick=async()=>{const v=el.dataset.conversationChoice;if(v.startsWith('question-'))return handleQuestionChoice(v);if(v.startsWith('edit-'))return handleEditChoice(v);return handleChoice(v)});
+    $$('[data-conversation-choice]').forEach(el=>el.onclick=async()=>{el.classList.add('selected');el.disabled=true;const original=el.textContent;el.textContent='Working…';const v=el.dataset.conversationChoice;try{if(v.startsWith('question-'))return await handleQuestionChoice(v);if(v.startsWith('edit-'))return await handleEditChoice(v);return await handleChoice(v);}finally{if(document.body.contains(el)){el.disabled=false;el.textContent=original;el.classList.remove('selected');}}});
+    $('#expandConversation')?.addEventListener('click',()=>document.body.classList.toggle('conversation-expanded'));
+    $('#conversationThread')?.addEventListener('scroll',e=>{const el=e.currentTarget;el.dataset.userScrolled=(el.scrollHeight-el.scrollTop-el.clientHeight>80)?'true':'false';});
     $('#toggleCoachEvidence')?.addEventListener('click',()=>{state.coachExpanded=!state.coachExpanded;render()});
     $('#deeperCoachAI')?.addEventListener('click',runDeeperCoachAnalysis);
     $$('[data-theme]').forEach(el=>el.onclick=async()=>{state.theme=el.dataset.theme;document.documentElement.dataset.theme=state.theme;state.preferences={...state.preferences,theme:state.theme};await ZekeData.savePreferences(state.preferences);render()});

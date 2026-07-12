@@ -252,6 +252,17 @@ Deterministic parser draft for comparison (may be incomplete; never copy invente
     return {...normalizeWorkoutAI(parsed,rawText),provider:result.provider,model:result.model};
   }
 
+
+  async function resolveClarification(reply,context={}){
+    const history=context.history||[]; const compact={...context}; delete compact.history;
+    const prompt=`Resolve the user's reply to an active ZEKE clarification. Choose only from the supplied allowed_actions. Do not invent a target or action. If none fit, return question-other. Return ONLY JSON with keys action_id, confidence, reason. User reply: ${JSON.stringify(reply)}. Clarification context: ${JSON.stringify(compact)}`;
+    const result=await ask(prompt,{task:'interpretation',history,temperature:0,maxTokens:300});
+    const parsed=cleanJson(result.text);
+    const allowed=new Set((context.allowed_actions||[]).map(x=>x.id));
+    if(!allowed.has(parsed.action_id)) parsed.action_id='question-other';
+    return {...parsed,provider:result.provider,model:result.model};
+  }
+
   async function analyzeCoach(context){
     const prompt=`Analyze the following verified workout history and relevant context. Give one concise coaching observation, one recommendation, confidence (low/moderate/high), limitations, and the evidence rationale. Do not invent data or provide medical clearance. Return ONLY JSON with keys observation, recommendation, confidence, limitations, rationale. Context: ${JSON.stringify(context)}`;
     const result=await ask(prompt,{task:'analysis',maxTokens:1100});
@@ -271,5 +282,5 @@ Deterministic parser draft for comparison (may be incomplete; never copy invente
     return {ok:true,provider:result.provider,model:result.model};
   }
 
-  window.ZekeAIRouter={hydrateMetadata,configure,remove,status,ask,interpret,interpretWorkout,analyzeCoach,testProvider,listProviderDefinitions,providerDefinition};
+  window.ZekeAIRouter={hydrateMetadata,configure,remove,status,ask,interpret,interpretWorkout,resolveClarification,analyzeCoach,testProvider,listProviderDefinitions,providerDefinition};
 })();
