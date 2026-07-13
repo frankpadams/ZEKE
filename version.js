@@ -1,1 +1,1 @@
-window.ZEKE_BUILD = { version: '0.15.0', build: '2026.07.13.1', label: 'Brand & Navigation Evaluation Release' };
+window.ZEKE_BUILD = { version: '0.15.1', build: '2026.07.13.2', label: 'Refined Brand & Layout Evaluation' };

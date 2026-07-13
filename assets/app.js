@@ -8,7 +8,7 @@
     conversation:[], pending:null, context:{}, storage:null, ai:null,
     coachExpanded:false, customizeOpen:false, metricMenuOpen:false,
     hiddenWidgets:new Set(), busy:false, importStatus:'', importReport:null, importBatches:[],
-    conversationLoaded:false, preferences:{}, syncSource:null, syncBusy:false, syncReport:null, coachAI:null, coachAILoading:false, theme:'dark', draft:'', auditQuery:'', auditCategory:'all', deferredRender:false
+    conversationLoaded:false, preferences:{}, syncSource:null, syncBusy:false, syncReport:null, coachAI:null, coachAILoading:false, theme:'light', draft:'', auditQuery:'', auditCategory:'all', deferredRender:false
   };
 
   const RANGE_DAYS = { week:7, month:31, quarter:92, '6months':183, year:366, all:null };
@@ -76,7 +76,15 @@
     state.importBatches=importBatches; state.preferences=preferences||{}; state.importReport=state.importReport || importBatches?.at(-1) || null;
     if (!state.conversationLoaded || !state.conversation.length) { state.conversation=conversation||[]; state.conversationLoaded=true; }
     state.syncSource=await ZekeData.getSyncSource();
-    state.theme=state.preferences.theme || state.theme || 'dark';
+    state.theme=state.preferences.theme || state.theme || 'light';
+    try {
+      if (!localStorage.getItem('zeke-v0151-light-migration')) {
+        state.theme='light';
+        state.preferences={...state.preferences,theme:'light'};
+        localStorage.setItem('zeke-v0151-light-migration','1');
+        ZekeData.savePreferences(state.preferences);
+      }
+    } catch (_) {}
     document.documentElement.dataset.theme=state.theme;
     try { state.calendar = await ZekeData.listCalendarEvents(21); } catch { state.calendar=[]; }
     state.storage = ZekeData.snapshot();
@@ -567,7 +575,7 @@
 
   function dashboardHTML() {
     const trend=trendPanelHTML();
-    return `${coverageHTML()}<div class="dashboard-conversation-top">${conversationHTML()}</div><div class="dashboard-columns"><div class="dashboard-column primary-column">${coachHTML()}${todayActionsHTML()}${thinkingHTML()}</div><div class="dashboard-column insight-column">${healthGlanceHTML(9)}${trend||''}${recentHealthHTML()}${upcomingHTML()}</div></div>`;
+    return `${coverageHTML()}<div class="dashboard-columns"><div class="dashboard-column primary-column"><div class="dashboard-conversation-top">${conversationHTML()}</div>${coachHTML()}${todayActionsHTML()}${thinkingHTML()}</div><div class="dashboard-column insight-column">${healthGlanceHTML(9)}${trend||''}${recentHealthHTML()}${upcomingHTML()}</div></div>`;
   }
 
   function recordsTable(filterFn, columns) {
