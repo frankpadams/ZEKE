@@ -3,7 +3,7 @@
   "short_name": "ZEKE",
   "start_url": "./#/health/dashboard",
   "display": "standalone",
-  "background_color": "#f6f8fc",
-  "theme_color": "#f6f8fc",
-  "icons": []
+  "background_color": "#030c1c",
+  "theme_color": "#030c1c",
+  "icons": [{"src":"./assets/branding/zeke-app-icon-provisional.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}]
 }
