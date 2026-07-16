@@ -85,7 +85,7 @@ body.mobile-preview-mode{background:#02060d}body.mobile-preview-mode .app-shell{
 @media(max-width:760px){.coverage-strip{grid-template-columns:repeat(2,1fr);gap:7px;margin-bottom:12px}.coverage-strip>div{padding:9px 10px}.coverage-strip strong{font-size:16px}}
 
 /* v0.8.3 compact, data-first dashboard */
-.dashboard-grid{display:none!important}
+.dashboard-grid{display:grid}
 .dashboard-columns{display:grid;grid-template-columns:minmax(340px,.78fr) minmax(560px,1.22fr);gap:16px;align-items:start}
 .dashboard-column{display:grid;gap:16px;align-content:start;min-width:0}
 .health-glance .metrics-row{grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px}
