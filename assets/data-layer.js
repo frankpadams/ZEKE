@@ -695,8 +695,13 @@ Content-Type: ${mimeType}
   }
   async function reconcileSourceEvents(candidates=[], meta={}) {
     if(!state.provider) throw new Error('Connect storage before synchronizing.');
+    // Integrity gate: workbook candidates require exact source-cell evidence and a real historical date.
+    const bad=candidates.filter(c=>!c?.provenance?.source_cell || !c?.provenance?.source_key || !c?.timestamp || Number.isNaN(new Date(c.timestamp).getTime()));
+    if(bad.length) throw new Error(`Sync aborted: ${bad.length} candidate record${bad.length===1?'':'s'} lacked exact source-cell evidence or a valid date.`);
+    const keys=new Set();
+    for(const c of candidates){const k=c.provenance.source_key;if(keys.has(k))throw new Error('Sync aborted: duplicate source-cell identity was generated.');keys.add(k);}
     const backupPath=`imports/backups/events-${new Date().toISOString().replace(/[:.]/g,'-')}.json`;
-    await state.provider.writeJson(backupPath,{created_at:nowIso(),reason:'pre-sync-backup',source:meta.source||'',events:state.events});
+    await state.provider.writeJson(backupPath,{created_at:nowIso(),reason:'pre-sync-backup',source:meta.source||'',app_version:window.ZEKE_VERSION||'',event_count:state.events.length,events:state.events});
     const existingByKey=new Map();
     state.events.forEach((e,i)=>{const k=e.provenance?.source_key;if(k)existingByKey.set(k,{e,i});});
     const report={created:0,updated:0,unchanged:0,linked_existing:0,conflicts:0,skipped:0,backup_path:backupPath};

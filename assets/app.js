@@ -1268,13 +1268,15 @@
     const get=(...keys)=>{for(const k of keys){const nk=String(k).toLowerCase().replace(/[^a-z0-9]+/g,'_').replace(/^_|_$/g,'');if(normalized[nk]!==undefined&&normalized[nk]!=='')return normalized[nk]}return null};
     const asNum=v=>{const cleaned=String(v??'').trim().replace(/,/g,'').replace(/[^0-9.+-]/g,'');if(!cleaned)return null;const n=Number(cleaned);return Number.isFinite(n)?n:null};
     const rawDate=get('date','datetime','timestamp','recorded_at','event_date','measurement_date','session_date','start_date');
-    let timestamp=new Date().toISOString();
-    if(rawDate!==null && rawDate!==undefined && rawDate!=='') {
-      let d; const serial=Number(rawDate);
-      if (Number.isFinite(serial) && serial>20000 && serial<80000) d=new Date((serial-25569)*86400*1000);
-      else d=new Date(rawDate);
-      if(!Number.isNaN(d.getTime())) timestamp=d.toISOString();
-    }
+    // Connected-workbook evidence must have an explicit, parseable source date.
+    // Never substitute the sync time: that previously turned historical values into false current observations.
+    if(rawDate===null || rawDate===undefined || rawDate==='') return [];
+    let d; const serial=Number(rawDate);
+    if (Number.isFinite(serial) && serial>20000 && serial<80000) d=new Date((serial-25569)*86400*1000);
+    else if(rawDate instanceof Date) d=new Date(rawDate.getTime());
+    else d=new Date(rawDate);
+    if(!d || Number.isNaN(d.getTime())) return [];
+    const timestamp=d.toISOString();
     const sheetName=String(get('sheet','__sheet')||'');
     const source={source:'import',file:fileName,sheet:sheetName||undefined};
     const out=[];
@@ -1409,24 +1411,39 @@
     const rows=[]; const diagnostics=[];
     for(const sheetName of workbook.SheetNames){
       const sheet=workbook.Sheets[sheetName];
-      const matrix=window.XLSX.utils.sheet_to_json(sheet,{header:1,defval:'',raw:false,blankrows:false});
+      const matrix=window.XLSX.utils.sheet_to_json(sheet,{header:1,defval:'',raw:true,blankrows:true});
       if(!matrix.length)continue;
       const headerIndex=detectHeaderRow(matrix); const headers=(matrix[headerIndex]||[]).map((h,i)=>String(h||`Column ${i+1}`).trim());
       let accepted=0;
       for(let r=headerIndex+1;r<matrix.length;r++){
         const values=matrix[r]||[]; if(!values.some(v=>String(v??'').trim()!==''))continue;
-        const row={__sheet:sheetName,__source_row:r+1,__header_row:headerIndex+1};
-        headers.forEach((h,i)=>row[h]=values[i]??''); rows.push(row); accepted++;
+        const row={__sheet:sheetName,__source_row:r+1,__header_row:headerIndex+1,__source_cells:{}};
+        headers.forEach((h,i)=>{
+          row[h]=values[i]??'';
+          if(values[i]!==undefined && values[i]!==null && String(values[i]).trim()!=='') row.__source_cells[normHeader(h)]=window.XLSX.utils.encode_cell({r,c:i});
+        });
+        rows.push(row); accepted++;
       }
       diagnostics.push({sheet:sheetName,header_row:headerIndex+1,rows_read:accepted,columns:headers.filter(Boolean).length});
     }
     return {rows,diagnostics};
   }
   function eventSubkey(c){const st=c.structured||{};return [c.category,st.metric_id||'',st.exercise||'',st.medication_name||'',st.symptom||'',st.note_type||''].join(':').toLowerCase();}
+  function candidateSourceCell(c,row){
+    const st=c.structured||{}, cells=row.__source_cells||{};
+    const aliases={weight:['weight_lbs','weight_lb','weight','body_weight','bodyweight'],body_fat_pct:['fat','fat_pct','body_fat','body_fat_pct','body_fat_percentage'],energy:['energy_1_10','energy'],appetite:['appetite_1_10','appetite','hunger','hunger_1_10'],resting_hr:['resting_heartbeat','resting_hr','resting_heart_rate','rhr'],a1c:['hemoglobin_a1c','a1c','hba1c'],average_glucose:['average_glucose','estimated_average_glucose'],ldl:['ldl_direct_measure','ldl','ldl_cholesterol'],total_cholesterol:['cholesterol','total_cholesterol'],hdl:['highdensity_chol','high_density_chol','hdl','hdl_cholesterol'],triglycerides:['triglicerides','triglycerides'],apob:['apolipoprotein_b','apob'],lpa:['lipoprotein_a','lpa','lp_a']};
+    const wanted=aliases[st.metric_id]||[];
+    if(c.category==='medication') wanted.push('given_dose','tirzepatide_dose','mounjaro_dose','zepbound_dose');
+    if(c.category==='workout') wanted.push('exercise_desc','exercise_description','exercise','exercise_duration','duration');
+    for(const key of wanted)if(cells[key])return cells[key];
+    return null;
+  }
   async function enrichSourceIdentity(c,row,source){
-    const logical=[source.id,normHeader(row.__sheet),row.__source_row,eventSubkey(c)].join('|');
+    const sourceCell=candidateSourceCell(c,row);
+    if(!sourceCell) return null;
+    const logical=[source.id,normHeader(row.__sheet),sourceCell,eventSubkey(c)].join('|');
     const payload=JSON.stringify({category:c.category,timestamp:c.timestamp,structured:c.structured,raw_text:c.raw_text||''});
-    c.provenance={...(c.provenance||{}),source:'connected-workbook',file:source.name,sheet:row.__sheet,source_row:row.__source_row,header_row:row.__header_row,source_id:source.id,source_key:await sha256Text(logical),source_fingerprint:await sha256Text(payload)};
+    c.provenance={...(c.provenance||{}),source:'connected-workbook',file:source.name,sheet:row.__sheet,source_row:row.__source_row,source_cell:sourceCell,header_row:row.__header_row,source_id:source.id,evidence_mode:'literal-cell-only',source_key:await sha256Text(logical),source_fingerprint:await sha256Text(payload)};
     return c;
   }
   async function buildWorkbookCandidates(workbook,source){
@@ -1434,7 +1451,7 @@
     for(const row of parsed.rows){
       const mapped=rowCandidates(row,source.name);
       if(!mapped.length){unmapped++;continue;}
-      for(const c of mapped)candidates.push(await enrichSourceIdentity(c,row,source));
+      for(const c of mapped){const enriched=await enrichSourceIdentity(c,row,source);if(enriched)candidates.push(enriched);}
     }
     return {candidates,rows:parsed.rows,diagnostics:parsed.diagnostics,unmapped};
   }
