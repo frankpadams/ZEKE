@@ -6,9 +6,9 @@
     route:'dashboard', range:'month', selectedMetric:'weight',
     events:[], factors:[], discoveries:[], actions:{catalog:[],daily_states:{}}, calendar:[],
     conversation:[], pending:null, context:{}, storage:null, ai:null,
-    coachExpanded:false, customizeOpen:false, metricMenuOpen:false,
+    coachExpanded:false, coachFocus:'', coachAlertDismissed:{}, customizeOpen:false, metricMenuOpen:false,
     hiddenWidgets:new Set(), busy:false, importStatus:'', importReport:null, importBatches:[],
-    conversationLoaded:false, preferences:{}, syncSource:null, syncBusy:false, syncReport:null, coachAI:null, coachAILoading:false, theme:'light', draft:'', auditQuery:'', auditCategory:'all', deferredRender:false
+    conversationLoaded:false, preferences:{}, syncSource:null, syncBusy:false, syncReport:null, coachAI:null, coachAILoading:false, theme:'light', draft:'', auditQuery:'', auditCategory:'all', insightRefreshAt:null, deferredRender:false
   };
 
   const RANGE_DAYS = { week:7, month:31, quarter:92, '6months':183, year:366, all:null };
@@ -56,13 +56,13 @@
       '':'dashboard','health/dashboard':'dashboard','dashboard':'dashboard',
       'health':'health','health/overview':'health','fitness':'fitness','health/workouts':'fitness',
       'medications':'medications','health/medications':'medications','labs':'labs','health/labs':'labs',
-      'calendar':'calendar','settings':'settings','data-integrity':'data-integrity','system/data-integrity':'data-integrity'
+      'calendar':'calendar','questions':'questions','clarifications':'questions','settings':'settings','data-integrity':'data-integrity','system/data-integrity':'data-integrity'
     };
     return map[h] || 'dashboard';
   }
 
   function go(route) {
-    const hashes = {dashboard:'health/dashboard',health:'health',fitness:'fitness',medications:'medications',labs:'labs',calendar:'calendar',settings:'settings','data-integrity':'data-integrity'};
+    const hashes = {dashboard:'health/dashboard',health:'health',fitness:'fitness',medications:'medications',labs:'labs',calendar:'calendar',questions:'questions',settings:'settings','data-integrity':'data-integrity'};
     location.hash = `#/${hashes[route] || route}`;
   }
 
@@ -78,10 +78,10 @@
     state.syncSource=await ZekeData.getSyncSource();
     state.theme=state.preferences.theme || state.theme || 'light';
     try {
-      if (!localStorage.getItem('zeke-v0151-light-migration')) {
+      if (!localStorage.getItem('zeke-v0160-light-migration')) {
         state.theme='light';
         state.preferences={...state.preferences,theme:'light'};
-        localStorage.setItem('zeke-v0151-light-migration','1');
+        localStorage.setItem('zeke-v0160-light-migration','1');
         ZekeData.savePreferences(state.preferences);
       }
     } catch (_) {}
@@ -460,15 +460,43 @@
     return `<svg class="coach-chart" viewBox="0 0 ${w} ${h}">${[max,(max+min)/2,min].map((v,i)=>{const y=pt+i*(h-pt-pb)/2;return `<line class="grid-line" x1="${pl}" x2="${w-pr}" y1="${y}" y2="${y}"/><text class="axis-label" x="2" y="${y+4}">${Math.round(v)}</text>`}).join('')}<path class="chart-line" d="${d}"/>${xy.map((q,i)=>`<circle class="chart-point" cx="${q[0]}" cy="${q[1]}" r="4" data-tip="${esc(fmtDate(pts[i].date))}: ${pts[i].weight} lb${pts[i].reps?`, ${pts[i].reps} reps`:''}"/>`).join('')}${[0,pts.length-1].map(i=>`<text class="axis-label x" x="${xy[i][0]}" y="${h-6}" text-anchor="middle">${esc(fmtDate(pts[i].date))}</text>`).join('')}</svg>`;
   }
 
+  function coachOptions() {
+    const names=[...workoutGroups().keys()].sort((a,b)=>a.localeCompare(b));
+    const parts=new Map();
+    for(const name of names){
+      const n=name.toLowerCase(); let part='Other';
+      if(/curl|bicep/.test(n))part='Arms'; else if(/row|pull|lat/.test(n))part='Back'; else if(/leg|glute|squat/.test(n))part='Legs'; else if(/chest|bench|press/.test(n))part='Chest'; else if(/shoulder|raise/.test(n))part='Shoulders'; else if(/ab|core/.test(n))part='Core'; else if(/stair|walk|bike|cardio/.test(n))part='Cardio';
+      if(!parts.has(part))parts.set(part,[]);parts.get(part).push(name);
+    }
+    return {names,parts};
+  }
+
+  function coachInsightFor(name='') {
+    if(!name) return coachInsight();
+    const groups=workoutGroups(); const sessions=groups.get(name); if(!sessions?.length)return null;
+    const recent=sessions.slice(-4),last=recent.at(-1),prev=recent.at(-2)||last;
+    let title=`${name}: review your recent pattern.`,rationale='ZEKE is using only the sessions recorded for this exercise.',suggestion='Repeat the current setup and use reps, effort, pain, and technique to guide the next change.',score=40;
+    if(last.pain>=4){title=`${name}: pain deserves attention before progression.`;rationale='The latest recorded pain is elevated.';suggestion='Hold progression and review technique, recovery, and clinician/PT guidance.';score=100}
+    else if(last.weight&&prev.weight&&last.weight>prev.weight*1.10){title=`${name}: repeat the current load before another increase.`;rationale=`The most recent load increase was more than 10% (${prev.weight} → ${last.weight} lb).`;suggestion='Repeat the load and confirm that reps, effort, pain, and technique remain stable.';score=85}
+    else if(recent.length>=3&&recent.slice(-3).every(x=>x.reps>=12&&(!x.rpe||x.rpe<=8)&&(!x.pain||x.pain<=2))){title=`${name} may be ready for a small increase.`;rationale='Recent sessions show repeated high-rep performance without high recorded RPE or pain.';suggestion='Consider a small increase while preserving technique and joint comfort.';score=80}
+    return {name,sessions,recent,last,score,title,rationale,suggestion};
+  }
+
   function coachHTML() {
-    const x=coachInsight();
-    if(!x) return `<section class="panel coach-panel"><div class="coach-badge">Coach's Eye</div><h2>More workout history will unlock coaching trends.</h2><p>ZEKE needs repeated exercise observations to compare load, reps, effort, pain, and consistency without guessing.</p><button class="primary ghost" data-context-exercise="">Log a workout</button></section>`;
-    return `<section class="panel coach-panel"><div class="coach-top"><div><div class="coach-badge">🏋 Coach's Eye</div><h2>${esc(x.title)}</h2><p>${esc(x.rationale)}</p></div><span class="insight-tag">Training insight</span></div>
-      <div class="coach-grid"><div class="coach-stats"><div><strong>${x.last.weight||'—'} lb</strong><span>Latest load</span></div><div><strong>${x.last.rpe||'Not logged'}</strong><span>Latest RPE</span></div><div><strong>${x.last.pain||0}/10</strong><span>Recorded pain</span></div></div><div>${coachChart(x)}</div></div>
-      <div class="coach-rec"><strong>ZEKE's observation</strong><p>${esc(state.coachAI?.recommendation || x.suggestion)}</p>${state.coachAI?`<small class="ai-provenance">AI-assisted interpretation · ${esc(state.coachAI.confidence||'confidence not stated')} confidence</small>`:''}</div>
+    const opts=coachOptions();
+    if(!state.coachFocus && opts.names.length) state.coachFocus=opts.names.at(-1);
+    const selected=coachInsightFor(state.coachFocus);
+    const timely=coachInsight();
+    const alertKey=timely?`${timely.name}|${timely.title}`:'';
+    const showAlert=timely && !state.coachAlertDismissed[alertKey] && (!selected || timely.name!==selected.name || timely.score>=85);
+    const chooser=`<div class="coach-chooser"><label>Focus on <select id="coachFocus"><option value="">Choose an exercise</option>${[...opts.parts.entries()].map(([part,names])=>`<optgroup label="${esc(part)}">${names.map(n=>`<option value="${esc(n)}" ${n===state.coachFocus?'selected':''}>${esc(n)}</option>`).join('')}</optgroup>`).join('')}</select></label></div>`;
+    if(!selected) return `<section class="panel coach-panel"><div class="section-head"><div><div class="coach-badge">🏋 Coach's Eye</div><h2>Choose what you want coaching on</h2><p>Review an exercise or body area instead of keeping one movement permanently pinned.</p></div></div>${chooser}<div class="empty-inline">More repeated workout history will unlock specific guidance.</div></section>`;
+    return `<section class="panel coach-panel">${showAlert?`<div class="timely-coach-alert"><div><span>Timely before your next workout</span><strong>${esc(timely.title)}</strong><p>${esc(timely.suggestion)}</p></div><button class="icon-btn" data-dismiss-coach-alert="${esc(alertKey)}" aria-label="Dismiss coaching alert">×</button></div>`:''}<div class="section-head"><div><div class="coach-badge">🏋 Coach's Eye</div><h2>On-demand training feedback</h2><p>Select the exercise you want ZEKE to analyze.</p></div>${chooser}</div>
+      <div class="coach-top"><div><h2>${esc(selected.title)}</h2><p>${esc(selected.rationale)}</p></div><span class="insight-tag">${esc(selected.name)}</span></div>
+      <div class="coach-grid"><div class="coach-stats"><div><strong>${selected.last.weight||'—'}${selected.last.weight?' lb':''}</strong><span>Latest load</span></div><div><strong>${selected.last.rpe||'Not logged'}</strong><span>Latest RPE</span></div><div><strong>${selected.last.pain||0}/10</strong><span>Recorded pain</span></div></div><div>${coachChart(selected)}</div></div>
+      <div class="coach-rec"><strong>ZEKE's observation</strong><p>${esc(state.coachAI?.recommendation || selected.suggestion)}</p></div>
       <div class="coach-actions"><button class="text-action" id="toggleCoachEvidence">${state.coachExpanded?'Hide evidence':'View reasoning & evidence'}</button><button class="secondary" id="deeperCoachAI" ${state.coachAILoading?'disabled':''}>${state.coachAILoading?'Thinking…':'Analyze deeper'}</button></div>
-      ${state.coachAI?`<div class="coach-ai-box"><strong>Deeper analysis</strong><p>${esc(state.coachAI.observation||'')}</p><p><strong>Limitations:</strong> ${esc(state.coachAI.limitations||'No additional limitations stated.')}</p></div>`:''}
-      ${state.coachExpanded?`<div class="evidence-box"><p><strong>How this was generated:</strong> ZEKE used only your recorded sessions for ${esc(x.name)} and applied conservative progression heuristics. AI may interpret patterns but cannot alter the record. This is training decision support, not medical clearance.</p>${EVIDENCE.map(e=>`<div class="evidence-row"><span>${esc(e.title)} (${e.year})</span><a href="https://pubmed.ncbi.nlm.nih.gov/${e.pmid}/" target="_blank" rel="noopener">PubMed</a></div>`).join('')}</div>`:''}
+      ${state.coachExpanded?`<div class="evidence-box"><p><strong>How this was generated:</strong> only the recorded sessions for ${esc(selected.name)} were used. Coach’s Eye is for training decisions; broader hypotheses belong in “I’ve been thinking…”.</p></div>`:''}
     </section>`;
   }
 
@@ -555,17 +583,18 @@
     return `<section class="panel data-visibility"><div class="section-head"><div><h2>What ZEKE can currently see</h2><p>A read-only inventory of the connected repository. This does not alter your records.</p></div><button class="text-action" data-route="settings">Inspect imports</button></div><div class="inventory-grid"><div><h3>Record types</h3>${cats.map(([k,v])=>`<span><b>${esc(v)}</b>${esc(k.replaceAll('_',' '))}</span>`).join('')||'<p>No loaded records.</p>'}</div><div><h3>Recognized health metrics</h3>${metrics.map(([k,v])=>`<span><b>${esc(v)}</b>${esc(METRICS[k]?.label||k.replaceAll('_',' '))}</span>`).join('')||'<p>No chartable metrics recognized.</p>'}</div></div>${inv.unrecognized.length?`<p class="audit-note">${inv.unrecognized.length} health/lab record${inv.unrecognized.length===1?'':'s'} loaded but missing a usable metric name or numeric value. They remain untouched and can be reviewed in Health or Settings.</p>`:''}</section>`;
   }
 
+  function insightKey(i){return String(i.evidenceKey||i.title||'').toLowerCase().replace(/[^a-z0-9]+/g,'-')}
   function thinkingHTML() {
-    const allText=state.events.map(e=>e.raw_text||'').join(' ').toLowerCase(); const insights=[];
-    for(const d of state.discoveries.slice(0,2)) insights.push({icon:'↗',title:d.title||'Pattern worth reviewing',text:d.summary||'A saved discovery is ready to explore.',action:'health'});
-    const workoutCount=state.events.filter(isWorkoutEvent).length; const metricCount=state.events.filter(e=>['measurement','lab'].includes(semanticCategory(e))).length;
-    if(workoutCount>=2){const c=coachInsight();if(c)insights.push({icon:'🏋',title:c.name,text:c.suggestion,action:'fitness'});}
-    const sleepCount=allMetricSeries('sleep_duration').length; if(workoutCount>=2 && sleepCount<3) insights.unshift({icon:'☾',title:'Sleep may be an undertracked recovery variable',text:`ZEKE found ${workoutCount} workout records but only ${sleepCount} confirmed sleep observation${sleepCount===1?'':'s'}, so it cannot yet test sleep against performance or recovery.`,action:'health',evidenceKey:'sleep-undertracked'});
-    if(metricCount&&availableMetrics().length){const id=availableMetrics()[0],latest=latestMetric(id),meta=METRICS[id];insights.push({icon:meta?.icon||'◈',title:`${meta?.label||id} history is available`,text:`Verified history is loaded through ${fmtDate(latest.date)}.`,action:'health'});}
-    if(/nurri|protein shake/.test(allText)&&!(state.actions.catalog||[]).some(a=>/nurri|protein shake/i.test(a.label||'')))insights.push({icon:'🥤',title:'Repeated protein-shake mentions',text:'Would automatic recognition reduce logging friction?',thinking:'track-shakes'});
-    else if(/creatine/.test(allText)&&!(state.actions.catalog||[]).some(a=>/creatine/i.test(a.label||'')))insights.push({icon:'＋',title:'Creatine appears repeatedly',text:'ZEKE can treat it as a recurring supplement after you confirm the schedule.',thinking:'track-creatine'});
-    if(!insights.length)insights.push({icon:'💡',title:'Building an evidence base',text:'ZEKE will surface a pattern when verified records support something useful.'});
-    return `<section class="panel thinking-panel"><div class="section-head"><div><h2>I've been thinking…</h2><p>Evidence-linked observations and low-friction suggestions.</p></div></div><div class="insight-list">${insights.slice(0,4).map(i=>`<article class="thought-row"><span class="thought-icon">${i.icon}</span><div><strong>${esc(i.title)}</strong><p>${esc(i.text)}</p>${i.action?`<button class="text-action" data-insight-evidence="${esc(i.evidenceKey||i.title)}" data-route="${i.action}">Explore evidence</button>`:''}${i.thinking?`<div class="choice-row compact"><button class="choice" data-thinking="${i.thinking}">Track it</button><button class="choice" data-thinking="later">Not now</button></div>`:''}</div></article>`).join('')}</div></section>`;
+    const dismissed=new Set(state.preferences.dismissedInsights||[]); const allText=state.events.map(e=>e.raw_text||'').join(' ').toLowerCase(); const candidates=[];
+    for(const d of state.discoveries.slice(0,4)) candidates.push({icon:'↗',title:d.title||'Pattern worth reviewing',text:d.summary||'A saved discovery is ready to explore.',action:'health',evidenceKey:d.id||d.title});
+    const workoutCount=state.events.filter(isWorkoutEvent).length; const sleepCount=allMetricSeries('sleep_duration').length;
+    if(workoutCount>=2 && sleepCount<3) candidates.unshift({icon:'☾',title:'Sleep may be an undertracked recovery variable',text:`ZEKE found ${workoutCount} workout records but only ${sleepCount} confirmed sleep observation${sleepCount===1?'':'s'}. This is a data-gap hypothesis, not a training recommendation.`,action:'health',evidenceKey:'sleep-undertracked'});
+    if(/nurri|protein shake/.test(allText)&&!(state.actions.catalog||[]).some(a=>/nurri|protein shake/i.test(a.label||'')))candidates.push({icon:'🥤',title:'Repeated protein-shake mentions',text:'Would automatic recognition reduce logging friction?',thinking:'track-shakes'});
+    if(/creatine/.test(allText)&&!(state.actions.catalog||[]).some(a=>/creatine/i.test(a.label||'')))candidates.push({icon:'＋',title:'Creatine appears repeatedly',text:'ZEKE can treat it as a recurring supplement after you confirm the schedule.',thinking:'track-creatine'});
+    const deduped=[];const seen=new Set();for(const i of candidates){const k=insightKey(i);if(!seen.has(k)&&!dismissed.has(k)){seen.add(k);deduped.push(i)}}
+    if(!deduped.length)deduped.push({icon:'💡',title:'No new cross-domain ideas right now',text:'This area refreshes when meaningful new data arrives, a question is answered, or you request a refresh.'});
+    const stamp=state.preferences.insightsRefreshedAt?fmtDate(state.preferences.insightsRefreshedAt,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}):'after meaningful new data';
+    return `<section class="panel thinking-panel"><div class="section-head"><div><h2>I've been thinking…</h2><p>Broader hypotheses and useful curiosities—not duplicate workout coaching. Updated ${esc(stamp)}.</p></div><button class="secondary compact" id="refreshInsights">Refresh insights</button></div><div class="insight-list">${deduped.slice(0,4).map(i=>`<article class="thought-row"><span class="thought-icon">${i.icon}</span><div><strong>${esc(i.title)}</strong><p>${esc(i.text)}</p><div class="thought-actions">${i.action?`<button class="text-action" data-insight-evidence="${esc(i.evidenceKey||i.title)}">Explore evidence</button>`:''}${i.thinking?`<button class="text-action" data-thinking="${i.thinking}">Track it</button>`:''}<button class="text-action muted-action" data-dismiss-insight="${esc(insightKey(i))}">Dismiss</button></div></div></article>`).join('')}</div></section>`;
   }
 
   function upcomingHTML() {
@@ -575,11 +604,20 @@
 
   function dashboardHTML() {
     const trend=trendPanelHTML();
-    return `${coverageHTML()}<div class="dashboard-columns"><div class="dashboard-column primary-column"><div class="dashboard-conversation-top">${conversationHTML()}</div>${coachHTML()}${todayActionsHTML()}${thinkingHTML()}</div><div class="dashboard-column insight-column">${healthGlanceHTML(9)}${trend||''}${recentHealthHTML()}${upcomingHTML()}</div></div>`;
+    return `${coverageHTML()}<div class="dashboard-grid"><div class="dashboard-conversation-top">${conversationHTML()}</div>${healthGlanceHTML(9)}${coachHTML()}${todayActionsHTML()}${thinkingHTML()}${trend||''}${recentHealthHTML()}${upcomingHTML()}</div>`;
+  }
+
+  function isSuppressedIntegrityArtifact(e){
+    const st=e.structured||{}, p=e.provenance||{}, metric=canonicalMetric(metricId(e)), value=Number(metricValue(e));
+    if(['invalid','quarantined'].includes(String(st.interpretation_status||st.data_quality_status||'').toLowerCase()))return true;
+    if(p.source==='import' && /normal\s*80\s*[-–]\s*100/i.test(String(e.raw_text||'')) && ((metric==='bp_systolic'&&value===80)||(metric==='bp_diastolic'&&value===100)))return true;
+    if(p.source==='connected-workbook' && Number(p.source_row)===421 && metric==='weight' && value===219.4 && /^2026-07-(11|12|13|16)/.test(String(e.timestamp||'')))return true;
+    if(p.source==='connected-workbook' && Number(p.source_row)===420 && ((metric==='a1c'&&value===5.4)||(metric==='average_glucose'&&value===108)) && /^2026-07-(11|12|13|16)/.test(String(e.timestamp||'')))return true;
+    return false;
   }
 
   function recordsTable(filterFn, columns) {
-    const rows=state.events.filter(filterFn).sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp));
+    const rows=state.events.filter(e=>!isSuppressedIntegrityArtifact(e)).filter(filterFn).sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp));
     if(!rows.length) return `<div class="empty-page">No records yet.</div>`;
     return `<div class="table-wrap"><table><thead><tr>${columns.map(c=>`<th>${esc(c.label)}</th>`).join('')}<th></th></tr></thead><tbody>${rows.map(e=>`<tr>${columns.map(c=>`<td>${esc(c.value(e))}</td>`).join('')}<td><button class="text-action" data-edit-event="${e.id}">Review / edit</button></td></tr>`).join('')}</tbody></table></div>`;
   }
@@ -945,6 +983,19 @@
     let raw=null;
     try { raw=await ZekeData.addRawInput(text,state.context); state.events=await ZekeData.listEvents(); }
     catch(e){ pushZeke(`I couldn't preserve that input in connected storage yet. I won't pretend it was saved. ${e.message}`); state.busy=false; render(); return; }
+
+    const bmiRequest=/\b(?:calculate|figure out|what(?:'s| is))\s+(?:my\s+)?bmi\b|\bbmi\b/i.test(text);
+    if(bmiRequest){
+      const heightMatch=[...state.factors].reverse().find(f=>/height/i.test(`${f.question_key||''} ${f.summary||''} ${f.answer||''}`));
+      const convHeight=[...state.conversation].reverse().map(m=>m.text).find(t=>/\b\d\s*(?:ft|feet|')\s*\d{1,2}\s*(?:in|inches|\")?/i.test(t)||/\b\d'\d{1,2}\"?/i.test(t));
+      const hText=String(heightMatch?.answer||heightMatch?.summary||convHeight||'');
+      const hm=hText.match(/(\d)\s*(?:ft|feet|')\s*(\d{1,2})|\b(\d)'(\d{1,2})/i);
+      const inches=hm?(Number(hm[1]||hm[3])*12+Number(hm[2]||hm[4])):69;
+      const weights=allMetricSeries('weight').filter(x=>Number.isFinite(Number(x.value))).sort((a,b)=>new Date(a.date)-new Date(b.date));
+      const latest=weights.at(-1);
+      if(latest){const bmi=Number(latest.value)*703/(inches*inches);pushZeke(`Using your recorded height of ${Math.floor(inches/12)}'${inches%12}\" and your latest verified weight of ${Number(latest.value).toFixed(1)} lb, your BMI is ${bmi.toFixed(1)}. BMI is a screening measure and does not distinguish fat from muscle.`);await ZekeData.updateEvent(raw.id,{structured:{interpretation_status:'confirmed',intent:'calculate_bmi',height_in:inches,weight_lb:Number(latest.value),result:Number(bmi.toFixed(1))}},{appendCorrection:false});state.busy=false;render();return;}
+      pushZeke('I can calculate that, but I do not have a verified weight available. What weight should I use?');state.context={task:'calculate_bmi',height_in:inches};state.busy=false;render();return;
+    }
 
     const bodyFatContext=contextualBodyFatInterpretation(text,raw.id);
     if(bodyFatContext){
@@ -1344,7 +1395,7 @@
   }
   function eventSubkey(c){const st=c.structured||{};return [c.category,st.metric_id||'',st.exercise||'',st.medication_name||'',st.symptom||'',st.note_type||''].join(':').toLowerCase();}
   async function enrichSourceIdentity(c,row,source){
-    const date=String(c.timestamp||'').slice(0,10); const logical=[source.id,normHeader(row.__sheet),date,eventSubkey(c)].join('|');
+    const logical=[source.id,normHeader(row.__sheet),row.__source_row,eventSubkey(c)].join('|');
     const payload=JSON.stringify({category:c.category,timestamp:c.timestamp,structured:c.structured,raw_text:c.raw_text||''});
     c.provenance={...(c.provenance||{}),source:'connected-workbook',file:source.name,sheet:row.__sheet,source_row:row.__source_row,header_row:row.__header_row,source_id:source.id,source_key:await sha256Text(logical),source_fingerprint:await sha256Text(payload)};
     return c;
@@ -1501,6 +1552,8 @@
     $$('[data-answer-question]').forEach(el=>el.onclick=()=>{const q=state.factors.find(f=>f.id===el.dataset.answerQuestion);if(q){state.pending={type:'clarification',questionId:q.id};pushZeke(q.question||'Please clarify this item.');go('dashboard');render();setTimeout(()=>$('#talkInput')?.focus(),0)}});
     $$('[data-question-action]').forEach(el=>el.onclick=async()=>{const id=el.dataset.questionId;const action=el.dataset.questionAction;await ZekeData.resolveFactor(id,action==='dismiss'?'dismissed':'deferred','');await refreshData();render();});
     $$('[data-insight-evidence]').forEach(el=>el.onclick=(ev)=>{ev.preventDefault();ev.stopPropagation();document.body.insertAdjacentHTML('beforeend',insightEvidenceHTML(el.dataset.insightEvidence));$('#closeEvidenceFocus')?.addEventListener('click',()=>$('#evidenceFocus')?.remove());});
+    $('#coachFocus')?.addEventListener('change',e=>{state.coachFocus=e.target.value;state.coachAI=null;state.coachExpanded=false;render()});
+    $$('[data-dismiss-coach-alert]').forEach(el=>el.onclick=()=>{state.coachAlertDismissed[el.dataset.dismissCoachAlert]=true;render()});
     $('#toggleCoachEvidence')?.addEventListener('click',()=>{state.coachExpanded=!state.coachExpanded;render()});
     $('#deeperCoachAI')?.addEventListener('click',runDeeperCoachAnalysis);
     $$('[data-theme]').forEach(el=>el.onclick=async()=>{state.theme=el.dataset.theme;document.documentElement.dataset.theme=state.theme;state.preferences={...state.preferences,theme:state.theme};await ZekeData.savePreferences(state.preferences);render()});
@@ -1512,6 +1565,8 @@
     $('#drawerBackdrop')?.addEventListener('click',e=>{if(e.target.id==='drawerBackdrop'){state.customizeOpen=false;render()}});
     $$('[data-toggle-widget]').forEach(el=>el.onchange=()=>{el.checked?state.hiddenWidgets.delete(el.dataset.toggleWidget):state.hiddenWidgets.add(el.dataset.toggleWidget);render()});
 
+    $$('[data-dismiss-insight]').forEach(el=>el.onclick=async()=>{const set=new Set(state.preferences.dismissedInsights||[]);set.add(el.dataset.dismissInsight);state.preferences={...state.preferences,dismissedInsights:[...set]};await ZekeData.savePreferences(state.preferences);render()});
+    $('#refreshInsights')?.addEventListener('click',async()=>{state.preferences={...state.preferences,insightsRefreshedAt:new Date().toISOString()};await ZekeData.savePreferences(state.preferences);showToast('Insights refreshed against the latest verified records.');render()});
     $$('[data-thinking]').forEach(el=>el.onclick=async()=>{const v=el.dataset.thinking;if(v==='track-shakes'||v==='track-creatine'){const label=v==='track-shakes'?'Protein shake':'Creatine';pushZeke(`Great. How often do you normally use ${label.toLowerCase()}, and do you want it in Today's Actions or only logged when you mention it?`);render();$('#talkInput')?.focus()}else if(v==='later'){pushZeke('No problem. I’ll leave that for later.');render()}else{pushZeke('Understood. I won’t keep suggesting that.');render()}});
 
     $('[data-connect-storage="google-drive"]')?.addEventListener('click',async()=>{try{await ZekeData.connect('google-drive');await refreshData();render()}catch(e){showToast(e.message,'error');render()}});
@@ -1542,7 +1597,7 @@
     await ZekeAIRouter.hydrateMetadata();
     render();
     await ZekeData.bootstrap();
-    if(ZekeData.snapshot().status==='connected'){ await refreshData(); state.syncSource=await ZekeData.getSyncSource(); if(state.syncSource){try{await syncConnectedWorkbook({quiet:true});await refreshData()}catch(e){state.importStatus=`Automatic sync was skipped safely: ${e.message}`;}} }
+    if(ZekeData.snapshot().status==='connected'){ await refreshData(); state.syncSource=await ZekeData.getSyncSource(); if(state.syncSource){state.importStatus='Connected workbook ready. Automatic sync is paused in this integrity repair release; use Settings → Sync now after reviewing the source.';} }
     render();
   }
 
