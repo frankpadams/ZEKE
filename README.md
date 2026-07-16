@@ -1,45 +1,52 @@
-# ZEKE Hosted AI Alpha 0.2
+# Project ZEKE
 
-This is the fastest practical build for testing whether free Google/Gemini AI is important to the ZEKE experience.
+## Current release
 
-## What it includes
+**ZEKE v0.17.1-alpha**  
+**Build:** 2026.07.16.5  
+**Release focus:** Conversation & Integrity — Verifiable Build
 
-- Browser-based ZEKE Alpha
-- Gemini API key field
-- Local fallback rules
-- Product-gap feedback loop
-- Example missing capability: Lipitor compliance graph
-- Memory rules for atorvastatin/Lipitor/statin, Nurri shakes, allergy immunotherapy
-- Local timeline
-- Local-only product gaps
+ZEKE remains in alpha stabilization. Do not treat this build as beta or as fully reliable for unattended data entry.
 
-## Deploy today
+## Visible release verification
 
-Upload these files to your GitHub repository root:
+A successful deployment must visibly show:
 
-- index.html
-- style.css
-- app.js
-- README.md
+- `v0.17.1-alpha · build 2026.07.16.5` on the initial loading splash.
+- `v0.17.1-alpha` in the top application bar.
+- The version and build at the bottom of the navigation sidebar.
+- The same values in Settings → About this build.
 
-Then enable GitHub Pages from the repo.
+If those values are absent, the browser or GitHub Pages deployment is still serving an older or mixed build.
 
-Expected URL:
-https://frankpadams.github.io/ZEKE/
+## Current alpha focus
 
-You can redirect:
-digitalcatharsis.net/zeke
-to:
-https://frankpadams.github.io/ZEKE/
+1. Data integrity and evidence-first workbook synchronization.
+2. Transaction-scoped Review Queue rather than disconnected questions.
+3. Active date context for historical entry.
+4. Structured AI proposals that ZEKE validates before saving.
+5. Direct structured entry from health and fitness tiles.
+6. Daily workout grouping and prevention of empty workout shells.
+7. Dashboard spacing and interaction-state consistency.
 
-## Gemini setup
+## Deployment
 
-1. Create a Gemini API key in Google AI Studio.
-2. Open ZEKE.
-3. Go to 🤖 AI.
-4. Paste your key.
-5. Click Test AI.
+Upload the contents of this folder to the root of the ZEKE GitHub Pages repository, replacing files with the same names. Do not upload the enclosing folder itself.
 
-## Security note
+After GitHub Pages finishes publishing:
 
-This is only acceptable for personal Alpha testing. A browser-based API key can be visible to the user/browser. For public beta, use a safer architecture such as a user-owned backend, OAuth flow, or local-only model.
+1. Open ZEKE in a private/incognito window.
+2. Confirm the splash screen says `v0.17.1-alpha · build 2026.07.16.5`.
+3. Confirm the top bar displays `v0.17.1-alpha`.
+4. If an older version appears, wait for deployment completion and hard-refresh. Do not test features until the correct version is visible.
+
+## Important data rule
+
+AI may propose structured interpretations. ZEKE must validate and commit them. AI output must never directly become canonical data or user-facing prose without ZEKE mediation.
+
+## Known alpha limitations
+
+- Review Queue aggregation and scoped resolution remain first-pass implementations.
+- Natural-language imports require further end-to-end verification.
+- Direct-entry controls do not yet cover every supported metric.
+- Layout refinements remain ongoing.
