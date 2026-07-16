@@ -886,17 +886,24 @@
     const editableSnapshot=captureEditableState();
     const existingDraft=$('#talkInput')?.value;
     if(existingDraft!=null) state.draft=existingDraft;
-    const storage=ZekeData.snapshot(); state.storage=storage; state.ai=ZekeAIRouter.status(); state.route=routeFromHash();
-    if(['booting','connecting','reconnecting'].includes(storage.status)) root.innerHTML=loadingHTML(storage.status==='reconnecting'?'Reconnecting to your workspace…':'Starting ZEKE…');
-    else if(storage.status!=='connected') root.innerHTML=setupHTML(storage);
-    else root.innerHTML=connectedAppHTML();
-    bind();
-    requestAnimationFrame(()=>{
-      const t=$('#conversationThread'); if(t && t.dataset.userScrolled!=='true')t.scrollTop=t.scrollHeight;
-      const input=$('#talkInput');
-      if(input && state.draft && !input.value) input.value=state.draft;
-      restoreEditableState(editableSnapshot);
-    });
+    try {
+      const storage=ZekeData.snapshot(); state.storage=storage; state.ai=ZekeAIRouter.status(); state.route=routeFromHash();
+      if(['booting','connecting','reconnecting'].includes(storage.status)) root.innerHTML=loadingHTML(storage.status==='reconnecting'?'Reconnecting to your workspace…':'Starting ZEKE…');
+      else if(storage.status!=='connected') root.innerHTML=setupHTML(storage);
+      else root.innerHTML=connectedAppHTML();
+      bind();
+      requestAnimationFrame(()=>{
+        const t=$('#conversationThread'); if(t && t.dataset.userScrolled!=='true')t.scrollTop=t.scrollHeight;
+        const input=$('#talkInput');
+        if(input && state.draft && !input.value) input.value=state.draft;
+        restoreEditableState(editableSnapshot);
+      });
+    } catch (error) {
+      console.error('ZEKE render failure', error);
+      root.innerHTML=`<div class="connection-screen"><div class="connect-card wide"><div class="brand-mark big">Z</div><h1>ZEKE could not draw this screen</h1><p>Your stored data has not been changed. This is a display failure, not an empty-data result.</p><pre class="render-error">${esc(error?.message||String(error))}</pre><button class="primary large" id="retryRender">Retry dashboard</button><button class="secondary" id="openIntegrityFromError">Open Data Integrity</button><div class="build-label center">v${esc(BUILD.version)} · ${esc(BUILD.build)}</div></div></div>`;
+      $('#retryRender')?.addEventListener('click',()=>location.reload());
+      $('#openIntegrityFromError')?.addEventListener('click',()=>go('data-integrity'));
+    }
   }
 
   function humanEvent(e) {
@@ -1135,15 +1142,27 @@
       pushZeke(`Done. I marked ${n||'the'} related blood-pressure record${n===1?'':'s'} invalid and excluded ${n===1?'it':'them'} from charts, coaching, and AI evidence. The original import evidence remains in the audit history.`);
       state.pending=null;await refreshData();render();return;
     }
-    if(value==='question-bp-keep'){await ZekeData.resolveFactor(q.id,'resolved','Keep as entered');pushZeke('Kept as entered. I preserved the unusual values and their source.');state.pending=null;await refreshData();render();return;}
+    if(value==='question-bp-keep'){
+      const c=q.import_candidate||{};
+      if(Number.isFinite(Number(c.systolic))&&Number.isFinite(Number(c.diastolic))){
+        await ZekeData.addEvent({category:'measurement',timestamp:c.timestamp||new Date().toISOString(),structured:{metric_id:'bp_systolic',value:Number(c.systolic),unit:'mmHg',interpretation_status:'confirmed'},provenance:{...(c.provenance||{}),source:'user-confirmed-import'}});
+        await ZekeData.addEvent({category:'measurement',timestamp:c.timestamp||new Date().toISOString(),structured:{metric_id:'bp_diastolic',value:Number(c.diastolic),unit:'mmHg',interpretation_status:'confirmed'},provenance:{...(c.provenance||{}),source:'user-confirmed-import'}});
+      }
+      await ZekeData.resolveFactor(q.id,'resolved','Keep as entered');pushZeke('Kept as entered. I added the confirmed pair to the event record and preserved its source.');state.pending=null;await refreshData();render();return;}
     if(value==='question-bp-reverse'){
       const c=q.import_candidate||{};
+      await ZekeData.addEvent({category:'measurement',timestamp:c.timestamp||new Date().toISOString(),structured:{metric_id:'bp_systolic',value:Number(c.diastolic),unit:'mmHg',interpretation_status:'confirmed'},provenance:{...(c.provenance||{}),source:'user-corrected-import'}});
+      await ZekeData.addEvent({category:'measurement',timestamp:c.timestamp||new Date().toISOString(),structured:{metric_id:'bp_diastolic',value:Number(c.systolic),unit:'mmHg',interpretation_status:'confirmed'},provenance:{...(c.provenance||{}),source:'user-corrected-import'}});
       await ZekeData.resolveFactor(q.id,'resolved',`Reverse to ${c.diastolic}/${c.systolic}`);
-      pushZeke(`I recorded your choice to reverse the pair to ${c.diastolic}/${c.systolic}. Because this changes health data, the original remains in the audit history.`);
+      pushZeke(`Corrected and saved as ${c.diastolic}/${c.systolic}. The original candidate remains in the audit history.`);
       state.pending=null;await refreshData();render();return;
     }
-    if(value==='question-duplicate-merge'){await ZekeData.resolveFactor(q.id,'resolved','Treat as duplicate; keep one canonical record');pushZeke('Resolved as one event. I kept the canonical record and preserved both sources.');state.pending=null;await refreshData();render();return;}
-    if(value==='question-duplicate-keep'){await ZekeData.resolveFactor(q.id,'resolved','Keep as separate real events');pushZeke('Kept as separate events.');state.pending=null;await refreshData();render();return;}
+    if(value==='question-duplicate-merge'){
+      await ZekeData.resolveFactor(q.id,'resolved','Treat as duplicate; keep one canonical record');
+      pushZeke('Resolved as one event. The existing canonical record remains; the held candidate was not added, and its import evidence remains attached to this resolution.');state.pending=null;await refreshData();render();return;}
+    if(value==='question-duplicate-keep'){
+      if(q.candidate_event) await ZekeData.addEvent({...q.candidate_event,provenance:{...(q.candidate_event.provenance||{}),source:'import-confirmed-separate'}});
+      await ZekeData.resolveFactor(q.id,'resolved','Keep as separate real events');pushZeke('Kept as separate events. I added the held candidate as a confirmed separate observation.');state.pending=null;await refreshData();render();return;}
   }
 
   async function handlePendingAnswer(text) {
@@ -1157,7 +1176,17 @@
           if(r.action_id && r.action_id!=='question-other'){ await handleQuestionChoice(r.action_id); return true; }
         }catch{}
       }
-      await ZekeData.resolveFactor(q.id,'resolved',text); const applied=await applyQuestionAnswer(q,text); pushZeke(applied.message);state.pending=null;await refreshData();render();return true;
+      const applied=await applyQuestionAnswer(q,text);
+      if(applied.applied){
+        await ZekeData.resolveFactor(q.id,'resolved',text);
+        pushZeke(applied.message);
+        state.pending=null;
+      } else {
+        await ZekeData.saveFactor({...q,status:'open',answer_attempt:text,last_attempt_at:new Date().toISOString()});
+        pushZeke(`${applied.message} This question is still open so the underlying data is not treated as resolved.`);
+        state.pending={type:'question-awaiting',question:{...q,status:'open',answer_attempt:text}};
+      }
+      await refreshData();render();return true;
     }
     if(state.pending?.type==='history-correction-awaiting') {
       pushUser(text); render();
@@ -1549,7 +1578,7 @@
     $$('[data-conversation-choice]').forEach(el=>el.onclick=async()=>{el.classList.add('selected');el.disabled=true;const original=el.textContent;el.textContent='Working…';const v=el.dataset.conversationChoice;try{if(v.startsWith('question-'))return await handleQuestionChoice(v);if(v.startsWith('edit-'))return await handleEditChoice(v);return await handleChoice(v);}finally{if(document.body.contains(el)){el.disabled=false;el.textContent=original;el.classList.remove('selected');}}});
     $('#expandConversation')?.addEventListener('click',()=>{const expanded=document.body.classList.toggle('conversation-expanded');const btn=$('#expandConversation');if(btn){btn.textContent=expanded?'Collapse':'Expand';btn.setAttribute('aria-expanded',String(expanded));}});
     $('#conversationThread')?.addEventListener('scroll',e=>{const el=e.currentTarget;el.dataset.userScrolled=(el.scrollHeight-el.scrollTop-el.clientHeight>80)?'true':'false';});
-    $$('[data-answer-question]').forEach(el=>el.onclick=()=>{const q=state.factors.find(f=>f.id===el.dataset.answerQuestion);if(q){state.pending={type:'clarification',questionId:q.id};pushZeke(q.question||'Please clarify this item.');go('dashboard');render();setTimeout(()=>$('#talkInput')?.focus(),0)}});
+    $$('[data-answer-question]').forEach(el=>el.onclick=()=>{const q=state.factors.find(f=>f.id===el.dataset.answerQuestion);if(q){state.pending={type:'question',question:q};pushZeke(`${q.question||'Please clarify this item.'}${q.why_it_matters?` Why I’m asking: ${q.why_it_matters}`:''}`,{choices:pendingQuestionChoices(q)});go('dashboard');render();setTimeout(()=>$('#talkInput')?.focus(),0)}});
     $$('[data-question-action]').forEach(el=>el.onclick=async()=>{const id=el.dataset.questionId;const action=el.dataset.questionAction;await ZekeData.resolveFactor(id,action==='dismiss'?'dismissed':'deferred','');await refreshData();render();});
     $$('[data-insight-evidence]').forEach(el=>el.onclick=(ev)=>{ev.preventDefault();ev.stopPropagation();document.body.insertAdjacentHTML('beforeend',insightEvidenceHTML(el.dataset.insightEvidence));$('#closeEvidenceFocus')?.addEventListener('click',()=>$('#evidenceFocus')?.remove());});
     $('#coachFocus')?.addEventListener('change',e=>{state.coachFocus=e.target.value;state.coachAI=null;state.coachExpanded=false;render()});
