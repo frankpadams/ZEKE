@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const BUILD = window.ZEKE_BUILD || { version:'0.19.1', build:'2026.07.17.7' };
+  const BUILD = window.ZEKE_BUILD || { version:'0.20.1', build:'2026.07.17.10', label:'Responsive Layout Integrity Release' };
   const state = {
     route:'dashboard', range:localStorage.getItem('zeke-fitness-range')||'month', selectedMetric:'weight',
     events:[], factors:[], discoveries:[], actions:{catalog:[],daily_states:{}}, calendar:[],
@@ -422,7 +422,7 @@
   function healthGlanceHTML(limit=6) {
     const metrics=availableMetrics().filter(id=>!state.hiddenWidgets.has(`metric:${id}`)).slice(0,limit);
     if(!metrics.length) return `<section class="panel health-glance"><div class="section-head"><div><h2>Health at a glance</h2><p>Verified values from your connected ZEKE records.</p></div></div><div class="empty-inline">No verified health metrics are available yet. Log a value through Talk to ZEKE or import existing history.</div></section>`;
-    return `<section class="health-glance"><div class="section-head"><div><h2>Health at a glance</h2><p>Verified values from your connected records.</p></div><button class="text-action" data-route="health">View all</button></div><div class="metrics-row">${metrics.map(metricCard).join('')}</div></section>`;
+    return `<section class="panel health-glance"><div class="section-head"><div><h2>Health at a glance</h2><p>Verified values from your connected records.</p></div><button class="text-action" data-route="health">View all</button></div><div class="metrics-row">${metrics.map(metricCard).join('')}</div></section>`;
   }
 
   function trendChartSVG(id) {

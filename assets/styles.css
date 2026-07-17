@@ -344,3 +344,137 @@ body.nav-open{overflow:hidden}body.nav-open .sidebar{transform:translateX(0)}.si
   .dashboard-status{width:100%}
   .coach-grid.no-chart .coach-stats{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
+
+
+/* ZEKE v0.20.1 — authoritative responsive dashboard layout.
+   This final block intentionally overrides older experimental dashboard rules. */
+.dashboard-composer,
+.dashboard-priority-row,
+.dashboard-health-row,
+.dashboard-guidance-row,
+.dashboard-evidence-row{
+  width:100%;
+  min-width:0;
+  box-sizing:border-box;
+}
+.dashboard-composer{
+  display:flex!important;
+  flex-direction:column;
+  gap:16px;
+  align-items:stretch;
+}
+.dashboard-priority-row,
+.dashboard-guidance-row,
+.dashboard-evidence-row{
+  display:grid!important;
+  gap:16px;
+  align-items:start;
+  grid-auto-flow:row;
+}
+.dashboard-priority-row{grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr)!important}
+.dashboard-health-row{display:block!important}
+.dashboard-guidance-row{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+.dashboard-evidence-row{grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr))!important}
+.dashboard-composer>.dashboard-priority-row>*,
+.dashboard-composer>.dashboard-health-row>*,
+.dashboard-composer>.dashboard-guidance-row>*,
+.dashboard-composer>.dashboard-evidence-row>*{
+  position:static!important;
+  grid-column:auto!important;
+  grid-row:auto!important;
+  width:auto!important;
+  min-width:0!important;
+  max-width:none!important;
+  height:auto!important;
+  min-height:0!important;
+  margin:0!important;
+  align-self:start!important;
+}
+.dashboard-health-row>.health-glance{width:100%!important}
+.dashboard-health-row .metrics-row{
+  display:grid!important;
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr))!important;
+  gap:12px!important;
+  overflow:visible!important;
+  align-items:stretch!important;
+}
+.dashboard-health-row .metric-card{
+  width:auto!important;
+  min-width:0!important;
+  max-width:none!important;
+  height:auto!important;
+  min-height:0!important;
+}
+.dashboard-status{
+  display:flex!important;
+  width:max-content!important;
+  max-width:100%!important;
+  min-height:0!important;
+  height:auto!important;
+  padding:7px 12px!important;
+  margin:0 0 12px!important;
+}
+.dashboard-priority-row .today-panel,
+.dashboard-priority-row .dashboard-insights-tile,
+.dashboard-guidance-row .coach-panel,
+.dashboard-guidance-row .thinking-panel{
+  height:auto!important;
+  min-height:0!important;
+}
+.today-panel .empty-inline,
+.coach-panel .empty-inline,
+.chart-empty{
+  min-height:0!important;
+  height:auto!important;
+  padding:11px 12px!important;
+}
+.trend-panel:has(.chart-empty){display:none!important}
+.chart-wrap:empty,
+.coach-chart-shell:empty,
+.metric-detail-chart:empty,
+.big-chart:empty,
+.mini-chart:empty{display:none!important}
+.coach-grid.no-chart{
+  display:block!important;
+  grid-template-columns:1fr!important;
+}
+.coach-grid.no-chart .coach-stats{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+}
+.fitness-workspace{
+  display:grid!important;
+  grid-template-columns:minmax(300px,.8fr) minmax(0,1.2fr)!important;
+  gap:16px!important;
+  align-items:start!important;
+}
+.fitness-workspace>*{min-width:0!important;height:auto!important;min-height:0!important}
+.fitness-progress-grid{
+  display:grid!important;
+  grid-template-columns:repeat(auto-fit,minmax(235px,1fr))!important;
+  gap:14px!important;
+}
+.fitness-progress-card{height:auto!important;min-height:0!important}
+.chart-wrap,.trend-chart,.coach-chart{width:100%!important;max-width:100%!important;height:auto!important}
+
+@media(max-width:1180px){
+  .dashboard-priority-row{grid-template-columns:minmax(0,1fr) minmax(250px,.7fr)!important}
+  .dashboard-guidance-row{grid-template-columns:1fr!important}
+  .fitness-workspace{grid-template-columns:1fr!important}
+}
+@media(max-width:900px){
+  .dashboard-priority-row{grid-template-columns:1fr!important}
+  .dashboard-health-row .metrics-row{grid-template-columns:repeat(auto-fit,minmax(145px,1fr))!important}
+}
+@media(max-width:700px){
+  .dashboard-composer{gap:12px!important}
+  .dashboard-priority-row,.dashboard-guidance-row,.dashboard-evidence-row{display:flex!important;flex-direction:column;gap:12px!important}
+  .dashboard-priority-row>*,.dashboard-guidance-row>*,.dashboard-evidence-row>*{width:100%!important}
+  .dashboard-health-row .metrics-row{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;overflow:visible!important}
+  .dashboard-health-row .metric-card{min-width:0!important}
+  .dashboard-status{width:100%!important}
+}
+@media(max-width:460px){
+  .dashboard-health-row .metrics-row{grid-template-columns:1fr!important}
+  .coach-grid.no-chart .coach-stats{grid-template-columns:1fr!important}
+}
