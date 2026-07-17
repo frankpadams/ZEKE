@@ -1,1 +1,1 @@
-0.6.6-feedback-ui-fix-alpha
+0.18.0-personal-intelligence-pattern-lab-preview
