@@ -1,0 +1,11 @@
+Replace these files in the ZEKE repository:
+
+index.html
+version.js
+assets/app.js
+assets/data-layer.js
+assets/styles.css
+
+Optional documentation:
+RELEASE_NOTES_v0.17.7.md
+TEST_GUIDE_v0.17.7.md

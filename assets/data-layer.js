@@ -730,6 +730,65 @@ Content-Type: ${mimeType}
     emit(); return {...report,batch_id:batch.id};
   }
 
+
+  async function createIntegrityBackup(reason = 'data-integrity-change') {
+    if (!state.provider) throw new Error('Connect storage before changing personal data.');
+    const path=`imports/backups/integrity-${new Date().toISOString().replace(/[:.]/g,'-')}.json`;
+    await state.provider.writeJson(path,{created_at:nowIso(),reason,app_version:window.ZEKE_VERSION||'',events:state.events});
+    return path;
+  }
+
+  async function mergeActivityEntities({ canonicalName, aliases = [] } = {}) {
+    const clean=v=>String(v||'').trim();
+    const key=v=>clean(v).toLowerCase().replace(/[^a-z0-9]+/g,' ').replace(/\s+/g,' ').trim().replace(/^stairclimber$/,'stair climber');
+    const canonical=clean(canonicalName);
+    if(!canonical) throw new Error('Choose a canonical activity name.');
+    const aliasKeys=new Set([canonical,...aliases].map(key).filter(Boolean));
+    if(!aliasKeys.size) throw new Error('No activities were selected.');
+    const before=clone(state.events);
+    const backupPath=await createIntegrityBackup(`merge activities into ${canonical}`);
+    let changed=0;
+    state.events=state.events.map(e=>{
+      if(e.category!=='workout') return e;
+      const st=e.structured||{}; const current=st.exercise||st.exercise_name||st.movement||st.activity||st.session_type||st.workout_type||'';
+      if(!aliasKeys.has(key(current))) return e;
+      changed++;
+      return {...e,updated_at:nowIso(),structured:{...st,exercise:canonical,canonical_activity_id:key(canonical).replace(/ /g,'_'),activity_aliases:[...new Set([...(st.activity_aliases||[]),current,...aliases].map(clean).filter(Boolean))]},provenance:{...(e.provenance||{}),integrity_normalized_at:nowIso()}};
+    });
+    if(!changed) return {changed:0,backup_path:backupPath};
+    state.lastIntegrityUndo={events:before,reason:`Merged activities into ${canonical}`,backup_path:backupPath};
+    await persist('events'); emit();
+    await saveImportBatch({type:'data-integrity-merge',source:'ZEKE Data Integrity Center',counts:{records_updated:changed,aliases_merged:aliasKeys.size},message:`Merged ${[...aliases].join(', ')} into ${canonical}. Backup: ${backupPath}`});
+    return {changed,backup_path:backupPath};
+  }
+
+  async function removeExactDuplicateEvents(ids = []) {
+    const remove=new Set(ids);
+    if(!remove.size) return {removed:0};
+    const before=clone(state.events);
+    const backupPath=await createIntegrityBackup('remove exact duplicate events');
+    const prior=state.events.length; state.events=state.events.filter(e=>!remove.has(e.id));
+    const removed=prior-state.events.length;
+    if(!removed) return {removed:0,backup_path:backupPath};
+    state.lastIntegrityUndo={events:before,reason:`Removed ${removed} exact duplicate event(s)`,backup_path:backupPath};
+    await persist('events'); emit();
+    await saveImportBatch({type:'data-integrity-deduplication',source:'ZEKE Data Integrity Center',counts:{records_removed:removed},message:`Removed ${removed} exact duplicate record(s). Backup: ${backupPath}`});
+    return {removed,backup_path:backupPath};
+  }
+
+  async function undoLastIntegrityChange() {
+    const undo=state.lastIntegrityUndo;
+    if(!undo?.events) throw new Error('There is no cleanup action to undo in this session.');
+    await createIntegrityBackup('before undoing data-integrity change');
+    const current=clone(state.events); state.events=clone(undo.events);
+    state.lastIntegrityUndo={events:current,reason:`Undo of: ${undo.reason}`};
+    await persist('events'); emit();
+    await saveImportBatch({type:'data-integrity-undo',source:'ZEKE Data Integrity Center',counts:{restored_records:state.events.length},message:`Undid: ${undo.reason}`});
+    return {restored:state.events.length,reason:undo.reason};
+  }
+
+  function hasIntegrityUndo(){ return Boolean(state.lastIntegrityUndo?.events); }
+
   async function listCalendarEvents(days = 14) { return state.provider ? state.provider.listCalendarEvents(days) : []; }
 
   window.ZekeData = {
@@ -741,7 +800,7 @@ Content-Type: ${mimeType}
     listConversation, appendConversation, saveConversation,
     listImportBatches, saveImportBatch, mergeHistoryPackage,
     saveSyncSource, getSyncSource, readSyncSourceWorkbook, updateSyncSourceWorkbook, reconcileSourceEvents,
-    listCalendarEvents,
+    listCalendarEvents, mergeActivityEntities, removeExactDuplicateEvents, undoLastIntegrityChange, hasIntegrityUndo,
     constants: { PATHS, SETUP_KEY }
   };
 })();
