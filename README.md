@@ -1,66 +1,10 @@
 # Project ZEKE
 
-**Current release:** v0.17.3-alpha · build 2026.07.16.7  
-**Current focus:** verifiable identity, numerical exercise entry, and grouped review tasks.
-
-This is a private personal alpha. Data safety and usable daily entry take priority over commercial polish.
-
-## This patch
-- Exercise tiles open structured numerical entry rather than chat.
-- Empty workout records are rejected.
-- Review questions are presented as grouped tasks.
-- Logo and version/build are permanently visible.
-
-See `TEST_GUIDE_v0.17.3-alpha.md` and `RELEASE_NOTES_v0.17.3-alpha.md`.
-
-
-## Current release
-
-**ZEKE v0.17.1-alpha**  
-**Build:** 2026.07.16.5  
-**Release focus:** Conversation & Integrity — Verifiable Build
-
-ZEKE remains in alpha stabilization. Do not treat this build as beta or as fully reliable for unattended data entry.
-
-## Visible release verification
-
-A successful deployment must visibly show:
-
-- `v0.17.1-alpha · build 2026.07.16.5` on the initial loading splash.
-- `v0.17.1-alpha` in the top application bar.
-- The version and build at the bottom of the navigation sidebar.
-- The same values in Settings → About this build.
-
-If those values are absent, the browser or GitHub Pages deployment is still serving an older or mixed build.
-
-## Current alpha focus
-
-1. Data integrity and evidence-first workbook synchronization.
-2. Transaction-scoped Review Queue rather than disconnected questions.
-3. Active date context for historical entry.
-4. Structured AI proposals that ZEKE validates before saving.
-5. Direct structured entry from health and fitness tiles.
-6. Daily workout grouping and prevention of empty workout shells.
-7. Dashboard spacing and interaction-state consistency.
+**Current release:** v0.17.4 · build 2026.07.17.1  
+**Status:** Preview  
+**Current focus:** verifiable identity, global active date, direct exercise entry, and grouped review tasks.
 
 ## Deployment
+Upload the contents of this patch to the repository root. Replace the matching root files and replace `assets/app.js` and `assets/styles.css` inside the existing `assets` folder.
 
-Upload the contents of this folder to the root of the ZEKE GitHub Pages repository, replacing files with the same names. Do not upload the enclosing folder itself.
-
-After GitHub Pages finishes publishing:
-
-1. Open ZEKE in a private/incognito window.
-2. Confirm the splash screen says `v0.17.1-alpha · build 2026.07.16.5`.
-3. Confirm the top bar displays `v0.17.1-alpha`.
-4. If an older version appears, wait for deployment completion and hard-refresh. Do not test features until the correct version is visible.
-
-## Important data rule
-
-AI may propose structured interpretations. ZEKE must validate and commit them. AI output must never directly become canonical data or user-facing prose without ZEKE mediation.
-
-## Known alpha limitations
-
-- Review Queue aggregation and scoped resolution remain first-pass implementations.
-- Natural-language imports require further end-to-end verification.
-- Direct-entry controls do not yet cover every supported metric.
-- Layout refinements remain ongoing.
+Do not replace `zeke-config.js` or any Google Drive data files.

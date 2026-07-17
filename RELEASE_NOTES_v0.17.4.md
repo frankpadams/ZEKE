@@ -1,18 +1,20 @@
-# ZEKE v0.17.4 — Deployment Repair
+# ZEKE v0.17.4 — Sprint 1 Patch
 
+Build: 2026.07.17.1  
 Status: Preview
-Build: 2026.07.17.1
 
-## Fixed
-- Forces new cache keys for all application assets.
-- Removes stale Project ZEKE service-worker registrations and old caches.
-- Updates the service-worker cache identity and uses network/no-store for current assets.
-- Shows the ZEKE logo and exact build on the static loading splash.
-- Removes the `-alpha` suffix from the user-facing version while retaining Preview status.
+## Included
+- Persistent ZEKE logo and visible version/build in the rendered header.
+- Global Active Date context for today or historical entry.
+- Numerical exercise-entry form with editable date, weight, repetitions, sets, and notes.
+- Prior exercise values appear only as suggestions and are never copied automatically.
+- Entries on the same date share the same daily workout identifier.
+- Empty exercise entries are rejected.
+- Review Queue groups related open questions into task-level cards.
+- Expand/Collapse text follows the actual expanded state.
+- Updated cache keys and service-worker cleanup to prevent stale nested assets.
 
-## Already present in the repository and now forced to load
-- Persistent header logo and version/build.
-- Numerical direct exercise entry with editable date.
-- Global Active Date for today or historical entry.
-- Grouped Review Queue task count.
-- Correct Expand/Collapse state.
+## Not claimed as complete
+- Full transaction-oriented Review Queue resolution.
+- Direct entry for all health categories.
+- Coach's Eye recovery engine and peer-reviewed evidence retrieval.

@@ -1,15 +1,16 @@
 REPOSITORY ROOT — REPLACE:
-index.html
-version.js
-sw.js
+- index.html
+- version.js
+- sw.js
+- README.md
 
-ADD:
-README_PATCH.txt
-FILES_TO_REPLACE.txt
-RELEASE_NOTES_v0.17.4.md
+INSIDE THE EXISTING assets FOLDER — REPLACE:
+- assets/app.js
+- assets/styles.css
 
 DO NOT REPLACE:
-zeke-config.js
-assets/app.js (already present in repository)
-assets/styles.css (already present in repository)
-any Google Drive health data
+- zeke-config.js
+- assets/data-layer.js
+- assets/parser.js
+- assets/ai-router.js
+- any health data or Google Drive files
