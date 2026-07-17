@@ -8,7 +8,7 @@
     conversation:[], pending:null, context:{}, storage:null, ai:null,
     coachExpanded:false, coachFocus:'', coachAlertDismissed:{}, customizeOpen:false, metricMenuOpen:false,
     hiddenWidgets:new Set(), busy:false, importStatus:'', importReport:null, importBatches:[],
-    conversationLoaded:false, preferences:{}, syncSource:null, syncBusy:false, syncReport:null, coachAI:null, coachAILoading:false, theme:'light', draft:'', auditQuery:'', auditCategory:'all', insightRefreshAt:null, deferredRender:false, activeDate:localStorage.getItem('zeke-active-date')||''
+    conversationLoaded:false, preferences:{}, syncSource:null, syncBusy:false, syncReport:null, coachAI:null, coachAILoading:false, theme:'light', draft:'', auditQuery:'', auditCategory:'all', insightRefreshAt:null, deferredRender:false, activeDate:localStorage.getItem('zeke-active-date')||'', directExercise:null
   };
 
   const RANGE_DAYS = { week:7, month:31, quarter:92, '6months':183, year:366, all:null };
@@ -507,6 +507,20 @@
 
   function openQuestions() { return state.factors.filter(f=>f.type==='clarification_question'&&!['resolved','dismissed','unknown','deferred'].includes(f.status)).sort((a,b)=>priorityWeight(b.priority)-priorityWeight(a.priority)); }
   function priorityWeight(p){return ({critical:4,high:3,medium:2,low:1}[p]||1)}
+  function reviewTaskKey(q){
+    const text=`${q.question_key||''} ${q.question||''} ${q.why_it_matters||''}`.toLowerCase();
+    if(/workout|exercise|fitness|training|cardio/.test(text)) return 'workout-review';
+    if(/sleep/.test(text)) return 'sleep-review';
+    if(/medication|mounjaro|tirzepatide|atorvastatin|supplement/.test(text)) return 'medication-review';
+    if(/duplicate|conflict|integrity|import|record/.test(text)) return 'data-integrity-review';
+    if(/blood pressure|weight|measurement|lab|a1c|glucose|cholesterol/.test(text)) return 'measurement-review';
+    return String(q.transaction_id||q.task_id||q.question_key||q.id||'general-review').replace(/[:#].*$/,'');
+  }
+  function reviewTasks(){
+    const map=new Map();
+    openQuestions().forEach(q=>{const key=reviewTaskKey(q);const task=map.get(key)||{key,items:[],priority:q.priority||'low'};task.items.push(q);if(priorityWeight(q.priority)>priorityWeight(task.priority))task.priority=q.priority;map.set(key,task)});
+    return [...map.values()].sort((a,b)=>priorityWeight(b.priority)-priorityWeight(a.priority));
+  }
 
   async function runDeeperCoachAnalysis() {
     const x=coachInsight(); if(!x || state.coachAILoading) return;
@@ -523,7 +537,7 @@
     const last=msgs.at(-1);
     const choices=last?.choices||[];
     return `<section class="panel conversation-panel">
-      <div class="section-head conversation-head"><div><h2>Talk to ZEKE</h2><p>Conversation first, with structured choices when ZEKE needs a safe decision.</p></div><div class="conversation-head-actions"><button class="secondary compact" id="expandConversation" aria-expanded="${document.body.classList.contains('conversation-expanded')}">${document.body.classList.contains('conversation-expanded')?'Collapse':'Expand'}</button><button class="question-pill" id="questionPill">${openQuestions().length} review item${openQuestions().length===1?'':'s'}</button></div></div>
+      <div class="section-head conversation-head"><div><h2>Talk to ZEKE</h2><p>Conversation first, with structured choices when ZEKE needs a safe decision.</p></div><div class="conversation-head-actions"><button class="secondary compact" id="expandConversation" aria-expanded="${document.body.classList.contains('conversation-expanded')}">${document.body.classList.contains('conversation-expanded')?'Collapse':'Expand'}</button><button class="question-pill" id="questionPill">${reviewTasks().length} review task${reviewTasks().length===1?'':'s'}</button></div></div>
       <div class="conversation-thread" id="conversationThread">${msgs.map(m=>`<div class="bubble-row ${m.role}"><div class="avatar">${m.role==='zeke'?'Z':'You'}</div><div class="bubble"><span class="bubble-name">${m.role==='zeke'?'ZEKE':'You'}</span><p>${esc(m.text)}</p></div></div>`).join('')}</div>
       ${choices.length?`<div class="choice-row">${choices.map(c=>`<button class="choice" data-conversation-choice="${esc(c.value)}" aria-live="polite">${esc(c.label)}</button>`).join('')}</div>`:''}
       <div class="composer"><textarea id="talkInput" rows="1" placeholder="Tell ZEKE anything…"></textarea><button class="attach" id="attachBtn" title="Attach a file">＋</button><button class="send" id="sendBtn" aria-label="Send">➤</button></div>
@@ -572,8 +586,8 @@
 
   function coverageHTML() {
     const latest=state.events.map(e=>e.timestamp||e.recorded_at).filter(Boolean).sort().at(-1);
-    const issues=openQuestions().length;
-    return `<section class="dashboard-status"><span class="status-dot"></span><strong>Data current</strong><span>${latest?`Last evidence ${esc(fmtDate(latest,{month:'short',day:'numeric'}))}`:'No verified evidence yet'}</span>${issues?`<button class="text-action" id="questionPill">${issues} item${issues===1?'':'s'} need review</button>`:''}</section>`;
+    const issues=reviewTasks().length;
+    return `<section class="dashboard-status"><span class="status-dot"></span><strong>Data current</strong><span>${latest?`Last evidence ${esc(fmtDate(latest,{month:'short',day:'numeric'}))}`:'No verified evidence yet'}</span>${issues?`<button class="text-action" id="questionPill">${issues} review task${issues===1?'':'s'}</button>`:''}</section>`;
   }
 
   function recentHealthHTML() {
@@ -779,16 +793,16 @@
 
   function questionsPageHTML() {
     const all=state.factors.filter(f=>f.type==='clarification_question').sort((a,b)=>priorityWeight(b.priority)-priorityWeight(a.priority));
-    const open=all.filter(f=>!['resolved','dismissed','unknown','deferred'].includes(f.status));
-    const groups=[
-      ['Important now',open.filter(f=>['critical','high'].includes(f.priority))],
-      ['Could improve an insight',open.filter(f=>!['critical','high'].includes(f.priority)&&/insight|trend|coach|recovery|context/i.test(`${f.why_it_matters||''} ${f.question||''}`))],
-      ['Data integrity',open.filter(f=>/duplicate|integrity|import|record|measurement|conflict/i.test(`${f.question_key||''} ${f.why_it_matters||''} ${f.question||''}`))],
-      ['Optional',open.filter(f=>!['critical','high'].includes(f.priority))]
-    ];
-    const seen=new Set();
-    const cards=groups.map(([label,items])=>{const uniq=items.filter(x=>!seen.has(x.id)&&seen.add(x.id)); if(!uniq.length)return''; return `<section class="panel question-group"><div class="section-head"><div><h2>${esc(label)}</h2><p>${uniq.length} available</p></div></div><div class="question-list">${uniq.map(q=>`<article class="question-card"><div><span class="question-priority ${esc(q.priority||'low')}">${esc(q.priority||'optional')}</span><h3>${esc(q.question||'Clarification needed')}</h3><p>${esc(q.why_it_matters||'Your answer can improve record accuracy or help ZEKE interpret your data more reliably.')}</p><details><summary>Why is ZEKE asking?</summary><p>${esc(q.why_it_matters||'This item was generated because ZEKE found uncertainty it should not resolve by guessing.')}</p><p><strong>Could unlock insight:</strong> ${/insight|trend|coach|recovery|context/i.test(`${q.why_it_matters||''} ${q.question||''}`)?'Yes — this may improve a trend, recommendation, or contextual interpretation.':'Possibly — primarily this improves data quality and confidence.'}</p></details></div><div class="question-actions"><button class="primary" data-review-question="${esc(q.id)}">Review</button><button class="secondary" data-question-action="later" data-question-id="${esc(q.id)}">Later</button><button class="secondary" data-question-action="dismiss" data-question-id="${esc(q.id)}">Dismiss</button></div></article>`).join('')}</div></section>`}).join('');
-    return `<div class="page-head"><div><h1>Review Queue</h1><p>Resolve task-level items here without losing the context of the main conversation.</p></div><span class="badge">${open.length} item${open.length===1?'':'s'} need review</span></div>${cards||'<section class="panel empty-page">No unresolved questions right now.</section>'}<section class="panel resolved-questions"><div class="section-head"><div><h2>Resolved or dismissed</h2><p>${all.length-open.length} item${all.length-open.length===1?'':'s'} in history</p></div></div></section>`;
+    const tasks=reviewTasks();
+    const titleFor=key=>({
+      'workout-review':'Review workout information',
+      'sleep-review':'Review sleep information',
+      'medication-review':'Review medication information',
+      'data-integrity-review':'Resolve data-integrity items',
+      'measurement-review':'Review measurements and labs'
+    }[key]||'Review related information');
+    const cards=tasks.map(task=>{const first=task.items[0];return `<section class="panel question-group"><article class="question-card review-task-card"><div><span class="question-priority ${esc(task.priority)}">${esc(task.priority||'optional')}</span><h3>${esc(titleFor(task.key))}</h3><p>${task.items.length} related question${task.items.length===1?'':'s'} grouped into one task. Review the details without leaving this workspace.</p><details><summary>Show granular questions</summary>${task.items.map(q=>`<div class="review-subquestion"><strong>${esc(q.question||'Clarification needed')}</strong><p>${esc(q.why_it_matters||'ZEKE found uncertainty it should not resolve by guessing.')}</p></div>`).join('')}</details></div><div class="question-actions"><button class="primary" data-review-question="${esc(first.id)}">Review task</button><button class="secondary" data-review-task-later="${esc(task.key)}">Later</button></div></article></section>`}).join('');
+    return `<div class="page-head"><div><h1>Review Queue</h1><p>Related questions are grouped into task-level decisions. Expand any task for granular detail.</p></div><span class="badge">${tasks.length} review task${tasks.length===1?'':'s'}</span></div>${cards||'<section class="panel empty-page">No unresolved review tasks right now.</section>'}<section class="panel resolved-questions"><div class="section-head"><div><h2>Resolved or dismissed</h2><p>${all.length-openQuestions().length} question${all.length-openQuestions().length===1?'':'s'} in history</p></div></div></section>`;
   }
 
   function globalTalkHTML(){ if(state.route==='dashboard') return ''; return `<button class="global-talk-button" id="globalTalkButton" aria-label="Talk to ZEKE"><img src="./assets/branding/zeke-mark-provisional.png" alt=""><span>Talk to ZEKE</span></button><div class="global-talk-overlay" id="globalTalkOverlay"><div class="global-talk-backdrop" id="globalTalkBackdrop"></div><div class="global-talk-panel">${conversationHTML()}</div></div>`;}
@@ -808,7 +822,7 @@
 
   function topbarHTML() {
     const greeting=new Date().getHours()<12?'Good morning':new Date().getHours()<18?'Good afternoon':'Good evening';
-    return `<header class="topbar"><button class="menu-button" id="menuButton" aria-label="Open navigation">☰</button><div><h1>${greeting}, Frank</h1><p>${new Date().toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric',year:'numeric'})}</p></div>${state.route==='dashboard'?`<div class="range-tabs">${[['week','Week'],['month','Month'],['quarter','Quarter'],['6months','6 months'],['year','Year'],['all','All']].map(([id,label])=>`<button class="range ${state.range===id?'active':''}" data-range="${id}">${label}</button>`).join('')}</div><button class="secondary customize" id="customizeBtn">☷ Customize</button><button class="secondary mobile-preview" id="mobilePreviewBtn">📱 Mobile preview</button>`:''}<span class="top-build" title="Build ${esc(BUILD.build)}">v${esc(BUILD.version)}</span><div class="top-actions"><button class="icon-btn" id="helpBtn" title="Help" aria-label="Page help">?</button><button class="icon-btn" id="statusBtn" title="ZEKE status" aria-label="ZEKE status">◆</button></div></header>`;
+    return `<header class="topbar"><button class="menu-button" id="menuButton" aria-label="Open navigation">☰</button><div class="topbar-brand"><img src="./assets/branding/zeke-mark-provisional.png" alt="ZEKE"><div><strong>ZEKE</strong><span>v${esc(BUILD.version)} · ${esc(BUILD.build)}</span></div></div><div class="topbar-greeting"><h1>${greeting}, Frank</h1><p>${new Date().toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric',year:'numeric'})}</p></div>${state.route==='dashboard'?`<div class="range-tabs">${[['week','Week'],['month','Month'],['quarter','Quarter'],['6months','6 months'],['year','Year'],['all','All']].map(([id,label])=>`<button class="range ${state.range===id?'active':''}" data-range="${id}">${label}</button>`).join('')}</div><button class="secondary customize" id="customizeBtn">☷ Customize</button><button class="secondary mobile-preview" id="mobilePreviewBtn">📱 Mobile preview</button>`:''}<div class="top-actions"><button class="icon-btn" id="helpBtn" title="Help" aria-label="Page help">?</button><button class="icon-btn" id="statusBtn" title="ZEKE status" aria-label="ZEKE status">◆</button></div></header>`;
   }
 
   function connectedAppHTML() {
@@ -1566,6 +1580,16 @@
     for(let i=0;i<line.length;i++){const ch=line[i];if(ch==='"'){if(quoted&&line[i+1]==='"'){cur+='"';i++}else quoted=!quoted}else if(ch===delimiter&&!quoted){out.push(cur.trim());cur=''}else cur+=ch} out.push(cur.trim()); return out;
   }
 
+  function openExerciseEntryModal(name){
+    $('#directExerciseModal')?.remove();
+    const latest=(workoutGroups().get(name)||[]).at(-1)||{};
+    document.body.insertAdjacentHTML('beforeend',`<div class="direct-entry-overlay" id="directExerciseModal"><div class="direct-entry-card"><div class="section-head"><div><h2>Add ${esc(name)}</h2><p>This will be added to the workout for the selected date. Prior values are suggestions only.</p></div><button class="icon-btn" id="closeDirectExercise" aria-label="Close">×</button></div><form id="directExerciseForm" class="direct-entry-form"><label>Date<input id="directExerciseDate" type="date" value="${esc(activeDay())}" required></label><label>Weight (lb)<input id="directExerciseWeight" type="number" step="0.1" min="0" placeholder="${latest.weight??''}"></label><label>Reps<input id="directExerciseReps" type="number" step="1" min="1" placeholder="${latest.reps??''}"></label><label>Sets<input id="directExerciseSets" type="number" step="1" min="1" placeholder="${latest.sets??''}"></label><label class="wide">Notes (optional)<textarea id="directExerciseNotes" rows="2" placeholder="Pain, RPE, form, or other details"></textarea></label><div class="direct-entry-hint wide">${latest.weight!=null||latest.reps!=null||latest.sets!=null?`Last verified: ${latest.weight!=null?`${latest.weight} lb`:''}${latest.reps!=null?` · ${latest.reps} reps`:''}${latest.sets!=null?` · ${latest.sets} sets`:''}. Nothing is copied unless you enter it.`:'No prior verified values available.'}</div><div class="direct-entry-actions wide"><button type="button" class="secondary" id="cancelDirectExercise">Cancel</button><button type="submit" class="primary">Save exercise</button></div><p class="form-error wide" id="directExerciseError" hidden></p></form></div></div>`);
+    const close=()=>$('#directExerciseModal')?.remove();
+    $('#closeDirectExercise')?.addEventListener('click',close);$('#cancelDirectExercise')?.addEventListener('click',close);
+    $('#directExerciseModal')?.addEventListener('click',e=>{if(e.target.id==='directExerciseModal')close()});
+    $('#directExerciseForm')?.addEventListener('submit',async e=>{e.preventDefault();const date=$('#directExerciseDate').value;const weight=Number($('#directExerciseWeight').value);const reps=Number($('#directExerciseReps').value);const sets=Number($('#directExerciseSets').value);const notes=$('#directExerciseNotes').value.trim();const w=Number.isFinite(weight)&&weight>0?weight:null;const r=Number.isFinite(reps)&&reps>0?reps:null;const st=Number.isFinite(sets)&&sets>0?sets:null;const err=$('#directExerciseError');if(w==null&&r==null&&st==null&&!notes){err.hidden=false;err.textContent='Enter at least one workout detail before saving.';return;}try{await ZekeData.addEvent({category:'workout',timestamp:`${date}T12:00:00`,raw_text:notes,structured:{exercise:name,workout_id:`workout-${date}`,weight:w,weight_unit:w!=null?'lb':'',reps:r,sets:st,notes,interpretation_status:'confirmed'},provenance:{source:'direct-exercise-entry',entry_mode:'structured-form'}});close();await refreshData();render();showToast(`${name} added to the ${fmtDate(date+'T12:00:00',{month:'short',day:'numeric'})} workout.`)}catch(ex){err.hidden=false;err.textContent=ex.message||'The exercise could not be saved.'}});
+  }
+
   function bind() {
     $('#helpBtn')?.addEventListener('click',()=>showToast(`Help for ${state.route}: click metric tiles for evidence and interpretation; use Talk to ZEKE to log, correct, or backfill data.`));
     $('#statusBtn')?.addEventListener('click',()=>{const ai=(state.ai?.providers||[]).filter(x=>x.connected).map(x=>x.label||x.provider).join(', ')||'none';showToast(`ZEKE status — storage: ${state.storage?.providerId||'not connected'}; AI: ${ai}; open reviews: ${openQuestions().length}.`);});
@@ -1599,13 +1623,14 @@
     $('#activeDateInput')?.addEventListener('change',e=>setActiveDate(e.target.value));
     $('#clearActiveDate')?.addEventListener('click',()=>setActiveDate(''));
     $('#quickWeightForm')?.addEventListener('submit',async e=>{e.preventDefault();const v=Number($('#quickWeightValue')?.value);if(!Number.isFinite(v)||v<=0)return;const ts=`${activeDay()}T12:00:00`;await ZekeData.addEvent({category:'measurement',timestamp:ts,structured:{metric_id:'weight',value:v,unit:'lb',interpretation_status:'confirmed'},provenance:{source:'direct-tile-entry'}});pushZeke(`Saved ${v} lb for ${activeDateLabel()}.`,{undo_event_id:null});await refreshData();render();});
-    $$('[data-quick-exercise]').forEach(el=>el.addEventListener('click',()=>{const name=el.dataset.quickExercise;state.context={exercise:name,active_date:activeDay(),direct_entry:true};pushZeke(`Adding ${name} to ${activeDateLabel()}'s workout. Enter weight, reps, and sets.`);go('dashboard');render();setTimeout(()=>$('#talkInput')?.focus(),0);}));
+    $$('[data-quick-exercise]').forEach(el=>el.addEventListener('click',()=>openExerciseEntryModal(el.dataset.quickExercise)));
     $('#addHealthHistory')?.addEventListener('click',()=>{state.context={healthHistory:true};pushZeke('Tell me the personal or family health-history detail you want ZEKE to remember. You can say it naturally, for example: “My sister had a heart attack at 45.”');go('dashboard');render();setTimeout(()=>$('#talkInput')?.focus(),0)});
     $$('[data-conversation-choice]').forEach(el=>el.onclick=async()=>{el.classList.add('selected');el.disabled=true;const original=el.textContent;el.textContent='Working…';const v=el.dataset.conversationChoice;try{if(v.startsWith('question-'))return await handleQuestionChoice(v);if(v.startsWith('edit-'))return await handleEditChoice(v);return await handleChoice(v);}finally{if(document.body.contains(el)){el.disabled=false;el.textContent=original;el.classList.remove('selected');}}});
     $('#expandConversation')?.addEventListener('click',()=>{const expanded=document.body.classList.toggle('conversation-expanded');const btn=$('#expandConversation');if(btn){btn.textContent=expanded?'Collapse':'Expand';btn.setAttribute('aria-expanded',String(expanded));}});
     $('#conversationThread')?.addEventListener('scroll',e=>{const el=e.currentTarget;el.dataset.userScrolled=(el.scrollHeight-el.scrollTop-el.clientHeight>80)?'true':'false';});
     $$('[data-review-question]').forEach(el=>el.onclick=()=>{const q=state.factors.find(f=>f.id===el.dataset.reviewQuestion);if(q){state.pending={type:'question',question:q};const card=el.closest('.question-card');card?.classList.add('review-active');if(card&&!card.querySelector('.scoped-review'))card.insertAdjacentHTML('beforeend',`<div class="scoped-review"><p><strong>${esc(q.question||'Please clarify this item.')}</strong></p><p>${esc(q.why_it_matters||'Your answer will be applied only to this review item.')}</p><textarea id="scopedReviewInput" rows="3" placeholder="Answer in the context of this item…"></textarea><div><button class="primary" id="submitScopedReview">Apply answer</button></div></div>`);$('#submitScopedReview')?.addEventListener('click',()=>handlePendingAnswer($('#scopedReviewInput')?.value||''));}});
     $$('[data-question-action]').forEach(el=>el.onclick=async()=>{const id=el.dataset.questionId;const action=el.dataset.questionAction;await ZekeData.resolveFactor(id,action==='dismiss'?'dismissed':'deferred','');await refreshData();render();});
+    $$('[data-review-task-later]').forEach(el=>el.onclick=async()=>{const key=el.dataset.reviewTaskLater;const task=reviewTasks().find(t=>t.key===key);for(const q of task?.items||[])await ZekeData.resolveFactor(q.id,'deferred','');await refreshData();render();});
     $$('[data-insight-evidence]').forEach(el=>el.onclick=(ev)=>{ev.preventDefault();ev.stopPropagation();document.body.insertAdjacentHTML('beforeend',insightEvidenceHTML(el.dataset.insightEvidence));$('#closeEvidenceFocus')?.addEventListener('click',()=>$('#evidenceFocus')?.remove());});
     $('#coachFocus')?.addEventListener('change',e=>{state.coachFocus=e.target.value;state.coachAI=null;state.coachExpanded=false;render()});
     $$('[data-dismiss-coach-alert]').forEach(el=>el.onclick=()=>{state.coachAlertDismissed[el.dataset.dismissCoachAlert]=true;render()});
