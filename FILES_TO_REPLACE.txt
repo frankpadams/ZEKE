@@ -1,0 +1,19 @@
+ZEKE v0.17.3-alpha incremental patch
+
+Replace in repository root:
+- index.html
+- version.js
+- assets/app.js
+- assets/styles.css
+- README.md
+
+Add:
+- RELEASE_NOTES_v0.17.3-alpha.md
+- TEST_GUIDE_v0.17.3-alpha.md
+- FILES_TO_REPLACE.txt
+
+Do not replace:
+- zeke-config.js
+- any Google Drive health data
+- apps-script folder
+- unchanged assets or documentation

@@ -1,9 +1,18 @@
 # Project ZEKE
 
-**Current build:** v0.17.2-alpha · build 2026.07.16.6 · fingerprint `ZEKE-0172-REAL`  
-**Current focus:** make ZEKE safe and useful for daily personal use before expanding advanced intelligence.
+**Current release:** v0.17.3-alpha · build 2026.07.16.7  
+**Current focus:** verifiable identity, numerical exercise entry, and grouped review tasks.
 
-See [FEATURE_STATUS.md](FEATURE_STATUS.md) and [TEST_GUIDE_v0.17.2-alpha.md](TEST_GUIDE_v0.17.2-alpha.md).
+This is a private personal alpha. Data safety and usable daily entry take priority over commercial polish.
+
+## This patch
+- Exercise tiles open structured numerical entry rather than chat.
+- Empty workout records are rejected.
+- Review questions are presented as grouped tasks.
+- Logo and version/build are permanently visible.
+
+See `TEST_GUIDE_v0.17.3-alpha.md` and `RELEASE_NOTES_v0.17.3-alpha.md`.
+
 
 ## Current release
 
