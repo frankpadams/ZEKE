@@ -280,3 +280,14 @@ body.nav-open{overflow:hidden}body.nav-open .sidebar{transform:translateX(0)}.si
 /* v0.19 concept search + private vault */
 .concept-entry-launch{display:flex;align-items:center;justify-content:space-between;gap:18px}.concept-search-label{position:relative}.concept-matches{display:grid;gap:6px;margin-top:8px;max-height:280px;overflow:auto}.concept-option{display:flex;justify-content:space-between;align-items:center;text-align:left;border:1px solid var(--line);background:var(--surface-2,#fff);border-radius:14px;padding:11px 12px;cursor:pointer}.concept-option:hover{border-color:var(--accent);transform:translateY(-1px)}.concept-option span,.concept-selected span{font-size:12px;color:var(--muted)}.concept-selected{display:flex;justify-content:space-between;border:1px solid rgba(35,130,90,.35);background:rgba(35,130,90,.08);border-radius:14px;padding:10px 12px}.concept-empty{padding:12px;color:var(--muted);border:1px dashed var(--line);border-radius:14px}.vault-actions{display:flex;gap:10px;flex-wrap:wrap}.brand-home{border:0;background:transparent;padding:0;cursor:pointer;color:inherit;text-align:left}.sidebar .brand-home{display:grid;place-items:center}.topbar-brand.brand-home{display:flex;align-items:center;gap:10px}.form-error{color:#a12b2b;background:#fff1f1;border:1px solid #f0c4c4;border-radius:12px;padding:10px}
 @media(max-width:700px){.concept-entry-launch{align-items:stretch;flex-direction:column}.concept-option{align-items:flex-start;flex-direction:column}}
+
+/* v0.19.1 responsive fitness and direct logging patch */
+.fitness-progress-card[data-tip]{cursor:help;position:relative}
+.fitness-progress-card:focus{outline:3px solid rgba(47,125,247,.25);outline-offset:2px}
+.coach-chart{display:block;width:100%;min-width:0;min-height:155px;height:auto;overflow:visible}
+.coach-grid>div{min-width:0}
+.chart-tooltip{position:fixed;z-index:1000;max-width:min(340px,80vw);pointer-events:none}
+.direct-entry-card{max-height:90vh;overflow:auto}
+.direct-entry-actions{position:sticky;bottom:-18px;background:linear-gradient(180deg,rgba(255,255,255,.9),#fff 28%);padding-top:14px;padding-bottom:4px;z-index:2}
+@media(max-width:1000px){.fitness-workspace{grid-template-columns:minmax(0,1fr)!important}.coach-grid{grid-template-columns:1fr!important}.fitness-progress-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:620px){.fitness-progress-grid{grid-template-columns:1fr!important}.fitness-card-head{align-items:flex-start}.fitness-facts{flex-wrap:wrap}.direct-entry-actions{display:flex;flex-wrap:wrap}.direct-entry-actions .text-action{width:100%;text-align:left}}

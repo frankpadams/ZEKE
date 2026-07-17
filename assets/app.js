@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const BUILD = window.ZEKE_BUILD || { version:'0.17.5', build:'2026.07.17.2' };
+  const BUILD = window.ZEKE_BUILD || { version:'0.19.1', build:'2026.07.17.7' };
   const state = {
     route:'dashboard', range:localStorage.getItem('zeke-fitness-range')||'month', selectedMetric:'weight',
     events:[], factors:[], discoveries:[], actions:{catalog:[],daily_states:{}}, calendar:[],
@@ -37,6 +37,22 @@
     {id:'symptom.nausea',label:'Nausea',domain:'symptom',category:'symptom',aliases:['queasy'],parents:[],analysis:[['nausea',1],['migraine_associated',.3]]},
     {id:'symptom.dizziness',label:'Dizziness',domain:'symptom',category:'symptom',aliases:['lightheaded'],parents:[],analysis:[['dizziness',1]]},
     {id:'symptom.heartburn',label:'Heartburn / acid reflux',domain:'symptom',category:'symptom',aliases:['heartburn','acid reflux','gerd'],parents:[],analysis:[['reflux',1]]},
+    {id:'symptom.chest_pain',label:'Chest pain',domain:'symptom',category:'symptom',aliases:['chest pains','pain in chest','chest hurts','chest discomfort'],parents:[],analysis:[['chest_pain',1]]},
+    {id:'symptom.chest_tightness',label:'Chest tightness',domain:'symptom',category:'symptom',aliases:['tight chest','pressure in chest','chest pressure'],parents:['symptom.chest_pain'],analysis:[['chest_pain',.7],['chest_tightness',1]]},
+    {id:'symptom.shortness_of_breath',label:'Shortness of breath',domain:'symptom',category:'symptom',aliases:['breathless','difficulty breathing','cant catch my breath'],parents:[],analysis:[['shortness_of_breath',1]]},
+    {id:'symptom.palpitations',label:'Heart palpitations',domain:'symptom',category:'symptom',aliases:['racing heart','heart flutter','heart pounding'],parents:[],analysis:[['palpitations',1]]},
+    {id:'symptom.abdominal_pain',label:'Abdominal pain',domain:'symptom',category:'symptom',aliases:['stomach pain','belly pain','abdominal discomfort'],parents:[],analysis:[['abdominal_pain',1]]},
+    {id:'symptom.back_pain',label:'Back pain',domain:'symptom',category:'symptom',aliases:['backache','lower back pain','upper back pain'],parents:[],analysis:[['back_pain',1]]},
+    {id:'symptom.neck_pain',label:'Neck pain',domain:'symptom',category:'symptom',aliases:['stiff neck','neck ache'],parents:[],analysis:[['neck_pain',1]]},
+    {id:'symptom.shoulder_pain',label:'Shoulder pain',domain:'symptom',category:'symptom',aliases:['shoulder ache','painful shoulder'],parents:[],analysis:[['shoulder_pain',1]]},
+    {id:'symptom.cough',label:'Cough',domain:'symptom',category:'symptom',aliases:['coughing'],parents:[],analysis:[['cough',1]]},
+    {id:'symptom.wheezing',label:'Wheezing',domain:'symptom',category:'symptom',aliases:['wheeze'],parents:[],analysis:[['wheezing',1]]},
+    {id:'symptom.fever',label:'Fever',domain:'symptom',category:'symptom',aliases:['high temperature','temperature'],parents:[],analysis:[['fever',1]]},
+    {id:'symptom.rash',label:'Rash',domain:'symptom',category:'symptom',aliases:['skin rash','hives'],parents:[],analysis:[['rash',1]]},
+    {id:'symptom.numbness',label:'Numbness',domain:'symptom',category:'symptom',aliases:['loss of feeling'],parents:[],analysis:[['numbness',1]]},
+    {id:'symptom.tingling',label:'Tingling',domain:'symptom',category:'symptom',aliases:['pins and needles'],parents:[],analysis:[['tingling',1]]},
+    {id:'symptom.weakness',label:'Weakness',domain:'symptom',category:'symptom',aliases:['feeling weak','muscle weakness'],parents:[],analysis:[['weakness',1]]},
+    {id:'symptom.insomnia',label:'Difficulty sleeping',domain:'symptom',category:'symptom',aliases:['insomnia','cant sleep','trouble sleeping'],parents:[],analysis:[['sleep_difficulty',1]]},
     {id:'exposure.gluten',label:'Gluten exposure',domain:'exposure',category:'nutrition_exposure',aliases:['gluten','cross contact'],parents:[],analysis:[['gluten_exposure',1]]},
     {id:'cycle.period_start',label:'Period start',domain:'cycle',category:'cycle',aliases:['menstrual period start','cycle start'],parents:[],analysis:[['cycle_event',1],['period_start',1]]},
     {id:'cycle.period_end',label:'Period end',domain:'cycle',category:'cycle',aliases:['menstrual period end','cycle end'],parents:[],analysis:[['cycle_event',1],['period_end',1]]},
@@ -51,8 +67,25 @@
   ];
   const conceptById=id=>CONCEPTS.find(c=>c.id===id);
   function conceptSearch(query, preferred=''){
-    const q=String(query||'').trim().toLowerCase();
-    const scored=CONCEPTS.map(c=>{const hay=[c.label,...c.aliases,c.domain].join(' ').toLowerCase();let score=0;if(!q)score=preferred&&c.domain===preferred?20:1;else if(c.label.toLowerCase().startsWith(q))score=100;else if(c.aliases.some(a=>a.startsWith(q)))score=90;else if(hay.includes(q))score=60;else {const toks=q.split(/\s+/).filter(Boolean);score=toks.reduce((n,t)=>n+(hay.includes(t)?12:0),0)}if(preferred&&c.domain===preferred)score+=15;return {c,score}}).filter(x=>x.score>0).sort((a,b)=>b.score-a.score||a.c.label.localeCompare(b.c.label));
+    const norm=v=>String(v||'').toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+    const singular=v=>norm(v).replace(/(pains|aches|symptoms)/g,m=>m.slice(0,-1));
+    const q=singular(query), toks=q.split(/\s+/).filter(Boolean);
+    const scored=CONCEPTS.map(c=>{
+      const labels=[c.label,...(c.aliases||[])].map(singular), hay=[...labels,c.domain].join(' ');
+      let score=0;
+      if(!q) score=preferred&&c.domain===preferred?20:1;
+      else {
+        for(const label of labels){
+          if(label===q) score=Math.max(score,140);
+          else if(label.startsWith(q)||q.startsWith(label)) score=Math.max(score,110);
+          else if(label.includes(q)||q.includes(label)) score=Math.max(score,85);
+        }
+        const matched=toks.filter(t=>hay.includes(t)).length;
+        score=Math.max(score, matched*18 - Math.max(0,toks.length-matched)*10);
+      }
+      if(preferred&&c.domain===preferred)score+=20;
+      return {c,score};
+    }).filter(x=>x.score>0).sort((a,b)=>b.score-a.score||a.c.label.localeCompare(b.c.label));
     return scored.slice(0,8).map(x=>x.c);
   }
   function conceptDomainForTemplate(kind){return kind==='menstrual_cycle'?'cycle':kind==='gluten_exposure'?'exposure':kind==='life_event'?'life':'symptom'}
@@ -450,25 +483,38 @@
 
   function hasMeaningfulWorkout(e){ const w=workoutStructured(e); return Boolean((w.exercise&&w.exercise!=='Workout')||w.weight!=null||w.reps!=null||w.sets!=null||w.duration_min!=null||w.steps!=null||w.distance_mi!=null||String(w.notes||'').trim()); }
 
-  function workoutGroups() {
-    // Normalize summarized rows and one-row-per-set imports into exercise sessions.
+  function normalizedActivityName(name='') {
+    const raw=String(name||'').trim(); const k=raw.toLowerCase().replace(/[^a-z0-9]+/g,' ').trim();
+    const aliases=[
+      [/^(lat|wide grip lat|independent lat) pull ?down$/, 'Lat Pulldown'],
+      [/^(seated )?cable row$|^seated row$/, 'Seated Row'],
+      [/^(independent )?bicep curl$|^biceps? curl$/, 'Bicep Curl'],
+      [/^stair ?climber$|^climbmill$|^stairs?$/, 'Stairclimber'],
+      [/^seated leg curl$|^leg curl$/, 'Seated Leg Curl'],
+      [/^leg extension$/, 'Leg Extension'],
+      [/^glute (lift|extension)$|^hip extension$/, 'Glute Lift'],
+      [/^abdominal$|^ab crunch$|^abdominal crunch$/, 'Abdominal']
+    ];
+    for(const [re,label] of aliases) if(re.test(k)) return label;
+    return raw.replace(/\w/g,c=>c.toUpperCase());
+  }
+  function inFitnessRange(date){const days=RANGE_DAYS[state.range];if(!days)return true;const d=new Date(date);if(Number.isNaN(d.getTime()))return false;const cutoff=new Date();cutoff.setHours(0,0,0,0);cutoff.setDate(cutoff.getDate()-days+1);return d>=cutoff;}
+  function workoutGroups({respectRange=true}={}) {
     const byExercise=new Map();
     for(const e of state.events.filter(isWorkoutEvent)) {
-      const s=workoutStructured(e);
-      const name=(s.exercise||s.session_type||s.exercise_name||'').trim();
-      if(!name) continue;
-      const day=localDay(new Date(e.timestamp||e.recorded_at||Date.now()));
+      const s=workoutStructured(e), date=e.timestamp||e.recorded_at;
+      if(respectRange&&!inFitnessRange(date)) continue;
+      const original=(s.exercise||s.session_type||s.exercise_name||'').trim(); if(!original) continue;
+      const name=normalizedActivityName(original), day=localDay(new Date(date||Date.now()));
       const sessionKey=String(s.workout_id||s.session_id||`${day}:${name.toLowerCase()}`);
       if(!byExercise.has(name)) byExercise.set(name,new Map());
       const sessions=byExercise.get(name);
-      const prev=sessions.get(sessionKey)||{event:e,date:e.timestamp,weight:0,reps:0,sets:0,rpe:0,pain:0,duration_min:0,steps:0,workout_id:s.workout_id||''};
-      const weight=Number(s.weight||s.load||0), reps=Number(s.reps||0), sets=Number(s.sets||0);
-      const setRows=Number(s.set_number||s.set_no||0)?1:0;
-      sessions.set(sessionKey,{...prev,event:e,date:e.timestamp||prev.date,weight:Math.max(prev.weight,weight),reps:Math.max(prev.reps,reps),sets:prev.sets+(sets||setRows||1),rpe:Math.max(prev.rpe,Number(s.rpe||0)),pain:Math.max(prev.pain,Number(s.pain||0)),duration_min:Math.max(prev.duration_min,Number(s.duration_min||0)),steps:Math.max(prev.steps,Number(s.steps||0))});
+      const prev=sessions.get(sessionKey)||{event:e,date,weight:0,reps:0,sets:0,rpe:0,pain:0,duration_min:0,steps:0,workout_id:s.workout_id||'',variants:new Set()};
+      prev.variants.add(original);
+      const weight=Number(s.weight||s.load||0), reps=Number(s.reps||0), sets=Number(s.sets||0), setRows=Number(s.set_number||s.set_no||0)?1:0;
+      sessions.set(sessionKey,{...prev,event:e,date:date||prev.date,weight:Math.max(prev.weight,weight),reps:Math.max(prev.reps,reps),sets:prev.sets+(sets||setRows||1),rpe:Math.max(prev.rpe,Number(s.rpe||0)),pain:Math.max(prev.pain,Number(s.pain||0)),duration_min:Math.max(prev.duration_min,Number(s.duration_min||0)),steps:Math.max(prev.steps,Number(s.steps||0))});
     }
-    const map=new Map();
-    for(const [name,sessions] of byExercise) map.set(name,[...sessions.values()].sort((a,b)=>new Date(a.date)-new Date(b.date)));
-    return map;
+    const map=new Map(); for(const [name,sessions] of byExercise) map.set(name,[...sessions.values()].sort((a,b)=>new Date(a.date)-new Date(b.date))); return map;
   }
 
   function coachInsight() {
@@ -711,12 +757,13 @@
 
   function fitnessPageHTML() {
     const groups=workoutGroups();
-    const rows=state.events.filter(e=>isWorkoutEvent(e)&&hasMeaningfulWorkout(e)).sort((a,b)=>new Date(b.timestamp||b.recorded_at)-new Date(a.timestamp||a.recorded_at));
+    const rows=state.events.filter(e=>isWorkoutEvent(e)&&hasMeaningfulWorkout(e)&&inFitnessRange(e.timestamp||e.recorded_at)).sort((a,b)=>new Date(b.timestamp||b.recorded_at)-new Date(a.timestamp||a.recorded_at));
     const customActivities=JSON.parse(localStorage.getItem('zeke-activity-library')||'[]');
     for(const a of customActivities){if(!groups.has(a.name))groups.set(a.name,[{weight:null,reps:null,sets:null,duration_min:null,date:null,activity_profile:a.profile,placeholder:true}]);}
     const cards=[...groups.entries()].map(([name,arr])=>{const first=arr[0],last=arr.at(-1),profile=last.activity_profile||activityProfile(name);const loadChange=first.weight&&last.weight?last.weight-first.weight:null;let recommendation='More repeated sessions are needed before recommending a change.';let confidence='low';if(arr.length>=2&&last.pain>=4){recommendation='Hold load progression and review pain, technique, and clinician/PT guidance.';confidence='high';}else if(arr.length>=2&&last.weight&&last.reps>=12&&last.sets>=2){recommendation=`Consider ${last.weight+5} lb next session for 8–12 controlled reps, provided form and pain remain stable.`;confidence=arr.length>=3?'moderate':'low';}else if(arr.length>=2&&last.weight){recommendation=`Repeat ${last.weight} lb and aim to add 1–2 controlled reps before increasing load.`;confidence='moderate';}
       const pts=arr.filter(x=>x.weight);const spark=pts.length>1?miniSpark(pts.map((x,i)=>({value:x.weight,date:x.date,unit:'lb',id:`${name}-${i}`})),'weight'):'';
-      return `<article class="fitness-progress-card"><div class="fitness-card-head"><div><strong>${esc(name)}</strong><span>${last.placeholder?'Not logged yet':`${arr.length} session${arr.length===1?'':'s'}`} · ${esc(activityProfileLabel(profile))}</span></div><b>${last.weight?`${last.weight} lb`:last.duration_min?`${last.duration_min} min`:'—'}</b></div>${spark}<div class="fitness-facts"><span>First: ${first.weight?`${first.weight} lb`:'—'}</span><span>Change: ${loadChange==null?'—':`${loadChange>0?'+':''}${loadChange} lb`}</span><span>Latest: ${last.reps||'—'} reps × ${last.sets||'—'}</span></div><p class="fitness-recommendation"><strong>Next step (${confidence} confidence):</strong> ${esc(recommendation)}</p><button class="secondary compact" data-quick-exercise="${esc(name)}">+ Log</button></article>`}).join('');
+      const tip=`${name} · ${arr.length} session${arr.length===1?'':'s'} in ${rangeLabel().split(' · ')[0].toLowerCase()}${last.date?' · last '+fmtDate(last.date,{month:'short',day:'numeric',year:'numeric'}):''}${last.weight?' · '+last.weight+' lb':''}${last.reps?' · '+last.reps+' reps':''}${last.sets?' × '+last.sets+' sets':''}`;
+      return `<article class="fitness-progress-card" tabindex="0" data-tip="${esc(tip)}"><div class="fitness-card-head"><div><strong>${esc(name)}</strong><span>${last.placeholder?'Not logged yet':`${arr.length} session${arr.length===1?'':'s'}`} · ${esc(activityProfileLabel(profile))}</span></div><b>${last.weight?`${last.weight} lb`:last.duration_min?`${last.duration_min} min`:'—'}</b></div>${spark}<div class="fitness-facts"><span>First: ${first.weight?`${first.weight} lb`:'—'}</span><span>Change: ${loadChange==null?'—':`${loadChange>0?'+':''}${loadChange} lb`}</span><span>Latest: ${last.reps||'—'} reps × ${last.sets||'—'}</span></div><p class="fitness-recommendation"><strong>Next step (${confidence} confidence):</strong> ${esc(recommendation)}</p><button class="secondary compact" data-quick-exercise="${esc(name)}">+ Log</button></article>`}).join('');
     const cardio=rows.map(e=>({event:e,...workoutStructured(e),date:e.timestamp||e.recorded_at})).filter(w=>/stair|climb/i.test(w.exercise||'')&&(w.duration_min!=null||w.steps!=null)).sort((a,b)=>new Date(a.date)-new Date(b.date));
     const firstCardio=cardio[0], latestCardio=cardio.at(-1); const cardioStepDelta=cardio.length>1&&firstCardio?.steps!=null&&latestCardio?.steps!=null?latestCardio.steps-firstCardio.steps:null;
     const cardioSummary=cardio.length?`<section class="panel"><div class="section-head"><div><h2>Stairclimber progress</h2><p>Each duration and step count stays paired with its dated session.</p></div></div><div class="fitness-facts large"><span><b>${cardio.length}</b> sessions</span><span><b>${latestCardio?.duration_min??'—'}</b> latest minutes</span><span><b>${latestCardio?.steps??'—'}</b> latest steps</span><span><b>${cardioStepDelta==null?'—':`${cardioStepDelta>0?'+':''}${cardioStepDelta}`}</b> ${cardioStepDelta==null?'step change':`steps · ${fmtDate(firstCardio.date)} to ${fmtDate(latestCardio.date)}`}</span></div></section>`:'';
@@ -908,7 +955,7 @@
 
   function quickLogHTML(){
     if(!state.quickLogOpen)return '';
-    const items=[['workout','Workout'],['activity','Single activity'],['intake','Intake'],['gluten','Gluten exposure'],['symptom','Symptom / ailment'],['life-event','Life event'],['cycle','Menstrual cycle'],['weight','Weight'],['blood_pressure','Blood pressure'],['sleep_duration','Sleep'],['waist_circumference','Body measurement'],['lab','Lab result']];
+    const items=[['workout','Workout'],['activity','Single activity'],['intake','Intake'],['gluten','Gluten exposure'],['symptom','Symptom / ailment'],['life-event','Life event'],['cycle','Menstrual cycle'],['weight','Weight'],['blood_pressure','Blood pressure'],['sleep_duration','Sleep'],['waist_circumference','Body measurement'],['lab','Lab result'],['medication','Medication / supplement']];
     return `<div class="quick-log-overlay" id="quickLogOverlay"><div class="quick-log-backdrop" id="quickLogBackdrop"></div><section class="quick-log-sheet"><div class="section-head"><div><h2>+ Log</h2><p>Entering data for <strong>${esc(activeDateLabel())}</strong></p></div><button class="icon-btn" id="closeQuickLog">×</button></div><div class="quick-log-grid">${items.map(([id,label])=>`<button class="quick-log-option" data-quick-log="${id}">${label}</button>`).join('')}</div></section></div>`;
   }
 
@@ -1006,7 +1053,7 @@
     document.body.insertAdjacentHTML('beforeend',`<div class="direct-entry-overlay" id="lifeEventModal"><div class="direct-entry-card"><div class="section-head"><div><h2>Record an event</h2><p>Type what happened, then select the closest concept. Your original wording remains attached.</p></div><button class="icon-btn" id="closeLifeEvent">×</button></div><form id="lifeEventForm" class="direct-entry-form"><label class="wide concept-search-label">What happened?<input id="lifeName" autocomplete="off" placeholder="Start typing: migraine, argument, spotting, travel…" required><div id="conceptMatches" class="concept-matches"></div></label><input id="lifeConceptId" type="hidden"><label>Date<input id="lifeDate" type="date" value="${esc(activeDay())}" required></label><label>Subject<select id="lifeSubject"><option value="self">Me</option><option value="partner">Partner</option><option value="child">Child / family member</option><option value="other">Other</option></select></label><label>Severity / intensity (0–10)<input id="lifeSeverity" type="number" min="0" max="10" step="1"></label><label>Duration (optional)<input id="lifeDuration" placeholder="e.g., 2 hours"></label><label class="wide">Notes / context<textarea id="lifeNotes" placeholder="Optional details, triggers, interventions, or outcome"></textarea></label><label class="wide checkbox-line"><input id="lifePrivate" type="checkbox"> Store in the PIN-secured Private Vault with a neutral preview</label><label class="wide checkbox-line"><input id="lifeAnalyze" type="checkbox" checked> Allow approved structured variables in Pattern Lab</label><label class="wide checkbox-line"><input id="lifeAI" type="checkbox"> Allow this event to be sent to connected AI for interpretation</label><p class="wide form-error" id="lifeEventError" hidden></p><div class="direct-entry-actions wide"><button type="button" class="secondary" id="cancelLifeEvent">Cancel</button><button type="submit" class="primary">Save event</button></div></form></div></div>`);
     const close=()=>$('#lifeEventModal')?.remove(); $('#closeLifeEvent').onclick=close; $('#cancelLifeEvent').onclick=close;
     const input=$('#lifeName'),matches=$('#conceptMatches'),hidden=$('#lifeConceptId');
-    const draw=()=>{const found=conceptSearch(input.value,preferred);matches.innerHTML=found.map(c=>`<button type="button" class="concept-option" data-concept-id="${esc(c.id)}"><strong>${esc(c.label)}</strong><span>${esc(c.domain)}${c.parents.length?' · related to '+conceptById(c.parents[0])?.label:''}</span></button>`).join('')||'<div class="concept-empty">No close match. Keep typing or save as a custom concept.</div>';$$('[data-concept-id]',matches).forEach(b=>b.onclick=()=>{const c=conceptById(b.dataset.conceptId);hidden.value=c.id;input.value=c.label;matches.innerHTML=`<div class="concept-selected"><strong>${esc(c.label)}</strong><span>Selected structured concept</span></div>`})};
+    const draw=()=>{const found=conceptSearch(input.value,preferred);matches.innerHTML=found.map(c=>`<button type="button" class="concept-option" data-concept-id="${esc(c.id)}"><strong>${esc(c.label)}</strong><span>${esc(c.domain)}${c.parents.length?' · related to '+conceptById(c.parents[0])?.label:''}</span></button>`).join('')||`<div class="concept-empty">No confident local match. <button type="button" class="text-action" id="consultConceptAI">Ask ZEKE to interpret this</button></div>`;$$('[data-concept-id]',matches).forEach(b=>b.onclick=()=>{const c=conceptById(b.dataset.conceptId);hidden.value=c.id;input.value=c.label;matches.innerHTML=`<div class="concept-selected"><strong>${esc(c.label)}</strong><span>Selected structured concept</span></div>`})};
     input.addEventListener('input',()=>{hidden.value='';draw()}); input.addEventListener('focus',draw); draw();
     $('#lifeEventForm').onsubmit=async e=>{e.preventDefault();const original=input.value.trim(),date=$('#lifeDate').value;if(!original)return;let concept=conceptById(hidden.value);if(!concept){concept={id:`custom.${preferred}.${original.toLowerCase().replace(/[^a-z0-9]+/g,'_')}`,label:original,domain:preferred,category:LIFE_TEMPLATES[kind]?.category||'life_event',parents:[],analysis:[[original.toLowerCase().replace(/[^a-z0-9]+/g,'_'),1]]}}
       const isPrivate=$('#lifePrivate').checked,notes=$('#lifeNotes').value.trim(),subject=$('#lifeSubject').value; const err=$('#lifeEventError');
@@ -1018,7 +1065,7 @@
   }
 
   function navHTML() {
-    const items=[['dashboard','⌂','Dashboard'],['health','♡','Health'],['fitness','⌁','Fitness'],['life-events','◎','Life & Symptoms'],['pattern-lab','∿','Pattern Lab'],['insights','✦','Insights'],['medications','✚','Medications'],['labs','⌬','Labs'],['calendar','▣','Calendar'],['questions','?','Questions'],['settings','⚙','Settings']];
+    const items=[['dashboard','⌂','Dashboard'],['health','♡','Health'],['fitness','⌁','Fitness'],['life-events','◎','Life & Symptoms'],['pattern-lab','▥','Pattern Lab'],['insights','💡','Insights'],['medications','✚','Medications'],['labs','⌬','Labs'],['calendar','▣','Calendar'],['questions','💬','Questions'],['settings','⚙','Settings']];
     return `<aside class="sidebar" id="sidebar"><div class="brand"><button class="brand-home" data-route="dashboard" title="Return to Dashboard"><img class="brand-logo" src="./assets/branding/zeke-mark-provisional.png" alt="Project ZEKE"></button><div><strong>PROJECT ZEKE</strong><span>One thread. Everything connected.</span></div><button class="sidebar-close" id="sidebarClose" aria-label="Close navigation">×</button></div><nav>${items.map(([id,icon,label])=>`<button class="nav-item ${state.route===id?'active':''}" data-route="${id}"><span>${icon}</span>${esc(label)}</button>`).join('')}</nav><div class="sidebar-spacer"></div><div class="privacy-note">Private by design. Your records stay with your chosen storage provider.</div><div class="build-label">v${esc(BUILD.version)} · ${esc(BUILD.build)}</div></aside><div class="sidebar-scrim" id="sidebarScrim"></div>`;
   }
 
@@ -1443,11 +1490,19 @@
     pushZeke(`Let's confirm ${action.label||action.name}. What happened today?`); render(); $('#talkInput')?.focus();
   }
 
+  function openMedicationEntryModal(value=''){
+    $('#medicationEntryModal')?.remove();
+    document.body.insertAdjacentHTML('beforeend',`<div class="direct-entry-overlay" id="medicationEntryModal"><div class="direct-entry-card"><div class="section-head"><div><h2>Log medication or supplement</h2><p>Record one dose for ${esc(activeDateLabel())}. Use Talk to ZEKE for backfilling a recurring schedule.</p></div><button class="icon-btn" id="closeMedicationEntry" aria-label="Close">×</button></div><form id="medicationEntryForm" class="direct-entry-form"><label class="wide">Medication or supplement<input id="medicationName" value="${esc(value)}" required placeholder="e.g., Atorvastatin"></label><label>Dose<input id="medicationDose" type="number" min="0" step="any"></label><label>Unit<input id="medicationUnit" placeholder="mg, tablet, injection"></label><label>Date<input id="medicationDate" type="date" value="${esc(activeDay())}" required></label><label>Status<select id="medicationStatus"><option value="taken">Taken</option><option value="skipped">Skipped</option><option value="started">Started</option><option value="stopped">Stopped</option><option value="changed">Dose changed</option></select></label><label class="wide">Dose confirmation preference<select id="medicationConfirmPref"><option value="every">Confirm every dose</option><option value="exceptions">Confirm only missed or changed doses</option><option value="assume">Assume scheduled doses unless I report otherwise</option><option value="none">Do not prompt me</option></select></label><label class="wide">Notes<textarea id="medicationNotes" rows="2"></textarea></label><div class="direct-entry-actions wide"><button type="button" class="text-action" id="medicationBackfill">Backfill through Talk to ZEKE</button><button type="button" class="secondary" id="cancelMedicationEntry">Cancel</button><button type="submit" class="primary">Save dose</button></div></form></div></div>`);
+    const close=()=>$('#medicationEntryModal')?.remove(); $('#closeMedicationEntry').onclick=close;$('#cancelMedicationEntry').onclick=close;
+    $('#medicationBackfill').onclick=()=>{const name=$('#medicationName').value.trim();close();state.context={medication:name||null,bulk_operation:'medication_backfill',active_date:activeDay()};pushZeke(name?`Tell me the schedule and date range to backfill for ${name}. I’ll preview every date, skip duplicates, and ask before saving.`:`Tell me which medication or supplement to backfill, its schedule, and the date range. I’ll preview every date and ask before saving.`);render();setTimeout(()=>{$('#globalTalkButton')?.click();$('#talkInput')?.focus()},0)};
+    $('#medicationEntryForm').onsubmit=async e=>{e.preventDefault();const name=$('#medicationName').value.trim(),date=$('#medicationDate').value,pref=$('#medicationConfirmPref').value;if(!name||!date)return;const prefs=JSON.parse(localStorage.getItem('zeke-medication-confirmation-preferences')||'{}');prefs[name.toLowerCase()]=pref;localStorage.setItem('zeke-medication-confirmation-preferences',JSON.stringify(prefs));await ZekeData.addEvent({category:'medication',timestamp:`${date}T12:00:00`,raw_text:$('#medicationNotes').value||'',structured:{medication_name:name,name,dose:Number($('#medicationDose').value)||null,unit:$('#medicationUnit').value||'',status:$('#medicationStatus').value,confirmation_preference:pref,interpretation_status:'confirmed'},provenance:{source:'direct-medication-entry'}});close();await refreshData();render();showToast(`${name} dose logged.`)};
+  }
+
   function startContextLog(type,value='') {
     if(type==='metric') {
       const meta=METRICS[value]; state.context={metric:value==='blood_pressure'?'blood_pressure':value,active_date:activeDay()}; pushZeke(`Let's log ${meta?.label||value}. What is the value?`);
     } else if(type==='exercise') { state.context={exercise:value||null,active_date:activeDay()}; pushZeke(value?`Let's log ${value}. You can tell me weight, reps, sets, RPE, pain, or anything else that matters.`:'Tell me about the workout.'); }
-    else if(type==='medication') { state.context={medication:value||null,active_date:activeDay()}; pushZeke(value?`Let's log ${value}. What happened?`:'Tell me the medication, supplement, or injection and what happened.'); }
+    else if(type==='medication') { openMedicationEntryModal(value); return; }
     go('dashboard'); render(); setTimeout(()=>$('#talkInput')?.focus(),0);
   }
 
@@ -1815,7 +1870,7 @@
     $('#quickLogBtn')?.addEventListener('click',()=>{state.quickLogOpen=true;render()});
     $('#closeQuickLog')?.addEventListener('click',()=>{state.quickLogOpen=false;render()});
     $('#quickLogBackdrop')?.addEventListener('click',()=>{state.quickLogOpen=false;render()});
-    $$('[data-quick-log]').forEach(el=>el.onclick=()=>{const kind=el.dataset.quickLog;state.quickLogOpen=false;render();setTimeout(()=>{if(kind==='workout')openWorkoutEntryModal();else if(kind==='activity')openAddActivityModal();else if(kind==='intake')openIntakeModal();else if(kind==='blood_pressure')openMetricEntryModal('blood_pressure');else if(kind==='lab')openMetricEntryModal('a1c');else if(kind==='symptom')openLifeEventModal('symptom');else if(kind==='life-event')openLifeEventModal('life_event');else if(kind==='cycle')openLifeEventModal('menstrual_cycle');else if(kind==='gluten')openLifeEventModal('gluten_exposure');else openMetricEntryModal(kind)},0)});
+    $$('[data-quick-log]').forEach(el=>el.onclick=()=>{const kind=el.dataset.quickLog;state.quickLogOpen=false;render();setTimeout(()=>{if(kind==='workout')openWorkoutEntryModal();else if(kind==='activity')openAddActivityModal();else if(kind==='intake')openIntakeModal();else if(kind==='blood_pressure')openMetricEntryModal('blood_pressure');else if(kind==='lab')openMetricEntryModal('a1c');else if(kind==='symptom')openLifeEventModal('symptom');else if(kind==='life-event')openLifeEventModal('life_event');else if(kind==='medication')openMedicationEntryModal();else if(kind==='cycle')openLifeEventModal('menstrual_cycle');else if(kind==='gluten')openLifeEventModal('gluten_exposure');else openMetricEntryModal(kind)},0)});
     $('#addActivityBtn')?.addEventListener('click',openAddActivityModal);
     $$('[data-toggle-review-task]').forEach(el=>el.onclick=()=>{const key=el.dataset.toggleReviewTask;state.expandedReviewTasks.has(key)?state.expandedReviewTasks.delete(key):state.expandedReviewTasks.add(key);render()});
     $('#helpBtn')?.addEventListener('click',()=>showToast(`Help for ${state.route}: click metric tiles for evidence and interpretation; use Talk to ZEKE to log, correct, or backfill data.`));
