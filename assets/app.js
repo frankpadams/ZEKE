@@ -710,7 +710,7 @@
 
   function dashboardHTML() {
     const trend=trendPanelHTML();
-    return `${coverageHTML()}${briefingHTML()}<div class="dashboard-grid">${healthGlanceHTML(9)}${todayActionsHTML()}${thinkingHTML()}${coachHTML()}${trend||''}${recentHealthHTML()}${upcomingHTML()}</div>`;
+    return `${coverageHTML()}<div class="dashboard-grid">${dashboardInsightsHTML()}${healthGlanceHTML(9)}${todayActionsHTML()}${coachHTML()}${thinkingHTML()}${trend||''}${recentHealthHTML()}${upcomingHTML()}</div>`;
   }
 
   function isSuppressedIntegrityArtifact(e){
@@ -1016,9 +1016,12 @@
   };
 
   function lifeEventRows(){ return state.events.filter(e=>['symptom','life_event','cycle','nutrition_exposure'].includes(semanticCategory(e)||e.category)).sort((a,b)=>new Date(b.timestamp||b.recorded_at)-new Date(a.timestamp||a.recorded_at)); }
-  function briefingHTML(){
-    const q=reviewTasks().length, life=lifeEventRows().slice(0,1)[0], insights=state.discoveries.length;
-    return `<section class="briefing-panel"><div><span class="eyebrow">ZEKE BRIEFING</span><h2>${q?`${q} item${q===1?'':'s'} need your input`:'Your records are ready for review'}</h2><p>${life?`Latest life-context entry: ${esc(humanEvent(life))}. `:''}Research-based observations and Pattern Lab results now live outside chat, where they remain visible and auditable.</p></div><div class="briefing-actions"><button class="primary" data-route="insights">View insights</button><button class="secondary" data-route="pattern-lab">Open Pattern Lab</button></div></section>`;
+  function dashboardInsightsHTML(){
+    const q=reviewTasks().length, patterns=patternCandidates().length;
+    const discoveries=(state.discoveries||[]).length;
+    const headline=q?`${q} item${q===1?'':'s'} need your input`:discoveries?`${discoveries} insight${discoveries===1?'':'s'} available`:'Nothing urgent right now';
+    const detail=q?'ZEKE is waiting for a decision only you can make.':patterns?`${patterns} exploratory pattern${patterns===1?' is':'s are'} ready to review.`:'New discoveries and recommendations will appear here when the evidence supports them.';
+    return `<section class="panel dashboard-insights-tile"><div class="section-head"><div><span class="tile-kicker">INSIGHTS</span><h2>${esc(headline)}</h2><p>${esc(detail)}</p></div><span class="insight-count">${q+discoveries+patterns}</span></div><div class="insight-tile-actions"><button class="primary compact" data-route="insights">Open Insights</button>${q?'<button class="secondary compact" data-route="questions">Review question</button>':''}</div></section>`;
   }
 
   function lifeEventsPageHTML(){
@@ -1071,7 +1074,7 @@
 
   function topbarHTML() {
     const greeting=new Date().getHours()<12?'Good morning':new Date().getHours()<18?'Good afternoon':'Good evening';
-    return `<header class="topbar"><button class="menu-button" id="menuButton" aria-label="Open navigation">☰</button><button class="topbar-brand brand-home" data-route="dashboard" title="Return to Dashboard"><img src="./assets/branding/zeke-mark-provisional.png" alt="ZEKE"><div><strong>ZEKE</strong><span>v${esc(BUILD.version)} · ${esc(BUILD.build)}</span></div></button><div class="topbar-greeting"><h1>${greeting}, Frank</h1><p>${new Date().toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric',year:'numeric'})}</p></div>${state.route==='dashboard'?`<div class="range-tabs">${[['week','Week'],['month','Month'],['quarter','Quarter'],['6months','6 months'],['year','Year'],['all','All']].map(([id,label])=>`<button class="range ${state.range===id?'active':''}" data-range="${id}">${label}</button>`).join('')}</div>`:''}<div class="top-actions"><button class="primary compact quick-log-trigger" id="quickLogBtn">+ Log</button><button class="icon-btn" id="helpBtn" title="Help" aria-label="Page help">?</button><button class="icon-btn" id="statusBtn" title="ZEKE status" aria-label="ZEKE status">◆</button></div></header>`;
+    return `<header class="topbar"><button class="menu-button" id="menuButton" aria-label="Open navigation">☰</button><button class="topbar-brand brand-home" data-route="dashboard" title="Return to Dashboard"><img src="./assets/branding/zeke-mark-provisional.png" alt="ZEKE"><div><strong>ZEKE</strong><span>v${esc(BUILD.version)} · ${esc(BUILD.build)}</span></div></button><div class="topbar-greeting"><h1>${greeting}, Frank</h1><p>${new Date().toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric',year:'numeric'})}</p></div>${state.route==='dashboard'?`<div class="range-tabs">${[['week','Week'],['month','Month'],['quarter','Quarter'],['6months','6 months'],['year','Year'],['all','All']].map(([id,label])=>`<button class="range ${state.range===id?'active':''}" data-range="${id}">${label}</button>`).join('')}</div>`:''}<div class="top-actions"><button class="primary compact quick-log-trigger" id="quickLogBtn">+ Log</button><button class="secondary compact labeled-top-action" id="helpBtn" title="Help">Help</button><button class="secondary compact labeled-top-action" id="statusBtn" title="ZEKE status">Status</button></div></header>`;
   }
 
   function connectedAppHTML() {
