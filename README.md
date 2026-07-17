@@ -1,5 +1,10 @@
 # Project ZEKE
 
+**Current build:** v0.17.2-alpha · build 2026.07.16.6 · fingerprint `ZEKE-0172-REAL`  
+**Current focus:** make ZEKE safe and useful for daily personal use before expanding advanced intelligence.
+
+See [FEATURE_STATUS.md](FEATURE_STATUS.md) and [TEST_GUIDE_v0.17.2-alpha.md](TEST_GUIDE_v0.17.2-alpha.md).
+
 ## Current release
 
 **ZEKE v0.17.1-alpha**  
