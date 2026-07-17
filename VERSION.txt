@@ -1,1 +1,1 @@
-0.18.0-personal-intelligence-pattern-lab-preview
+0.19.0-concept-search-private-vault-preview
