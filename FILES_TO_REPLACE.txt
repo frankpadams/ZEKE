@@ -1,16 +1,19 @@
-REPOSITORY ROOT — REPLACE:
+REPLACE IN REPOSITORY ROOT:
 - index.html
 - version.js
 - sw.js
 - README.md
 
-INSIDE THE EXISTING assets FOLDER — REPLACE:
+REPLACE INSIDE assets/:
 - assets/app.js
 - assets/styles.css
 
+ADD:
+- RELEASE_NOTES_v0.17.6.md
+- TEST_GUIDE_v0.17.6.md
+- FILES_TO_REPLACE.txt
+
 DO NOT REPLACE:
 - zeke-config.js
-- assets/data-layer.js
-- assets/parser.js
-- assets/ai-router.js
-- any health data or Google Drive files
+- connected data files
+- Google credentials or Drive content

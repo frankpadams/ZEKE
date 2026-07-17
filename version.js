@@ -1,7 +1,2 @@
-window.ZEKE_VERSION = '0.17.4';
-window.ZEKE_BUILD = {
-  version: '0.17.4',
-  build: '2026.07.17.1',
-  label: 'Direct Entry & Review Tasks',
-  status: 'Preview'
-};
+window.ZEKE_VERSION = '0.17.6';
+window.ZEKE_BUILD = { version: '0.17.6', build: '2026.07.17.2', label: 'Quick Log & Activity Profiles', status: 'Preview' };
