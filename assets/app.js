@@ -59,13 +59,13 @@
       '':'dashboard','health/dashboard':'dashboard','dashboard':'dashboard',
       'health':'health','health/overview':'health','fitness':'fitness','health/workouts':'fitness',
       'medications':'medications','health/medications':'medications','labs':'labs','health/labs':'labs',
-      'calendar':'calendar','questions':'questions','clarifications':'questions','settings':'settings','data-integrity':'data-integrity','system/data-integrity':'data-integrity'
+      'calendar':'calendar','questions':'questions','clarifications':'questions','life-events':'life-events','symptoms':'life-events','pattern-lab':'pattern-lab','insights':'insights','settings':'settings','data-integrity':'data-integrity','system/data-integrity':'data-integrity'
     };
     return map[h] || 'dashboard';
   }
 
   function go(route) {
-    const hashes = {dashboard:'health/dashboard',health:'health',fitness:'fitness',medications:'medications',labs:'labs',calendar:'calendar',questions:'questions',settings:'settings','data-integrity':'data-integrity'};
+    const hashes = {dashboard:'health/dashboard',health:'health',fitness:'fitness',medications:'medications',labs:'labs',calendar:'calendar',questions:'questions','life-events':'life-events','pattern-lab':'pattern-lab',insights:'insights',settings:'settings','data-integrity':'data-integrity'};
     location.hash = `#/${hashes[route] || route}`;
   }
 
@@ -623,7 +623,7 @@
 
   function dashboardHTML() {
     const trend=trendPanelHTML();
-    return `${coverageHTML()}<div class="dashboard-grid"><div class="dashboard-conversation-top">${conversationHTML()}</div>${healthGlanceHTML(9)}${coachHTML()}${todayActionsHTML()}${thinkingHTML()}${trend||''}${recentHealthHTML()}${upcomingHTML()}</div>`;
+    return `${coverageHTML()}${briefingHTML()}<div class="dashboard-grid">${healthGlanceHTML(9)}${todayActionsHTML()}${thinkingHTML()}${coachHTML()}${trend||''}${recentHealthHTML()}${upcomingHTML()}</div>`;
   }
 
   function isSuppressedIntegrityArtifact(e){
@@ -861,12 +861,12 @@
     return `<div class="page-head"><div><h1>ZEKE Needs Your Help</h1><p>I handle only near-certain repairs automatically. These items need a quick confirmation from you.</p></div><span class="badge">${tasks.length} item${tasks.length===1?'':'s'}</span></div>${cards||'<section class="panel empty-page"><h2>Nothing needs your attention</h2><p>I do not currently need any clarification from you.</p></section>'}<section class="panel resolved-questions"><div class="section-head"><div><h2>Past decisions</h2><p>${all.length-openQuestions().length} resolved, dismissed, or deferred item${all.length-openQuestions().length===1?'':'s'}</p></div></div></section>`;
   }
 
-  function globalTalkHTML(){ if(state.route==='dashboard') return ''; return `<button class="global-talk-button" id="globalTalkButton" aria-label="Talk to ZEKE"><img src="./assets/branding/zeke-mark-provisional.png" alt=""><span>Talk to ZEKE</span></button><div class="global-talk-overlay" id="globalTalkOverlay"><div class="global-talk-backdrop" id="globalTalkBackdrop"></div><div class="global-talk-panel">${conversationHTML()}</div></div>`;}
+  function globalTalkHTML(){ return `<button class="global-talk-button" id="globalTalkButton" aria-label="Talk to ZEKE"><img src="./assets/branding/zeke-mark-provisional.png" alt=""><span>Talk to ZEKE</span></button><div class="global-talk-overlay" id="globalTalkOverlay"><div class="global-talk-backdrop" id="globalTalkBackdrop"></div><div class="global-talk-panel">${conversationHTML()}</div></div>`;}
 
 
   function quickLogHTML(){
     if(!state.quickLogOpen)return '';
-    const items=[['workout','Workout'],['activity','Single activity'],['intake','Intake'],['weight','Weight'],['blood_pressure','Blood pressure'],['sleep_duration','Sleep'],['waist_circumference','Body measurement'],['lab','Lab result'],['symptom','Symptom / pain']];
+    const items=[['workout','Workout'],['activity','Single activity'],['intake','Intake'],['gluten','Gluten exposure'],['symptom','Symptom / ailment'],['life-event','Life event'],['cycle','Menstrual cycle'],['weight','Weight'],['blood_pressure','Blood pressure'],['sleep_duration','Sleep'],['waist_circumference','Body measurement'],['lab','Lab result']];
     return `<div class="quick-log-overlay" id="quickLogOverlay"><div class="quick-log-backdrop" id="quickLogBackdrop"></div><section class="quick-log-sheet"><div class="section-head"><div><h2>+ Log</h2><p>Entering data for <strong>${esc(activeDateLabel())}</strong></p></div><button class="icon-btn" id="closeQuickLog">×</button></div><div class="quick-log-grid">${items.map(([id,label])=>`<button class="quick-log-option" data-quick-log="${id}">${label}</button>`).join('')}</div></section></div>`;
   }
 
@@ -918,8 +918,51 @@
     return `<div class="evidence-focus" id="evidenceFocus"><section class="panel"><div class="section-head"><div><h2>${esc(title)}</h2><p>Focused evidence and limitations</p></div><button class="icon-btn" id="closeEvidenceFocus" aria-label="Close evidence">×</button></div><p>${esc(rationale)}</p><div class="evidence-summary-grid"><div><b>${workouts.length}</b><span>workouts reviewed</span></div><div><b>${sleepPoints.length}</b><span>sleep records</span></div><div><b>${sleep?'Moderate':'Contextual'}</b><span>confidence</span></div></div><p class="audit-note"><strong>What tracking could unlock:</strong> enough paired sleep and workout/recovery observations to test whether sleep duration coincides with changes in energy, performance, soreness, or recovery. ZEKE should not infer that relationship before the evidence exists.</p></section></div>`;
   }
 
+
+  const LIFE_TEMPLATES = {
+    symptom:{label:'Symptom or ailment',category:'symptom',fields:['severity','duration','location','possible_trigger','intervention','response'],examples:'headache, tinnitus, fatigue, nausea, dizziness, illness'},
+    life_event:{label:'Life event',category:'life_event',fields:['intensity','duration','context','resolution'],examples:'argument, intimacy, sexual activity, stress, travel, family event'},
+    menstrual_cycle:{label:'Menstrual cycle',category:'cycle',fields:['event','flow','cramps','spotting','mood','notes'],examples:'period start, period end, spotting, cramps'},
+    gluten_exposure:{label:'Gluten exposure',category:'nutrition_exposure',fields:['exposure_level','certainty','meal','symptoms_after'],examples:'none, trace, some, high'}
+  };
+
+  function lifeEventRows(){ return state.events.filter(e=>['symptom','life_event','cycle','nutrition_exposure'].includes(semanticCategory(e)||e.category)).sort((a,b)=>new Date(b.timestamp||b.recorded_at)-new Date(a.timestamp||a.recorded_at)); }
+  function briefingHTML(){
+    const q=reviewTasks().length, life=lifeEventRows().slice(0,1)[0], insights=state.discoveries.length;
+    return `<section class="briefing-panel"><div><span class="eyebrow">ZEKE BRIEFING</span><h2>${q?`${q} item${q===1?'':'s'} need your input`:'Your records are ready for review'}</h2><p>${life?`Latest life-context entry: ${esc(humanEvent(life))}. `:''}Research-based observations and Pattern Lab results now live outside chat, where they remain visible and auditable.</p></div><div class="briefing-actions"><button class="primary" data-route="insights">View insights</button><button class="secondary" data-route="pattern-lab">Open Pattern Lab</button></div></section>`;
+  }
+
+  function lifeEventsPageHTML(){
+    const rows=lifeEventRows();
+    const cards=[['symptom','Symptoms & ailments','Headaches, tinnitus, fatigue, pain, illness, digestive symptoms, and custom conditions.'],['gluten_exposure','Food exposures','Gluten now; dairy, caffeine, alcohol, sugar, or custom exposures later.'],['menstrual_cycle','Cycles','Your own menstrual cycle or a separately labeled partner cycle, with privacy controls.'],['life_event','Relationship & life events','Arguments, intimacy, sexual activity, stress, travel, and other context.']];
+    return `<div class="page-head"><div><h1>Life & Symptoms</h1><p>Track context that may help explain changes in sleep, mood, symptoms, health, and performance.</p></div><button class="primary" id="addLifeEvent">+ Log event</button></div><section class="privacy-banner"><strong>Sensitive by design</strong><span>Private-event labels are neutral in summaries. AI access is off by default and every category can be excluded from analysis.</span></section><div class="life-template-grid">${cards.map(([id,t,d])=>`<button class="life-template-card" data-life-template="${id}"><strong>${t}</strong><span>${d}</span></button>`).join('')}</div><section class="panel"><div class="section-head"><div><h2>Recent events</h2><p>${rows.length} recorded event${rows.length===1?'':'s'}. Associations are not treated as causes.</p></div></div>${rows.length?`<div class="table-wrap"><table><thead><tr><th>Date</th><th>Type</th><th>Summary</th><th>Privacy</th></tr></thead><tbody>${rows.slice(0,80).map(e=>`<tr><td>${esc(fmtDate(e.timestamp,{month:'short',day:'numeric',year:'numeric'}))}</td><td>${esc((semanticCategory(e)||e.category).replaceAll('_',' '))}</td><td>${esc(humanEvent(e))}</td><td>${e.structured?.private?'Private':'Standard'}</td></tr>`).join('')}</tbody></table></div>`:'<div class="empty-inline">No life-context events yet. Use a template above to begin.</div>'}</section>`;
+  }
+
+  function numericFeature(e,key){ const v=Number(e.structured?.[key]); return Number.isFinite(v)?v:null; }
+  function pairedDailyData(){
+    const days=new Map();
+    const put=(day,key,val)=>{if(!days.has(day))days.set(day,{day});days.get(day)[key]=val};
+    for(const e of state.events){const day=localDay(new Date(e.timestamp||e.recorded_at));const cat=semanticCategory(e)||e.category, st=e.structured||{};
+      if(['measurement','lab'].includes(cat)){const id=canonicalMetric(metricId(e)),v=Number(metricValue(e));if(Number.isFinite(v))put(day,id,v)}
+      if(cat==='symptom'){const name=String(st.name||st.symptom||'symptom').toLowerCase().replace(/[^a-z0-9]+/g,'_');put(day,`symptom_${name}`,Number(st.severity)||1)}
+      if(cat==='nutrition_exposure' && /gluten/i.test(st.name||st.exposure||''))put(day,'gluten_exposure',(({none:0,trace:1,some:2,moderate:2,high:3}[String(st.exposure_level||'').toLowerCase()] ?? Number(st.amount)) || 1));
+      if(cat==='life_event'){const name=String(st.name||st.event_type||'life_event').toLowerCase().replace(/[^a-z0-9]+/g,'_');put(day,`event_${name}`,Number(st.intensity)||1)}
+    } return [...days.values()].sort((a,b)=>a.day.localeCompare(b.day));
+  }
+  function correlation(x,y){const pairs=x.map((v,i)=>[v,y[i]]).filter(p=>Number.isFinite(p[0])&&Number.isFinite(p[1]));if(pairs.length<5)return null;const mx=pairs.reduce((a,p)=>a+p[0],0)/pairs.length,my=pairs.reduce((a,p)=>a+p[1],0)/pairs.length;let num=0,dx=0,dy=0;for(const [a,b] of pairs){num+=(a-mx)*(b-my);dx+=(a-mx)**2;dy+=(b-my)**2}return dx&&dy?{r:num/Math.sqrt(dx*dy),n:pairs.length}:null}
+  function patternCandidates(){const data=pairedDailyData(), keys=[...new Set(data.flatMap(d=>Object.keys(d)))].filter(k=>k!=='day');const out=[];for(let i=0;i<keys.length;i++)for(let j=i+1;j<keys.length;j++){const c=correlation(data.map(d=>d[keys[i]]),data.map(d=>d[keys[j]]));if(c&&Math.abs(c.r)>=.25)out.push({a:keys[i],b:keys[j],...c})}return out.sort((a,b)=>Math.abs(b.r)-Math.abs(a.r)).slice(0,12)}
+  function prettyVar(k){return k.replace(/^symptom_/,'').replace(/^event_/,'').replaceAll('_',' ').replace(/\b\w/g,m=>m.toUpperCase())}
+  function patternLabPageHTML(){const data=pairedDailyData(), patterns=patternCandidates();return `<div class="page-head"><div><h1>Pattern Lab</h1><p>Deterministic statistical analysis of your longitudinal records. AI may explain results, but it does not calculate them.</p></div><button class="secondary" id="runPatternLab">Run analysis</button></div><section class="pattern-summary"><div><b>${data.length}</b><span>days with structured data</span></div><div><b>${patterns.length}</b><span>exploratory associations</span></div><div><b>Guarded</b><span>minimum-data gate active</span></div></section><section class="panel"><div class="section-head"><div><h2>Exploratory associations</h2><p>These are screening results, not causal conclusions. Multiple-regression models unlock after enough overlapping observations exist.</p></div></div>${patterns.length?`<div class="pattern-grid">${patterns.map(p=>`<article class="pattern-card"><span class="confidence ${Math.abs(p.r)>.6?'high':'moderate'}">${Math.abs(p.r)>.6?'Stronger':'Possible'} association</span><h3>${esc(prettyVar(p.a))} ↔ ${esc(prettyVar(p.b))}</h3><p>${p.r>0?'They tended to rise together.':'When one was higher, the other tended to be lower.'}</p><div class="pattern-stats"><b>r = ${p.r.toFixed(2)}</b><span>n = ${p.n} paired days</span></div><small>Exploratory only; timing, missing data, and third variables may explain this pattern.</small></article>`).join('')}</div>`:'<div class="empty-inline">Not enough overlapping structured observations yet. Track repeated symptoms, exposures, sleep, and context to unlock analysis.</div>'}</section><section class="panel"><h2>Regression readiness</h2><p>ZEKE will use linear, logistic, count, lagged, and regularized models only when sample size, variation, and missingness checks pass. It will show included variables, exclusions, confidence intervals, sensitivity checks, and model limitations.</p></section>`}
+  function insightsPageHTML(){const candidates=patternCandidates();return `<div class="page-head"><div><h1>Insight Center</h1><p>Observations, research context, suggestions, and questions—separated by purpose and evidence.</p></div></div><div class="insight-center-grid"><section class="panel"><h2>Needs attention</h2><p>${reviewTasks().length?`${reviewTasks().length} item${reviewTasks().length===1?'':'s'} need confirmation.`:'Nothing currently requires your input.'}</p><button class="text-action" data-route="questions">Review questions</button></section><section class="panel"><h2>Trends & patterns</h2><p>${candidates.length?`${candidates.length} exploratory association${candidates.length===1?'':'s'} are available in Pattern Lab.`:'More repeated data are needed before ZEKE can test patterns.'}</p><button class="text-action" data-route="pattern-lab">Open Pattern Lab</button></section><section class="panel"><h2>Research connections</h2><p>Published evidence is shown separately from your personal observations, with source, evidence strength, relevance, and last-reviewed date.</p></section><section class="panel"><h2>Suggestions</h2><p>Suggestions must state why they are being shown now, what evidence supports them, and what uncertainty remains.</p></section></div>${thinkingHTML()}`;}
+
+  function openLifeEventModal(kind='symptom'){
+    const t=LIFE_TEMPLATES[kind]||LIFE_TEMPLATES.symptom;$('#lifeEventModal')?.remove();const privateDefault=['life_event','menstrual_cycle'].includes(kind);
+    document.body.insertAdjacentHTML('beforeend',`<div class="direct-entry-overlay" id="lifeEventModal"><div class="direct-entry-card"><div class="section-head"><div><h2>Log ${esc(t.label)}</h2><p>ZEKE can suggest fields later; you control what is actually recorded.</p></div><button class="icon-btn" id="closeLifeEvent">×</button></div><form id="lifeEventForm" class="direct-entry-form"><label>Date<input id="lifeDate" type="date" value="${esc(activeDay())}" required></label><label>Event or condition<input id="lifeName" placeholder="${esc(t.examples)}" required></label>${kind==='gluten_exposure'?`<label>Exposure level<select id="lifeLevel"><option>None</option><option>Trace</option><option selected>Some</option><option>High</option></select></label><label>Certainty<select id="lifeCertainty"><option>Known</option><option>Possible cross-contact</option><option>Unsure</option></select></label>`:`<label>Severity / intensity (0–10)<input id="lifeSeverity" type="number" min="0" max="10" step="1"></label><label>Duration (optional)<input id="lifeDuration" placeholder="e.g., 2 hours"></label>`}<label class="wide">Notes / context<textarea id="lifeNotes" placeholder="Optional details, triggers, interventions, or outcome"></textarea></label><label class="wide checkbox-line"><input id="lifePrivate" type="checkbox" ${privateDefault?'checked':''}> Store as a private event with neutral previews</label><label class="wide checkbox-line"><input id="lifeAnalyze" type="checkbox" checked> Allow deterministic Pattern Lab analysis</label><label class="wide checkbox-line"><input id="lifeAI" type="checkbox"> Allow this event to be sent to connected AI for interpretation</label><div class="direct-entry-actions wide"><button type="button" class="secondary" id="cancelLifeEvent">Cancel</button><button type="submit" class="primary">Save event</button></div></form></div></div>`);
+    const close=()=>$('#lifeEventModal')?.remove();$('#closeLifeEvent').onclick=close;$('#cancelLifeEvent').onclick=close;$('#lifeEventForm').onsubmit=async e=>{e.preventDefault();const name=$('#lifeName').value.trim(),date=$('#lifeDate').value;if(!name)return;const st={name,event_type:kind,severity:Number($('#lifeSeverity')?.value)||null,intensity:Number($('#lifeSeverity')?.value)||null,duration:$('#lifeDuration')?.value||'',exposure_level:$('#lifeLevel')?.value||'',certainty:$('#lifeCertainty')?.value||'',private:$('#lifePrivate').checked,include_in_analysis:$('#lifeAnalyze').checked,allow_ai:$('#lifeAI').checked,interpretation_status:'confirmed'};await ZekeData.addEvent({category:t.category,timestamp:`${date}T12:00:00`,raw_text:$('#lifeNotes').value.trim(),structured:st,provenance:{source:'direct-life-event-entry'}});close();await refreshData();render();showToast(`${t.label} logged.`)};
+  }
+
   function navHTML() {
-    const items=[['dashboard','⌂','Dashboard'],['health','♡','Health'],['fitness','⌁','Fitness'],['medications','✚','Medications'],['labs','⌬','Labs'],['calendar','▣','Calendar'],['questions','?','Questions'],['settings','⚙','Settings']];
+    const items=[['dashboard','⌂','Dashboard'],['health','♡','Health'],['fitness','⌁','Fitness'],['life-events','◎','Life & Symptoms'],['pattern-lab','∿','Pattern Lab'],['insights','✦','Insights'],['medications','✚','Medications'],['labs','⌬','Labs'],['calendar','▣','Calendar'],['questions','?','Questions'],['settings','⚙','Settings']];
     return `<aside class="sidebar" id="sidebar"><div class="brand"><img class="brand-logo" src="./assets/branding/zeke-mark-provisional.png" alt="Project ZEKE"><div><strong>PROJECT ZEKE</strong><span>One thread. Everything connected.</span></div><button class="sidebar-close" id="sidebarClose" aria-label="Close navigation">×</button></div><nav>${items.map(([id,icon,label])=>`<button class="nav-item ${state.route===id?'active':''}" data-route="${id}"><span>${icon}</span>${esc(label)}</button>`).join('')}</nav><div class="sidebar-spacer"></div><div class="privacy-note">Private by design. Your records stay with your chosen storage provider.</div><div class="build-label">v${esc(BUILD.version)} · ${esc(BUILD.build)}</div></aside><div class="sidebar-scrim" id="sidebarScrim"></div>`;
   }
 
@@ -936,6 +979,9 @@
     else if(state.route==='medications') content=medicationsPageHTML();
     else if(state.route==='labs') content=labsPageHTML();
     else if(state.route==='calendar') content=calendarPageHTML();
+    else if(state.route==='life-events') content=lifeEventsPageHTML();
+    else if(state.route==='pattern-lab') content=patternLabPageHTML();
+    else if(state.route==='insights') content=insightsPageHTML();
     else if(state.route==='data-integrity') content=dataIntegrityHTML();
     else if(state.route==='questions') content=questionsPageHTML();
     else if(state.route==='settings') content=settingsPageHTML();
@@ -1032,6 +1078,7 @@
     const s=e.structured||{};
     if(e.category==='measurement'||e.category==='lab') return `${METRICS[canonicalMetric(metricId(e))]?.label||metricId(e)||e.category}: ${metricValue(e)??'—'} ${s.unit||''}`.trim();
     if(isWorkoutEvent(e)) { const ws=workoutStructured(e); return `${ws.exercise||'Workout'}${s.weight?` · ${s.weight} ${s.weight_unit||'lb'}`:''}${s.reps?` · ${s.reps} reps`:''}${ws.sets?` · ${ws.sets} sets`:''}${ws.duration_min?` · ${ws.duration_min} min`:''}`; }
+    if(['symptom','life_event','cycle','nutrition_exposure'].includes(e.category)){ const n=s.private?'Private event':(s.name||s.symptom||s.event_type||e.category); const detail=s.exposure_level?` · ${s.exposure_level}`:s.severity!=null?` · ${s.severity}/10`:''; return `${n}${detail}`; }
     if(e.category==='medication') return `${s.medication_name||s.name||'Medication'}${s.dose?` ${s.dose}${s.unit||''}`:''} · ${s.status||'recorded'}`;
     return e.raw_text||e.category||'Record';
   }
@@ -1701,10 +1748,13 @@
 
 
   function bind() {
+    $('#addLifeEvent')?.addEventListener('click',()=>openLifeEventModal('symptom'));
+    $$('[data-life-template]').forEach(el=>el.onclick=()=>openLifeEventModal(el.dataset.lifeTemplate));
+    $('#runPatternLab')?.addEventListener('click',()=>{showToast('Pattern Lab analysis refreshed from current structured records.');render()});
     $('#quickLogBtn')?.addEventListener('click',()=>{state.quickLogOpen=true;render()});
     $('#closeQuickLog')?.addEventListener('click',()=>{state.quickLogOpen=false;render()});
     $('#quickLogBackdrop')?.addEventListener('click',()=>{state.quickLogOpen=false;render()});
-    $$('[data-quick-log]').forEach(el=>el.onclick=()=>{const kind=el.dataset.quickLog;state.quickLogOpen=false;render();setTimeout(()=>{if(kind==='workout')openWorkoutEntryModal();else if(kind==='activity')openAddActivityModal();else if(kind==='intake')openIntakeModal();else if(kind==='blood_pressure')openMetricEntryModal('blood_pressure');else if(kind==='lab')openMetricEntryModal('a1c');else if(kind==='symptom'){startContextLog('metric','pain_score')}else openMetricEntryModal(kind)},0)});
+    $$('[data-quick-log]').forEach(el=>el.onclick=()=>{const kind=el.dataset.quickLog;state.quickLogOpen=false;render();setTimeout(()=>{if(kind==='workout')openWorkoutEntryModal();else if(kind==='activity')openAddActivityModal();else if(kind==='intake')openIntakeModal();else if(kind==='blood_pressure')openMetricEntryModal('blood_pressure');else if(kind==='lab')openMetricEntryModal('a1c');else if(kind==='symptom')openLifeEventModal('symptom');else if(kind==='life-event')openLifeEventModal('life_event');else if(kind==='cycle')openLifeEventModal('menstrual_cycle');else if(kind==='gluten')openLifeEventModal('gluten_exposure');else openMetricEntryModal(kind)},0)});
     $('#addActivityBtn')?.addEventListener('click',openAddActivityModal);
     $$('[data-toggle-review-task]').forEach(el=>el.onclick=()=>{const key=el.dataset.toggleReviewTask;state.expandedReviewTasks.has(key)?state.expandedReviewTasks.delete(key):state.expandedReviewTasks.add(key);render()});
     $('#helpBtn')?.addEventListener('click',()=>showToast(`Help for ${state.route}: click metric tiles for evidence and interpretation; use Talk to ZEKE to log, correct, or backfill data.`));
