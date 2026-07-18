@@ -77,7 +77,7 @@
 
   function defaultsFor(path) {
     if (path === PATHS.manifest) return {};
-    if (path === PATHS.preferences) return { first_run_ack: null, active_modules: ['health'], research_mode: true };
+    if (path === PATHS.preferences) return { first_run_ack: null, active_modules: ['health'], research_mode: true, medication_confirmation_preferences: {} };
     if (path === PATHS.dashboardLayout) return { widgets: [] };
     if (path === PATHS.actions) return { catalog: [], daily_states: {} };
     if (path === PATHS.aiConnections) return { connections: [] };
@@ -597,19 +597,30 @@ Content-Type: ${mimeType}
       .slice(0, 5));
   }
 
-  async function saveFactor(factor) {
-    const normalized = {
-      id: factor.id || crypto.randomUUID(),
-      created_at: factor.created_at || nowIso(),
-      status: factor.status || 'open',
-      type: factor.type || 'other',
-      ...factor,
-      updated_at: nowIso()
-    };
-    state.factors = [...state.factors.filter(f => f.id !== normalized.id), normalized];
-    await persist('factors');
-    emit();
-    return clone(normalized);
+  const pendingFactorWrites = new Map();
+  async function saveFactor(factor, { idempotencyKey = '' } = {}) {
+    const key=String(idempotencyKey||factor.question_key||'').trim();
+    if(key&&pendingFactorWrites.has(key))return clone(await pendingFactorWrites.get(key));
+    const operation=(async()=>{
+      if(key){
+        const existing=state.factors.find(f=>f.question_key===key&&!['dismissed','resolved','unknown'].includes(f.status));
+        if(existing)return existing;
+      }
+      const normalized = {
+        id: factor.id || crypto.randomUUID(),
+        created_at: factor.created_at || nowIso(),
+        status: factor.status || 'open',
+        type: factor.type || 'other',
+        ...factor,
+        updated_at: nowIso()
+      };
+      state.factors = [...state.factors.filter(f => f.id !== normalized.id), normalized];
+      await persist('factors');
+      emit();
+      return normalized;
+    })();
+    if(key)pendingFactorWrites.set(key,operation);
+    try{return clone(await operation);}finally{if(key)pendingFactorWrites.delete(key);}
   }
 
   async function resolveFactor(id, status, answer = '') {
@@ -677,10 +688,19 @@ Content-Type: ${mimeType}
   async function saveSyncSource(fileName, arrayBuffer, meta = {}) {
     if (!state.provider) throw new Error('Connect storage before linking a spreadsheet.');
     const current=(state.syncSources.sources||[]).find(x=>x.kind==='health-workbook');
-    const sourceId=current?.id || crypto.randomUUID();
+    const sourceId=meta.source_id||current?.id||crypto.randomUUID();
     const path=current?.path || `imports/originals/connected-health-history-${sourceId}.xlsx`;
+    let previousSourceBackupPath=null;
+    if(current?.path){
+      const previous=await state.provider.readBinary(current.path);
+      if(previous){
+        const stamp=new Date().toISOString().replace(/[:.]/g,'-');
+        previousSourceBackupPath=`imports/backups/source-workbook-${stamp}-${current.id}.xlsx`;
+        await state.provider.writeBinary(previousSourceBackupPath,previous,'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+      }
+    }
     await state.provider.writeBinary(path,arrayBuffer,'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    const source={id:sourceId,kind:'health-workbook',name:cleanFileName(fileName),path,linked_at:current?.linked_at||nowIso(),updated_at:nowIso(),last_sync_at:meta.last_sync_at||current?.last_sync_at||null,last_report:meta.last_report||current?.last_report||null,schema_version:1};
+    const source={id:sourceId,kind:'health-workbook',name:cleanFileName(fileName),path,linked_at:current?.linked_at||nowIso(),updated_at:nowIso(),last_sync_at:meta.last_sync_at||current?.last_sync_at||null,last_report:meta.last_report||current?.last_report||null,previous_source_backup_path:previousSourceBackupPath||current?.previous_source_backup_path||null,schema_version:1};
     state.syncSources={sources:[...(state.syncSources.sources||[]).filter(x=>x.id!==sourceId&&x.kind!=='health-workbook'),source]};
     await persist('syncSources'); emit('zeke:sync-source-changed'); return clone(source);
   }
@@ -693,41 +713,71 @@ Content-Type: ${mimeType}
     source.updated_at=nowIso(); source.last_sync_at=nowIso(); if(report)source.last_report=report; source.mirror_path='imports/ZEKE-Event-Mirror.xlsx';
     state.syncSources={sources:[...(state.syncSources.sources||[]).filter(x=>x.id!==source.id),source]}; await persist('syncSources'); emit('zeke:sync-source-changed'); return clone(source);
   }
-  async function reconcileSourceEvents(candidates=[], meta={}) {
-    if(!state.provider) throw new Error('Connect storage before synchronizing.');
-    // Integrity gate: workbook candidates require exact source-cell evidence and a real historical date.
-    const bad=candidates.filter(c=>!c?.provenance?.source_cell || !c?.provenance?.source_key || !c?.timestamp || Number.isNaN(new Date(c.timestamp).getTime()));
-    if(bad.length) throw new Error(`Sync aborted: ${bad.length} candidate record${bad.length===1?'':'s'} lacked exact source-cell evidence or a valid date.`);
-    const keys=new Set();
-    for(const c of candidates){const k=c.provenance.source_key;if(keys.has(k))throw new Error('Sync aborted: duplicate source-cell identity was generated.');keys.add(k);}
-    const backupPath=`imports/backups/events-${new Date().toISOString().replace(/[:.]/g,'-')}.json`;
-    await state.provider.writeJson(backupPath,{created_at:nowIso(),reason:'pre-sync-backup',source:meta.source||'',app_version:window.ZEKE_VERSION||'',event_count:state.events.length,events:state.events});
+  const normalizeSourceValue=value=>String(value??'').trim().toLowerCase();
+  const canonicalMedication=value=>{const v=normalizeSourceValue(value);if(['mounjaro','monjaro','tirzepatide','zepbound'].includes(v))return'tirzepatide';if(['atorvastatin','atorvastin','atorvostatin','lipitor','statin'].includes(v))return'atorvastatin';return v;};
+  function sourceKeysFor(event){const p=event?.provenance||{};return [...new Set([p.source_key,...(p.source_key_aliases||[])].filter(Boolean).map(String))];}
+  function sourceObservationSignature(event){
+    const s=event?.structured||{}, category=normalizeSourceValue(event?.category), date=String(event?.timestamp||'').slice(0,10);
+    const entity=category==='medication'?canonicalMedication(s.canonical_medication_id||s.medication_name||s.name):normalizeSourceValue(s.metric_id||s.exercise||s.symptom||s.note_type);
+    const values=category==='workout'?[s.duration_min,s.steps,s.weight,s.reps,s.sets]:category==='medication'?[s.dose,normalizeSourceValue(s.unit),normalizeSourceValue(s.status||'taken')]:[s.value,normalizeSourceValue(s.unit)];
+    return [category,date,entity,...values.map(v=>v==null?'':normalizeSourceValue(v))].join('|');
+  }
+  function analyzeSourceEvents(candidates=[], existingEvents=state.events){
+    const bad=candidates.filter(c=>!c?.provenance?.source_cell||!c?.provenance?.source_key||!c?.timestamp||Number.isNaN(new Date(c.timestamp).getTime()));
+    if(bad.length)throw new Error(`Sync aborted: ${bad.length} candidate record${bad.length===1?'':'s'} lacked exact source-cell evidence or a valid date.`);
+    const candidateKeys=new Set();
+    for(const c of candidates)for(const key of sourceKeysFor(c)){if(candidateKeys.has(key))throw new Error('Sync aborted: duplicate source-cell identity was generated.');candidateKeys.add(key);}
     const existingByKey=new Map();
-    state.events.forEach((e,i)=>{const k=e.provenance?.source_key;if(k)existingByKey.set(k,{e,i});});
-    const report={created:0,updated:0,unchanged:0,linked_existing:0,conflicts:0,skipped:0,backup_path:backupPath};
-    const semanticKey=e=>{const s=e.structured||{};return [e.category,String(e.timestamp||'').slice(0,10),s.metric_id||'',s.exercise||'',s.medication_name||'',s.value??'',s.dose??'',s.duration_min??''].map(x=>String(x).trim().toLowerCase()).join('|')};
-    const semantic=new Map(state.events.filter(e=>!['raw_input','correction'].includes(e.category)).map(e=>[semanticKey(e),e]));
-    for(const c0 of candidates){
-      const c=clone(c0); const key=c.provenance?.source_key; const fp=c.provenance?.source_fingerprint;
-      if(!key){report.skipped++;continue;}
-      const match=existingByKey.get(key);
+    existingEvents.forEach((event,index)=>sourceKeysFor(event).forEach(key=>existingByKey.set(key,{event,index})));
+    const semanticKey=e=>{const s=e.structured||{};return [e.category,String(e.timestamp||'').slice(0,10),s.metric_id||'',s.exercise||'',canonicalMedication(s.canonical_medication_id||s.medication_name||''),s.value??'',s.dose??'',s.duration_min??''].map(x=>String(x).trim().toLowerCase()).join('|')};
+    const semantic=new Map(existingEvents.filter(e=>!['raw_input','correction'].includes(e.category)).map(e=>[semanticKey(e),e]));
+    const report={created:0,updated:0,unchanged:0,linked_existing:0,conflicts:0,skipped:0,unsupported_updates:0};
+    const operations=[];
+    for(const candidate0 of candidates){
+      const candidate=clone(candidate0), keys=sourceKeysFor(candidate);let match=null;
+      for(const key of keys){if(existingByKey.has(key)){match=existingByKey.get(key);break;}}
       if(match){
-        if(match.e.provenance?.source_fingerprint===fp){report.unchanged++;continue;}
-        const before=match.e; const updated={...before,...c,id:before.id,recorded_at:before.recorded_at||nowIso(),updated_at:nowIso(),provenance:{...(before.provenance||{}),...(c.provenance||{}),sync_updated_at:nowIso()}};
-        state.events[match.i]=updated; existingByKey.set(key,{e:updated,i:match.i}); report.updated++; continue;
-      }
-      const sem=semantic.get(semanticKey(c));
-      if(sem){
-        if(!sem.provenance?.source_key){sem.provenance={...(sem.provenance||{}),...(c.provenance||{}),linked_at:nowIso()}; report.linked_existing++; existingByKey.set(key,{e:sem,i:state.events.indexOf(sem)});}
-        else report.conflicts++;
+        if(sourceObservationSignature(match.event)===sourceObservationSignature(candidate)){report.unchanged++;operations.push({type:'unchanged',candidate,match});}
+        else {report.updated++;operations.push({type:'update',candidate,match});}
         continue;
       }
-      const normalized={schema_version:2,id:c.id||crypto.randomUUID(),recorded_at:c.recorded_at||nowIso(),timestamp:c.timestamp||nowIso(),...c};
-      state.events.push(normalized); existingByKey.set(key,{e:normalized,i:state.events.length-1}); semantic.set(semanticKey(normalized),normalized); report.created++;
+      const sem=semantic.get(semanticKey(candidate));
+      if(sem){
+        if(!sourceKeysFor(sem).length){report.linked_existing++;operations.push({type:'link',candidate,match:{event:sem,index:existingEvents.indexOf(sem)}});}
+        else {report.conflicts++;operations.push({type:'conflict',candidate,match:{event:sem,index:existingEvents.indexOf(sem)}});}
+        continue;
+      }
+      report.created++;operations.push({type:'create',candidate});
+    }
+    return {report,operations};
+  }
+  async function preflightSourceEvents(candidates=[], existingEvents=null){return clone(analyzeSourceEvents(candidates,existingEvents||state.events).report);}
+  async function verifySourceEvents(candidates=[]){if(!state.provider)throw new Error('Connect storage before verifying synchronization.');const persisted=await state.provider.readJson(PATHS.events,[]);return clone({...analyzeSourceEvents(candidates,persisted).report,event_count:persisted.length});}
+  async function reconcileSourceEvents(candidates=[], meta={}) {
+    if(!state.provider)throw new Error('Connect storage before synchronizing.');
+    const analysis=analyzeSourceEvents(candidates,state.events), report={...analysis.report};
+    if(report.conflicts||report.unsupported_updates)throw new Error(`Sync aborted before writing: ${report.conflicts} conflict(s), ${report.unsupported_updates} unsupported update(s).`);
+    if(!report.created&&!report.updated&&!report.linked_existing){
+      const batch=await saveImportBatch({type:'idempotent-workbook-sync',status:'no_event_changes',transaction_id:meta.transaction_id||null,review_token:meta.review_token||null,source:meta.source||'connected-health-workbook',file:meta.file||'',counts:report,message:`Workbook sync found ${report.unchanged} unchanged source observations. No event data or backup was written.`});
+      emit();return{...report,backup_path:null,batch_id:batch.id,no_change:true};
+    }
+    const backupPath=`imports/backups/events-${new Date().toISOString().replace(/[:.]/g,'-')}.json`;
+    await state.provider.writeJson(backupPath,{created_at:nowIso(),reason:'pre-sync-backup',source:meta.source||'',transaction_id:meta.transaction_id||null,review_token:meta.review_token||null,app_version:window.ZEKE_VERSION||'',event_count:state.events.length,events:state.events});
+    for(const op of analysis.operations){
+      if(op.type==='unchanged'||op.type==='conflict')continue;
+      if(op.type==='link'){
+        const current=state.events[op.match.index];state.events[op.match.index]={...current,provenance:{...(current.provenance||{}),...(op.candidate.provenance||{}),linked_at:nowIso()}};continue;
+      }
+      if(op.type==='update'){
+        const before=state.events[op.match.index],candidate=op.candidate,updated={...before,...candidate,id:before.id,recorded_at:before.recorded_at||nowIso(),updated_at:nowIso(),provenance:{...(before.provenance||{}),...(candidate.provenance||{}),sync_updated_at:nowIso()}};
+        state.events[op.match.index]=updated;
+        state.events.push({schema_version:2,id:crypto.randomUUID(),category:'correction',timestamp:nowIso(),recorded_at:nowIso(),raw_text:'Connected workbook source cell changed',structured:{target_event_id:before.id,before,after:updated},provenance:{source:'workbook-sync-correction',source_key:candidate.provenance?.source_key,transaction_id:meta.transaction_id||null}});continue;
+      }
+      if(op.type==='create')state.events.push({schema_version:2,id:op.candidate.id||crypto.randomUUID(),recorded_at:op.candidate.recorded_at||nowIso(),timestamp:op.candidate.timestamp,...op.candidate});
     }
     await persist('events');
-    const batch=await saveImportBatch({type:'idempotent-workbook-sync',source:meta.source||'connected-health-workbook',file:meta.file||'',counts:report,message:`Workbook sync completed: ${report.created} created, ${report.updated} updated, ${report.unchanged} unchanged, ${report.linked_existing} linked to existing records, ${report.conflicts} conflicts.`});
-    emit(); return {...report,batch_id:batch.id};
+    const batch=await saveImportBatch({type:'idempotent-workbook-sync',status:'repository_committed',transaction_id:meta.transaction_id||null,review_token:meta.review_token||null,source:meta.source||'connected-health-workbook',file:meta.file||'',counts:report,message:`Workbook sync completed: ${report.created} created, ${report.updated} updated, ${report.unchanged} unchanged, ${report.linked_existing} linked to existing records, ${report.conflicts} conflicts.`});
+    emit();return{...report,backup_path:backupPath,batch_id:batch.id};
   }
 
 
@@ -799,7 +849,7 @@ Content-Type: ${mimeType}
     getAIConnections, saveAIConnections, addAIExchange,
     listConversation, appendConversation, saveConversation,
     listImportBatches, saveImportBatch, mergeHistoryPackage,
-    saveSyncSource, getSyncSource, readSyncSourceWorkbook, updateSyncSourceWorkbook, reconcileSourceEvents,
+    saveSyncSource, getSyncSource, readSyncSourceWorkbook, updateSyncSourceWorkbook, preflightSourceEvents, verifySourceEvents, reconcileSourceEvents,
     listCalendarEvents, mergeActivityEntities, removeExactDuplicateEvents, undoLastIntegrityChange, hasIntegrityUndo,
     constants: { PATHS, SETUP_KEY }
   };

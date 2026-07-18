@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "current_version": "0.20.5",
+  "current_build": "2026.07.18.1",
+  "immutable_principles": [
+    "user_owned_canonical_data",
+    "ai_advisory_deterministic_commit",
+    "raw_and_provenance_preserved",
+    "missing_is_unknown",
+    "reversible_traceable_scoped_changes",
+    "unified_talk_to_zeke"
+  ],
+  "supersessions": [
+    {
+      "id": "UX-ASK-TELL",
+      "superseded": "separate Ask and Tell inputs",
+      "current": "unified Talk to ZEKE input",
+      "authority": "ZEKE_CONSTITUTION.md#14"
+    }
+  ],
+  "release_invariants": [
+    "all current identity declarations agree",
+    "current iteration matches project state",
+    "approved scope matches iteration scope",
+    "all authoritative artifacts are registered and current",
+    "actual package file count matches gate record",
+    "relative markdown links resolve",
+    "no unsafe GLP-1-to-tirzepatide alias",
+    "no active authority conflict with a recorded supersession",
+    "audit negative-control tests pass"
+  ]
+}

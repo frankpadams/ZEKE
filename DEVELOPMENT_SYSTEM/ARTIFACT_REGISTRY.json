@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "release": "0.20.5",
+  "build": "2026.07.18.1",
+  "artifacts": [
+    {
+      "path": "00_AI_START_HERE.md",
+      "status": "authoritative",
+      "purpose": "single startup authority"
+    },
+    {
+      "path": "HANDOFF_BRIEF.md",
+      "status": "authoritative",
+      "purpose": "rapid current-state orientation"
+    },
+    {
+      "path": "ZEKE_CONSTITUTION.md",
+      "status": "authoritative",
+      "purpose": "immutable product principles"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/PROJECT_IDENTITY.md",
+      "status": "authoritative",
+      "purpose": "identity and challenge boundaries"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md",
+      "status": "authoritative",
+      "purpose": "authority order and lifecycle"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
+      "status": "authoritative",
+      "purpose": "machine-enforced invariants"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/PROJECT_STATE.json",
+      "status": "authoritative",
+      "purpose": "current release state"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json",
+      "status": "authoritative",
+      "purpose": "authorization and phase state"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/BACKLOG.md",
+      "status": "authoritative",
+      "purpose": "deferred work and resurfacing"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/DECISION_LOG.md",
+      "status": "authoritative",
+      "purpose": "binding decisions"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
+      "status": "authoritative",
+      "purpose": "failure memory"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
+      "status": "authoritative",
+      "purpose": "development workflow"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
+      "status": "authoritative",
+      "purpose": "current release evidence"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.20.5.md",
+      "status": "authoritative",
+      "purpose": "current approved scope and results"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md",
+      "status": "supporting",
+      "purpose": "concise health summary"
+    },
+    {
+      "path": "README.md",
+      "status": "supporting",
+      "purpose": "deployment and release overview"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.20.5.md",
+      "status": "supporting",
+      "purpose": "release summary"
+    },
+    {
+      "path": "TEST_REPORT_v0.20.5.md",
+      "status": "supporting",
+      "purpose": "test evidence"
+    }
+  ],
+  "historical_patterns": [
+    "RELEASE_NOTES_v*.md",
+    "PATCH_NOTES_v*.md",
+    "TEST_REPORT_v*.md",
+    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v*.md"
+  ],
+  "superseded_entry_files": [
+    "READ_THIS_FIRST.md",
+    "DEVELOPMENT_MEMORY/README_FIRST.md",
+    "DEVELOPMENT_MEMORY/DOCUMENT_INDEX.md"
+  ]
+}

@@ -1,44 +1,61 @@
 {
-  "schema_version": 1,
-  "current_version": "0.20.2",
-  "current_build": "2026.07.17.11",
-  "release_label": "Continuity & Adaptive Dashboard Release",
-  "baseline": "v0.19.2 Dashboard Correction FULL",
+  "schema_version": 2,
+  "current_version": "0.20.5",
+  "current_build": "2026.07.18.1",
+  "release_label": "Continuity Baseline Cleanup & Enforcement Release",
+  "baseline": "v0.20.4 Continuity Framework & Medication Clarity Release",
+  "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
+  "governance_rules": "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
   "authoritative_documents": [
+    "00_AI_START_HERE.md",
+    "HANDOFF_BRIEF.md",
     "ZEKE_CONSTITUTION.md",
-    "README.md",
-    "DEVELOPMENT_MEMORY/README_FIRST.md",
+    "DEVELOPMENT_SYSTEM/PROJECT_IDENTITY.md",
+    "DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md",
+    "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
     "DEVELOPMENT_MEMORY/PROJECT_STATE.json",
-    "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
+    "DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json",
     "DEVELOPMENT_MEMORY/BACKLOG.md",
     "DEVELOPMENT_MEMORY/DECISION_LOG.md",
+    "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
     "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
-    "DEVELOPMENT_MEMORY/RELEASE_GATE.md"
+    "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
+    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.20.5.md"
   ],
   "implemented_this_release": [
-    "Structural dashboard rows replacing cross-column grid placement",
-    "Content-sized empty states",
-    "Built-in development continuity system",
-    "Synchronized release identity"
+    "Reconciled Constitution with the approved unified Talk to ZEKE interaction",
+    "Replaced stale v0.20.3 authority records with a consistent v0.20.5 chain",
+    "Added rapid handoff brief, artifact registry, governance rules, and project health report",
+    "Expanded project audit to enforce identity, scope, authority, lifecycle, file-count, supersession, link, and medication-alias invariants",
+    "Added negative-control governance tests proving the audit fails on seeded contradictions",
+    "Clarified UI-021 responsive evidence prerequisite and documentation backlog status",
+    "Retired competing start files to explicit redirect-only status"
+  ],
+  "inherited_verified_evidence": [
+    "Medication parser and Today-action regressions",
+    "Workbook transaction, preflight, source replacement backup, and 188-observation no-change regression from v0.20.4 evidence",
+    "GLP-1 class phrase clarification behavior"
   ],
   "known_issues": [
-    "Browser behavior still depends on user data and connected services; test with live data after deployment",
-    "Historical documents remain for recordkeeping and are non-authoritative unless indexed otherwise"
+    "Live Google Drive, Calendar, and AI-provider behavior requires deployed credentialed verification",
+    "Deployed-origin browser rendering and branding assets require deployment verification",
+    "Legacy AI evidence mapping remains unresolved",
+    "Historical release documents remain audit history and are non-authoritative"
   ],
   "next_review_items": [
-    "Dashboard customization engine",
-    "Saved layout profiles",
-    "Pin versus Auto tile behavior",
-    "Layout export/import"
+    "FIT-014 Fitness information architecture polish",
+    "UI-021 prerequisite resolution before dashboard editing",
+    "Legacy AI evidence mapping"
+  ],
+  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.20.5.md",
+  "files_to_read_first": [
+    "00_AI_START_HERE.md"
   ],
   "required_regression_checks": [
-    "Dashboard at 1440, 1024, 768, 390 widths",
-    "No empty chart canvas reserves vertical space",
-    "Health, Fitness, medication logger, navigation, Talk to ZEKE",
-    "Version identity synchronized",
-    "Final ZIP reopened and compared with staging"
-  ],
-  "files_to_read_first": [
-    "DEVELOPMENT_MEMORY/README_FIRST.md"
+    "python tools/project_audit.py",
+    "python tests/governance-negative-controls.py",
+    "all JavaScript regression tests",
+    "real-data workbook regression when fixture is available",
+    "final ZIP reopened and byte-compared with staging"
   ]
 }

@@ -1,0 +1,44 @@
+{
+  "schema_version": 2,
+  "release": "0.20.5",
+  "build": "2026.07.18.1",
+  "current_iteration": {
+    "status": "completed_and_verified",
+    "baseline_verified": true,
+    "backlog_resurfaced": true,
+    "data_compatibility_reviewed": true,
+    "scope_presented": true,
+    "user_approved_scope": true,
+    "approved_at": "2026-07-18T05:23:41Z",
+    "approved_scope": [
+      "Reconcile all active authority and release identity contradictions",
+      "Update the Constitution to the approved unified Talk to ZEKE design",
+      "Make the continuity audit enforce release identity, current scope, artifact authority, package file count, supersessions, and negative controls",
+      "Reduce competing startup paths and clearly classify current, supporting, historical, and superseded artifacts",
+      "Clarify backlog resurfacing prerequisites and preserve inherited application/data behavior",
+      "Run full regression and package reproducibility verification"
+    ],
+    "explicitly_excluded": [
+      "New product features",
+      "User-data modification",
+      "Dashboard drag-and-drop implementation",
+      "Fitness redesign",
+      "Live credentialed provider changes",
+      "Canonical event-schema migration"
+    ],
+    "prior_conversations_reviewed": true,
+    "completed_at": "2026-07-18T05:30:00Z",
+    "final_zip_reopened_and_verified": true,
+    "critical_checksums_verified": 180,
+    "unpacked_file_count": 181
+  },
+  "next_iteration": {
+    "status": "awaiting_pre_development_checkpoint",
+    "baseline_verified": false,
+    "backlog_resurfaced": false,
+    "scope_presented": false,
+    "user_approved_scope": null
+  },
+  "current_version": "0.20.5",
+  "current_build": "2026.07.18.1"
+}
