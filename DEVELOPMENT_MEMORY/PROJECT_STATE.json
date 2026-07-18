@@ -1,0 +1,44 @@
+{
+  "schema_version": 1,
+  "current_version": "0.20.2",
+  "current_build": "2026.07.17.11",
+  "release_label": "Continuity & Adaptive Dashboard Release",
+  "baseline": "v0.19.2 Dashboard Correction FULL",
+  "authoritative_documents": [
+    "ZEKE_CONSTITUTION.md",
+    "README.md",
+    "DEVELOPMENT_MEMORY/README_FIRST.md",
+    "DEVELOPMENT_MEMORY/PROJECT_STATE.json",
+    "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
+    "DEVELOPMENT_MEMORY/BACKLOG.md",
+    "DEVELOPMENT_MEMORY/DECISION_LOG.md",
+    "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
+    "DEVELOPMENT_MEMORY/RELEASE_GATE.md"
+  ],
+  "implemented_this_release": [
+    "Structural dashboard rows replacing cross-column grid placement",
+    "Content-sized empty states",
+    "Built-in development continuity system",
+    "Synchronized release identity"
+  ],
+  "known_issues": [
+    "Browser behavior still depends on user data and connected services; test with live data after deployment",
+    "Historical documents remain for recordkeeping and are non-authoritative unless indexed otherwise"
+  ],
+  "next_review_items": [
+    "Dashboard customization engine",
+    "Saved layout profiles",
+    "Pin versus Auto tile behavior",
+    "Layout export/import"
+  ],
+  "required_regression_checks": [
+    "Dashboard at 1440, 1024, 768, 390 widths",
+    "No empty chart canvas reserves vertical space",
+    "Health, Fitness, medication logger, navigation, Talk to ZEKE",
+    "Version identity synchronized",
+    "Final ZIP reopened and compared with staging"
+  ],
+  "files_to_read_first": [
+    "DEVELOPMENT_MEMORY/README_FIRST.md"
+  ]
+}

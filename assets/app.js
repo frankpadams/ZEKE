@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const BUILD = window.ZEKE_BUILD || { version:'0.20.1', build:'2026.07.17.10', label:'Responsive Layout Integrity Release' };
+  const BUILD = window.ZEKE_BUILD || { version: '0.20.2', build: '2026.07.17.11' };
   const state = {
     route:'dashboard', range:localStorage.getItem('zeke-fitness-range')||'month', selectedMetric:'weight',
     events:[], factors:[], discoveries:[], actions:{catalog:[],daily_states:{}}, calendar:[],
@@ -422,7 +422,7 @@
   function healthGlanceHTML(limit=6) {
     const metrics=availableMetrics().filter(id=>!state.hiddenWidgets.has(`metric:${id}`)).slice(0,limit);
     if(!metrics.length) return `<section class="panel health-glance"><div class="section-head"><div><h2>Health at a glance</h2><p>Verified values from your connected ZEKE records.</p></div></div><div class="empty-inline">No verified health metrics are available yet. Log a value through Talk to ZEKE or import existing history.</div></section>`;
-    return `<section class="panel health-glance"><div class="section-head"><div><h2>Health at a glance</h2><p>Verified values from your connected records.</p></div><button class="text-action" data-route="health">View all</button></div><div class="metrics-row">${metrics.map(metricCard).join('')}</div></section>`;
+    return `<section class="health-glance"><div class="section-head"><div><h2>Health at a glance</h2><p>Verified values from your connected records.</p></div><button class="text-action" data-route="health">View all</button></div><div class="metrics-row">${metrics.map(metricCard).join('')}</div></section>`;
   }
 
   function trendChartSVG(id) {
@@ -585,7 +585,7 @@
     if(!selected) return `<section class="panel coach-panel"><div class="section-head"><div><div class="coach-badge">🏋 Coach's Eye</div><h2>Choose what you want coaching on</h2><p>Review an exercise or body area instead of keeping one movement permanently pinned.</p></div></div>${chooser}<div class="empty-inline">More repeated workout history will unlock specific guidance.</div></section>`;
     return `<section class="panel coach-panel">${showAlert?`<div class="timely-coach-alert"><div><span>Timely before your next workout</span><strong>${esc(timely.title)}</strong><p>${esc(timely.suggestion)}</p></div><button class="icon-btn" data-dismiss-coach-alert="${esc(alertKey)}" aria-label="Dismiss coaching alert">×</button></div>`:''}<div class="section-head"><div><div class="coach-badge">🏋 Coach's Eye</div><h2>On-demand training feedback</h2><p>Select the exercise you want ZEKE to analyze.</p></div>${chooser}</div>
       <div class="coach-top"><div><h2>${esc(selected.title)}</h2><p>${esc(selected.rationale)}</p></div><span class="insight-tag">${esc(selected.name)}</span></div>
-      ${(()=>{const chart=coachChart(selected);return `<div class="coach-grid ${chart?'has-chart':'no-chart'}"><div class="coach-stats"><div><strong>${selected.last.weight||'—'}${selected.last.weight?' lb':''}</strong><span>Latest load</span></div><div><strong>${selected.last.rpe||'Not logged'}</strong><span>Latest RPE</span></div><div><strong>${selected.last.pain?`${selected.last.pain}/10`:'Not logged'}</strong><span>Recorded pain</span></div></div>${chart?`<div class="coach-chart-shell">${chart}</div>`:''}</div>`})()}
+      <div class="coach-grid"><div class="coach-stats"><div><strong>${selected.last.weight||'—'}${selected.last.weight?' lb':''}</strong><span>Latest load</span></div><div><strong>${selected.last.rpe||'Not logged'}</strong><span>Latest RPE</span></div><div><strong>${selected.last.pain||0}/10</strong><span>Recorded pain</span></div></div><div>${coachChart(selected)}</div></div>
       <div class="coach-rec"><strong>ZEKE's observation</strong><p>${esc(state.coachAI?.recommendation || selected.suggestion)}</p></div>
       <div class="coach-actions"><button class="text-action" id="toggleCoachEvidence">${state.coachExpanded?'Hide evidence':'View reasoning & evidence'}</button><button class="secondary" id="deeperCoachAI" ${state.coachAILoading?'disabled':''}>${state.coachAILoading?'Thinking…':'Analyze deeper'}</button></div>
       ${state.coachExpanded?`<div class="evidence-box"><p><strong>How this was generated:</strong> only the recorded sessions for ${esc(selected.name)} were used. Coach’s Eye is for training decisions; broader hypotheses belong in “I’ve been thinking…”.</p></div>`:''}
@@ -712,11 +712,12 @@
     const trend=trendPanelHTML();
     const recent=recentHealthHTML();
     const upcoming=upcomingHTML();
-    return `${coverageHTML()}<div class="dashboard-composer">
+    const lower=[trend,recent,upcoming].filter(Boolean).join('');
+    return `${coverageHTML()}<div class="dashboard-layout">
       <div class="dashboard-priority-row">${dashboardInsightsHTML()}${todayActionsHTML()}</div>
-      <div class="dashboard-health-row">${healthGlanceHTML(9)}</div>
+      ${healthGlanceHTML(9)}
       <div class="dashboard-guidance-row">${coachHTML()}${thinkingHTML()}</div>
-      ${(trend||recent||upcoming)?`<div class="dashboard-evidence-row">${trend||''}${recent}${upcoming}</div>`:''}
+      ${lower?`<div class="dashboard-support-row">${lower}</div>`:''}
     </div>`;
   }
 
@@ -1026,7 +1027,7 @@
   function dashboardInsightsHTML(){
     const q=reviewTasks().length, patterns=patternCandidates().length;
     const discoveries=(state.discoveries||[]).length;
-    const headline=q?`${q} item${q===1?' needs':'s need'} your input`:discoveries?`${discoveries} insight${discoveries===1?'':'s'} available`:'Nothing urgent right now';
+    const headline=q?`${q} item${q===1?'':'s'} need your input`:discoveries?`${discoveries} insight${discoveries===1?'':'s'} available`:'Nothing urgent right now';
     const detail=q?'ZEKE is waiting for a decision only you can make.':patterns?`${patterns} exploratory pattern${patterns===1?' is':'s are'} ready to review.`:'New discoveries and recommendations will appear here when the evidence supports them.';
     return `<section class="panel dashboard-insights-tile"><div class="section-head"><div><span class="tile-kicker">INSIGHTS</span><h2>${esc(headline)}</h2><p>${esc(detail)}</p></div><span class="insight-count">${q+discoveries+patterns}</span></div><div class="insight-tile-actions"><button class="primary compact" data-route="insights">Open Insights</button>${q?'<button class="secondary compact" data-route="questions">Review question</button>':''}</div></section>`;
   }

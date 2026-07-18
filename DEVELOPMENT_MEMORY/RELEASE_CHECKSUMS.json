@@ -1,0 +1,13 @@
+{
+  "version": "0.20.2",
+  "build": "2026.07.17.11",
+  "sha256": {
+    "index.html": "6b4b3f71d6c3a1f2a55c9015f7e7b795df7362da8f0bc7c4b43f51289244ed03",
+    "version.js": "3e56e069264da32f157e0a320985afaea5a9991550609a708ef5fc2159353518",
+    "VERSION.txt": "9e5e1f6c4eca0534fecb0fa9dd9304424a9acd0cd303250129907f7e9c4e7eda",
+    "assets/app.js": "6810b8d2c6d7e2ff47e3d19dbbc8ca7ce6a3a53278bc40b52593d338170e3f9c",
+    "assets/styles.css": "9738dcb9abc61bdf613916c0ebac9262e926f451eff54062f529bfee24b0d4f0",
+    "sw.js": "9ebf09112736cb5dda060511b3a0c72e737a58c477f5e2ce3b89ba12fc4ab368",
+    "README.md": "3c9b884001acf9aeb05817683945908a0cc89b9fed41f52fd02da60dcf6fffbf"
+  }
+}
