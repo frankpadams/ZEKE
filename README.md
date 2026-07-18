@@ -1,22 +1,14 @@
-# ZEKE v0.20.5
+# ZEKE v0.21.0
 
-> **Development handoff:** begin only with [`00_AI_START_HERE.md`](00_AI_START_HERE.md).
+**Build:** 2026.07.18.2  
+**Release:** Adaptive Libraries & Continuity Refinement
 
-**Build:** 2026.07.18.1  
-**Release:** Continuity Baseline Cleanup & Enforcement Release
-
-ZEKE is a private, user-owned personal management system. This release is a continuity-baseline cleanup: it preserves the v0.20.4 application and data safeguards while making the handoff authority chain internally consistent and enforceable.
-
-## Defining changes
-- Constitution now reflects the approved unified **Talk to ZEKE** interaction.
-- Current release, scope, iteration, release-gate, and artifact records agree.
-- A machine-readable artifact registry distinguishes authoritative, supporting, historical, and superseded materials.
-- The audit now catches stale identities, scope mismatches, authority conflicts, wrong file counts, broken links, unsafe medication aliases, and known supersession conflicts.
-- Negative-control tests prove the audit fails when contradictions are deliberately introduced.
-- Competing start files are explicit redirects rather than parallel authorities.
+This full replacement release adds compact expandable Fitness and Health libraries, activity-category tabs, favorites, integrated cardio activities, a compact expandable Coach’s Eye, clearer evidence language, direct Pattern Lab navigation, and local runtime diagnostic export. It also advances the integrated AI handoff and development-continuity system.
 
 ## Deploy
-Replace the entire deployed ZEKE application folder with this release. Back up the deployed folder first and hard-refresh after upload.
+Replace the deployed ZEKE files with the contents of this folder. Preserve your existing `zeke-config.js` values when appropriate. After deployment, hard-refresh once and verify the visible header reports v0.21.0 · 2026.07.18.2.
 
-## Verification boundary
-Local structural, governance, and application regressions are recorded in `TEST_REPORT_v0.20.5.md`. Live Google Drive, Calendar, AI-provider, branding-asset, and deployed-origin behavior still require the user's configured environment.
+## Verification limits
+Static syntax, governance, and regression checks can be run from this package. Live Google Drive, Calendar, AI-provider, and deployed-origin behavior still require verification in the configured environment.
+
+Start future development with [00_AI_START_HERE.md](00_AI_START_HERE.md).

@@ -1,6 +1,6 @@
 # ZEKE Handoff Brief
 
-**Current baseline:** ZEKE v0.20.5 · build 2026.07.18.1  
+**Current baseline:** ZEKE v0.21.0 · build 2026.07.18.2  
 **Release:** Continuity Baseline Cleanup & Enforcement Release
 
 ## What ZEKE is
