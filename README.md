@@ -1,29 +1,22 @@
-# ZEKE v0.20.2
+# ZEKE v0.20.5
 
-**Build:** 2026.07.17.11  
-**Release:** Continuity & Adaptive Dashboard Release
+> **Development handoff:** begin only with [`00_AI_START_HERE.md`](00_AI_START_HERE.md).
 
-ZEKE is a private, user-owned personal intelligence system. This release is built from the v0.19.2 baseline and adds a structural dashboard layout repair plus a built-in development continuity system.
+**Build:** 2026.07.18.1  
+**Release:** Continuity Baseline Cleanup & Enforcement Release
 
-## What changed
-- Dashboard sections now live in independent rows, preventing a tall card from creating whitespace beneath an unrelated card.
-- Empty visualizations do not reserve large chart canvases.
-- Health metrics reflow responsively.
-- A new `DEVELOPMENT_MEMORY` folder preserves decisions, failures, backlog, release gates, and handoff instructions for the next chat or developer.
-- All active release identifiers are synchronized to v0.20.2 / 2026.07.17.11.
+ZEKE is a private, user-owned personal management system. This release is a continuity-baseline cleanup: it preserves the v0.20.4 application and data safeguards while making the handoff authority chain internally consistent and enforceable.
+
+## Defining changes
+- Constitution now reflects the approved unified **Talk to ZEKE** interaction.
+- Current release, scope, iteration, release-gate, and artifact records agree.
+- A machine-readable artifact registry distinguishes authoritative, supporting, historical, and superseded materials.
+- The audit now catches stale identities, scope mismatches, authority conflicts, wrong file counts, broken links, unsafe medication aliases, and known supersession conflicts.
+- Negative-control tests prove the audit fails when contradictions are deliberately introduced.
+- Competing start files are explicit redirects rather than parallel authorities.
 
 ## Deploy
-Replace the entire contents of the deployed ZEKE folder with the contents of this ZIP. Do not merge it with an older release. Clear the site cache or unregister the old service worker if the prior build remains visible.
+Replace the entire deployed ZEKE application folder with this release. Back up the deployed folder first and hard-refresh after upload.
 
-## Verify after deployment
-1. Confirm the UI shows v0.20.2 and build 2026.07.17.11.
-2. Open Dashboard at desktop and narrow widths.
-3. Confirm Health at a Glance occupies its own row and no unrelated blank column appears below a taller card.
-4. Confirm empty trend areas are compact rather than large blank canvases.
-5. Check Health, Fitness, Talk to ZEKE, Settings, and medication logging.
-
-## Development handoff
-A new chat, AI, or developer must begin with `DEVELOPMENT_MEMORY/README_FIRST.md`. The project should require little additional prompting when these files are followed.
-
-## Known limitation
-Live Google Drive, Calendar, and AI-provider integrations require the user's configured credentials and were not exercised in the local package audit.
+## Verification boundary
+Local structural, governance, and application regressions are recorded in `TEST_REPORT_v0.20.5.md`. Live Google Drive, Calendar, AI-provider, branding-asset, and deployed-origin behavior still require the user's configured environment.

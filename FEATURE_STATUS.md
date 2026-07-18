@@ -1,3 +1,5 @@
+> **Historical/supporting document:** This feature inventory snapshot is retained for context. It does not control the active release or override `00_AI_START_HERE.md` and `DEVELOPMENT_MEMORY/PROJECT_STATE.json`.
+
 # ZEKE Feature Status — v0.17.2-alpha
 
 ## Working and intended for testing
@@ -28,3 +30,14 @@
 ## Deferred
 - Multi-user/commercial hardening
 - Pets, vehicles, home, finance, and project modules
+
+
+## Current v0.20.3 compatibility status
+- Mandatory prior-conversation, baseline, backlog, data, and scope-approval startup gate
+- Read-only workbook preflight plus explicitly reviewed, journaled, verified commit
+- Backward compatibility with 188 v0.16.3 exact-cell recovery observations
+- Medication status and schedule-aware backfill regression coverage
+- Repository-backed medication confirmation preferences
+- Idempotent generated clarification questions
+
+Rendered responsive and live connected-service verification remain separate release-gate items.

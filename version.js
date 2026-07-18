@@ -1,1 +1,1 @@
-window.ZEKE_BUILD = { version: '0.19.2', build: '2026.07.17.9', label: 'Interaction & Fitness Reliability Patch' };
+window.ZEKE_VERSION = { version: "0.20.5", build: "2026.07.18.1", label: "Continuity Baseline Cleanup & Enforcement Release" };

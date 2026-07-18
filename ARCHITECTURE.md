@@ -1,3 +1,5 @@
+> **Historical/supporting document:** This architecture background is retained for context. It does not control the active release or override `00_AI_START_HERE.md` and `DEVELOPMENT_MEMORY/PROJECT_STATE.json`.
+
 # Project Zeke v0.5.0 Alpha Architecture
 
 ## Alpha scope
@@ -85,3 +87,7 @@ Tier 2+: Optional direct provider integrations through a secure relay. Private A
 ## Exercise intelligence
 
 The Health module supports exercise progression views by exercise and muscle group. Recommendations consider available progression variables plus active injuries, pain trends, recovery measurements, and other exercise-relevant health factors. Recommendations are conservative decision support and are evidence-linked.
+
+
+## v0.20.3 compatibility supplement
+For the active release, Google Drive remains the canonical durable repository. Connected-workbook synchronization is a reviewed transaction: read, normalize, compare, preview, explicit commit, persisted verification, then separate mirror regeneration. Event writes receive a pre-write repository backup; a replaced connected source receives its own archival copy before overwrite. The original connected workbook is never rewritten merely to synchronize ZEKE events. Transaction stages are preserved in the append-only import history.

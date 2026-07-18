@@ -1,2 +1,3 @@
-ZEKE v0.19.2
-Build 2026.07.17.8
+ZEKE v0.20.5
+Build 2026.07.18.1
+Continuity Baseline Cleanup & Enforcement Release

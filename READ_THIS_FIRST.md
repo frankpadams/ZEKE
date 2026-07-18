@@ -1,3 +1,5 @@
-# Read This First — ZEKE v0.20.2
+# Superseded Entry Point
 
-Deploy this as a full replacement, not a patch merge. See `README.md`. Developers and new chats must start with `DEVELOPMENT_MEMORY/README_FIRST.md`.
+**Status: Superseded — do not use as a development authority.**
+
+Begin at [`00_AI_START_HERE.md`](00_AI_START_HERE.md). This file remains only to redirect older links and workflows.

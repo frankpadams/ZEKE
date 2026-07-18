@@ -52,9 +52,9 @@ Normalized records created by a historical import must be attributable to a batc
 
 The interface should reduce memory burden and avoid nagging, shame, or noisy developer status messages. Domain dashboards are separate by default; combined views are an optional user choice.
 
-## 14. Ask and Tell are different
+## 14. Unified Talk to ZEKE interaction
 
-“Tell Zeke” captures observations, actions, stories, and data. “Ask Zeke” answers questions and displays the answer immediately below the prompt area.
+ZEKE uses one unified **Talk to ZEKE** input for questions, observations, corrections, commands, and file-assisted imports. The system—not the user—must infer intent, support multiple intents in one message, preserve the raw input, and ask natural clarification when needed. Separate Ask and Tell interfaces are superseded unless the user explicitly reopens that decision.
 
 ## 15. Discoveries remain open to revision
 
