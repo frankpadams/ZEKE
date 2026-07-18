@@ -70,7 +70,7 @@
     },
     {
       "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.20.5.md",
-      "status": "authoritative",
+      "status": "historical",
       "purpose": "current approved scope and results"
     },
     {
@@ -92,6 +92,24 @@
       "path": "TEST_REPORT_v0.20.5.md",
       "status": "supporting",
       "purpose": "test evidence"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.21.0.md",
+      "status": "authoritative",
+      "purpose": "Current approved scope and implementation record",
+      "audience": [
+        "AI developer",
+        "human reviewer"
+      ]
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/RUNTIME_DIAGNOSTICS.md",
+      "status": "supporting",
+      "purpose": "Runtime diagnostic logging boundaries and lifecycle",
+      "audience": [
+        "AI developer",
+        "human reviewer"
+      ]
     }
   ],
   "historical_patterns": [
@@ -104,5 +122,7 @@
     "READ_THIS_FIRST.md",
     "DEVELOPMENT_MEMORY/README_FIRST.md",
     "DEVELOPMENT_MEMORY/DOCUMENT_INDEX.md"
-  ]
+  ],
+  "current_version": "0.21.0",
+  "current_build": "2026.07.18.2"
 }

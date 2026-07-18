@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
-  "current_version": "0.20.5",
-  "current_build": "2026.07.18.1",
-  "release_label": "Continuity Baseline Cleanup & Enforcement Release",
-  "baseline": "v0.20.4 Continuity Framework & Medication Clarity Release",
+  "current_version": "0.21.0",
+  "current_build": "2026.07.18.2",
+  "release_label": "Adaptive Libraries & Continuity Refinement Release",
+  "baseline": "v0.20.5 Continuity Baseline Cleanup & Enforcement",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
   "governance_rules": "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
   "authoritative_documents": [
@@ -20,16 +20,16 @@
     "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
     "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
     "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
-    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.20.5.md"
+    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.21.0.md"
   ],
   "implemented_this_release": [
-    "Reconciled Constitution with the approved unified Talk to ZEKE interaction",
-    "Replaced stale v0.20.3 authority records with a consistent v0.20.5 chain",
-    "Added rapid handoff brief, artifact registry, governance rules, and project health report",
-    "Expanded project audit to enforce identity, scope, authority, lifecycle, file-count, supersession, link, and medication-alias invariants",
-    "Added negative-control governance tests proving the audit fails on seeded contradictions",
-    "Clarified UI-021 responsive evidence prerequisite and documentation backlog status",
-    "Retired competing start files to explicit redirect-only status"
+    "Implement compact expandable activity tiles with granular detail and coaching recommendations",
+    "Convert Coach\u2019s Eye to a compact expandable card with clear actions and evidence language",
+    "Unify cardio activities under the Activity Library instead of a standalone Stair Climber section",
+    "Add Frequent, Favorites, Strength, Cardio, Mobility, and Recovery views",
+    "Apply the same compact library architecture to Health with Frequent, Measurements, and Labs",
+    "Keep proactive page insights while routing deeper analysis to Pattern Lab",
+    "Refine integrated handoff, development continuity, internal consistency, and runtime diagnostics"
   ],
   "inherited_verified_evidence": [
     "Medication parser and Today-action regressions",
@@ -38,16 +38,17 @@
   ],
   "known_issues": [
     "Live Google Drive, Calendar, and AI-provider behavior requires deployed credentialed verification",
-    "Deployed-origin browser rendering and branding assets require deployment verification",
-    "Legacy AI evidence mapping remains unresolved",
-    "Historical release documents remain audit history and are non-authoritative"
+    "Deployed-origin browser rendering requires verification",
+    "Expanded tiles require manual usability validation with real user data",
+    "Legacy AI evidence mapping remains unresolved"
   ],
   "next_review_items": [
-    "FIT-014 Fitness information architecture polish",
-    "UI-021 prerequisite resolution before dashboard editing",
+    "Deployed-origin responsive verification",
+    "Runtime diagnostics feedback after real use",
+    "FIT-014 follow-up usability polish",
     "Legacy AI evidence mapping"
   ],
-  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.20.5.md",
+  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.21.0.md",
   "files_to_read_first": [
     "00_AI_START_HERE.md"
   ],

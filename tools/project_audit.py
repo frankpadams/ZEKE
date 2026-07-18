@@ -26,7 +26,7 @@ ver=str(state.get('current_version','')); build=str(state.get('current_build',''
 if not ver or not build: errors.append('project state lacks current version/build')
 
 # Identity agreement in current authorities/supporting release docs
-identity_files=['VERSION.txt','version.js','README.md','DEVELOPMENT_MEMORY/PROJECT_STATE.json','DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json','DEVELOPMENT_MEMORY/RELEASE_GATE.md',state.get('current_iteration_record',''),'RELEASE_NOTES_v0.20.5.md','TEST_REPORT_v0.20.5.md']
+identity_files=['VERSION.txt','version.js','README.md','DEVELOPMENT_MEMORY/PROJECT_STATE.json','DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json','DEVELOPMENT_MEMORY/RELEASE_GATE.md',state.get('current_iteration_record',''),'RELEASE_NOTES_v0.21.0.md','TEST_REPORT_v0.21.0.md']
 for rel in [x for x in identity_files if x]:
     t=text(rel)
     if ver not in t: errors.append(f'current version {ver} absent from {rel}')

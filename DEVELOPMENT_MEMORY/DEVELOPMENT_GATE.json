@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
-  "release": "0.20.5",
-  "build": "2026.07.18.1",
+  "release": "0.21.0",
+  "build": "2026.07.18.2",
   "current_iteration": {
-    "status": "completed_and_verified",
+    "status": "implementation_complete_pending_final_verification",
     "baseline_verified": true,
     "backlog_resurfaced": true,
     "data_compatibility_reviewed": true,
@@ -11,12 +11,13 @@
     "user_approved_scope": true,
     "approved_at": "2026-07-18T05:23:41Z",
     "approved_scope": [
-      "Reconcile all active authority and release identity contradictions",
-      "Update the Constitution to the approved unified Talk to ZEKE design",
-      "Make the continuity audit enforce release identity, current scope, artifact authority, package file count, supersessions, and negative controls",
-      "Reduce competing startup paths and clearly classify current, supporting, historical, and superseded artifacts",
-      "Clarify backlog resurfacing prerequisites and preserve inherited application/data behavior",
-      "Run full regression and package reproducibility verification"
+      "Implement compact expandable activity tiles with granular detail and coaching recommendations",
+      "Convert Coach\u2019s Eye to a compact expandable card with clear actions and evidence language",
+      "Unify cardio activities under the Activity Library instead of a standalone Stair Climber section",
+      "Add Frequent, Favorites, Strength, Cardio, Mobility, and Recovery views",
+      "Apply the same compact library architecture to Health with Frequent, Measurements, and Labs",
+      "Keep proactive page insights while routing deeper analysis to Pattern Lab",
+      "Refine integrated handoff, development continuity, internal consistency, and runtime diagnostics"
     ],
     "explicitly_excluded": [
       "New product features",
@@ -30,7 +31,9 @@
     "completed_at": "2026-07-18T05:30:00Z",
     "final_zip_reopened_and_verified": true,
     "critical_checksums_verified": 180,
-    "unpacked_file_count": 181
+    "unpacked_file_count": 185,
+    "release": "0.21.0",
+    "build": "2026.07.18.2"
   },
   "next_iteration": {
     "status": "awaiting_pre_development_checkpoint",
@@ -39,6 +42,6 @@
     "scope_presented": false,
     "user_approved_scope": null
   },
-  "current_version": "0.20.5",
-  "current_build": "2026.07.18.1"
+  "current_version": "0.21.0",
+  "current_build": "2026.07.18.2"
 }

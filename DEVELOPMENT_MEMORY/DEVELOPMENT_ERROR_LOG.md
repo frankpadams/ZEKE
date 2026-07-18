@@ -42,3 +42,13 @@
 **Failure:** The release audit reported zero errors while the Constitution, release gate, development gate, document index, and file-count record disagreed.
 **Cause:** The audit checked presence and a few strings rather than cross-document invariants.
 **Prevention:** Maintain a machine-readable artifact registry and governance rules; compare current identity and approved scope across authorities; verify actual file count; run negative-control tests that seed contradictions and require audit failure.
+
+
+## ERR-021 — Runtime version source drift
+**Observed:** The browser tab identified v0.20.5 while the in-application header showed v0.20.3/build .12.  
+**Cause:** `app.js` retained a stale fallback and `version.js` populated a different global name.  
+**Prevention:** `version.js` now populates both `ZEKE_VERSION` and `ZEKE_BUILD`; current-release audits must inspect runtime source declarations, not only documentation.
+
+## ERR-022 — Nonfunctional affordance in Activity Library
+**Observed:** Activity cards displayed a help cursor but did not open.  
+**Prevention:** Interactive cards must use pointer semantics, mouse and keyboard activation, visible expanded state, and regression/manual checks.

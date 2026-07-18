@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "current_version": "0.20.5",
-  "current_build": "2026.07.18.1",
+  "current_version": "0.21.0",
+  "current_build": "2026.07.18.2",
   "immutable_principles": [
     "user_owned_canonical_data",
     "ai_advisory_deterministic_commit",

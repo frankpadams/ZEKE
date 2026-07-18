@@ -13,7 +13,7 @@ def run_case(name, mutate):
         print('PASS negative control:',name)
 
 def stale_version(d):
-    p=d/'DEVELOPMENT_MEMORY/RELEASE_GATE.md'; p.write_text(p.read_text().replace('v0.20.5','v0.20.3',1))
+    p=d/'DEVELOPMENT_MEMORY/RELEASE_GATE.md'; p.write_text(p.read_text().replace('0.21.0','0.20.3'))
 def scope_mismatch(d):
     p=d/'DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json'; j=json.loads(p.read_text()); j['current_iteration']['approved_scope'].append('Unauthorized adjacent redesign'); p.write_text(json.dumps(j,indent=2))
 def constitution_conflict(d):
