@@ -1,43 +1,45 @@
-> **Historical/supporting document:** This feature inventory snapshot is retained for context. It does not control the active release or override `00_AI_START_HERE.md` and `DEVELOPMENT_MEMORY/PROJECT_STATE.json`.
+# ZEKE Feature Status — v0.22.2
 
-# ZEKE Feature Status — v0.17.2-alpha
+**Status:** Supporting current feature inventory  
+**Build:** 2026.07.19.3
 
-## Working and intended for testing
-- Google Drive user-owned storage
-- Evidence-first workbook synchronization safeguards
-- Visible build identity and diagnostics
-- Direct weight, sleep, body-measurement, and repeat-exercise entry
-- Historical date context
-- Review Queue with scoped answers
-- Data Integrity census
-- Named restore points with date/time, preview, and pre-restore safety backup
+## Implemented and locally verified
+- User-owned Google Drive architecture and reviewed workbook transaction safeguards.
+- Unified Talk to ZEKE input and preserved raw-input/provenance principles.
+- Dashboard, Health, Fitness, Pattern Lab, Settings, and supporting navigation routes.
+- Persistent desktop/tablet/mobile navigation structure.
+- Coach's Eye lanes for Now, Next Session, and Patterns.
+- Canonical activity-category registry shared by Activity Library and Add Activity.
+- Modality-aware activity summaries.
+- Health Favorites with separate versioned device preference storage.
+- Pattern Lab focus propagation from scoped links and stale-focus clearing on generic navigation.
+- Basic record-scoped workout editing with prior-state correction history and derived-view refresh.
+- Runtime-file registration in project integrity checks.
+- Medication parsing, schedule/status behavior, and connected-workbook regression safeguards inherited from prior verified releases.
 
-## Partial
-- Natural-language interpretation and clarification completion
-- Daily workout grouping and exercise progression
-- Coach's Eye local recommendations
-- Labs and medication direct entry
-- Scientific evidence cards and citations
+## Implemented but requiring deployed or real-device verification
+- Arbitrary-width Dashboard and Fitness reflow.
+- Mobile bottom navigation and tablet/desktop rail behavior on physical devices.
+- Touch target sizing, focus behavior, and screen-reader semantics throughout the current UI.
+- Live Google Drive, Calendar, and direct AI-provider flows.
+- Cache/service-worker behavior after deployment upgrades.
+
+## Partial or intentionally limited
+- Workout History editing: one record at a time only; no global rename, merge, bulk correction, or full undo browser.
+- Activity taxonomy migration: current registry exists, but ambiguous legacy records require a reviewed migration path.
+- Fitness Insights: compact empty behavior exists; richer evidence-based insight cards remain incomplete.
+- Coach's Eye and Pattern Lab: present, but usefulness depends on sufficient real data and continuing validation.
+- Runtime diagnostics: shortened local operational logging exists as a design boundary; field usefulness needs real-use feedback.
 
 ## Planned near-term
-- Structured AI proposal contract
-- Multi-result lab entry
-- Better undo/correction preview
-- Local muscle-group recovery engine
-- Evidence-supported workout-of-the-day recommendations
-- Backup retention management
+- Deployed-origin responsive and accessibility verification.
+- Runtime asset inventory and documented quarantine/removal decisions.
+- Activity identity management design: aliases, record-only rename, global rename, merge, and recategorization safeguards.
+- Reviewed migration queue for ambiguous historical activity categories.
+- Complete Fitness information architecture polish and richer modality-specific charts.
+- Full workout correction-history viewing and practical revert/undo design.
 
 ## Deferred
-- Multi-user/commercial hardening
-- Pets, vehicles, home, finance, and project modules
-
-
-## Current v0.20.3 compatibility status
-- Mandatory prior-conversation, baseline, backlog, data, and scope-approval startup gate
-- Read-only workbook preflight plus explicitly reviewed, journaled, verified commit
-- Backward compatibility with 188 v0.16.3 exact-cell recovery observations
-- Medication status and schedule-aware backfill regression coverage
-- Repository-backed medication confirmation preferences
-- Idempotent generated clarification questions
-
-Rendered responsive and live connected-service verification remain separate release-gate items.
+- Multi-user/commercial hardening.
+- Pets, vehicles, home, finance, and project modules.
+- Event-sourced replay architecture unless a demonstrated need justifies its complexity.

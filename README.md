@@ -1,30 +1,39 @@
-# ZEKE v0.22.1
+# ZEKE v0.22.2
 
-**Build:** 2026.07.19.1  
-**Release:** Persistent Navigation, Coaching Clarity & Continuity Repair Release
+**Build:** 2026.07.19.3  
+**Release:** Responsive Stabilization, Activity Foundation & Continuity Reconciliation
 
-This full replacement packet preserves every application feature delivered in v0.22.0 and repairs the development-continuity materials so the application, release state, authority registry, project-health summary, release gate, tests, and independent-review request all describe one authoritative baseline.
+This is the authoritative full replacement package for ZEKE v0.22.2. It includes the application work completed in build 2026.07.19.2 and a document-by-document continuity reconciliation completed in build 2026.07.19.3. No new user-facing application feature was added in the .3 documentation build.
 
-## Application features preserved from v0.22.0
-- Persistent desktop navigation rail, compact tablet rail, and mobile bottom navigation with More overflow.
-- Fluid arbitrary-width layout behavior and dashboard whitespace reduction.
-- Coach’s Eye separated into Now, Next Session, and Patterns.
-- Abbreviated dashboard coaching linked to authoritative activity-tile detail.
-- Compact default coaching charts and repeated-advice removal.
-- Context-preserving routes to activity details, Pattern Lab, and Talk to ZEKE.
-- Optional profile-backed preferred name with a neutral fallback; no hard-coded user identity.
+## Implemented application work
+- Stabilized Dashboard and Fitness layout structure with independent content-sized rows.
+- Added one canonical activity-category registry shared by the Activity Library and Add Activity flow.
+- Added **Chores & Functional Activity** as a user-facing category.
+- Added modality-aware activity summaries and non-strength metrics.
+- Added Health Favorites using a separate versioned preference key.
+- Repaired Pattern Lab focus propagation and stale-focus clearing.
+- Added basic editing of one workout record at a time, preserving the prior state in correction history and refreshing derived views.
+- Extended integrity checks to active runtime files.
 
-## Continuity repairs in v0.22.1
-- Corrected stale release naming and status language.
-- Normalized the artifact registry and current/historical lifecycle states.
-- Replaced the stale v0.20.5 Project Health summary.
-- Added machine checks for stale registry headers, stale Project Health identity, contradictory release-gate status, and incorrect current-iteration lifecycle.
-- Updated the handoff, state, gate, release notes, test evidence, checksums, and independent-review brief.
+## Continuity reconciliation in build 2026.07.19.3
+- Rewrote the current Architecture and Feature Status documents so they no longer present v0.5/v0.17 snapshots as the operative design.
+- Updated the Backlog with deferred activity-identity operations, taxonomy migration work, deployment verification, asset inventory, and continuity follow-through.
+- Added binding decisions for canonical activity categories, primary modality plus attributes, record-scoped editing, and safe legacy migration.
+- Added development-error entries for documentation/code audit blind spots, stale screenshot evidence, unverified consultant claims, and incomplete continuity reconciliation.
+- Expanded the Handoff Brief, Comprehension Checkpoint, Runtime Diagnostics, Project Health, release gate, release notes, test report, artifact registry, and project state.
+- Rebuilt checksums and re-audited the reopened package.
+
+## Important boundaries
+The following remain deferred:
+- global activity rename across all historical records;
+- duplicate activity-identity merge;
+- bulk recategorization or silent automatic migration of ambiguous legacy activities;
+- a full correction-history browser, global undo, or event-sourced replay architecture;
+- deployed-origin and physical-device visual verification;
+- live Google Drive, Calendar, and AI-provider verification.
 
 ## Deploy
-Replace the deployed ZEKE files with the contents of this folder. Preserve existing `zeke-config.js` values when appropriate. After deployment, hard-refresh once and verify the visible header reports v0.22.1 · 2026.07.19.1.
+Replace the deployed ZEKE files with the contents of this folder. Preserve the existing values in `zeke-config.js` where appropriate. Hard-refresh once and verify that the header reports **v0.22.2 · build 2026.07.19.3**.
 
-## Verification limits
-Static syntax, governance, and regression checks can be run from this package. Live Google Drive, Calendar, AI-provider, deployed-origin rendering, continuous arbitrary-width dragging, and real-device mobile behavior still require verification in the configured environment.
-
-Start future development with [00_AI_START_HERE.md](00_AI_START_HERE.md).
+## Continue development
+Future AI development must begin with [`00_AI_START_HERE.md`](00_AI_START_HERE.md), not this README. The README is a current overview; it does not authorize edits or override the authority chain.
