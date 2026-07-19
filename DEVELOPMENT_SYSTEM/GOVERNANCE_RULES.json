@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "current_version": "0.21.0",
-  "current_build": "2026.07.18.2",
+  "current_version": "0.22.1",
+  "current_build": "2026.07.19.1",
   "immutable_principles": [
     "user_owned_canonical_data",
     "ai_advisory_deterministic_commit",
@@ -27,6 +27,10 @@
     "relative markdown links resolve",
     "no unsafe GLP-1-to-tirzepatide alias",
     "no active authority conflict with a recorded supersession",
-    "audit negative-control tests pass"
+    "audit negative-control tests pass",
+    "project health identity matches current release",
+    "release gate status distinguishes package completion from environment verification",
+    "artifact registry top-level and current identity fields agree",
+    "current iteration is authoritative and prior iteration records are historical"
   ]
 }

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "release": "0.20.5",
-  "build": "2026.07.18.1",
+  "release": "0.22.1",
+  "build": "2026.07.19.1",
   "artifacts": [
     {
       "path": "00_AI_START_HERE.md",
@@ -71,17 +71,17 @@
     {
       "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.20.5.md",
       "status": "historical",
-      "purpose": "current approved scope and results"
+      "purpose": "Historical approved scope and implementation record"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md",
       "status": "supporting",
-      "purpose": "concise health summary"
+      "purpose": "Current project health and verification-boundary summary"
     },
     {
       "path": "README.md",
       "status": "supporting",
-      "purpose": "deployment and release overview"
+      "purpose": "Current deployment, feature-preservation, and continuity-repair overview"
     },
     {
       "path": "RELEASE_NOTES_v0.20.5.md",
@@ -95,8 +95,8 @@
     },
     {
       "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.21.0.md",
-      "status": "authoritative",
-      "purpose": "Current approved scope and implementation record",
+      "status": "historical",
+      "purpose": "Historical approved scope and implementation record",
       "audience": [
         "AI developer",
         "human reviewer"
@@ -110,6 +110,35 @@
         "AI developer",
         "human reviewer"
       ]
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.0.md",
+      "status": "historical",
+      "purpose": "Historical v0.22.0 feature implementation record"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.1.md",
+      "status": "authoritative",
+      "purpose": "Current approved iteration, implementation, and package-verification record",
+      "audience": [
+        "AI developer",
+        "human reviewer"
+      ]
+    },
+    {
+      "path": "RELEASE_NOTES_v0.22.1.md",
+      "status": "supporting",
+      "purpose": "Current release summary"
+    },
+    {
+      "path": "TEST_REPORT_v0.22.1.md",
+      "status": "supporting",
+      "purpose": "Current test and verification evidence"
+    },
+    {
+      "path": "INDEPENDENT_AI_REVIEW_REQUEST_v0.22.1.md",
+      "status": "supporting",
+      "purpose": "Current independent-review instructions"
     }
   ],
   "historical_patterns": [
@@ -123,6 +152,6 @@
     "DEVELOPMENT_MEMORY/README_FIRST.md",
     "DEVELOPMENT_MEMORY/DOCUMENT_INDEX.md"
   ],
-  "current_version": "0.21.0",
-  "current_build": "2026.07.18.2"
+  "current_version": "0.22.1",
+  "current_build": "2026.07.19.1"
 }

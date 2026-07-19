@@ -1,14 +1,10 @@
-# Release Gate — ZEKE v0.21.0
+# Release Gate — ZEKE v0.22.1
 
-**Build:** 2026.07.18.2  
-**Status:** Authoritative
+**Build:** 2026.07.19.1  
+**Status:** Package verification complete; environment verification outstanding
 
-Release scope is limited to the approved v0.21.0 adaptive-library, Coach’s Eye, Health insight, Pattern Lab routing, runtime diagnostics, and continuity-refinement work.
+The approved continuity-repair scope is complete. All v0.22.0 application features remain included unchanged. Local syntax, structural regression, governance, negative-control, JSON, checksum, and package-reopen checks are complete.
 
-## Required before distribution
-- JavaScript syntax checks pass.
-- Governance audit passes with zero errors.
-- Negative-control governance tests pass.
-- Existing medication and data-transaction regression tests pass.
-- Final ZIP is reopened and compared with staging.
-- Live-service and deployed-origin limitations are stated explicitly.
+The following are not claimed as verified and remain explicit follow-up items: credentialed Google Drive/Calendar/AI-provider behavior, deployed-origin rendering, continuous arbitrary-width browser dragging, and real-device mobile usability.
+
+Current scope and evidence are recorded in `ITERATION_RECORD_v0.22.1.md` and `TEST_REPORT_v0.22.1.md`.

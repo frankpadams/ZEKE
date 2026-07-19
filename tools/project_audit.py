@@ -26,7 +26,7 @@ ver=str(state.get('current_version','')); build=str(state.get('current_build',''
 if not ver or not build: errors.append('project state lacks current version/build')
 
 # Identity agreement in current authorities/supporting release docs
-identity_files=['VERSION.txt','version.js','README.md','DEVELOPMENT_MEMORY/PROJECT_STATE.json','DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json','DEVELOPMENT_MEMORY/RELEASE_GATE.md',state.get('current_iteration_record',''),'RELEASE_NOTES_v0.21.0.md','TEST_REPORT_v0.21.0.md']
+identity_files=['VERSION.txt','version.js','README.md','DEVELOPMENT_MEMORY/PROJECT_STATE.json','DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json','DEVELOPMENT_MEMORY/RELEASE_GATE.md',state.get('current_iteration_record',''),f'RELEASE_NOTES_v{ver}.md',f'TEST_REPORT_v{ver}.md']
 for rel in [x for x in identity_files if x]:
     t=text(rel)
     if ver not in t: errors.append(f'current version {ver} absent from {rel}')
@@ -60,6 +60,29 @@ for rel,a in registered.items():
 for rel in registry.get('superseded_entry_files',[]):
     t=text(rel).lower()
     if 'superseded' not in t or '00_ai_start_here.md' not in t: errors.append(f'superseded entry is not a clear redirect: {rel}')
+
+
+# Current continuity metadata must be internally current, not merely present
+project_health=text('DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md')
+if f'# Project Health — v{ver}' not in project_health:
+    errors.append('Project Health identity is stale or missing current version')
+release_gate=text('DEVELOPMENT_MEMORY/RELEASE_GATE.md')
+if 'package verification complete' not in release_gate.lower():
+    errors.append('release gate does not state package verification completion')
+if 'environment verification outstanding' not in release_gate.lower():
+    errors.append('release gate does not preserve environment-verification boundary')
+if 'pending final verification' in release_gate.lower():
+    errors.append('release gate uses ambiguous contradictory pending-final-verification status')
+if str(registry.get('release','')) != ver or str(registry.get('current_version','')) != ver:
+    errors.append('artifact registry release/current_version fields disagree')
+if str(registry.get('build','')) != build or str(registry.get('current_build','')) != build:
+    errors.append('artifact registry build/current_build fields disagree')
+current_iterations=[p for p,a in registered.items() if p.startswith('DEVELOPMENT_MEMORY/ITERATION_RECORD_v') and a.get('status')=='authoritative']
+if current_iterations != [iteration]:
+    errors.append(f'current iteration lifecycle mismatch: authoritative iteration records={current_iterations!r}, expected={[iteration]!r}')
+for pth,a in registered.items():
+    if pth.startswith('DEVELOPMENT_MEMORY/ITERATION_RECORD_v') and pth != iteration and a.get('status')!='historical':
+        errors.append(f'prior iteration record is not historical: {pth}')
 
 # Known constitutional supersession
 constitution=text('ZEKE_CONSTITUTION.md').lower()

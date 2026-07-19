@@ -1,47 +1,47 @@
 {
   "schema_version": 2,
-  "release": "0.21.0",
-  "build": "2026.07.18.2",
+  "release": "0.22.1",
+  "build": "2026.07.19.1",
   "current_iteration": {
-    "status": "implementation_complete_pending_final_verification",
+    "status": "implementation_complete_verified_for_delivery",
     "baseline_verified": true,
     "backlog_resurfaced": true,
-    "data_compatibility_reviewed": true,
     "scope_presented": true,
     "user_approved_scope": true,
-    "approved_at": "2026-07-18T05:23:41Z",
+    "approved_at": "2026-07-19T00:22:27Z",
+    "release": "0.22.1",
+    "build": "2026.07.19.1",
     "approved_scope": [
-      "Implement compact expandable activity tiles with granular detail and coaching recommendations",
-      "Convert Coach\u2019s Eye to a compact expandable card with clear actions and evidence language",
-      "Unify cardio activities under the Activity Library instead of a standalone Stair Climber section",
-      "Add Frequent, Favorites, Strength, Cardio, Mobility, and Recovery views",
-      "Apply the same compact library architecture to Health with Frequent, Measurements, and Labs",
-      "Keep proactive page insights while routing deeper analysis to Pattern Lab",
-      "Refine integrated handoff, development continuity, internal consistency, and runtime diagnostics"
+      "Preserve all v0.22.0 navigation, responsive-layout, coaching, context, and profile features unchanged",
+      "Correct stale release identity and release-status language across current continuity authorities",
+      "Normalize the artifact registry release/build headers and current versus historical lifecycle states",
+      "Rewrite Project Health for the current complete baseline and its verification limits",
+      "Strengthen governance audit and negative controls against stale continuity metadata and contradictory status",
+      "Update project state, development gate, handoff, release notes, test report, checksums, and independent-review request",
+      "Keep independent review focused on both the application features and continuity sufficiency"
     ],
     "explicitly_excluded": [
-      "New product features",
-      "User-data modification",
-      "Dashboard drag-and-drop implementation",
-      "Fitness redesign",
-      "Live credentialed provider changes",
-      "Canonical event-schema migration"
+      "New application features beyond v0.22.0",
+      "Canonical user-data migration",
+      "Live provider credential changes",
+      "New non-health/fitness modules",
+      "Automatic Today actions",
+      "Expanded activity-tile layout redesign"
     ],
-    "prior_conversations_reviewed": true,
-    "completed_at": "2026-07-18T05:30:00Z",
+    "completed_at": "2026-07-19T00:35:00Z",
     "final_zip_reopened_and_verified": true,
-    "critical_checksums_verified": 180,
-    "unpacked_file_count": 185,
-    "release": "0.21.0",
-    "build": "2026.07.18.2"
+    "critical_checksums_verified": 193,
+    "unpacked_file_count": 194,
+    "prior_conversations_reviewed": true,
+    "data_compatibility_reviewed": true
   },
   "next_iteration": {
-    "status": "awaiting_pre_development_checkpoint",
+    "status": "awaiting_independent_review_and_pre_development_checkpoint",
     "baseline_verified": false,
     "backlog_resurfaced": false,
     "scope_presented": false,
     "user_approved_scope": null
   },
-  "current_version": "0.21.0",
-  "current_build": "2026.07.18.2"
+  "current_version": "0.22.1",
+  "current_build": "2026.07.19.1"
 }

@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
-  "release": "0.21.0",
-  "build": "2026.07.18.2",
+  "release": "0.22.1",
+  "build": "2026.07.19.1",
   "algorithm": "SHA-256",
-  "file_count_excluding_manifest": 184,
+  "file_count_excluding_manifest": 193,
   "files": [
     {
       "path": "00_AI_START_HERE.md",
@@ -47,7 +47,7 @@
     },
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json",
-      "sha256": "71cec0a2ce7d1eece03e5824d6675f9a60ae787c8ab45e5759d26c946a92bf36"
+      "sha256": "daa3ae6a518d000e4fc63f656ef67569d16435acc8071e360138f1fe07ee11f1"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
@@ -78,8 +78,16 @@
       "sha256": "5803f0a08c804938a3b260d3084a51d3dba97472d9272de4c2b1d7fa62a26dfd"
     },
     {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.0.md",
+      "sha256": "094118784f7f6bfac269a8aaf486744bdeacfafd65add05982b55a6664a4508b"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.1.md",
+      "sha256": "716726bc631a472ec3b5ba9513d93ae987eb151f68804ee969673cdd71911bd3"
+    },
+    {
       "path": "DEVELOPMENT_MEMORY/PROJECT_STATE.json",
-      "sha256": "9f3154f5625cbb7c333db2ec0c79aa45e6bc08b92841a8dce2f8f440049f2c3e"
+      "sha256": "ec691c6579e64c66d47b5d2755ed4f6facc13845eb74b3a4b5b26d8882927371"
     },
     {
       "path": "DEVELOPMENT_MEMORY/README_FIRST.md",
@@ -87,11 +95,11 @@
     },
     {
       "path": "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
-      "sha256": "01d5405595323ebfd3d91610dfd11de0ad6ab477f6bb5bac988ea0a60d60a348"
+      "sha256": "dc8274743292f77c42fc97062bc855aafbb9e17fefc98e82df5c46eede6f0191"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
-      "sha256": "cf14ed7d684da94c6fbc4e0476bff71ce182ec3719dd0af2192c8c0ab5f169c4"
+      "sha256": "c00f0359eaebce97442f0f3a7c2190a7c2ef46439d1da91268e737842f3c2705"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md",
@@ -103,11 +111,11 @@
     },
     {
       "path": "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
-      "sha256": "e01568dc94598368e4d88ca16ee27c6628a34a5b40903881364d08744ae9749c"
+      "sha256": "fb6f47944bfa05da9dd7c993b4b1a7d9f020656228d5219e91e78d1f99234f69"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md",
-      "sha256": "216d339cc9e74b555bc71bc39d225e58aaf9065cc480fb3a4be5bdab835e57a5"
+      "sha256": "f06cc0a2a01945a2c28067d64f89f7e768389cae551432f1cb212740a41c1e12"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/PROJECT_IDENTITY.md",
@@ -139,11 +147,19 @@
     },
     {
       "path": "HANDOFF_BRIEF.md",
-      "sha256": "1e90c5f70acb6dc441fb69baad99e08cb70a347907b7641dfa674e7283dab51e"
+      "sha256": "6ce8e2f360289d9a94c80aea0f0ffd68795e24c7d604e08de12eb1678c526038"
     },
     {
       "path": "HISTORICAL_ARTIFACTS_NOTE.md",
       "sha256": "489a1de3d2ff3219bb041abd9b4db54754431db237b49ced836997f6a916175e"
+    },
+    {
+      "path": "INDEPENDENT_AI_REVIEW_REQUEST_v0.22.0.md",
+      "sha256": "99940279c778efd964f30b941e4b67fca809cb570f2afc86f43b03663d164dd9"
+    },
+    {
+      "path": "INDEPENDENT_AI_REVIEW_REQUEST_v0.22.1.md",
+      "sha256": "35e683f2a82e57b3dfc520759a5bc8cb37bd1c3ab71edb669631fc4703466d15"
     },
     {
       "path": "MIGRATION_NOTES_v0.8.0.md",
@@ -183,7 +199,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "bd463a136abebbeab8f68eb9fedcb7b6e1f71b137eb9592d8a656d67ab92b82f"
+      "sha256": "3aa80c56f6890bd78600788a4db823cff83f6369694ff21f17562d5e4ae9d178"
     },
     {
       "path": "README_DEPLOY.md",
@@ -322,6 +338,14 @@
       "sha256": "2e34eed53318d76b761439250b55533c5cc22ddc2333ec484857eb3eace65e47"
     },
     {
+      "path": "RELEASE_NOTES_v0.22.0.md",
+      "sha256": "79d6e4141df20611d4a0cf1d936c5db1cf7c80770a11c292dc395bbb09813a7b"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.22.1.md",
+      "sha256": "ecd6a184698f430d925d0dc462dcf0949558d7096715b77532d007683a8dba3b"
+    },
+    {
       "path": "RELEASE_NOTES_v0.7.0.md",
       "sha256": "f59c650095396367c45f9c7e518542d3c5ab413e279ce8983017e96ea6560399"
     },
@@ -422,6 +446,14 @@
       "sha256": "0b6d903f7163e5351a80b4fe62c4c48b9172b5fb2ad22fc4045e8a66a2634fc7"
     },
     {
+      "path": "TEST_REPORT_v0.22.0.md",
+      "sha256": "4e2b63daaa7372d187d02b2dc443077a2c7e5725fc9568a0ff22aa815dcef886"
+    },
+    {
+      "path": "TEST_REPORT_v0.22.1.md",
+      "sha256": "ba8aaeadf2ac35c2eae18ec9588fcb242a25dd419d67b07c01a3d553655df073"
+    },
+    {
       "path": "TEST_REPORT_v0.7.0.md",
       "sha256": "d0ddbad6f05879571c2f2481757e93fdf65893f359a6a5ea11acb1e232c3091d"
     },
@@ -439,7 +471,7 @@
     },
     {
       "path": "VERSION.txt",
-      "sha256": "64c9b0dd2f37baa62a4ca1514edaeffd62785badba895cf70a4be381f4c0e05e"
+      "sha256": "d293737ff926b271a10a601455796dca9d15381f66f4384627faa89058ab3cc3"
     },
     {
       "path": "ZEKE_CONSTITUTION.md",
@@ -451,7 +483,7 @@
     },
     {
       "path": "app.js",
-      "sha256": "0c71e1eedabff3ce7993e3c8282184e869071f0c175f9eb6b53d16cdd9dbfd56"
+      "sha256": "ed0c1e47eaa1786d704c32d29cf70c9c004cb123dddeb1e7a802e2a3ce8694e3"
     },
     {
       "path": "apps-script/CalendarSync.gs",
@@ -531,7 +563,7 @@
     },
     {
       "path": "assets/app.js",
-      "sha256": "0e0084b3bc8542208ba7212428a967a9424e24f9e65b49d30684c2a5d1eacc49"
+      "sha256": "816f608b86157dff013d4037752661d8391f0df5b7b716c61be6c900302d31f7"
     },
     {
       "path": "assets/branding/ZEKE_Brand_Board_2026-07.jpg",
@@ -587,7 +619,7 @@
     },
     {
       "path": "assets/styles.css",
-      "sha256": "59cf594c0f797fd3a5add8ba6b0e773f9649e46661b6aa8c80b6fcb5b70d1e84"
+      "sha256": "344b58e1ec6ec4d93045d4089f76881586e54aa8a4cd87524ba071c29876a3d7"
     },
     {
       "path": "assets/zeke-ai-router-test.css",
@@ -671,7 +703,7 @@
     },
     {
       "path": "index.html",
-      "sha256": "4fd6dec4bc8a2a0408b2d49315a3dce7e38ec13636b4691d35cfd91d25d66790"
+      "sha256": "056ac537303b6a37e84dc35102bbf427254d15b3b8e4554736b738c4fa103061"
     },
     {
       "path": "manifest.webmanifest",
@@ -695,7 +727,7 @@
     },
     {
       "path": "tests/governance-negative-controls.py",
-      "sha256": "60691267860d1dfd5bd3bd815662c9a8791f63444a563416256fc20539add77d"
+      "sha256": "1b4710b50fda9cd7d885078567b55da942532c41a2e687d1fb06ef56253bee9e"
     },
     {
       "path": "tests/medication-action-status.test.js",
@@ -706,8 +738,12 @@
       "sha256": "159b03e00349324bfc802ef33ba1fcc8851b86106d75e4462100666643999eb3"
     },
     {
+      "path": "tests/navigation-coaching-profile.test.js",
+      "sha256": "26ca2a93ef00b45eb8545268c006f6b255006d6ea7db5cba2a769ce961079d0d"
+    },
+    {
       "path": "tests/release-structure.test.js",
-      "sha256": "7b8fbf7034a8d1e78cf70f9e8729566e428b67da487bf767a8cc835293516708"
+      "sha256": "b0b7159575f2563b520bd5346f235e9645df4838c772c92850229c26fd3ac424"
     },
     {
       "path": "tests/workbook-commit-verify.test.js",
@@ -727,11 +763,11 @@
     },
     {
       "path": "tools/project_audit.py",
-      "sha256": "850e478876ea43b00ece4082c5734a6e4daca1d84ec2649ebcce318e9246d818"
+      "sha256": "64b27b1311d06c9002ece8dee701a47487e9e73f78b8b4c8594e18a6bc9ed4b9"
     },
     {
       "path": "version.js",
-      "sha256": "17886ff079d8845dbabd313ee9c6794c1ce888479087cb9ae29bb0c0b661806c"
+      "sha256": "45a07c045db0e0ab67a4695b6b9b7050adee7a4b7a8abd79642c463bf9b1423e"
     },
     {
       "path": "xlsx-bundle.js",

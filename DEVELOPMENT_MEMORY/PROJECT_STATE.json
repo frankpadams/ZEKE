@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
-  "current_version": "0.21.0",
-  "current_build": "2026.07.18.2",
-  "release_label": "Adaptive Libraries & Continuity Refinement Release",
-  "baseline": "v0.20.5 Continuity Baseline Cleanup & Enforcement",
+  "current_version": "0.22.1",
+  "current_build": "2026.07.19.1",
+  "release_label": "Persistent Navigation, Coaching Clarity & Continuity Repair Release",
+  "baseline": "v0.22.0 Persistent Navigation & Coaching Clarity",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
   "governance_rules": "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
   "authoritative_documents": [
@@ -20,16 +20,13 @@
     "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
     "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
     "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
-    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.21.0.md"
+    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.1.md"
   ],
   "implemented_this_release": [
-    "Implement compact expandable activity tiles with granular detail and coaching recommendations",
-    "Convert Coach\u2019s Eye to a compact expandable card with clear actions and evidence language",
-    "Unify cardio activities under the Activity Library instead of a standalone Stair Climber section",
-    "Add Frequent, Favorites, Strength, Cardio, Mobility, and Recovery views",
-    "Apply the same compact library architecture to Health with Frequent, Measurements, and Labs",
-    "Keep proactive page insights while routing deeper analysis to Pattern Lab",
-    "Refine integrated handoff, development continuity, internal consistency, and runtime diagnostics"
+    "All v0.22.0 application features preserved unchanged",
+    "Continuity authorities and lifecycle metadata normalized",
+    "Governance checks strengthened against stale and contradictory handoff state",
+    "Independent-review packet updated to assess features and continuity together"
   ],
   "inherited_verified_evidence": [
     "Medication parser and Today-action regressions",
@@ -38,17 +35,17 @@
   ],
   "known_issues": [
     "Live Google Drive, Calendar, and AI-provider behavior requires deployed credentialed verification",
-    "Deployed-origin browser rendering requires verification",
-    "Expanded tiles require manual usability validation with real user data",
+    "Deployed-origin browser rendering and arbitrary-width drag testing requires user verification",
+    "Mobile More-sheet usability requires real-device verification",
     "Legacy AI evidence mapping remains unresolved"
   ],
   "next_review_items": [
+    "Independent AI review of v0.22.1 complete packet",
     "Deployed-origin responsive verification",
     "Runtime diagnostics feedback after real use",
-    "FIT-014 follow-up usability polish",
     "Legacy AI evidence mapping"
   ],
-  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.21.0.md",
+  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.1.md",
   "files_to_read_first": [
     "00_AI_START_HERE.md"
   ],
