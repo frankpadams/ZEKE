@@ -1,27 +1,19 @@
 # ZEKE Handoff Brief
 
-**Current baseline:** ZEKE v0.21.0 · build 2026.07.18.2  
-**Release:** Continuity Baseline Cleanup & Enforcement Release
+**Current baseline:** ZEKE v0.22.1 · build 2026.07.19.1  
+**Release:** Persistent Navigation, Coaching Clarity & Continuity Repair Release
 
-## What ZEKE is
-A private, user-owned personal management system. Health and fitness are the first domains, not the architectural limit. AI interprets and proposes; deterministic logic and user confirmation govern canonical writes.
-
-## Current operational state
-- v0.20.3 workbook compatibility and transaction safeguards remain in place.
-- v0.20.4 medication-class clarification remains in place: “GLP-1” alone is ambiguous and does not identify tirzepatide.
-- This release reconciles the development authority chain and strengthens the audit so contradictory handoffs cannot report a clean result.
-- Live Google Drive, Calendar, AI-provider, and deployed-origin behavior remain environment-dependent verification items.
+## What this baseline contains
+All application changes from v0.22.0 remain intact: persistent multi-device navigation, continuously fluid layout rules, a three-lane Coach’s Eye, compact coaching evidence, advice deduplication, context-preserving coaching routes, and an optional profile-backed preferred name. v0.22.1 repairs continuity metadata and governance so those features and their verification limits are represented consistently throughout the packet.
 
 ## Preserve
-User-owned canonical storage; provenance; missing-is-unknown; reversible imports; unified Talk to ZEKE input; no silent completion or carry-forward; AI proposal rather than direct canonical writing.
+User-owned canonical storage; provenance; missing-is-unknown; reversible imports; unified Talk to ZEKE; no silent completion or carry-forward; AI proposal rather than direct canonical writing; first-class peer modules; profile-backed rather than hard-coded personal identity.
 
-## May be challenged with findings and approval
-Current UI composition, parser implementation, synchronization internals, module information architecture, and confirmation friction—provided immutable principles are preserved.
+## Current review objective
+An independent AI should review both the preserved v0.22.0 application features and the repaired v0.22.1 continuity system. Its findings are input to the next linear iteration, not a separate branch.
 
-## Current next-review candidates
-- FIT-014: Fitness information architecture polish.
-- UI-021: dashboard editing, only after its responsive-evidence prerequisite is explicitly resolved.
-- Legacy AI evidence mapping.
+## Verification limits
+Live providers, deployed-origin rendering, continuous arbitrary-width drag testing, and real-device mobile behavior remain environment-dependent.
 
 ## Required start
-Read `00_AI_START_HERE.md`, run `python tools/project_audit.py`, complete the comprehension checkpoint, present findings and a concrete investigation scope, then STOP for approval.
+Read `00_AI_START_HERE.md`, run `python tools/project_audit.py`, complete the comprehension checkpoint, present findings and scope, then STOP for approval.

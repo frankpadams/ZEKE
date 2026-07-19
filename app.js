@@ -39,7 +39,7 @@ function main(){
 }
 function home(){
  if(state.response)return `<section class=head><h1>ZEKE response</h1></section><section class=ask>${askbar()}</section><section class=content>${answer()}</section>`;
- return `<section class=head><h1>Good morning, Frank.</h1><div class=chips><span class=chip>${state.settings.aiEnabled?'Gemini enabled':'AI not connected'}</span><span class=chip>Atorvastatin not confirmed</span><span class=chip>Protein tracking ready</span></div></section>
+ return `<section class=head><h1>Good morning.</h1><div class=chips><span class=chip>${state.settings.aiEnabled?'Gemini enabled':'AI not connected'}</span><span class=chip>Atorvastatin not confirmed</span><span class=chip>Protein tracking ready</span></div></section>
  <section class=ask>${askbar()}</section>
  <section class=content>
  <div class=grid>
