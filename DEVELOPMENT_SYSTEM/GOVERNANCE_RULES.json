@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "current_version": "0.22.1",
-  "current_build": "2026.07.19.1",
+  "current_version": "0.22.2",
+  "current_build": "2026.07.19.3",
   "immutable_principles": [
     "user_owned_canonical_data",
     "ai_advisory_deterministic_commit",
@@ -31,6 +31,9 @@
     "project health identity matches current release",
     "release gate status distinguishes package completion from environment verification",
     "artifact registry top-level and current identity fields agree",
-    "current iteration is authoritative and prior iteration records are historical"
+    "current iteration is authoritative and prior iteration records are historical",
+    "active standing continuity documents are reviewed for relevance",
+    "runtime files are registered and present",
+    "release claims do not exceed evidence"
   ]
 }

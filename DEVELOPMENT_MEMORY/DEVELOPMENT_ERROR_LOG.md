@@ -52,3 +52,24 @@
 ## ERR-022 — Nonfunctional affordance in Activity Library
 **Observed:** Activity cards displayed a help cursor but did not open.  
 **Prevention:** Interactive cards must use pointer semantics, mouse and keyboard activation, visible expanded state, and regression/manual checks.
+
+## ERR-023 — Governance audit covered documents but not application truth
+- **Failure:** Continuity checks could report zero errors while active code, CSS, and release claims remained inconsistent.
+- **Impact:** A future developer could trust a coherent-looking packet while editing the wrong files or relying on overstated behavior.
+- **Prevention:** Register active runtime files, verify their existence and identity, and add claim-specific tests where feasible. Documentation audit success is not proof of rendered behavior.
+
+## ERR-024 — Stale screenshots were treated as current-build evidence
+- **Failure:** An independent-review packet included screenshots from different builds without labeling each screenshot's version.
+- **Impact:** Already-fixed historical behavior could be misclassified as a current defect.
+- **Prevention:** Every review screenshot must include or be accompanied by source version/build, capture date, route, viewport, and cache-refresh state.
+
+## ERR-025 — Consultant hypotheses were stated as verified defects
+- **Failure:** A second-opinion report asserted race conditions and other failures without a reproducible execution path or evidence.
+- **Impact:** Speculative architecture could be implemented to solve a condition that did not exist.
+- **Prevention:** Classify external-review findings as verified, plausible hypothesis, or unsupported. Require reproduction, code path, or test before treating a hypothesis as an implementation requirement.
+
+## ERR-026 — Continuity documents were only partially reconciled
+- **Failure:** A release updated primary state/gate records but carried forward Architecture, Feature Status, Backlog, Decision Log, Error Log, and related guidance without a document-by-document relevance review.
+- **Impact:** The package contained a current release identity alongside obsolete architectural and feature descriptions.
+- **Prevention:** DEC-021 applies. The release checklist must enumerate every authoritative/supporting standing document, record whether it changed or was reviewed unchanged, then rebuild the registry, checksums, and package audit.
+

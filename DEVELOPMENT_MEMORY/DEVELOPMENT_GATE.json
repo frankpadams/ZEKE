@@ -1,47 +1,51 @@
 {
   "schema_version": 2,
-  "release": "0.22.1",
-  "build": "2026.07.19.1",
+  "release": "0.22.2",
+  "build": "2026.07.19.3",
   "current_iteration": {
     "status": "implementation_complete_verified_for_delivery",
     "baseline_verified": true,
     "backlog_resurfaced": true,
     "scope_presented": true,
     "user_approved_scope": true,
-    "approved_at": "2026-07-19T00:22:27Z",
-    "release": "0.22.1",
-    "build": "2026.07.19.1",
+    "approved_at": "2026-07-19T02:26:15Z",
+    "release": "0.22.2",
+    "build": "2026.07.19.3",
     "approved_scope": [
-      "Preserve all v0.22.0 navigation, responsive-layout, coaching, context, and profile features unchanged",
-      "Correct stale release identity and release-status language across current continuity authorities",
-      "Normalize the artifact registry release/build headers and current versus historical lifecycle states",
-      "Rewrite Project Health for the current complete baseline and its verification limits",
-      "Strengthen governance audit and negative controls against stale continuity metadata and contradictory status",
-      "Update project state, development gate, handoff, release notes, test report, checksums, and independent-review request",
-      "Keep independent review focused on both the application features and continuity sufficiency"
+      "Repair and consolidate responsive dashboard and fitness layouts",
+      "Extend governance coverage to active runtime code and inventory legacy assets without unsafe deletion",
+      "Repair Pattern Lab context propagation and stale-context clearing",
+      "Add Health Favorites with separate versioned preference storage",
+      "Create one canonical activity taxonomy including Chores & Functional Activity",
+      "Make activity summaries and detail metrics modality-aware",
+      "Add basic authoritative per-record workout editing with correction history and derived-view refresh",
+      "Scan active runtime files for hard-coded personal identity and correct verified occurrences",
+      "Update tests and continuity documents to match only implemented and verified behavior"
     ],
     "explicitly_excluded": [
-      "New application features beyond v0.22.0",
-      "Canonical user-data migration",
+      "Global activity rename across all records",
+      "Merging duplicate activity identities",
+      "Bulk historical recategorization or automatic ambiguous migration",
+      "Full undo interface or event-sourced runtime replay",
       "Live provider credential changes",
-      "New non-health/fitness modules",
-      "Automatic Today actions",
-      "Expanded activity-tile layout redesign"
+      "New non-health/fitness modules"
     ],
-    "completed_at": "2026-07-19T00:35:00Z",
+    "completed_at": "2026-07-19T03:40:00Z",
     "final_zip_reopened_and_verified": true,
-    "critical_checksums_verified": 193,
-    "unpacked_file_count": 194,
+    "unpacked_file_count": 199,
     "prior_conversations_reviewed": true,
-    "data_compatibility_reviewed": true
+    "data_compatibility_reviewed": true,
+    "critical_checksums_verified": 198,
+    "continuity_corpus_reconciled": true,
+    "continuity_reconciliation_requested_at": "2026-07-19T02:35:49Z"
   },
   "next_iteration": {
-    "status": "awaiting_independent_review_and_pre_development_checkpoint",
+    "status": "awaiting_future_scope",
     "baseline_verified": false,
     "backlog_resurfaced": false,
     "scope_presented": false,
     "user_approved_scope": null
   },
-  "current_version": "0.22.1",
-  "current_build": "2026.07.19.1"
+  "current_version": "0.22.2",
+  "current_build": "2026.07.19.3"
 }

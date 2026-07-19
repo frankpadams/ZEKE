@@ -1,10 +1,24 @@
-# Release Gate — ZEKE v0.22.1
+# Release Gate — v0.22.2
 
-**Build:** 2026.07.19.1  
-**Status:** Package verification complete; environment verification outstanding
+**Build:** 2026.07.19.3
 
-The approved continuity-repair scope is complete. All v0.22.0 application features remain included unchanged. Local syntax, structural regression, governance, negative-control, JSON, checksum, and package-reopen checks are complete.
+## Status
+Package verification complete. Environment verification outstanding.
 
-The following are not claimed as verified and remain explicit follow-up items: credentialed Google Drive/Calendar/AI-provider behavior, deployed-origin rendering, continuous arbitrary-width browser dragging, and real-device mobile usability.
+## Package evidence complete
+- Current identity synchronized across runtime and continuity authorities.
+- Active standing continuity documents reviewed and reconciled.
+- Artifact registry updated to current release/supporting files.
+- Runtime files registered and present.
+- JavaScript syntax and release regressions passed.
+- Governance audit and seeded negative controls passed.
+- Checksums rebuilt after documentation reconciliation.
+- Final ZIP reopened, extracted, checksum-verified, and re-audited.
 
-Current scope and evidence are recorded in `ITERATION_RECORD_v0.22.1.md` and `TEST_REPORT_v0.22.1.md`.
+## Not claimed
+- Live Google Drive, Calendar, or AI-provider operation.
+- Deployed-origin arbitrary-width rendering.
+- Physical-device mobile/accessibility behavior.
+- Reproduction or resolution of the reported repeated-advice condition.
+
+No environment-dependent behavior may be promoted to verified based solely on this release gate.

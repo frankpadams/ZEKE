@@ -38,6 +38,14 @@ for name,obj in [('development gate',gate),('governance rules',rules),('artifact
     if rv!=ver: errors.append(f'{name} version {rv!r} disagrees with {ver}')
     if rb!=build: errors.append(f'{name} build {rb!r} disagrees with {build}')
 
+# Active runtime file coverage
+runtime_files=registry.get('runtime_files',[])
+required_runtime=['index.html','version.js','assets/app.js','assets/data-layer.js','assets/parser.js','assets/ai-router.js','assets/styles.css']
+for rel in required_runtime:
+    if rel not in runtime_files: errors.append(f'active runtime file absent from registry: {rel}')
+for rel in runtime_files:
+    if not (root/rel).is_file(): errors.append(f'missing registered runtime file: {rel}')
+
 # Current iteration and approved scope agreement
 iteration=state.get('current_iteration_record','')
 itxt=text(iteration)

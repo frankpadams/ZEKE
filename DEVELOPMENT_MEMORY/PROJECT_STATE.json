@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
-  "current_version": "0.22.1",
-  "current_build": "2026.07.19.1",
-  "release_label": "Persistent Navigation, Coaching Clarity & Continuity Repair Release",
-  "baseline": "v0.22.0 Persistent Navigation & Coaching Clarity",
+  "current_version": "0.22.2",
+  "current_build": "2026.07.19.3",
+  "release_label": "Responsive Stabilization, Activity Foundation & Continuity Reconciliation",
+  "baseline": "v0.22.1 Persistent Navigation, Coaching & Continuity Repair",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
   "governance_rules": "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
   "authoritative_documents": [
@@ -20,13 +20,17 @@
     "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
     "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
     "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
-    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.1.md"
+    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.2.md"
   ],
   "implemented_this_release": [
-    "All v0.22.0 application features preserved unchanged",
-    "Continuity authorities and lifecycle metadata normalized",
-    "Governance checks strengthened against stale and contradictory handoff state",
-    "Independent-review packet updated to assess features and continuity together"
+    "Responsive dashboard and Fitness layout stabilization",
+    "Canonical activity taxonomy with functional activity",
+    "Modality-aware activity summaries",
+    "Health favorites with versioned preference key",
+    "Pattern Lab focus propagation and clearing",
+    "Basic per-record workout editing with correction history",
+    "Runtime code integrity coverage",
+    "Complete active continuity-corpus reconciliation in build 2026.07.19.3"
   ],
   "inherited_verified_evidence": [
     "Medication parser and Today-action regressions",
@@ -34,18 +38,20 @@
     "GLP-1 class phrase clarification behavior"
   ],
   "known_issues": [
-    "Live Google Drive, Calendar, and AI-provider behavior requires deployed credentialed verification",
-    "Deployed-origin browser rendering and arbitrary-width drag testing requires user verification",
-    "Mobile More-sheet usability requires real-device verification",
-    "Legacy AI evidence mapping remains unresolved"
+    "Live Google Drive, Calendar, AI-provider, service-worker, and credentialed behavior requires deployed verification",
+    "Rendered arbitrary-width, accessibility, and real-device mobile verification remains outstanding",
+    "Global activity rename, duplicate merge, bulk/ambiguous migration, and full correction-history undo remain deferred",
+    "Repeated-advice report remains unverified on the current hard-refreshed deployed build",
+    "Legacy runtime assets require inventory and classification before removal"
   ],
   "next_review_items": [
-    "Independent AI review of v0.22.1 complete packet",
-    "Deployed-origin responsive verification",
-    "Runtime diagnostics feedback after real use",
-    "Legacy AI evidence mapping"
+    "Deployed-origin responsive and accessibility verification",
+    "Runtime asset inventory and safe classification",
+    "Activity identity management and reviewed legacy migration design",
+    "Complete Fitness information architecture polish",
+    "Correction-history viewer and practical revert design"
   ],
-  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.1.md",
+  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.2.md",
   "files_to_read_first": [
     "00_AI_START_HERE.md"
   ],

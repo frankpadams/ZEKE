@@ -23,3 +23,12 @@ Separate Ask and Tell inputs are superseded. One unified input handles questions
 
 ## 2026-07-18 — Authority must be executable
 Current release identity, scope, artifact authority, lifecycle, supersessions, and package counts must be machine-checkable. Prose-only declarations cannot certify a release.
+
+- **DEC-015:** Activity entry, library filtering, detail rendering, charts, and coaching derive from one canonical category registry rather than separately maintained label lists.
+- **DEC-016:** An activity has one primary category and may carry secondary attributes. User-facing category does not erase task-specific metrics or analytical distinctions.
+- **DEC-017:** Current Workout History editing is record-scoped. Global rename, duplicate merge, bulk recategorization, and broad migration require separate explicit approval and safeguards.
+- **DEC-018:** Legacy activity migration uses existing structured fields, known identities/aliases, and high-confidence deterministic mappings. Ambiguous records enter a review queue and are never silently assigned by loose regex alone.
+- **DEC-019:** Correction architecture preserves the original/raw source and a compact change history while maintaining a corrected canonical record for derived views. Full event-sourced replay is not adopted without demonstrated need.
+- **DEC-020:** Runtime assets are inventoried and classified before deletion. Lack of an obvious static reference is not sufficient evidence that an asset is safe to purge.
+- **DEC-021:** A continuity release is complete only after all active standing documents are reviewed for relevance, not merely the state/gate files required by the audit script.
+

@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
-  "release": "0.22.1",
-  "build": "2026.07.19.1",
+  "release": "0.22.2",
+  "build": "2026.07.19.3",
   "algorithm": "SHA-256",
-  "file_count_excluding_manifest": 193,
+  "file_count_excluding_manifest": 198,
   "files": [
     {
       "path": "00_AI_START_HERE.md",
@@ -31,23 +31,27 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "sha256": "520a559e2c6f51fba6dc0756b69b3b11fc0763f4a846a800cd0e5655fc1ad778"
+      "sha256": "bf73f97bd94864e1e04ee8cea19ca491a94a0c87b07f125b686f36c7b60557a4"
     },
     {
       "path": "DEVELOPMENT_MEMORY/BACKLOG.md",
-      "sha256": "bf95dd78ea4baf898d09d15f5c1475dfb50d873f2304d31cac33040243f24443"
+      "sha256": "f290cff3bf429c12bed41d380d4aba9cf62a0490a22c8cf403ff2a4ea29bf314"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/CONTINUITY_RECONCILIATION_v0.22.2.md",
+      "sha256": "80d7a13c03dc9c56d279a8fe76bd84804d1aaf20a1d851971c3f3672b554120e"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DECISION_LOG.md",
-      "sha256": "dfacf290679fc3cd8c28bca62ff7cebd892eb12b1568d8aed0fe0b46d775824f"
+      "sha256": "cb84bbf883f2cd7f901d14631ba217cf784c70c8742e83132be0427a5d2fa802"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
-      "sha256": "ac7b6293b4d06f6abcc8e107b3e466978440b45bb475e12cd16fb81b52514e02"
+      "sha256": "96da75e086109b9ee88d27732341dc28322f561b6913441fce8f2b4d12797be9"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json",
-      "sha256": "daa3ae6a518d000e4fc63f656ef67569d16435acc8071e360138f1fe07ee11f1"
+      "sha256": "ecd6b87331cbc47de0f5f3bab1348b67d27d4a5f73a27d787803971add13c277"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
@@ -86,8 +90,12 @@
       "sha256": "716726bc631a472ec3b5ba9513d93ae987eb151f68804ee969673cdd71911bd3"
     },
     {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.2.md",
+      "sha256": "7322d8205e9d43a03f742910532d0e23cd1a94e8b3b5a78fa1fba0f28cc006b2"
+    },
+    {
       "path": "DEVELOPMENT_MEMORY/PROJECT_STATE.json",
-      "sha256": "ec691c6579e64c66d47b5d2755ed4f6facc13845eb74b3a4b5b26d8882927371"
+      "sha256": "ca6e76ec8078b864e6b968386b785bd07a1761bd82f6e76add9a7b2483b8aa51"
     },
     {
       "path": "DEVELOPMENT_MEMORY/README_FIRST.md",
@@ -95,11 +103,11 @@
     },
     {
       "path": "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
-      "sha256": "dc8274743292f77c42fc97062bc855aafbb9e17fefc98e82df5c46eede6f0191"
+      "sha256": "04a65712cdb5a0284e55c049870c46b73b62775c6ff35607aa95679559585a82"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
-      "sha256": "c00f0359eaebce97442f0f3a7c2190a7c2ef46439d1da91268e737842f3c2705"
+      "sha256": "715b9aa680be371a9f359f0196d77334858867461c6608c4792b7fbbcef97d7d"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md",
@@ -107,15 +115,15 @@
     },
     {
       "path": "DEVELOPMENT_SYSTEM/COMPREHENSION_CHECKPOINT.md",
-      "sha256": "d6b35a0c683e19155532511f53ff8a9ca3cfb1f30e5e46f58c2f1f6717e99997"
+      "sha256": "6d2bfaf8022373c53608a3c75326f8989ceae07ca874fee7fc393cca8f850a81"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
-      "sha256": "fb6f47944bfa05da9dd7c993b4b1a7d9f020656228d5219e91e78d1f99234f69"
+      "sha256": "88a46a937a77b5a46c52a17ce3486d882f2ba26c899092beb489b4c4736edc3e"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md",
-      "sha256": "f06cc0a2a01945a2c28067d64f89f7e768389cae551432f1cb212740a41c1e12"
+      "sha256": "bc825dc5f816b507c5978f1f79ecf78ade13506081952f8d520428e4f2424c50"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/PROJECT_IDENTITY.md",
@@ -127,7 +135,7 @@
     },
     {
       "path": "DEVELOPMENT_SYSTEM/RUNTIME_DIAGNOSTICS.md",
-      "sha256": "446160a9d31eef9d900e04786f6fa8e1fab87d5adfc1d6b9fad5b50a002d8923"
+      "sha256": "14d2c24069a5e457968aa22fb32b9c8f3ba6be617b73dde89e2ec226b9792bf1"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/STATUS_LANGUAGE.md",
@@ -139,7 +147,7 @@
     },
     {
       "path": "FEATURE_STATUS.md",
-      "sha256": "1ec334cd19f64f47bf4c02254e72b86238805a2764cbe063973dd3fe681865dd"
+      "sha256": "65bbd0e2c18d4505fe4d9f0fd70b1fd4e587fb6793fade1ee8e3d0db78f42d63"
     },
     {
       "path": "GOOGLE_SETUP.md",
@@ -147,7 +155,7 @@
     },
     {
       "path": "HANDOFF_BRIEF.md",
-      "sha256": "6ce8e2f360289d9a94c80aea0f0ffd68795e24c7d604e08de12eb1678c526038"
+      "sha256": "fd137c1e977d76a6847a63a3d63d072c2aae1accc91894a904d94ec39bfe9965"
     },
     {
       "path": "HISTORICAL_ARTIFACTS_NOTE.md",
@@ -199,7 +207,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "3aa80c56f6890bd78600788a4db823cff83f6369694ff21f17562d5e4ae9d178"
+      "sha256": "c234706c97cb1023e21e3fad6e75e3d7c227ed1610b98d8d79bdcbb0e26fca8b"
     },
     {
       "path": "README_DEPLOY.md",
@@ -346,6 +354,10 @@
       "sha256": "ecd6a184698f430d925d0dc462dcf0949558d7096715b77532d007683a8dba3b"
     },
     {
+      "path": "RELEASE_NOTES_v0.22.2.md",
+      "sha256": "c93cf9dedabb780a5d8a61a5a1c0dfe88961b22c14c18b284c2038bbc306e66a"
+    },
+    {
       "path": "RELEASE_NOTES_v0.7.0.md",
       "sha256": "f59c650095396367c45f9c7e518542d3c5ab413e279ce8983017e96ea6560399"
     },
@@ -454,6 +466,10 @@
       "sha256": "ba8aaeadf2ac35c2eae18ec9588fcb242a25dd419d67b07c01a3d553655df073"
     },
     {
+      "path": "TEST_REPORT_v0.22.2.md",
+      "sha256": "85f54f6302e9f5afa6f9da6570b69b8ab15c7b81627f403ac2696978c1c3a347"
+    },
+    {
       "path": "TEST_REPORT_v0.7.0.md",
       "sha256": "d0ddbad6f05879571c2f2481757e93fdf65893f359a6a5ea11acb1e232c3091d"
     },
@@ -471,7 +487,7 @@
     },
     {
       "path": "VERSION.txt",
-      "sha256": "d293737ff926b271a10a601455796dca9d15381f66f4384627faa89058ab3cc3"
+      "sha256": "639c5be3903cdd80711ee349c02c589e58adfb8eaa4ebfc5097af6853a2221e7"
     },
     {
       "path": "ZEKE_CONSTITUTION.md",
@@ -563,7 +579,7 @@
     },
     {
       "path": "assets/app.js",
-      "sha256": "816f608b86157dff013d4037752661d8391f0df5b7b716c61be6c900302d31f7"
+      "sha256": "6c2de168e34e933540675621383ac4a25dde64790327b0d4f9603c92d59404ab"
     },
     {
       "path": "assets/branding/ZEKE_Brand_Board_2026-07.jpg",
@@ -619,7 +635,7 @@
     },
     {
       "path": "assets/styles.css",
-      "sha256": "344b58e1ec6ec4d93045d4089f76881586e54aa8a4cd87524ba071c29876a3d7"
+      "sha256": "fd19a28a9fdbcad24af43c72697dbe124d761bdf0a0aded87c5827ac940f6bf6"
     },
     {
       "path": "assets/zeke-ai-router-test.css",
@@ -703,7 +719,7 @@
     },
     {
       "path": "index.html",
-      "sha256": "056ac537303b6a37e84dc35102bbf427254d15b3b8e4554736b738c4fa103061"
+      "sha256": "80504122a1c9cadd99e02e06fbc5671fa1c2e3d62138f597ccc14784262f5fdb"
     },
     {
       "path": "manifest.webmanifest",
@@ -722,12 +738,16 @@
       "sha256": "6039059bfc63b7ae24025204d537fd10985287d1411680bc36a6fee40a425998"
     },
     {
+      "path": "tests/activity-foundation.test.js",
+      "sha256": "4adc8eedf169485334a06c641b88febab8d753637f35eb8134ab22326bc146fe"
+    },
+    {
       "path": "tests/factor-idempotency.test.js",
       "sha256": "890fd4731aeaf273620f4a5eb59c38a4a6ae0f227640f00b4ceccb78d06c73f9"
     },
     {
       "path": "tests/governance-negative-controls.py",
-      "sha256": "1b4710b50fda9cd7d885078567b55da942532c41a2e687d1fb06ef56253bee9e"
+      "sha256": "f3d710a1066ffb7b4da04199c2e433e1812b9c8bfecdcc60bbca24f9f6736f34"
     },
     {
       "path": "tests/medication-action-status.test.js",
@@ -739,7 +759,7 @@
     },
     {
       "path": "tests/navigation-coaching-profile.test.js",
-      "sha256": "26ca2a93ef00b45eb8545268c006f6b255006d6ea7db5cba2a769ce961079d0d"
+      "sha256": "d1ad9e9e77e1d671be9b0e8c97250e4a31f3a3b6b345ee42b11fcd1ae45373ac"
     },
     {
       "path": "tests/release-structure.test.js",
@@ -763,11 +783,11 @@
     },
     {
       "path": "tools/project_audit.py",
-      "sha256": "64b27b1311d06c9002ece8dee701a47487e9e73f78b8b4c8594e18a6bc9ed4b9"
+      "sha256": "3e189636c0d9c393968ab19a2f275c60ee18c7247b658a74f7da6df4e9390386"
     },
     {
       "path": "version.js",
-      "sha256": "45a07c045db0e0ab67a4695b6b9b7050adee7a4b7a8abd79642c463bf9b1423e"
+      "sha256": "37bcd32a3b78766276327b9eb69ddbdb27a920fb64eea9ea38f39173c56b28c5"
     },
     {
       "path": "xlsx-bundle.js",

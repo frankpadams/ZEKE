@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "release": "0.22.1",
-  "build": "2026.07.19.1",
+  "release": "0.22.2",
+  "build": "2026.07.19.3",
   "artifacts": [
     {
       "path": "00_AI_START_HERE.md",
@@ -76,22 +76,22 @@
     {
       "path": "DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md",
       "status": "supporting",
-      "purpose": "Current project health and verification-boundary summary"
+      "purpose": "current project health and verification boundaries"
     },
     {
       "path": "README.md",
       "status": "supporting",
-      "purpose": "Current deployment, feature-preservation, and continuity-repair overview"
+      "purpose": "current deployment and release overview"
     },
     {
       "path": "RELEASE_NOTES_v0.20.5.md",
-      "status": "supporting",
-      "purpose": "release summary"
+      "status": "historical",
+      "purpose": "historical release/review evidence"
     },
     {
       "path": "TEST_REPORT_v0.20.5.md",
-      "status": "supporting",
-      "purpose": "test evidence"
+      "status": "historical",
+      "purpose": "historical release/review evidence"
     },
     {
       "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.21.0.md",
@@ -105,7 +105,7 @@
     {
       "path": "DEVELOPMENT_SYSTEM/RUNTIME_DIAGNOSTICS.md",
       "status": "supporting",
-      "purpose": "Runtime diagnostic logging boundaries and lifecycle",
+      "purpose": "runtime diagnostic logging boundaries",
       "audience": [
         "AI developer",
         "human reviewer"
@@ -118,8 +118,8 @@
     },
     {
       "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.1.md",
-      "status": "authoritative",
-      "purpose": "Current approved iteration, implementation, and package-verification record",
+      "status": "historical",
+      "purpose": "historical approved scope and implementation record",
       "audience": [
         "AI developer",
         "human reviewer"
@@ -127,18 +127,53 @@
     },
     {
       "path": "RELEASE_NOTES_v0.22.1.md",
-      "status": "supporting",
-      "purpose": "Current release summary"
+      "status": "historical",
+      "purpose": "historical release/review evidence"
     },
     {
       "path": "TEST_REPORT_v0.22.1.md",
-      "status": "supporting",
-      "purpose": "Current test and verification evidence"
+      "status": "historical",
+      "purpose": "historical release/review evidence"
     },
     {
       "path": "INDEPENDENT_AI_REVIEW_REQUEST_v0.22.1.md",
+      "status": "historical",
+      "purpose": "historical release/review evidence"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.2.md",
+      "status": "authoritative",
+      "purpose": "current approved scope and implementation record"
+    },
+    {
+      "path": "ARCHITECTURE.md",
       "status": "supporting",
-      "purpose": "Current independent-review instructions"
+      "purpose": "current architectural baseline"
+    },
+    {
+      "path": "FEATURE_STATUS.md",
+      "status": "supporting",
+      "purpose": "current feature implementation and verification inventory"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/COMPREHENSION_CHECKPOINT.md",
+      "status": "supporting",
+      "purpose": "mandatory startup comprehension questions"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/CONTINUITY_RECONCILIATION_v0.22.2.md",
+      "status": "supporting",
+      "purpose": "document-by-document reconciliation record"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.22.2.md",
+      "status": "supporting",
+      "purpose": "current release summary"
+    },
+    {
+      "path": "TEST_REPORT_v0.22.2.md",
+      "status": "supporting",
+      "purpose": "current test and verification evidence"
     }
   ],
   "historical_patterns": [
@@ -152,6 +187,15 @@
     "DEVELOPMENT_MEMORY/README_FIRST.md",
     "DEVELOPMENT_MEMORY/DOCUMENT_INDEX.md"
   ],
-  "current_version": "0.22.1",
-  "current_build": "2026.07.19.1"
+  "current_version": "0.22.2",
+  "current_build": "2026.07.19.3",
+  "runtime_files": [
+    "index.html",
+    "version.js",
+    "assets/app.js",
+    "assets/data-layer.js",
+    "assets/parser.js",
+    "assets/ai-router.js",
+    "assets/styles.css"
+  ]
 }

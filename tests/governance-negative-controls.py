@@ -25,9 +25,9 @@ def broken_link(d):
 def stale_registry_header(d):
     p=d/'DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json'; j=json.loads(p.read_text()); j['release']='0.20.5'; p.write_text(json.dumps(j,indent=2))
 def stale_project_health(d):
-    p=d/'DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md'; p.write_text(p.read_text().replace('# Project Health — v0.22.1','# Project Health — v0.20.5'))
+    p=d/'DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md'; j=json.loads((d/'DEVELOPMENT_MEMORY/PROJECT_STATE.json').read_text()); p.write_text(p.read_text().replace(f"# Project Health — v{j['current_version']}",'# Project Health — v0.20.5'))
 def contradictory_release_gate(d):
-    p=d/'DEVELOPMENT_MEMORY/RELEASE_GATE.md'; p.write_text(p.read_text().replace('Package verification complete; environment verification outstanding','Pending final verification'))
+    p=d/'DEVELOPMENT_MEMORY/RELEASE_GATE.md'; p.write_text(p.read_text().replace('Package verification complete. Environment verification outstanding.','Pending final verification'))
 def wrong_iteration_lifecycle(d):
     p=d/'DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json'; j=json.loads(p.read_text());
     for a in j['artifacts']:
