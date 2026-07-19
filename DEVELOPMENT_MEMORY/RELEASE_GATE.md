@@ -1,6 +1,6 @@
 # Release Gate — v0.22.2
 
-**Build:** 2026.07.19.3
+**Build:** 2026.07.19.4
 
 ## Status
 Package verification complete. Environment verification outstanding.

@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "current_version": "0.22.2",
-  "current_build": "2026.07.19.3",
+  "current_build": "2026.07.19.4",
   "release_label": "Responsive Stabilization, Activity Foundation & Continuity Reconciliation",
   "baseline": "v0.22.1 Persistent Navigation, Coaching & Continuity Repair",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",

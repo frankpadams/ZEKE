@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
   "release": "0.22.2",
-  "build": "2026.07.19.3",
-  "algorithm": "SHA-256",
-  "file_count_excluding_manifest": 198,
+  "build": "2026.07.19.4",
+  "algorithm": "sha256",
+  "file_count_excluding_manifest": 199,
   "files": [
     {
       "path": "00_AI_START_HERE.md",
@@ -31,11 +31,11 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "sha256": "bf73f97bd94864e1e04ee8cea19ca491a94a0c87b07f125b686f36c7b60557a4"
+      "sha256": "c58035971e0f68c5c52780ddb49eeadcb6a95bbb4d38a1ceddc9d5018016390a"
     },
     {
       "path": "DEVELOPMENT_MEMORY/BACKLOG.md",
-      "sha256": "f290cff3bf429c12bed41d380d4aba9cf62a0490a22c8cf403ff2a4ea29bf314"
+      "sha256": "1b3a795340df46bc4733910aa477b436d398ac8adc38ee99580ed715ac9245e6"
     },
     {
       "path": "DEVELOPMENT_MEMORY/CONTINUITY_RECONCILIATION_v0.22.2.md",
@@ -51,7 +51,7 @@
     },
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json",
-      "sha256": "ecd6b87331cbc47de0f5f3bab1348b67d27d4a5f73a27d787803971add13c277"
+      "sha256": "dbdad7abaa979408c00716dddf9125455e86163f492c23cb459f94c10a7c476a"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
@@ -91,11 +91,11 @@
     },
     {
       "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.2.md",
-      "sha256": "7322d8205e9d43a03f742910532d0e23cd1a94e8b3b5a78fa1fba0f28cc006b2"
+      "sha256": "4362532346a731f8aa3b8372a878cd2e93bb9a7e651d2172406fae167c036b8c"
     },
     {
       "path": "DEVELOPMENT_MEMORY/PROJECT_STATE.json",
-      "sha256": "ca6e76ec8078b864e6b968386b785bd07a1761bd82f6e76add9a7b2483b8aa51"
+      "sha256": "e5b54e72b0040b2433a306b0bc7540245ce3d7ba9b57b1dc3efd36bea09f37f5"
     },
     {
       "path": "DEVELOPMENT_MEMORY/README_FIRST.md",
@@ -103,11 +103,11 @@
     },
     {
       "path": "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
-      "sha256": "04a65712cdb5a0284e55c049870c46b73b62775c6ff35607aa95679559585a82"
+      "sha256": "9edc655a8696514e63901d801280254d0d30fe6ec9e75b6634d55c72a4f20609"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
-      "sha256": "715b9aa680be371a9f359f0196d77334858867461c6608c4792b7fbbcef97d7d"
+      "sha256": "dde2a005531ef96f918cad16cb01725b63686973ac8a24a1132876ea0e457eb6"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md",
@@ -119,11 +119,11 @@
     },
     {
       "path": "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
-      "sha256": "88a46a937a77b5a46c52a17ce3486d882f2ba26c899092beb489b4c4736edc3e"
+      "sha256": "23b91ead5eb166543441c4bf78f588a0086775bf639867085669877cb689fdfe"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md",
-      "sha256": "bc825dc5f816b507c5978f1f79ecf78ade13506081952f8d520428e4f2424c50"
+      "sha256": "40e66d23ca6a3406cd08965e89312c7495e3a23de3cc433396ebf5a20aa73468"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/PROJECT_IDENTITY.md",
@@ -135,7 +135,7 @@
     },
     {
       "path": "DEVELOPMENT_SYSTEM/RUNTIME_DIAGNOSTICS.md",
-      "sha256": "14d2c24069a5e457968aa22fb32b9c8f3ba6be617b73dde89e2ec226b9792bf1"
+      "sha256": "ccdacaa80d8f656e8d4e81be5b0599d7a775d3a255ecfe4d54da749722dcae9f"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/STATUS_LANGUAGE.md",
@@ -147,7 +147,7 @@
     },
     {
       "path": "FEATURE_STATUS.md",
-      "sha256": "65bbd0e2c18d4505fe4d9f0fd70b1fd4e587fb6793fade1ee8e3d0db78f42d63"
+      "sha256": "afce8d9801ace155924d8d107cd7ed3501a9c371cc8246b7763faa41ac7ffbb4"
     },
     {
       "path": "GOOGLE_SETUP.md",
@@ -155,7 +155,7 @@
     },
     {
       "path": "HANDOFF_BRIEF.md",
-      "sha256": "fd137c1e977d76a6847a63a3d63d072c2aae1accc91894a904d94ec39bfe9965"
+      "sha256": "94f556344542ffeea76d4a43c002234a6eee4ac89967f9f2efae214e5a2430d9"
     },
     {
       "path": "HISTORICAL_ARTIFACTS_NOTE.md",
@@ -207,7 +207,7 @@
     },
     {
       "path": "README.md",
-      "sha256": "c234706c97cb1023e21e3fad6e75e3d7c227ed1610b98d8d79bdcbb0e26fca8b"
+      "sha256": "6e350bb7091a25ace656d927e8738ad627a6d2ca4ccf9b27e3f09b3e8bdc8d45"
     },
     {
       "path": "README_DEPLOY.md",
@@ -355,7 +355,7 @@
     },
     {
       "path": "RELEASE_NOTES_v0.22.2.md",
-      "sha256": "c93cf9dedabb780a5d8a61a5a1c0dfe88961b22c14c18b284c2038bbc306e66a"
+      "sha256": "ce4242f2d4c5c473771b967ab4c3039ffa0f49c3edd79475a635c10db0addcd8"
     },
     {
       "path": "RELEASE_NOTES_v0.7.0.md",
@@ -467,7 +467,7 @@
     },
     {
       "path": "TEST_REPORT_v0.22.2.md",
-      "sha256": "85f54f6302e9f5afa6f9da6570b69b8ab15c7b81627f403ac2696978c1c3a347"
+      "sha256": "d5b069bb237028c162d6e96fef82b92135555c90550282e974a6b00f11acd4f1"
     },
     {
       "path": "TEST_REPORT_v0.7.0.md",
@@ -487,7 +487,7 @@
     },
     {
       "path": "VERSION.txt",
-      "sha256": "639c5be3903cdd80711ee349c02c589e58adfb8eaa4ebfc5097af6853a2221e7"
+      "sha256": "e2fe4938109e978b390c918300b825fa0277bc153acef77329bac68e20852ba1"
     },
     {
       "path": "ZEKE_CONSTITUTION.md",
@@ -579,7 +579,7 @@
     },
     {
       "path": "assets/app.js",
-      "sha256": "6c2de168e34e933540675621383ac4a25dde64790327b0d4f9603c92d59404ab"
+      "sha256": "7b71ecdb2a5bcfc0a0cee220010a18d2d0decfda6c5dbb89c28474e36366f8f9"
     },
     {
       "path": "assets/branding/ZEKE_Brand_Board_2026-07.jpg",
@@ -635,7 +635,7 @@
     },
     {
       "path": "assets/styles.css",
-      "sha256": "fd19a28a9fdbcad24af43c72697dbe124d761bdf0a0aded87c5827ac940f6bf6"
+      "sha256": "8244ddfc5a53ea92614d4ebed2dd34e8263211aa3d390bcf6da60e4091d8e7b3"
     },
     {
       "path": "assets/zeke-ai-router-test.css",
@@ -719,7 +719,7 @@
     },
     {
       "path": "index.html",
-      "sha256": "80504122a1c9cadd99e02e06fbc5671fa1c2e3d62138f597ccc14784262f5fdb"
+      "sha256": "f026f80f56cd27b0d058e1af9bf54d8fd16a48921bebacf9eb885d2e730f7f56"
     },
     {
       "path": "manifest.webmanifest",
@@ -740,6 +740,10 @@
     {
       "path": "tests/activity-foundation.test.js",
       "sha256": "4adc8eedf169485334a06c641b88febab8d753637f35eb8134ab22326bc146fe"
+    },
+    {
+      "path": "tests/dashboard-layout-acceptance.test.js",
+      "sha256": "46affa98f2fe4569343f2180b088fb3c460c92c10a82dad6c49e0f8d6d6bfcc0"
     },
     {
       "path": "tests/factor-idempotency.test.js",
@@ -763,7 +767,7 @@
     },
     {
       "path": "tests/release-structure.test.js",
-      "sha256": "b0b7159575f2563b520bd5346f235e9645df4838c772c92850229c26fd3ac424"
+      "sha256": "56722b59521cf162fce876c63c2dff2f959526445236fc40bf1f07c16193f7ce"
     },
     {
       "path": "tests/workbook-commit-verify.test.js",
@@ -787,7 +791,7 @@
     },
     {
       "path": "version.js",
-      "sha256": "37bcd32a3b78766276327b9eb69ddbdb27a920fb64eea9ea38f39173c56b28c5"
+      "sha256": "5f92c1d512bed435a24efed94b93a1b489792d92cbb04b1d00f4cd49d7156da0"
     },
     {
       "path": "xlsx-bundle.js",

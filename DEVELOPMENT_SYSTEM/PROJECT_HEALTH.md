@@ -1,6 +1,6 @@
 # Project Health — v0.22.2
 
-**Build:** 2026.07.19.3
+**Build:** 2026.07.19.4
 
 ## Healthy / locally verified
 - Package identity and checksums are internally consistent.
@@ -24,3 +24,7 @@
 
 ## Current risk statement
 The package is suitable as the sole development baseline only when the startup gate is followed and environment-dependent behavior is not represented as verified. Historical assets and older release documents remain for compatibility and must not be mistaken for current authority.
+
+## Build 2026.07.19.4 acceptance status
+
+The prior Dashboard layout claim failed deployed visual acceptance. The structural cause was repaired by separating the main content stream from the health rail. Static verification passes; deployed-origin visual acceptance is still pending and must not be represented as complete until the replacement build is observed after a hard refresh.

@@ -1,7 +1,7 @@
 # Runtime Diagnostics
 
 **Status:** Supporting current design  
-**Current baseline:** v0.22.2 · build 2026.07.19.3
+**Current baseline:** v0.22.2 · build 2026.07.19.4
 
 ZEKE may record shortened operational errors on the current device. Diagnostics are support evidence, not canonical health data and not proof that a feature works.
 

@@ -55,3 +55,8 @@ After the user asked whether all continuity documents had been updated, review s
 
 The reconciliation reviewed and updated the active README, Architecture, Feature Status, Handoff Brief, Backlog, Decision Log, Development Error Log, Comprehension Checkpoint, Runtime Diagnostics, Project Health, Project State, development/release gates, artifact registry, release notes, test report, checksums, and runtime build identity. No new application feature was introduced. The final package was rebuilt and re-verified as build 2026.07.19.3.
 
+## Dashboard acceptance repair — build 2026.07.19.4
+
+The user rejected the deployed v0.22.2 Dashboard because the health rail still created a large blank region in the main content flow. Scope was frozen to this single issue. The repair separates the Dashboard into an independent main stream and Health at a Glance rail, adds a focused structural regression test, refreshes cache-busting identifiers, and updates only continuity records affected by this failed acceptance test. No additional product feature was added.
+
+Approved scope: Repair the deployed Dashboard blank-space defect by separating the main content flow from the Health at a Glance rail without changing other application behavior

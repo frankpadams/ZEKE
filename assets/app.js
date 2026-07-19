@@ -756,11 +756,13 @@
     const recent=recentHealthHTML();
     const upcoming=upcomingHTML();
     const lower=[trend,recent,upcoming].filter(Boolean).join('');
-    return `${coverageHTML()}<div class="dashboard-layout">
-      <div class="dashboard-priority-row">${dashboardInsightsHTML()}${todayActionsHTML()}</div>
-      ${healthGlanceHTML(9)}
-      <div class="dashboard-guidance-row">${coachHTML()}${thinkingHTML()}</div>
-      ${lower?`<div class="dashboard-support-row">${lower}</div>`:''}
+    return `${coverageHTML()}<div class="dashboard-layout dashboard-independent-layout">
+      <main class="dashboard-main-stream">
+        <div class="dashboard-priority-row">${dashboardInsightsHTML()}${todayActionsHTML()}</div>
+        <div class="dashboard-guidance-row">${coachHTML()}${thinkingHTML()}</div>
+        ${lower?`<div class="dashboard-support-row">${lower}</div>`:''}
+      </main>
+      <aside class="dashboard-health-rail">${healthGlanceHTML(9)}</aside>
     </div>`;
   }
 

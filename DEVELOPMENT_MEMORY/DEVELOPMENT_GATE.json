@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
   "release": "0.22.2",
-  "build": "2026.07.19.3",
+  "build": "2026.07.19.4",
   "current_iteration": {
     "status": "implementation_complete_verified_for_delivery",
     "baseline_verified": true,
@@ -10,32 +10,19 @@
     "user_approved_scope": true,
     "approved_at": "2026-07-19T02:26:15Z",
     "release": "0.22.2",
-    "build": "2026.07.19.3",
+    "build": "2026.07.19.4",
     "approved_scope": [
-      "Repair and consolidate responsive dashboard and fitness layouts",
-      "Extend governance coverage to active runtime code and inventory legacy assets without unsafe deletion",
-      "Repair Pattern Lab context propagation and stale-context clearing",
-      "Add Health Favorites with separate versioned preference storage",
-      "Create one canonical activity taxonomy including Chores & Functional Activity",
-      "Make activity summaries and detail metrics modality-aware",
-      "Add basic authoritative per-record workout editing with correction history and derived-view refresh",
-      "Scan active runtime files for hard-coded personal identity and correct verified occurrences",
-      "Update tests and continuity documents to match only implemented and verified behavior"
+      "Repair the deployed Dashboard blank-space defect by separating the main content flow from the Health at a Glance rail without changing other application behavior"
     ],
     "explicitly_excluded": [
-      "Global activity rename across all records",
-      "Merging duplicate activity identities",
-      "Bulk historical recategorization or automatic ambiguous migration",
-      "Full undo interface or event-sourced runtime replay",
-      "Live provider credential changes",
-      "New non-health/fitness modules"
+      "Any additional feature, taxonomy, data-model, integration, parser, or editing change"
     ],
-    "completed_at": "2026-07-19T03:40:00Z",
+    "completed_at": "2026-07-19T03:05:00Z",
     "final_zip_reopened_and_verified": true,
-    "unpacked_file_count": 199,
+    "unpacked_file_count": 200,
     "prior_conversations_reviewed": true,
     "data_compatibility_reviewed": true,
-    "critical_checksums_verified": 198,
+    "critical_checksums_verified": 199,
     "continuity_corpus_reconciled": true,
     "continuity_reconciliation_requested_at": "2026-07-19T02:35:49Z"
   },
@@ -47,5 +34,5 @@
     "user_approved_scope": null
   },
   "current_version": "0.22.2",
-  "current_build": "2026.07.19.3"
+  "current_build": "2026.07.19.4"
 }
