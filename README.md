@@ -1,9 +1,9 @@
 # ZEKE v0.22.2
 
-**Build:** 2026.07.19.3  
-**Release:** Responsive Stabilization, Activity Foundation & Continuity Reconciliation
+**Build:** 2026.07.19.4  
+**Release:** Responsive Stabilization, Activity Foundation, Continuity Reconciliation & Dashboard Acceptance Repair
 
-This is the authoritative full replacement package for ZEKE v0.22.2. It includes the application work completed in build 2026.07.19.2 and a document-by-document continuity reconciliation completed in build 2026.07.19.3. No new user-facing application feature was added in the .3 documentation build.
+This is the authoritative full replacement package for ZEKE v0.22.2. Build 2026.07.19.4 preserves the application and continuity work from builds .2 and .3 and makes one narrowly scoped correction: the deployed Dashboard now uses an independent main content stream and Health at a Glance rail so the rail cannot create a large blank vertical gap.
 
 ## Implemented application work
 - Stabilized Dashboard and Fitness layout structure with independent content-sized rows.
@@ -33,7 +33,11 @@ The following remain deferred:
 - live Google Drive, Calendar, and AI-provider verification.
 
 ## Deploy
-Replace the deployed ZEKE files with the contents of this folder. Preserve the existing values in `zeke-config.js` where appropriate. Hard-refresh once and verify that the header reports **v0.22.2 · build 2026.07.19.3**.
+Replace the deployed ZEKE files with the contents of this folder. Preserve the existing values in `zeke-config.js` where appropriate. Hard-refresh once and verify that the header reports **v0.22.2 · build 2026.07.19.4**.
 
 ## Continue development
 Future AI development must begin with [`00_AI_START_HERE.md`](00_AI_START_HERE.md), not this README. The README is a current overview; it does not authorize edits or override the authority chain.
+
+## Build 2026.07.19.4 dashboard acceptance repair
+
+This replacement build changes only Dashboard composition and its verification. The main Dashboard content is now an independent vertical stream beside a separately sized Health at a Glance rail. A tall health rail can no longer create empty grid rows or push Coach’s Eye, insights, and support cards downward. No activity, health-data, integration, parser, or editing behavior was intentionally changed.

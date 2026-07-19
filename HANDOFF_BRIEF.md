@@ -1,6 +1,6 @@
 # ZEKE Handoff Brief
 
-**Current baseline:** ZEKE v0.22.2 · build 2026.07.19.3  
+**Current baseline:** ZEKE v0.22.2 · build 2026.07.19.4  
 **Release:** Responsive Stabilization, Activity Foundation & Continuity Reconciliation
 
 ## Why this build exists
@@ -37,3 +37,7 @@ Local package integrity does not establish live Google Drive, Calendar, AI-provi
 
 ## Startup
 Read `00_AI_START_HERE.md` and follow its mandatory sequence. Do not infer authorization from this brief.
+
+## Build 2026.07.19.4 correction
+
+The sole application change after continuity reconciliation is a Dashboard composition repair. Do not broaden this patch. Confirm on the deployed origin that the large blank vertical gap is gone and that Health at a Glance remains a separate right rail on wide screens, then stacks without overlap at narrower widths.

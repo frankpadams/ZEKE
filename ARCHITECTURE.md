@@ -1,7 +1,7 @@
 # ZEKE Architecture — Current v0.22.2 Baseline
 
 **Status:** Supporting current architecture  
-**Build:** 2026.07.19.3
+**Build:** 2026.07.19.4
 
 This document describes the current architectural baseline. Authority and contradiction resolution remain defined by `00_AI_START_HERE.md`, the Constitution, Project State, and the artifact registry.
 

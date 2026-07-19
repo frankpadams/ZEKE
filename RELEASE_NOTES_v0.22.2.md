@@ -1,6 +1,6 @@
 # ZEKE v0.22.2 — Responsive Stabilization, Activity Foundation & Continuity Reconciliation
 
-**Build:** 2026.07.19.3
+**Build:** 2026.07.19.4
 
 ## Application work inherited from build 2026.07.19.2
 - Stabilized Dashboard and Fitness layout structure using independent content-sized rows.
@@ -21,3 +21,7 @@ Global rename, duplicate identity merge, bulk/ambiguous historical migration, fu
 
 ## Verification boundary
 Package integrity and structural regressions are verified locally. Live providers, service-worker deployment behavior, arbitrary-width deployed rendering, and physical-device accessibility remain environment-dependent.
+
+## Build 2026.07.19.4 — dashboard-only acceptance repair
+
+A deployed screenshot showed that the prior responsive repair still allowed the Health at a Glance rail to determine shared grid-row height, leaving a large blank area in the main Dashboard. The Dashboard markup now has two independent flows: a main content stream and a separate health rail. This build intentionally adds no other feature or behavior change.
