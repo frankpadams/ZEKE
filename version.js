@@ -1,1 +1,1 @@
-window.ZEKE_VERSION = window.ZEKE_BUILD = { version: "0.22.1", build: "2026.07.19.1", label: "Persistent Navigation, Coaching Clarity & Continuity Repair Release" };
+window.ZEKE_VERSION = window.ZEKE_BUILD = { version: "0.22.2", build: "2026.07.19.3", label: "Responsive Stabilization, Activity Foundation & Continuity Reconciliation" };
