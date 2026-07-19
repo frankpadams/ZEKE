@@ -1,6 +1,6 @@
 # Test Report — ZEKE v0.22.2
 
-**Build:** 2026.07.19.3
+**Build:** 2026.07.19.4
 
 ## Passed locally
 - JavaScript syntax checks for active runtime modules.
@@ -26,3 +26,11 @@
 - Continuous arbitrary-width visual behavior.
 - Physical-device mobile, touch, keyboard, and screen-reader behavior.
 - Reproduction of the reported repeated-advice condition.
+
+## Build 2026.07.19.4 focused acceptance checks
+
+- Added `tests/dashboard-layout-acceptance.test.js`.
+- Verified that Dashboard markup contains independent main-stream and health-rail wrappers.
+- Verified that the health rail neutralizes legacy grid-row placement.
+- Verified syntax and existing environment-independent regression tests.
+- Deployed-origin visual confirmation remains required after replacing the GitHub Pages files and hard-refreshing.
