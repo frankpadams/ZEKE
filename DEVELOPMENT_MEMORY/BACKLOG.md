@@ -29,3 +29,11 @@
 - A reported duplicate-advice condition remains unverified; do not implement speculative concurrency architecture without reproduction.
 
 At the beginning of every iteration, resurface all **Ready for review**, **Ready for design**, and any deferred item whose condition is true.
+
+## After v0.23.0
+
+- Expand active conversation topics into durable, typed conversation-state objects.
+- Add complete AI evidence-packet selection, repair loops, second-provider review, and diagnostics UI.
+- Add medication-specific and lab-reference-aware structured record editors.
+- Add activity identity global rename, recategorization review, duplicate merge, migration preview, and undo.
+- Add browser-level end-to-end tests for conversation and record editing.

@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "current_version": "0.22.2",
-  "current_build": "2026.07.19.4",
+  "current_version": "0.23.0",
+  "current_build": "2026.07.19.5",
   "release_label": "Responsive Stabilization, Activity Foundation & Continuity Reconciliation",
   "baseline": "v0.22.1 Persistent Navigation, Coaching & Continuity Repair",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
@@ -61,5 +61,6 @@
     "all JavaScript regression tests",
     "real-data workbook regression when fixture is available",
     "final ZIP reopened and byte-compared with staging"
-  ]
+  ],
+  "current_release_label": "Conversation Intelligence & Trusted AI Foundation"
 }

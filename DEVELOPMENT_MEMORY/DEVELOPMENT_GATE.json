@@ -24,7 +24,10 @@
     "data_compatibility_reviewed": true,
     "critical_checksums_verified": 199,
     "continuity_corpus_reconciled": true,
-    "continuity_reconciliation_requested_at": "2026-07-19T02:35:49Z"
+    "continuity_reconciliation_requested_at": "2026-07-19T02:35:49Z",
+    "target_version": "0.23.0",
+    "target_build": "2026.07.19.5",
+    "scope_summary": "Conversation-state isolation, record-specific health editing, transcript timestamps, trusted AI consultation boundary, and content-driven responsive composition."
   },
   "next_iteration": {
     "status": "awaiting_future_scope",

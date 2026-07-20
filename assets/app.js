@@ -5,7 +5,7 @@
   const state = {
     route:'dashboard', range:localStorage.getItem('zeke-fitness-range')||'month', selectedMetric:'weight',
     events:[], factors:[], discoveries:[], actions:{catalog:[],daily_states:{}}, calendar:[],
-    conversation:[], pending:null, context:{}, storage:null, ai:null,
+    conversation:[], pending:null, context:{}, dialogue:{activeQuestion:null,topic:null}, storage:null, ai:null,
     coachExpanded:false, coachCardExpanded:false, coachFocus:'', coachAlertDismissed:{}, activityTab:localStorage.getItem('zeke.fitness.activityTab.v1')||localStorage.getItem('zeke-activity-tab')||'frequent', expandedActivity:'', healthTab:localStorage.getItem('zeke.health.libraryTab.v1')||localStorage.getItem('zeke-health-tab')||'frequent', expandedHealthMetric:'', customizeOpen:false, metricMenuOpen:false, quickLogOpen:false, expandedReviewTasks:new Set(),
     hiddenWidgets:new Set(), busy:false, importStatus:'', importReport:null, importBatches:[],
     conversationLoaded:false, preferences:{}, syncSource:null, syncBusy:false, syncReport:null, syncPreflight:null, coachAI:null, coachAILoading:false, theme:'light', draft:'', auditQuery:'', auditCategory:'all', insightRefreshAt:null, deferredRender:false, activeDate:localStorage.getItem('zeke-active-date')||'', directExercise:null, integrityLastAction:'', activeReviewId:sessionStorage.getItem('zeke-active-review')||'', reviewOriginalOpen:false
@@ -132,8 +132,30 @@
     if (state.conversation.length > 300) state.conversation = state.conversation.slice(-300);
     if (window.ZekeData?.snapshot().status === 'connected') ZekeData.appendConversation(message).catch(()=>{});
   }
-  const pushZeke = (text, meta={}) => push('zeke', text, meta);
+  const pushZeke = (text, meta={}) => {
+    push('zeke', text, meta);
+    const normalized=String(text||'').trim();
+    if(meta.expectsAnswer || /\?\s*$/.test(normalized)) state.dialogue.activeQuestion={id:crypto.randomUUID(),text:normalized,at:new Date().toISOString(),topic:meta.topic||state.dialogue.topic||null};
+    else if(meta.resolveQuestion) state.dialogue.activeQuestion=null;
+  };
   const pushUser = (text, meta={}) => push('user', text, meta);
+
+  function clearPending(reason='superseded'){
+    if(!state.pending)return;
+    recordRuntimeIssue('pending-flow-closed',`Pending ${state.pending.type||'unknown'} closed`,reason);
+    state.pending=null;
+  }
+  function looksLikeIndependentNewEntry(text){
+    const t=String(text||'').toLowerCase();
+    return /\b(slept|sleep|woke|bed(?:time)?|weight|body fat|blood pressure|bp|a1c|glucose|took|medication|workout|exercise|pain|symptom)\b/.test(t) && /\b(last night|today|yesterday|this morning|\d{1,2}(?::\d{2})?\s*(?:am|pm)|\d+(?:\.\d+)?)\b/.test(t);
+  }
+  function affirmativeReply(text){return /^(?:yes|yeah|yep|sure|okay|ok|please do|go ahead|correct|right)[.! ]*$/i.test(String(text||'').trim())}
+  function messageDay(at){const d=new Date(at||Date.now());return Number.isNaN(d.getTime())?'':d.toLocaleDateString(undefined,{weekday:'long',month:'short',day:'numeric',year:'numeric'})}
+  function messageTime(at){const d=new Date(at||Date.now());return Number.isNaN(d.getTime())?'':d.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'})}
+  function conversationMessagesHTML(msgs){
+    let lastDay='';
+    return msgs.map(m=>{const day=messageDay(m.at);const divider=day&&day!==lastDay?`<div class=\"conversation-date-divider\"><span>${esc(day)}</span></div>`:'';lastDay=day||lastDay;return `${divider}<div class=\"bubble-row ${m.role}\"><div class=\"avatar\">${m.role==='zeke'?'Z':'You'}</div><div class=\"bubble\"><span class=\"bubble-name\">${m.role==='zeke'?'ZEKE':'You'}</span><p>${esc(m.text)}</p><time class=\"bubble-time\" datetime=\"${esc(m.at||'')}\">${esc(messageTime(m.at))}</time></div></div>`}).join('');
+  }
 
   function routeFromHash() {
     const h = location.hash.replace(/^#\/?/,'').split('?')[0];
@@ -658,7 +680,7 @@
     const choices=last?.choices||[];
     return `<section class="panel conversation-panel">
       <div class="section-head conversation-head"><div><h2>Talk to ZEKE</h2><p>Conversation first, with structured choices when ZEKE needs a safe decision.</p></div><div class="conversation-head-actions"><button class="secondary compact" id="expandConversation" aria-expanded="${document.body.classList.contains('conversation-expanded')}">${document.body.classList.contains('conversation-expanded')?'Collapse':'Expand'}</button><button class="question-pill" id="questionPill">${reviewTasks().length} review task${reviewTasks().length===1?'':'s'}</button></div></div>
-      <div class="conversation-thread" id="conversationThread">${msgs.map(m=>`<div class="bubble-row ${m.role}"><div class="avatar">${m.role==='zeke'?'Z':'You'}</div><div class="bubble"><span class="bubble-name">${m.role==='zeke'?'ZEKE':'You'}</span><p>${esc(m.text)}</p></div></div>`).join('')}</div>
+      <div class="conversation-thread" id="conversationThread">${conversationMessagesHTML(msgs)}</div>
       ${choices.length?`<div class="choice-row">${choices.map(c=>`<button class="choice" data-conversation-choice="${esc(c.value)}" aria-live="polite">${esc(c.label)}</button>`).join('')}</div>`:''}
       <div class="composer"><textarea id="talkInput" rows="1" placeholder="Tell ZEKE anything…"></textarea><button class="attach" id="attachBtn" title="Attach a file">＋</button><button class="send" id="sendBtn" aria-label="Send">➤</button></div>
     </section>`;
@@ -1379,6 +1401,16 @@
     try { raw=await ZekeData.addRawInput(text,state.context); state.events=await ZekeData.listEvents(); }
     catch(e){ pushZeke(`I couldn't preserve that input in connected storage yet. I won't pretend it was saved. ${e.message}`); state.busy=false; render(); return; }
 
+    if(affirmativeReply(text) && state.dialogue.activeQuestion){
+      const active={...state.dialogue.activeQuestion};state.dialogue.activeQuestion=null;
+      const aiAvailable=(state.ai?.providers||[]).some(p=>p.connected||p.hasSessionKey);
+      if(aiAvailable){
+        try{const r=await ZekeAIRouter.consult({role:'background_consultant',userGoal:'Continue the active conversation after an affirmative answer.',latestUserText:text,activeQuestion:active.text,history:state.conversation.slice(0,-1),allowedOutcomes:['ANSWER_USER','ASK_CLARIFICATION','NO_ACTION']});pushZeke(r.userResponse||r.answer||'Understood. I’ll continue with that.',{source:`${r.provider}/${r.model}`,resolveQuestion:true});}
+        catch(e){pushZeke('Understood. I’ll continue with that rather than treating your reply as a new record.',{resolveQuestion:true});}
+      }else pushZeke('Understood. I’ll continue with that rather than treating your reply as a new record.',{resolveQuestion:true});
+      await ZekeData.updateEvent(raw.id,{structured:{interpretation_status:'confirmed',intent:'conversation_answer',active_question:active.text}},{appendCorrection:false});state.busy=false;render();return;
+    }
+
     const bmiRequest=/\b(?:calculate|figure out|what(?:'s| is))\s+(?:my\s+)?bmi\b|\bbmi\b/i.test(text);
     if(bmiRequest){
       const heightMatch=[...state.factors].reverse().find(f=>/height/i.test(`${f.question_key||''} ${f.summary||''} ${f.answer||''}`));
@@ -1638,10 +1670,20 @@
     $('#workoutEditForm').onsubmit=async e=>{e.preventDefault();const num=id=>{const v=$(id).value.trim();return v===''?null:Number(v)};const date=$('#editWorkoutDate').value;const structured={...w,exercise:$('#editWorkoutName').value.trim(),canonical_activity_id:activityKey($('#editWorkoutName').value).replace(/ /g,'_'),activity_profile:$('#editWorkoutProfile').value,weight:num('#editWorkoutWeight'),reps:num('#editWorkoutReps'),sets:num('#editWorkoutSets'),duration_min:num('#editWorkoutDuration'),steps:num('#editWorkoutSteps'),level:$('#editWorkoutLevel').value.trim()||null,rpe:num('#editWorkoutRpe'),pain_before:num('#editWorkoutPainBefore'),pain_after:num('#editWorkoutPainAfter'),notes:$('#editWorkoutNotes').value.trim(),interpretation_status:'confirmed'};await ZekeData.updateEvent(id,{timestamp:`${date}T12:00:00`,raw_text:structured.notes,structured,correction_note:'Workout record corrected by user through structured editor'});close();await refreshData();render();showToast('Workout record corrected; prior values remain in the audit history.')};
   }
 
+  function openHealthRecordEditModal(id){
+    const event=state.events.find(x=>x.id===id);if(!event)return;
+    const s=event.structured||{}, metric=canonicalMetric(metricId(event)), meta=METRICS[metric]||{};
+    const value=metricValue(event), unit=s.unit||meta.unit||'', date=String(event.timestamp||event.recorded_at||'').slice(0,10);
+    $('#healthRecordEditModal')?.remove();
+    document.body.insertAdjacentHTML('beforeend',`<div class="direct-entry-overlay" id="healthRecordEditModal"><div class="direct-entry-card"><div class="section-head"><div><h2>Review health record</h2><p>Edit this exact record. ZEKE preserves the original values and provenance in correction history.</p></div><button class="icon-btn" id="closeHealthRecordEdit" aria-label="Close">×</button></div><form id="healthRecordEditForm" class="direct-entry-form"><label class="wide">Record type<input value="${esc(meta.label||s.measurement_name||semanticCategory(event))}" disabled></label><label>Date<input id="editHealthDate" type="date" value="${esc(date)}" required></label><label>Value<input id="editHealthValue" type="number" step="any" value="${value??''}" ${value==null?'disabled':''}></label><label>Unit<input id="editHealthUnit" value="${esc(unit)}"></label><label class="wide">Notes<textarea id="editHealthNotes" rows="3">${esc(s.notes||event.raw_text||'')}</textarea></label><div class="record-provenance wide"><strong>Source</strong><span>${esc(event.provenance?.sheet||event.provenance?.file||event.provenance?.source||'ZEKE')}</span><small>Record ID ${esc(event.id)}</small></div><div class="direct-entry-actions wide"><button type="button" class="secondary" id="cancelHealthRecordEdit">Cancel</button><button type="submit" class="primary">Save correction</button></div></form></div></div>`);
+    const close=()=>$('#healthRecordEditModal')?.remove();$('#closeHealthRecordEdit').onclick=close;$('#cancelHealthRecordEdit').onclick=close;
+    $('#healthRecordEditForm').onsubmit=async ev=>{ev.preventDefault();const nextDate=$('#editHealthDate').value,nextUnit=$('#editHealthUnit').value.trim(),notes=$('#editHealthNotes').value.trim();const nextValue=value==null?value:Number($('#editHealthValue').value);const structured={...s,unit:nextUnit,notes,interpretation_status:'confirmed'};if(value!=null)structured.value=nextValue;await ZekeData.updateEvent(id,{timestamp:`${nextDate}T12:00:00`,raw_text:notes,structured,correction_note:'Health record corrected by user through record-specific editor'});close();clearPending('record edited in dedicated editor');await refreshData();render();showToast('Health record corrected; the prior version remains in audit history.');};
+  }
+
   async function editEvent(id) {
     const e=state.events.find(x=>x.id===id); if(!e)return;
-    pushZeke(`You selected ${humanEvent(e)} from ${fmtDate(e.timestamp,{month:'short',day:'numeric',year:'numeric'})}. Tell me what should be corrected. I’ll preserve the change history.`);
-    state.pending={type:'edit-event',event:e}; go('dashboard'); render();
+    if(isWorkoutEvent(e)){openWorkoutEditModal(id);return;}
+    openHealthRecordEditModal(id);
   }
 
   async function handleEditAnswer(text) {
@@ -2111,7 +2153,7 @@
     $$('[data-edit-event]').forEach(el=>el.onclick=()=>editEvent(el.dataset.editEvent));
     $$('[data-edit-workout]').forEach(el=>el.onclick=()=>openWorkoutEditModal(el.dataset.editWorkout));
 
-    $('#sendBtn')?.addEventListener('click',async()=>{const input=$('#talkInput');const text=input?.value||'';if(input)input.value='';if(await handlePendingAnswer(text))return;if(await handleEditAnswer(text))return;sendConversation(text)});
+    $('#sendBtn')?.addEventListener('click',async()=>{const input=$('#talkInput');const text=(input?.value||'').trim();if(input)input.value='';if(!text)return;if(state.pending&&looksLikeIndependentNewEntry(text)&&!['question-awaiting'].includes(state.pending.type)){clearPending('new unrelated entry detected');pushZeke('I paused the earlier unfinished correction so it would not capture this new message.',{resolveQuestion:true});}if(await handlePendingAnswer(text))return;if(await handleEditAnswer(text))return;sendConversation(text)});
     $('#talkInput')?.addEventListener('input',e=>{state.draft=e.target.value;});
     document.querySelectorAll('input:not([type=file]), textarea, select, [contenteditable=true]').forEach(el=>el.addEventListener('blur',()=>{if(state.deferredRender && !isEditableElement(document.activeElement)){state.deferredRender=false;render();}}));
     $('#talkInput')?.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('#sendBtn')?.click()}});

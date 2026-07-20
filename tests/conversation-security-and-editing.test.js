@@ -1,0 +1,12 @@
+const fs=require('fs'),path=require('path');
+const root=path.resolve(__dirname,'..');const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');const ai=fs.readFileSync(path.join(root,'assets/ai-router.js'),'utf8');const css=fs.readFileSync(path.join(root,'assets/styles.css'),'utf8');
+const assert=(v,m)=>{if(!v)throw new Error(m)};
+assert(app.includes('function openHealthRecordEditModal'),'record-specific health editor missing');
+assert(app.includes("clearPending('new unrelated entry detected')"),'pending-flow isolation missing');
+assert(app.includes('affirmativeReply(text) && state.dialogue.activeQuestion'),'affirmative conversational continuation missing');
+assert(app.includes('conversation-date-divider')&&app.includes('bubble-time'),'transcript date/time rendering missing');
+assert(ai.includes('UNTRUSTED background consultant'),'untrusted AI boundary prompt missing');
+assert(ai.includes('unauthorized outcome')&&ai.includes('attempted to initiate an action'),'AI output enforcement missing');
+assert(ai.includes('consult,interpret'),'consultation API not exported');
+assert(css.includes('grid-auto-rows:max-content'),'content-driven page composition rule missing');
+console.log(JSON.stringify({ok:true,checks:8},null,2));

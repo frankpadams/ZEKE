@@ -366,7 +366,7 @@ body.nav-open{overflow:hidden}body.nav-open .sidebar{transform:translateX(0)}.si
    earlier dashboard placement rules without changing non-dashboard components. */
 .dashboard-independent-layout{
   display:grid!important;
-  grid-template-columns:minmax(0,1fr) minmax(300px,340px)!important;
+  grid-template-columns:minmax(0,1.7fr) minmax(300px,1fr)!important;
   gap:16px!important;
   align-items:start!important;
 }
@@ -427,3 +427,10 @@ body.nav-open{overflow:hidden}body.nav-open .sidebar{transform:translateX(0)}.si
 @media(max-width:390px){
   .dashboard-independent-layout .dashboard-health-rail .metrics-row{grid-template-columns:minmax(0,1fr)!important}
 }
+
+
+/* v0.23.0 content-driven composition and conversation diagnostics */
+.conversation-date-divider{display:flex;align-items:center;gap:10px;margin:14px 0 8px;color:var(--muted);font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em}.conversation-date-divider:before,.conversation-date-divider:after{content:"";height:1px;background:var(--line);flex:1}.bubble-time{display:block;margin-top:7px;color:var(--muted);font-size:10px;text-align:right}.bubble-row.user .bubble-time{text-align:left}.record-provenance{display:grid;gap:3px;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--soft)}
+/* Sections flow from their own content. No shared-row height coupling or spacer alignment. */
+.content-shell :is(.grid,.dashboard-priority-row,.dashboard-guidance-row,.dashboard-support-row,.fitness-grid,.health-grid){align-items:start;grid-auto-rows:max-content}.content-shell :is(.panel,.card){height:auto;min-height:0}.dashboard-independent-layout{grid-template-columns:minmax(0,1.7fr) minmax(300px,1fr)!important}.dashboard-health-rail{width:100%;max-width:none!important}.dashboard-independent-layout .dashboard-health-rail .metrics-row{grid-template-columns:repeat(auto-fit,minmax(145px,1fr))!important}
+@media(min-width:1500px){.dashboard-independent-layout{grid-template-columns:minmax(0,1.55fr) minmax(380px,1fr)!important}.dashboard-independent-layout .dashboard-health-rail .metrics-row{grid-template-columns:repeat(3,minmax(0,1fr))!important}}

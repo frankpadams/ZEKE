@@ -32,3 +32,12 @@ Current release identity, scope, artifact authority, lifecycle, supersessions, a
 - **DEC-020:** Runtime assets are inventoried and classified before deletion. Lack of an obvious static reference is not sufficient evidence that an asset is safe to purge.
 - **DEC-021:** A continuity release is complete only after all active standing documents are reviewed for relevance, not merely the state/gate files required by the audit script.
 
+
+## 2026-07-19 — v0.23.0 trusted AI and conversation-state decisions
+
+- Treat all external AI output as untrusted consultation data.
+- AI providers cannot directly call tools, write records, disclose data, or initiate actions.
+- ZEKE validates AI output against a fixed outcome allowlist and retains exclusive execution authority.
+- Pending correction/edit flows must not consume clearly unrelated new observations.
+- Recent Health Record review/edit must open a record-specific editor rather than route to the Dashboard.
+- All major page layouts should use independent content-driven streams and bounded-fluid columns.
