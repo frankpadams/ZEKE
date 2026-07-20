@@ -1,3 +1,3 @@
-ZEKE v0.22.2
-Build 2026.07.19.4
-Responsive Stabilization, Activity Foundation & Continuity Reconciliation
+ZEKE v0.23.0
+Build 2026.07.19.5
+Conversation Intelligence, Trusted AI Foundation & Content-Driven Layout
