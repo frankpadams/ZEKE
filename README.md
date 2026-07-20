@@ -1,3 +1,16 @@
+# ZEKE v0.23.0
+
+**Build:** 2026.07.19.5  
+**Release:** Conversation Intelligence & Trusted AI Foundation
+
+This is the full replacement package built from the accepted v0.22.2 Dashboard Acceptance Repair baseline. It implements the first complete vertical slice of conversation-state isolation, trusted background AI consultation, record-specific health editing, transcript diagnostics, and system-wide content-driven responsive composition.
+
+See `RELEASE_NOTES_v0.23.0.md` and `TEST_REPORT_v0.23.0.md` for details.
+
+---
+
+## Prior baseline documentation
+
 # ZEKE v0.22.2
 
 **Build:** 2026.07.19.4  
