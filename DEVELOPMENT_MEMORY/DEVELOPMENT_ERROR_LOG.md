@@ -73,3 +73,27 @@
 - **Impact:** The package contained a current release identity alongside obsolete architectural and feature descriptions.
 - **Prevention:** DEC-021 applies. The release checklist must enumerate every authoritative/supporting standing document, record whether it changed or was reviewed unchanged, then rebuild the registry, checksums, and package audit.
 
+
+## ERR-027 — Confirmation replies were reparsed as new health statements
+- **Failure:** “Yes” to a sleep confirmation entered general interpretation, generated another confirmation, and did not save the intended sleep record.
+- **Prevention:** Active transaction replies are routed before general parsing; save is idempotent; successful writes return created IDs and support view/undo regressions.
+
+## ERR-028 — Metric delta was labeled as reference-range abnormality
+- **Failure:** Cards described the numerical change from another observation as “over range,” producing impossible health interpretations.
+- **Prevention:** Trend deltas and reference/target classification use separate fields and render paths. In the absence of valid contextual range data, state only the observed change.
+
+## ERR-029 — Duplicate or conflicting recommendation surfaces
+- **Failure:** Coach’s Eye advised repeating a load while the activity tile recommended an increase.
+- **Prevention:** All Fitness surfaces consume one recommendation function and regression tests assert the shared source.
+
+## ERR-030 — Internal processing language leaked into user insights
+- **Failure:** Labels such as “Exercise parsing opportunity” described implementation mechanics rather than the user’s data or next step.
+- **Prevention:** Dashboard and Insights content must state the concrete observation, why it matters, limitations, and a supported action. Internal classifier/parser terms are prohibited in normal user-facing cards.
+
+## ERR-031 — Entry and edit schemas diverged
+- **Failure:** RPE, pain, and technique fields appeared only after saving and editing a workout, even though coaching later depended on them.
+- **Prevention:** Create and edit workflows share the same optional schema with progressive disclosure; missing fields remain unknown rather than favorable.
+
+## ERR-032 — Top-level navigation exposed implementation subfeatures
+- **Failure:** Labs, Insights, and Pattern Lab appeared as competing peer destinations.
+- **Prevention:** Sidebar tests enforce major-domain hierarchy; Labs is a Health tab and Pattern Lab is an Insights subview.

@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
-  "current_version": "0.23.0",
-  "current_build": "2026.07.19.5",
-  "release_label": "Responsive Stabilization, Activity Foundation & Continuity Reconciliation",
-  "baseline": "v0.22.1 Persistent Navigation, Coaching & Continuity Repair",
+  "current_version": "0.23.1",
+  "current_build": "2026.07.20.1",
+  "release_label": "Health & Fitness Workflow Stabilization",
+  "baseline": "v0.23.0 Conversation Intelligence & Trusted AI Foundation",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
   "governance_rules": "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
   "authoritative_documents": [
@@ -20,17 +20,21 @@
     "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
     "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
     "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
-    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.2.md"
+    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.23.1.md"
   ],
   "implemented_this_release": [
-    "Responsive dashboard and Fitness layout stabilization",
-    "Canonical activity taxonomy with functional activity",
-    "Modality-aware activity summaries",
-    "Health favorites with versioned preference key",
-    "Pattern Lab focus propagation and clearing",
-    "Basic per-record workout editing with correction history",
-    "Runtime code integrity coverage",
-    "Complete active continuity-corpus reconciliation in build 2026.07.19.3"
+    "Atomic pending-confirmation routing and save-once sleep transactions with view and undo actions",
+    "First-class sleep records with direct Health Library logging and wake-date display",
+    "Concrete Review Questions showing source, proposal, uncertainty, and explicit actions",
+    "Correct change-language for metric tiles plus display duplicate suppression and duplicate checks",
+    "Independent three-stack Dashboard composition with improved coaching readability",
+    "Actionable user-facing insights, calendar follow-ups with defined downstream use, and no internal parsing language",
+    "Consistent labeled Activity Library graphs with explicit insufficient-data explanations",
+    "Equivalent optional RPE, pain, technique, notes, and injury-context fields in workout creation and editing",
+    "One shared exercise recommendation object across Coach\u2019s Eye and Activity Library",
+    "Labs within Health and Pattern Lab within Insights",
+    "Durable Potential Health Events included in AI relationship context and manual AI packets",
+    "Regression coverage for sleep parsing, idempotent confirmation, undo, navigation, layout, and release structure"
   ],
   "inherited_verified_evidence": [
     "Medication parser and Today-action regressions",
@@ -38,20 +42,20 @@
     "GLP-1 class phrase clarification behavior"
   ],
   "known_issues": [
-    "Live Google Drive, Calendar, AI-provider, service-worker, and credentialed behavior requires deployed verification",
-    "Rendered arbitrary-width, accessibility, and real-device mobile verification remains outstanding",
-    "Global activity rename, duplicate merge, bulk/ambiguous migration, and full correction-history undo remain deferred",
-    "Repeated-advice report remains unverified on the current hard-refreshed deployed build",
-    "Legacy runtime assets require inventory and classification before removal"
+    "Live Google Drive, Google Calendar, AI-provider, service-worker, credentialed, and deployed-origin behavior requires environment verification",
+    "Real-workbook regression tests require ZEKE_TEST_DATA_ROOT and were not executed without that external fixture",
+    "Physical-device accessibility and real mobile-browser verification remains outstanding",
+    "Potential Health Event reclassification remains review-driven; no automatic clinical conclusions are made",
+    "Global activity rename, merge, and legacy taxonomy migration remain deferred"
   ],
   "next_review_items": [
-    "Deployed-origin responsive and accessibility verification",
-    "Runtime asset inventory and safe classification",
-    "Activity identity management and reviewed legacy migration design",
-    "Complete Fitness information architecture polish",
-    "Correction-history viewer and practical revert design"
+    "Deployed-origin acceptance test of sleep save/view/undo and Google persistence",
+    "Real-device mobile and accessibility verification",
+    "Live Calendar follow-up question and downstream record-update verification",
+    "Real-workbook regression with the protected external fixture",
+    "Independent visual review of Dashboard information density after deployed data load"
   ],
-  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.2.md",
+  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.23.1.md",
   "files_to_read_first": [
     "00_AI_START_HERE.md"
   ],
@@ -62,5 +66,5 @@
     "real-data workbook regression when fixture is available",
     "final ZIP reopened and byte-compared with staging"
   ],
-  "current_release_label": "Conversation Intelligence & Trusted AI Foundation"
+  "current_release_label": "Health & Fitness Workflow Stabilization"
 }

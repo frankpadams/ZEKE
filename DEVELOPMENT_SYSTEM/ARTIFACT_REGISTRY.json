@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "release": "0.22.2",
-  "build": "2026.07.19.4",
+  "release": "0.23.1",
+  "build": "2026.07.20.1",
   "artifacts": [
     {
       "path": "00_AI_START_HERE.md",
@@ -71,7 +71,7 @@
     {
       "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.20.5.md",
       "status": "historical",
-      "purpose": "Historical approved scope and implementation record"
+      "purpose": "historical approved scope and implementation record"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md",
@@ -96,7 +96,7 @@
     {
       "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.21.0.md",
       "status": "historical",
-      "purpose": "Historical approved scope and implementation record",
+      "purpose": "historical approved scope and implementation record",
       "audience": [
         "AI developer",
         "human reviewer"
@@ -114,7 +114,7 @@
     {
       "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.0.md",
       "status": "historical",
-      "purpose": "Historical v0.22.0 feature implementation record"
+      "purpose": "historical approved scope and implementation record"
     },
     {
       "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.1.md",
@@ -142,8 +142,8 @@
     },
     {
       "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.2.md",
-      "status": "authoritative",
-      "purpose": "current approved scope and implementation record"
+      "status": "historical",
+      "purpose": "historical approved scope and implementation record"
     },
     {
       "path": "ARCHITECTURE.md",
@@ -167,11 +167,41 @@
     },
     {
       "path": "RELEASE_NOTES_v0.22.2.md",
+      "status": "historical",
+      "purpose": "historical release/review evidence"
+    },
+    {
+      "path": "TEST_REPORT_v0.22.2.md",
+      "status": "historical",
+      "purpose": "historical release/review evidence"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.23.0.md",
+      "status": "historical",
+      "purpose": "historical release/review evidence"
+    },
+    {
+      "path": "TEST_REPORT_v0.23.0.md",
+      "status": "historical",
+      "purpose": "historical release/review evidence"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.23.0.md",
+      "status": "historical",
+      "purpose": "historical approved scope and implementation record"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.23.1.md",
+      "status": "authoritative",
+      "purpose": "current approved scope and implementation record"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.23.1.md",
       "status": "supporting",
       "purpose": "current release summary"
     },
     {
-      "path": "TEST_REPORT_v0.22.2.md",
+      "path": "TEST_REPORT_v0.23.1.md",
       "status": "supporting",
       "purpose": "current test and verification evidence"
     }
@@ -187,8 +217,8 @@
     "DEVELOPMENT_MEMORY/README_FIRST.md",
     "DEVELOPMENT_MEMORY/DOCUMENT_INDEX.md"
   ],
-  "current_version": "0.22.2",
-  "current_build": "2026.07.19.4",
+  "current_version": "0.23.1",
+  "current_build": "2026.07.20.1",
   "runtime_files": [
     "index.html",
     "version.js",

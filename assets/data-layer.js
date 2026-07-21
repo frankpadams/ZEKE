@@ -541,6 +541,33 @@ Content-Type: ${mimeType}
     return clone(updated);
   }
 
+  async function undoEvents(ids = [], reason = 'User undid a recent save') {
+    const targets = new Set((ids || []).filter(Boolean));
+    if (!targets.size) return { undone: 0 };
+    const now = nowIso();
+    let undone = 0;
+    const corrections = [];
+    state.events = state.events.map(event => {
+      if (!targets.has(event.id)) return event;
+      undone += 1;
+      const updated = {
+        ...event,
+        updated_at: now,
+        structured: { ...(event.structured || {}), interpretation_status: 'undone', include_in_analysis: false, undone_at: now, undo_reason: reason }
+      };
+      corrections.push({
+        schema_version: 2, id: crypto.randomUUID(), category: 'correction', timestamp: now, recorded_at: now,
+        raw_text: reason, structured: { target_event_id: event.id, before: event, after: updated, operation: 'undo_recent_save' },
+        provenance: { source: 'user-undo' }
+      });
+      return updated;
+    });
+    if (!undone) return { undone: 0 };
+    state.events = [...state.events, ...corrections];
+    await persist('events'); emit();
+    return { undone };
+  }
+
   async function addRawInput(rawText, context = {}) {
     return addEvent({
       category: 'raw_input',
@@ -569,15 +596,22 @@ Content-Type: ${mimeType}
     return created;
   }
 
+  function duplicateCategory(event) {
+    const structured = event?.structured || {};
+    const metric = String(structured.metric_id || structured.metric || '').toLowerCase();
+    if (metric === 'sleep_duration' || String(event?.category || '').toLowerCase() === 'sleep') return 'sleep';
+    return String(event?.category || '').toLowerCase();
+  }
+
   function duplicateScore(candidate, existing) {
-    if (candidate.category !== existing.category) return 0;
+    if (duplicateCategory(candidate) !== duplicateCategory(existing)) return 0;
     const a = candidate.structured || {}, b = existing.structured || {};
     if (candidate.category === 'workout' && a.workout_id && b.workout_id && String(a.workout_id) === String(b.workout_id) && a.set_number != null && b.set_number != null && Number(a.set_number) !== Number(b.set_number)) return 0;
     const timeDelta = Math.abs(new Date(candidate.timestamp || nowIso()) - new Date(existing.timestamp || 0));
     // Equal values on different days are legitimate history, not duplicates.
     const maxWindow = candidate.category === 'workout' ? 8 * 3600e3 : 24 * 3600e3;
     if (!Number.isFinite(timeDelta) || timeDelta > maxWindow) return 0;
-    const keys = ['metric_id','value','exercise','weight','reps','sets','medication_name','dose','duration_min','steps','distance_mi','workout_id'];
+    const keys = ['metric_id','value','exercise','weight','reps','sets','medication_name','dose','duration_min','steps','distance_mi','workout_id','start_time','end_time','sleep_quality'];
     const comparable = keys.filter(k => a[k] != null && b[k] != null);
     if (!comparable.length) return 0;
     const matched = comparable.filter(k => String(a[k]).toLowerCase() === String(b[k]).toLowerCase()).length;
@@ -843,7 +877,7 @@ Content-Type: ${mimeType}
 
   window.ZekeData = {
     bootstrap, connect, reconnect, disconnect, snapshot, safeSetupMeta,
-    listEvents, addEvent, updateEvent, addRawInput, confirmRawInput, findLikelyDuplicates,
+    listEvents, addEvent, updateEvent, undoEvents, addRawInput, confirmRawInput, findLikelyDuplicates,
     listFactors, saveFactor, resolveFactor, listDiscoveries,
     getActions, saveActions, getPreferences, savePreferences,
     getAIConnections, saveAIConnections, addAIExchange,

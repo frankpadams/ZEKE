@@ -36,6 +36,43 @@
   function isAmbiguousBP(text){return /^\s*bp\s+\d+(?:\.\d+)?(?:\s+\d+(?:\.\d+)?){2,3}\s*$/i.test(text);}
   function parseBloodPressure(text,context={}){const m=lower(text).match(/(?:bp|blood pressure)\s*(\d{2,3})\s*[\/,-]\s*(\d{2,3})(?:\s+(?:hr|pulse)\s*(\d{2,3}))?/i);if(!m)return null;const s=num(m[1]),d=num(m[2]);if(!(s>=50&&s<=300&&d>=30&&d<=200))return null;const ts=now(context),events=[{category:'measurement',timestamp:ts,raw_text:text,structured:{metric_id:'bp_systolic',value:s,unit:'mmHg',interpretation_status:'confirmed'}},{category:'measurement',timestamp:ts,raw_text:text,structured:{metric_id:'bp_diastolic',value:d,unit:'mmHg',interpretation_status:'confirmed'}}];if(m[3])events.push({category:'measurement',timestamp:ts,raw_text:text,structured:{metric_id:'heart_rate',value:num(m[3]),unit:'bpm',interpretation_status:'confirmed'}});return{confidence:.99,summary:`blood pressure ${s}/${d} mmHg`,events};}
   function parseWeight(text,context={}){const m=lower(text).match(/(?:weight|weighed|weighing|i am|i'm)\s*(?:is|was|at)?\s*(\d{2,3}(?:\.\d+)?)\s*(lb|lbs|pounds|kg|kilograms)?\b/i);if(!m||(!/weight|weigh/i.test(text)&&!m[2]))return null;const unit=/^kg/.test(m[2]||'')?'kg':'lb';return{confidence:.97,summary:`weight ${m[1]} ${unit}`,events:[{category:'measurement',timestamp:now(context),raw_text:text,structured:{metric_id:'weight',value:num(m[1]),unit,interpretation_status:'confirmed'}}]};}
+  function localDateParts(token,base){
+    if(token){
+      const iso=String(token).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      if(iso)return{year:Number(iso[1]),month:Number(iso[2]),day:Number(iso[3])};
+      const slash=String(token).match(/^(\d{1,2})\/(\d{1,2})(?:\/(\d{2}|\d{4}))?$/);
+      if(slash){let year=slash[3]?Number(slash[3]):base.getFullYear();if(year<100)year+=2000;return{year,month:Number(slash[1]),day:Number(slash[2])};}
+    }
+    return{year:base.getFullYear(),month:base.getMonth()+1,day:base.getDate()};
+  }
+  function sleepClock(hour,minute,ampm){let h=Number(hour)%12;if(String(ampm).toLowerCase()==='pm')h+=12;return{hour:h,minute:Number(minute||0)}}
+  function clockLabel(date){return date.toLocaleTimeString(undefined,{hour:'numeric',minute:'2-digit'})}
+  function dateLabel(date){return date.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'})}
+  function parseSleep(text,context={}){
+    if(!/\b(slept|sleep|went to bed|bedtime|woke|woke up)\b/i.test(text))return null;
+    const base=context?.active_date?new Date(`${context.active_date}T12:00:00`):nowDate(context);
+    const quality=/\b(slept well|sleep was good|good quality|restful|well rested)\b/i.test(text)?'good':/\b(slept poorly|poor quality|restless|terrible sleep|bad sleep)\b/i.test(text)?'poor':/\b(okay|fair|average)\b/i.test(text)?'fair':'';
+    const approximate=/\b(about|around|approximately|approx\.?|roughly)\b/i.test(text);
+    const timeRe=/(\d{1,2})(?::(\d{2}))?\s*(am|pm)(?:\s*(?:on\s*)?(\d{4}-\d{2}-\d{2}|\d{1,2}\/\d{1,2}(?:\/(?:\d{2}|\d{4}))?))?/gi;
+    const hits=[...text.matchAll(timeRe)];
+    if(hits.length>=2){
+      const a=hits[0],b=hits[1],ac=sleepClock(a[1],a[2],a[3]),bc=sleepClock(b[1],b[2],b[3]);
+      const wakeParts=localDateParts(b[4]||a[4]||context?.active_date,base);
+      const startParts=localDateParts(a[4]||b[4]||context?.active_date,base);
+      let start=new Date(startParts.year,startParts.month-1,startParts.day,ac.hour,ac.minute,0,0);
+      let end=new Date(wakeParts.year,wakeParts.month-1,wakeParts.day,bc.hour,bc.minute,0,0);
+      if(!a[4]&&!b[4]&&/last night/i.test(text)){
+        end=new Date(base.getFullYear(),base.getMonth(),base.getDate(),bc.hour,bc.minute,0,0);
+        start=new Date(end);start.setHours(ac.hour,ac.minute,0,0);if(start>=end)start.setDate(start.getDate()-1);
+      }else if(end<=start){end.setDate(end.getDate()+1);}
+      const duration=Math.round(((end-start)/36e5)*100)/100;if(!(duration>0&&duration<=24))return null;
+      const wakeDate=`${end.getFullYear()}-${String(end.getMonth()+1).padStart(2,'0')}-${String(end.getDate()).padStart(2,'0')}`;
+      return{confidence:.99,summary:`sleep ending ${dateLabel(end)} from ${clockLabel(start)} to ${clockLabel(end)} (${duration.toFixed(2).replace(/0+$/,'').replace(/\.$/,'')} hours)${quality?`, ${quality} quality`:''}`,events:[{category:'sleep',timestamp:end.toISOString(),raw_text:text,structured:{metric_id:'sleep_duration',value:duration,unit:'hr',start_time:start.toISOString(),end_time:end.toISOString(),event_date:wakeDate,sleep_quality:quality||null,approximate,interpretation_status:'confirmed'},provenance:{source:'deterministic-sleep-parser'}}]};
+    }
+    const durationMatch=lower(text).match(/(?:slept|sleep(?:ed)?(?: for)?)\s*(?:about|around|approximately|roughly)?\s*(\d+(?:\.\d+)?)\s*(?:hours?|hrs?|hr)\b/i);
+    if(durationMatch){const duration=num(durationMatch[1]);if(duration>0&&duration<=24){const parts=localDateParts(context?.active_date,base),end=new Date(parts.year,parts.month-1,parts.day,12,0,0);return{confidence:.9,summary:`${duration} hours of sleep on ${dateLabel(end)}${quality?`, ${quality} quality`:''}`,events:[{category:'sleep',timestamp:end.toISOString(),raw_text:text,structured:{metric_id:'sleep_duration',value:duration,unit:'hr',event_date:`${parts.year}-${String(parts.month).padStart(2,'0')}-${String(parts.day).padStart(2,'0')}`,sleep_quality:quality||null,approximate,interpretation_status:'confirmed'},provenance:{source:'deterministic-sleep-parser'}}]};}}
+    return null;
+  }
   function parseCadence(text){
     const l=lower(text), dayMap={sunday:0,sun:0,monday:1,mon:1,tuesday:2,tue:2,tues:2,wednesday:3,wed:3,thursday:4,thu:4,thur:4,thurs:4,friday:5,fri:5,saturday:6,sat:6};
     if(/\b(every day|daily|once a day|each day|1\s*x\s*\/?\s*day)\b/.test(l))return{type:'daily'};
@@ -107,7 +144,7 @@
     if(events.length){const hash=stableHash(lower(text));const counters={};events.forEach(e=>{const day=e.timestamp.slice(0,10);counters[day]=(counters[day]||0)+1;const id=`workout:${day}:${hash}`;e.structured={...e.structured,workout_id:id,session_id:id,activity_index:counters[day],modality:e.structured.exercise==='stair climber'?'cardio':e.structured.exercise==='massage chair'?'recovery':'strength'};e.provenance={source:'deterministic-workout-parser'};});return{confidence:.96,summary:`${new Set(events.map(e=>e.timestamp.slice(0,10))).size} workout session${new Set(events.map(e=>e.timestamp.slice(0,10))).size===1?'':'s'}, ${events.length} activities`,events};}
     const exercise=context.exercise||findAlias(text,EXERCISE_ALIASES)?.canonical;if(!exercise)return null;return{confidence:.75,needsClarification:true,summary:exercise,events:[parseExerciseChunk(exercise,text,now(context),text)]};
   }
-  function parseSingle(text,context={}){if(isAmbiguousBP(text)&&!context.exercise&&!context.metric)return{type:'ambiguity',confidence:.45,choices:['blood pressure','bench press'],raw:text};if(context.metric==='weight'&&/^\s*\d{2,3}(?:\.\d+)?\s*$/.test(text))return{confidence:.98,summary:`weight ${norm(text)} lb`,events:[{category:'measurement',timestamp:now(context),raw_text:text,structured:{metric_id:'weight',value:num(text),unit:'lb',interpretation_status:'confirmed'}}]};return parseBloodPressure(text,context)||parseWeight(text,context)||parseMedication(text,context)||parseWorkout(text,context)||{type:'unstructured',confidence:.35,summary:'an observation that needs more interpretation',events:[]};}
+  function parseSingle(text,context={}){if(isAmbiguousBP(text)&&!context.exercise&&!context.metric)return{type:'ambiguity',confidence:.45,choices:['blood pressure','bench press'],raw:text};if(context.metric==='weight'&&/^\s*\d{2,3}(?:\.\d+)?\s*$/.test(text))return{confidence:.98,summary:`weight ${norm(text)} lb`,events:[{category:'measurement',timestamp:now(context),raw_text:text,structured:{metric_id:'weight',value:num(text),unit:'lb',interpretation_status:'confirmed'}}]};return parseBloodPressure(text,context)||parseWeight(text,context)||parseSleep(text,context)||parseMedication(text,context)||parseWorkout(text,context)||{type:'unstructured',confidence:.35,summary:'an observation that needs more interpretation',events:[]};}
   function interpret(text,context={}){return parseSingle(text,context);}
   window.ZekeParser={interpret,isAmbiguousBP,resolveDateToken,aliases:{medications:MED_ALIASES,exercises:EXERCISE_ALIASES},canonicalMedicationId:value=>findAlias(value,MED_ALIASES)?.canonical||lower(value).replace(/[^a-z0-9]+/g,'_')};
 })();

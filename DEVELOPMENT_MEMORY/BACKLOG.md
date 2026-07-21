@@ -1,7 +1,7 @@
 # ZEKE Backlog
 
 **Status:** Authoritative  
-**Current baseline:** v0.22.2 · build 2026.07.19.4
+**Current baseline:** v0.23.1 · build 2026.07.20.1
 
 | ID | Item | Priority | Status | Origin | Resurface when |
 |---|---|---:|---|---|---|
@@ -37,3 +37,16 @@ At the beginning of every iteration, resurface all **Ready for review**, **Ready
 - Add medication-specific and lab-reference-aware structured record editors.
 - Add activity identity global rename, recategorization review, duplicate merge, migration preview, and undo.
 - Add browser-level end-to-end tests for conversation and record editing.
+
+## After v0.23.1
+
+| ID | Item | Priority | Status | Resurface when |
+|---|---|---:|---|---|
+| QA-009 | Deployed sleep save/view/undo and persistence acceptance | High | Environment verification outstanding | v0.23.1 is deployed and hard-refreshed |
+| QA-010 | Protected real-workbook regression | High | Blocked by external fixture | `ZEKE_TEST_DATA_ROOT` is available |
+| UI-026 | Physical-device mobile and accessibility pass | High | Environment verification outstanding | Current build is available on representative devices |
+| INS-012 | Reviewed promotion/reclassification of Potential Health Events | Medium | Deferred | Sufficient real Potential Health Events exist to design safely |
+| CAL-006 | Live calendar follow-up/downstream update acceptance | Medium | Environment verification outstanding | Google Calendar is connected on deployed origin |
+| LAB-007 | Source-lab reference interval and target-context editor | Medium | Ready for design | Next lab-focused iteration |
+
+The v0.23.1 stabilization scope is complete locally. Do not reopen it as feature work unless a regression fails or deployed evidence contradicts the package checks.

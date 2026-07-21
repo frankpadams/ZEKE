@@ -1,30 +1,24 @@
-# Project Health — v0.22.2
+# Project Health — v0.23.1
 
-**Build:** 2026.07.19.4
+**Build:** 2026.07.20.1
 
 ## Healthy / locally verified
-- Package identity and checksums are internally consistent.
-- Active runtime files are registered and present.
-- Governance audit and negative controls pass.
-- Canonical activity registry, modality-aware summaries, Health Favorites, Pattern Lab context handling, and record-scoped workout correction have structural regression coverage.
-- Current continuity documents were reconciled against the v0.22.2 implementation.
+- Current authorities and runtime identities are synchronized.
+- Atomic sleep confirmation, direct sleep logging, duplicate protection, undo, concrete review rendering, navigation hierarchy, shared recommendations, and graph-descriptor behavior have regression coverage.
+- Isolated Chromium rendering completes without JavaScript page errors across Dashboard, Health, Fitness, Questions, Insights, and a narrow mobile viewport.
+- User-owned storage, provenance preservation, and deterministic commit boundaries remain intact.
 
-## Partial / requires environment evidence
-- Responsive source structure is repaired, but deployed-origin arbitrary-width and physical-device rendering remain unverified.
-- Accessibility behavior and touch targets require browser/device inspection.
-- Live Google Drive, Calendar, AI providers, and service-worker upgrade behavior remain unverified.
-- Repeated advice has not been reproduced on the current hard-refreshed deployment.
+## Environment verification outstanding
+- Live Google Drive and Google Calendar reads/writes.
+- Configured AI providers and credential/privacy paths.
+- Service-worker and cache behavior on the deployed GitHub Pages origin.
+- Protected real-workbook regressions requiring `ZEKE_TEST_DATA_ROOT`.
+- Physical-device mobile, accessibility, and assistive-technology behavior.
 
-## Deferred architectural work
-- Global activity rename and duplicate identity merge.
-- Bulk/ambiguous legacy category migration.
-- Full correction-history browser and practical global undo.
-- Richer Fitness information architecture and modality-specific analytics.
-- Safe classification/removal of legacy runtime assets.
+## Deferred
+- Global activity rename/merge and ambiguous legacy taxonomy migration.
+- Automatic clinical conclusions or treatment decisions.
+- Broader Potential Health Event promotion/reclassification automation.
 
-## Current risk statement
-The package is suitable as the sole development baseline only when the startup gate is followed and environment-dependent behavior is not represented as verified. Historical assets and older release documents remain for compatibility and must not be mistaken for current authority.
-
-## Build 2026.07.19.4 acceptance status
-
-The prior Dashboard layout claim failed deployed visual acceptance. The structural cause was repaired by separating the main content stream from the health rail. Static verification passes; deployed-origin visual acceptance is still pending and must not be represented as complete until the replacement build is observed after a hard refresh.
+## Risk statement
+This package is suitable as the next development baseline when environment-dependent behavior is not represented as locally verified.

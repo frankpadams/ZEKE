@@ -41,3 +41,14 @@ Current release identity, scope, artifact authority, lifecycle, supersessions, a
 - Pending correction/edit flows must not consume clearly unrelated new observations.
 - Recent Health Record review/edit must open a record-specific editor rather than route to the Dashboard.
 - All major page layouts should use independent content-driven streams and bounded-fluid columns.
+
+## 2026-07-20 — v0.23.1 workflow-stabilization decisions
+
+- **DEC-022:** Replies to an active confirmation transaction are routed before general natural-language parsing. A confirmation can save once, report the result, and offer view/undo.
+- **DEC-023:** Sleep is a first-class health event with start/end timestamps, wake date, duration, quality, optional interruptions/notes, and provenance.
+- **DEC-024:** Review Questions must show the source, proposed record/action, uncertainty, and exact consequence of each action; internal processing rules are not a user decision.
+- **DEC-025:** Metric change and reference-range status are distinct concepts. A tile may describe change only from the observations currently being compared unless a valid contextual range is separately established.
+- **DEC-026:** One exercise recommendation object feeds every Fitness surface. Different surfaces may vary detail, not direction.
+- **DEC-027:** Every insight question or action has a defined downstream use. Information that cannot yet be structured is preserved as a Potential Health Event and included in later relationship analysis.
+- **DEC-028:** Calendar events are contextual evidence and question triggers, never proof of attendance, completion, treatment, or outcome.
+- **DEC-029:** The primary sidebar contains major domains. Labs belongs to Health; Pattern Lab belongs to Insights.

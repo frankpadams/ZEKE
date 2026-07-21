@@ -1,41 +1,68 @@
 {
   "schema_version": 2,
-  "release": "0.22.2",
-  "build": "2026.07.19.4",
+  "release": "0.23.1",
+  "build": "2026.07.20.1",
   "current_iteration": {
-    "status": "implementation_complete_verified_for_delivery",
+    "status": "package_verification_complete_environment_verification_outstanding",
     "baseline_verified": true,
+    "baseline_audit_status": "Uploaded v0.23.0 baseline inspected; continuity errors reconciled in v0.23.1 authorities and release metadata.",
     "backlog_resurfaced": true,
     "scope_presented": true,
     "user_approved_scope": true,
-    "approved_at": "2026-07-19T02:26:15Z",
-    "release": "0.22.2",
-    "build": "2026.07.19.4",
+    "approved_at": "2026-07-20T05:55:29Z",
+    "approval_evidence": "User asked ZEKE to work on the enumerated improvements now and then supplied the requested authoritative v0.23.0 source ZIP.",
+    "release": "0.23.1",
+    "build": "2026.07.20.1",
+    "baseline_release": "0.23.0",
+    "baseline_build": "2026.07.19.5",
     "approved_scope": [
-      "Repair the deployed Dashboard blank-space defect by separating the main content flow from the Health at a Glance rail without changing other application behavior"
+      "Make sleep confirmation atomic and save confirmed sleep to structured history",
+      "Add direct sleep logging from the Health Library Sleep tile",
+      "Replace abstract Review Questions with original input, concrete proposal, uncertainty, and explicit actions",
+      "Repair health trend labels, suppress display duplicates, and add duplicate protections for new entries",
+      "Recompose the Dashboard as independent vertical stacks to eliminate cross-row whitespace",
+      "Make Coach\u2019s Eye and insight content concrete, user-friendly, evidence-linked, and actionable",
+      "Make Activity Library graph eligibility and metric labels consistent and explain missing graphs",
+      "Expose the same optional RPE, pain, technique, notes, and injury-context fields during workout creation and editing",
+      "Use one authoritative exercise recommendation across Fitness surfaces",
+      "Move Labs into Health and Pattern Lab under Insights in primary navigation",
+      "Add durable Potential Health Events and include them in AI relationship-analysis context",
+      "Add health-related calendar follow-up prompts only when downstream record use is defined",
+      "Add regression tests and synchronize the full continuity package"
     ],
     "explicitly_excluded": [
-      "Any additional feature, taxonomy, data-model, integration, parser, or editing change"
+      "Global activity rename, merge, or legacy taxonomy migration beyond existing approved behavior",
+      "New paid AI services or provider changes",
+      "Changes to user storage ownership or canonical-storage architecture",
+      "Automatic clinical conclusions, diagnoses, or treatment recommendations",
+      "Deletion of historical source data without explicit user action"
     ],
-    "completed_at": "2026-07-19T03:05:00Z",
-    "final_zip_reopened_and_verified": true,
-    "unpacked_file_count": 200,
+    "acceptance_criteria": [
+      "A typed yes to a pending sleep confirmation saves exactly once and does not become a new parsed record",
+      "Sleep can be logged from the Sleep tile and appears in Recent Health Record immediately",
+      "Review screens show the actual source and proposed record before any action",
+      "Trend labels describe change rather than falsely claiming reference-range status",
+      "Activity graphs either render with a named metric or explain why they cannot",
+      "Workout create and edit forms expose equivalent optional fields",
+      "Sidebar has one Insights destination; Labs is a Health tab and Pattern Lab is an Insights subview",
+      "Potential Health Events are durable and included in AI analysis context",
+      "All syntax, structural, governance, regression, packaging, and reopened-ZIP checks pass or are precisely reported"
+    ],
+    "rollback_plan": "Restore the uploaded v0.23.0 package. No migration is required; new fields are additive and readers remain backward-compatible.",
     "prior_conversations_reviewed": true,
-    "data_compatibility_reviewed": true,
-    "critical_checksums_verified": 199,
-    "continuity_corpus_reconciled": true,
-    "continuity_reconciliation_requested_at": "2026-07-19T02:35:49Z",
-    "target_version": "0.23.0",
-    "target_build": "2026.07.19.5",
-    "scope_summary": "Conversation-state isolation, record-specific health editing, transcript timestamps, trusted AI consultation boundary, and content-driven responsive composition."
+    "implementation_complete": true,
+    "verification_complete": true,
+    "unpacked_file_count": 210,
+    "package_verification": "complete",
+    "environment_verification": "outstanding"
   },
   "next_iteration": {
-    "status": "awaiting_future_scope",
+    "status": "not_open",
     "baseline_verified": false,
     "backlog_resurfaced": false,
     "scope_presented": false,
     "user_approved_scope": null
   },
-  "current_version": "0.22.2",
-  "current_build": "2026.07.19.4"
+  "current_version": "0.23.1",
+  "current_build": "2026.07.20.1"
 }
