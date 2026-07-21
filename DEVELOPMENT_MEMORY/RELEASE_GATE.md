@@ -1,30 +1,26 @@
-# Release Gate — ZEKE v0.24.0
+# Release Gate — ZEKE v0.25.0
 
-**Build:** 2026.07.21.1
+**Build:** 2026.07.21.2
 
 ## Status
-
 **Package verification complete.**
 
-**Environment verification outstanding.** Live Google Drive and Calendar, real AI-provider routing, deployed service-worker/cache replacement, protected workbook fixtures, report downloads on every supported browser, and physical-device accessibility are not established by local package checks.
+**Environment verification outstanding.**
 
 ## Approved scope
-
-- Durable workflow engine and explicit interaction closure.
-- Conversation Memory and narrative review workspace.
-- Focused medication-schedule recovery.
-- Talk attachment routing through safe imports.
-- Settings Support & Improvement Report and connected diagnostics.
-- Pattern wording, Fitness density, architecture clarification, tests, and continuity reconciliation.
+- Integrated dashboard/mobile continuity.
+- Activity-specific workout display.
+- Fast gym entry and repeat workflow.
+- Provider/PT presentation.
+- Cautious evidence-backed considerations.
+- Progressive identity and clinical context.
+- Revision of existing continuity documents.
 
 ## Package evidence
-
-- JavaScript syntax checks for all active runtime files.
-- Deterministic JavaScript regression suite, including workflow and Trust/UX tests.
+- Active JavaScript syntax check.
+- Existing deterministic JavaScript regressions, except protected workbook tests requiring `ZEKE_TEST_DATA_ROOT`.
 - Governance audit and negative controls.
-- Isolated rendered-browser smoke checks where available.
-- JSON validation, release checksums, ZIP reopen, and staging comparison.
+- ZIP reopen and byte comparison required before release handoff.
 
 ## Rollback
-
-Restore ZEKE v0.23.1 · build 2026.07.20.1. New workflow-state and workflow-log factors are additive.
+Restore ZEKE v0.24.0 · build 2026.07.21.1. Changes are additive UI/profile changes with no destructive migration.

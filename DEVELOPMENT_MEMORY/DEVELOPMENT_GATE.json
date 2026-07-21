@@ -1,57 +1,50 @@
 {
   "schema_version": 2,
-  "release": "0.24.0",
-  "build": "2026.07.21.1",
+  "release": "0.25.0",
+  "build": "2026.07.21.2",
   "current_iteration": {
     "status": "package_verification_complete_environment_verification_outstanding",
     "baseline_verified": true,
-    "baseline_audit_status": "Uploaded v0.23.1 static runtime inspected; active readable files and legacy artifact ambiguity were reconciled.",
+    "baseline_audit_status": "v0.24.0 package audited with zero warnings before modification.",
     "backlog_resurfaced": true,
     "scope_presented": true,
     "user_approved_scope": true,
-    "approved_at": "2026-07-21T05:21:15Z",
-    "approval_evidence": "User explicitly instructed ZEKE to proceed and address the issues discussed, after supplying the authoritative v0.23.1 package.",
-    "release": "0.24.0",
-    "build": "2026.07.21.1",
-    "baseline_release": "0.23.1",
-    "baseline_build": "2026.07.20.1",
+    "approved_at": "2026-07-21T20:09:24Z",
+    "approval_evidence": "User approved one integrated build using the uploaded continuity package and both preceding design conversations.",
+    "release": "0.25.0",
+    "build": "2026.07.21.2",
+    "baseline_release": "0.24.0",
+    "baseline_build": "2026.07.21.1",
     "approved_scope": [
-      "Implement a durable ZEKE workflow engine that coordinates Talk to ZEKE, review, AI, editors, audit, and unresolved interactions",
-      "Give every meaningful conversation an explicit saved, not saved, duplicate, dismissed, waiting, completed, or failed outcome",
-      "Replace Questions for You and Past Decisions with Conversation Memory: Waiting for You and Things I\u2019ve Learned",
-      "Rebuild each review item around original information, ZEKE\u2019s understanding, proposed action, why it matters, what ZEKE will do, and explicit choices",
-      "Add a context-specific medication schedule editor and improve natural weekly or daily schedule handling",
-      "Route supported Talk to ZEKE attachments through the existing safeguarded import workflow",
-      "Add the multi-tab Support & Improvement Report under Settings \u2192 Diagnostics & Exports with privacy controls",
-      "Separate and connect technical, unresolved-interaction, AI, correction, UX-feedback, audit, and workflow diagnostics",
-      "Correct Pattern Lab wording so direction does not imply that improving values increased",
-      "Reduce wasted space in Fitness chart-period, Coach\u2019s Eye, insight, and history composition",
-      "Document the authoritative static runtime, no-build-step architecture, and legacy artifact boundary",
-      "Add regression tests and synchronize the full continuity and handoff package"
+      "Integrated dashboard/mobile continuity",
+      "Activity-specific workout display",
+      "Fast gym entry and repeat workflow",
+      "Provider/PT presentation",
+      "Cautious evidence-backed considerations",
+      "Progressive identity and clinical context",
+      "Revision of existing continuity documents"
     ],
     "explicitly_excluded": [
-      "New paid AI services or provider policy changes",
-      "Destructive user-data migration",
-      "Automatic diagnosis or treatment decisions",
-      "Global activity identity migration",
-      "Unreviewed deletion of historical build artifacts"
+      "Embedding shared beta API secrets in browser code",
+      "Diagnosis or treatment directives",
+      "Destructive data migration",
+      "Unverified multi-account authentication claims"
     ],
     "acceptance_criteria": [
-      "Every active interaction exposes a durable workflow and visible result state",
-      "Full workflow content is mirrored to user-owned storage while local persistence remains minimized",
-      "Conversation Memory and review workspace expose purpose, consequence, correction, defer, dismiss, and remove paths",
-      "Medication schedule questions resolve naturally or through a focused editor",
-      "Supported Talk attachments use standard import safeguards",
-      "Support Report tabs and privacy controls are present and credential fields are excluded",
-      "Syntax, regression, governance, packaging, and reopened-ZIP checks pass or are reported precisely"
+      "Activity detail tables omit irrelevant columns",
+      "Last workout can be preloaded for rapid logging",
+      "Provider View presents meaningful recorded data and limitations",
+      "Profile fields distinguish identity from clinical context",
+      "Existing audit and regression suites pass",
+      "Package can be reopened and verified"
     ],
-    "rollback_plan": "Restore ZEKE v0.23.1 build 2026.07.20.1; new workflow records are additive.",
+    "rollback_plan": "Restore v0.24.0 build 2026.07.21.1; new UI changes do not require destructive data migration.",
     "prior_conversations_reviewed": true,
     "implementation_complete": true,
     "verification_complete": true,
-    "unpacked_file_count": 217,
     "package_verification": "complete",
-    "environment_verification": "outstanding"
+    "environment_verification": "outstanding",
+    "unpacked_file_count": 220
   },
   "next_iteration": {
     "status": "not_open",
@@ -60,6 +53,6 @@
     "scope_presented": false,
     "user_approved_scope": null
   },
-  "current_version": "0.24.0",
-  "current_build": "2026.07.21.1"
+  "current_version": "0.25.0",
+  "current_build": "2026.07.21.2"
 }

@@ -1,30 +1,19 @@
-# Project Health — v0.24.0
+# Project Health — v0.25.0
 
-**Build:** 2026.07.21.1
+**Build:** 2026.07.21.2
 
 ## Healthy / locally verified
-
-- Current identities, authority records, runtime registry, and active static architecture are synchronized.
-- Workflow state, closure language, Conversation Memory, review structure, medication-schedule recovery, Support Report presence, attachment routing, and pattern wording have deterministic coverage.
-- Full workflow content is assigned to the user repository while browser-local workflow persistence is minimized.
-- Existing medication, activity, sleep, workbook, navigation, dashboard, and data-transaction regressions remain in the suite.
+- Dashboard remains home and existing mobile bottom navigation remains active.
+- Fitness uses activity-specific detail columns and entry fields.
+- Repeat-last-workout prefill and Provider View are implemented in the active static runtime.
+- Progressive profile fields separate identity from optional clinical context.
+- Existing provenance, duplicate review, user-owned storage, workflow, and audit boundaries remain in place.
 
 ## Environment verification outstanding
-
-- Live Google Drive workflow persistence and cross-device restoration.
-- Google Calendar reads and downstream follow-up writes.
-- Configured AI providers, free-tier limits, privacy paths, and failover.
-- Service-worker/cache behavior on the deployed origin.
-- Protected real-workbook regressions requiring `ZEKE_TEST_DATA_ROOT`.
-- Physical-device mobile, browser download, accessibility, and assistive-technology behavior.
-
-## Deferred
-
-- Global activity identity migration.
-- Full correction-history browser and global undo.
-- Automated clinical conclusions.
-- Removal of historical bundles.
+- Physical-device gym workflow and accessibility.
+- Browser print/PDF with real provider data.
+- Live Google Drive, Calendar, AI routing, cache replacement, and protected workbook fixtures.
+- Multi-account authentication, data isolation, and a protected shared-AI proxy.
 
 ## Risk statement
-
-This package is suitable as the next development baseline provided environment-dependent behavior is not represented as locally verified.
+This package is suitable for the owner's local testing. It must not be represented as production multi-user beta infrastructure or as securely sharing one AI key among outside users.

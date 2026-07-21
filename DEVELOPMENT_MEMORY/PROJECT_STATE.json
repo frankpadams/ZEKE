@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
-  "current_version": "0.24.0",
-  "current_build": "2026.07.21.1",
-  "release_label": "Trust, Conversation & Workflow",
-  "baseline": "v0.23.1 Health & Fitness Workflow Stabilization",
+  "current_version": "0.25.0",
+  "current_build": "2026.07.21.2",
+  "release_label": "Adaptive Fitness & Provider Preview",
+  "baseline": "v0.24.0 Trust, Conversation & Workflow",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
   "authoritative_documents": [
     "00_AI_START_HERE.md",
@@ -19,30 +19,24 @@
     "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
     "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
     "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
-    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.24.0.md"
+    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.25.0.md"
   ],
   "implemented_this_release": [
-    "Implement a durable ZEKE workflow engine that coordinates Talk to ZEKE, review, AI, editors, audit, and unresolved interactions",
-    "Give every meaningful conversation an explicit saved, not saved, duplicate, dismissed, waiting, completed, or failed outcome",
-    "Replace Questions for You and Past Decisions with Conversation Memory: Waiting for You and Things I’ve Learned",
-    "Rebuild each review item around original information, ZEKE’s understanding, proposed action, why it matters, what ZEKE will do, and explicit choices",
-    "Add a context-specific medication schedule editor and improve natural weekly or daily schedule handling",
-    "Route supported Talk to ZEKE attachments through the existing safeguarded import workflow",
-    "Add the multi-tab Support & Improvement Report under Settings → Diagnostics & Exports with privacy controls",
-    "Separate and connect technical, unresolved-interaction, AI, correction, UX-feedback, audit, and workflow diagnostics",
-    "Correct Pattern Lab wording so direction does not imply that improving values increased",
-    "Reduce wasted space in Fitness chart-period, Coach’s Eye, insight, and history composition",
-    "Document the authoritative static runtime, no-build-step architecture, and legacy artifact boundary",
-    "Add regression tests and synchronize the full continuity and handoff package"
+    "Activity-specific Fitness history columns and entry fields",
+    "Gym Logging workflow with repeat-last-session prefill",
+    "Provider View for PT, primary care, and orthopedic visits",
+    "Evidence-cautious consideration terminology",
+    "Progressive identity and optional clinical-context profile fields",
+    "Constitution, architecture, release, test, and continuity updates"
   ],
   "inherited_verified_evidence": [
     "Medication, sleep, activity, dashboard, navigation, and workbook deterministic regressions from v0.23.1 and earlier",
     "User-owned storage, provenance preservation, and deterministic commit boundaries"
   ],
   "known_issues": [
-    "Live Google Drive, Calendar, AI-provider, service-worker, protected workbook, browser-download, and physical-device behavior requires environment verification",
-    "Historical hashed bundles remain in the package but are not active runtime",
-    "Full correction-history browser and global undo remain deferred"
+    "Physical-device, live storage, live AI, protected workbook, service-worker, and browser print behavior require environment verification",
+    "Central shared AI for multiple beta users requires a protected proxy/backend and is not implemented in the static browser package",
+    "Full multi-account authentication and isolation remain future beta infrastructure"
   ],
   "next_review_items": [
     "Deployed-origin workflow restoration and Support Report acceptance",
@@ -51,7 +45,7 @@
     "Protected real-workbook regression",
     "Separate legacy-asset cleanup review"
   ],
-  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.24.0.md",
+  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.25.0.md",
   "files_to_read_first": [
     "00_AI_START_HERE.md"
   ],
@@ -63,5 +57,5 @@
     "real-data workbook regression when fixture is available",
     "final ZIP reopened and byte-compared with staging"
   ],
-  "current_release_label": "Trust, Conversation & Workflow"
+  "current_release_label": "Adaptive Fitness & Provider Preview"
 }
