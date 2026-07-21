@@ -1,3 +1,3 @@
-ZEKE v0.23.0
-Build 2026.07.19.5
-Conversation Intelligence, Trusted AI Foundation & Content-Driven Layout
+ZEKE v0.23.1
+Build 2026.07.20.1
+Health & Fitness Workflow Stabilization
