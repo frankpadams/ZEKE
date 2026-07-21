@@ -79,3 +79,36 @@ Ordinary connection to personal storage, calendars, AI services, and other suppo
 ## Manual AI portability principle
 
 Zeke must provide a provider-agnostic manual AI packet workflow. A user can export a focused packet, process it with an AI of choice, and import a structured response. AI responses remain advisory and cannot silently overwrite raw observations or user-confirmed facts.
+
+## 19. Every conversation visibly concludes
+
+Every meaningful interaction must end in a state the user can understand: saved, already saved, not saved, waiting for clarification, waiting for confirmation, dismissed, failed safely, or completed without changing data. A silent or ambiguous end state is a defect.
+
+## 20. Questions have purpose and consequence
+
+ZEKE asks only when the answer changes a record, decision, recommendation, workflow, or remembered context. The interface explains why the answer matters and what ZEKE will do with it.
+
+## 21. Context-specific recovery
+
+When interpretation is incomplete, ZEKE proceeds as far as safely possible through deterministic rules, connected AI, a natural clarification, or a focused editor. Generic failure is not the default recovery path.
+
+## 22. Retry and duplicate safety
+
+Repeated submission must not silently create repeated records. ZEKE distinguishes saved, already saved, intentional separate event, canceled, and not saved. Undo and corrections preserve provenance.
+
+## 23. One transaction, multiple views
+
+Talk to ZEKE, Waiting for You, focused editors, AI consultation, audit history, and unresolved-interaction diagnostics are views or stages of the same user transaction. They must not create disconnected competing records of intent.
+
+## 24. Local workflow minimization
+
+Workflow continuity may retain minimized operational metadata on the device, but personal source text, health proposals, and durable decision content belong in the user-owned repository. Diagnostic exports exclude credentials and expose privacy controls.
+
+## Adaptive context and minimum-friction interaction (v0.25 clarification)
+- Dashboard remains ZEKE's home. Conversation is an important input and correction path, not the sole focal point.
+- Prefer a reliable two-tap workflow over a longer workflow. Do not remove transparency, confirmation, provenance, or correction merely to reduce taps.
+- Reuse one design system and one data model across adaptive contexts. Gym capture, insight review, provider presentation, and uncertainty review are contextual arrangements of the same evidence—not separate applications.
+- Show only fields relevant to the activity or decision. Strength, cardio, rehabilitation, recovery, and other activity types must not inherit irrelevant universal columns.
+- Evidence-backed guidance is labeled a **consideration**, with personal observations, research basis when available, confidence, limitations, and factors that could change it. ZEKE must not imply clinical authority or certainty.
+- Identity, gender, administrative information, and medically relevant physiology are distinct. Ask only for the minimum information needed for a specific purpose, explain why, permit self-description and omission, and never infer clinical anatomy from gender identity.
+- Data captured with low effort should become more valuable later through timelines, trends, visit summaries, and clinician-facing views.
