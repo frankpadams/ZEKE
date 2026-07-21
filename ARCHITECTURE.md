@@ -62,3 +62,22 @@ Measurements and labs store observations, not diagnoses. Potential Health Events
 
 ## Verification boundary
 Local package verification cannot establish live credentials, external-service behavior, protected user fixtures, deployed cache behavior, or physical-device accessibility. Those remain environment verification items.
+
+## v0.25 adaptive-context extension
+The static runtime continues to use the existing event/factor/action stores and shared rendering system. The release adds no parallel data silo.
+
+### Fitness capture
+- `openWorkoutEntryModal(repeatLast)` supports a fast gym workflow and preloads the most recent same-day workout group when requested.
+- Activity taxonomy determines visible entry fields and history columns. Strength, cardio, rehabilitation/PT, mobility, recovery, sport, and functional activities render relevant metrics only.
+- Existing provenance, duplicate review, transaction grouping, confirmation, and user-owned storage boundaries remain intact.
+
+### Provider presentation
+- `providerPageHTML()` is a read-only presentation layer over existing records.
+- PT, primary-care, and orthopedic focus tabs change emphasis, not source data.
+- Provider View may be printed or saved as PDF by the browser. It labels limitations and does not create diagnoses, causality claims, or treatment directives.
+
+### Progressive profile model
+The local profile separates preferred name, pronouns, gender identity, sex assigned at birth, and optional clinically relevant anatomy/physiology context. These fields are optional and are not automatically substituted for one another in clinical logic.
+
+### Beta boundary
+The current package is still a directly editable static application. Shared centrally managed AI keys for multiple beta accounts require a protected server-side proxy or equivalent secret-bearing execution layer; they must not be embedded in the public browser bundle.

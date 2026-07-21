@@ -26,3 +26,6 @@ Syntax, deterministic tests, governance checks, isolated rendered smoke checks, 
 
 ## Startup
 Read `00_AI_START_HERE.md`, then follow the development gate and current iteration record. Do not infer implementation authority from historical release notes.
+
+## v0.25.0 continuation note
+The current release adds adaptive Fitness capture/display, Provider View, cautious consideration language, and progressive identity/clinical profile fields. Dashboard remains home. Outside beta testing is not authorized to use a shared AI key until a protected proxy/backend provides account isolation and secret handling. Continue from `DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.25.0.md`.

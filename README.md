@@ -1,6 +1,6 @@
-# ZEKE v0.24.0
+# ZEKE v0.25.0
 
-**Build:** 2026.07.21.1  
+**Build:** 2026.07.21.2  
 **Release:** Trust, Conversation & Workflow
 
 This full replacement package makes ZEKE’s conversations and review workflows explicit, durable, correctable, and diagnosable.
@@ -17,10 +17,10 @@ This full replacement package makes ZEKE’s conversations and review workflows 
 - Corrected Pattern Lab direction wording and tightened Fitness layout density.
 - Documented the directly editable static runtime and identified legacy build artifacts.
 
-See `RELEASE_NOTES_v0.24.0.md`, `TEST_REPORT_v0.24.0.md`, and `ARCHITECTURE.md`.
+See `RELEASE_NOTES_v0.25.0.md`, `TEST_REPORT_v0.25.0.md`, and `ARCHITECTURE.md`.
 
 ## Deploy
-Replace the deployed ZEKE files with the contents of this folder while preserving the intended values in `zeke-config.js`. Hard-refresh once and verify that the application reports **v0.24.0 · build 2026.07.21.1**.
+Replace the deployed ZEKE files with the contents of this folder while preserving the intended values in `zeke-config.js`. Hard-refresh once and verify that the application reports **v0.25.0 · build 2026.07.21.2**.
 
 ## Continue development
 Begin with `00_AI_START_HERE.md`. The active application is the readable static runtime listed in `ARCHITECTURE.md`; do not edit historical hashed bundles as though they were source.
