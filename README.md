@@ -1,11 +1,11 @@
-# ZEKE v0.23.0
+# ZEKE v0.23.1
 
-**Build:** 2026.07.19.5  
-**Release:** Conversation Intelligence & Trusted AI Foundation
+**Build:** 2026.07.20.1  
+**Release:** Health & Fitness Workflow Stabilization
 
-This is the full replacement package built from the accepted v0.22.2 Dashboard Acceptance Repair baseline. It implements the first complete vertical slice of conversation-state isolation, trusted background AI consultation, record-specific health editing, transcript diagnostics, and system-wide content-driven responsive composition.
+This full replacement package stabilizes ZEKE’s health and fitness workflows: atomic sleep saving, direct sleep logging, concrete review questions, consistent activity graphs, equivalent workout create/edit fields, actionable insights, simplified navigation, durable Potential Health Events, and a denser independent-stack Dashboard.
 
-See `RELEASE_NOTES_v0.23.0.md` and `TEST_REPORT_v0.23.0.md` for details.
+See `RELEASE_NOTES_v0.23.1.md` and `TEST_REPORT_v0.23.1.md` for details.
 
 ---
 

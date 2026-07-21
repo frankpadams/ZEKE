@@ -1,43 +1,23 @@
 # ZEKE Handoff Brief
 
-**Current baseline:** ZEKE v0.22.2 · build 2026.07.19.4  
-**Release:** Responsive Stabilization, Activity Foundation & Continuity Reconciliation
+**Current baseline:** ZEKE v0.23.1 · build 2026.07.20.1  
+**Release:** Health & Fitness Workflow Stabilization
 
-## Why this build exists
-Build 2026.07.19.2 implemented the approved stabilization and activity-foundation work. Build 2026.07.19.3 reconciles the complete active continuity corpus after the user correctly identified that several standing documents still described obsolete releases. Application behavior is unchanged except for the visible build identity.
+## Purpose
+This release stabilizes the health and fitness workflows exposed by deployed v0.23.0 feedback. It prioritizes trustworthy save transactions, understandable review decisions, correct trend language, actionable insight content, consistent fitness charts, and a denser dashboard.
 
-## Implemented application scope
-- Independent content-sized Dashboard/Fitness layout structure.
-- Canonical activity categories shared across entry and library views.
-- Chores & Functional Activity category.
-- Modality-aware activity summaries and detail metrics.
-- Health Favorites with a distinct versioned preference key.
-- Pattern Lab focus propagation and stale-focus clearing.
-- Basic editing of one workout record at a time with correction history and derived-view refresh.
-- Integrity coverage for active runtime files.
+## Implemented
+- Atomic confirmation routing, first-class sleep persistence, direct Sleep tile logging, view, and undo.
+- Concrete Review Questions with source and proposal.
+- Display deduplication and truthful change labels.
+- Independent Dashboard stacks.
+- Shared exercise recommendation and labeled Activity Library charts.
+- Equivalent workout create/edit optional fields.
+- Labs under Health; Pattern Lab under Insights.
+- Defined-use calendar health questions and durable Potential Health Events included in AI context.
 
-## Binding design boundaries
-- User-owned canonical storage and preserved provenance.
-- Raw observations are not silently overwritten or discarded.
-- Missing data is unknown; no silent carry-forward.
-- AI proposes; deterministic code commits.
-- One primary activity category may have secondary attributes.
-- Legacy category migration must use deterministic/high-confidence mappings and a review queue for ambiguity.
-- Global rename, merge, bulk recategorization, and full undo are not part of the current implementation.
-
-## Highest-priority next work
-1. Deployed-origin responsive/accessibility verification.
-2. Runtime asset inventory and safe classification before removal.
-3. Activity identity and migration design.
-4. Complete Fitness information architecture polish.
-5. Correction-history viewing and practical revert design.
-
-## Verification limits
-Local package integrity does not establish live Google Drive, Calendar, AI-provider, service-worker, arbitrary-width deployed rendering, or physical-device behavior.
+## Verification boundary
+Package verification covers syntax, deterministic regressions, governance, isolated rendered-browser checks, checksums, and reopened-ZIP equality. Live Google Drive, Calendar, AI-provider, service-worker, protected real-workbook, and physical-device behavior remain environment verification outstanding.
 
 ## Startup
-Read `00_AI_START_HERE.md` and follow its mandatory sequence. Do not infer authorization from this brief.
-
-## Build 2026.07.19.4 correction
-
-The sole application change after continuity reconciliation is a Dashboard composition repair. Do not broaden this patch. Confirm on the deployed origin that the large blank vertical gap is gone and that Health at a Glance remains a separate right rail on wide screens, then stacks without overlap at narrower widths.
+Read `00_AI_START_HERE.md` and follow the development gate. Do not infer new implementation authorization from this brief.
