@@ -1,14 +1,17 @@
 {
   "schema_version": 1,
-  "current_version": "0.23.1",
-  "current_build": "2026.07.20.1",
+  "current_version": "0.24.0",
+  "current_build": "2026.07.21.1",
   "immutable_principles": [
     "user_owned_canonical_data",
     "ai_advisory_deterministic_commit",
     "raw_and_provenance_preserved",
     "missing_is_unknown",
     "reversible_traceable_scoped_changes",
-    "unified_talk_to_zeke"
+    "unified_talk_to_zeke",
+    "explicit_conversation_closure",
+    "workflow_details_in_user_repository",
+    "diagnostic_credentials_excluded"
   ],
   "supersessions": [
     {
@@ -34,6 +37,9 @@
     "current iteration is authoritative and prior iteration records are historical",
     "active standing continuity documents are reviewed for relevance",
     "runtime files are registered and present",
-    "release claims do not exceed evidence"
+    "release claims do not exceed evidence",
+    "workflow engine is registered and loads before application",
+    "local workflow persistence excludes personal source and proposal content",
+    "support report export excludes credentials"
   ]
 }

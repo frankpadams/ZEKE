@@ -500,6 +500,7 @@ Content-Type: ${mimeType}
   async function getActions() { return clone(state.actions); }
   async function getPreferences() { return clone(state.preferences); }
   async function getAIConnections() { return clone(state.aiConnections); }
+  async function listAIExchanges() { return clone([...state.aiExchanges].sort(byTimeDesc)); }
 
   async function addEvent(event) {
     if (!state.provider) throw new Error('Connect storage before saving personal data.');
@@ -637,7 +638,7 @@ Content-Type: ${mimeType}
     if(key&&pendingFactorWrites.has(key))return clone(await pendingFactorWrites.get(key));
     const operation=(async()=>{
       if(key){
-        const existing=state.factors.find(f=>f.question_key===key&&!['dismissed','resolved','unknown'].includes(f.status));
+        const existing=state.factors.find(f=>f.id!==factor.id&&f.question_key===key&&!['dismissed','resolved','unknown'].includes(f.status));
         if(existing)return existing;
       }
       const normalized = {
@@ -880,7 +881,7 @@ Content-Type: ${mimeType}
     listEvents, addEvent, updateEvent, undoEvents, addRawInput, confirmRawInput, findLikelyDuplicates,
     listFactors, saveFactor, resolveFactor, listDiscoveries,
     getActions, saveActions, getPreferences, savePreferences,
-    getAIConnections, saveAIConnections, addAIExchange,
+    getAIConnections, saveAIConnections, listAIExchanges, addAIExchange,
     listConversation, appendConversation, saveConversation,
     listImportBatches, saveImportBatch, mergeHistoryPackage,
     saveSyncSource, getSyncSource, readSyncSourceWorkbook, updateSyncSourceWorkbook, preflightSourceEvents, verifySourceEvents, reconcileSourceEvents,

@@ -52,3 +52,14 @@ Current release identity, scope, artifact authority, lifecycle, supersessions, a
 - **DEC-027:** Every insight question or action has a defined downstream use. Information that cannot yet be structured is preserved as a Potential Health Event and included in later relationship analysis.
 - **DEC-028:** Calendar events are contextual evidence and question triggers, never proof of attendance, completion, treatment, or outcome.
 - **DEC-029:** The primary sidebar contains major domains. Labs belongs to Health; Pattern Lab belongs to Insights.
+
+## 2026-07-21 — v0.24.0 trust and workflow decisions
+
+- Treat every meaningful user interaction as one durable workflow with explicit terminal status.
+- Store full workflow content in the user-owned repository; keep only minimized operational metadata locally.
+- Replace Questions/Past Decisions with Conversation Memory: Waiting for You and Things I’ve Learned.
+- Present review items as source → understanding → proposal → purpose → downstream action → decision.
+- Put the multi-tab Support & Improvement Report under Settings → Diagnostics & Exports.
+- Use focused editors after interpretation and AI cannot safely complete a task, beginning with medication schedules.
+- Treat Talk to ZEKE attachments and Settings imports as the same safeguarded import path.
+- Define the readable static runtime as authoritative and legacy hashed bundles as historical.

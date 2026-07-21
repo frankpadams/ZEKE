@@ -97,3 +97,46 @@
 ## ERR-032 — Top-level navigation exposed implementation subfeatures
 - **Failure:** Labs, Insights, and Pattern Lab appeared as competing peer destinations.
 - **Prevention:** Sidebar tests enforce major-domain hierarchy; Labs is a Health tab and Pattern Lab is an Insights subview.
+
+## 2026-07-21 — Architecture handoff ambiguity
+
+**Finding:** The full package contained readable active static files and historical hashed bundles but did not clearly state which files were authoritative or whether a build step still existed.  
+**Risk:** A future developer could edit an inactive bundle, assume source was missing, or unnecessarily reconstruct a build system.  
+**Correction:** v0.24.0 identifies the authoritative runtime, load order, no-compilation architecture, and legacy-file boundary in `ARCHITECTURE.md`, `README.md`, and `HISTORICAL_ARTIFACTS_NOTE.md`.
+
+## 2026-07-21 — Conversation states could end without durable closure
+
+**Finding:** Several defer, ignore, duplicate, correction, and question paths cleared UI state without one durable transaction outcome.  
+**Risk:** Users could not reliably tell what changed, and developers lacked enough evidence to reproduce failures.  
+**Correction:** v0.24.0 adds the workflow engine, explicit closure language, unresolved-interaction logging, and repository mirroring.
+
+## 2026-07-21 — Idempotency guard blocked legitimate question updates
+
+**Finding:** `saveFactor()` treated an update to an existing clarification question as a duplicate because the factor's own `question_key` matched the idempotency guard. `resolveFactor()` could therefore return the old open factor instead of saving a resolved, dismissed, unknown, or deferred state.  
+**Risk:** Review actions could appear successful while the question remained unchanged, and repeated renders could show duplicate or stale review work.  
+**Correction:** The idempotency check now excludes the factor being updated by ID. Regression coverage verifies that concurrent creation still produces one factor and that the same factor can later be resolved without duplication.
+
+## 2026-07-21 — “Later” removed questions instead of preserving them for later review
+
+**Finding:** Questions marked `deferred` were excluded from `openQuestions()`, despite the UI saying they were kept in Waiting for You.  
+**Risk:** The interface contradicted its own closure language and a user could lose sight of unfinished decisions.  
+**Correction:** “Later” now keeps the factor open, records defer metadata, and moves it behind newer questions. Rendered testing confirms that the review remains available.
+
+## 2026-07-21 — Workflow state restored without an actionable resume path
+
+**Finding:** Repository workflow state could be restored after refresh while the exact pending interaction object and choices were absent from the current browser session.  
+**Risk:** The status could say a workflow was open without giving the user a reliable way to continue it.  
+**Correction:** v0.24 reconstructs common pending question, confirmation, correction, health-history, and remembered-context states from the workflow record and provides a visible Resume action. Focused schedule editors reopen from their workflow target.
+
+
+## 2026-07-21 — Deferred rendering reset diagnostics export choices
+
+**Finding:** Background repository refreshes could mark a render as deferred while a Settings field was focused. Moving between export fields could then rebuild the page and reset privacy and date-range controls before the download click was handled.
+**Risk:** A user could request an anonymized or date-limited report but receive the default full-range report instead. The clear-after choice could also become inconsistent.
+**Correction:** Export options are now controlled by durable in-memory state, updated on input/change, restored on render, and captured before workbook creation. Browser testing verifies anonymized mode, date range, clear-after behavior, and successful workbook reopening.
+
+## 2026-07-21 — Visible controls existed without reliable actions or accessible names
+
+**Finding:** Metric overflow buttons looked interactive but had no action, two review pills shared the same ID so only one reliably received a handler, and workout close/remove icon buttons relied on the × glyph alone.
+**Risk:** Users could click controls that did nothing, while keyboard and assistive-technology users received ambiguous control names.
+**Correction:** Metric overflow controls open the matching detail view, all review pills use a shared data-action binding, and icon-only workout controls have explicit accessible labels. A rendered visible-control contract audit now fails on unbound enabled controls or unnamed icon controls across major desktop routes and the mobile Dashboard.

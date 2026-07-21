@@ -1,7 +1,7 @@
 # ZEKE Backlog
 
 **Status:** Authoritative  
-**Current baseline:** v0.23.1 · build 2026.07.20.1
+**Current baseline:** v0.24.0 · build 2026.07.21.1
 
 | ID | Item | Priority | Status | Origin | Resurface when |
 |---|---|---:|---|---|---|
@@ -49,4 +49,16 @@ At the beginning of every iteration, resurface all **Ready for review**, **Ready
 | CAL-006 | Live calendar follow-up/downstream update acceptance | Medium | Environment verification outstanding | Google Calendar is connected on deployed origin |
 | LAB-007 | Source-lab reference interval and target-context editor | Medium | Ready for design | Next lab-focused iteration |
 
-The v0.23.1 stabilization scope is complete locally. Do not reopen it as feature work unless a regression fails or deployed evidence contradicts the package checks.
+The v0.23.1 stabilization scope remains complete locally. Do not reopen it as feature work unless a regression fails or deployed evidence contradicts the package checks.
+
+## After v0.24.0
+
+| ID | Item | Priority | Status / prerequisite |
+|---|---|---:|---|
+| QA-024 | Verify workflow restoration and Support Report download on the deployed origin | High | Requires live Google Drive and deployed-browser testing |
+| UX-024 | Physical-device Talk to ZEKE and Conversation Memory accessibility review | High | Requires iOS/Android and keyboard/screen-reader evidence |
+| AI-024 | Verify provider escalation, failure logging, and free-first routing with live keys | High | Requires user-authorized provider connections |
+| DATA-024 | Re-run protected real-workbook idempotency suite | High | Requires `ZEKE_TEST_DATA_ROOT` fixture |
+| CLEAN-024 | Review and remove unreferenced historical hashed bundles | Medium | Separate approved cleanup; preserve audit continuity |
+| HISTORY-024 | Build a user-facing correction-history browser and broader undo | Medium | Workflow/audit foundation now available |
+| WF-025 | Expand hard-refresh restoration to every specialized editor and multi-step import preview | Medium | Common question, confirmation, correction, health-history, memory, and schedule resume paths are implemented; specialized modal reconstruction needs deployed use evidence |

@@ -1,11 +1,10 @@
 {
   "schema_version": 2,
-  "current_version": "0.23.1",
-  "current_build": "2026.07.20.1",
-  "release_label": "Health & Fitness Workflow Stabilization",
-  "baseline": "v0.23.0 Conversation Intelligence & Trusted AI Foundation",
+  "current_version": "0.24.0",
+  "current_build": "2026.07.21.1",
+  "release_label": "Trust, Conversation & Workflow",
+  "baseline": "v0.23.1 Health & Fitness Workflow Stabilization",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
-  "governance_rules": "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
   "authoritative_documents": [
     "00_AI_START_HERE.md",
     "HANDOFF_BRIEF.md",
@@ -20,42 +19,39 @@
     "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
     "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
     "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
-    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.23.1.md"
+    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.24.0.md"
   ],
   "implemented_this_release": [
-    "Atomic pending-confirmation routing and save-once sleep transactions with view and undo actions",
-    "First-class sleep records with direct Health Library logging and wake-date display",
-    "Concrete Review Questions showing source, proposal, uncertainty, and explicit actions",
-    "Correct change-language for metric tiles plus display duplicate suppression and duplicate checks",
-    "Independent three-stack Dashboard composition with improved coaching readability",
-    "Actionable user-facing insights, calendar follow-ups with defined downstream use, and no internal parsing language",
-    "Consistent labeled Activity Library graphs with explicit insufficient-data explanations",
-    "Equivalent optional RPE, pain, technique, notes, and injury-context fields in workout creation and editing",
-    "One shared exercise recommendation object across Coach\u2019s Eye and Activity Library",
-    "Labs within Health and Pattern Lab within Insights",
-    "Durable Potential Health Events included in AI relationship context and manual AI packets",
-    "Regression coverage for sleep parsing, idempotent confirmation, undo, navigation, layout, and release structure"
+    "Implement a durable ZEKE workflow engine that coordinates Talk to ZEKE, review, AI, editors, audit, and unresolved interactions",
+    "Give every meaningful conversation an explicit saved, not saved, duplicate, dismissed, waiting, completed, or failed outcome",
+    "Replace Questions for You and Past Decisions with Conversation Memory: Waiting for You and Things I’ve Learned",
+    "Rebuild each review item around original information, ZEKE’s understanding, proposed action, why it matters, what ZEKE will do, and explicit choices",
+    "Add a context-specific medication schedule editor and improve natural weekly or daily schedule handling",
+    "Route supported Talk to ZEKE attachments through the existing safeguarded import workflow",
+    "Add the multi-tab Support & Improvement Report under Settings → Diagnostics & Exports with privacy controls",
+    "Separate and connect technical, unresolved-interaction, AI, correction, UX-feedback, audit, and workflow diagnostics",
+    "Correct Pattern Lab wording so direction does not imply that improving values increased",
+    "Reduce wasted space in Fitness chart-period, Coach’s Eye, insight, and history composition",
+    "Document the authoritative static runtime, no-build-step architecture, and legacy artifact boundary",
+    "Add regression tests and synchronize the full continuity and handoff package"
   ],
   "inherited_verified_evidence": [
-    "Medication parser and Today-action regressions",
-    "Workbook transaction, preflight, source replacement backup, and 188-observation no-change regression from v0.20.4 evidence",
-    "GLP-1 class phrase clarification behavior"
+    "Medication, sleep, activity, dashboard, navigation, and workbook deterministic regressions from v0.23.1 and earlier",
+    "User-owned storage, provenance preservation, and deterministic commit boundaries"
   ],
   "known_issues": [
-    "Live Google Drive, Google Calendar, AI-provider, service-worker, credentialed, and deployed-origin behavior requires environment verification",
-    "Real-workbook regression tests require ZEKE_TEST_DATA_ROOT and were not executed without that external fixture",
-    "Physical-device accessibility and real mobile-browser verification remains outstanding",
-    "Potential Health Event reclassification remains review-driven; no automatic clinical conclusions are made",
-    "Global activity rename, merge, and legacy taxonomy migration remain deferred"
+    "Live Google Drive, Calendar, AI-provider, service-worker, protected workbook, browser-download, and physical-device behavior requires environment verification",
+    "Historical hashed bundles remain in the package but are not active runtime",
+    "Full correction-history browser and global undo remain deferred"
   ],
   "next_review_items": [
-    "Deployed-origin acceptance test of sleep save/view/undo and Google persistence",
-    "Real-device mobile and accessibility verification",
-    "Live Calendar follow-up question and downstream record-update verification",
-    "Real-workbook regression with the protected external fixture",
-    "Independent visual review of Dashboard information density after deployed data load"
+    "Deployed-origin workflow restoration and Support Report acceptance",
+    "Live AI escalation and failure logging",
+    "Real-device mobile and accessibility review",
+    "Protected real-workbook regression",
+    "Separate legacy-asset cleanup review"
   ],
-  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.23.1.md",
+  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.24.0.md",
   "files_to_read_first": [
     "00_AI_START_HERE.md"
   ],
@@ -63,8 +59,9 @@
     "python tools/project_audit.py",
     "python tests/governance-negative-controls.py",
     "all JavaScript regression tests",
+    "rendered workflow smoke test where supported",
     "real-data workbook regression when fixture is available",
     "final ZIP reopened and byte-compared with staging"
   ],
-  "current_release_label": "Health & Fitness Workflow Stabilization"
+  "current_release_label": "Trust, Conversation & Workflow"
 }

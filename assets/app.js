@@ -1,23 +1,112 @@
 (() => {
   'use strict';
 
-  const BUILD = window.ZEKE_BUILD || window.ZEKE_VERSION || { version: '0.23.1', build: '2026.07.20.1', label: 'Health & Fitness Workflow Stabilization' };
+  const BUILD = window.ZEKE_BUILD || window.ZEKE_VERSION || { version: '0.24.0', build: '2026.07.21.1', label: 'Trust, Conversation & Workflow' };
   const state = {
     route:'dashboard', range:localStorage.getItem('zeke-fitness-range')||'month', selectedMetric:'weight',
     events:[], factors:[], discoveries:[], actions:{catalog:[],daily_states:{}}, calendar:[],
     conversation:[], pending:null, context:{}, dialogue:{activeQuestion:null,topic:null}, storage:null, ai:null,
     coachExpanded:false, coachCardExpanded:false, coachFocus:'', coachAlertDismissed:{}, activityTab:localStorage.getItem('zeke.fitness.activityTab.v1')||localStorage.getItem('zeke-activity-tab')||'frequent', expandedActivity:'', healthTab:localStorage.getItem('zeke.health.libraryTab.v1')||localStorage.getItem('zeke-health-tab')||'frequent', expandedHealthMetric:'', customizeOpen:false, metricMenuOpen:false, quickLogOpen:false, expandedReviewTasks:new Set(),
     hiddenWidgets:new Set(), busy:false, importStatus:'', importReport:null, importBatches:[],
-    conversationLoaded:false, preferences:{}, syncSource:null, syncBusy:false, syncReport:null, syncPreflight:null, coachAI:null, coachAILoading:false, theme:'light', draft:'', auditQuery:'', auditCategory:'all', insightRefreshAt:null, deferredRender:false, activeDate:localStorage.getItem('zeke-active-date')||'', directExercise:null, integrityLastAction:'', activeReviewId:sessionStorage.getItem('zeke-active-review')||'', reviewOriginalOpen:false, insightsView:sessionStorage.getItem('zeke-insights-view')||'overview', lastSave:null
+    conversationLoaded:false, preferences:{}, syncSource:null, syncBusy:false, syncReport:null, syncPreflight:null, coachAI:null, coachAILoading:false, theme:'light', draft:'', auditQuery:'', auditCategory:'all', insightRefreshAt:null, deferredRender:false, activeDate:localStorage.getItem('zeke-active-date')||'', directExercise:null, integrityLastAction:'', activeReviewId:sessionStorage.getItem('zeke-active-review')||'', reviewOriginalOpen:false, insightsView:sessionStorage.getItem('zeke-insights-view')||'overview', memoryTab:sessionStorage.getItem('zeke-memory-tab')||'waiting', lastSave:null, workflowId:null, supportExportStatus:'', supportExportOptions:{mode:'full',from:'',to:'',clearAfter:false}
   };
 
   const RUNTIME_LOG_KEY='zeke-runtime-diagnostics-v1';
   function runtimeDiagnostics(){try{return JSON.parse(localStorage.getItem(RUNTIME_LOG_KEY)||'[]')}catch(_){return []}}
   function recordRuntimeIssue(kind,message,detail=''){
-    try{const rows=runtimeDiagnostics();rows.push({timestamp:new Date().toISOString(),version:BUILD.version,build:BUILD.build,kind:String(kind||'runtime'),message:String(message||'Unknown error').slice(0,500),detail:String(detail||'').slice(0,1200),route:state.route});localStorage.setItem(RUNTIME_LOG_KEY,JSON.stringify(rows.slice(-200)))}catch(_){}
+    try{const row={timestamp:new Date().toISOString(),version:BUILD.version,build:BUILD.build,kind:String(kind||'runtime'),message:String(message||'Unknown error').slice(0,500),detail:String(detail||'').slice(0,1200),route:state.route};const rows=runtimeDiagnostics();rows.push(row);localStorage.setItem(RUNTIME_LOG_KEY,JSON.stringify(rows.slice(-200)));window.ZekeWorkflowEngine?.technical(row)}catch(_){}
   }
   window.addEventListener('error',e=>recordRuntimeIssue('window-error',e.message,e.filename?`${e.filename}:${e.lineno||''}:${e.colno||''}`:''));
   window.addEventListener('unhandledrejection',e=>recordRuntimeIssue('unhandled-rejection',e.reason?.message||e.reason,String(e.reason?.stack||'')));
+
+  const WORKFLOW_STATUS_COPY = {
+    understanding:['Understanding','ZEKE is preserving and interpreting your message.'],
+    ai_checking:['AI checking','ZEKE is consulting a connected AI before deciding what to ask or propose.'],
+    waiting_clarification:['Waiting for you','Your answer will determine what ZEKE can safely do next.'],
+    waiting_confirmation:['Ready for confirmation','Nothing has been saved yet.'],
+    waiting_correction:['Waiting for correction','The original wording is preserved and no replacement has been saved.'],
+    completed:['Completed','The interaction has reached a clear outcome.'],
+    not_saved:['Not saved','No structured record was changed.'],
+    duplicate:['Already recorded','ZEKE kept the existing record instead of creating a duplicate.'],
+    dismissed:['Dismissed','The original information remains preserved; no structured change was made.'],
+    superseded:['Paused','A newer, unrelated message replaced this unfinished interaction.'],
+    failed:['Could not complete','ZEKE preserved what it could and did not claim a save.']
+  };
+  function workflowGoal(text=''){
+    const t=String(text||'').toLowerCase();
+    if(/medication|mounjaro|tirzepatide|atorvastatin|lipitor|dose|weekly|daily/.test(t))return 'Understand and update medication information';
+    if(/workout|exercise|reps|sets|stair|row|curl|press/.test(t))return 'Understand and record fitness information';
+    if(/sleep|bed|woke/.test(t))return 'Understand and record sleep information';
+    if(/weight|blood pressure|a1c|glucose|lab|measurement/.test(t))return 'Understand and record a health measurement';
+    if(/why|how|what|should|can|could|\?$/.test(t))return 'Answer the user’s question';
+    return 'Understand the user’s goal and reach a clear outcome';
+  }
+  function persistWorkflowRecord(workflow){
+    if(!workflow||window.ZekeData?.snapshot?.().status!=='connected')return;
+    const terminal=window.ZekeWorkflowEngine?.constants?.TERMINAL?.includes(workflow.status);
+    ZekeData.saveFactor({id:workflow.id,type:'workflow_state',status:terminal?'resolved':'open',summary:'ZEKE conversation workflow',workflow,updated_at:workflow.updated_at||new Date().toISOString(),provenance:{source:'workflow-engine',storage:'user-repository'}}).catch(error=>recordRuntimeIssue('workflow-persistence',error.message,error.stack||''));
+  }
+  function beginWorkflow(text='',extra={}){
+    const engine=window.ZekeWorkflowEngine;if(!engine)return null;
+    const existing=state.workflowId&&engine.get(state.workflowId);
+    if(existing&&!engine.constants.TERMINAL.includes(existing.status))return existing;
+    const workflow=engine.create({goal:extra.goal||workflowGoal(text),source_text:text,target:extra.target||state.context||null,known:extra.known||{},needed:extra.needed||[],status:'understanding'});
+    state.workflowId=workflow.id;persistWorkflowRecord(workflow);return workflow;
+  }
+  function updateWorkflow(status,patch={},note=''){
+    if(!state.workflowId||!window.ZekeWorkflowEngine)return null;
+    const result=ZekeWorkflowEngine.update(state.workflowId,{status,...patch},note);persistWorkflowRecord(result);return result;
+  }
+  function closeWorkflow(status='completed',outcome='',patch={}){
+    if(!state.workflowId||!window.ZekeWorkflowEngine)return null;
+    const workflowId=state.workflowId,result=ZekeWorkflowEngine.close(workflowId,status,outcome,patch);persistWorkflowRecord(result);state.workflowId=null;return result;
+  }
+  function logUnresolved(reason,payload={}){
+    const engine=window.ZekeWorkflowEngine,workflow=state.workflowId&&engine?.get(state.workflowId);
+    const row=engine?.unresolved({workflow_id:state.workflowId,transaction_id:workflow?.transaction_id||null,route:state.route,reason:String(reason||'Unresolved interaction'),original_message:workflow?.source_text||payload.original_message||'',zeke_understanding:workflow?.proposed||workflow?.known||null,intended_destination:workflow?.target||null,ai_usage:workflow?.ai_status||'not_needed',clarification_attempts:(workflow?.history||[]).filter(h=>/clarif|correct|waiting/i.test(`${h.status} ${h.note}`)).length,pending_type:state.pending?.type||null,buttons_displayed:payload.buttons_displayed||workflow?.available_actions||[],save_status:payload.save_status||workflow?.save_status||'not_saved',retry_count:Math.max(0,(workflow?.history||[]).length-1),resolution:workflow?.outcome||'',...payload});
+    if(row&&window.ZekeData?.snapshot?.().status==='connected')ZekeData.saveFactor({id:row.id,type:'workflow_log',status:'resolved',summary:'Unresolved interaction diagnostic',log_kind:'unresolved_interaction',log:row,provenance:{source:'workflow-engine',storage:'user-repository'}}).catch(()=>{});
+  }
+  function workflowStatusHTML(){
+    const engine=window.ZekeWorkflowEngine;if(!engine)return '';
+    const current=(state.workflowId&&engine.get(state.workflowId))||engine.current()||engine.list().at(-1);if(!current)return '';
+    const copy=WORKFLOW_STATUS_COPY[current.status]||[String(current.status||'In progress').replaceAll('_',' '),current.outcome||''];
+    const outcome=current.outcome?`<span>${esc(current.outcome)}</span>`:`<span>${esc(copy[1])}</span>`;
+    const resumable=!engine.constants.TERMINAL.includes(current.status);
+    return `<div class="workflow-status ${esc(current.status||'understanding')}" role="status"><i></i><div><strong>${esc(copy[0])}</strong>${outcome}</div>${current.save_status?`<small>${esc(String(current.save_status).replaceAll('_',' '))}</small>`:''}${resumable?'<button class="text-action compact" data-resume-workflow>Resume</button>':''}</div>`;
+  }
+  function restoreInteractionFromWorkflow(workflow){
+    const engine=window.ZekeWorkflowEngine;if(!workflow||state.pending||!engine||engine.constants.TERMINAL.includes(workflow.status))return;
+    const target=workflow.target||{},needed=workflow.needed||[];
+    if(target.type==='health_history')state.context={...state.context,healthHistory:true};
+    if(target.question_id){
+      const q=state.factors.find(f=>f.id===target.question_id&&!['resolved','dismissed','unknown'].includes(f.status));
+      if(q){state.pending={type:workflow.status==='waiting_correction'?'question-awaiting':'question',question:q,other:workflow.status==='waiting_correction',workflowId:workflow.id};return;}
+    }
+    if(target.factor_id){
+      const factor=state.factors.find(f=>f.id===target.factor_id);
+      if(factor&&workflow.status==='waiting_confirmation'&&workflow.proposed?.summary){state.pending={type:'memory-correction-confirm',factor,replacement:workflow.proposed.summary,workflowId:workflow.id};return;}
+      if(factor){state.pending={type:'memory-correction',factor,workflowId:workflow.id};return;}
+    }
+    if(target.type==='health_history'&&workflow.status==='waiting_confirmation'&&workflow.proposed){state.pending={type:'history-confirm',rawId:workflow.raw_event_id||null,rawText:workflow.source_text||'',history:workflow.proposed,workflowId:workflow.id};return;}
+    if(workflow.status==='waiting_confirmation'&&Array.isArray(workflow.proposed)&&workflow.proposed.length){state.pending={type:'confirm',rawId:workflow.raw_event_id||null,rawText:workflow.source_text||'',parsed:{summary:workflow.goal||'the proposed record',events:workflow.proposed},workflowId:workflow.id};return;}
+    if(workflow.status==='waiting_correction'&&workflow.raw_event_id){state.pending={type:'correction-awaiting',rawId:workflow.raw_event_id,rawText:workflow.source_text||'',parsed:{summary:workflow.goal||'the earlier interpretation',events:Array.isArray(workflow.proposed)?workflow.proposed:[]},workflowId:workflow.id};return;}
+    if(workflow.status==='waiting_clarification'&&workflow.raw_event_id){state.pending={type:'needs-detail',rawId:workflow.raw_event_id,rawText:workflow.source_text||'',workflowId:workflow.id,restoredNeeded:needed};}
+  }
+  function resumeCurrentWorkflow(){
+    const engine=window.ZekeWorkflowEngine,current=(state.workflowId&&engine?.get(state.workflowId))||engine?.current();if(!current)return;
+    state.workflowId=current.id;restoreInteractionFromWorkflow(current);
+    const p=state.pending,target=current.target||{},needed=(current.needed||[]).filter(Boolean);
+    if(p?.type==='question'){pushZeke(`${p.question.question||'This question is still waiting for you.'}${p.question.why_it_matters?` Why I’m asking: ${p.question.why_it_matters}`:''}`,{choices:pendingQuestionChoices(p.question)});}
+    else if(p?.type==='question-awaiting'){pushZeke(`Continue with your answer to: ${p.question.question||'the open question'}. Nothing changes until ZEKE can apply your answer safely.`);}
+    else if(p?.type==='confirm'){pushZeke(`I still have this proposed record ready for your decision: ${p.parsed.summary}.`,{choices:[{label:'Yes, save it',value:'confirm-save'},{label:'Not quite',value:'confirm-correct'},{label:'Later',value:'confirm-later'},{label:'Ignore',value:'confirm-ignore'}]});}
+    else if(p?.type==='memory-correction-confirm'){pushZeke(`The remembered-context correction is still ready: “${p.replacement}”. Save it?`,{choices:[{label:'Save corrected memory',value:'memory-confirm'},{label:'Cancel without changing it',value:'memory-cancel'}]});}
+    else if(p?.type==='memory-correction'){pushZeke(`Tell me how to correct this remembered context: “${p.factor.summary||p.factor.answer||p.factor.value||p.factor.type}”. Nothing changes until you confirm.`);}
+    else if(p?.type==='history-confirm'){pushZeke(`I still understand this as ${p.history.relation} health history: ${p.history.summary}. Is that right?`,{choices:[{label:'Yes, save it',value:'history-save'},{label:'Not quite',value:'history-correct'},{label:'Later',value:'confirm-later'},{label:'Ignore',value:'confirm-ignore'}]});}
+    else if(target.medication){openMedicationScheduleModal(target.medication);return;}
+    else if(target.action_id){const action=(state.actions.catalog||[]).find(a=>a.id===target.action_id);if(action){if(action.kind==='medication')openMedicationScheduleModal(action.label||action.name||'');else openRecurringActionScheduleModal(action);return;}}
+    else pushZeke(`Let’s continue: ${current.goal}.${needed.length?` I still need ${needed.join(', ')}.`:''} Nothing new has been saved yet.`);
+    go('dashboard');render();setTimeout(()=>$('#talkInput')?.focus(),0);
+  }
 
   const RANGE_DAYS = { week:7, month:31, quarter:92, '6months':183, year:366, all:null };
   const METRICS = {
@@ -143,6 +232,8 @@
   function clearPending(reason='superseded'){
     if(!state.pending)return;
     recordRuntimeIssue('pending-flow-closed',`Pending ${state.pending.type||'unknown'} closed`,reason);
+    logUnresolved('An unfinished interaction was superseded by a new message.',{resolution:reason,original_input:state.pending.rawText||state.pending.question?.question||'',buttons_displayed:state.conversation.at(-1)?.choices?.map(x=>x.label)||[]});
+    closeWorkflow('superseded','Paused because a newer, unrelated message arrived.',{save_status:'not_saved'});
     state.pending=null;
   }
   function looksLikeIndependentNewEntry(text){
@@ -184,8 +275,18 @@
       ZekeData.listConversation(), ZekeData.listImportBatches(), ZekeData.getPreferences()
     ]);
     state.events=events; state.factors=factors; state.discoveries=discoveries; state.actions=actions;
+    const repositoryWorkflows=factors.filter(f=>f.type==='workflow_state'&&f.workflow).map(f=>f.workflow);window.ZekeWorkflowEngine?.hydrate(repositoryWorkflows);const restoredWorkflow=window.ZekeWorkflowEngine?.current();if(restoredWorkflow&&!state.workflowId)state.workflowId=restoredWorkflow.id;restoreInteractionFromWorkflow(restoredWorkflow);
     state.importBatches=importBatches; state.preferences=preferences||{}; state.importReport=state.importReport || importBatches?.at(-1) || null;
     if (!state.conversationLoaded || !state.conversation.length) { state.conversation=conversation||[]; state.conversationLoaded=true; }
+    if(restoredWorkflow&&!window.ZekeWorkflowEngine.constants.TERMINAL.includes(restoredWorkflow.status)){
+      const resumeKey=`zeke-workflow-resume-${restoredWorkflow.id}`;
+      try{
+        if(!sessionStorage.getItem(resumeKey)){
+          state.conversation.push({id:`resume-${restoredWorkflow.id}`,role:'zeke',text:`Your earlier workflow is still open: ${restoredWorkflow.goal}. Nothing new has been saved unless the status below says otherwise. Continue here, or open Conversation Memory to review unfinished decisions.`,at:new Date().toISOString(),ephemeral:true});
+          sessionStorage.setItem(resumeKey,'1');
+        }
+      }catch(_){}
+    }
     state.syncSource=await ZekeData.getSyncSource();
     state.theme=state.preferences.theme || state.theme || 'light';
     try {
@@ -297,7 +398,7 @@
     if (q.question_key?.startsWith('med_schedule:')) {
       const medication=q.question_key.split(':').slice(1).join(':');
       const schedule=parseCadence(answer);
-      if (!schedule) return {applied:false,message:'Thanks. I saved your answer, but I could not safely turn that wording into a schedule. I’ll keep it as context rather than guessing.'};
+      if (!schedule) return {applied:false,open_editor:true,medication,message:`I understood that you are describing a schedule for ${medication.replace(/\b\w/g,c=>c.toUpperCase())}, but I still need the frequency or day in a form I can apply safely. I opened the medication schedule editor with the medication already selected.`};
       const catalog=[...(state.actions.catalog||[])];
       const existing=catalog.find(a=>String(a.label||a.name||'').toLowerCase().includes(medication));
       const entry={
@@ -308,7 +409,8 @@
       };
       const next=existing?catalog.map(a=>a.id===existing.id?{...a,...entry}:a):[...catalog,entry];
       state.actions=await ZekeData.saveActions({...state.actions,catalog:next});
-      return {applied:true,message:`Thanks. I saved that schedule${schedule.type==='weekly'&&schedule.days?.length?' and will treat that day as the expected day rather than an absolute requirement':''}. I’ll use it to decide when the action belongs in Today’s Actions.`};
+      const scheduleLabel=schedule.type==='daily'?'daily':`weekly${schedule.days?.length?` on ${schedule.days.map(d=>['Sundays','Mondays','Tuesdays','Wednesdays','Thursdays','Fridays','Saturdays'][d]).join(', ')}`:''}`;
+      return {applied:true,message:`Saved. ${entry.label} is expected ${scheduleLabel} and will appear in Today’s Actions when it is due. ZEKE will still require confirmation before marking a dose complete.`};
     }
     if (q.question_key==='tracking_preferences') {
       await ZekeData.saveFactor({type:'tracking_preferences',status:'active',answer,source_question_id:q.id,summary:answer});
@@ -516,7 +618,7 @@
     const number=id==='sleep_duration'?durationLabel(latest.value):esc(latest.value);
     const unit=id==='sleep_duration'?'':` <small>${esc(latest.unit||meta.unit)}</small>`;
     return `<article class="metric-card metric-${id}" data-metric="${id}">
-      <div class="metric-head"><span class="metric-icon">${meta.icon}</span><span>${esc(meta.label)}</span><button class="icon-btn metric-more" aria-label="More options">⋮</button></div>
+      <div class="metric-head"><span class="metric-icon">${meta.icon}</span><span>${esc(meta.label)}</span><button type="button" class="icon-btn metric-more" data-open-metric-detail="${esc(id)}" aria-label="Open ${esc(meta.label)} details">⋮</button></div>
       <div class="metric-number">${number}${unit}</div>
       <div class="metric-change">${esc(deltaText)}</div><div class="metric-open-hint">Open analysis →</div>
       ${miniSpark(points,id)}
@@ -680,12 +782,23 @@
     const timelyHTML=timely?`<article class="coach-lane coach-now"><span>NOW</span><div><strong>${esc(timely.title)}</strong><p>${esc(timely.suggestion)}</p></div><button class="text-action" data-coach-exercise="${esc(timely.name)}">Review ${esc(timely.name)}</button></article>`:`<article class="coach-lane"><span>NOW</span><div><strong>Nothing time-sensitive</strong><p>No immediate fitness warning is supported by the current record.</p></div></article>`;
     const nextHTML=next?`<article class="coach-lane"><span>NEXT SESSION</span><div><strong>${esc(next.name)}</strong><p>${esc(next.suggestion)}</p><small>${next.recent.length} recent session${next.recent.length===1?'':'s'} · ${esc(next.confidence)} confidence</small></div><button class="text-action" data-coach-exercise="${esc(next.name)}">View activity</button></article>`:'';
     const patternTitle=pattern?`${prettyVar(pattern.a)} and ${prettyVar(pattern.b)} show a possible relationship`:'No cross-activity pattern is ready yet';
-    const patternText=pattern?`${pattern.r>0?'They tended to rise together':'When one was higher, the other tended to be lower'} across ${pattern.n} paired days. Review evidence and limitations before using it.`:'ZEKE needs more overlapping observations before it can present a specific relationship.';
+    const patternText=pattern?`${pattern.r>0?'They moved in the same direction':'When one was higher, the other tended to be lower'} across ${pattern.n} paired days. Review the dated evidence and limitations before using it.`:'ZEKE needs more overlapping observations before it can present a specific relationship.';
     const patternHTML=`<article class="coach-lane"><span>PATTERNS</span><div><strong>${esc(patternTitle)}</strong><p>${esc(patternText)}</p></div>${pattern?'<button class="text-action" data-pattern-focus="Fitness relationships">Review evidence</button>':''}</article>`;
     return `<section class="panel coach-panel coach-dashboard-structured"><div class="section-head"><div><div class="coach-badge">🏋 Coach's Eye</div><h2>Prioritized coaching</h2><p>One recommendation is shared across Coach’s Eye and the activity tile.</p></div></div><div class="coach-lanes">${timelyHTML}${nextHTML}${patternHTML}</div></section>`;
   }
 
-  function openQuestions() { return state.factors.filter(f=>f.type==='clarification_question'&&!['resolved','dismissed','unknown','deferred'].includes(f.status)).sort((a,b)=>priorityWeight(b.priority)-priorityWeight(a.priority)); }
+  function openQuestions() {
+    return state.factors
+      .filter(f=>f.type==='clarification_question'&&!['resolved','dismissed','unknown'].includes(f.status))
+      .sort((a,b)=>{
+        const deferOrder=Number(Boolean(a.deferred_at))-Number(Boolean(b.deferred_at));
+        return deferOrder||priorityWeight(b.priority)-priorityWeight(a.priority)||new Date(a.deferred_at||a.created_at||0)-new Date(b.deferred_at||b.created_at||0);
+      });
+  }
+  async function deferQuestion(question,note='User chose Later'){
+    if(!question)return null;
+    return ZekeData.saveFactor({...question,status:'open',answer:question.answer||'',deferred_at:new Date().toISOString(),defer_count:Number(question.defer_count||0)+1,last_defer_note:note,resolved_at:null});
+  }
   function priorityWeight(p){return ({critical:4,high:3,medium:2,low:1}[p]||1)}
   function reviewTaskKey(q){
     const text=`${q.question_key||''} ${q.question||''} ${q.why_it_matters||''}`.toLowerCase();
@@ -717,8 +830,9 @@
     const last=msgs.at(-1);
     const choices=last?.choices||[];
     return `<section class="panel conversation-panel">
-      <div class="section-head conversation-head"><div><h2>Talk to ZEKE</h2><p>Conversation first, with structured choices when ZEKE needs a safe decision.</p></div><div class="conversation-head-actions"><button class="secondary compact" id="expandConversation" aria-expanded="${document.body.classList.contains('conversation-expanded')}">${document.body.classList.contains('conversation-expanded')?'Collapse':'Expand'}</button><button class="question-pill" id="questionPill">${reviewTasks().length} review task${reviewTasks().length===1?'':'s'}</button></div></div>
+      <div class="section-head conversation-head"><div><h2>Talk to ZEKE</h2><p>Conversation first, with structured choices when ZEKE needs a safe decision.</p></div><div class="conversation-head-actions"><button class="secondary compact" id="expandConversation" aria-expanded="${document.body.classList.contains('conversation-expanded')}">${document.body.classList.contains('conversation-expanded')?'Collapse':'Expand'}</button><button type="button" class="question-pill" data-open-reviews>${reviewTasks().length} review task${reviewTasks().length===1?'':'s'}</button></div></div>
       <div class="conversation-thread" id="conversationThread">${conversationMessagesHTML(msgs)}</div>
+      ${workflowStatusHTML()}
       ${choices.length?`<div class="choice-row">${choices.map(c=>`<button class="choice" data-conversation-choice="${esc(c.value)}" aria-live="polite">${esc(c.label)}</button>`).join('')}</div>`:''}
       <div class="composer"><textarea id="talkInput" rows="1" placeholder="Tell ZEKE anything…"></textarea><button class="attach" id="attachBtn" title="Attach a file">＋</button><button class="send" id="sendBtn" aria-label="Send">➤</button></div>
     </section>`;
@@ -777,7 +891,7 @@
   function coverageHTML() {
     const latest=state.events.map(e=>e.timestamp||e.recorded_at).filter(Boolean).sort().at(-1);
     const issues=reviewTasks().length;
-    return `<section class="dashboard-status"><span class="status-dot"></span><strong>Data current</strong><span>${latest?`Last evidence ${esc(fmtDate(latest,{month:'short',day:'numeric'}))}`:'No verified evidence yet'}</span>${issues?`<button class="text-action" id="questionPill">${issues} review task${issues===1?'':'s'}</button>`:''}</section>`;
+    return `<section class="dashboard-status"><span class="status-dot"></span><strong>Data current</strong><span>${latest?`Last evidence ${esc(fmtDate(latest,{month:'short',day:'numeric'}))}`:'No verified evidence yet'}</span>${issues?`<button type="button" class="text-action" data-open-reviews>${issues} review task${issues===1?'':'s'}</button>`:''}</section>`;
   }
 
   function recentHealthHTML() {
@@ -919,7 +1033,7 @@
       return `<article class="fitness-progress-card ${expanded?'is-expanded':''}" tabindex="0" role="button" aria-expanded="${expanded}" data-activity-name="${esc(name)}"><div class="fitness-card-head"><div><strong>${esc(name)}</strong><span>${last.placeholder?'Not logged yet':`${arr.length} session${arr.length===1?'':'s'}`} · ${esc(activityProfileLabel(profile))}</span></div><div class="activity-card-tools"><button class="favorite-button ${favorites.has(name)?'active':''}" data-favorite-activity="${esc(name)}" aria-label="${favorites.has(name)?'Remove from':'Add to'} favorites">★</button><b>${last.weight!=null?`${last.weight} lb`:last.duration_min!=null?`${last.duration_min} min`:'—'}</b></div></div>${spark}<div class="fitness-facts">${facts.map(f=>`<span>${esc(f)}</span>`).join('')}</div>${expanded?'':`<p class="fitness-recommendation"><strong>Next step (${esc(rec.confidence)} confidence):</strong> ${esc(rec.suggestion)}</p>`}${expanded?`<div class="activity-expanded-detail"><div class="activity-detail-heading"><div><span class="activity-category-label">${esc(activityCategoryLabel(category))}</span><h3>Recent activity details</h3></div><button class="icon-btn" data-collapse-activity="${esc(name)}" aria-label="Collapse activity">×</button></div><div class="table-wrap"><table><thead><tr><th>Date</th><th>Load</th><th>Reps × sets</th><th>Duration</th><th>Steps</th><th>RPE</th><th>Pain</th></tr></thead><tbody>${recent}</tbody></table></div><div class="coach-rec"><strong>Coach recommendation</strong><p>${esc(rec.suggestion)}</p><small>${esc(rec.rationale)}</small></div><div class="detail-actions"><button class="secondary compact" data-quick-exercise="${esc(name)}">+ Log activity</button><button class="text-action" data-activity-pattern="${esc(name)}">Review relationships</button></div></div>`:`<div class="activity-open-hint">Click for details and coaching</div>`}</article>`}).join('');
     const tabs=[['frequent','Frequent'],['favorites','Favorites'],...ACTIVITY_TAXONOMY.map(x=>[x.id,x.label])];
     const history=rows.length?`<div class="table-wrap"><table><thead><tr><th>Date</th><th>Exercise</th><th>Load</th><th>Reps × sets</th><th>Duration</th><th>Steps</th><th>Source</th><th></th></tr></thead><tbody>${rows.map(e=>{const w=workoutStructured(e);return `<tr><td>${esc(fmtDate(e.timestamp,{month:'short',day:'numeric',year:'numeric'}))}</td><td>${esc(w.exercise||'Workout')}</td><td>${esc(w.weight!=null?`${w.weight} ${w.weight_unit||'lb'}`:'—')}</td><td>${esc(w.reps!=null||w.sets!=null?`${w.reps??'—'} × ${w.sets??'—'}`:'—')}</td><td>${esc(w.duration_min!=null?`${w.duration_min} min`:'—')}</td><td>${esc(w.steps!=null?`${w.steps}`:'—')}</td><td>${esc(e.provenance?.sheet||e.provenance?.file||e.provenance?.source||'ZEKE')}</td><td><button class="text-action" data-edit-workout="${esc(e.id)}">Edit</button></td></tr>`}).join('')}</tbody></table></div>`:'<div class="empty-inline">No workout records are available yet.</div>';
-    return `<div class="page-head"><div><h1>Fitness</h1><p>Activity-specific history, consistent graph rules, and one evidence-linked recommendation per activity.</p></div><div class="page-head-actions"><button class="secondary" id="addActivityBtn">+ Add activity</button><button class="primary" id="logWorkoutBtn">+ Log workout</button></div></div>${fitnessRangeHTML()}<div class="fitness-workspace"><div class="fitness-primary">${coachHTML()}<section class="panel fitness-insight-card compact-empty"><div class="section-head"><div><span class="tile-kicker">FITNESS INSIGHTS</span><h2>Relationships beyond one activity</h2><p>Review any specific cross-activity or recovery relationship with its evidence and limitations.</p></div></div><button class="secondary compact" data-pattern-focus="Fitness overview">Review relationships</button></section></div><section class="panel fitness-library-panel"><div class="section-head"><div><h2>Activity library</h2><p>Every graph names its metric. When a graph cannot be drawn, the tile explains why.</p></div></div><div class="library-tabs" role="tablist">${tabs.map(([id,label])=>`<button class="library-tab ${state.activityTab===id?'active':''}" data-activity-tab="${id}" role="tab" aria-selected="${state.activityTab===id}">${label}</button>`).join('')}</div><div class="fitness-progress-grid">${cards||'<div class="empty-inline">No activities in this view yet.</div>'}</div></section><section class="panel fitness-history-panel"><div class="section-head"><div><h2>Workout history</h2><p>Edit any record to review the same optional effort, pain, technique, and injury-context fields available during initial entry.</p></div></div>${history}</section></div>`;
+    return `<div class="page-head"><div><h1>Fitness</h1><p>Activity-specific history, consistent graph rules, and one evidence-linked recommendation per activity.</p></div><div class="page-head-actions"><button class="secondary" id="addActivityBtn">+ Add activity</button><button class="primary" id="logWorkoutBtn">+ Log workout</button></div></div>${fitnessRangeHTML()}<div class="fitness-workspace"><div class="fitness-primary">${coachHTML()}<section class="panel fitness-insight-card compact-empty"><div class="section-head"><div><span class="tile-kicker">FITNESS INSIGHTS</span><h2>${esc((patternCandidates?.()?.[0])?`${prettyVar(patternCandidates()[0].a)} and ${prettyVar(patternCandidates()[0].b)}`:'Recovery relationships need more data')}</h2><p>${(patternCandidates?.()?.[0])?esc(`${patternCandidates()[0].r>0?'They moved in the same direction':'They moved in opposite directions'} across ${patternCandidates()[0].n} paired days. Open the dated evidence before changing training.`):'Record repeated activity plus sleep, effort, or pain before ZEKE can show a specific relationship.'}</p></div></div><button class="secondary compact" data-pattern-focus="Fitness overview">${(patternCandidates?.()?.[0])?'Review this evidence':'Open Pattern Lab'}</button></section></div><section class="panel fitness-library-panel"><div class="section-head"><div><h2>Activity library</h2><p>Every graph names its metric. When a graph cannot be drawn, the tile explains why.</p></div></div><div class="library-tabs" role="tablist">${tabs.map(([id,label])=>`<button class="library-tab ${state.activityTab===id?'active':''}" data-activity-tab="${id}" role="tab" aria-selected="${state.activityTab===id}">${label}</button>`).join('')}</div><div class="fitness-progress-grid">${cards||'<div class="empty-inline">No activities in this view yet.</div>'}</div></section><section class="panel fitness-history-panel"><div class="section-head"><div><h2>Workout history</h2><p>Edit any record to review the same optional effort, pain, technique, and injury-context fields available during initial entry.</p></div></div>${history}</section></div>`;
   }
 
   function medicationsPageHTML() {
@@ -1061,6 +1175,82 @@
       <section class="panel record-browser"><div class="section-head"><div><h2>Repository browser</h2><p>Search loaded records and inspect how ZEKE classified them.</p></div><span class="badge">${filtered.length}${a.rows.length>150?' shown':''}</span></div><div class="audit-controls"><input id="auditSearch" type="search" placeholder="Search records, exercises, metrics, or sources" value="${esc(state.auditQuery)}"><select id="auditCategory"><option value="all">All categories</option>${cats.map(([k])=>`<option value="${esc(k)}" ${state.auditCategory===k?'selected':''}>${esc(k.replaceAll('_',' '))}</option>`).join('')}</select></div><div class="audit-table-wrap"><table class="audit-table"><thead><tr><th>Date</th><th>Classification</th><th>Summary</th><th>Source</th><th>Status</th></tr></thead><tbody>${filtered.map(r=>`<tr><td>${esc(r.date?fmtDate(r.date,{month:'short',day:'numeric',year:'numeric'}):'No date')}</td><td><span class="category-pill">${esc(r.category)}</span>${r.workout?'<small>workout recognized</small>':''}</td><td>${esc(auditRecordSummary(r))}</td><td>${esc(r.source)}</td><td>${esc(r.event.structured?.interpretation_status||r.event.status||'loaded')}</td></tr>`).join('')||'<tr><td colspan="5">No records match this filter.</td></tr>'}</tbody></table></div></section>`;
   }
 
+  function supportRedact(value,mode='full'){
+    if(value==null)return value;
+    if(typeof value==='string'){
+      if(mode==='technical')return value?`[content omitted · ${value.length} characters]`:'';
+      if(mode==='anonymized')return value.replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/ig,'[email]').replace(/\b(?:\+?1[-.\s]?)?\(?\d{3}\)?[-.\s]\d{3}[-.\s]\d{4}\b/g,'[phone]').replace(/\b(?:Frank|Mounjaro|tirzepatide|atorvastatin|Lipitor)\b/gi,'[personal term]');
+      return value;
+    }
+    if(Array.isArray(value))return value.map(v=>supportRedact(v,mode));
+    if(typeof value==='object'){
+      const out={};for(const [k,v] of Object.entries(value)){
+        if(/api.?key|secret|token|authorization|credential|password/i.test(k))continue;
+        if(mode!=='full'&&/raw_text|source_text|original_text|request_summary|response_summary|structured|before|after/i.test(k))out[k]=typeof v==='string'?supportRedact(v,mode):'[content omitted]';
+        else out[k]=supportRedact(v,mode);
+      }return out;
+    }
+    return value;
+  }
+  function supportFlatRow(row={}){
+    const out={};for(const [k,v] of Object.entries(row||{}))out[k]=v==null?'':typeof v==='object'?JSON.stringify(v):v;return out;
+  }
+  function addSupportSheet(workbook,name,rows=[],fallback='No entries in the selected range.'){
+    const safeRows=(rows.length?rows:[{status:fallback}]).map(supportFlatRow);
+    const sheet=XLSX.utils.json_to_sheet(safeRows);
+    const widths=Object.keys(safeRows[0]||{}).map(key=>({wch:Math.min(60,Math.max(14,key.length+2,...safeRows.slice(0,50).map(r=>String(r[key]??'').length+2)))}));
+    sheet['!cols']=widths;XLSX.utils.book_append_sheet(workbook,sheet,name.slice(0,31));
+  }
+  function supportDeveloperNotes(snapshot,runtimeRows,aiRows){
+    const m=snapshot.metrics||{},topUnresolved=(snapshot.logs?.unresolved_interactions||[]).slice(-8);
+    const notes=[];
+    notes.push({section:'Release context',note:`ZEKE v${BUILD.version} build ${BUILD.build}. This report was generated from the selected browser logs and connected ZEKE repository. It never includes API keys or saved credentials.`});
+    notes.push({section:'Conversation reliability',note:`${m.workflows_started||0} workflows started; ${m.workflows_completed||0} completed; ${m.workflows_open||0} remain open; ${m.unresolved_interactions||0} unresolved interactions were logged.`});
+    notes.push({section:'AI reliability',note:`${aiRows.length} AI consultation records are available in this export. Connected-provider failures should be compared with the exact user workflow rather than treated as isolated errors.`});
+    notes.push({section:'Runtime reliability',note:`${runtimeRows.length} runtime diagnostic entries are in the selected range. Repeated error kinds should be prioritized before one-off messages.`});
+    if(topUnresolved.length)notes.push({section:'Highest-value review area',note:`Recent unresolved reasons: ${[...new Set(topUnresolved.map(x=>x.reason).filter(Boolean))].slice(0,5).join(' | ')}`});
+    notes.push({section:'Recommended developer review order',note:'1) unresolved interactions and their displayed actions; 2) user corrections; 3) repeated technical errors; 4) AI failures; 5) workflow states that never reached explicit closure.'});
+    return notes;
+  }
+  async function downloadSupportWorkbook(options={}){
+    if(!window.XLSX)throw new Error('Spreadsheet export library did not load. Refresh and try again.');
+    const mode=options.mode||state.supportExportOptions.mode||$('#supportPrivacyMode')?.value||'full',from=options.from??state.supportExportOptions.from??($('#supportFromDate')?.value||''),to=options.to??state.supportExportOptions.to??($('#supportToDate')?.value||''),clearAfter=options.clearAfter??state.supportExportOptions.clearAfter??Boolean($('#clearAfterSupportExport')?.checked);
+    const workflowSnapshot=window.ZekeWorkflowEngine?.exportSnapshot({privacy_mode:mode,from,to})||{metrics:{},workflows:[],logs:{}};
+    const inRange=row=>{const ts=new Date(row.timestamp||row.created_at||row.recorded_at||row.updated_at||0).getTime();if(!Number.isFinite(ts))return true;if(from&&ts<new Date(`${from}T00:00:00`).getTime())return false;if(to&&ts>new Date(`${to}T23:59:59.999`).getTime())return false;return true};
+    const runtimeRows=runtimeDiagnostics().filter(inRange).map(r=>supportRedact(r,mode));
+    const cloudAI=(await ZekeData.listAIExchanges?.()||[]).filter(inRange).map(r=>supportRedact(r,mode));
+    const localAI=workflowSnapshot.logs?.ai_consultations||[];const aiRows=[...cloudAI,...localAI];
+    const corrections=state.events.filter(e=>e.category==='correction'&&inRange(e)).map(e=>supportRedact({timestamp:e.timestamp,reason:e.raw_text,target_event_id:e.structured?.target_event_id,operation:e.structured?.operation,source:e.provenance?.source},mode));
+    const potential=potentialHealthEvents().filter(inRange).map(e=>supportRedact({timestamp:e.timestamp,summary:e.structured?.summary||e.raw_text,tentative_tags:e.structured?.tentative_tags,status:e.structured?.interpretation_status,source:e.provenance?.source},mode));
+    const audits=[...(workflowSnapshot.logs?.audit_history||[]),...(state.importBatches||[]).filter(inRange).map(x=>supportRedact({timestamp:x.created_at,event:x.type,status:x.status,message:x.message,counts:x.counts,source:x.source||x.file},mode))];
+    const wb=XLSX.utils.book_new();
+    addSupportSheet(wb,'Executive Summary',[
+      {item:'Report',value:'ZEKE Support & Improvement Report'},
+      {item:'Version',value:`${BUILD.version} · ${BUILD.build}`},
+      {item:'Generated',value:new Date().toISOString()},
+      {item:'Privacy mode',value:mode},
+      {item:'Date range',value:`${from||'All'} through ${to||'All'}`},
+      ...Object.entries(workflowSnapshot.metrics||{}).map(([item,value])=>({item:item.replaceAll('_',' '),value:value??'Not available'})),
+      {item:'Runtime errors',value:runtimeRows.length},{item:'Potential health events',value:potential.length},{item:'Canonical corrections',value:corrections.length}
+    ]);
+    addSupportSheet(wb,'Technical Errors',[...runtimeRows,...(workflowSnapshot.logs?.technical_errors||[])]);
+    const repositoryUnresolved=state.factors.filter(f=>f.type==='workflow_log'&&f.log_kind==='unresolved_interaction'&&inRange(f.log||f)).map(f=>supportRedact(f.log||f,mode));
+    const unresolvedRows=[...(workflowSnapshot.logs?.unresolved_interactions||[]),...repositoryUnresolved.filter(r=>!(workflowSnapshot.logs?.unresolved_interactions||[]).some(x=>x.id===r.id))];
+    addSupportSheet(wb,'Unresolved Interactions',unresolvedRows);
+    addSupportSheet(wb,'AI Consultation History',aiRows);
+    addSupportSheet(wb,'User Corrections',[...(workflowSnapshot.logs?.user_corrections||[]),...corrections]);
+    addSupportSheet(wb,'UX Feedback',workflowSnapshot.logs?.ux_feedback||[]);
+    addSupportSheet(wb,'Potential Health Events',potential);
+    addSupportSheet(wb,'Audit History',audits);
+    addSupportSheet(wb,'Conversation Metrics',Object.entries(workflowSnapshot.metrics||{}).map(([metric,value])=>({metric:metric.replaceAll('_',' '),value:value??''})));
+    addSupportSheet(wb,'Workflow History',workflowSnapshot.workflows||[]);
+    addSupportSheet(wb,'Developer Notes',supportDeveloperNotes(workflowSnapshot,runtimeRows,aiRows));
+    XLSX.writeFile(wb,`ZEKE-Support-and-Improvement-Report-${localDay()}.xlsx`,{compression:true});
+    state.supportExportStatus='Report created. API keys and credentials were excluded.';
+    if(clearAfter){localStorage.removeItem(RUNTIME_LOG_KEY);window.ZekeWorkflowEngine?.clearLogs({keep_workflows:true});state.supportExportStatus+=' Retained diagnostic logs were cleared after export.';}
+    render();
+  }
+
   function settingsPageHTML() {
     return `<div class="page-head"><div><h1>Settings</h1><p>Connections and preferences. ZEKE's router and provider managers handle the technical choices.</p></div></div>
       <section class="panel settings-section"><div class="section-head"><div><h2>User profile</h2><p>Use a preferred name or leave it blank. A legal name is not required.</p></div></div><form id="profileForm" class="profile-form"><label>Preferred name<input id="preferredNameInput" value="${esc(preferredName())}" placeholder="Optional"></label><button class="primary compact" type="submit">Save profile</button></form><p class="safety-copy">The greeting uses this profile value. When blank, ZEKE uses a neutral greeting and does not insert a personal name.</p></section>
@@ -1070,7 +1260,7 @@
       <section class="panel settings-section"><div class="section-head"><div><h2>Calendar connections</h2><p>Calendar providers are context sources. An event on a calendar does not prove that it happened.</p></div></div><div class="provider-grid"><article class="provider-card connected"><span class="provider-icon">▣</span><div><strong>Google Calendar</strong><p>Available with the current Google connection.</p><span class="provider-status">${state.storage?.providerId==='google-drive'?'Connected':'Available'}</span></div></article><article class="provider-card planned"><span class="provider-icon">◫</span><div><strong>Apple Calendar / iCloud</strong><p>CalDAV/ICS-compatible connector planned.</p><span class="provider-status">Planned</span></div></article><article class="provider-card planned"><span class="provider-icon">▤</span><div><strong>Outlook / Exchange</strong><p>Microsoft calendar connector planned.</p><span class="provider-status">Planned</span></div></article><article class="provider-card"><span class="provider-icon">ICS</span><div><strong>ICS import</strong><p>Import an exported calendar file as contextual history.</p><span class="provider-status">Coming next</span></div></article></div></section>
       <section class="panel settings-section"><div class="section-head"><div><h2>Connected health workbook</h2><p>Link the workbook once. ZEKE stores a managed copy in your Project Zeke Drive folder and uses a reviewed, idempotent transaction before changing events.json.</p></div><span class="badge">${state.syncSource?'Connected':'Not connected'}</span></div>${state.syncSource?`<div class="sync-source-card"><strong>${esc(state.syncSource.name)}</strong><p>Last verified synchronization: ${esc(state.syncSource.last_sync_at?fmtDate(state.syncSource.last_sync_at,{month:'short',day:'numeric',year:'numeric',hour:'numeric',minute:'2-digit'}):'Not yet')}</p><div class="card-actions"><button class="secondary" id="preflightWorkbookNow">Run read-only preflight</button><button class="secondary" id="syncWorkbookNow" ${state.syncPreflight?.ready?'':'disabled'}>Commit reviewed sync</button><label class="secondary file-button">Review replacement source<input type="file" id="importFile" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden></label></div>${state.syncPreflight?.ready?`<p class="status-line">Preflight reviewed in this session at ${esc(fmtDate(state.syncPreflight.reviewed_at,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}))}. Commit will rerun and compare the preflight before writing.</p>`:''}</div>`:`<label class="secondary file-button">Review and connect health workbook<input type="file" id="importFile" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" hidden></label>`}<div id="importStatus" class="status-line">${esc(state.importStatus||'')}</div>${state.importReport?`<div class="import-report"><strong>Latest workbook review</strong><div class="import-stats">${Object.entries(state.importReport.counts||{}).map(([k,v])=>`<span><b>${esc(v)}</b>${esc(k.replaceAll('_',' '))}</span>`).join('')}</div><p>${esc(state.importReport.message||'Workbook review completed.')}</p></div>`:''}<p class="safety-copy">Safety: synchronization follows read → normalize → compare → preview → commit → verify. A timestamped JSON backup is created before event changes. Blank spreadsheet cells do not delete JSON events. Conflicts stop the transaction, and repeated syncs do not append duplicates.</p></section>
       ${dataVisibilityHTML()}
-      <section class="panel settings-section"><div class="section-head"><div><h2>Runtime diagnostics</h2><p>Local operational errors are stored on this device without API keys or full health records. Export them when troubleshooting.</p></div><span class="badge">${runtimeDiagnostics().length} entries</span></div><div class="card-actions"><button class="secondary" id="exportRuntimeDiagnostics">Export diagnostics</button><button class="text-action danger" id="clearRuntimeDiagnostics">Clear local log</button></div><p class="safety-copy">Includes timestamp, build, route, error type, and a shortened technical message. It does not intentionally include credentials or canonical record contents.</p></section>
+      <section class="panel settings-section diagnostics-export-section"><div class="section-head"><div><h2>Diagnostics & Exports</h2><p>Create one multi-tab workbook that connects technical failures to the user workflows in which they occurred.</p></div><span class="badge">${runtimeDiagnostics().length+(window.ZekeWorkflowEngine?.metrics()?.unresolved_interactions||0)} retained items</span></div><div class="support-export-grid"><label>Privacy level<select id="supportPrivacyMode"><option value="full" ${state.supportExportOptions.mode==='full'?'selected':''}>Full developer report</option><option value="technical" ${state.supportExportOptions.mode==='technical'?'selected':''}>Technical only</option><option value="anonymized" ${state.supportExportOptions.mode==='anonymized'?'selected':''}>Anonymized</option></select></label><label>From date<input id="supportFromDate" type="date" value="${esc(state.supportExportOptions.from||'')}"></label><label>Through date<input id="supportToDate" type="date" value="${esc(state.supportExportOptions.to||'')}"></label><label class="support-clear-option"><input id="clearAfterSupportExport" type="checkbox" ${state.supportExportOptions.clearAfter?'checked':''}> Clear retained diagnostic logs after a successful export</label></div><div class="card-actions"><button class="primary" id="downloadSupportReport">Download Support & Improvement Report</button><button class="secondary" id="exportRuntimeDiagnostics">Runtime JSON only</button><button class="text-action danger" id="clearRuntimeDiagnostics">Clear retained logs</button></div><p class="safety-copy">Workbook tabs include Executive Summary, Technical Errors, Unresolved Interactions, AI Consultation History, User Corrections, UX Feedback, Potential Health Events, Audit History, Conversation Metrics, Workflow History, and Developer Notes. API keys, access tokens, passwords, and saved credentials are never included.</p><div class="status-line">${esc(state.supportExportStatus||'')}</div></section>
       <section class="panel settings-section integrity-settings-card"><div class="section-head"><div><h2>Data Integrity</h2><p>Review suspicious imports, duplicate candidates, and source conflicts without cluttering the primary navigation.</p></div><button class="secondary" data-route="data-integrity">Open Data Integrity</button></div></section>
       <section class="panel settings-section"><div class="section-head"><div><h2>Dashboard layout</h2><p>Choose which metric cards appear on the dashboard. This opens a scrollable settings panel.</p></div><button class="secondary" id="customizeBtn">Customize dashboard</button></div></section>
       <section class="panel settings-section"><div class="section-head"><div><h2>Appearance</h2><p>Choose Dark, Light, or follow your system setting.</p></div></div><div class="theme-buttons"><button class="secondary ${state.theme==='dark'?'active':''}" data-theme="dark">Dark</button><button class="secondary ${state.theme==='light'?'active':''}" data-theme="light">Light</button><button class="secondary ${state.theme==='system'?'active':''}" data-theme="system">System</button></div></section>
@@ -1081,12 +1271,48 @@
     const candidate=q?.import_candidate||q?.candidate_event||q?.proposed_event||q?.target||{};
     const text=`${q?.question||''} ${q?.why_it_matters||''} ${q?.question_key||''} ${candidate?.category||''} ${candidate?.structured?.metric_id||''}`.toLowerCase();
     if(/sleep/.test(text)) return 'Confirm this sleep entry';
-    if(text.includes('clarification')||text.includes('raw evidence')||text.includes('combined')) return 'Separate information that may belong in different records';
-    if(text.includes('duplicate')) return 'Review possible duplicate records';
+    if(text.includes('duplicate')) return 'Decide whether these are duplicate records';
     if(text.includes('blood pressure')) return 'Confirm this blood-pressure measurement';
-    if(text.includes('medication')) return 'Confirm this medication detail';
+    if(/medication|mounjaro|tirzepatide|atorvastatin|supplement/.test(text)) return 'Complete this medication detail';
     if(/workout|exercise|fitness/.test(text)) return 'Confirm this workout update';
-    return 'Review this proposed record change';
+    if(text.includes('clarification')||text.includes('raw evidence')||text.includes('combined')) return 'Separate information that may belong in different records';
+    return 'Review this unfinished decision';
+  }
+  function reviewUnderstanding(q){
+    const text=`${q?.question_key||''} ${q?.question||''}`.toLowerCase();
+    if(text.includes('med_schedule:'))return 'ZEKE recognizes the medication, but the recurring schedule is still unknown. No schedule has been assumed.';
+    if(text.includes('duplicate'))return 'ZEKE found two records similar enough that keeping both could distort a trend, but they may represent separate real events.';
+    if(text.includes('blood pressure'))return 'ZEKE found a blood-pressure pair that may be reversed or invalid, so it is being kept out of verified charts for now.';
+    const candidate=q?.import_candidate||q?.candidate_event||q?.proposed_event||q?.target;
+    return candidate?'ZEKE has a tentative interpretation, but it has not been applied because your confirmation could change the record.':'ZEKE understands the general topic but needs one decision before it can safely finish the task.';
+  }
+  function reviewWillDo(q){
+    const text=`${q?.question_key||''} ${q?.question||''}`.toLowerCase();
+    if(text.includes('med_schedule:'))return 'Use the schedule to decide when this medication belongs in Today’s Actions. A scheduled day will never be treated as proof that a dose was taken.';
+    if(text.includes('duplicate'))return 'Either keep one canonical record or preserve both as separate events, then rebuild affected trends.';
+    if(text.includes('blood pressure'))return 'Correct, preserve, or quarantine the pair based on your answer before it can affect charts or insights.';
+    return 'Apply only the decision you confirm, preserve the original source, and record the outcome in the audit history.';
+  }
+  function reviewPrimaryLabel(q){
+    const candidate=q?.import_candidate||q?.candidate_event||q?.proposed_event||q?.target;
+    if(candidate)return 'Confirm or correct';
+    if(String(q?.question_key||'').startsWith('med_schedule:'))return 'Answer schedule question';
+    return 'Answer this question';
+  }
+  function learnedMemories(){
+    const rows=[];
+    for(const action of state.actions.catalog||[]){
+      if(!action.schedule||action.active===false)continue;
+      const schedule=action.schedule.type==='daily'?'Daily':action.schedule.type==='weekly'?`Weekly${action.schedule.days?.length?` on ${action.schedule.days.map(d=>['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][d]).join(', ')}`:''}`:scheduleText(action.schedule);
+      rows.push({id:`action:${action.id}`,source:'action',title:action.label||action.name||'Recurring action',summary:schedule,why:'This determines when the item appears in Today’s Actions without assuming it was completed.',last_used:action.updated_at||action.created_at||''});
+    }
+    for(const factor of state.factors){
+      if(['clarification_question','workflow_state','workflow_log'].includes(factor.type))continue;
+      if(['dismissed','unknown','deferred'].includes(factor.status))continue;
+      const summary=factor.summary||factor.answer||factor.value||'';if(!summary)continue;
+      rows.push({id:`factor:${factor.id}`,source:'factor',title:String(factor.type||'Remembered context').replaceAll('_',' '),summary:String(summary),why:factor.why_it_matters||'ZEKE keeps this context so future questions and recommendations do not start from zero.',last_used:factor.last_used_at||factor.updated_at||factor.created_at||''});
+    }
+    return rows.sort((a,b)=>new Date(b.last_used||0)-new Date(a.last_used||0));
   }
 
   function activeReviewHTML(q,tasks) {
@@ -1096,16 +1322,20 @@
     const source=q.original_text||q.source_text||candidate.raw_text||q.question||'The original source text is not available in this review item.';
     const proposed=candidate.structured||candidate;
     const proposalRows=Object.entries(proposed||{}).filter(([k,v])=>v!=null&&v!==''&&!['provenance','raw_text'].includes(k)).slice(0,10);
-    const decision=q.question||q.why_it_matters||'What should ZEKE do with this information?';
-    return `<div class="review-workspace-shell"><div class="review-workspace-head"><button class="secondary" id="backToReviewQueue">← Back to questions</button><span class="badge">Issue ${index+1} of ${Math.max(tasks.length,1)}</span><button class="icon-btn" id="closeReviewWorkspace" aria-label="Close review">×</button></div><section class="panel review-workspace"><div class="review-intro"><span class="question-priority ${esc(q.priority||'optional')}">${esc(q.priority||'review')}</span><h1>${esc(reviewFriendlyTitle(q))}</h1><p>ZEKE has not applied an uncertain change. Review the source and the proposed use before deciding.</p></div><div class="review-source"><h2>Original information</h2><blockquote>${esc(source)}</blockquote><small>${esc(q.question_key||q.provenance?.source||'ZEKE review item')}</small></div><div class="review-proposal"><h2>Proposed record or action</h2>${proposalRows.length?`<dl class="review-proposal-grid">${proposalRows.map(([k,v])=>`<div><dt>${esc(k.replaceAll('_',' '))}</dt><dd>${esc(typeof v==='object'?JSON.stringify(v):v)}</dd></div>`).join('')}</dl>`:`<p>ZEKE does not yet have a complete structured proposal. Your answer will remain connected to the original source rather than being forced into the wrong record type.</p>`}</div><div class="review-decision"><h2>What ZEKE needs from you</h2><div class="review-question-box">${esc(decision)}</div><div class="review-decision-actions"><button class="primary" id="answerReviewNow">Answer now</button><button class="secondary" id="deferReview">Later</button><button class="secondary" id="unknownReview">I don’t know</button><button class="text-action danger" id="dismissReview">Dismiss</button></div></div><div class="review-workspace-nav"><button class="secondary" id="previousReview" ${index<=0?'disabled':''}>← Previous</button><span>${tasks.length-index-1} remaining after this item</span><button class="secondary" id="nextReview" ${index>=tasks.length-1?'disabled':''}>Next →</button></div></section></div>`;
+    const purpose=q.why_it_matters||'Your answer changes whether ZEKE saves, corrects, merges, excludes, or leaves this information unresolved.';
+    return `<div class="review-workspace-shell"><div class="review-workspace-head"><button class="secondary" id="backToReviewQueue">← Back to Conversation Memory</button><span class="badge">Item ${index+1} of ${Math.max(tasks.length,1)}</span><button class="icon-btn" id="closeReviewWorkspace" aria-label="Close review">×</button></div><section class="panel review-workspace"><div class="review-intro"><span class="question-priority ${esc(q.priority||'optional')}">${esc(q.priority||'review')}</span><h1>${esc(reviewFriendlyTitle(q))}</h1><p>Nothing uncertain has been applied. This page shows the source, ZEKE’s current understanding, and the consequence of your decision.</p></div><div class="review-source"><h2>Original information</h2><blockquote>${esc(source)}</blockquote></div><div class="review-understanding"><h2>ZEKE’s understanding</h2><p>${esc(reviewUnderstanding(q))}</p></div><div class="review-proposal"><h2>Proposed record or action</h2>${proposalRows.length?`<dl class="review-proposal-grid">${proposalRows.map(([k,v])=>`<div><dt>${esc(k.replaceAll('_',' '))}</dt><dd>${esc(typeof v==='object'?JSON.stringify(v):v)}</dd></div>`).join('')}</dl>`:`<p>No record is ready to save yet. Your answer will complete the missing decision rather than force the information into the wrong place.</p>`}</div><div class="review-impact-grid"><div><h2>Why it matters</h2><p>${esc(purpose)}</p></div><div><h2>What ZEKE will do</h2><p>${esc(reviewWillDo(q))}</p></div></div><div class="review-decision"><h2>Choose the next step</h2><div class="review-question-box">${esc(q.question||'What should ZEKE do with this information?')}</div><div class="review-decision-actions"><button class="primary" id="answerReviewNow">${esc(reviewPrimaryLabel(q))}</button><button class="secondary" id="editReviewUnderstanding">Edit understanding</button><button class="secondary" id="deferReview">Later</button><button class="secondary" id="unknownReview">I don’t know</button><button class="text-action danger" id="dismissReview">Discard review</button></div></div><div class="review-workspace-nav"><button class="secondary" id="previousReview" ${index<=0?'disabled':''}>← Previous</button><span>${tasks.length-index-1} remaining after this item</span><button class="secondary" id="nextReview" ${index>=tasks.length-1?'disabled':''}>Next →</button></div></section></div>`;
   }
 
   function questionsPageHTML() {
-    const all=state.factors.filter(f=>f.type==='clarification_question').sort((a,b)=>priorityWeight(b.priority)-priorityWeight(a.priority));
-    const tasks=reviewTasks();
+    const tasks=reviewTasks(),memories=learnedMemories();
     if(state.activeReviewId) return activeReviewHTML(state.factors.find(f=>f.id===state.activeReviewId),tasks);
-    const cards=tasks.map(task=>{const first=task.items[0],source=first.original_text||first.source_text||first.import_candidate?.raw_text||first.question||'Review the source and proposed use.';return `<section class="panel question-group"><article class="question-card review-task-card"><div><span class="question-priority ${esc(task.priority)}">${esc(task.priority||'optional')}</span><h3>${esc(reviewFriendlyTitle(first))}</h3><p>${esc(source)}</p><small>${task.items.length===1?'One decision remains':`${task.items.length} related decisions grouped together`}</small></div><div class="question-actions"><button class="primary" data-review-question="${esc(first.id)}">Review details</button><button class="secondary" data-review-task-later="${esc(task.key)}">Later</button></div></article></section>`}).join('');
-    return `<div class="page-head"><div><h1>Questions for you</h1><p>Each item shows what ZEKE is asking, the source it came from, and what your answer can change.</p></div><span class="badge">${tasks.length} item${tasks.length===1?'':'s'}</span></div>${cards||'<section class="panel empty-page"><h2>Nothing needs your attention</h2><p>ZEKE does not currently need any clarification from you.</p></section>'}<section class="panel resolved-questions"><div class="section-head"><div><h2>Past decisions</h2><p>${all.length-openQuestions().length} resolved, dismissed, or deferred item${all.length-openQuestions().length===1?'':'s'}</p></div></div></section>`;
+    const tabs=`<div class="memory-tabs" role="tablist"><button class="library-tab ${state.memoryTab==='waiting'?'active':''}" data-memory-tab="waiting">Waiting for You <span>${tasks.length}</span></button><button class="library-tab ${state.memoryTab==='learned'?'active':''}" data-memory-tab="learned">Things I’ve Learned <span>${memories.length}</span></button></div>`;
+    if(state.memoryTab==='learned'){
+      const cards=memories.map(m=>`<article class="panel memory-card"><div><span class="tile-kicker">REMEMBERED CONTEXT</span><h3>${esc(m.title)}</h3><p>${esc(m.summary)}</p><dl><div><dt>Why remembered</dt><dd>${esc(m.why)}</dd></div><div><dt>Last updated or used</dt><dd>${esc(m.last_used?fmtDate(m.last_used,{month:'short',day:'numeric',year:'numeric'}):'Not recorded')}</dd></div></dl></div><div class="question-actions"><button class="secondary" data-memory-edit="${esc(m.id)}">Edit memory</button><button class="text-action danger" data-memory-remove="${esc(m.id)}">Remove</button></div></article>`).join('');
+      return `<div class="page-head"><div><h1>Conversation Memory</h1><p>See what ZEKE is waiting to learn and the context it is already carrying forward.</p></div><span class="badge">${memories.length} remembered</span></div>${tabs}<section class="memory-list">${cards||'<section class="panel empty-page"><h2>No durable context yet</h2><p>Confirmed schedules, preferences, and relevant background will appear here with an edit and remove path.</p></section>'}</section>`;
+    }
+    const cards=tasks.map(task=>{const first=task.items[0],source=first.original_text||first.source_text||first.import_candidate?.raw_text||first.question||'Review the source and proposed use.';return `<section class="panel question-group"><article class="question-card review-task-card"><div><span class="question-priority ${esc(task.priority)}">${esc(task.priority||'optional')}</span><h3>${esc(reviewFriendlyTitle(first))}</h3><p>${esc(source)}</p><small>${esc(first.why_it_matters||'Your answer will determine what ZEKE can safely do next.')}</small></div><div class="question-actions"><button class="primary" data-review-question="${esc(first.id)}">${esc(reviewPrimaryLabel(first))}</button><button class="secondary" data-review-task-later="${esc(task.key)}">Later</button></div></article></section>`}).join('');
+    return `<div class="page-head"><div><h1>Conversation Memory</h1><p>See what ZEKE is waiting to learn and the context it is already carrying forward.</p></div><span class="badge">${tasks.length} waiting</span></div>${tabs}${cards||'<section class="panel empty-page"><h2>Nothing is waiting for you</h2><p>ZEKE currently has no unfinished decision that requires your attention.</p></section>'}`;
   }
 
   function globalTalkHTML(){ return `<button class="global-talk-button" id="globalTalkButton" aria-label="Talk to ZEKE"><img src="./assets/branding/zeke-mark-provisional.png" alt=""><span>Talk to ZEKE</span></button><div class="global-talk-overlay" id="globalTalkOverlay"><div class="global-talk-backdrop" id="globalTalkBackdrop"></div><div class="global-talk-panel">${conversationHTML()}</div></div>`;}
@@ -1220,7 +1450,7 @@
   }
   function patternLabPageHTML(){
     const data=pairedDailyData(),patterns=patternCandidates(),focus=state.patternFocus||sessionStorage.getItem('zeke-pattern-focus')||'',potential=potentialHealthEvents().slice(0,8);
-    return `${focus?`<section class="panel pattern-focus-banner"><span class="tile-kicker">FOCUSED CONTEXT</span><h2>${esc(focus)}</h2><p>Broader associations remain clearly separated from exercise-specific evidence.</p></section>`:''}<div class="page-head"><div><h1>Pattern Lab</h1><p>Deterministic analysis plus provisional context. Potential health events are reviewed as context, not converted into measurements or causal claims.</p></div><button class="secondary" id="runPatternLab">Run analysis</button></div><section class="pattern-summary"><div><b>${data.length}</b><span>days with structured data</span></div><div><b>${patterns.length}</b><span>exploratory associations</span></div><div><b>${potential.length}</b><span>potential events in context</span></div></section><section class="panel"><div class="section-head"><div><h2>Exploratory associations</h2><p>Screening results, not causal conclusions. Open evidence before acting on a pattern.</p></div></div>${patterns.length?`<div class="pattern-grid">${patterns.map(p=>`<article class="pattern-card"><span class="confidence ${Math.abs(p.r)>.6?'high':'moderate'}">${Math.abs(p.r)>.6?'Stronger':'Possible'} association</span><h3>${esc(prettyVar(p.a))} ↔ ${esc(prettyVar(p.b))}</h3><p>${p.r>0?'They tended to rise together.':'When one was higher, the other tended to be lower.'}</p><div class="pattern-stats"><b>r = ${p.r.toFixed(2)}</b><span>n = ${p.n} paired days</span></div><small>Timing, missing data, and third variables may explain this pattern.</small></article>`).join('')}</div>`:'<div class="empty-inline">Not enough overlapping structured observations yet.</div>'}</section><section class="panel potential-events-panel"><div class="section-head"><div><h2>Potential health events included in AI review</h2><p>These preserved observations may help explain broader timelines. They remain provisional until linked or confirmed.</p></div></div>${potential.length?`<div class="potential-events-list">${potential.map(e=>`<article><time>${esc(fmtDate(e.timestamp,{month:'short',day:'numeric',year:'numeric'}))}</time><div><strong>${esc(e.structured?.summary||e.raw_text)}</strong><small>${esc((e.structured?.tentative_tags||[]).join(', ')||'Unclassified context')}</small></div></article>`).join('')}</div>`:'<div class="empty-inline">No unresolved potential health events are currently preserved.</div>'}</section>`;
+    return `${focus?`<section class="panel pattern-focus-banner"><span class="tile-kicker">FOCUSED CONTEXT</span><h2>${esc(focus)}</h2><p>Broader associations remain clearly separated from exercise-specific evidence.</p></section>`:''}<div class="page-head"><div><h1>Pattern Lab</h1><p>Deterministic analysis plus provisional context. Potential health events are reviewed as context, not converted into measurements or causal claims.</p></div><button class="secondary" id="runPatternLab">Run analysis</button></div><section class="pattern-summary"><div><b>${data.length}</b><span>days with structured data</span></div><div><b>${patterns.length}</b><span>exploratory associations</span></div><div><b>${potential.length}</b><span>potential events in context</span></div></section><section class="panel"><div class="section-head"><div><h2>Exploratory associations</h2><p>Screening results, not causal conclusions. Open evidence before acting on a pattern.</p></div></div>${patterns.length?`<div class="pattern-grid">${patterns.map(p=>`<article class="pattern-card"><span class="confidence ${Math.abs(p.r)>.6?'high':'moderate'}">${Math.abs(p.r)>.6?'Stronger':'Possible'} association</span><h3>${esc(prettyVar(p.a))} ↔ ${esc(prettyVar(p.b))}</h3><p>${p.r>0?'They moved in the same direction over the paired dates.':'When one was higher, the other tended to be lower.'}</p><div class="pattern-stats"><b>r = ${p.r.toFixed(2)}</b><span>n = ${p.n} paired days</span></div><small>Timing, missing data, and third variables may explain this pattern.</small></article>`).join('')}</div>`:'<div class="empty-inline">Not enough overlapping structured observations yet.</div>'}</section><section class="panel potential-events-panel"><div class="section-head"><div><h2>Potential health events included in AI review</h2><p>These preserved observations may help explain broader timelines. They remain provisional until linked or confirmed.</p></div></div>${potential.length?`<div class="potential-events-list">${potential.map(e=>`<article><time>${esc(fmtDate(e.timestamp,{month:'short',day:'numeric',year:'numeric'}))}</time><div><strong>${esc(e.structured?.summary||e.raw_text)}</strong><small>${esc((e.structured?.tentative_tags||[]).join(', ')||'Unclassified context')}</small></div></article>`).join('')}</div>`:'<div class="empty-inline">No unresolved potential health events are currently preserved.</div>'}</section>`;
   }
   function insightsPageHTML(){
     const candidates=patternCandidates();
@@ -1448,10 +1678,11 @@
 
   async function sendConversation(text) {
     text=String(text||'').trim(); if(!text||state.busy)return;
+    beginWorkflow(text,{target:state.context});
     state.busy=true; pushUser(text); render();
     let raw=null;
-    try { raw=await ZekeData.addRawInput(text,state.context); state.events=await ZekeData.listEvents(); }
-    catch(e){ pushZeke(`I couldn't preserve that input in connected storage yet. I won't pretend it was saved. ${e.message}`); state.busy=false; render(); return; }
+    try { raw=await ZekeData.addRawInput(text,state.context); state.events=await ZekeData.listEvents(); updateWorkflow('understanding',{save_status:'raw_preserved',raw_event_id:raw.id},'Original wording preserved before interpretation.'); }
+    catch(e){ pushZeke(`I couldn't preserve that input in connected storage yet. I won't pretend it was saved. ${e.message}`);logUnresolved('The original message could not be preserved in connected storage.',{error:e.message,save_status:'failed'});closeWorkflow('failed','The message could not be saved to connected storage.',{save_status:'failed'}); state.busy=false; render(); return; }
 
     if(affirmativeReply(text) && state.dialogue.activeQuestion){
       const active={...state.dialogue.activeQuestion};state.dialogue.activeQuestion=null;
@@ -1460,7 +1691,7 @@
         try{const r=await ZekeAIRouter.consult({role:'background_consultant',userGoal:'Continue the active conversation after an affirmative answer.',latestUserText:text,activeQuestion:active.text,history:state.conversation.slice(0,-1),allowedOutcomes:['ANSWER_USER','ASK_CLARIFICATION','NO_ACTION']});pushZeke(r.userResponse||r.answer||'Understood. I’ll continue with that.',{source:`${r.provider}/${r.model}`,resolveQuestion:true});}
         catch(e){pushZeke('Understood. I’ll continue with that rather than treating your reply as a new record.',{resolveQuestion:true});}
       }else pushZeke('Understood. I’ll continue with that rather than treating your reply as a new record.',{resolveQuestion:true});
-      await ZekeData.updateEvent(raw.id,{structured:{interpretation_status:'confirmed',intent:'conversation_answer',active_question:active.text}},{appendCorrection:false});state.busy=false;render();return;
+      await ZekeData.updateEvent(raw.id,{structured:{interpretation_status:'confirmed',intent:'conversation_answer',active_question:active.text}},{appendCorrection:false});closeWorkflow('completed','Answered the active conversation question; no new health record was created.',{save_status:'conversation_only'});state.busy=false;render();return;
     }
 
     const bmiRequest=/\b(?:calculate|figure out|what(?:'s| is))\s+(?:my\s+)?bmi\b|\bbmi\b/i.test(text);
@@ -1472,20 +1703,20 @@
       const inches=hm?(Number(hm[1]||hm[3])*12+Number(hm[2]||hm[4])):69;
       const weights=allMetricSeries('weight').filter(x=>Number.isFinite(Number(x.value))).sort((a,b)=>new Date(a.date)-new Date(b.date));
       const latest=weights.at(-1);
-      if(latest){const bmi=Number(latest.value)*703/(inches*inches);pushZeke(`Using your recorded height of ${Math.floor(inches/12)}'${inches%12}\" and your latest verified weight of ${Number(latest.value).toFixed(1)} lb, your BMI is ${bmi.toFixed(1)}. BMI is a screening measure and does not distinguish fat from muscle.`);await ZekeData.updateEvent(raw.id,{structured:{interpretation_status:'confirmed',intent:'calculate_bmi',height_in:inches,weight_lb:Number(latest.value),result:Number(bmi.toFixed(1))}},{appendCorrection:false});state.busy=false;render();return;}
-      pushZeke('I can calculate that, but I do not have a verified weight available. What weight should I use?');state.context={task:'calculate_bmi',height_in:inches};state.busy=false;render();return;
+      if(latest){const bmi=Number(latest.value)*703/(inches*inches);pushZeke(`Using your recorded height of ${Math.floor(inches/12)}'${inches%12}\" and your latest verified weight of ${Number(latest.value).toFixed(1)} lb, your BMI is ${bmi.toFixed(1)}. BMI is a screening measure and does not distinguish fat from muscle.`);await ZekeData.updateEvent(raw.id,{structured:{interpretation_status:'confirmed',intent:'calculate_bmi',height_in:inches,weight_lb:Number(latest.value),result:Number(bmi.toFixed(1))}},{appendCorrection:false});closeWorkflow('completed','BMI calculated from the latest verified weight; no new measurement was saved.',{save_status:'conversation_only'});state.busy=false;render();return;}
+      pushZeke('I can calculate that, but I do not have a verified weight available. What weight should I use?');state.context={task:'calculate_bmi',height_in:inches};updateWorkflow('waiting_clarification',{needed:['weight'],save_status:'not_saved'},'A verified weight is required to finish the calculation.');logUnresolved('BMI calculation is waiting for a weight.',{buttons_displayed:[]});state.busy=false;render();return;
     }
 
     const bodyFatContext=contextualBodyFatInterpretation(text,raw.id);
     if(bodyFatContext){
-      state.pending={type:'confirm',rawId:raw.id,rawText:text,parsed:bodyFatContext};
+      state.pending={type:'confirm',rawId:raw.id,rawText:text,parsed:bodyFatContext,workflowId:state.workflowId};updateWorkflow('waiting_confirmation',{proposed:bodyFatContext.events,save_status:'not_saved',available_actions:['Save body fat','Edit','Not body fat']},'Body-fat interpretation is ready for confirmation.');
       pushZeke(`I interpreted that as ${bodyFatContext.summary}. Is that right?`,{choices:[{label:'Yes, save it',value:'confirm-save'},{label:'Edit',value:'confirm-correct'},{label:'Not body fat',value:'confirm-ignore'}]});
       state.busy=false; render(); return;
     }
 
     if (state.context.healthHistory) {
       const history=historyContextFromText(text);
-      state.pending={type:'history-confirm',rawId:raw.id,rawText:text,history};
+      state.pending={type:'history-confirm',rawId:raw.id,rawText:text,history,workflowId:state.workflowId};updateWorkflow('waiting_confirmation',{proposed:history,save_status:'not_saved',available_actions:['Save history context','Correct','Later','Ignore']},'Health-history interpretation is ready for confirmation.');
       pushZeke(`I understood that as ${history.relation} health history: ${history.summary}. Is that right?`,{choices:[{label:'Yes, save it',value:'history-save'},{label:'Not quite',value:'history-correct'},{label:'Later',value:'confirm-later'},{label:'Ignore',value:'confirm-ignore'}]});
       state.busy=false; render(); return;
     }
@@ -1494,10 +1725,11 @@
     const question=/\?$|^(what|why|how|should|can|could|tell me|explain|do you)/i.test(text);
     const aiAvailable=(state.ai?.providers||[]).some(p=>p.connected||p.hasSessionKey);
     if(escalation||question) {
+      updateWorkflow('ai_checking',{ai_status:'checking',save_status:'raw_preserved'},'Using connected AI for a conversational response.');
       try {
         const r=await ZekeAIRouter.ask(text,{task:escalation?'analysis':'chat',history:state.conversation.slice(0,-1)});
-        pushZeke(r.text,{source:`${r.provider}/${r.model}`});
-      } catch(e) { pushZeke(`I couldn't reach a connected AI service just now. I preserved your message, but I won't pretend I understood more than I did. ${e.message}`); }
+        pushZeke(r.text,{source:`${r.provider}/${r.model}`});window.ZekeWorkflowEngine?.ai({workflow_id:state.workflowId,provider:r.provider,model:r.model,task:escalation?'analysis':'chat',status:'success'});closeWorkflow('completed','Answered the question; no structured record was changed.',{save_status:'conversation_only',ai_status:'completed'});
+      } catch(e) { pushZeke(`I couldn't reach a connected AI service just now. I preserved your message, but I won't pretend I understood more than I did. ${e.message}`);window.ZekeWorkflowEngine?.ai({workflow_id:state.workflowId,task:escalation?'analysis':'chat',status:'failed',error:e.message});logUnresolved('Connected AI was unavailable for a direct question.',{error:e.message,save_status:'raw_preserved'});closeWorkflow('failed','The message was preserved, but the requested AI response was unavailable.',{save_status:'raw_preserved',ai_status:'failed'}); }
       state.busy=false; render(); return;
     }
 
@@ -1506,7 +1738,7 @@
     if(aiAvailable && looksLikeWorkoutInput(text)) {
       try {
         const ai=await ZekeAIRouter.interpretWorkout(text,{today:activeDay(),localDraft:compactWorkoutDraft(localParsed),history:state.conversation.slice(0,-1)});
-        if(ai.status==='clarify'||ai.clarificationQuestion){state.pending={type:'ai-clarify',rawId:raw.id,rawText:text,ai};pushZeke(`${ai.clarificationQuestion||'I need one more workout detail before I save this.'} I’m asking because the answer changes how the session is structured.`,{choices:[{label:'Answer now',value:'answer-pending'},{label:'Later',value:'pending-later'},{label:'Ignore',value:'pending-ignore'}]});state.busy=false;render();return;}
+        if(ai.status==='clarify'||ai.clarificationQuestion){state.pending={type:'ai-clarify',rawId:raw.id,rawText:text,ai,workflowId:state.workflowId};updateWorkflow('waiting_clarification',{ai_status:'completed',needed:[ai.clarificationQuestion||'workout detail'],save_status:'raw_preserved'},'AI identified a material missing workout detail.');logUnresolved('Workout interpretation is waiting for a material detail.',{buttons_displayed:['Answer now','Later','Ignore']});pushZeke(`${ai.clarificationQuestion||'I need one more workout detail before I save this.'} I’m asking because the answer changes how the session is structured.`,{choices:[{label:'Answer now',value:'answer-pending'},{label:'Later',value:'pending-later'},{label:'Ignore',value:'pending-ignore'}]});state.busy=false;render();return;}
         parsed={confidence:ai.confidence||0.88,summary:ai.summary||'the workout sessions you described',events:ai.events||[],aiSource:`${ai.provider}/${ai.model}`};
       } catch(e) {
         parsed=(localParsed.events||[]).length?localParsed:null;
@@ -1515,19 +1747,19 @@
       try {
         const verifiedContext={active_context:{...state.context,active_date:activeDay()},open_question:state.pending?.question?.question||null,actions:(state.actions.catalog||[]).map(a=>({label:a.label,schedule:a.schedule})),recent_verified_events:state.events.filter(e=>recordIsActive(e)&&!['raw_input','correction'].includes(e.category)).slice(-30).map(e=>({category:e.category,timestamp:e.timestamp,structured:e.structured})),potential_health_events:potentialHealthEvents().slice(0,30).map(e=>({timestamp:e.timestamp,raw_text:e.raw_text,structured:e.structured,provenance:e.provenance}))};
         const ai=await ZekeAIRouter.interpret(text,{...verifiedContext,history:state.conversation.slice(0,-1)});
-        if(ai.status==='clarify'||ai.clarificationQuestion){state.pending={type:'ai-clarify',rawId:raw.id,rawText:text,ai};pushZeke(ai.clarificationQuestion||'I need one more detail before I save this.',{choices:[{label:'Answer now',value:'answer-pending'},{label:'Later',value:'pending-later'},{label:'Ignore',value:'pending-ignore'}]});state.busy=false;render();return;}
+        if(ai.status==='clarify'||ai.clarificationQuestion){state.pending={type:'ai-clarify',rawId:raw.id,rawText:text,ai,workflowId:state.workflowId};updateWorkflow('waiting_clarification',{ai_status:'completed',needed:[ai.clarificationQuestion||'one more detail'],save_status:'raw_preserved'},'AI requested clarification before proposing a save.');logUnresolved('Interpretation is waiting for clarification.',{buttons_displayed:['Answer now','Later','Ignore']});pushZeke(ai.clarificationQuestion||'I need one more detail before I save this.',{choices:[{label:'Answer now',value:'answer-pending'},{label:'Later',value:'pending-later'},{label:'Ignore',value:'pending-ignore'}]});state.busy=false;render();return;}
         parsed={confidence:ai.confidence||0.8,summary:ai.summary||'the information you described',events:ai.events||[],aiSource:`${ai.provider}/${ai.model}`};
       } catch(e) { parsed=null; }
     }
     parsed ||= localParsed;
     if(parsed.clarificationQuestion && !(parsed.events||[]).length){
-      state.pending={type:'needs-detail',rawId:raw.id,rawText:text};
+      state.pending={type:'needs-detail',rawId:raw.id,rawText:text,workflowId:state.workflowId};updateWorkflow('waiting_clarification',{needed:[parsed.clarificationQuestion],save_status:'raw_preserved'},'Deterministic interpretation needs one more detail.');logUnresolved('Local interpretation is waiting for clarification.',{buttons_displayed:['Answer now','Later','Ignore']});
       pushZeke(parsed.clarificationQuestion,{choices:[{label:'Answer now',value:'answer-pending'},{label:'Later',value:'pending-later'},{label:'Ignore',value:'pending-ignore'}]});
       state.busy=false;render();return;
     }
     parsed=await addMedicationPreview(parsed);
     if(parsed.type==='ambiguity') {
-      state.pending={type:'ambiguity',rawId:raw.id,rawText:text};
+      state.pending={type:'ambiguity',rawId:raw.id,rawText:text,workflowId:state.workflowId};updateWorkflow('waiting_clarification',{needed:['Choose blood pressure or bench press'],save_status:'raw_preserved',available_actions:['Blood pressure','Bench press','Later','Ignore']},'Two plausible meanings require a user choice.');logUnresolved('Input has two plausible meanings.',{buttons_displayed:['Blood pressure','Bench press','Later','Ignore']});
       pushZeke("I'm not completely sure what you meant. Were you logging a blood-pressure reading, or a bench-press set?",{choices:[
         {label:'Blood pressure',value:'ambig-bp'},{label:'Bench press',value:'ambig-bench'},{label:'Later',value:'ambig-later'},{label:'Ignore',value:'ambig-ignore'}
       ]});
@@ -1538,14 +1770,14 @@
       try {
         const ai=await ZekeAIRouter.interpret(text,{context:state.context,localSummary:parsed.summary});
         if(ai.status==='clarify' || ai.clarificationQuestion) {
-          state.pending={type:'ai-clarify',rawId:raw.id,rawText:text,ai};
+          state.pending={type:'ai-clarify',rawId:raw.id,rawText:text,ai,workflowId:state.workflowId};updateWorkflow('waiting_clarification',{ai_status:'completed',needed:[ai.clarificationQuestion||'one more detail'],save_status:'raw_preserved'},'Fallback AI consultation requested clarification.');logUnresolved('Fallback interpretation is waiting for clarification.',{buttons_displayed:['Answer now','Later','Ignore']});
           pushZeke(ai.clarificationQuestion||'I need one more detail before I save this. What did you mean?',{choices:[{label:'Answer now',value:'answer-pending'},{label:'Later',value:'pending-later'},{label:'Ignore',value:'pending-ignore'}]});
           state.busy=false;render();return;
         }
         parsed={confidence:ai.confidence||0.8,summary:ai.summary||'AI-assisted interpretation',events:ai.events||[],aiSource:`${ai.provider}/${ai.model}`};
       } catch(e) {
         if(!(parsed.events||[]).length) {
-          state.pending={type:'needs-detail',rawId:raw.id,rawText:text};
+          state.pending={type:'needs-detail',rawId:raw.id,rawText:text,workflowId:state.workflowId};updateWorkflow('waiting_clarification',{needed:['clearer description'],save_status:'raw_preserved'},'No safe structured interpretation was available.');logUnresolved('No parser or connected AI produced a safe interpretation.',{buttons_displayed:['Answer now','Later','Ignore']});
           pushZeke(`I preserved what you said, but I don't understand it well enough to structure it without guessing. Could you say a little more about what you want me to record?`,{choices:[{label:'Answer now',value:'answer-pending'},{label:'Later',value:'pending-later'},{label:'Ignore',value:'pending-ignore'}]});
           state.busy=false;render();return;
         }
@@ -1556,76 +1788,112 @@
       const tentativeTags=String(text).toLowerCase().match(/\b(?:sleep|fatigue|tired|pain|shoulder|stress|heart rate|workout|pt|therapy|medication|appetite|nausea|dizzy|headache)\b/g)||[];
       await ZekeData.addEvent({category:'potential_health_event',timestamp:new Date().toISOString(),raw_text:text,structured:{summary:text,interpretation_status:'provisional',include_in_analysis:true,tentative_tags:[...new Set(tentativeTags)],unresolved_reason:'not_yet_mapped',source_raw_event_id:raw.id,related_calendar_event:state.context.calendar_followup||null},provenance:{source:'conversation-potential-event',raw_event_id:raw.id}});
       await ZekeData.updateEvent(raw.id,{structured:{...(raw.structured||{}),interpretation_status:'preserved_as_potential_health_event'}},{appendCorrection:false});
-      await refreshData();pushZeke('I preserved this as a potential health event. It is not being treated as a confirmed diagnosis or structured measurement, but it will be available when ZEKE reviews relationships across health, labs, sleep, calendar context, and fitness data.'); state.busy=false;render();return;
+      await refreshData();pushZeke('I preserved this as a potential health event. It is not being treated as a confirmed diagnosis or structured measurement, but it will be available when ZEKE reviews relationships across health, labs, sleep, calendar context, and fitness data.');closeWorkflow('completed','Preserved as a provisional potential health event; no diagnosis or measurement was created.',{save_status:'saved_provisional'}); state.busy=false;render();return;
     }
-    state.pending={type:'confirm',rawId:raw.id,rawText:text,parsed};
+    state.pending={type:'confirm',rawId:raw.id,rawText:text,parsed,workflowId:state.workflowId};updateWorkflow('waiting_confirmation',{proposed:parsed.events,save_status:'not_saved',ai_status:parsed.aiSource?'completed':'not_needed',available_actions:['Save interpretation','Correct interpretation','Later','Ignore']},'A proposed record is ready for user confirmation.');
     pushZeke(interpretationPrompt(parsed),{choices:[{label:'Yes, save it',value:'confirm-save'},{label:'Not quite',value:'confirm-correct'},{label:'Later',value:'confirm-later'},{label:'Ignore',value:'confirm-ignore'}]});
     state.busy=false; render();
   }
 
   async function handleChoice(value) {
     if(value==='postsave-view'){const last=state.lastSave;if(last?.metric){state.healthTab=last.metric==='sleep_duration'?'sleep':state.healthTab;localStorage.setItem('zeke.health.libraryTab.v1',state.healthTab);state.expandedHealthMetric=last.metric;}go(last?.route||'health');return;}
-    if(value==='postsave-undo'){const last=state.lastSave;if(!last?.ids?.length){showToast('There is no recent save to undo.','error');return;}await ZekeData.undoEvents(last.ids,'User selected Undo from Talk to ZEKE');state.lastSave=null;await refreshData();pushZeke('Undone. The saved record is excluded from analysis, and the original conversation remains preserved.');render();return;}
+    if(value==='postsave-undo'){
+      const last=state.lastSave;if(!last?.ids?.length){showToast('There is no recent save to undo.','error');return;}
+      beginWorkflow('Undo the most recent ZEKE save',{goal:'Undo a recently saved record',target:{event_ids:last.ids}});
+      await ZekeData.undoEvents(last.ids,'User selected Undo from Talk to ZEKE');
+      window.ZekeWorkflowEngine?.correction({workflow_id:state.workflowId,kind:'undo',event_ids:last.ids,reason:'User selected Undo after save'});
+      state.lastSave=null;await refreshData();pushZeke('Undone. The record is excluded from analysis, and the original conversation remains preserved.');closeWorkflow('completed','The recent save was undone and excluded from analysis.',{save_status:'undone'});render();return;
+    }
     const p=state.pending;
+    if(p?.workflowId)state.workflowId=p.workflowId;
     if(value==='ambig-bp') {
       state.context={metric:'blood_pressure'};
+      updateWorkflow('waiting_clarification',{known:{interpretation:'blood pressure'},needed:['systolic and diastolic values'],available_actions:['Provide blood pressure','Later','Ignore']},'The user identified the message as blood pressure.');
       pushZeke('Thanks. For blood pressure I need the systolic and diastolic values explicitly, such as 120/82. What were the two numbers?');
-      state.pending={...p,type:'needs-detail'}; render(); return;
+      state.pending={...p,type:'needs-detail',workflowId:state.workflowId}; render(); return;
     }
     if(value==='history-save') {
       await ZekeData.saveFactor({type:p.history.history_type,status:'active',relation:p.history.relation,summary:p.history.summary,source_raw_event_id:p.rawId,provenance:{source:'conversation'}});
       await ZekeData.updateEvent(p.rawId,{structured:{interpretation_status:'confirmed',context_type:p.history.history_type,factor_relation:p.history.relation},correction_note:'Health history interpretation confirmed'},{appendCorrection:false});
-      pushZeke('Saved. I’ll keep that as health-history context and use it only when relevant.'); state.pending=null; state.context={}; await refreshData(); render(); return;
+      pushZeke('Saved. I’ll keep that as health-history context and use it only when relevant.'); state.pending=null; state.context={}; await refreshData();closeWorkflow('completed','Health-history context was saved.',{save_status:'saved'}); render(); return;
     }
-    if(value==='history-correct') { pushZeke('Thanks for catching that. Tell me what relationship or detail I misunderstood.'); state.pending={...p,type:'history-correction-awaiting'}; render(); return; }
+    if(value==='history-correct') {
+      window.ZekeWorkflowEngine?.correction({workflow_id:state.workflowId,kind:'interpretation_correction',original_text:p?.rawText||'',reason:'User said the health-history interpretation was not right'});
+      updateWorkflow('waiting_correction',{needed:['correct relationship or detail'],save_status:'not_saved'},'The user requested a correction.');
+      pushZeke('Thanks for catching that. Tell me what relationship or detail I misunderstood.'); state.pending={...p,type:'history-correction-awaiting',workflowId:state.workflowId}; render(); return;
+    }
     if(value==='ambig-bench') {
       state.context={exercise:'bench press'}; const parsed=ZekeParser.interpret(p.rawText.replace(/^bp\s*/i,''),parserContext());
-      state.pending={type:'confirm',rawId:p.rawId,rawText:p.rawText,parsed}; pushZeke(`I understood that as ${parsed.summary}. Is that right?`,{choices:[{label:'Yes, save it',value:'confirm-save'},{label:'Not quite',value:'confirm-correct'}]}); render(); return;
+      state.pending={type:'confirm',rawId:p.rawId,rawText:p.rawText,parsed,workflowId:state.workflowId};
+      updateWorkflow('waiting_confirmation',{known:{interpretation:'bench press'},proposed:parsed.events,available_actions:['Save bench-press record','Correct interpretation']},'The user identified the message as bench press.');
+      pushZeke(`I understood that as ${parsed.summary}. Is that right?`,{choices:[{label:'Save bench-press record',value:'confirm-save'},{label:'Correct interpretation',value:'confirm-correct'}]}); render(); return;
     }
-    if(['ambig-later','pending-later','confirm-later'].includes(value)) { pushZeke('No problem. I’ll keep the original input unresolved and we can come back to it later.'); state.pending=null; state.context={}; render(); return; }
-    if(['ambig-ignore','pending-ignore','confirm-ignore'].includes(value)) { pushZeke('Okay. I won’t keep asking about that interpretation. The original note remains preserved, but I won’t turn it into structured data.'); state.pending=null; state.context={}; render(); return; }
-    if(value==='confirm-correct') { pushZeke('Thanks for catching that. Tell me what I got wrong, and I’ll try again without overwriting the original note.'); state.pending={...p,type:'correction-awaiting'}; render(); return; }
+    if(['ambig-later','pending-later','confirm-later'].includes(value)) {
+      logUnresolved('The user deferred this interaction.',{buttons_displayed:['Resume later'],save_status:'not_saved'});
+      pushZeke('Kept for later. The original input remains preserved, and no structured record was changed.'); state.pending=null; state.context={};closeWorkflow('not_saved','Deferred for later; nothing was saved.',{save_status:'not_saved'}); render(); return;
+    }
+    if(['ambig-ignore','pending-ignore','confirm-ignore'].includes(value)) {
+      pushZeke('Dismissed. The original note remains preserved, but ZEKE will not turn it into structured data or keep asking about it.'); state.pending=null; state.context={};closeWorkflow('dismissed','The interpretation was dismissed; nothing was saved.',{save_status:'not_saved'}); render(); return;
+    }
+    if(value==='confirm-correct') {
+      window.ZekeWorkflowEngine?.correction({workflow_id:state.workflowId,kind:'interpretation_correction',original_text:p?.rawText||'',proposed:p?.parsed?.summary||'',reason:'User selected Not quite'});
+      updateWorkflow('waiting_correction',{needed:['corrected interpretation'],save_status:'not_saved',available_actions:['Describe correction','Later','Ignore']},'The proposed interpretation was rejected.');
+      pushZeke('Thanks for catching that. Tell me what I got wrong, and I’ll try again without overwriting the original note.'); state.pending={...p,type:'correction-awaiting',workflowId:state.workflowId}; render(); return;
+    }
     if(value==='confirm-save') {
       const candidate=(p.parsed.events||[])[0]; const dupes=(p.parsed.events||[]).length===1?await ZekeData.findLikelyDuplicates(candidate):[];
       if(dupes.length) {
-        state.pending={...p,type:'duplicate',dupe:dupes[0].event}; pushZeke(`This looks very similar to ${humanEvent(dupes[0].event)} already in your record. Was this a separate event, or an accidental duplicate?`,{choices:[{label:'Separate event',value:'dupe-keep'},{label:'Duplicate—keep one',value:'dupe-discard'},{label:'Cancel',value:'dupe-cancel'}]}); render();return;
+        state.pending={...p,type:'duplicate',dupe:dupes[0].event,workflowId:state.workflowId};
+        updateWorkflow('waiting_confirmation',{duplicate_status:'detected',known:{similar_record:humanEvent(dupes[0].event)},needed:['whether this is separate or duplicate'],available_actions:['Keep separate event','Keep existing record','Cancel']},'A likely duplicate was found before save.');
+        pushZeke(`This looks very similar to ${humanEvent(dupes[0].event)} already in your record. Was this a separate event, or an accidental duplicate?`,{choices:[{label:'Keep as separate event',value:'dupe-keep'},{label:'Keep existing record',value:'dupe-discard'},{label:'Cancel without saving',value:'dupe-cancel'}]}); render();return;
       }
       await savePendingConfirmed(p); return;
     }
     if(value==='dupe-keep') { await savePendingConfirmed(p); return; }
-    if(value==='dupe-discard') { pushZeke('Got it. I kept the existing record and did not create another structured data point.'); state.pending=null;state.context={};await refreshData();render();return; }
-    if(value==='dupe-cancel') { pushZeke('Okay. I left the original note unresolved and made no structured change.'); state.pending=null;state.context={};render();return; }
-    if(value==='answer-pending') { pushZeke('Go ahead—tell me the missing detail in your own words.'); render(); return; }
+    if(value==='dupe-discard') { pushZeke('Already recorded. I kept the existing entry and did not create another structured data point.'); state.pending=null;state.context={};await refreshData();closeWorkflow('duplicate','The existing record was kept; no duplicate was created.',{save_status:'already_saved',duplicate_status:'confirmed'});render();return; }
+    if(value==='dupe-cancel') { pushZeke('Canceled. I left the original note unresolved and made no structured change.'); state.pending=null;state.context={};closeWorkflow('not_saved','Canceled before saving.',{save_status:'not_saved'});render();return; }
+    if(value==='memory-confirm'&&p?.type==='memory-correction-confirm') {await ZekeData.saveFactor({...p.factor,summary:p.replacement,answer:p.replacement,updated_at:new Date().toISOString(),status:'active'});pushZeke('Saved. ZEKE will use the corrected context going forward, and the correction remains in the audit history.');state.pending=null;await refreshData();closeWorkflow('completed','Remembered context was corrected.',{save_status:'corrected'});render();return;}
+    if(value==='memory-cancel'&&p?.type==='memory-correction-confirm') {pushZeke('Canceled. The remembered context was not changed.');state.pending=null;closeWorkflow('not_saved','Memory correction canceled; nothing changed.',{save_status:'not_saved'});render();return;}
+    if(value==='answer-pending') { updateWorkflow('waiting_clarification',{needed:['missing detail']},'The user chose to answer now.');pushZeke('Go ahead—tell me the missing detail in your own words.'); render(); return; }
   }
 
   async function savePendingConfirmed(p) {
+    if(p?.workflowId)state.workflowId=p.workflowId;
     const created=await ZekeData.confirmRawInput(p.rawId,p.parsed.events);
     const ids=created.map(e=>e.id);const isSleep=created.some(e=>canonicalMetric(metricId(e))==='sleep_duration');
     state.lastSave={ids,route:isSleep?'health':created.some(isWorkoutEvent)?'fitness':'health',metric:isSleep?'sleep_duration':'',label:isSleep?'sleep entry':'record'};
-    if(ids.length)pushZeke(`Saved. I recorded ${p.parsed.summary}.`,{choices:[{label:isSleep?'View sleep entry':'View record',value:'postsave-view'},{label:'Undo',value:'postsave-undo'}]});
-    else pushZeke('I found an identical confirmed record, so I kept the existing entry instead of creating a duplicate.');
+    if(ids.length){
+      pushZeke(`Saved. I recorded ${p.parsed.summary}.`,{choices:[{label:isSleep?'View sleep entry':'View saved record',value:'postsave-view'},{label:'Undo this save',value:'postsave-undo'}]});
+      closeWorkflow('completed',`Saved ${p.parsed.summary}.`,{save_status:'saved',duplicate_status:'not_found',saved_event_ids:ids});
+    } else {
+      pushZeke('Already recorded. I found an identical confirmed record and kept the existing entry instead of creating a duplicate.');
+      closeWorkflow('duplicate','An identical confirmed record already existed.',{save_status:'already_saved',duplicate_status:'confirmed'});
+    }
     state.pending=null; state.context={}; await refreshData(); render();
   }
 
   async function openNextQuestion() {
-    const q=openQuestions()[0]; if(!q){pushZeke("I don't have any unresolved questions for you right now.");render();return;}
-    state.pending={type:'question',question:q};
+    const q=openQuestions()[0]; if(!q){pushZeke("I don't have anything waiting for your answer right now.");render();return;}
+    const wf=beginWorkflow(q.question||'Answer a ZEKE question',{goal:`Resolve: ${q.question||'open question'}`,target:{question_id:q.id,question_key:q.question_key},known:{why_it_matters:q.why_it_matters||''},needed:['user decision or answer']});
+    updateWorkflow('waiting_clarification',{available_actions:pendingQuestionChoices(q).map(x=>x.label),save_status:'not_saved'},'ZEKE opened a question that needs the user’s decision.');
+    state.pending={type:'question',question:q,workflowId:wf?.id||state.workflowId};
     pushZeke(`${q.question}${q.why_it_matters?` Why I’m asking: ${q.why_it_matters}`:''}`,{choices:pendingQuestionChoices(q)}); render();
   }
 
   async function handleQuestionChoice(value) {
     const q=state.pending?.question; if(!q)return;
+    if(state.pending?.workflowId)state.workflowId=state.pending.workflowId;
     showToast('Working…');
-    if(value==='question-answer'){pushZeke('Go ahead—answer in your own words. I’ll interpret it in the context of this question.'); state.pending={type:'question-awaiting',question:q}; render();return;}
-    if(value==='question-other'){pushZeke("My choices did not fit. Tell me what you want to happen in your own words, and I’ll keep this question attached to your reply.");state.pending={type:'question-awaiting',question:q,other:true};render();return;}
-    if(value==='question-why'){pushZeke(q.why_it_matters||'I am asking because the answer changes whether this record is saved, excluded, merged, or corrected.');render();return;}
-    if(value==='question-later'){await ZekeData.resolveFactor(q.id,'deferred','');pushZeke('Moved to Data Integrity for later review. No data was changed.');state.pending=null;await refreshData();render();return;}
-    if(value==='question-unknown'){await ZekeData.resolveFactor(q.id,'unknown',"I don't know");pushZeke("Recorded as unknown. I will not guess, and the item will stay out of analysis if it is unsafe.");state.pending=null;await refreshData();render();return;}
-    if(value==='question-ignore'){await ZekeData.resolveFactor(q.id,'dismissed','Ignored by user');pushZeke('Dismissed. No structured data was changed.');state.pending=null;await refreshData();render();return;}
+    if(value==='question-answer'){updateWorkflow('waiting_clarification',{needed:['answer in the user’s own words']},'The user chose to answer the question.');pushZeke('Go ahead—answer in your own words. I’ll interpret it in the context of this question.'); state.pending={type:'question-awaiting',question:q,workflowId:state.workflowId}; render();return;}
+    if(value==='question-other'){updateWorkflow('waiting_clarification',{needed:['user-described alternative']},'The predefined choices did not fit.');pushZeke("Tell me what you want to happen in your own words. I’ll keep this question attached to your reply.");state.pending={type:'question-awaiting',question:q,other:true,workflowId:state.workflowId};render();return;}
+    if(value==='question-why'){pushZeke(q.why_it_matters||'I am asking because the answer changes whether this information is saved, excluded, merged, or corrected. Nothing changes until you decide.');render();return;}
+    if(value==='question-later'){await deferQuestion(q);pushZeke('Kept in Waiting for You and moved behind newer questions. No data was changed.');state.pending=null;await refreshData();closeWorkflow('not_saved','Deferred for later; no data changed.',{save_status:'not_saved'});render();return;}
+    if(value==='question-unknown'){await ZekeData.resolveFactor(q.id,'unknown',"I don't know");pushZeke("Recorded as unknown. I will not guess, and unsafe information will stay out of analysis.");state.pending=null;await refreshData();closeWorkflow('completed','The answer was recorded as unknown without guessing.',{save_status:'saved_context'});render();return;}
+    if(value==='question-ignore'){await ZekeData.resolveFactor(q.id,'dismissed','Ignored by user');pushZeke('Dismissed. No structured data was changed.');state.pending=null;await refreshData();closeWorkflow('dismissed','The question was dismissed; no structured data changed.',{save_status:'not_saved'});render();return;}
     if(value==='question-bp-invalid'){
       const n=await invalidateBloodPressureQuestion(q);
       pushZeke(`Done. I marked ${n||'the'} related blood-pressure record${n===1?'':'s'} invalid and excluded ${n===1?'it':'them'} from charts, coaching, and AI evidence. The original import evidence remains in the audit history.`);
-      state.pending=null;await refreshData();render();return;
+      state.pending=null;await refreshData();closeWorkflow('completed','Invalid blood-pressure candidate excluded from analysis.',{save_status:'corrected'});render();return;
     }
     if(value==='question-bp-keep'){
       const c=q.import_candidate||{};
@@ -1633,57 +1901,79 @@
         await ZekeData.addEvent({category:'measurement',timestamp:c.timestamp||new Date().toISOString(),structured:{metric_id:'bp_systolic',value:Number(c.systolic),unit:'mmHg',interpretation_status:'confirmed'},provenance:{...(c.provenance||{}),source:'user-confirmed-import'}});
         await ZekeData.addEvent({category:'measurement',timestamp:c.timestamp||new Date().toISOString(),structured:{metric_id:'bp_diastolic',value:Number(c.diastolic),unit:'mmHg',interpretation_status:'confirmed'},provenance:{...(c.provenance||{}),source:'user-confirmed-import'}});
       }
-      await ZekeData.resolveFactor(q.id,'resolved','Keep as entered');pushZeke('Kept as entered. I added the confirmed pair to the event record and preserved its source.');state.pending=null;await refreshData();render();return;}
+      await ZekeData.resolveFactor(q.id,'resolved','Keep as entered');pushZeke('Kept as entered. I added the confirmed pair to the event record and preserved its source.');state.pending=null;await refreshData();closeWorkflow('completed','Blood pressure was confirmed as entered.',{save_status:'saved'});render();return;}
     if(value==='question-bp-reverse'){
       const c=q.import_candidate||{};
       await ZekeData.addEvent({category:'measurement',timestamp:c.timestamp||new Date().toISOString(),structured:{metric_id:'bp_systolic',value:Number(c.diastolic),unit:'mmHg',interpretation_status:'confirmed'},provenance:{...(c.provenance||{}),source:'user-corrected-import'}});
       await ZekeData.addEvent({category:'measurement',timestamp:c.timestamp||new Date().toISOString(),structured:{metric_id:'bp_diastolic',value:Number(c.systolic),unit:'mmHg',interpretation_status:'confirmed'},provenance:{...(c.provenance||{}),source:'user-corrected-import'}});
       await ZekeData.resolveFactor(q.id,'resolved',`Reverse to ${c.diastolic}/${c.systolic}`);
+      window.ZekeWorkflowEngine?.correction({workflow_id:state.workflowId,kind:'blood_pressure_order',before:`${c.systolic}/${c.diastolic}`,after:`${c.diastolic}/${c.systolic}`});
       pushZeke(`Corrected and saved as ${c.diastolic}/${c.systolic}. The original candidate remains in the audit history.`);
-      state.pending=null;await refreshData();render();return;
+      state.pending=null;await refreshData();closeWorkflow('completed',`Blood pressure corrected to ${c.diastolic}/${c.systolic}.`,{save_status:'corrected'});render();return;
     }
     if(value==='question-duplicate-merge'){
       await ZekeData.resolveFactor(q.id,'resolved','Treat as duplicate; keep one canonical record');
-      pushZeke('Resolved as one event. The existing canonical record remains; the held candidate was not added, and its import evidence remains attached to this resolution.');state.pending=null;await refreshData();render();return;}
+      pushZeke('Already recorded. The existing canonical record remains; the held candidate was not added, and its import evidence remains attached to this resolution.');state.pending=null;await refreshData();closeWorkflow('duplicate','The existing canonical record was kept.',{save_status:'already_saved',duplicate_status:'confirmed'});render();return;}
     if(value==='question-duplicate-keep'){
       if(q.candidate_event) await ZekeData.addEvent({...q.candidate_event,provenance:{...(q.candidate_event.provenance||{}),source:'import-confirmed-separate'}});
-      await ZekeData.resolveFactor(q.id,'resolved','Keep as separate real events');pushZeke('Kept as separate events. I added the held candidate as a confirmed separate observation.');state.pending=null;await refreshData();render();return;}
+      await ZekeData.resolveFactor(q.id,'resolved','Keep as separate real events');pushZeke('Saved as a separate event. The original record remains unchanged.');state.pending=null;await refreshData();closeWorkflow('completed','The candidate was confirmed as a separate event.',{save_status:'saved',duplicate_status:'intentional'});render();return;}
   }
 
   async function handlePendingAnswer(text) {
+    if(state.pending?.workflowId)state.workflowId=state.pending.workflowId;
     if(state.pending?.type==='confirm' && affirmativeReply(text)){pushUser(text);render();await handleChoice('confirm-save');return true;}
     if(state.pending?.type==='confirm' && /^(?:no|nope|not quite|wrong|edit|change it)[.! ]*$/i.test(String(text||'').trim())){pushUser(text);render();await handleChoice('confirm-correct');return true;}
     if(state.pending?.type==='question-awaiting') {
       pushUser(text); render();
       const q=state.pending.question;
+      window.ZekeWorkflowEngine?.correction({workflow_id:state.workflowId,kind:'question_answer',question_id:q.id,answer:text});
       const aiAvailable=(state.ai?.providers||[]).some(p=>p.connected||p.hasSessionKey);
       if(aiAvailable){
+        const aiStarted=new Date().toISOString();
+        updateWorkflow('ai_checking',{ai_status:'running'},'AI is checking whether the answer maps to one of the safe actions.');
         try{
           const r=await ZekeAIRouter.resolveClarification(text,{question:q.question,why:q.why_it_matters,question_key:q.question_key,allowed_actions:pendingQuestionChoices(q).map(x=>({id:x.value,label:x.label})),target:q.import_candidate||q.candidate_event||null,history:state.conversation.slice(0,-1)});
+          window.ZekeWorkflowEngine?.ai({workflow_id:state.workflowId,started_at:aiStarted,provider:r.provider||'',model:r.model||'',purpose:'resolve_clarification',status:'success',action_id:r.action_id||'',confidence:r.confidence||null});
           if(r.action_id && r.action_id!=='question-other'){ await handleQuestionChoice(r.action_id); return true; }
-        }catch{}
+        }catch(error){window.ZekeWorkflowEngine?.ai({workflow_id:state.workflowId,started_at:aiStarted,purpose:'resolve_clarification',status:'failed',error:String(error?.message||error)});}
       }
+      updateWorkflow('waiting_clarification',{ai_status:aiAvailable?'completed':'not_available'},'Applying the answer to the open question.');
       const applied=await applyQuestionAnswer(q,text);
       if(applied.applied){
         await ZekeData.resolveFactor(q.id,'resolved',text);
         pushZeke(applied.message);
         state.pending=null;
+        closeWorkflow('completed','The open question was resolved and its effect was applied.',{save_status:'saved'});
       } else {
         await ZekeData.saveFactor({...q,status:'open',answer_attempt:text,last_attempt_at:new Date().toISOString()});
-        pushZeke(`${applied.message} This question is still open so the underlying data is not treated as resolved.`);
-        state.pending={type:'question-awaiting',question:{...q,status:'open',answer_attempt:text}};
+        pushZeke(`${applied.message} This question remains open, so ZEKE will not treat the underlying information as resolved.`);
+        state.pending={type:'question-awaiting',question:{...q,status:'open',answer_attempt:text},workflowId:state.workflowId};
+        updateWorkflow('waiting_clarification',{needed:['schedule details or explicit decision'],save_status:'not_saved'},'The answer did not safely resolve the question.');
+        logUnresolved('An answer attempt did not safely resolve the open question.',{question_id:q.id,answer_attempt:text,save_status:'not_saved'});
+        if(applied.open_editor)setTimeout(()=>openMedicationScheduleModal(applied.medication,q),0);
       }
       await refreshData();render();return true;
     }
+    if(state.pending?.type==='memory-correction') {
+      pushUser(text);render();
+      const factor=state.pending.factor;
+      window.ZekeWorkflowEngine?.correction({workflow_id:state.workflowId,kind:'memory_correction',factor_id:factor.id,before:factor.summary||factor.answer||factor.value||'',after:text});
+      state.pending={type:'memory-correction-confirm',factor,replacement:text,workflowId:state.workflowId};
+      updateWorkflow('waiting_confirmation',{proposed:{factor_id:factor.id,summary:text},needed:[],save_status:'not_saved',available_actions:['Save corrected memory','Cancel']},'A corrected remembered-context value is ready for confirmation.');
+      pushZeke(`I’ll replace the remembered wording with: “${text}”. Save this correction?`,{choices:[{label:'Save corrected memory',value:'memory-confirm'},{label:'Cancel without changing it',value:'memory-cancel'}]});render();return true;
+    }
     if(state.pending?.type==='history-correction-awaiting') {
       pushUser(text); render();
-      const p=state.pending; const history=historyContextFromText(text); state.pending={type:'history-confirm',rawId:p.rawId,rawText:p.rawText,history};
-      pushZeke(`Thanks. I now understand that as ${history.relation} health history: ${history.summary}. Is that right?`,{choices:[{label:'Yes, save it',value:'history-save'},{label:'Not quite',value:'history-correct'}]}); render(); return true;
+      const p=state.pending; const history=historyContextFromText(text); state.pending={type:'history-confirm',rawId:p.rawId,rawText:p.rawText,history,workflowId:state.workflowId};
+      updateWorkflow('waiting_confirmation',{proposed:history,needed:[],available_actions:['Save corrected history','Correct again']},'A corrected health-history interpretation is ready.');
+      pushZeke(`Thanks. I now understand that as ${history.relation} health history: ${history.summary}. Is that right?`,{choices:[{label:'Save corrected history',value:'history-save'},{label:'Correct again',value:'history-correct'}]}); render(); return true;
     }
     if(state.pending?.type==='correction-awaiting') {
       pushUser(text); render();
       const original=state.pending; const parsed=ZekeParser.interpret(text,parserContext());
-      if((parsed.events||[]).length){state.pending={type:'confirm',rawId:original.rawId,rawText:original.rawText,parsed};pushZeke(`Thanks. ${interpretationPrompt(parsed)}`,{choices:[{label:'Yes, save it',value:'confirm-save'},{label:'Not quite',value:'confirm-correct'}]});render();return true;}
+      window.ZekeWorkflowEngine?.correction({workflow_id:state.workflowId,kind:'replacement_interpretation',original_text:original.rawText||'',correction_text:text,proposed:parsed.summary||''});
+      if((parsed.events||[]).length){state.pending={type:'confirm',rawId:original.rawId,rawText:original.rawText,parsed,workflowId:state.workflowId};updateWorkflow('waiting_confirmation',{proposed:parsed.events,needed:[],available_actions:['Save corrected interpretation','Correct again']},'A corrected interpretation is ready for confirmation.');pushZeke(`Thanks. ${interpretationPrompt(parsed)}`,{choices:[{label:'Save corrected interpretation',value:'confirm-save'},{label:'Correct again',value:'confirm-correct'}]});render();return true;}
+      updateWorkflow('waiting_correction',{needed:['clear corrected value or details']},'The correction still could not be interpreted safely.');logUnresolved('Correction text did not produce a safe structured interpretation.',{correction_text:text});pushZeke('I still could not interpret the correction safely. Please include the corrected value or details; nothing has been saved.');render();return true;
     }
     if(['needs-detail','ai-clarify'].includes(state.pending?.type)) {
       pushUser(text); render();
@@ -1691,26 +1981,82 @@
       let parsed=ZekeParser.interpret(text,parserContext(pendingContext));
       const aiAvailable=(state.ai?.providers||[]).some(p=>p.connected||p.hasSessionKey);
       if(aiAvailable && (!(parsed.events||[]).length || (parsed.confidence||0)<0.8)) {
-        try { const ai=await ZekeAIRouter.interpret(text,{...pendingContext,history:state.conversation.slice(0,-1)}); parsed={confidence:ai.confidence||0.8,summary:ai.summary||'your clarification',events:ai.events||[]}; } catch {}
+        const aiStarted=new Date().toISOString();updateWorkflow('ai_checking',{ai_status:'running'},'AI is checking the clarification.');
+        try { const ai=await ZekeAIRouter.interpret(text,{...pendingContext,history:state.conversation.slice(0,-1)}); parsed={confidence:ai.confidence||0.8,summary:ai.summary||'your clarification',events:ai.events||[],aiSource:`${ai.provider||'connected AI'}/${ai.model||'model'}`};window.ZekeWorkflowEngine?.ai({workflow_id:state.workflowId,started_at:aiStarted,provider:ai.provider||'',model:ai.model||'',purpose:'interpret_clarification',status:'success',confidence:ai.confidence||null}); } catch (error) {window.ZekeWorkflowEngine?.ai({workflow_id:state.workflowId,started_at:aiStarted,purpose:'interpret_clarification',status:'failed',error:String(error?.message||error)});}
       }
-      if((parsed.events||[]).length){state.pending={type:'confirm',rawId:state.pending.rawId,rawText:state.pending.rawText,parsed};pushZeke(`Thanks. I now understand that as ${parsed.summary}. Is that right?`,{choices:[{label:'Yes, save it',value:'confirm-save'},{label:'Not quite',value:'confirm-correct'}]});render();return true;}
-      pushZeke('I still do not have enough detail to save that safely. Please give the values in the clearest form you can.'); render(); return true;
+      if((parsed.events||[]).length){state.pending={type:'confirm',rawId:state.pending.rawId,rawText:state.pending.rawText,parsed,workflowId:state.workflowId};updateWorkflow('waiting_confirmation',{proposed:parsed.events,needed:[],ai_status:parsed.aiSource?'completed':'not_needed',available_actions:['Save interpretation','Correct interpretation']},'The clarification produced a proposed record.');pushZeke(`Thanks. I now understand that as ${parsed.summary}. Is that right?`,{choices:[{label:'Save interpretation',value:'confirm-save'},{label:'Correct interpretation',value:'confirm-correct'}]});render();return true;}
+      updateWorkflow('waiting_clarification',{needed:['clearer values or details'],save_status:'not_saved'},'The clarification was still insufficient.');logUnresolved('Clarification still did not produce a safe record.',{answer_attempt:text});pushZeke('I still do not have enough detail to save that safely. Nothing has been saved. Please give the values in the clearest form you can.'); render(); return true;
     }
     return false;
   }
 
   async function handleAction(actionId) {
     const action=(state.actions.catalog||[]).find(a=>a.id===actionId); if(!action)return;
+    beginWorkflow(`Confirm ${action.label||action.name}`,{goal:`Confirm today’s ${action.label||action.name} action`,target:{action_id:action.id,kind:action.kind}});
     state.context={actionId:action.id,medication:action.kind==='medication'?action.label:null};
+    updateWorkflow('waiting_clarification',{known:{action:action.label||action.name},needed:['what happened today'],available_actions:['Describe outcome']},'A Today’s Action was opened.');
     pushZeke(`Let's confirm ${action.label||action.name}. What happened today?`); render(); $('#talkInput')?.focus();
+  }
+
+  function openRecurringActionScheduleModal(action={}) {
+    $('#recurringActionScheduleModal')?.remove();
+    const existingSchedule=action.schedule||{};
+    const selectedDay=Array.isArray(existingSchedule.days)&&existingSchedule.days.length?String(existingSchedule.days[0]):String(new Date().getDay());
+    document.body.insertAdjacentHTML('beforeend',`<div class="direct-entry-overlay" id="recurringActionScheduleModal"><div class="direct-entry-card"><div class="section-head"><div><h2>Recurring action schedule</h2><p>Choose when this belongs in Today’s Actions. A scheduled day is never treated as proof that the action was completed.</p></div><button class="icon-btn" id="closeRecurringActionSchedule" aria-label="Close">×</button></div><form id="recurringActionScheduleForm" class="direct-entry-form"><label class="wide">Action name<input id="recurringActionName" value="${esc(action.label||action.name||'')}" required></label><label>Frequency<select id="recurringActionFrequency"><option value="daily" ${existingSchedule.type==='daily'?'selected':''}>Daily</option><option value="weekly" ${existingSchedule.type!=='daily'?'selected':''}>Weekly</option></select></label><label id="recurringActionDayWrap">Expected weekday<select id="recurringActionWeekday">${['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'].map((day,index)=>`<option value="${index}" ${String(index)===selectedDay?'selected':''}>${day}</option>`).join('')}</select></label><label class="wide">Notes<textarea id="recurringActionNotes" rows="2">${esc(action.notes||'')}</textarea></label><p class="form-note wide">ZEKE will ask for confirmation before marking this action complete.</p><div class="direct-entry-actions wide"><button type="button" class="secondary" id="cancelRecurringActionSchedule">Cancel without saving</button><button type="submit" class="primary">Save recurring schedule</button></div></form></div></div>`);
+    const remove=()=>$('#recurringActionScheduleModal')?.remove();
+    const cancel=()=>{remove();state.pending=null;closeWorkflow('not_saved','Recurring-action schedule editor closed without saving.',{save_status:'not_saved'});render();showToast('Recurring schedule not saved.');};
+    $('#closeRecurringActionSchedule').onclick=cancel;$('#cancelRecurringActionSchedule').onclick=cancel;
+    const toggleDay=()=>{$('#recurringActionDayWrap').hidden=$('#recurringActionFrequency').value==='daily';};$('#recurringActionFrequency').onchange=toggleDay;toggleDay();
+    $('#recurringActionScheduleForm').onsubmit=async event=>{
+      event.preventDefault();
+      const name=$('#recurringActionName').value.trim(),frequency=$('#recurringActionFrequency').value;if(!name)return;
+      const schedule=frequency==='daily'?{type:'daily'}:{type:'weekly',days:[Number($('#recurringActionWeekday').value)],usual:true};
+      const entry={...action,id:action.id||`action-${crypto.randomUUID()}`,label:name,name,active:true,schedule,notes:$('#recurringActionNotes').value.trim(),subtitle:frequency==='daily'?'Daily':`Weekly · ${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][Number($('#recurringActionWeekday').value)]}`,updated_at:new Date().toISOString()};
+      const catalog=[...(state.actions.catalog||[])],next=action.id?catalog.map(a=>a.id===action.id?entry:a):[...catalog,entry];
+      state.actions=await ZekeData.saveActions({...state.actions,catalog:next});remove();
+      const label=frequency==='daily'?'daily':`weekly on ${['Sundays','Mondays','Tuesdays','Wednesdays','Thursdays','Fridays','Saturdays'][Number($('#recurringActionWeekday').value)]}`;
+      pushZeke(`Saved. ${name} is expected ${label} and will appear in Today’s Actions when due. ZEKE will still require confirmation before marking it complete.`);
+      closeWorkflow('completed',`${name} schedule saved as ${label}.`,{save_status:'saved',target:{action_id:entry.id,kind:'recurring_action_schedule'}});state.pending=null;await refreshData();render();
+    };
+  }
+
+  function openMedicationScheduleModal(value='',question=null) {
+    $('#medicationScheduleModal')?.remove();
+    const medication=String(value||'').trim().replace(/\b\w/g,c=>c.toUpperCase());
+    const canonical=ZekeParser.canonicalMedicationId(medication);
+    const existing=(state.actions.catalog||[]).find(a=>a.kind==='medication'&&ZekeParser.canonicalMedicationId(a.label||a.name||a.id||'')===canonical);
+    const existingSchedule=existing?.schedule||{};
+    const selectedDay=Array.isArray(existingSchedule.days)&&existingSchedule.days.length?String(existingSchedule.days[0]):'5';
+    document.body.insertAdjacentHTML('beforeend',`<div class="direct-entry-overlay" id="medicationScheduleModal"><div class="direct-entry-card"><div class="section-head"><div><h2>Medication schedule</h2><p>Set when this belongs in Today’s Actions. Saving a schedule does not mark any dose as taken.</p></div><button class="icon-btn" id="closeMedicationSchedule" aria-label="Close">×</button></div><form id="medicationScheduleForm" class="direct-entry-form"><label class="wide">Medication or supplement<input id="scheduleMedicationName" value="${esc(existing?.label||medication)}" required placeholder="e.g., Mounjaro"></label><label>Frequency<select id="scheduleFrequency"><option value="daily" ${existingSchedule.type==='daily'?'selected':''}>Daily</option><option value="weekly" ${existingSchedule.type!=='daily'?'selected':''}>Weekly</option></select></label><label id="scheduleDayWrap">Expected weekday<select id="scheduleWeekday">${['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'].map((day,index)=>`<option value="${index}" ${String(index)===selectedDay?'selected':''}>${day}</option>`).join('')}</select></label><label>Dose<input id="scheduleDose" type="number" min="0" step="any" value="${existing?.dose??''}"></label><label>Unit<input id="scheduleUnit" value="${esc(existing?.unit||'')}" placeholder="mg, tablet, injection"></label><label>Start date<input id="scheduleStartDate" type="date" value="${esc(existing?.start_date||activeDay())}"></label><label class="wide">Notes<textarea id="scheduleNotes" rows="2">${esc(existing?.notes||'')}</textarea></label><p class="form-note wide">ZEKE treats a weekday as the expected day, not proof that the medication was taken.</p><div class="direct-entry-actions wide"><button type="button" class="secondary" id="cancelMedicationSchedule">Cancel without saving</button><button type="submit" class="primary">Save medication schedule</button></div></form></div></div>`);
+    const close=()=>$('#medicationScheduleModal')?.remove();
+    const cancel=()=>{close();state.pending=null;closeWorkflow('not_saved','Medication schedule editor closed without saving.',{save_status:'not_saved'});render();showToast('Medication schedule not saved.');};
+    $('#closeMedicationSchedule').onclick=cancel;$('#cancelMedicationSchedule').onclick=cancel;
+    const toggleDay=()=>{$('#scheduleDayWrap').hidden=$('#scheduleFrequency').value==='daily';};$('#scheduleFrequency').onchange=toggleDay;toggleDay();
+    $('#medicationScheduleForm').onsubmit=async event=>{
+      event.preventDefault();
+      const name=$('#scheduleMedicationName').value.trim(),frequency=$('#scheduleFrequency').value;
+      if(!name)return;
+      const schedule=frequency==='daily'?{type:'daily'}:{type:'weekly',days:[Number($('#scheduleWeekday').value)],usual:true};
+      const catalog=[...(state.actions.catalog||[])],id=existing?.id||`med-${ZekeParser.canonicalMedicationId(name).replace(/[^a-z0-9]+/g,'-')}`;
+      const entry={...existing,id,kind:'medication',label:name,icon:existing?.icon||'✚',active:true,schedule,dose:$('#scheduleDose').value===''?null:Number($('#scheduleDose').value),unit:$('#scheduleUnit').value.trim(),start_date:$('#scheduleStartDate').value||null,notes:$('#scheduleNotes').value.trim(),subtitle:frequency==='daily'?'Daily':`Weekly · ${['Sun','Mon','Tue','Wed','Thu','Fri','Sat'][Number($('#scheduleWeekday').value)]}`};
+      const next=existing?catalog.map(a=>a.id===existing.id?entry:a):[...catalog,entry];
+      state.actions=await ZekeData.saveActions({...state.actions,catalog:next});
+      if(question?.id)await ZekeData.resolveFactor(question.id,'resolved',frequency==='daily'?'Daily':`Weekly on ${['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'][Number($('#scheduleWeekday').value)]}`);
+      close();
+      const scheduleLabel=frequency==='daily'?'daily':`weekly on ${['Sundays','Mondays','Tuesdays','Wednesdays','Thursdays','Fridays','Saturdays'][Number($('#scheduleWeekday').value)]}`;
+      pushZeke(`Saved. ${name} is expected ${scheduleLabel} and will appear in Today’s Actions when it is due. ZEKE will still require confirmation before marking a dose complete.`);
+      closeWorkflow('completed',`${name} schedule saved as ${scheduleLabel}.`,{save_status:'saved',target:{action_id:id,kind:'medication_schedule'}});
+      state.pending=null;await refreshData();render();
+    };
   }
 
   function openMedicationEntryModal(value='') {
     $('#medicationEntryModal')?.remove();
     const canonical=ZekeParser.canonicalMedicationId(value||''), savedPref=state.preferences.medication_confirmation_preferences?.[canonical]||'every';
-    document.body.insertAdjacentHTML('beforeend',`<div class="direct-entry-overlay" id="medicationEntryModal"><div class="direct-entry-card"><div class="section-head"><div><h2>Log medication or supplement</h2><p>Record one dose for ${esc(activeDateLabel())}. Use Talk to ZEKE for backfilling a recurring schedule.</p></div><button class="icon-btn" id="closeMedicationEntry" aria-label="Close">×</button></div><form id="medicationEntryForm" class="direct-entry-form"><label class="wide">Medication or supplement<input id="medicationName" value="${esc(value)}" required placeholder="e.g., Atorvastatin"></label><label>Dose<input id="medicationDose" type="number" min="0" step="any"></label><label>Unit<input id="medicationUnit" placeholder="mg, tablet, injection"></label><label>Date<input id="medicationDate" type="date" value="${esc(activeDay())}" required></label><label>Status<select id="medicationStatus"><option value="taken">Taken</option><option value="missed">Missed</option><option value="not_taken_yet">Not taken yet</option><option value="started">Started</option><option value="stopped">Stopped</option><option value="changed">Dose changed</option></select></label><label class="wide">Dose confirmation preference<select id="medicationConfirmPref"><option value="every">Confirm every dose</option><option value="exceptions">Prompt about missed or changed doses</option><option value="none">Do not prompt me</option></select></label><label class="wide">Notes<textarea id="medicationNotes" rows="2"></textarea></label><div class="direct-entry-actions wide"><button type="button" class="text-action" id="medicationBackfill">Backfill through Talk to ZEKE</button><button type="button" class="secondary" id="cancelMedicationEntry">Cancel</button><button type="submit" class="primary">Save dose</button></div></form></div></div>`);
+    document.body.insertAdjacentHTML('beforeend',`<div class="direct-entry-overlay" id="medicationEntryModal"><div class="direct-entry-card"><div class="section-head"><div><h2>Log medication or supplement</h2><p>Record one dose for ${esc(activeDateLabel())}. Use Talk to ZEKE for backfilling a recurring schedule.</p></div><button class="icon-btn" id="closeMedicationEntry" aria-label="Close">×</button></div><form id="medicationEntryForm" class="direct-entry-form"><label class="wide">Medication or supplement<input id="medicationName" value="${esc(value)}" required placeholder="e.g., Atorvastatin"></label><label>Dose<input id="medicationDose" type="number" min="0" step="any"></label><label>Unit<input id="medicationUnit" placeholder="mg, tablet, injection"></label><label>Date<input id="medicationDate" type="date" value="${esc(activeDay())}" required></label><label>Status<select id="medicationStatus"><option value="taken">Taken</option><option value="missed">Missed</option><option value="not_taken_yet">Not taken yet</option><option value="started">Started</option><option value="stopped">Stopped</option><option value="changed">Dose changed</option></select></label><label class="wide">Dose confirmation preference<select id="medicationConfirmPref"><option value="every">Confirm every dose</option><option value="exceptions">Prompt about missed or changed doses</option><option value="none">Do not prompt me</option></select></label><label class="wide">Notes<textarea id="medicationNotes" rows="2"></textarea></label><div class="direct-entry-actions wide"><button type="button" class="text-action" id="medicationSchedule">Manage recurring schedule</button><button type="button" class="text-action" id="medicationBackfill">Backfill through Talk to ZEKE</button><button type="button" class="secondary" id="cancelMedicationEntry">Cancel</button><button type="submit" class="primary">Save dose</button></div></form></div></div>`);
     $('#medicationConfirmPref').value=savedPref;
     const close=()=>$('#medicationEntryModal')?.remove(); $('#closeMedicationEntry').onclick=close;$('#cancelMedicationEntry').onclick=close;
+    $('#medicationSchedule').onclick=()=>{const name=$('#medicationName').value.trim();close();beginWorkflow(`Set ${name||'medication'} schedule`,{goal:'Set a recurring medication schedule',target:{medication:name||null}});updateWorkflow('waiting_clarification',{needed:['frequency and expected day'],save_status:'not_saved'},'Medication schedule editor opened.');openMedicationScheduleModal(name);};
     $('#medicationBackfill').onclick=()=>{const name=$('#medicationName').value.trim();close();state.context={medication:name||null,bulk_operation:'medication_backfill',active_date:activeDay()};pushZeke(name?`Tell me the schedule and date range to backfill for ${name}. I’ll preview every date, skip duplicates, and ask before saving.`:`Tell me which medication or supplement to backfill, its schedule, and the date range. I’ll preview every date and ask before saving.`);render();setTimeout(()=>{$('#globalTalkButton')?.click();$('#talkInput')?.focus()},0)};
     $('#medicationEntryForm').onsubmit=async e=>{e.preventDefault();const name=$('#medicationName').value.trim(),date=$('#medicationDate').value,pref=$('#medicationConfirmPref').value;if(!name||!date)return;const id=ZekeParser.canonicalMedicationId(name);state.preferences={...state.preferences,medication_confirmation_preferences:{...(state.preferences.medication_confirmation_preferences||{}),[id]:pref}};await ZekeData.savePreferences(state.preferences);const candidate={category:'medication',timestamp:`${date}T12:00:00`,raw_text:$('#medicationNotes').value||'',structured:{medication_name:name,original_medication_name:name,canonical_medication_id:id,dose:Number($('#medicationDose').value)||null,unit:$('#medicationUnit').value||'',status:$('#medicationStatus').value,confirmation_preference:pref,interpretation_status:'confirmed'},provenance:{source:'direct-medication-entry'}};if((await ZekeData.findLikelyDuplicates(candidate,0.94)).length&&!confirm(`A matching ${name} entry already exists for ${date}. Save a separate event anyway?`))return;await ZekeData.addEvent(candidate);close();await refreshData();render();showToast(`${name} dose logged.`)};
   }
@@ -1757,17 +2103,25 @@
 
   async function handleEditAnswer(text) {
     if(state.pending?.type!=='edit-event') return false;
+    if(state.pending?.workflowId)state.workflowId=state.pending.workflowId;
     pushUser(text); render();
     const target=state.pending.event; const parsed=ZekeParser.interpret(text,{});
-    if(!(parsed.events||[]).length){pushZeke('I could not interpret the correction safely. Please include the corrected value or details.');render();return true;}
-    const replacement=parsed.events[0]; state.pending={type:'edit-confirm',event:target,replacement}; pushZeke(`I understand the correction as ${parsed.summary}. Replace the structured details for the selected record while keeping an audit trail?`,{choices:[{label:'Yes, correct it',value:'edit-confirm'},{label:'Cancel',value:'edit-cancel'}]});render();return true;
+    if(!(parsed.events||[]).length){updateWorkflow('waiting_correction',{needed:['corrected value or details'],save_status:'not_saved'},'The correction could not be interpreted safely.');logUnresolved('Event correction could not be interpreted.',{event_id:target.id,correction_text:text});pushZeke('I could not interpret the correction safely. Please include the corrected value or details. Nothing has been changed.');render();return true;}
+    const replacement=parsed.events[0];
+    window.ZekeWorkflowEngine?.correction({workflow_id:state.workflowId,kind:'event_correction_proposed',event_id:target.id,correction_text:text,proposed:replacement.structured});
+    state.pending={type:'edit-confirm',event:target,replacement,workflowId:state.workflowId};
+    updateWorkflow('waiting_confirmation',{proposed:replacement,needed:[],save_status:'not_saved',available_actions:['Save correction','Cancel']},'An event correction is ready for confirmation.');
+    pushZeke(`I understand the correction as ${parsed.summary}. Replace the structured details for the selected record while keeping an audit trail?`,{choices:[{label:'Save correction',value:'edit-confirm'},{label:'Cancel without changing it',value:'edit-cancel'}]});render();return true;
   }
 
   async function handleEditChoice(value) {
     if(state.pending?.type!=='edit-confirm')return;
-    if(value==='edit-cancel'){pushZeke('Canceled. I made no changes.');state.pending=null;render();return;}
+    if(state.pending?.workflowId)state.workflowId=state.pending.workflowId;
+    if(value==='edit-cancel'){pushZeke('Canceled. I made no changes.');state.pending=null;closeWorkflow('not_saved','Correction canceled; no record changed.',{save_status:'not_saved'});render();return;}
     if(value==='edit-confirm'){
-      await ZekeData.updateEvent(state.pending.event.id,{category:state.pending.replacement.category,structured:state.pending.replacement.structured,correction_note:'Corrected through Talk to ZEKE'});pushZeke('Corrected. The previous version is preserved in the audit history.');state.pending=null;await refreshData();render();
+      await ZekeData.updateEvent(state.pending.event.id,{category:state.pending.replacement.category,structured:state.pending.replacement.structured,correction_note:'Corrected through Talk to ZEKE'});
+      window.ZekeWorkflowEngine?.correction({workflow_id:state.workflowId,kind:'event_correction_saved',event_id:state.pending.event.id,after:state.pending.replacement.structured});
+      pushZeke('Corrected. The previous version is preserved in the audit history.');state.pending=null;await refreshData();closeWorkflow('completed','The selected record was corrected and prior values were preserved.',{save_status:'corrected'});render();
     }
   }
 
@@ -2152,8 +2506,8 @@
     const saved=JSON.parse(localStorage.getItem('zeke-activity-library')||'[]');
     const common=[...new Map([...workoutGroups().keys(),...saved.map(x=>x.name),'Stair Climber','Treadmill','Stationary Bike','Lat Pulldown','Seated Row','Chest Press','Leg Press','Leg Extension','Seated Leg Curl','Bicep Curl','Abdominal','Massage Chair','HydroMassage','Shoulder PT','Hamstring Stretch','Shoulder Mobility'].map(n=>[activityKey(n),activityDisplayName(n)])).values()].sort((a,b)=>a.localeCompare(b));
     const options=common.map(n=>`<option value="${esc(n)}">${esc(n)}</option>`).join(''),profileOptions=ACTIVITY_TAXONOMY.map(x=>`<option value="${x.id}">${esc(x.label)}</option>`).join('');
-    const row=()=>`<div class="workout-entry-row adaptive-row" data-workout-row><label>Activity<select class="workout-exercise"><option value="">Choose activity</option>${options}<option value="__custom">Other / custom</option></select></label><label class="custom-exercise-wrap" hidden>Custom name<input class="workout-custom-exercise"></label><label>Type<select class="workout-profile">${profileOptions}</select></label><div class="workout-profile-fields"></div><details class="advanced-fields workout-advanced"><summary>Add effort, pain, technique, or injury context</summary><div class="advanced-fields-grid"><label>RPE / effort<input class="workout-rpe" type="number" min="0" max="10" step="0.5"></label><label>Pain before<input class="workout-pain-before" type="number" min="0" max="10" step="0.5"></label><label>Pain during<input class="workout-pain-during" type="number" min="0" max="10" step="0.5"></label><label>Pain after<input class="workout-pain-after" type="number" min="0" max="10" step="0.5"></label><label class="wide">Technique / form<input class="workout-technique"></label><label class="wide">Injury or PT context<input class="workout-injury-context"></label></div></details><label class="workout-notes-label">Notes<input class="workout-notes"></label><button type="button" class="icon-btn remove-workout-row">×</button></div>`;
-    document.body.insertAdjacentHTML('beforeend',`<div class="direct-entry-overlay" id="directWorkoutModal"><div class="direct-entry-card workout-entry-card"><div class="section-head"><div><h2>Log workout</h2><p>Start with the basics. Optional effort, pain, technique, and injury fields are available before you save.</p></div><button class="icon-btn" id="closeDirectWorkout">×</button></div><form id="directWorkoutForm"><div class="workout-session-fields"><label>Workout date<input id="directWorkoutDate" type="date" value="${esc(activeDay())}" required></label><label>Session notes<input id="directWorkoutSessionNotes"></label></div><div id="workoutEntryRows">${row()}</div><button type="button" class="secondary compact" id="addWorkoutRow">+ Add activity</button><p class="form-error" id="directWorkoutError" hidden></p><div class="direct-entry-actions"><button type="button" class="secondary" id="cancelDirectWorkout">Cancel</button><button type="submit" class="primary">Save workout</button></div></form></div></div>`);
+    const row=()=>`<div class="workout-entry-row adaptive-row" data-workout-row><label>Activity<select class="workout-exercise"><option value="">Choose activity</option>${options}<option value="__custom">Other / custom</option></select></label><label class="custom-exercise-wrap" hidden>Custom name<input class="workout-custom-exercise"></label><label>Type<select class="workout-profile">${profileOptions}</select></label><div class="workout-profile-fields"></div><details class="advanced-fields workout-advanced"><summary>Add effort, pain, technique, or injury context</summary><div class="advanced-fields-grid"><label>RPE / effort<input class="workout-rpe" type="number" min="0" max="10" step="0.5"></label><label>Pain before<input class="workout-pain-before" type="number" min="0" max="10" step="0.5"></label><label>Pain during<input class="workout-pain-during" type="number" min="0" max="10" step="0.5"></label><label>Pain after<input class="workout-pain-after" type="number" min="0" max="10" step="0.5"></label><label class="wide">Technique / form<input class="workout-technique"></label><label class="wide">Injury or PT context<input class="workout-injury-context"></label></div></details><label class="workout-notes-label">Notes<input class="workout-notes"></label><button type="button" class="icon-btn remove-workout-row" aria-label="Remove this activity row" title="Remove activity">×</button></div>`;
+    document.body.insertAdjacentHTML('beforeend',`<div class="direct-entry-overlay" id="directWorkoutModal"><div class="direct-entry-card workout-entry-card"><div class="section-head"><div><h2>Log workout</h2><p>Start with the basics. Optional effort, pain, technique, and injury fields are available before you save.</p></div><button type="button" class="icon-btn" id="closeDirectWorkout" aria-label="Close workout editor" title="Close">×</button></div><form id="directWorkoutForm"><div class="workout-session-fields"><label>Workout date<input id="directWorkoutDate" type="date" value="${esc(activeDay())}" required></label><label>Session notes<input id="directWorkoutSessionNotes"></label></div><div id="workoutEntryRows">${row()}</div><button type="button" class="secondary compact" id="addWorkoutRow">+ Add activity</button><p class="form-error" id="directWorkoutError" hidden></p><div class="direct-entry-actions"><button type="button" class="secondary" id="cancelDirectWorkout">Cancel</button><button type="submit" class="primary">Save workout</button></div></form></div></div>`);
     const compactFields=p=>p==='strength'?`<label>Weight<input class="workout-weight" type="number" step="0.1"></label><label>Reps<input class="workout-reps" type="number"></label><label>Sets<input class="workout-sets" type="number"></label>`:p==='cardio'?`<label>Minutes<input class="workout-duration" type="number"></label><label>Steps<input class="workout-steps" type="number"></label><label>Distance (mi)<input class="workout-distance" type="number" step="0.01"></label><label>Level<input class="workout-level"></label>`:p==='rehab'?`<label>Minutes<input class="workout-duration" type="number"></label><label>Reps<input class="workout-reps" type="number"></label><label>Sets<input class="workout-sets" type="number"></label>`:`<label>Minutes<input class="workout-duration" type="number"></label><label>Reps<input class="workout-reps" type="number"></label><label>Area / focus<input class="workout-area"></label>`;
     const bindRow=el=>{const select=el.querySelector('.workout-exercise'),profile=el.querySelector('.workout-profile'),fields=el.querySelector('.workout-profile-fields');const sync=()=>{const name=select.value==='__custom'?el.querySelector('.workout-custom-exercise').value:select.value,savedProfile=saved.find(x=>x.name===name)?.profile;profile.value=savedProfile||activityProfile(name,profile.value);fields.innerHTML=compactFields(profile.value);el.querySelector('.custom-exercise-wrap').hidden=select.value!=='__custom'};select.onchange=sync;profile.onchange=()=>fields.innerHTML=compactFields(profile.value);sync();el.querySelector('.remove-workout-row').onclick=()=>{$$('[data-workout-row]').length>1?el.remove():null}};
     $$('[data-workout-row]').forEach(bindRow);$('#addWorkoutRow').onclick=()=>{const h=$('#workoutEntryRows');h.insertAdjacentHTML('beforeend',row());bindRow(h.lastElementChild)};const close=()=>$('#directWorkoutModal')?.remove();$('#closeDirectWorkout').onclick=close;$('#cancelDirectWorkout').onclick=close;
@@ -2211,7 +2565,7 @@
     $$('[data-coach-exercise]').forEach(el=>el.onclick=()=>{state.coachFocus=el.dataset.coachExercise;state.expandedActivity=el.dataset.coachExercise;try{sessionStorage.setItem('zeke-focus-activity',state.expandedActivity)}catch(_){};document.body.classList.remove('nav-open');go('fitness');setTimeout(()=>document.querySelector(`[data-activity-name="${CSS.escape(state.expandedActivity)}"]`)?.scrollIntoView({behavior:'smooth',block:'center'}),80);});
     $$('[data-route]').forEach(el=>el.onclick=()=>{document.body.classList.remove('nav-open');go(el.dataset.route)});
     $$('[data-insights-view]').forEach(el=>el.onclick=()=>{state.insightsView=el.dataset.insightsView;sessionStorage.setItem('zeke-insights-view',state.insightsView);if(state.route!=='insights')go('insights');else render();});
-    $$('[data-insight-action]').forEach(el=>el.onclick=e=>{e.preventDefault();e.stopPropagation();const action=el.dataset.insightAction;if(action==='log-sleep'){state.healthTab='sleep';localStorage.setItem('zeke.health.libraryTab.v1','sleep');openMetricEntryModal('sleep_duration');return;}if(action==='fitness'){go('fitness');return;}if(action==='pattern'){openPatternLab(el.dataset.insightKey||'Insight evidence');return;}if(action==='calendar-followup'){let event={};try{event=JSON.parse(el.dataset.calendarEvent||'{}')}catch(_){}state.context={...state.context,calendar_followup:event,health_followup_target:/pt|physical therapy/i.test(event.title||'')?'attendance, symptoms, exercises, restrictions, or follow-up':/allergy|shot|immunotherapy/i.test(event.title||'')?'attendance and any reaction':'appointment outcome and related record changes'};pushZeke(`How did ${event.title||'the appointment'} go? I can record whether it occurred and any supported health updates, such as symptoms, exercises, restrictions, results, reactions, or follow-up tasks. The calendar event itself is not proof that it happened.`);go('dashboard');render();setTimeout(()=>$('#talkInput')?.focus(),0);}});
+    $$('[data-insight-action]').forEach(el=>el.onclick=e=>{e.preventDefault();e.stopPropagation();const action=el.dataset.insightAction;if(action==='log-sleep'){state.healthTab='sleep';localStorage.setItem('zeke.health.libraryTab.v1','sleep');openMetricEntryModal('sleep_duration');return;}if(action==='fitness'){go('fitness');return;}if(action==='pattern'){openPatternLab(el.dataset.insightKey||'Insight evidence');return;}if(action==='calendar-followup'){let event={};try{event=JSON.parse(el.dataset.calendarEvent||'{}')}catch(_){}beginWorkflow(`Follow up on ${event.title||'calendar event'}`,{goal:'Record the supported outcome of a calendar event',target:{calendar_event:event}});state.context={...state.context,calendar_followup:event,health_followup_target:/pt|physical therapy/i.test(event.title||'')?'attendance, symptoms, exercises, restrictions, or follow-up':/allergy|shot|immunotherapy/i.test(event.title||'')?'attendance and any reaction':'appointment outcome and related record changes'};updateWorkflow('waiting_clarification',{known:{calendar_event:event.title||'appointment'},needed:['whether it occurred and any supported outcome'],save_status:'not_saved'},'Calendar context prompted a health follow-up; attendance is not assumed.');pushZeke(`How did ${event.title||'the appointment'} go? I can record whether it occurred and any supported health updates, such as symptoms, exercises, restrictions, results, reactions, or follow-up tasks. The calendar event itself is not proof that it happened.`);go('dashboard');render();setTimeout(()=>$('#talkInput')?.focus(),0);}});
     $$('[data-range]').forEach(el=>el.onclick=()=>{state.range=el.dataset.range;try{localStorage.setItem('zeke-fitness-range',state.range)}catch(_){}render()});
     $('#fitnessRangeSelect')?.addEventListener('change',e=>{state.range=e.target.value;try{localStorage.setItem('zeke-fitness-range',state.range)}catch(_){}render();});
     $$('[data-select-metric]').forEach(el=>el.onclick=()=>{state.selectedMetric=el.dataset.selectMetric;render()});
@@ -2226,27 +2580,33 @@
 
     $('#sendBtn')?.addEventListener('click',async()=>{const input=$('#talkInput');const text=(input?.value||'').trim();if(input)input.value='';if(!text)return;if(state.pending&&looksLikeIndependentNewEntry(text)&&!['question-awaiting'].includes(state.pending.type)){clearPending('new unrelated entry detected');pushZeke('I paused the earlier unfinished correction so it would not capture this new message.',{resolveQuestion:true});}if(await handlePendingAnswer(text))return;if(await handleEditAnswer(text))return;sendConversation(text)});
     $('#talkInput')?.addEventListener('input',e=>{state.draft=e.target.value;});
-    document.querySelectorAll('input:not([type=file]), textarea, select, [contenteditable=true]').forEach(el=>el.addEventListener('blur',()=>{if(state.deferredRender && !isEditableElement(document.activeElement)){state.deferredRender=false;render();}}));
+    document.querySelectorAll('input:not([type=file]), textarea, select, [contenteditable=true]').forEach(el=>el.addEventListener('blur',()=>{if(!state.deferredRender)return;setTimeout(()=>{if(state.deferredRender&&!isEditableElement(document.activeElement)){state.deferredRender=false;render();}},0);}));
     $('#talkInput')?.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('#sendBtn')?.click()}});
-    $('#questionPill')?.addEventListener('click',()=>go('questions'));
+    $$('[data-open-reviews]').forEach(el=>el.addEventListener('click',()=>go('questions')));
+    $$('[data-open-metric-detail]').forEach(el=>el.addEventListener('click',e=>{e.preventDefault();e.stopPropagation();openMetricDetail(el.dataset.openMetricDetail);}));
+    $$('[data-resume-workflow]').forEach(el=>el.addEventListener('click',resumeCurrentWorkflow));
     $('#activeDateInput')?.addEventListener('change',e=>setActiveDate(e.target.value));
     $('#clearActiveDate')?.addEventListener('click',()=>setActiveDate(''));
     $$('[data-quick-exercise]').forEach(el=>el.addEventListener('click',()=>openExerciseEntryModal(el.dataset.quickExercise)));
-    $('#addHealthHistory')?.addEventListener('click',()=>{state.context={healthHistory:true};pushZeke('Tell me the personal or family health-history detail you want ZEKE to remember. You can say it naturally, for example: “My sister had a heart attack at 45.”');go('dashboard');render();setTimeout(()=>$('#talkInput')?.focus(),0)});
+    $('#addHealthHistory')?.addEventListener('click',()=>{beginWorkflow('Add personal or family health history',{goal:'Save a confirmed health-history detail',target:{type:'health_history'}});state.context={healthHistory:true};updateWorkflow('waiting_clarification',{needed:['the history detail and relationship'],save_status:'not_saved'},'Health-history entry started.');pushZeke('Tell me the personal or family health-history detail you want ZEKE to remember. You can say it naturally, for example: “My sister had a heart attack at 45.”');go('dashboard');render();setTimeout(()=>$('#talkInput')?.focus(),0)});
     $$('[data-conversation-choice]').forEach(el=>el.onclick=async()=>{el.classList.add('selected');el.disabled=true;const original=el.textContent;el.textContent='Working…';const v=el.dataset.conversationChoice;try{if(v.startsWith('question-'))return await handleQuestionChoice(v);if(v.startsWith('edit-'))return await handleEditChoice(v);return await handleChoice(v);}finally{if(document.body.contains(el)){el.disabled=false;el.textContent=original;el.classList.remove('selected');}}});
     $('#expandConversation')?.addEventListener('click',()=>{const expanded=document.body.classList.toggle('conversation-expanded');const btn=$('#expandConversation');if(btn){btn.textContent=expanded?'Collapse':'Expand';btn.setAttribute('aria-expanded',String(expanded));}});
     $('#conversationThread')?.addEventListener('scroll',e=>{const el=e.currentTarget;el.dataset.userScrolled=(el.scrollHeight-el.scrollTop-el.clientHeight>80)?'true':'false';});
     $$('[data-review-question]').forEach(el=>el.onclick=()=>{state.activeReviewId=el.dataset.reviewQuestion;state.reviewOriginalOpen=false;try{sessionStorage.setItem('zeke-active-review',state.activeReviewId)}catch(_){}render();});
     $('#backToReviewQueue')?.addEventListener('click',()=>{state.activeReviewId='';state.reviewOriginalOpen=false;try{sessionStorage.removeItem('zeke-active-review')}catch(_){}render();});
     $('#closeReviewWorkspace')?.addEventListener('click',()=>{state.activeReviewId='';try{sessionStorage.removeItem('zeke-active-review')}catch(_){}go('questions');render();});
-    $('#answerReviewNow')?.addEventListener('click',()=>{const q=state.factors.find(f=>f.id===state.activeReviewId);if(!q)return;state.pending={type:'question-awaiting',question:q};state.activeReviewId='';try{sessionStorage.removeItem('zeke-active-review')}catch(_){}pushZeke(q.question||'Tell me what ZEKE should do with this item.',{choices:pendingQuestionChoices(q)});go('dashboard');render();setTimeout(()=>$('#talkInput')?.focus(),0);});
-    $('#deferReview')?.addEventListener('click',async()=>{const q=state.factors.find(f=>f.id===state.activeReviewId);if(!q)return;await ZekeData.resolveFactor(q.id,'deferred','User chose Later');state.activeReviewId='';sessionStorage.removeItem('zeke-active-review');await refreshData();render();});
-    $('#unknownReview')?.addEventListener('click',async()=>{const q=state.factors.find(f=>f.id===state.activeReviewId);if(!q)return;await ZekeData.resolveFactor(q.id,'unknown','User does not know');state.activeReviewId='';sessionStorage.removeItem('zeke-active-review');await refreshData();render();});
-    $('#dismissReview')?.addEventListener('click',async()=>{const q=state.factors.find(f=>f.id===state.activeReviewId);if(!q||!confirm('Dismiss this review item? The original source will remain preserved.'))return;await ZekeData.resolveFactor(q.id,'dismissed','Dismissed by user');state.activeReviewId='';sessionStorage.removeItem('zeke-active-review');await refreshData();render();});
+    $$('[data-memory-tab]').forEach(el=>el.onclick=()=>{state.memoryTab=el.dataset.memoryTab;sessionStorage.setItem('zeke-memory-tab',state.memoryTab);render()});
+    $$('[data-memory-edit]').forEach(el=>el.onclick=()=>{const id=el.dataset.memoryEdit;if(id.startsWith('action:')){const action=(state.actions.catalog||[]).find(a=>a.id===id.slice(7));if(action){beginWorkflow(`Edit ${action.label||action.name} schedule`,{goal:'Edit a remembered recurring schedule',target:{action_id:action.id,kind:action.kind||'action'}});updateWorkflow('waiting_clarification',{known:{current_schedule:action.schedule},needed:['updated schedule'],save_status:'not_saved'},'A remembered recurring schedule is being edited.');if(action.kind==='medication')openMedicationScheduleModal(action.label||action.name||'');else openRecurringActionScheduleModal(action);}}else{const factor=state.factors.find(f=>f.id===id.slice(7));if(factor){beginWorkflow(`Edit remembered context: ${factor.summary||factor.type}`,{goal:'Correct remembered context',target:{factor_id:factor.id}});state.pending={type:'memory-correction',factor,workflowId:state.workflowId};updateWorkflow('waiting_correction',{known:{current_memory:factor.summary||factor.answer||factor.value||''},needed:['corrected wording'],save_status:'not_saved'},'The user opened a remembered item for correction.');pushZeke(`Tell me how to correct this remembered context: “${factor.summary||factor.answer||factor.value||factor.type}”. Nothing changes until you confirm the correction.`);go('dashboard');render();setTimeout(()=>$('#talkInput')?.focus(),0);}}});
+    $$('[data-memory-remove]').forEach(el=>el.onclick=async()=>{const id=el.dataset.memoryRemove;if(!confirm('Remove this remembered context? The audit trail will remain, but ZEKE will stop using it going forward.'))return;if(id.startsWith('action:')){const actionId=id.slice(7);state.actions=await ZekeData.saveActions({...state.actions,catalog:(state.actions.catalog||[]).map(a=>a.id===actionId?{...a,active:false,removed_at:new Date().toISOString()}:a)});}else{await ZekeData.resolveFactor(id.slice(7),'dismissed','Removed from Conversation Memory by user');}window.ZekeWorkflowEngine?.correction({kind:'memory_removed',memory_id:id});await refreshData();render();showToast('Remembered context removed from future use.');});
+    $('#answerReviewNow')?.addEventListener('click',()=>{const q=state.factors.find(f=>f.id===state.activeReviewId);if(!q)return;const wf=beginWorkflow(q.question||'Resolve review item',{goal:`Resolve: ${reviewFriendlyTitle(q)}`,target:{question_id:q.id,question_key:q.question_key}});updateWorkflow('waiting_clarification',{known:{why_it_matters:q.why_it_matters||''},needed:['user decision or answer'],available_actions:pendingQuestionChoices(q).map(x=>x.label),save_status:'not_saved'},'The review item was moved into Talk to ZEKE.');state.pending={type:'question',question:q,workflowId:wf?.id||state.workflowId};state.activeReviewId='';try{sessionStorage.removeItem('zeke-active-review')}catch(_){}pushZeke(q.question||'Tell me what ZEKE should do with this item.',{choices:pendingQuestionChoices(q)});go('dashboard');render();setTimeout(()=>$('#talkInput')?.focus(),0);});
+    $('#editReviewUnderstanding')?.addEventListener('click',()=>{const q=state.factors.find(f=>f.id===state.activeReviewId);if(!q)return;const wf=beginWorkflow(q.question||'Correct ZEKE understanding',{goal:`Correct understanding: ${reviewFriendlyTitle(q)}`,target:{question_id:q.id,question_key:q.question_key}});updateWorkflow('waiting_correction',{known:{current_understanding:reviewUnderstanding(q)},needed:['what ZEKE misunderstood'],save_status:'not_saved'},'The user chose to edit ZEKE’s understanding.');state.pending={type:'question-awaiting',question:q,other:true,workflowId:wf?.id||state.workflowId};state.activeReviewId='';sessionStorage.removeItem('zeke-active-review');pushZeke(`Tell me what is wrong with this understanding: “${reviewUnderstanding(q)}” Nothing has been changed yet.`);go('dashboard');render();setTimeout(()=>$('#talkInput')?.focus(),0);});
+    $('#deferReview')?.addEventListener('click',async()=>{const q=state.factors.find(f=>f.id===state.activeReviewId);if(!q)return;await deferQuestion(q);state.activeReviewId='';sessionStorage.removeItem('zeke-active-review');await refreshData();render();showToast('Kept in Waiting for You and moved behind newer questions. No data changed.');});
+    $('#unknownReview')?.addEventListener('click',async()=>{const q=state.factors.find(f=>f.id===state.activeReviewId);if(!q)return;await ZekeData.resolveFactor(q.id,'unknown','User does not know');state.activeReviewId='';sessionStorage.removeItem('zeke-active-review');await refreshData();render();showToast('Recorded as unknown. ZEKE will not guess.');});
+    $('#dismissReview')?.addEventListener('click',async()=>{const q=state.factors.find(f=>f.id===state.activeReviewId);if(!q||!confirm('Discard this review? The original source will remain preserved, and no structured data will be changed.'))return;await ZekeData.resolveFactor(q.id,'dismissed','Dismissed by user');state.activeReviewId='';sessionStorage.removeItem('zeke-active-review');await refreshData();render();showToast('Review discarded. No structured data changed.');});
     $('#previousReview')?.addEventListener('click',()=>{const tasks=reviewTasks(),i=tasks.findIndex(t=>t.items.some(q=>q.id===state.activeReviewId));if(i>0){state.activeReviewId=tasks[i-1].items[0].id;sessionStorage.setItem('zeke-active-review',state.activeReviewId);render();}});
     $('#nextReview')?.addEventListener('click',()=>{const tasks=reviewTasks(),i=tasks.findIndex(t=>t.items.some(q=>q.id===state.activeReviewId));if(i>=0&&i<tasks.length-1){state.activeReviewId=tasks[i+1].items[0].id;sessionStorage.setItem('zeke-active-review',state.activeReviewId);render();}});
-    $$('[data-question-action]').forEach(el=>el.onclick=async()=>{const id=el.dataset.questionId;const action=el.dataset.questionAction;await ZekeData.resolveFactor(id,action==='dismiss'?'dismissed':'deferred','');await refreshData();render();});
-    $$('[data-review-task-later]').forEach(el=>el.onclick=async()=>{const key=el.dataset.reviewTaskLater;const task=reviewTasks().find(t=>t.key===key);for(const q of task?.items||[])await ZekeData.resolveFactor(q.id,'deferred','');await refreshData();render();});
+    $$('[data-question-action]').forEach(el=>el.onclick=async()=>{const id=el.dataset.questionId;const action=el.dataset.questionAction;const q=state.factors.find(f=>f.id===id);if(!q)return;if(action==='dismiss')await ZekeData.resolveFactor(id,'dismissed','Dismissed by user');else await deferQuestion(q);await refreshData();render();});
+    $$('[data-review-task-later]').forEach(el=>el.onclick=async()=>{const key=el.dataset.reviewTaskLater;const task=reviewTasks().find(t=>t.key===key);for(const q of task?.items||[])await deferQuestion(q,'Review task moved behind newer questions');await refreshData();render();showToast('Kept in Waiting for You and moved behind newer questions.');});
     $$('[data-insight-evidence]').forEach(el=>el.onclick=(ev)=>{ev.preventDefault();ev.stopPropagation();document.body.insertAdjacentHTML('beforeend',insightEvidenceHTML(el.dataset.insightEvidence));$('#closeEvidenceFocus')?.addEventListener('click',()=>$('#evidenceFocus')?.remove());});
     $('#coachFocus')?.addEventListener('change',e=>{state.coachFocus=e.target.value;state.coachAI=null;state.coachExpanded=false;render()});
     $$('[data-dismiss-coach-alert]').forEach(el=>el.onclick=()=>{state.coachAlertDismissed[el.dataset.dismissCoachAlert]=true;render()});
@@ -2288,8 +2648,11 @@
     $$('[data-save-ai]').forEach(el=>el.onclick=async()=>{const id=el.dataset.saveAi;const key=$(`[data-ai-key="${id}"]`)?.value.trim();const model=$(`[data-ai-model="${id}"]`)?.value;const endpoint=$(`[data-ai-endpoint="${id}"]`)?.value.trim();const rememberOnDevice=Boolean($(`[data-ai-remember="${id}"]`)?.checked);try{await ZekeAIRouter.configure({provider:id,key,model,endpoint,privacy:'minimum-necessary',rememberOnDevice});const r=await ZekeAIRouter.testProvider(id);state.ai=ZekeAIRouter.status();showToast(`Connection test passed: ${r.provider} · ${r.model}`);render()}catch(e){state.ai=ZekeAIRouter.status();showToast(`Connection failed: ${e.message}`,'error');render()}});
     $$('[data-test-ai]').forEach(el=>el.onclick=async()=>{const id=el.dataset.testAi;try{const key=$(`[data-ai-key="${id}"]`)?.value.trim();const model=$(`[data-ai-model="${id}"]`)?.value;const endpoint=$(`[data-ai-endpoint="${id}"]`)?.value.trim();if(key||endpoint||id==='ollama')await ZekeAIRouter.configure({provider:id,key,model,endpoint,privacy:'minimum-necessary',rememberOnDevice:Boolean($(`[data-ai-remember="${id}"]`)?.checked)});const r=await ZekeAIRouter.testProvider(id);showToast(`Connection test passed: ${r.provider} · ${r.model}`);state.ai=ZekeAIRouter.status();render()}catch(e){showToast(`Test failed: ${e.message}`,'error')}});
 
+    const syncSupportExportOptions=()=>{state.supportExportOptions={mode:$('#supportPrivacyMode')?.value||'full',from:$('#supportFromDate')?.value||'',to:$('#supportToDate')?.value||'',clearAfter:Boolean($('#clearAfterSupportExport')?.checked)};};
+    $('#supportPrivacyMode')?.addEventListener('change',syncSupportExportOptions);$('#supportFromDate')?.addEventListener('input',syncSupportExportOptions);$('#supportToDate')?.addEventListener('input',syncSupportExportOptions);$('#clearAfterSupportExport')?.addEventListener('change',syncSupportExportOptions);
+    $('#downloadSupportReport')?.addEventListener('click',async()=>{syncSupportExportOptions();const button=$('#downloadSupportReport'),options={...state.supportExportOptions};try{if(button){button.disabled=true;button.textContent='Building report…';}state.supportExportStatus='Building the workbook from retained diagnostics and workflow history…';const statusNode=button?.closest('.diagnostics-export-section')?.querySelector('.status-line');if(statusNode)statusNode.textContent=state.supportExportStatus;await downloadSupportWorkbook(options);state.supportExportStatus='Support & Improvement Report downloaded successfully.';render();showToast('Support & Improvement Report downloaded.');}catch(error){recordRuntimeIssue('support-report-export',error.message,error.stack||'');state.supportExportStatus=`Report export failed: ${error.message}`;render();showToast(state.supportExportStatus,'error');}finally{const next=$('#downloadSupportReport');if(next){next.disabled=false;next.textContent='Download Support & Improvement Report';}}});
     $('#exportRuntimeDiagnostics')?.addEventListener('click',()=>downloadJSON({export_type:'ZEKE Runtime Diagnostics',build:BUILD,exported_at:new Date().toISOString(),entries:runtimeDiagnostics()},`zeke-runtime-diagnostics-${localDay()}.json`));
-    $('#clearRuntimeDiagnostics')?.addEventListener('click',()=>{if(confirm('Clear the local runtime diagnostic log on this device?')){localStorage.removeItem(RUNTIME_LOG_KEY);render();showToast('Runtime diagnostics cleared.')}});
+    $('#clearRuntimeDiagnostics')?.addEventListener('click',()=>{if(confirm('Clear retained runtime, workflow, and interaction diagnostics on this device? Saved health records and settings will not be changed.')){localStorage.removeItem(RUNTIME_LOG_KEY);window.ZekeWorkflowEngine?.clearLogs({keep_workflows:false});state.workflowId=null;state.supportExportStatus='Retained diagnostic logs cleared.';render();showToast('Retained diagnostic logs cleared.')}});
 
     $('#exportAIPacket')?.addEventListener('click',()=>{const packet={packet_type:'ZEKE Manual AI Packet',build:BUILD,created_at:new Date().toISOString(),instructions:'Return analysis as observations, interpretations, evidence, limitations, and proposed actions. Do not treat inferred claims as raw facts.',context:{recent_events:state.events.filter(recordIsActive).slice(-50),potential_health_events:potentialHealthEvents().slice(0,50),open_questions:openQuestions(),discoveries:state.discoveries.slice(0,10)}};downloadJSON(packet,`zeke-ai-packet-${localDay()}.json`)});
     $('#importAIResponse')?.addEventListener('change',async e=>{const file=e.target.files?.[0];if(!file)return;const status=$('#aiImportStatus');try{const response=JSON.parse(await file.text());await ZekeData.saveFactor({type:'external_ai_response',status:'review',summary:response.summary||response.analysis||response.title||'Imported AI analysis awaiting review',response,provenance:{source:'manual-ai-packet',file:file.name}});if(status)status.textContent='Imported for review. ZEKE will not treat the AI response as raw fact.';await refreshData()}catch(err){if(status)status.textContent=`Import failed: ${err.message}`}});
@@ -2297,7 +2660,7 @@
     $('#preflightWorkbookNow')?.addEventListener('click',async()=>{try{state.syncPreflight=null;state.importStatus='Running read-only workbook preflight…';render();const r=await preflightConnectedWorkbook();state.syncPreflight=r;state.importReport={file:state.syncSource?.name||'Connected workbook',counts:{records_recognized:r.candidates,records_created:r.created,records_updated:r.updated,unchanged:r.unchanged,linked_existing:r.linked_existing,conflicts:r.conflicts,unsupported_updates:r.unsupported_updates,unmapped_rows:r.unmapped_rows},message:r.ready?'Read-only preflight complete. Review the counts, then use Commit reviewed sync. No repository, workbook, mirror, backup, or import-history file was changed.':'Preflight found blocking conflicts or unsupported updates. Commit remains disabled and nothing was changed.'};state.importStatus=`Preflight complete: ${r.candidates} recognized, ${r.unchanged} unchanged, ${r.created} new, ${r.updated} updates, ${r.conflicts} conflicts.`;render()}catch(e){state.syncPreflight=null;state.importStatus=`Preflight failed safely: ${e.message}`;render()}});
     $('#syncWorkbookNow')?.addEventListener('click',async()=>{try{const reviewed=state.syncPreflight;if(!reviewed?.ready)throw new Error('Run and review the read-only preflight first.');if(!confirm(`Commit the reviewed workbook sync? ${reviewed.candidates} recognized; ${reviewed.created} new; ${reviewed.updated} updates; ${reviewed.linked_existing} links; ${reviewed.unchanged} unchanged. ZEKE will rerun the preflight, back up events before changes, commit, and verify.`))return;state.importStatus='Rechecking the reviewed preflight before commit…';render();const r=await syncConnectedWorkbook({reviewToken:reviewed.review_token});state.importStatus=`Sync verified: ${r.created} created, ${r.updated} updated, ${r.unchanged} unchanged.`;await refreshData();render()}catch(e){state.importStatus=`Sync failed safely: ${e.message}`;render()}});
     $('#attachBtn')?.addEventListener('click',()=>$('#conversationFile')?.click());
-    $('#conversationFile')?.addEventListener('change',e=>{const f=e.target.files?.[0];if(f){pushZeke(`I received ${f.name}. File interpretation through the conversation is not complete in this repair build yet; use Settings → Import existing history for XLSX, JSON, CSV, or TSV data.`);render()}});
+    $('#conversationFile')?.addEventListener('change',async e=>{const f=e.target.files?.[0];if(!f)return;const ext=f.name.split('.').pop().toLowerCase();beginWorkflow(`Import ${f.name}`,{goal:'Review and import an attached file',target:{file_name:f.name,file_type:ext}});pushUser(`Attached file: ${f.name}`);if(['xlsx','xls','json','csv','tsv'].includes(ext)){updateWorkflow('understanding',{known:{file_name:f.name,file_type:ext},save_status:'not_saved'},'A supported data file was attached through Talk to ZEKE.');pushZeke(`I received ${f.name}. I’ll process it through the same preview, duplicate, and clarification safeguards used by Settings imports. Nothing is treated as confirmed until those checks finish.`);render();await handleImport(f);closeWorkflow('completed',`Finished processing ${f.name}. Review the import summary and any Waiting for You items.`,{save_status:'import_processed'});render();}else{logUnresolved('Unsupported conversation attachment type.',{file_name:f.name,file_type:ext});updateWorkflow('waiting_clarification',{needed:['supported XLSX, XLS, JSON, CSV, or TSV file'],save_status:'not_saved'},'The attached file type is not yet supported.');pushZeke(`I preserved the fact that you attached ${f.name}, but this file type is not supported for automatic interpretation yet. XLSX, XLS, JSON, CSV, and TSV files can be processed now. Nothing was saved from this attachment.`);render();}e.target.value='';});
     bindTooltips();
   }
 
