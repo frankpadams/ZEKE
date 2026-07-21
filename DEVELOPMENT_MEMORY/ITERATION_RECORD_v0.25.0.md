@@ -1,3 +1,5 @@
+Lifecycle: historical
+
 # Iteration Record — v0.25.0
 **Build:** 2026.07.21.2
 

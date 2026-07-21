@@ -1,4 +1,4 @@
-# Project Health — v0.25.0
+# Project Health — v0.25.2
 
 **Build:** 2026.07.21.2
 

@@ -1,6 +1,6 @@
-# Release Gate — ZEKE v0.25.0
+# Release Gate — ZEKE v0.25.2
 
-**Build:** 2026.07.21.2
+**Build:** 2026.07.21.4
 
 ## Status
 **Package verification complete.**

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "release": "0.25.0",
-  "build": "2026.07.21.2",
+  "release": "0.25.2",
+  "build": "2026.07.21.4",
   "artifacts": [
     {
       "path": "00_AI_START_HERE.md",
@@ -221,17 +221,17 @@
       "purpose": "current test and verification evidence"
     },
     {
-      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.25.0.md",
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.25.2.md",
       "status": "authoritative",
       "purpose": "current approved scope and implementation record"
     },
     {
-      "path": "RELEASE_NOTES_v0.25.0.md",
+      "path": "RELEASE_NOTES_v0.25.2.md",
       "status": "supporting",
       "purpose": "current release summary"
     },
     {
-      "path": "TEST_REPORT_v0.25.0.md",
+      "path": "TEST_REPORT_v0.25.2.md",
       "status": "supporting",
       "purpose": "current test and verification evidence"
     }
@@ -247,8 +247,8 @@
     "DEVELOPMENT_MEMORY/README_FIRST.md",
     "DEVELOPMENT_MEMORY/DOCUMENT_INDEX.md"
   ],
-  "current_version": "0.25.0",
-  "current_build": "2026.07.21.2",
+  "current_version": "0.25.2",
+  "current_build": "2026.07.21.4",
   "runtime_files": [
     "index.html",
     "version.js",

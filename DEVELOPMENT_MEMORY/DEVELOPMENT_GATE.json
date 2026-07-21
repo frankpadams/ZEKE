@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "release": "0.25.0",
-  "build": "2026.07.21.2",
+  "release": "0.25.2",
+  "build": "2026.07.21.4",
   "current_iteration": {
     "status": "package_verification_complete_environment_verification_outstanding",
     "baseline_verified": true,
@@ -11,18 +11,18 @@
     "user_approved_scope": true,
     "approved_at": "2026-07-21T20:09:24Z",
     "approval_evidence": "User approved one integrated build using the uploaded continuity package and both preceding design conversations.",
-    "release": "0.25.0",
-    "build": "2026.07.21.2",
-    "baseline_release": "0.24.0",
-    "baseline_build": "2026.07.21.1",
+    "release": "0.25.2",
+    "build": "2026.07.21.4",
+    "baseline_release": "0.25.0",
+    "baseline_build": "2026.07.21.2",
     "approved_scope": [
-      "Integrated dashboard/mobile continuity",
-      "Activity-specific workout display",
-      "Fast gym entry and repeat workflow",
-      "Provider/PT presentation",
-      "Cautious evidence-backed considerations",
-      "Progressive identity and clinical context",
-      "Revision of existing continuity documents"
+      "Restore regressed v0.24 visual and trust behavior",
+      "Remove Provider View until a distinct use case exists",
+      "Default Fitness to Favorites",
+      "Make evidence links contextual and specific",
+      "Clarify Create activity type wording",
+      "Add privacy-collapsed medications and diagnoses to Dashboard",
+      "Correct visible versioning"
     ],
     "explicitly_excluded": [
       "Embedding shared beta API secrets in browser code",
@@ -31,20 +31,21 @@
       "Unverified multi-account authentication claims"
     ],
     "acceptance_criteria": [
-      "Activity detail tables omit irrelevant columns",
-      "Last workout can be preloaded for rapid logging",
-      "Provider View presents meaningful recorded data and limitations",
-      "Profile fields distinguish identity from clinical context",
-      "Existing audit and regression suites pass",
-      "Package can be reopened and verified"
+      "Provider View is absent from navigation and routing",
+      "Dashboard remains the single overview",
+      "Fitness opens on Favorites and provides a clear fallback",
+      "Evidence review does not expose internal UUIDs as headings",
+      "Activity definition action is unambiguous",
+      "Medication and condition details are collapsed by default",
+      "Active version references agree"
     ],
-    "rollback_plan": "Restore v0.24.0 build 2026.07.21.1; new UI changes do not require destructive data migration.",
+    "rollback_plan": "Restore v0.25.0 build 2026.07.21.2; no data migration is required.",
     "prior_conversations_reviewed": true,
     "implementation_complete": true,
     "verification_complete": true,
     "package_verification": "complete",
     "environment_verification": "outstanding",
-    "unpacked_file_count": 220
+    "unpacked_file_count": 223
   },
   "next_iteration": {
     "status": "not_open",
@@ -53,6 +54,6 @@
     "scope_presented": false,
     "user_approved_scope": null
   },
-  "current_version": "0.25.0",
-  "current_build": "2026.07.21.2"
+  "current_version": "0.25.2",
+  "current_build": "2026.07.21.4"
 }

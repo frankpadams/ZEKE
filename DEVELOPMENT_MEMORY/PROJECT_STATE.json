@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
-  "current_version": "0.25.0",
-  "current_build": "2026.07.21.2",
-  "release_label": "Adaptive Fitness & Provider Preview",
-  "baseline": "v0.24.0 Trust, Conversation & Workflow",
+  "current_version": "0.25.2",
+  "current_build": "2026.07.21.4",
+  "release_label": "Trust & Usability Restoration",
+  "baseline": "v0.25.0 Adaptive Fitness & Provider Preview",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
   "authoritative_documents": [
     "00_AI_START_HERE.md",
@@ -19,15 +19,15 @@
     "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
     "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
     "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
-    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.25.0.md"
+    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.25.2.md"
   ],
   "implemented_this_release": [
-    "Activity-specific Fitness history columns and entry fields",
-    "Gym Logging workflow with repeat-last-session prefill",
-    "Provider View for PT, primary care, and orthopedic visits",
-    "Evidence-cautious consideration terminology",
-    "Progressive identity and optional clinical-context profile fields",
-    "Constitution, architecture, release, test, and continuity updates"
+    "Removed the premature Provider View and restored Dashboard as the single health overview",
+    "Defaulted Fitness to Favorites with a clear most-used fallback until favorites are selected",
+    "Replaced generic Review evidence routing with a contextual evidence review showing observations, limitations, and related dated records",
+    "Renamed activity-definition actions to Create activity type",
+    "Added privacy-collapsed medications and diagnoses/conditions summaries to Dashboard",
+    "Corrected all active splash, runtime, cache, and continuity version references"
   ],
   "inherited_verified_evidence": [
     "Medication, sleep, activity, dashboard, navigation, and workbook deterministic regressions from v0.23.1 and earlier",
@@ -45,7 +45,7 @@
     "Protected real-workbook regression",
     "Separate legacy-asset cleanup review"
   ],
-  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.25.0.md",
+  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.25.2.md",
   "files_to_read_first": [
     "00_AI_START_HERE.md"
   ],
@@ -57,5 +57,5 @@
     "real-data workbook regression when fixture is available",
     "final ZIP reopened and byte-compared with staging"
   ],
-  "current_release_label": "Adaptive Fitness & Provider Preview"
+  "current_release_label": "Trust & Usability Restoration"
 }
