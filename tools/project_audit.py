@@ -40,7 +40,7 @@ for name,obj in [('development gate',gate),('governance rules',rules),('artifact
 
 # Active runtime file coverage
 runtime_files=registry.get('runtime_files',[])
-required_runtime=['index.html','version.js','assets/app.js','assets/data-layer.js','assets/parser.js','assets/ai-router.js','assets/styles.css']
+required_runtime=['index.html','version.js','assets/app.js','assets/data-layer.js','assets/parser.js','assets/ai-router.js','assets/workflow-engine.js','assets/styles.css']
 for rel in required_runtime:
     if rel not in runtime_files: errors.append(f'active runtime file absent from registry: {rel}')
 for rel in runtime_files:

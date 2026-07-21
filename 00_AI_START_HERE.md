@@ -6,14 +6,15 @@
 Read, in order:
 1. `HANDOFF_BRIEF.md`
 2. `ZEKE_CONSTITUTION.md`
-3. `DEVELOPMENT_SYSTEM/PROJECT_IDENTITY.md`
-4. `DEVELOPMENT_MEMORY/PROJECT_STATE.json`
-5. `DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json`
-6. `DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md`
-7. `DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json`
-8. `DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md`
-9. `DEVELOPMENT_MEMORY/BACKLOG.md`
-10. The current iteration record named by `PROJECT_STATE.json`
+3. `ARCHITECTURE.md`
+4. `DEVELOPMENT_SYSTEM/PROJECT_IDENTITY.md`
+5. `DEVELOPMENT_MEMORY/PROJECT_STATE.json`
+6. `DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json`
+7. `DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md`
+8. `DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json`
+9. `DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md`
+10. `DEVELOPMENT_MEMORY/BACKLOG.md`
+11. The current iteration record named by `PROJECT_STATE.json`
 
 Run `python tools/project_audit.py`, then answer `DEVELOPMENT_SYSTEM/COMPREHENSION_CHECKPOINT.md`.
 
@@ -32,3 +33,6 @@ Unexpected findings are not automatic authorization to repair. Present the evide
 
 ## First response from a new AI
 Report baseline identity and checksum status; five core principles; verified versus unverified state; surfaced backlog; contradictions/audit failures; fresh-angle observations; proposed investigation scope and exclusions; then clearly STOP for approval.
+
+## Current runtime warning
+The current release is a directly editable static application. Follow `ARCHITECTURE.md` and the script references in `index.html`; do not treat legacy hashed bundles as active source.

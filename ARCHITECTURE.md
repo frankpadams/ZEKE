@@ -1,32 +1,64 @@
-# ZEKE Architecture — Current v0.23.1 Baseline
+# ZEKE Architecture — Current v0.24.0 Baseline
 
-**Build:** 2026.07.20.1
+**Build:** 2026.07.21.1  
+**Release:** Trust, Conversation & Workflow
+
+## Authoritative runtime
+ZEKE is intentionally shipped as a directly editable static web application. There is **no compilation step** for the current release and no required `src/`, `package.json`, Vite, React, or bundler project.
+
+The authoritative runtime files are:
+
+- `index.html`
+- `version.js`
+- `assets/app.js`
+- `assets/data-layer.js`
+- `assets/parser.js`
+- `assets/ai-router.js`
+- `assets/workflow-engine.js`
+- `assets/styles.css`
+- `xlsx-bundle.js`
+- `sw.js`
+
+`index.html` is the source of truth for load order. `assets/workflow-engine.js` must load before `assets/app.js`.
+
+## Legacy assets
+Hashed files such as `assets/index-*.js`, `assets/Dashboard-*.js`, and `assets/index-*.css`, plus older versioned ZEKE scripts, are historical remnants from prior build systems. They are not loaded by the current `index.html`, must not be edited as the active application, and may be removed only through a separately reviewed cleanup release. The root-level `app.js` and `style.css` are also historical unless the active `index.html` explicitly references them.
 
 ## Core boundary
-ZEKE is a private, user-owned personal-management system. Raw inputs, imported source material, provenance, corrections, and canonical records remain distinguishable. Missing data stays unknown. AI proposes; deterministic code commits.
+ZEKE is a private, user-owned personal-management system. Raw inputs, imported source material, provenance, corrections, and canonical records remain distinguishable. Missing data stays unknown. AI proposes; deterministic application code commits.
 
-## Capture and transaction flow
-1. Preserve raw text, structured form input, file import, or connected-source data.
-2. Route replies to an active transaction before general parsing.
-3. Interpret deterministically when possible and use AI as advisory assistance.
-4. Show the actual source and proposed consequence when review is required.
-5. Commit through the data layer, verify the created record, and offer view/undo.
-6. Rebuild tiles, histories, recommendations, and insights from active canonical records.
+## Workflow engine
+Every meaningful interaction can have one durable workflow transaction containing:
 
-## Health event model
-- Measurements and labs store numeric observations.
-- Sleep stores start/end timestamps, wake date, duration, quality, interruptions, notes, and provenance.
-- Potential Health Events preserve potentially meaningful unstructured context with provisional status and analysis inclusion.
-- Calendar events provide context and question triggers but never prove attendance or completion.
+- user goal and original source;
+- intended destination;
+- known and missing information;
+- proposed change;
+- save, duplicate, and AI status;
+- available next actions;
+- status history and explicit outcome.
 
-## Fitness model
-Activity-specific sessions retain modality-aware fields. One recommendation function feeds both Coach’s Eye and Activity Library. Graph descriptors choose a named comparable metric or return an explicit insufficiency reason. Workout create/edit forms share the same optional context schema.
+Terminal outcomes are `completed`, `not_saved`, `duplicate`, `dismissed`, `superseded`, or `failed`. A user-visible status explains whether anything was saved.
 
-## Presentation hierarchy
-- Sidebar contains major domains only.
-- Labs is a Health library view. Pattern Lab is an Insights subview.
-- Dashboard uses independent content-sized vertical stacks.
-- Insight cards state the observation, relevance, limitations, and a concrete supported next action.
+Full workflow content is mirrored into the user-owned ZEKE repository as `workflow_state` factors. Browser-local persistence contains only minimized operational metadata, not the personal source text or proposed health record. This preserves refresh continuity without creating a hidden local personal database.
+
+## Conversation and review flow
+1. Preserve the original input.
+2. Attach it to the active workflow before interpreting a new standalone task.
+3. Use deterministic interpretation first and connected AI only when useful.
+4. Ask a purpose-driven clarification when a material decision is missing.
+5. Show source, ZEKE’s understanding, proposed consequence, why it matters, and what ZEKE will do.
+6. Commit only after the required confirmation.
+7. detect duplicates before creation;
+8. close with a visible saved, not-saved, duplicate, dismissed, or failed result.
+
+The Review Queue and Conversation Memory are views of the same durable decision state rather than separate disconnected systems.
+
+## Diagnostics and support
+Settings → Diagnostics & Exports creates a privacy-filtered multi-tab Support & Improvement Report. It combines runtime errors, unresolved interactions, AI consultation history, corrections, UX feedback, potential health events, audit history, metrics, workflow history, and developer notes. Credential-like fields are excluded.
+
+## Health and fitness boundaries
+Measurements and labs store observations, not diagnoses. Potential Health Events preserve meaningful unstructured context provisionally. Calendar events can trigger follow-up but never prove attendance. Fitness recommendations use shared evidence, injury context when available, and explicit insufficiency language.
 
 ## Verification boundary
-Local package verification cannot establish deployed credentials, external services, protected user fixtures, or physical-device behavior.
+Local package verification cannot establish live credentials, external-service behavior, protected user fixtures, deployed cache behavior, or physical-device accessibility. Those remain environment verification items.

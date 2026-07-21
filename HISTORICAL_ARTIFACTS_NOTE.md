@@ -1,3 +1,7 @@
 # Historical Artifacts Note
 
-Legacy duplicate application bundles and obsolete partial-replacement instruction files were removed from the active full-replacement package in v0.20.5. Their history remains recoverable from prior release ZIPs and release notes. Historical release/test documents retained here are audit records, not current instructions.
+The current ZEKE application is the readable static runtime named in `ARCHITECTURE.md` and loaded by `index.html`.
+
+The package still contains historical hashed bundles (`assets/index-*.js`, `assets/Dashboard-*.js`, related CSS chunks), older versioned ZEKE scripts, and obsolete root-level application files. They are retained for continuity evidence but are **not active source files** unless referenced by the current `index.html`.
+
+Do not edit, rebuild, or deploy from those legacy artifacts. Their removal is deferred to a separately reviewed cleanup because deleting historical files can affect audit continuity and older links.

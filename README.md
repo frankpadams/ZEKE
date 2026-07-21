@@ -1,56 +1,26 @@
-# ZEKE v0.23.1
+# ZEKE v0.24.0
 
-**Build:** 2026.07.20.1  
-**Release:** Health & Fitness Workflow Stabilization
+**Build:** 2026.07.21.1  
+**Release:** Trust, Conversation & Workflow
 
-This full replacement package stabilizes ZEKE’s health and fitness workflows: atomic sleep saving, direct sleep logging, concrete review questions, consistent activity graphs, equivalent workout create/edit fields, actionable insights, simplified navigation, durable Potential Health Events, and a denser independent-stack Dashboard.
+This full replacement package makes ZEKE’s conversations and review workflows explicit, durable, correctable, and diagnosable.
 
-See `RELEASE_NOTES_v0.23.1.md` and `TEST_REPORT_v0.23.1.md` for details.
+## Main changes
 
----
+- Added the durable ZEKE Workflow Engine with visible completion states.
+- Reworked Talk to ZEKE so retries, clarification, confirmation, duplicates, correction, deferral, and dismissal have defined outcomes.
+- Replaced Questions/Past Decisions with **Conversation Memory**: **Waiting for You** and **Things I’ve Learned**.
+- Rebuilt review items around original information, ZEKE’s understanding, proposed action, why it matters, and what ZEKE will do.
+- Added a context-specific medication schedule editor.
+- Routed supported Talk to ZEKE attachments through the existing safe import workflow.
+- Added **Settings → Diagnostics & Exports → Download Support & Improvement Report**.
+- Corrected Pattern Lab direction wording and tightened Fitness layout density.
+- Documented the directly editable static runtime and identified legacy build artifacts.
 
-## Prior baseline documentation
-
-# ZEKE v0.22.2
-
-**Build:** 2026.07.19.4  
-**Release:** Responsive Stabilization, Activity Foundation, Continuity Reconciliation & Dashboard Acceptance Repair
-
-This is the authoritative full replacement package for ZEKE v0.22.2. Build 2026.07.19.4 preserves the application and continuity work from builds .2 and .3 and makes one narrowly scoped correction: the deployed Dashboard now uses an independent main content stream and Health at a Glance rail so the rail cannot create a large blank vertical gap.
-
-## Implemented application work
-- Stabilized Dashboard and Fitness layout structure with independent content-sized rows.
-- Added one canonical activity-category registry shared by the Activity Library and Add Activity flow.
-- Added **Chores & Functional Activity** as a user-facing category.
-- Added modality-aware activity summaries and non-strength metrics.
-- Added Health Favorites using a separate versioned preference key.
-- Repaired Pattern Lab focus propagation and stale-focus clearing.
-- Added basic editing of one workout record at a time, preserving the prior state in correction history and refreshing derived views.
-- Extended integrity checks to active runtime files.
-
-## Continuity reconciliation in build 2026.07.19.3
-- Rewrote the current Architecture and Feature Status documents so they no longer present v0.5/v0.17 snapshots as the operative design.
-- Updated the Backlog with deferred activity-identity operations, taxonomy migration work, deployment verification, asset inventory, and continuity follow-through.
-- Added binding decisions for canonical activity categories, primary modality plus attributes, record-scoped editing, and safe legacy migration.
-- Added development-error entries for documentation/code audit blind spots, stale screenshot evidence, unverified consultant claims, and incomplete continuity reconciliation.
-- Expanded the Handoff Brief, Comprehension Checkpoint, Runtime Diagnostics, Project Health, release gate, release notes, test report, artifact registry, and project state.
-- Rebuilt checksums and re-audited the reopened package.
-
-## Important boundaries
-The following remain deferred:
-- global activity rename across all historical records;
-- duplicate activity-identity merge;
-- bulk recategorization or silent automatic migration of ambiguous legacy activities;
-- a full correction-history browser, global undo, or event-sourced replay architecture;
-- deployed-origin and physical-device visual verification;
-- live Google Drive, Calendar, and AI-provider verification.
+See `RELEASE_NOTES_v0.24.0.md`, `TEST_REPORT_v0.24.0.md`, and `ARCHITECTURE.md`.
 
 ## Deploy
-Replace the deployed ZEKE files with the contents of this folder. Preserve the existing values in `zeke-config.js` where appropriate. Hard-refresh once and verify that the header reports **v0.22.2 · build 2026.07.19.4**.
+Replace the deployed ZEKE files with the contents of this folder while preserving the intended values in `zeke-config.js`. Hard-refresh once and verify that the application reports **v0.24.0 · build 2026.07.21.1**.
 
 ## Continue development
-Future AI development must begin with [`00_AI_START_HERE.md`](00_AI_START_HERE.md), not this README. The README is a current overview; it does not authorize edits or override the authority chain.
-
-## Build 2026.07.19.4 dashboard acceptance repair
-
-This replacement build changes only Dashboard composition and its verification. The main Dashboard content is now an independent vertical stream beside a separately sized Health at a Glance rail. A tall health rail can no longer create empty grid rows or push Coach’s Eye, insights, and support cards downward. No activity, health-data, integration, parser, or editing behavior was intentionally changed.
+Begin with `00_AI_START_HERE.md`. The active application is the readable static runtime listed in `ARCHITECTURE.md`; do not edit historical hashed bundles as though they were source.

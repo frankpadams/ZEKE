@@ -1,23 +1,28 @@
 # ZEKE Handoff Brief
 
-**Current baseline:** ZEKE v0.23.1 · build 2026.07.20.1  
-**Release:** Health & Fitness Workflow Stabilization
+**Current baseline:** ZEKE v0.24.0 · build 2026.07.21.1  
+**Release:** Trust, Conversation & Workflow
 
-## Purpose
-This release stabilizes the health and fitness workflows exposed by deployed v0.23.0 feedback. It prioritizes trustworthy save transactions, understandable review decisions, correct trend language, actionable insight content, consistent fitness charts, and a denser dashboard.
+## Product direction
+ZEKE is a private personal-management system, not only a health application. Health is the current leading domain. The user owns the durable repository; AI is advisory and replaceable.
 
-## Implemented
-- Atomic confirmation routing, first-class sleep persistence, direct Sleep tile logging, view, and undo.
-- Concrete Review Questions with source and proposal.
-- Display deduplication and truthful change labels.
-- Independent Dashboard stacks.
-- Shared exercise recommendation and labeled Activity Library charts.
-- Equivalent workout create/edit optional fields.
-- Labs under Health; Pattern Lab under Insights.
-- Defined-use calendar health questions and durable Potential Health Events included in AI context.
+## Current release
+v0.24.0 centers trust rather than feature volume:
+
+- Every Talk to ZEKE transaction has an explicit goal, state, proposed consequence, and terminal outcome.
+- A durable workflow can survive navigation and refresh through the user repository. Common pending question, confirmation, correction, memory, and health-history states are reconstructed, and a Resume action is shown.
+- Conversation Memory separates unresolved decisions from confirmed remembered context. Choosing Later preserves the question and moves it behind newer review work.
+- Review items show the original information and downstream effect before action.
+- Medication-schedule questions can open a focused editor instead of dead-ending.
+- Supported attachments use the same import safeguards as Settings.
+- Settings contains one privacy-filtered Support & Improvement Report workbook.
+- Unresolved interactions link the original message, understanding, intended destination, AI use, buttons, retries, save status, and resolution.
+
+## Runtime architecture
+The active code is directly editable static JavaScript/CSS. Read `ARCHITECTURE.md` before changing files. Hashed bundles and older versioned scripts are legacy artifacts and are not loaded by the current application.
 
 ## Verification boundary
-Package verification covers syntax, deterministic regressions, governance, isolated rendered-browser checks, checksums, and reopened-ZIP equality. Live Google Drive, Calendar, AI-provider, service-worker, protected real-workbook, and physical-device behavior remain environment verification outstanding.
+Syntax, deterministic tests, governance checks, isolated rendered smoke checks, and package verification can be completed locally. Live Drive, Calendar, AI providers, service-worker deployment, protected workbook fixtures, and physical-device behavior require environment verification.
 
 ## Startup
-Read `00_AI_START_HERE.md` and follow the development gate. Do not infer new implementation authorization from this brief.
+Read `00_AI_START_HERE.md`, then follow the development gate and current iteration record. Do not infer implementation authority from historical release notes.
