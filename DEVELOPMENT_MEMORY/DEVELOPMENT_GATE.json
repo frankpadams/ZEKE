@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "release": "0.26.0",
-  "build": "2026.07.22.1",
+  "release": "0.26.1",
+  "build": "2026.07.22.2",
   "current_iteration": {
     "status": "package_verification_complete_environment_verification_outstanding",
     "baseline_verified": true,
@@ -10,56 +10,44 @@
     "scope_presented": true,
     "user_approved_scope": true,
     "approved_at": "2026-07-22T04:51:14Z",
-    "approval_evidence": "User explicitly requested a thorough release addressing all concerns raised over the prior day and supplied v0.25.2 plus v0.23.0.",
-    "release": "0.26.0",
-    "build": "2026.07.22.1",
-    "baseline_release": "0.25.2",
-    "baseline_build": "2026.07.21.4",
+    "approval_evidence": "User reported the v0.26.0 Activity Library, Dashboard disclosure, relationship-link, and Coach-evidence regressions and requested that all raised concerns be addressed.",
+    "release": "0.26.1",
+    "build": "2026.07.22.2",
+    "baseline_release": "0.26.0",
+    "baseline_build": "2026.07.22.1",
     "approved_scope": [
-      "Preserve the resolved mobile workout-save issue",
-      "Restore a compact, organized Dashboard with less white space",
-      "Implement the approved daily-briefing Dashboard hierarchy",
-      "Make Coach's Eye actionable and Trends & Analysis descriptive",
-      "Consolidate health subdomains under Health and move Discover into navigation",
-      "Keep Questions for You conversational",
-      "Ensure sleep saved through Talk to ZEKE appears in Recent Health Record",
-      "Use pull-down sleep times and mobile-safe form sizing",
-      "Show only activity-relevant Fitness fields and separate stair steps, ambulatory steps, and distance",
-      "Add reversible record removal and focused incomplete-workout review",
-      "Default Fitness to Favorites and repair activity detail navigation",
-      "Add explicit medication dose confirmation and reviewed historical-dose backfill",
-      "Provide visible medication schedule save outcomes",
-      "Add provider-backed goals with bounded optional AI review",
-      "Move the user profile to portable provider-backed preferences",
-      "Preserve focused evidence detail and remove duplicate Provider View behavior",
-      "Update the existing Constitution and all continuity authorities rather than creating a parallel constitution"
+      "Preserve the resolved v0.25.2 mobile workout-save path",
+      "Default the Activity Library to Favorites on every fresh application load",
+      "Replace overflowing activity-type chips with the responsive Favorites, Recent, Strength, Cardio, Mobility/PT, Sports, Custom, and All selector",
+      "Add Activity Library search without creating another horizontal control strip",
+      "Keep Dashboard trend and private-summary disclosures open across normal rerenders until the user closes them",
+      "Make Review relationships open activity-specific evidence or a specific data-sufficiency explanation rather than a generic page",
+      "Include workout and sleep values in paired-date relationship screening",
+      "Attach specific research articles and transparent limitations to Coach considerations",
+      "Preserve the v0.26.0 daily-briefing, Health architecture, sleep-record, medication, goal, profile, and reversible-removal improvements"
     ],
     "explicitly_excluded": [
       "Destructive data migration",
+      "Generic unrelated relationship fallback",
       "Generic app launcher or copied dynamic membership QR",
-      "Session-based mobile redesign before user-approved mockups",
-      "Unverified live-provider or multi-account security claims"
+      "Unverified live-provider or physical-device claims"
     ],
     "acceptance_criteria": [
-      "Approved Dashboard hierarchy is present",
-      "Coach’s Eye is actionable-only",
-      "Health is the umbrella domain",
-      "Sleep appears in Recent Health Record",
-      "Activity tables use relevant fields and Favorites is the default lens",
-      "Mobile save hotfix remains present",
-      "Questions for You language remains",
-      "Medication action completion requires confirmed taken status",
-      "Medication backfill previews dates and skips existing doses",
-      "Goals and profile use provider-backed storage",
-      "All active identity references agree"
+      "Activity Library starts on Favorites",
+      "No horizontal Activity Library chip overflow",
+      "Dashboard disclosures stay open through rerender",
+      "Relationship review is exact and contextual",
+      "Coach evidence opens direct research sources",
+      "Mobile Save Workout hotfix remains present",
+      "All package tests and governance checks pass"
     ],
-    "rollback_plan": "Restore v0.25.2 build 2026.07.21.4; no data migration is required.",
+    "rollback_plan": "Restore v0.26.0 build 2026.07.22.1; no data migration is required.",
     "prior_conversations_reviewed": true,
     "implementation_complete": true,
     "verification_complete": true,
     "package_verification": "complete",
     "environment_verification": "outstanding",
-    "unpacked_file_count": 230
+    "unpacked_file_count": 234
   },
   "next_iteration": {
     "status": "not_open",
@@ -68,6 +56,6 @@
     "scope_presented": false,
     "user_approved_scope": null
   },
-  "current_version": "0.26.0",
-  "current_build": "2026.07.22.1"
+  "current_version": "0.26.1",
+  "current_build": "2026.07.22.2"
 }

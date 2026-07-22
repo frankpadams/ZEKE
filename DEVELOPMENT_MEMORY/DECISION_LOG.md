@@ -88,3 +88,12 @@ Current release identity, scope, artifact authority, lifecycle, supersessions, a
 - **DEC-033:** The user profile belongs in provider-backed workspace preferences. Device-local personal-profile storage is legacy migration input only, not the current system of record.
 - **DEC-034:** Root re-render preservation must never overwrite live values in direct-entry overlays that are not being replaced. Editable-state restoration is scoped to the replaced root.
 - **DEC-035:** Favorites is the default Fitness library lens. When no favorites exist, ZEKE may show a clearly labeled most-used fallback rather than silently switching the user’s selected lens.
+
+
+## 2026-07-22 — v0.26.1 interaction and evidence hotfix
+
+- Activity Library presentation defaults to Favorites on each fresh load; stale category persistence is rejected.
+- Activity categories use one responsive selector plus search, not a horizontally clipped chip strip.
+- Dashboard disclosure state is explicit application state and survives rerenders.
+- Relationship links must resolve to the selected item or an item-specific insufficient-data explanation; unrelated generic fallback is prohibited.
+- Coach considerations must expose the user-data trigger, ZEKE interpretation, specific research sources when applicable, and limitations.

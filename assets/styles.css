@@ -572,3 +572,27 @@ body.nav-open{overflow:hidden}body.nav-open .sidebar{transform:translateX(0)}.si
 .backfill-preview>strong{font-size:12px}.backfill-preview>p{margin:0;color:var(--muted);font-size:10px;line-height:1.45}.backfill-preview>div{display:flex;gap:6px;flex-wrap:wrap}.backfill-preview>div>span{padding:5px 8px;border:1px solid var(--line);border-radius:999px;background:var(--panel);font-size:9px}.backfill-preview em{font-size:10px;color:var(--muted)}
 .fitness-goals-panel{grid-column:1/-1!important}.goal-list{display:grid;gap:8px}.goal-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px;align-items:center;padding:11px 12px;border:1px solid var(--line);border-radius:14px;background:var(--soft)}.goal-row>div:first-child{display:grid;gap:3px}.goal-row span{font-size:8.5px;font-weight:850;letter-spacing:.07em;text-transform:uppercase;color:var(--blue)}.goal-row strong{font-size:12px}.goal-row small{font-size:9.5px;line-height:1.4;color:var(--muted)}.goal-actions{display:flex;gap:8px;align-items:center}.goal-review{display:grid;gap:5px;padding:12px;border:1px solid var(--line);border-radius:14px;background:var(--soft)}.goal-review strong{font-size:11px}.goal-review p{margin:0;font-size:10.5px;line-height:1.5;color:var(--muted)}.goal-review small{font-size:9px;color:var(--muted)}
 @media(max-width:620px){.goal-row{grid-template-columns:1fr}.goal-actions{justify-content:flex-start}}
+
+/* v0.26.1 — responsive Activity Library, persistent dashboard disclosures, and contextual evidence */
+.activity-library-controls{display:grid;grid-template-columns:minmax(180px,.55fr) minmax(220px,1fr);gap:12px;align-items:end;max-width:100%;min-width:0;margin:4px 0 14px;padding:12px;border:1px solid var(--line);border-radius:16px;background:var(--soft);overflow:hidden}
+.activity-library-controls label{display:grid;gap:6px;min-width:0;color:var(--muted);font-size:10px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+.activity-library-controls select,.activity-library-controls input{width:100%;max-width:100%;min-width:0;box-sizing:border-box;border:1px solid var(--line);border-radius:12px;background:var(--panel);color:var(--ink);padding:10px 12px;font:inherit;text-transform:none;letter-spacing:normal}
+.activity-library-controls select:focus,.activity-library-controls input:focus{outline:2px solid color-mix(in srgb,var(--brand-blue) 28%,transparent);outline-offset:1px;border-color:color-mix(in srgb,var(--brand-blue) 55%,var(--line))}
+.fitness-library-panel{min-width:0;overflow:hidden}
+.fitness-library-panel .fitness-progress-grid{min-width:0}
+.fitness-progress-card[hidden]{display:none!important}
+.coach-action-links,.research-evidence-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:8px}
+.coach-evidence-trigger{margin-top:12px;justify-self:start}
+.evidence-review-card{width:min(760px,calc(100vw - 28px));max-height:min(860px,calc(100vh - 28px));overflow:auto}
+.research-evidence-list{display:grid;gap:10px}
+.research-evidence-card,.relationship-result,.specific-empty-state{display:grid;gap:7px;padding:14px;border:1px solid var(--line);border-radius:14px;background:var(--soft)}
+.research-evidence-card>span,.relationship-result>small{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.research-evidence-card>strong,.relationship-result>strong{font-size:13px;line-height:1.35}
+.research-evidence-card p,.specific-empty-state p{margin:0;color:var(--muted);font-size:11px;line-height:1.55}
+.relationship-result span{font-size:11px;color:var(--ink)}
+.evidence-caution{padding:11px 12px;border-left:3px solid var(--brand-gold);border-radius:0 10px 10px 0;background:color-mix(in srgb,var(--brand-gold) 8%,var(--panel));font-size:11px}
+.activity-relationship-card section,.coach-evidence-card section,.evidence-review-card section{display:grid;gap:9px;margin:16px 0}
+.activity-relationship-card h3,.coach-evidence-card h3,.evidence-review-card h3{margin:0;font-size:13px}
+.trend-analysis-item[open] summary b{color:var(--brand-blue)}
+.trend-analysis-item[open],.private-summary[open]{scroll-margin-top:90px}
+@media(max-width:720px){.activity-library-controls{grid-template-columns:1fr;padding:10px}.coach-action-links,.research-evidence-actions{align-items:stretch}.coach-action-links button,.research-evidence-actions a{width:100%;justify-content:center}.evidence-review-card{width:calc(100vw - 18px);max-height:calc(100vh - 18px)}}

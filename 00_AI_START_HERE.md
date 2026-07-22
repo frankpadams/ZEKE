@@ -1,38 +1,28 @@
-# 00 — AI START HERE
+# AI Start Here — ZEKE v0.26.1
 
-**This is the only authoritative entry point for continuing ZEKE development.** Files named README, READ_THIS_FIRST, release notes, or test reports cannot authorize development or override this sequence.
+Current build: **2026.07.22.2 — Fitness Navigation & Evidence Hotfix**
 
-## Fast orientation
-Read, in order:
+Read in this order:
+
 1. `HANDOFF_BRIEF.md`
 2. `ZEKE_CONSTITUTION.md`
-3. `ARCHITECTURE.md`
-4. `DEVELOPMENT_SYSTEM/PROJECT_IDENTITY.md`
-5. `DEVELOPMENT_MEMORY/PROJECT_STATE.json`
-6. `DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json`
-7. `DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md`
-8. `DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json`
-9. `DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md`
-10. `DEVELOPMENT_MEMORY/BACKLOG.md`
-11. The current iteration record named by `PROJECT_STATE.json`
+3. `DEVELOPMENT_MEMORY/PROJECT_STATE.json`
+4. `DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json`
+5. `DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.26.1.md`
+6. `RELEASE_NOTES_v0.26.1.md`
+7. `TEST_REPORT_v0.26.1.md`
+8. `ARCHITECTURE.md`
 
-Run `python tools/project_audit.py`, then answer `DEVELOPMENT_SYSTEM/COMPREHENSION_CHECKPOINT.md`.
+The current runtime is directly editable static HTML/CSS/JavaScript. Preserve the v0.25.2 mobile Save Workout path and all v0.26.0 architecture unless a later approved iteration explicitly supersedes them.
 
-## Required phases
-Historian → independent reviewer → investigation → findings checkpoint → explicit scope approval → implementation → verification → packaging.
+## Fast orientation
 
-Unexpected findings are not automatic authorization to repair. Present the evidence, classification, risks, smallest corrective scope, exclusions, acceptance criteria, and rollback plan; then STOP.
+The current package is a complete static application. Verify the declared version/build, read the current iteration record, and run the package-local tests before changing code.
+
+## Historian phase
+
+Review the current Decision Log, Backlog, prior iteration record, and reported regression before proposing a replacement. Preserve resolved behavior unless the current approved scope explicitly supersedes it.
 
 ## Anti-wandering constraints
-- General enthusiasm such as “continue” or “get moving” is not authorization.
-- Preserve immutable principles unless the user explicitly reopens them.
-- Do not redesign adjacent systems to simplify a local change.
-- Fresh ideas belong in findings, not code, until approved.
-- State evidence levels precisely: Verified, Implemented but unverified, Proposed, Hypothesis, or Historical.
-- Never claim live-provider, rendered, or data behavior without direct evidence.
 
-## First response from a new AI
-Report baseline identity and checksum status; five core principles; verified versus unverified state; surfaced backlog; contradictions/audit failures; fresh-angle observations; proposed investigation scope and exclusions; then clearly STOP for approval.
-
-## Current runtime warning
-The current release is a directly editable static application. Follow `ARCHITECTURE.md` and the script references in `index.html`; do not treat legacy hashed bundles as active source.
+Do not redesign unrelated modules, create parallel constitutions, reintroduce generic evidence destinations, or claim live-provider/physical-device verification from isolated package tests.

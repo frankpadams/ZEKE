@@ -1,7 +1,7 @@
-# ZEKE Architecture — Current v0.26.0 Baseline
+# ZEKE Architecture — Current v0.26.1 Baseline
 
-**Build:** 2026.07.22.1  
-**Release:** Daily Briefing & Health Architecture
+**Build:** 2026.07.22.2  
+**Release:** Fitness Navigation & Evidence Hotfix
 
 ## Authoritative runtime
 
@@ -63,3 +63,8 @@ The v0.25.2 direct Save Workout handler, form-submit fallback, compatibility tra
 ## Verification boundary
 
 Local package verification cannot establish live credentials, Google Drive/Calendar behavior, AI provider behavior, deployed service-worker replacement, protected real-workbook results, or physical-device accessibility. Those remain environment verification items.
+
+
+## v0.26.1 interaction stabilization
+
+Activity Library category selection is presentation state: every fresh application load begins at Favorites, while a user’s current in-session selection may survive ordinary rerenders. Dashboard native disclosures have explicit in-memory open-state tracking. Evidence navigation requires exact context and may show an honest insufficient-data state rather than substituting another pattern.
