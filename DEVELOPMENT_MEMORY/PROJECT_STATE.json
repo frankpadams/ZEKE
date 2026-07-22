@@ -1,9 +1,9 @@
 {
   "schema_version": 2,
-  "current_version": "0.25.2",
-  "current_build": "2026.07.21.4",
-  "release_label": "Trust & Usability Restoration",
-  "baseline": "v0.25.0 Adaptive Fitness & Provider Preview",
+  "current_version": "0.26.0",
+  "current_build": "2026.07.22.1",
+  "release_label": "Daily Briefing & Health Architecture",
+  "baseline": "v0.25.2 Mobile Workout Save Hotfix",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
   "authoritative_documents": [
     "00_AI_START_HERE.md",
@@ -19,33 +19,39 @@
     "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
     "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
     "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
-    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.25.2.md"
+    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.26.0.md"
   ],
   "implemented_this_release": [
-    "Removed the premature Provider View and restored Dashboard as the single health overview",
-    "Defaulted Fitness to Favorites with a clear most-used fallback until favorites are selected",
-    "Replaced generic Review evidence routing with a contextual evidence review showing observations, limitations, and related dated records",
-    "Renamed activity-definition actions to Create activity type",
-    "Added privacy-collapsed medications and diagnoses/conditions summaries to Dashboard",
-    "Corrected all active splash, runtime, cache, and continuity version references"
+    "Preserved the resolved v0.25.2 mobile workout-save path",
+    "Rebuilt Dashboard as a compact daily briefing with full-width Trends & Analysis",
+    "Separated actionable Coach’s Eye from descriptive Trends & Analysis",
+    "Consolidated health subdomains under Health and added Discover/Documents navigation",
+    "Unified sleep wake-date fields and Recent Health Record visibility with selector-based entry",
+    "Implemented activity-relevant Fitness fields, Favorites default, focused detail, and reversible removal",
+    "Added explicit medication dose confirmation and reviewed batch backfill",
+    "Added provider-backed goals with optional advisory AI review",
+    "Moved user profile to provider-backed preferences with legacy migration",
+    "Added Dashboard pinning/order, global search, concrete evidence detail, and modal-entry protection"
   ],
   "inherited_verified_evidence": [
-    "Medication, sleep, activity, dashboard, navigation, and workbook deterministic regressions from v0.23.1 and earlier",
-    "User-owned storage, provenance preservation, and deterministic commit boundaries"
+    "v0.25.2 direct mobile workout save handler and visible failure path",
+    "v0.24.0 trust/workflow foundation",
+    "Deterministic medication, sleep, workbook, provenance, and workflow regressions"
   ],
   "known_issues": [
-    "Physical-device, live storage, live AI, protected workbook, service-worker, and browser print behavior require environment verification",
-    "Central shared AI for multiple beta users requires a protected proxy/backend and is not implemented in the static browser package",
-    "Full multi-account authentication and isolation remain future beta infrastructure"
+    "Physical-device, live storage, live AI, protected workbook, service-worker, and accessibility behavior require environment verification",
+    "Session-based mobile Fitness redesign remains deferred until user-approved mockups",
+    "Central shared AI and multi-account isolation require protected backend infrastructure",
+    "Goal progress automation beyond stored goals and current evidence remains future work"
   ],
   "next_review_items": [
-    "Deployed-origin workflow restoration and Support Report acceptance",
-    "Live AI escalation and failure logging",
-    "Real-device mobile and accessibility review",
+    "Deployed physical-device Save Workout, sleep selector, and modal-entry acceptance",
+    "Live Drive profile/goal/sleep persistence and Calendar/AI verification",
     "Protected real-workbook regression",
-    "Separate legacy-asset cleanup review"
+    "User-reviewed mobile Fitness mockups",
+    "Legacy asset cleanup review"
   ],
-  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.25.2.md",
+  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.26.0.md",
   "files_to_read_first": [
     "00_AI_START_HERE.md"
   ],
@@ -57,5 +63,5 @@
     "real-data workbook regression when fixture is available",
     "final ZIP reopened and byte-compared with staging"
   ],
-  "current_release_label": "Trust & Usability Restoration"
+  "current_release_label": "Daily Briefing & Health Architecture"
 }

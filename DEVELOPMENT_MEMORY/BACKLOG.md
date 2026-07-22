@@ -1,7 +1,7 @@
 # ZEKE Backlog
 
 **Status:** Authoritative  
-**Current baseline:** v0.24.0 · build 2026.07.21.1
+**Current baseline:** v0.26.0 · build 2026.07.22.1
 
 | ID | Item | Priority | Status | Origin | Resurface when |
 |---|---|---:|---|---|---|
@@ -62,3 +62,15 @@ The v0.23.1 stabilization scope remains complete locally. Do not reopen it as fe
 | CLEAN-024 | Review and remove unreferenced historical hashed bundles | Medium | Separate approved cleanup; preserve audit continuity |
 | HISTORY-024 | Build a user-facing correction-history browser and broader undo | Medium | Workflow/audit foundation now available |
 | WF-025 | Expand hard-refresh restoration to every specialized editor and multi-step import preview | Medium | Common question, confirmation, correction, health-history, memory, and schedule resume paths are implemented; specialized modal reconstruction needs deployed use evidence |
+
+
+## After v0.26.0
+
+| ID | Item | Priority | Status / prerequisite |
+|---|---|---:|---|
+| QA-026 | Physical-device acceptance for Save Workout, sleep pull-downs, mobile keyboard/zoom, and Dashboard stacking | High | Environment verification outstanding |
+| DATA-026 | Verify Talk-to-ZEKE sleep save → Recent Health Record → refresh persistence with live Drive | High | Requires deployed connected storage |
+| MOB-026 | Session-based mobile Fitness redesign | High | Do not code until the user reviews and approves mobile mockups; no swipe-only controls |
+| UI-026B | Drag-and-drop Dashboard tile editing and layout profiles | Medium | v0.26 provides explicit reordering; drag/drop requires a separately approved responsive design |
+| MED-026 | Validate monthly medication/supplement review against real schedules and corrections | Medium | Requires one month of real use |
+| SEARCH-026 | Add richer global search filters and direct record focus | Medium | Current search is intentionally lightweight |

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "current_version": "0.25.2",
-  "current_build": "2026.07.21.4",
+  "current_version": "0.26.0",
+  "current_build": "2026.07.22.1",
   "immutable_principles": [
     "user_owned_canonical_data",
     "ai_advisory_deterministic_commit",
@@ -11,7 +11,13 @@
     "unified_talk_to_zeke",
     "explicit_conversation_closure",
     "workflow_details_in_user_repository",
-    "diagnostic_credentials_excluded"
+    "diagnostic_credentials_excluded",
+    "dashboard_daily_briefing",
+    "health_umbrella_fitness_process",
+    "coach_actionable_trends_descriptive",
+    "questions_for_you_conversational",
+    "activity_relevant_fields",
+    "mobile_save_hotfix_protected"
   ],
   "supersessions": [
     {

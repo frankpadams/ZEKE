@@ -140,3 +140,45 @@
 **Finding:** Metric overflow buttons looked interactive but had no action, two review pills shared the same ID so only one reliably received a handler, and workout close/remove icon buttons relied on the × glyph alone.
 **Risk:** Users could click controls that did nothing, while keyboard and assistive-technology users received ambiguous control names.
 **Correction:** Metric overflow controls open the matching detail view, all review pills use a shared data-action binding, and icon-only workout controls have explicit accessible labels. A rendered visible-control contract audit now fails on unbound enabled controls or unnamed icon controls across major desktop routes and the mobile Dashboard.
+
+
+## ERR-033 — Missing baseline artifacts were assumed instead of requested
+- **Failure:** A design-only add-on package was created when the user intended an updated master release, even though the active source package was not available.
+- **Prevention:** When a requested update depends on a missing base artifact, ask for the current working release and any regression-reference release before packaging. Never imply a merge occurred without the source.
+
+## ERR-034 — Dashboard composition regressed into large empty space
+- **Failure:** Masonry/shared-column composition let tall sections create visual imbalance and made the Dashboard less organized.
+- **Prevention:** The daily briefing uses one explicit flow with a compact three-card action row and a full-width Trends row. Tests enforce the new structure and prohibit the old dashboard masonry wrapper.
+
+## ERR-035 — Confirmed sleep did not surface consistently
+- **Failure:** A sleep statement could be understood in Talk to ZEKE but fail to appear in the same Recent Health Record used by direct entries.
+- **Prevention:** Deterministic and direct sleep saves share `event_date` and `wake_date`; semantic Health filtering explicitly includes sleep; regression tests verify the full contract.
+
+## ERR-036 — Universal activity fields created irrelevant and misleading columns
+- **Failure:** Strength rows showed steps/duration while stair-cardio rows showed load/repetitions.
+- **Prevention:** Capture, detail, graph, and history logic select fields by activity profile and hide columns without relevant values. Stair steps, ambulatory steps, and distance are separate fields.
+
+## ERR-037 — A solved mobile save defect was at risk during broader redesign
+- **Failure:** A later architecture release could have overwritten the direct click handler that resolved the real mobile Save Workout failure.
+- **Prevention:** Use v0.25.2 as the implementation baseline, retain direct click plus submit fallback and visible error state, and add explicit regression assertions.
+
+
+## ERR-038 — Medication schedule save could fail without a useful outcome
+- **Failure:** The recurring schedule save path referenced an undefined label in its completion message, risking a silent or confusing failure.
+- **Prevention:** Use the validated action label already in scope, display visible success/failure feedback, and retain a regression assertion for the schedule editor.
+
+## ERR-039 — Historical doses required repetitive single-entry work
+- **Failure:** Users could not efficiently enter a known series of past medication doses without creating each date individually.
+- **Prevention:** Use a reviewed date-range transaction with cadence, preview, duplicate skipping, provenance, and undo rather than blind bulk creation.
+
+## ERR-040 — Personal profile remained device-bound
+- **Failure:** The active profile was written to localStorage, conflicting with the portable user-owned repository boundary.
+- **Prevention:** Store the profile in provider-backed preferences; accept the legacy local value only as one-time migration input and remove it after a successful save.
+
+## ERR-041 — Delayed render cleared modal input
+- **Failure:** A queued root render could capture an empty modal field and later restore that stale value into an overlay outside the replaced root, erasing newly typed text.
+- **Prevention:** Capture and restore editable state only for controls inside `#root`. Overlays that remain mounted retain their own live DOM state.
+
+## ERR-042 — Goal guidance risked becoming an AI commitment path
+- **Failure risk:** A goal-review feature could allow an AI response to invent targets or silently save changes.
+- **Prevention:** Keep goal review advisory, show limitations, require explicit user save, and give AI no commit authority.

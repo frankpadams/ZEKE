@@ -63,3 +63,28 @@ Current release identity, scope, artifact authority, lifecycle, supersessions, a
 - Use focused editors after interpretation and AI cannot safely complete a task, beginning with medication schedules.
 - Treat Talk to ZEKE attachments and Settings imports as the same safeguarded import path.
 - Define the readable static runtime as authoritative and legacy hashed bundles as historical.
+
+
+## 2026-07-22 — v0.26.0 daily briefing and domain decisions
+
+- The Dashboard answers user questions and functions as a daily briefing.
+- Health at a Glance is user-curated from Health; Fitness exercises do not become health-state tiles.
+- Today’s Actions, Coach’s Eye, and Upcoming share one compact desktop row; Trends & Analysis gets a full-width expandable row.
+- Coach’s Eye is actionable-only with a high threshold and zero-to-three items; Trends & Analysis is descriptive-only.
+- Health absorbs Life & Symptoms, Sleep, Medications, Measurements, Labs, Nutrition, Conditions, and related context.
+- Fitness remains the process/training domain. Discover becomes the global exploration destination.
+- Preserve the phrase “Questions for You.”
+- Activity history and detail tables show only activity-relevant fields; stair steps, ambulatory steps, and distance are distinct.
+- Record removal is reversible and audit-preserving.
+- External-app behavior is contextual handoff only.
+- v0.25.2 mobile workout saving is a protected regression boundary.
+
+
+## 2026-07-22 — v0.26.0 medication, goals, profile, and interaction decisions
+
+- **DEC-030:** A medication schedule expresses expectation, not completion. Completion requires an explicit confirmed taken/administered event on the applicable local date.
+- **DEC-031:** Historical medication entry uses a reviewed batch transaction: choose date range and cadence, preview every date, skip matching existing records, preserve batch provenance, and provide undo.
+- **DEC-032:** Health and Fitness goals are durable user-owned records. Deterministic structure review is always available; connected-AI review is optional, advisory, non-committing, and not medical clearance.
+- **DEC-033:** The user profile belongs in provider-backed workspace preferences. Device-local personal-profile storage is legacy migration input only, not the current system of record.
+- **DEC-034:** Root re-render preservation must never overwrite live values in direct-entry overlays that are not being replaced. Editable-state restoration is scoped to the replaced root.
+- **DEC-035:** Favorites is the default Fitness library lens. When no favorites exist, ZEKE may show a clearly labeled most-used fallback rather than silently switching the user’s selected lens.
