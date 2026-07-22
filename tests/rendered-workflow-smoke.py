@@ -68,6 +68,18 @@ with sync_playwright() as p:
             page.locator('#searchBtn').click();page.locator('#globalSearchInput').fill('sleep');page.wait_for_timeout(80)
             results['interactions']['search']={'results':page.locator('.search-result').count(),'sleep_match':page.locator('.search-result',has_text='Sleep').count()>=1}
             page.locator('#closeGlobalSearch').click()
+            trend=page.locator('.trend-analysis-item').first
+            if trend.count():
+                trend.locator('summary').click();page.wait_for_timeout(150)
+                before=trend.evaluate('(el)=>el.open')
+                page.locator('[data-range="quarter"]').first.click();page.wait_for_timeout(120)
+                after=page.locator('.trend-analysis-item').first.evaluate('(el)=>el.open')
+                private=page.locator('.private-summary').first
+                private.locator('summary').click();page.wait_for_timeout(150)
+                private_before=private.evaluate('(el)=>el.open')
+                page.locator('[data-range="month"]').first.click();page.wait_for_timeout(120)
+                private_after=page.locator('.private-summary').first.evaluate('(el)=>el.open')
+                results['interactions']['dashboard_disclosure']={'opened':before,'survived_rerender':after,'private_opened':private_before,'private_survived_rerender':private_after}
         if route=='health':
             page.locator('[data-log-metric="sleep_duration"]').first.click()
             results['interactions']['sleep_log']={x:page.locator('#'+x).count()==1 for x in ['sleepWakeDate','sleepStartHour','sleepStartMinute','sleepStartAmPm','sleepEndHour','sleepEndMinute','sleepEndAmPm','sleepQuality','sleepInterruptions','metricEntryNotes']}
@@ -86,9 +98,19 @@ with sync_playwright() as p:
             page.locator('#saveMedicationBackfill').click();page.wait_for_timeout(350)
             results['interactions']['medication_backfill']['saved_rows']=page.locator('tr',has_text='Test medication').count()
         if route=='fitness':
-            results['interactions']['fitness_defaults']={'favorites_active':page.locator('[data-activity-tab="favorites"].active').count()==1}
+            selector=page.locator('#activityLibrarySelect')
+            results['interactions']['fitness_defaults']={'favorites_active':selector.input_value()=='favorites','chip_row_removed':page.locator('.fitness-library-panel .library-tabs').count()==0,'view_order':selector.locator('option').all_inner_texts(),'panel_overflow':page.locator('.fitness-library-panel').evaluate('(el)=>el.scrollWidth>el.clientWidth+1'),'controls_overflow':page.locator('.activity-library-controls').evaluate('(el)=>el.scrollWidth>el.clientWidth+1')}
+            page.locator('#activityLibrarySearch').fill('seated');page.wait_for_timeout(80)
+            results['interactions']['fitness_defaults']['search_visible']=page.locator('[data-activity-name="Seated Row"]:visible').count()==1
+            page.locator('#activityLibrarySearch').fill('');
             page.locator('[data-activity-name="Seated Row"]').click();page.wait_for_timeout(100)
             results['interactions']['fitness_defaults']['activity_detail']=page.locator('.activity-expanded-detail').count()==1
+            page.locator('[data-activity-pattern="Seated Row"]').click();page.wait_for_timeout(80)
+            results['interactions']['relationship_review']={'modal':page.locator('#activityRelationshipModal').count()==1,'specific_activity':'Seated Row' in page.locator('#activityRelationshipModal').inner_text(),'not_generic':'No tested relationship yet for Seated Row' in page.locator('#activityRelationshipModal').inner_text()}
+            page.locator('#closeActivityRelationship').click()
+            page.locator('[data-coach-evidence="Seated Row"]').last.click();page.wait_for_timeout(80)
+            results['interactions']['coach_evidence']={'modal':page.locator('#coachEvidenceModal').count()==1,'pubmed_links':page.locator('#coachEvidenceModal a[href*="pubmed.ncbi.nlm.nih.gov"]').count(),'personal_trigger':'What in your data triggered this' in page.locator('#coachEvidenceModal').inner_text()}
+            page.locator('#closeCoachEvidence').click()
             page.locator('#addGoalBtn').click();page.locator('#goalStatement').fill('Build strength safely while protecting my shoulder');page.locator('#reviewGoalBtn').click();page.wait_for_timeout(80)
             results['interactions']['goal_setting']={'review':page.locator('#goalReview').inner_text(),'stored_in_workspace_copy':'workspace' in page.locator('#goalModal').inner_text().lower()}
             page.evaluate("document.querySelector('#goalForm').requestSubmit()");page.wait_for_timeout(500)
@@ -106,16 +128,22 @@ with sync_playwright() as p:
             page.locator('#cancelRecurringActionSchedule').click()
         results['routes'][route]['interaction_audit']=page.evaluate(interaction_audit_js)
         page.close()
-    page=browser.new_page(viewport={'width':420,'height':900});errors=[];page.on('pageerror',lambda e:errors.append(str(e)));page.evaluate("location.hash='#/health/dashboard'");page.set_content(html,wait_until='load');page.wait_for_timeout(1500);results['routes']['mobile_dashboard']={'text':len(page.locator('#root').inner_text()),'errors':errors,'interaction_audit':page.evaluate(interaction_audit_js)};page.close();browser.close()
+    page=browser.new_page(viewport={'width':420,'height':900});errors=[];page.on('pageerror',lambda e:errors.append(str(e)));page.evaluate("location.hash='#/health/dashboard'");page.set_content(html,wait_until='load');page.wait_for_timeout(1500);results['routes']['mobile_dashboard']={'text':len(page.locator('#root').inner_text()),'errors':errors,'interaction_audit':page.evaluate(interaction_audit_js)};page.close()
+    page=browser.new_page(viewport={'width':390,'height':844});errors=[];page.on('pageerror',lambda e:errors.append(str(e)));page.evaluate("location.hash='#/fitness'");page.set_content(html,wait_until='load');page.wait_for_timeout(1500);results['routes']['mobile_fitness']={'text':len(page.locator('#root').inner_text()),'errors':errors,'interaction_audit':page.evaluate(interaction_audit_js),'selector':page.locator('#activityLibrarySelect').input_value(),'panel_overflow':page.locator('.fitness-library-panel').evaluate('(el)=>el.scrollWidth>el.clientWidth+1'),'controls_overflow':page.locator('.activity-library-controls').evaluate('(el)=>el.scrollWidth>el.clientWidth+1')};page.close();browser.close()
 print(json.dumps(results,indent=2))
 assert all(not x['errors'] and x['text']>500 for x in results['routes'].values())
+assert results['routes']['mobile_fitness']['selector']=='favorites' and not results['routes']['mobile_fitness']['panel_overflow'] and not results['routes']['mobile_fitness']['controls_overflow']
 assert all(not x.get('interaction_audit',{}).get('missing_name') and not x.get('interaction_audit',{}).get('unbound') for key,x in results['routes'].items()), results['routes']
 assert results['interactions']['workflow_resume']['button'] and results['interactions']['workflow_resume']['choices']>=1
 assert results['interactions']['medication_confirmation']['confirmed'] and 'Taken today' in results['interactions']['medication_confirmation']['choices']
 assert results['interactions']['search']['results']>=1 and results['interactions']['search']['sleep_match']
 assert all(results['interactions']['sleep_log'].values())
 assert all(results['interactions']['workout_create'].values())
-assert all(results['interactions']['fitness_defaults'].values())
+assert results['interactions']['fitness_defaults']['favorites_active'] and results['interactions']['fitness_defaults']['chip_row_removed'] and results['interactions']['fitness_defaults']['search_visible'] and not results['interactions']['fitness_defaults']['panel_overflow'] and not results['interactions']['fitness_defaults']['controls_overflow']
+assert results['interactions']['fitness_defaults']['view_order']==['Favorites','Recent','Strength','Cardio','Mobility/PT','Sports','Custom','All']
+assert all(results['interactions']['dashboard_disclosure'].values())
+assert all(results['interactions']['relationship_review'].values())
+assert results['interactions']['coach_evidence']['modal'] and results['interactions']['coach_evidence']['pubmed_links']>=2 and results['interactions']['coach_evidence']['personal_trigger']
 assert results['interactions']['goal_setting']['saved'] and results['interactions']['goal_setting']['review']
 assert all(results['interactions']['sleep_edit'].values())
 assert results['interactions']['medication_review']['monthly_checkin']

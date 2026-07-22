@@ -24,7 +24,8 @@ must(app.includes('new Set(storedStringArray(\'zeke.health.metricFavorites.v1\')
 must(parser.includes('wake_date:wakeDate'),'deterministic sleep wake date missing');
 must(css.includes('.dashboard-v2')&&css.includes('.dashboard-briefing-row'),'daily briefing CSS missing');
 // July 21–22 regression and workflow checklist.
-must(app.includes("activityTab:localStorage.getItem('zeke.fitness.activityTab.v1')||localStorage.getItem('zeke-activity-tab')||'favorites'"),'Fitness must default to Favorites');
+must(app.includes("activityTab:'favorites'"),'Fitness must default to Favorites');
+must(!app.includes("activityTab:localStorage.getItem('zeke.fitness.activityTab.v1')"),'stale Activity Library view must not override Favorites');
 must(app.includes('Click for details and coaching')&&app.includes("$$('[data-activity-name]').forEach"),'activity details click path missing');
 must(app.includes('+ Create activity type'),'ambiguous add-activity wording returned');
 must(app.includes('openEvidenceReview')&&app.includes('Related dated records')&&app.includes('Limitations'),'evidence review must open concrete supporting detail');
