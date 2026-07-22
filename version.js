@@ -1,1 +1,1 @@
-window.ZEKE_VERSION = window.ZEKE_BUILD = { version: '0.25.2', build: '2026.07.21.4', label: 'Trust & Usability Restoration' };
+window.ZEKE_VERSION = window.ZEKE_BUILD = { version: '0.26.0', build: '2026.07.22.1', label: 'Daily Briefing & Health Architecture' };

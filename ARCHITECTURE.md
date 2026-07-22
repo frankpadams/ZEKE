@@ -1,83 +1,65 @@
-# ZEKE Architecture — Current v0.24.0 Baseline
+# ZEKE Architecture — Current v0.26.0 Baseline
 
-**Build:** 2026.07.21.1  
-**Release:** Trust, Conversation & Workflow
+**Build:** 2026.07.22.1  
+**Release:** Daily Briefing & Health Architecture
 
 ## Authoritative runtime
-ZEKE is intentionally shipped as a directly editable static web application. There is **no compilation step** for the current release and no required `src/`, `package.json`, Vite, React, or bundler project.
 
-The authoritative runtime files are:
+ZEKE remains a directly editable static web application with no compilation step. The active runtime is `index.html`, `version.js`, `assets/app.js`, `assets/data-layer.js`, `assets/parser.js`, `assets/ai-router.js`, `assets/workflow-engine.js`, `assets/styles.css`, `xlsx-bundle.js`, and `sw.js`. `index.html` is authoritative for load order.
 
-- `index.html`
-- `version.js`
-- `assets/app.js`
-- `assets/data-layer.js`
-- `assets/parser.js`
-- `assets/ai-router.js`
-- `assets/workflow-engine.js`
-- `assets/styles.css`
-- `xlsx-bundle.js`
-- `sw.js`
-
-`index.html` is the source of truth for load order. `assets/workflow-engine.js` must load before `assets/app.js`.
-
-## Legacy assets
-Hashed files such as `assets/index-*.js`, `assets/Dashboard-*.js`, and `assets/index-*.css`, plus older versioned ZEKE scripts, are historical remnants from prior build systems. They are not loaded by the current `index.html`, must not be edited as the active application, and may be removed only through a separately reviewed cleanup release. The root-level `app.js` and `style.css` are also historical unless the active `index.html` explicitly references them.
+Historical hashed bundles and root-level legacy app/style files are not loaded and must not be edited as current source.
 
 ## Core boundary
-ZEKE is a private, user-owned personal-management system. Raw inputs, imported source material, provenance, corrections, and canonical records remain distinguishable. Missing data stays unknown. AI proposes; deterministic application code commits.
 
-## Workflow engine
-Every meaningful interaction can have one durable workflow transaction containing:
+ZEKE is a private, user-owned personal-management system. Raw inputs, provenance, corrections, and canonical records remain distinguishable. Missing data stays unknown. AI proposes; deterministic code and required user confirmation commit.
 
-- user goal and original source;
-- intended destination;
-- known and missing information;
-- proposed change;
-- save, duplicate, and AI status;
-- available next actions;
-- status history and explicit outcome.
+Durable personal content belongs in the user-owned repository. Device-local storage is limited to operational/UI continuity unless a future mode is explicitly chosen. The current user profile and goals are stored through provider-backed preferences/factors rather than as code or a local-only personal database.
 
-Terminal outcomes are `completed`, `not_saved`, `duplicate`, `dismissed`, `superseded`, or `failed`. A user-visible status explains whether anything was saved.
+## Information architecture
 
-Full workflow content is mirrored into the user-owned ZEKE repository as `workflow_state` factors. Browser-local persistence contains only minimized operational metadata, not the personal source text or proposed health record. This preserves refresh continuity without creating a hidden local personal database.
+- **Dashboard:** current state plus prioritized intelligence; a daily briefing rather than a copy of every module.
+- **Health:** umbrella for measurements, vitals, sleep, symptoms/life context, medications/supplements, labs, nutrition, conditions, and relevant personal/family context.
+- **Fitness:** process domain for workouts, activities, progression, plans, goals, equipment, and memberships.
+- **Discover:** broader patterns, hypotheses, research connections, and “I’ve been thinking…” exploration.
+- **Documents:** safe import entry and provenance-oriented import history.
+- **Questions for You:** conversational clarification and remembered context, not an administrative queue.
 
-## Conversation and review flow
-1. Preserve the original input.
-2. Attach it to the active workflow before interpreting a new standalone task.
-3. Use deterministic interpretation first and connected AI only when useful.
-4. Ask a purpose-driven clarification when a material decision is missing.
-5. Show source, ZEKE’s understanding, proposed consequence, why it matters, and what ZEKE will do.
-6. Commit only after the required confirmation.
-7. detect duplicates before creation;
-8. close with a visible saved, not-saved, duplicate, dismissed, or failed result.
+## Dashboard composition
 
-The Review Queue and Conversation Memory are views of the same durable decision state rather than separate disconnected systems.
+The desktop flow is:
+1. Health at a Glance
+2. Today’s Actions | Coach’s Eye | Upcoming
+3. full-width Trends & Analysis
+4. supporting private summary and Recent Health Record
 
-## Diagnostics and support
-Settings → Diagnostics & Exports creates a privacy-filtered multi-tab Support & Improvement Report. It combines runtime errors, unresolved interactions, AI consultation history, corrections, UX feedback, potential health events, audit history, metrics, workflow history, and developer notes. Credential-like fields are excluded.
+Health at a Glance is selected from Health. If nothing is pinned, the most-used verified metrics are shown. Individual Fitness exercises do not become Dashboard health tiles.
 
-## Health and fitness boundaries
-Measurements and labs store observations, not diagnoses. Potential Health Events preserve meaningful unstructured context provisionally. Calendar events can trigger follow-up but never prove attendance. Fitness recommendations use shared evidence, injury context when available, and explicit insufficiency language.
+Coach’s Eye contains zero to three actionable recommendations. Trends & Analysis describes changes without implying intervention and expands inline with confidence and limitations.
+
+## Record and workflow behavior
+
+- Talk to ZEKE and focused forms create compatible event structures and use the same duplicate, provenance, confirmation, correction, and audit boundaries.
+- Sleep records use the wake-up date as both `event_date` and `wake_date`; Recent Health Record recognizes sleep atomically.
+- Remove actions use reversible event undo rather than silent deletion.
+- Activity fields are schema-sensitive. Strength, stair/cardio, walking/distance, rehabilitation, mobility, recovery, sport, and functional activity views suppress irrelevant columns.
+- Activity identity and activity metrics remain distinct. Stair steps, ambulatory steps, and distance are not interchangeable.
+- Monthly medication review records completion as a preference; it never marks individual doses complete.
+- Medication action completion requires a same-local-day confirmed taken event. Missed and not-yet-taken remain explicit non-completion states.
+- Medication backfill is a reviewed batch transaction: generate matching dates, preview, skip matching existing events, write with shared batch provenance, and retain an undo path.
+- Goals are provider-backed factors. Deterministic structure review is always available. Connected-AI goal review is advisory, cannot commit changes, and cannot imply medical clearance.
+
+## Profile storage
+
+`system/preferences.json` (or the equivalent connected provider object) is the authoritative home for the current user profile. A legacy `zeke-user-profile` local key is read only for one-time migration, saved to connected preferences, and then removed when migration succeeds.
+
+## Render and form continuity
+
+Root re-rendering preserves editable controls inside `#root`. Direct-entry overlays are outside the replaced root and retain their live values; stale render snapshots are not restored into those overlays. This prevents delayed asynchronous refreshes from clearing in-progress modal entry.
+
+## Mobile boundary
+
+The v0.25.2 direct Save Workout handler, form-submit fallback, compatibility transaction ID, and visible error state remain protected. v0.26 avoids swipe-only interactions and prevents mobile form zoom by keeping form controls at 16 px. A broader session-based mobile redesign remains deferred until user-reviewed mockups exist.
 
 ## Verification boundary
-Local package verification cannot establish live credentials, external-service behavior, protected user fixtures, deployed cache behavior, or physical-device accessibility. Those remain environment verification items.
 
-## v0.25 adaptive-context extension
-The static runtime continues to use the existing event/factor/action stores and shared rendering system. The release adds no parallel data silo.
-
-### Fitness capture
-- `openWorkoutEntryModal(repeatLast)` supports a fast gym workflow and preloads the most recent same-day workout group when requested.
-- Activity taxonomy determines visible entry fields and history columns. Strength, cardio, rehabilitation/PT, mobility, recovery, sport, and functional activities render relevant metrics only.
-- Existing provenance, duplicate review, transaction grouping, confirmation, and user-owned storage boundaries remain intact.
-
-### Provider presentation
-- `providerPageHTML()` is a read-only presentation layer over existing records.
-- PT, primary-care, and orthopedic focus tabs change emphasis, not source data.
-- Provider View may be printed or saved as PDF by the browser. It labels limitations and does not create diagnoses, causality claims, or treatment directives.
-
-### Progressive profile model
-The local profile separates preferred name, pronouns, gender identity, sex assigned at birth, and optional clinically relevant anatomy/physiology context. These fields are optional and are not automatically substituted for one another in clinical logic.
-
-### Beta boundary
-The current package is still a directly editable static application. Shared centrally managed AI keys for multiple beta accounts require a protected server-side proxy or equivalent secret-bearing execution layer; they must not be embedded in the public browser bundle.
+Local package verification cannot establish live credentials, Google Drive/Calendar behavior, AI provider behavior, deployed service-worker replacement, protected real-workbook results, or physical-device accessibility. Those remain environment verification items.

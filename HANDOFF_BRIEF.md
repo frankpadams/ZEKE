@@ -1,31 +1,55 @@
 # ZEKE Handoff Brief
 
-**Current baseline:** ZEKE v0.24.0 · build 2026.07.21.1  
-**Release:** Trust, Conversation & Workflow
+**Current baseline:** ZEKE v0.26.0 · build 2026.07.22.1  
+**Release:** Daily Briefing & Health Architecture
 
 ## Product direction
-ZEKE is a private personal-management system, not only a health application. Health is the current leading domain. The user owns the durable repository; AI is advisory and replaceable.
 
-## Current release
-v0.24.0 centers trust rather than feature volume:
+ZEKE is a private personal-management system with Health as the leading current domain. The user owns the durable repository; AI is advisory and replaceable.
 
-- Every Talk to ZEKE transaction has an explicit goal, state, proposed consequence, and terminal outcome.
-- A durable workflow can survive navigation and refresh through the user repository. Common pending question, confirmation, correction, memory, and health-history states are reconstructed, and a Resume action is shown.
-- Conversation Memory separates unresolved decisions from confirmed remembered context. Choosing Later preserves the question and moves it behind newer review work.
-- Review items show the original information and downstream effect before action.
-- Medication-schedule questions can open a focused editor instead of dead-ending.
-- Supported attachments use the same import safeguards as Settings.
-- Settings contains one privacy-filtered Support & Improvement Report workbook.
-- Unresolved interactions link the original message, understanding, intended destination, AI use, buttons, retries, save status, and resolution.
+## Baseline and regression policy
 
-## Runtime architecture
-The active code is directly editable static JavaScript/CSS. Read `ARCHITECTURE.md` before changing files. Hashed bundles and older versioned scripts are legacy artifacts and are not loaded by the current application.
+v0.26.0 uses v0.25.2 as its code baseline because that release fixed the reported mobile Save Workout failure. v0.23.0 and v0.24.0 were used as regression references. Do not roll back the direct save handler, form-submit fallback, visible status, or error path.
 
-## Verification boundary
-Syntax, deterministic tests, governance checks, isolated rendered smoke checks, and package verification can be completed locally. Live Drive, Calendar, AI providers, service-worker deployment, protected workbook fixtures, and physical-device behavior require environment verification.
+## Current design contract
 
-## Startup
-Read `00_AI_START_HERE.md`, then follow the development gate and current iteration record. Do not infer implementation authority from historical release notes.
+- Dashboard prioritizes state and intelligence as a daily briefing.
+- Health owns symptoms/life context, sleep, measurements, labs, medications, nutrition, conditions, and related context.
+- Fitness owns workout process, activity detail, progression, and goals.
+- Coach’s Eye is actionable; Trends & Analysis is descriptive.
+- **Questions for You** remains the approved conversational language.
+- Discover is the broader exploration destination.
+- External apps are contextual handoffs, not a generic launcher.
 
-## v0.25.0 continuation note
-The current release adds adaptive Fitness capture/display, Provider View, cautious consideration language, and progressive identity/clinical profile fields. Dashboard remains home. Outside beta testing is not authorized to use a shared AI key until a protected proxy/backend provides account isolation and secret handling. Continue from `DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.25.0.md`.
+## July 21–22 concern closure
+
+Implemented in this release:
+- Dashboard whitespace/layout regression corrected.
+- Sleep from Talk to ZEKE appears in Recent Health Record.
+- Sleep entry uses selectors and sleep-specific edit fields.
+- Health/workout records have reversible Remove.
+- Fitness defaults to Favorites and activity cards open real detail.
+- “+ Create activity type” replaces ambiguous add wording.
+- Evidence review remains concrete rather than routing to a generic page.
+- Provider View duplication is absent.
+- Medication actions accept explicit taken/missed/not-yet outcomes.
+- Past medication doses can be backfilled in a reviewed batch.
+- Recurring schedule save gives visible success/failure feedback.
+- Goals are provider-backed and can receive bounded advisory review.
+- User profile is stored in the connected workspace, with legacy migration.
+- Delayed root render no longer clears an open modal field.
+
+## Highest-risk regression areas
+
+1. Save Workout on mobile must respond through direct click and form-submit paths.
+2. Sleep confirmed through Talk to ZEKE must appear in Recent Health Record.
+3. Dashboard must not return to masonry/shared-height layouts.
+4. Activity tables must not reintroduce irrelevant universal columns.
+5. Health subdomains must not return as global-sidebar peers.
+6. Medication schedules must not count as taken doses.
+7. Profile and goals must not become local-only personal records.
+8. AI goal review must remain advisory and non-committing.
+
+## Runtime and verification
+
+The application is directly editable static JavaScript/CSS. Read `ARCHITECTURE.md`. Package-local tests and governance evidence are recorded in `TEST_REPORT_v0.26.0.md`. Live services, deployed cache, protected workbook, and physical-device behavior remain environment verification.

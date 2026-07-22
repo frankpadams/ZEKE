@@ -112,3 +112,44 @@ Workflow continuity may retain minimized operational metadata on the device, but
 - Evidence-backed guidance is labeled a **consideration**, with personal observations, research basis when available, confidence, limitations, and factors that could change it. ZEKE must not imply clinical authority or certainty.
 - Identity, gender, administrative information, and medically relevant physiology are distinct. Ask only for the minimum information needed for a specific purpose, explain why, permit self-description and omission, and never infer clinical anatomy from gender identity.
 - Data captured with low effort should become more valuable later through timelines, trends, visit summaries, and clinician-facing views.
+
+
+## 25. Dashboard answers user questions
+
+High-level interface structure follows the questions users naturally ask rather than internal data categories: How am I? What do I need to do? What has changed? What should I do? What is coming up? What does ZEKE need clarified?
+
+## 26. Dashboard is a daily briefing
+
+The Dashboard prioritizes current state, commitments, meaningful changes, and supported guidance. It is not a miniature copy of every domain page.
+
+## 27. One authoritative home
+
+Every record, analysis, and recommendation has one authoritative home. Dashboard summaries link to detail rather than creating parallel competing versions.
+
+## 28. State, process, and intelligence remain distinct
+
+Health state may appear in Health at a Glance. Fitness process belongs in Fitness. Trends, observations, and recommendations are intelligence. Individual exercises do not become health-status tiles.
+
+## 29. Coach's Eye is actionable; Trends are descriptive
+
+Coach's Eye contains only supported next actions and may legitimately report that nothing needs attention. Trends & Analysis describes what changed and may require no intervention. Descriptive patterns must not be repackaged as advice merely to fill space.
+
+## 30. Health is the umbrella health domain
+
+Symptoms, life context, sleep, measurements, vitals, medications, supplements, labs, nutrition, conditions, and relevant personal/family health context belong within Health rather than competing as permanent top-level applications.
+
+## 31. Questions remain conversational
+
+Use **Questions for You**. Clarification should feel like a continuation of Talk to ZEKE, not a survey, review queue, or administrative assignment.
+
+## 32. User-curated health briefing
+
+Users choose which Health metrics appear in Health at a Glance. When no choices exist, ZEKE may show an explicit most-used fallback. Fitness exercises are not eligible health-state tiles.
+
+## 33. Contextual handoff, not generic launcher
+
+ZEKE may open another application only when it directly completes a ZEKE workflow and reduces friction. Dynamic or security-sensitive content stays in its source application. ZEKE does not replace the device home screen.
+
+## 34. Visual composition serves comprehension
+
+Panels size from their own content. Expandable analysis receives adequate width. Avoid shared-height or masonry layouts that create large blank areas, and use restrained rounding, density, and hierarchy to make the daily briefing understandable.
