@@ -1,3 +1,3 @@
-ZEKE v0.26.0
-Build 2026.07.22.1
-Daily Briefing & Health Architecture
+ZEKE v0.26.1
+Build 2026.07.22.2
+Fitness Navigation & Evidence Hotfix

@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#f3f6fb" />
   <meta name="description" content="Project ZEKE private preview" />
-  <title>ZEKE v0.26.0</title>
-  <link rel="manifest" href="./manifest.webmanifest?v=20260722.1" />
-  <link rel="stylesheet" href="./assets/styles.css?v=20260722.1" />
+  <title>ZEKE v0.26.1</title>
+  <link rel="manifest" href="./manifest.webmanifest?v=20260722.2" />
+  <link rel="stylesheet" href="./assets/styles.css?v=20260722.2" />
   <script>
     // One-time alpha cache repair: old service-worker registrations could keep stale nested assets alive.
     if ('serviceWorker' in navigator) {
@@ -17,17 +17,17 @@
       caches.keys().then(keys => Promise.all(keys.filter(key => key.startsWith('project-zeke-')).map(key => caches.delete(key)))).catch(() => {});
     }
   </script>
-  <script src="./version.js?v=20260722.1"></script>
+  <script src="./version.js?v=20260722.2"></script>
   <script src="./zeke-config.js"></script>
   <script src="https://accounts.google.com/gsi/client" async defer></script>
 </head>
 <body>
-  <div id="root"><div style="min-height:100vh;display:grid;place-items:center;background:#071224;color:#fff;font-family:system-ui;text-align:center;padding:40px"><div><img src="./assets/branding/zeke-mark-provisional.png?v=20260722.1" alt="ZEKE" style="width:72px;height:72px;border-radius:18px;object-fit:cover"><div style="margin-top:12px;font-size:38px;font-weight:800;letter-spacing:.12em">ZEKE</div><div style="margin-top:14px;font-size:16px">Starting ZEKE…</div><div style="margin-top:12px;font-size:12px;color:#d8bd73">v0.26.0 · build 2026.07.22.1 · Preview</div></div></div></div>
-  <script src="./xlsx-bundle.js?v=20260722.1"></script>
-  <script src="./assets/data-layer.js?v=20260722.1"></script>
-  <script src="./assets/parser.js?v=20260722.1"></script>
-  <script src="./assets/ai-router.js?v=20260722.1"></script>
-  <script src="./assets/workflow-engine.js?v=20260722.1"></script>
-  <script src="./assets/app.js?v=20260722.1"></script>
+  <div id="root"><div style="min-height:100vh;display:grid;place-items:center;background:#071224;color:#fff;font-family:system-ui;text-align:center;padding:40px"><div><img src="./assets/branding/zeke-mark-provisional.png?v=20260722.2" alt="ZEKE" style="width:72px;height:72px;border-radius:18px;object-fit:cover"><div style="margin-top:12px;font-size:38px;font-weight:800;letter-spacing:.12em">ZEKE</div><div style="margin-top:14px;font-size:16px">Starting ZEKE…</div><div style="margin-top:12px;font-size:12px;color:#d8bd73">v0.26.1 · build 2026.07.22.2 · Preview</div></div></div></div>
+  <script src="./xlsx-bundle.js?v=20260722.2"></script>
+  <script src="./assets/data-layer.js?v=20260722.2"></script>
+  <script src="./assets/parser.js?v=20260722.2"></script>
+  <script src="./assets/ai-router.js?v=20260722.2"></script>
+  <script src="./assets/workflow-engine.js?v=20260722.2"></script>
+  <script src="./assets/app.js?v=20260722.2"></script>
 </body>
 </html>
