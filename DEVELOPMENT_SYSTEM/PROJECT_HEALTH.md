@@ -1,6 +1,6 @@
-# Project Health — v0.26.1
+# Project Health — v0.27.0
 
-**Build:** 2026.07.22.2
+**Build:** 2026.07.22.3
 
 Package implementation and verification are complete; environment verification is outstanding.
 

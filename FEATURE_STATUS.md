@@ -1,6 +1,6 @@
-# ZEKE Feature Status — v0.26.1
+# ZEKE Feature Status — v0.27.0
 
-**Build:** 2026.07.22.2
+**Build:** 2026.07.22.3
 
 ## Implemented and package-tested
 
