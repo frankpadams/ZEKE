@@ -1,0 +1,3977 @@
+{
+  "base_package": "Zeke-026-1.zip",
+  "release": "0.27.3",
+  "build_timestamp_local": "2026-07-22 21:48:00 America/New_York",
+  "summary": {
+    "base_entries": 488,
+    "unchanged_entries": 480,
+    "modified_entries": 8,
+    "added_entries": 5,
+    "removed_entries": 0
+  },
+  "modified_files": [
+    "index.html",
+    "sw.js",
+    "version.js",
+    "VERSION.txt",
+    "DEVELOPMENT_MEMORY/PROJECT_STATE.json",
+    "tests/release-structure.test.js",
+    "assets/styles.css",
+    "assets/app.js"
+  ],
+  "added_files": [
+    "RELEASE_NOTES_v0.27.3.md",
+    "TEST_REPORT_v0.27.3.md",
+    "tests/v027-mobile-workout.test.js",
+    "PACKAGE_AUDIT_v0.27.3.json",
+    "PACKAGE_AUDIT_v0.27.3.md"
+  ],
+  "removed_files": [],
+  "records": [
+    {
+      "path": "00_AI_START_HERE.md",
+      "status": "unchanged",
+      "sha256": "d7ecffffbeb582fc7e8a2e9f505f51a62a3bc275a0aaf053da47cf5d58b89baa",
+      "size": 1256,
+      "original_timestamp": "2026-07-22 19:46:18",
+      "new_timestamp": "2026-07-22 19:46:18"
+    },
+    {
+      "path": "__MACOSX/._00_AI_START_HERE.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:46:18",
+      "new_timestamp": "2026-07-22 19:46:18"
+    },
+    {
+      "path": "AI_PACKET_WORKFLOW.md",
+      "status": "unchanged",
+      "sha256": "9501418b8725c0ae5a6af759164d88c984d23e4e55bc16a7e3cf2349735adb9f",
+      "size": 1430,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._AI_PACKET_WORKFLOW.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "AI_PROVIDER_MATRIX_v0.6.0.md",
+      "status": "unchanged",
+      "sha256": "ea310e03abdff4f02022a24a379e8af973d6b7b9a3679494d41de0b4bb01fd4c",
+      "size": 2145,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._AI_PROVIDER_MATRIX_v0.6.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "AI_SETUP.md",
+      "status": "unchanged",
+      "sha256": "b2078cb8fe881981f3bf1e05fc92ffdbfebfdb5127a3534cbdc09d473cc2bb67",
+      "size": 911,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._AI_SETUP.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "ALPHA_GOOGLE_CONNECTION.md",
+      "status": "unchanged",
+      "sha256": "060990365fc9cdd05ea1ad72321f6bb9250c9ee24f5ec7af85e3ed0a73294c9d",
+      "size": 3210,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._ALPHA_GOOGLE_CONNECTION.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "alpha-connection-setup.html",
+      "status": "unchanged",
+      "sha256": "e157eb676be7991b3a5ef2c55af368535f3840a8965a78725e6b47b64966b2fe",
+      "size": 2958,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._alpha-connection-setup.html",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "app.js",
+      "status": "unchanged",
+      "sha256": "ed0c1e47eaa1786d704c32d29cf70c9c004cb123dddeb1e7a802e2a3ce8694e3",
+      "size": 14878,
+      "original_timestamp": "2026-07-18 23:38:02",
+      "new_timestamp": "2026-07-18 23:38:02"
+    },
+    {
+      "path": "__MACOSX/._app.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 23:38:02",
+      "new_timestamp": "2026-07-18 23:38:02"
+    },
+    {
+      "path": "APPLE_HEALTH_SETUP.md",
+      "status": "unchanged",
+      "sha256": "808f4462a12a575ecde4451fabbe9a94eff0a11f55709d939122dac7cb6f6905",
+      "size": 1399,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._APPLE_HEALTH_SETUP.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "apps-script/",
+      "status": "unchanged",
+      "type": "directory",
+      "original_timestamp": "2026-07-22 19:36:38",
+      "new_timestamp": "2026-07-22 19:36:38"
+    },
+    {
+      "path": "__MACOSX/._apps-script",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:36:38",
+      "new_timestamp": "2026-07-22 19:36:38"
+    },
+    {
+      "path": "apps-script/ExerciseEngine.gs",
+      "status": "unchanged",
+      "sha256": "a41dd31473fee5e04a87180856bec943cfa5ddcf973646fcbdeb4d9060a382c2",
+      "size": 3598,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/apps-script/._ExerciseEngine.gs",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "apps-script/Config.gs",
+      "status": "unchanged",
+      "sha256": "8ca0a49106837058fe02cb914cfdbfa1915c217e97e39d52742d705ca4ef6724",
+      "size": 2188,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/apps-script/._Config.gs",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "apps-script/Index.html",
+      "status": "unchanged",
+      "sha256": "98d7db23b80e12c48c5dc9fde9f3bdab3a5d43f937f7dc2cfb02c2de1bdc13b8",
+      "size": 6750,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/apps-script/._Index.html",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "apps-script/DashboardData.gs",
+      "status": "unchanged",
+      "sha256": "034fc94a2f2d0f8a4c9ea0011e21302fb8fd72882f95d54836e89a2c2749cb69",
+      "size": 3824,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/apps-script/._DashboardData.gs",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "apps-script/Code.gs",
+      "status": "unchanged",
+      "sha256": "272cdb7fe3e3048da91eec53dbb883c626da71a4c063085601296e591bcdbd5c",
+      "size": 30558,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/apps-script/._Code.gs",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "apps-script/ImportHealth.gs",
+      "status": "unchanged",
+      "sha256": "ce2fe008202954163bd2d7a9ff49fe2f265dddcb80af498e167165a66046c840",
+      "size": 4536,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/apps-script/._ImportHealth.gs",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "apps-script/Gemini.gs",
+      "status": "unchanged",
+      "sha256": "7bf65ff9ddd1109604c79eccfb9571e86329cd24a08e09e653ae9928854b2d4b",
+      "size": 5171,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/apps-script/._Gemini.gs",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "apps-script/appsscript.json",
+      "status": "unchanged",
+      "sha256": "9711ade640d5771bca4e4c6eb471bbe70225b491ab5ccc84cc50a458262dd5c8",
+      "size": 362,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/apps-script/._appsscript.json",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "apps-script/CalendarSync.gs",
+      "status": "unchanged",
+      "sha256": "526123b6cefb3e7083101d19414b2bf452da3b50b6b5919a9433f8a59a0721bf",
+      "size": 2263,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/apps-script/._CalendarSync.gs",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "ARCHITECTURE.md",
+      "status": "unchanged",
+      "sha256": "a78ebfb1b34b1f075384f7a46ca4482000ba6d645ce259f226308f9e034b378a",
+      "size": 5489,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "__MACOSX/._ARCHITECTURE.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "assets/",
+      "status": "unchanged",
+      "type": "directory",
+      "original_timestamp": "2026-07-22 19:36:38",
+      "new_timestamp": "2026-07-22 19:36:38"
+    },
+    {
+      "path": "__MACOSX/._assets",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:36:38",
+      "new_timestamp": "2026-07-22 19:36:38"
+    },
+    {
+      "path": "assets/zeke-app-v066.css",
+      "status": "unchanged",
+      "sha256": "1822e3b76a13d45e5678fd19367ee4983ae5eaef2b752df16772d742a8aab1fc",
+      "size": 10041,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._zeke-app-v066.css",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/zeke-experience-v062.js",
+      "status": "unchanged",
+      "sha256": "54232831035937fe46ae4b09c6968af880ba778676faeb2a26737101a50052f9",
+      "size": 36111,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._zeke-experience-v062.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/zeke-ai-router-v060.js",
+      "status": "unchanged",
+      "sha256": "6bb8cc0ad18334efef6d1d8882ed0fb05ab59892c9b4c10267aa4f2501ad0be1",
+      "size": 20855,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._zeke-ai-router-v060.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/interpreter-CwMccpfV.js",
+      "status": "unchanged",
+      "sha256": "86f71c06b2486e4b0c2d24be3e2767573f5710b7b43a73f8f3fa32e724f0edf3",
+      "size": 2454,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._interpreter-CwMccpfV.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/zeke-experience-v060.css",
+      "status": "unchanged",
+      "sha256": "0341757bcede2cbdd48aaae684014da863fae172215b4d7d6143416637cb79b0",
+      "size": 13251,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._zeke-experience-v060.css",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/zeke-app-v065.css",
+      "status": "unchanged",
+      "sha256": "1822e3b76a13d45e5678fd19367ee4983ae5eaef2b752df16772d742a8aab1fc",
+      "size": 10041,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._zeke-app-v065.css",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/zeke-ai-router-v064.js",
+      "status": "unchanged",
+      "sha256": "8e63dc7b3379144217a81281116509f46387bb231a845f21f16931a4172ddaca",
+      "size": 21787,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._zeke-ai-router-v064.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/branding/",
+      "status": "unchanged",
+      "type": "directory",
+      "original_timestamp": "2026-07-22 19:36:38",
+      "new_timestamp": "2026-07-22 19:36:38"
+    },
+    {
+      "path": "__MACOSX/assets/._branding",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:36:38",
+      "new_timestamp": "2026-07-22 19:36:38"
+    },
+    {
+      "path": "assets/zeke-experience-v062.css",
+      "status": "unchanged",
+      "sha256": "9b0fdeaea99a5587f21a065690b26f66d7d35d720d7f0b5c0b151139fadbde8b",
+      "size": 17224,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._zeke-experience-v062.css",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/index-nm8p_7L6.js",
+      "status": "unchanged",
+      "sha256": "038e826d56b147bd87010a1fccf545c95c45c6728004d9842a21df2144719d80",
+      "size": 275986,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._index-nm8p_7L6.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/ai-router.js",
+      "status": "unchanged",
+      "sha256": "11c16a5994400c34dc584bcb06d62894dd39e04dd7d482ef7fe8a840f7589aea",
+      "size": 24108,
+      "original_timestamp": "2026-07-19 20:14:08",
+      "new_timestamp": "2026-07-19 20:14:08"
+    },
+    {
+      "path": "__MACOSX/assets/._ai-router.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-19 20:14:08",
+      "new_timestamp": "2026-07-19 20:14:08"
+    },
+    {
+      "path": "assets/DataPage-TfJc2bGC.js",
+      "status": "unchanged",
+      "sha256": "a023695e1cc08b3b54dba49bc04f529ab832eeecd2423c04154a324912491490",
+      "size": 21955,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._DataPage-TfJc2bGC.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/Settings-5OAre9PF.js",
+      "status": "unchanged",
+      "sha256": "a0f12d6cb2ce81363d297c57252ddca2dc5a8a924d1153859b6dede22c2b74ef",
+      "size": 9605,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._Settings-5OAre9PF.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/zeke-ai-router-v061.js",
+      "status": "unchanged",
+      "sha256": "918e79738e78fdd5a92a7d3b26567506e8e39b5a38bf8fae4df9a53c299a58c3",
+      "size": 21880,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._zeke-ai-router-v061.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/styles.css",
+      "status": "modified",
+      "original_sha256": "c8a7e9419d76db13082aecc39dc9a1c864fc8994e3e5a744b358ae959f1ec71c",
+      "new_sha256": "20c103153b89588ae711e9e63fc829e05142fade225df4a06eefc87fe9fa00c2",
+      "original_size": 120764,
+      "new_size": 128539,
+      "original_timestamp": "2026-07-22 19:42:00",
+      "new_timestamp": "2026-07-22 21:48:00"
+    },
+    {
+      "path": "__MACOSX/assets/._styles.css",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:42:00",
+      "new_timestamp": "2026-07-22 19:42:00"
+    },
+    {
+      "path": "assets/zeke-app-v066.js",
+      "status": "unchanged",
+      "sha256": "0f752f5d37af3ff5804956de44072cdf876226b50b5f85f539806af1e954e5db",
+      "size": 25873,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._zeke-app-v066.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/zeke-experience-v064.css",
+      "status": "unchanged",
+      "sha256": "1305cd7ab96daf0e3dcea9940eb6a1b128b0959b1461301920b66215ec136eac",
+      "size": 19727,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._zeke-experience-v064.css",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/workflow-engine.js",
+      "status": "unchanged",
+      "sha256": "e333f55ad8fbc7ec15c998bea1e6072335e2ec7baa4283363b0d94c3e7e1264a",
+      "size": 10840,
+      "original_timestamp": "2026-07-21 09:40:50",
+      "new_timestamp": "2026-07-21 09:40:50"
+    },
+    {
+      "path": "__MACOSX/assets/._workflow-engine.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 09:40:50",
+      "new_timestamp": "2026-07-21 09:40:50"
+    },
+    {
+      "path": "assets/Dashboard-CC7fWrnm.js",
+      "status": "unchanged",
+      "sha256": "4ebf07ab780f338a6689736fa115a999c3aa52867d09f26a09e4ec73e7e1d7ef",
+      "size": 35442,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._Dashboard-CC7fWrnm.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/index-CJYG1J-w.css",
+      "status": "unchanged",
+      "sha256": "d1c7a4a4dec3c6662452308cda3ed46c6b1e48901dc5a3fa2cef8878eb162429",
+      "size": 19015,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._index-CJYG1J-w.css",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/circle-check-DyVAjDpS.js",
+      "status": "unchanged",
+      "sha256": "41cd9cb2e9fcab7e17815a3df388a5dd9253231194d69f4f3bddf04e05645868",
+      "size": 167,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._circle-check-DyVAjDpS.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/index-B4jPvT6w.js",
+      "status": "unchanged",
+      "sha256": "cbf99f1e4df1de51cd4d86f9f8a705dcee2c3135a547359fe26aac9c32df47c4",
+      "size": 378127,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._index-B4jPvT6w.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/zeke-ai-router-test.css",
+      "status": "unchanged",
+      "sha256": "213a61b0a967eb6c980948dc69880a266a4bc7d73dcc972e58b69157867f9279",
+      "size": 3260,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._zeke-ai-router-test.css",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/data-layer.js",
+      "status": "unchanged",
+      "sha256": "be317e26b3eaeaf4550bd637fa35c7339db2e6a0bd5ebc5fda5a74339a17d22c",
+      "size": 47947,
+      "original_timestamp": "2026-07-21 09:55:32",
+      "new_timestamp": "2026-07-21 09:55:32"
+    },
+    {
+      "path": "__MACOSX/assets/._data-layer.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 09:55:32",
+      "new_timestamp": "2026-07-21 09:55:32"
+    },
+    {
+      "path": "assets/zeke-ai-router-test.js",
+      "status": "unchanged",
+      "sha256": "48aa8f473acc40f4a23c1b170e609915af14daf46164df781e58712c5c1cdf95",
+      "size": 14797,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._zeke-ai-router-test.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/plus-DC7NdPme.js",
+      "status": "unchanged",
+      "sha256": "9b0b5882e820a2c5b6777fdbef3ec907774f5735a0782cd46510d34af2a16f53",
+      "size": 799,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._plus-DC7NdPme.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/zeke-core-data-v066.js",
+      "status": "unchanged",
+      "sha256": "8c63fb910b0e3eb747e3f537a1d8c3afad72b11b7a59a3b4a424ad8f573b592b",
+      "size": 377996,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._zeke-core-data-v066.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/zeke-experience-v064.js",
+      "status": "unchanged",
+      "sha256": "e213f6e5e90c618fff0bf6bd8b40f9a0b01a2c74f74dce416cbf80338356a0c7",
+      "size": 48572,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._zeke-experience-v064.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/zeke-ai-router-v064.css",
+      "status": "unchanged",
+      "sha256": "ceabeae0be6e983953f4041786a4481e679de35291ff2929410bcd110348548a",
+      "size": 6253,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._zeke-ai-router-v064.css",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/index-DdqVwvm-.css",
+      "status": "unchanged",
+      "sha256": "5ff5e7a0262b860d02c88f884d29861eac0656df13b3af7f781b318fcdef6039",
+      "size": 27728,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._index-DdqVwvm-.css",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/DataPage-mgWBGcEd.js",
+      "status": "unchanged",
+      "sha256": "85082693b3c364b8401bb2d6ca7a391560c6b2952d554e99d1fa1d0fb5ce648f",
+      "size": 22213,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._DataPage-mgWBGcEd.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/BarChart-DvX4T78N.js",
+      "status": "unchanged",
+      "sha256": "5703d7a05aa492396241e16bb76d5f87b8962c354bbec5e571e555058f1ea403",
+      "size": 381280,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._BarChart-DvX4T78N.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/Settings-UD6i6CkP.js",
+      "status": "unchanged",
+      "sha256": "e847dbed1f3eb30a79c5857f4ed7dc2245daa721bf7b2fecda02e866f8674c5f",
+      "size": 76850,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._Settings-UD6i6CkP.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/zeke-experience-v060.js",
+      "status": "unchanged",
+      "sha256": "5a199d10cab484214f61630287b50609ee4789caf6ca0325ec5a38c6aa3b2f89",
+      "size": 28220,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._zeke-experience-v060.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/plus-YOVDfM0X.js",
+      "status": "unchanged",
+      "sha256": "191c16cdece1b43a4eff35ac22deaf8a4297e9cc2099627b795d4cfcc3cd6696",
+      "size": 649,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._plus-YOVDfM0X.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/ExerciseAnalytics-D3u-5Ph7.js",
+      "status": "unchanged",
+      "sha256": "96f4f3cb6895e63ce4aae29d15c77ac3e109456bbee746f24dc7d71d2baf0851",
+      "size": 20162,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._ExerciseAnalytics-D3u-5Ph7.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/zeke-app-v065.js",
+      "status": "unchanged",
+      "sha256": "25d8e7e2f3a80c60789fb64bd14120e66e50782576a2714a44e2d0496e904c47",
+      "size": 25868,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._zeke-app-v065.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/parser.js",
+      "status": "unchanged",
+      "sha256": "10628c231f5d0fcdc958439511992cd45e0539c7f98d2f0ae0a9008cd0d71c81",
+      "size": 17431,
+      "original_timestamp": "2026-07-22 05:05:00",
+      "new_timestamp": "2026-07-22 05:05:00"
+    },
+    {
+      "path": "__MACOSX/assets/._parser.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 05:05:00",
+      "new_timestamp": "2026-07-22 05:05:00"
+    },
+    {
+      "path": "assets/app.js",
+      "status": "modified",
+      "original_sha256": "0210e7e118344522f51dd65d3238da6c3eb1b0647cc93aa8c2103b685d60ef45",
+      "new_sha256": "3b768410d56d93118b22de4949ca1bcb12ee15a18c4cf156ce071ee68073d67d",
+      "original_size": 425540,
+      "new_size": 433241,
+      "original_timestamp": "2026-07-22 19:41:42",
+      "new_timestamp": "2026-07-22 21:48:00"
+    },
+    {
+      "path": "__MACOSX/assets/._app.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:41:42",
+      "new_timestamp": "2026-07-22 19:41:42"
+    },
+    {
+      "path": "assets/zeke-ai-router-v061.css",
+      "status": "unchanged",
+      "sha256": "ceabeae0be6e983953f4041786a4481e679de35291ff2929410bcd110348548a",
+      "size": 6253,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._zeke-ai-router-v061.css",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/activity-CRS-1KdS.js",
+      "status": "unchanged",
+      "sha256": "bd6bbd8428a40ff68a8cbb316a1d099655af5b5f8358a17d42ea3dd4c1ecc973",
+      "size": 223,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._activity-CRS-1KdS.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/Dashboard-D7yRMup4.js",
+      "status": "unchanged",
+      "sha256": "4b1c98a56bc0f28222b7360d23939385e2afffce7b8dd13315459ec4ad7e77fb",
+      "size": 418140,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._Dashboard-D7yRMup4.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/zeke-ai-router-v060.css",
+      "status": "unchanged",
+      "sha256": "cde643bc2c0d2b59466dff6a2e0aa484cf31224ce64e7f2a076da0d2e5f9cbc2",
+      "size": 5430,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/._zeke-ai-router-v060.css",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/branding/zeke-mark-provisional.png",
+      "status": "unchanged",
+      "sha256": "ab793947dbfa9368b810678cbcf9558394b06fb962ce9547ec5efcad91298ac2",
+      "size": 117701,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/branding/._zeke-mark-provisional.png",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/branding/zeke-app-icon-provisional.png",
+      "status": "unchanged",
+      "sha256": "6a70f91a168347461b9c07e72876861b2e926b6dbec77773b997ab20f89a8d5b",
+      "size": 126974,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/branding/._zeke-app-icon-provisional.png",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "assets/branding/ZEKE_Brand_Board_2026-07.jpg",
+      "status": "unchanged",
+      "sha256": "5a99895d95da193eff44c60c1f5f1f06e4e1450256a03cf223a8728e529e5d9f",
+      "size": 354484,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/assets/branding/._ZEKE_Brand_Board_2026-07.jpg",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/",
+      "status": "unchanged",
+      "type": "directory",
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "__MACOSX/._DEVELOPMENT_MEMORY",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.20.5.md",
+      "status": "unchanged",
+      "sha256": "bca2459d900124187d9ca8a11666f13c9ac51dd7193113892e200d7fcc9a03cd",
+      "size": 1477,
+      "original_timestamp": "2026-07-18 09:28:46",
+      "new_timestamp": "2026-07-18 09:28:46"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._ITERATION_RECORD_v0.20.5.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 09:28:46",
+      "new_timestamp": "2026-07-18 09:28:46"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.21.0.md",
+      "status": "unchanged",
+      "sha256": "5803f0a08c804938a3b260d3084a51d3dba97472d9272de4c2b1d7fa62a26dfd",
+      "size": 1305,
+      "original_timestamp": "2026-07-18 22:35:40",
+      "new_timestamp": "2026-07-18 22:35:40"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._ITERATION_RECORD_v0.21.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 22:35:40",
+      "new_timestamp": "2026-07-18 22:35:40"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/PROJECT_STATE.json",
+      "status": "modified",
+      "original_sha256": "6d73ae00825228006b34db1ee11c44359e725a30c6e02cd3f75104d894545e96",
+      "new_sha256": "9b0c0522ba42e2e2afc0c134c13f32d78479cfa881cc9dff8405633c60ba7960",
+      "original_size": 3080,
+      "new_size": 3080,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 21:48:00"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._PROJECT_STATE.json",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/DOCUMENT_INDEX.md",
+      "status": "unchanged",
+      "sha256": "f64439ccbc825ebc37ae156e02ca4fcb629ddbea466b3e05b84c7f232ba0ba50",
+      "size": 267,
+      "original_timestamp": "2026-07-18 22:35:40",
+      "new_timestamp": "2026-07-18 22:35:40"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._DOCUMENT_INDEX.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 22:35:40",
+      "new_timestamp": "2026-07-18 22:35:40"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/README_FIRST.md",
+      "status": "unchanged",
+      "sha256": "24537f6875fa49c7e95358c1f6572eca3774473c9dd2ead14f264a977f7203d0",
+      "size": 193,
+      "original_timestamp": "2026-07-18 22:35:40",
+      "new_timestamp": "2026-07-18 22:35:40"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._README_FIRST.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 22:35:40",
+      "new_timestamp": "2026-07-18 22:35:40"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.2.md",
+      "status": "unchanged",
+      "sha256": "4362532346a731f8aa3b8372a878cd2e93bb9a7e651d2172406fae167c036b8c",
+      "size": 4452,
+      "original_timestamp": "2026-07-19 06:58:34",
+      "new_timestamp": "2026-07-19 06:58:34"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._ITERATION_RECORD_v0.22.2.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-19 06:58:34",
+      "new_timestamp": "2026-07-19 06:58:34"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.20.4.md",
+      "status": "unchanged",
+      "sha256": "c065f0ca60f88d8e7ff500cc8e1bde7e282e8322e452dde152a06f05d7f447c6",
+      "size": 1367,
+      "original_timestamp": "2026-07-18 08:01:22",
+      "new_timestamp": "2026-07-18 08:01:22"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._ITERATION_RECORD_v0.20.4.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 08:01:22",
+      "new_timestamp": "2026-07-18 08:01:22"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
+      "status": "unchanged",
+      "sha256": "fafac5984275fafca6ec492da0ee310d17b05d087ab68bb352c4998644251bd1",
+      "size": 701,
+      "original_timestamp": "2026-07-22 19:49:26",
+      "new_timestamp": "2026-07-22 19:49:26"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._RELEASE_GATE.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:49:26",
+      "new_timestamp": "2026-07-22 19:49:26"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.26.1.md",
+      "status": "unchanged",
+      "sha256": "54591cc8f385d9a9dff9cf34c98b5fa274e933cb9f46b19db7efb92d36a5854d",
+      "size": 3171,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._ITERATION_RECORD_v0.26.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
+      "status": "unchanged",
+      "sha256": "193854dce82db028d291d19d9c8eb0f2cb1fa16dbc9ed546d5ec8ed77fa475db",
+      "size": 2813,
+      "original_timestamp": "2026-07-18 07:24:26",
+      "new_timestamp": "2026-07-18 07:24:26"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._DEVELOPMENT_WORKFLOW.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 07:24:26",
+      "new_timestamp": "2026-07-18 07:24:26"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.25.2.md",
+      "status": "unchanged",
+      "sha256": "8294bb8de9823ae44ba166069a4ea16616fcd5b00aaac4f2445e8ae774134b7f",
+      "size": 317,
+      "original_timestamp": "2026-07-21 23:41:30",
+      "new_timestamp": "2026-07-21 23:41:30"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._ITERATION_RECORD_v0.25.2.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 23:41:30",
+      "new_timestamp": "2026-07-21 23:41:30"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json",
+      "status": "unchanged",
+      "sha256": "3e3cd74d732cde5426a57e1f0df00bb52490fbb72ffa94a6efb048e20484ec15",
+      "size": 3008,
+      "original_timestamp": "2026-07-22 19:47:50",
+      "new_timestamp": "2026-07-22 19:47:50"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._DEVELOPMENT_GATE.json",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:47:50",
+      "new_timestamp": "2026-07-22 19:47:50"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.26.0.md",
+      "status": "unchanged",
+      "sha256": "d7c4c9a20c37f1490f923a84acbc06f7ec025c2be989e42a7a609d2f01bb3a60",
+      "size": 5783,
+      "original_timestamp": "2026-07-22 05:51:08",
+      "new_timestamp": "2026-07-22 05:51:08"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._ITERATION_RECORD_v0.26.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 05:51:08",
+      "new_timestamp": "2026-07-22 05:51:08"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
+      "status": "unchanged",
+      "sha256": "3bfd44012bbd8197441fac220ef81b72a7bec3aa0bd4d8031cf5e82b891ab1da",
+      "size": 17347,
+      "original_timestamp": "2026-07-22 05:47:00",
+      "new_timestamp": "2026-07-22 05:47:00"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._DEVELOPMENT_ERROR_LOG.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 05:47:00",
+      "new_timestamp": "2026-07-22 05:47:00"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.25.0.md",
+      "status": "unchanged",
+      "sha256": "335eb4ac4c7cfc04ecdae3d55af8d53523c773fb237497589ec6cccd2bd31571",
+      "size": 1311,
+      "original_timestamp": "2026-07-21 21:33:54",
+      "new_timestamp": "2026-07-21 21:33:54"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._ITERATION_RECORD_v0.25.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 21:33:54",
+      "new_timestamp": "2026-07-21 21:33:54"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/DECISION_LOG.md",
+      "status": "unchanged",
+      "sha256": "dea7b105ecf9f0b2c420e0c68fba6a70e28f4157fc99444fee6247d49e80f9f4",
+      "size": 10201,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._DECISION_LOG.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/RELEASE_CHECKSUMS.json",
+      "status": "unchanged",
+      "sha256": "52912f4907fc039981f57b5769886201a277cbf8bcc60939e5c811ba0f97fc66",
+      "size": 24347,
+      "original_timestamp": "2026-07-22 19:49:46",
+      "new_timestamp": "2026-07-22 19:49:46"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._RELEASE_CHECKSUMS.json",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:49:46",
+      "new_timestamp": "2026-07-22 19:49:46"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.24.0.md",
+      "status": "unchanged",
+      "sha256": "aab1f6f7c3ae20af025335f83de619b9c327478fe2271881253330521777a0e9",
+      "size": 4496,
+      "original_timestamp": "2026-07-21 10:18:28",
+      "new_timestamp": "2026-07-21 10:18:28"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._ITERATION_RECORD_v0.24.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 10:18:28",
+      "new_timestamp": "2026-07-21 10:18:28"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.25.1.md",
+      "status": "unchanged",
+      "sha256": "1d90085a4073ae84e892c062653325a00cd51f1935228d0a747f0cee7f6eff52",
+      "size": 1048,
+      "original_timestamp": "2026-07-21 21:33:54",
+      "new_timestamp": "2026-07-21 21:33:54"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._ITERATION_RECORD_v0.25.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 21:33:54",
+      "new_timestamp": "2026-07-21 21:33:54"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.20.3.md",
+      "status": "unchanged",
+      "sha256": "4b3ddb43cfa21608eaf9bedeab9fcc421c096ade23817b152fc1f7014a84d4e6",
+      "size": 4872,
+      "original_timestamp": "2026-07-18 07:38:36",
+      "new_timestamp": "2026-07-18 07:38:36"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._ITERATION_RECORD_v0.20.3.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 07:38:36",
+      "new_timestamp": "2026-07-18 07:38:36"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.1.md",
+      "status": "unchanged",
+      "sha256": "716726bc631a472ec3b5ba9513d93ae987eb151f68804ee969673cdd71911bd3",
+      "size": 2754,
+      "original_timestamp": "2026-07-19 04:25:18",
+      "new_timestamp": "2026-07-19 04:25:18"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._ITERATION_RECORD_v0.22.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-19 04:25:18",
+      "new_timestamp": "2026-07-19 04:25:18"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/BACKLOG.md",
+      "status": "unchanged",
+      "sha256": "0bfe464067d03cbee7750dd710ceb5ab64adbc522972a5cddfe8c1feddfcaa07",
+      "size": 7200,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._BACKLOG.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.23.0.md",
+      "status": "unchanged",
+      "sha256": "0045126bca73ad0364edc9e0317c770b36220c7222e561ea1cba6eac42e7f9da",
+      "size": 1068,
+      "original_timestamp": "2026-07-19 20:15:26",
+      "new_timestamp": "2026-07-19 20:15:26"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._ITERATION_RECORD_v0.23.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-19 20:15:26",
+      "new_timestamp": "2026-07-19 20:15:26"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.0.md",
+      "status": "unchanged",
+      "sha256": "094118784f7f6bfac269a8aaf486744bdeacfafd65add05982b55a6664a4508b",
+      "size": 2181,
+      "original_timestamp": "2026-07-18 23:40:14",
+      "new_timestamp": "2026-07-18 23:40:14"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._ITERATION_RECORD_v0.22.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 23:40:14",
+      "new_timestamp": "2026-07-18 23:40:14"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.23.1.md",
+      "status": "unchanged",
+      "sha256": "a3628af9dbf77e036c9fa0fb5b765eea262b76c901a419b4a81e2007c1f90296",
+      "size": 3346,
+      "original_timestamp": "2026-07-20 10:54:32",
+      "new_timestamp": "2026-07-20 10:54:32"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._ITERATION_RECORD_v0.23.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-20 10:54:32",
+      "new_timestamp": "2026-07-20 10:54:32"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/CONTINUITY_RECONCILIATION_v0.22.2.md",
+      "status": "unchanged",
+      "sha256": "80d7a13c03dc9c56d279a8fe76bd84804d1aaf20a1d851971c3f3672b554120e",
+      "size": 1447,
+      "original_timestamp": "2026-07-19 06:40:16",
+      "new_timestamp": "2026-07-19 06:40:16"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._CONTINUITY_RECONCILIATION_v0.22.2.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-19 06:40:16",
+      "new_timestamp": "2026-07-19 06:40:16"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.20.2.md",
+      "status": "unchanged",
+      "sha256": "429f9c82fe825e545f825a08e2474301d6f14b9abd1375b558b0b10adab440c8",
+      "size": 1111,
+      "original_timestamp": "2026-07-18 06:00:44",
+      "new_timestamp": "2026-07-18 06:00:44"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_MEMORY/._ITERATION_RECORD_v0.20.2.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 06:00:44",
+      "new_timestamp": "2026-07-18 06:00:44"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/",
+      "status": "unchanged",
+      "type": "directory",
+      "original_timestamp": "2026-07-22 19:36:38",
+      "new_timestamp": "2026-07-22 19:36:38"
+    },
+    {
+      "path": "__MACOSX/._DEVELOPMENT_SYSTEM",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:36:38",
+      "new_timestamp": "2026-07-22 19:36:38"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
+      "status": "unchanged",
+      "sha256": "5533fda712ea82717f21c45632f033185dd6aff6ad74e8344f90746ae365b320",
+      "size": 8411,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_SYSTEM/._ARTIFACT_REGISTRY.json",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/REJECTED_AND_SUPERSEDED_PATHS.md",
+      "status": "unchanged",
+      "sha256": "8c76bdf5f0670944ee82131027148e43b1e4a7eca36ecc947eb558666ac302b5",
+      "size": 809,
+      "original_timestamp": "2026-07-18 08:00:36",
+      "new_timestamp": "2026-07-18 08:00:36"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_SYSTEM/._REJECTED_AND_SUPERSEDED_PATHS.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 08:00:36",
+      "new_timestamp": "2026-07-18 08:00:36"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/STATUS_LANGUAGE.md",
+      "status": "unchanged",
+      "sha256": "789a3d7b5d740b163907e13da1cad80564bea0ac529e5caaa50109534d6b8ec0",
+      "size": 1748,
+      "original_timestamp": "2026-07-21 10:03:32",
+      "new_timestamp": "2026-07-21 10:03:32"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_SYSTEM/._STATUS_LANGUAGE.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 10:03:32",
+      "new_timestamp": "2026-07-21 10:03:32"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/PROJECT_IDENTITY.md",
+      "status": "unchanged",
+      "sha256": "d9b206422f04caaa92ad7d35d4d77097126549a35e55be4cbdfd8e3a176f9bde",
+      "size": 1467,
+      "original_timestamp": "2026-07-21 21:33:54",
+      "new_timestamp": "2026-07-21 21:33:54"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_SYSTEM/._PROJECT_IDENTITY.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 21:33:54",
+      "new_timestamp": "2026-07-21 21:33:54"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/RUNTIME_DIAGNOSTICS.md",
+      "status": "unchanged",
+      "sha256": "bb571140e2b003f98c6b3a093f43a81703a8f676725f4eeedbfc20df5017df45",
+      "size": 3200,
+      "original_timestamp": "2026-07-21 10:03:32",
+      "new_timestamp": "2026-07-21 10:03:32"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_SYSTEM/._RUNTIME_DIAGNOSTICS.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 10:03:32",
+      "new_timestamp": "2026-07-21 10:03:32"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md",
+      "status": "unchanged",
+      "sha256": "66020c4d9965b7fcfaf97ae44c98e6c74a91313207affed0dd2b9dc3573a2393",
+      "size": 384,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_SYSTEM/._PROJECT_HEALTH.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md",
+      "status": "unchanged",
+      "sha256": "f6d4625a8c9cbca973855806ad8467cf8367e99785e7c50cdeb72124c320d30b",
+      "size": 1299,
+      "original_timestamp": "2026-07-18 08:00:36",
+      "new_timestamp": "2026-07-18 08:00:36"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_SYSTEM/._AUTHORITY_AND_LIFECYCLE.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 08:00:36",
+      "new_timestamp": "2026-07-18 08:00:36"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/COMPREHENSION_CHECKPOINT.md",
+      "status": "unchanged",
+      "sha256": "6d2bfaf8022373c53608a3c75326f8989ceae07ca874fee7fc393cca8f850a81",
+      "size": 1212,
+      "original_timestamp": "2026-07-19 06:57:20",
+      "new_timestamp": "2026-07-19 06:57:20"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_SYSTEM/._COMPREHENSION_CHECKPOINT.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-19 06:57:20",
+      "new_timestamp": "2026-07-19 06:57:20"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
+      "status": "unchanged",
+      "sha256": "88e291b5246a3afa2e1642560d2943bbe0b21276ea62c3fe7dec13b588e18eba",
+      "size": 2013,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "__MACOSX/DEVELOPMENT_SYSTEM/._GOVERNANCE_RULES.json",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "docs/",
+      "status": "unchanged",
+      "type": "directory",
+      "original_timestamp": "2026-07-22 19:36:38",
+      "new_timestamp": "2026-07-22 19:36:38"
+    },
+    {
+      "path": "__MACOSX/._docs",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:36:38",
+      "new_timestamp": "2026-07-22 19:36:38"
+    },
+    {
+      "path": "docs/branding/",
+      "status": "unchanged",
+      "type": "directory",
+      "original_timestamp": "2026-07-22 19:36:38",
+      "new_timestamp": "2026-07-22 19:36:38"
+    },
+    {
+      "path": "__MACOSX/docs/._branding",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:36:38",
+      "new_timestamp": "2026-07-22 19:36:38"
+    },
+    {
+      "path": "docs/branding/Brand_Guidelines.md",
+      "status": "unchanged",
+      "sha256": "26255721cc7e990a6319a6390dcb441ec795db6226e67944e5bb813738829625",
+      "size": 1346,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/docs/branding/._Brand_Guidelines.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "EVIDENCE_LIBRARY_v0.6.0.md",
+      "status": "unchanged",
+      "sha256": "0e48723392852d13921df8529e4b961874e17b5f49d2c9eb38e7fd3d9ce1c535",
+      "size": 2111,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._EVIDENCE_LIBRARY_v0.6.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "FEATURE_STATUS.md",
+      "status": "unchanged",
+      "sha256": "3ce12034b5c120dd6f75c265ae56be115a11e2971b242dc6a188b879a642bae9",
+      "size": 865,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "__MACOSX/._FEATURE_STATUS.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "GOOGLE_SETUP.md",
+      "status": "unchanged",
+      "sha256": "060990365fc9cdd05ea1ad72321f6bb9250c9ee24f5ec7af85e3ed0a73294c9d",
+      "size": 3210,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._GOOGLE_SETUP.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "HANDOFF_BRIEF.md",
+      "status": "unchanged",
+      "sha256": "3cb90bcf3321f238024fd74563ebcb5570ac2c18cee8a6f9d7d302539be77f2a",
+      "size": 1171,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "__MACOSX/._HANDOFF_BRIEF.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "HISTORICAL_ARTIFACTS_NOTE.md",
+      "status": "unchanged",
+      "sha256": "a4babeab7ff12e75d77e01b2d9a64d11dca0d41e6af27c66e542085ea1725bc6",
+      "size": 664,
+      "original_timestamp": "2026-07-21 09:43:08",
+      "new_timestamp": "2026-07-21 09:43:08"
+    },
+    {
+      "path": "__MACOSX/._HISTORICAL_ARTIFACTS_NOTE.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 09:43:08",
+      "new_timestamp": "2026-07-21 09:43:08"
+    },
+    {
+      "path": "INDEPENDENT_AI_REVIEW_REQUEST_v0.22.0.md",
+      "status": "unchanged",
+      "sha256": "99940279c778efd964f30b941e4b67fca809cb570f2afc86f43b03663d164dd9",
+      "size": 1207,
+      "original_timestamp": "2026-07-18 23:39:32",
+      "new_timestamp": "2026-07-18 23:39:32"
+    },
+    {
+      "path": "__MACOSX/._INDEPENDENT_AI_REVIEW_REQUEST_v0.22.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 23:39:32",
+      "new_timestamp": "2026-07-18 23:39:32"
+    },
+    {
+      "path": "INDEPENDENT_AI_REVIEW_REQUEST_v0.22.1.md",
+      "status": "unchanged",
+      "sha256": "35e683f2a82e57b3dfc520759a5bc8cb37bd1c3ab71edb669631fc4703466d15",
+      "size": 1711,
+      "original_timestamp": "2026-07-19 04:25:18",
+      "new_timestamp": "2026-07-19 04:25:18"
+    },
+    {
+      "path": "__MACOSX/._INDEPENDENT_AI_REVIEW_REQUEST_v0.22.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-19 04:25:18",
+      "new_timestamp": "2026-07-19 04:25:18"
+    },
+    {
+      "path": "index.html",
+      "status": "modified",
+      "original_sha256": "6062445a54afc2f2f570c7bf23a29f74d84c6b2b758755b70441c4341c123758",
+      "new_sha256": "3463fc31da776b3c8e591ef314040cb630206e76db523277cf17374c633df59f",
+      "original_size": 2094,
+      "new_size": 2094,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 21:48:00"
+    },
+    {
+      "path": "__MACOSX/._index.html",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "manifest.webmanifest",
+      "status": "unchanged",
+      "sha256": "7b98d9b521d9a1d8f5319c237595c05223d2af6685cd831743bed51f3bdc0aad",
+      "size": 314,
+      "original_timestamp": "2026-07-21 20:12:48",
+      "new_timestamp": "2026-07-21 20:12:48"
+    },
+    {
+      "path": "__MACOSX/._manifest.webmanifest",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 20:12:48",
+      "new_timestamp": "2026-07-21 20:12:48"
+    },
+    {
+      "path": "MIGRATION_NOTES_v0.8.0.md",
+      "status": "unchanged",
+      "sha256": "d7d834e166f239b510baafb50aec830ffd5737b4e0c4ac87af7705c8f36946af",
+      "size": 871,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._MIGRATION_NOTES_v0.8.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "oauth-callback.html",
+      "status": "unchanged",
+      "sha256": "b8996ea857264c42d8d99956c8cee00677f83ab2e68af29df19d80b49dc48cb3",
+      "size": 158,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._oauth-callback.html",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "PATCH_NOTES_v0.5.1.md",
+      "status": "unchanged",
+      "sha256": "f4fc39d068be275b8934f7989609d4dea947cdac6b3a7a9d133bf6d8375134c5",
+      "size": 1298,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._PATCH_NOTES_v0.5.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "PATCH_NOTES_v0.5.2.md",
+      "status": "unchanged",
+      "sha256": "164742bb5306db13198dceaadf02636a9f334149531ba7e41159ec18208db892",
+      "size": 1641,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._PATCH_NOTES_v0.5.2.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "PATCH_NOTES_v0.6.0.md",
+      "status": "unchanged",
+      "sha256": "828abe274ba7416c06fb02c9d777fce01ce91c249091a15417be7f8b1bf9f33d",
+      "size": 4441,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._PATCH_NOTES_v0.6.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "PATCH_NOTES_v0.6.1.md",
+      "status": "unchanged",
+      "sha256": "87888a80bc7e23dffcfaf0dff582ea809521a83abd205995565079e4b91a7c71",
+      "size": 610,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._PATCH_NOTES_v0.6.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "PATCH_NOTES_v0.6.2.md",
+      "status": "unchanged",
+      "sha256": "a5a3f44509ad811ebb719eddd345264d65f001436d1e5c571463e995acf283ea",
+      "size": 2028,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._PATCH_NOTES_v0.6.2.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "PATCH_NOTES_v0.6.4.md",
+      "status": "unchanged",
+      "sha256": "e9320f54b10ad57c2e2527dd200c82ea2bf31ecb09bc2412ce90e4e9d11c2245",
+      "size": 3263,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._PATCH_NOTES_v0.6.4.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "PATCH_NOTES_v0.6.5.md",
+      "status": "unchanged",
+      "sha256": "a9286c825c53267b26e2be9f3e2befdd2eb2c985a8f4613a5f00896210a9713a",
+      "size": 2446,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._PATCH_NOTES_v0.6.5.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "PATCH_NOTES_v0.6.6.md",
+      "status": "unchanged",
+      "sha256": "943d87305bebdbe15216d2694d9adc5fd8b05cd2159f72d33a56e6d47ea670fa",
+      "size": 1482,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._PATCH_NOTES_v0.6.6.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "READ_THIS_FIRST.md",
+      "status": "unchanged",
+      "sha256": "e11ca5e6d439d99fcc3926afa2be6028cbbe79640fb85b4b45b4c06d838edec8",
+      "size": 210,
+      "original_timestamp": "2026-07-18 09:27:04",
+      "new_timestamp": "2026-07-18 09:27:04"
+    },
+    {
+      "path": "__MACOSX/._READ_THIS_FIRST.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 09:27:04",
+      "new_timestamp": "2026-07-18 09:27:04"
+    },
+    {
+      "path": "README_DEPLOY.md",
+      "status": "unchanged",
+      "sha256": "a57757da2ed1d5b2114cd2725b38bde51bc7ecba6c0f33a80fa8f13aa51d3d23",
+      "size": 555,
+      "original_timestamp": "2026-07-18 07:09:38",
+      "new_timestamp": "2026-07-18 07:09:38"
+    },
+    {
+      "path": "__MACOSX/._README_DEPLOY.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 07:09:38",
+      "new_timestamp": "2026-07-18 07:09:38"
+    },
+    {
+      "path": "README.md",
+      "status": "unchanged",
+      "sha256": "4a560f247bfeef5d75d95439ee2fe78cc923b40bbf81e3039d0b3a6cbe4e9dae",
+      "size": 884,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "__MACOSX/._README.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.7.0.md",
+      "status": "unchanged",
+      "sha256": "f59c650095396367c45f9c7e518542d3c5ab413e279ce8983017e96ea6560399",
+      "size": 3636,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.7.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.8.0.md",
+      "status": "unchanged",
+      "sha256": "09b68e5d8fcf1a14bf73ecf0dcfae641f1e8895862876e9da745ff49b2ba9d74",
+      "size": 3416,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.8.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.8.1.md",
+      "status": "unchanged",
+      "sha256": "3c13d8618ec1e2ccbef732f68b087cbdcb8a2a91caaf3c319ba926d6fdddd8d8",
+      "size": 916,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.8.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.8.2.md",
+      "status": "unchanged",
+      "sha256": "1b5463cf7f9e8eb94115efeb8c3d2fd7377a6901013282626355ca93eccbff47",
+      "size": 756,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.8.2.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.8.3.md",
+      "status": "unchanged",
+      "sha256": "f28150b20b45d8c701fe4e208cfe472e1038bf5a31c6802a9368e6163c11b742",
+      "size": 1117,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.8.3.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.9.0.md",
+      "status": "unchanged",
+      "sha256": "dfe50aad75ead1508b78fabf6ee04917f8ce2d3c5ae2692db61d8499a958a23f",
+      "size": 1040,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.9.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.10.0.md",
+      "status": "unchanged",
+      "sha256": "1e7d0470cbe6b625829dd183a840be5f5ed30a653cf8bc1af82dec980cceaee4",
+      "size": 2089,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.10.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.10.1.md",
+      "status": "unchanged",
+      "sha256": "d6679af493f641123ebe737181fc024af842909402e7195198b42ccf62c19234",
+      "size": 649,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.10.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.10.2.md",
+      "status": "unchanged",
+      "sha256": "903ac5a78823d5b461dca3c899665862918fe12f7e5c144ec324e520b4d11023",
+      "size": 612,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.10.2.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.10.3.md",
+      "status": "unchanged",
+      "sha256": "ee3de639168dd82f5a7c69d15fbd76eed2d8c35eacfe0f457b824fd06e0f548f",
+      "size": 400,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.10.3.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.11.0.md",
+      "status": "unchanged",
+      "sha256": "69822de51955a374f45faca5a6818ea9c9c7a759f484738c4e8948db04d7b19c",
+      "size": 1471,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.11.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.12.0.md",
+      "status": "unchanged",
+      "sha256": "95c7d62fa025dab9ec307e97c34db59f02ccafc59343c6f60a9db58d738fe28d",
+      "size": 1325,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.12.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.12.1.md",
+      "status": "unchanged",
+      "sha256": "ce65c0581b748619f36a9953794b1c14cd4847434d80922f183058c44d751b6f",
+      "size": 1172,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.12.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.13.0.md",
+      "status": "unchanged",
+      "sha256": "c4cc51d371f472750f173789823a14fdc095f2562632d3e557a601cfae7400a6",
+      "size": 1364,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.13.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.14.0.md",
+      "status": "unchanged",
+      "sha256": "801c1c1d2d754f49424e92331c8e6e84790c0b67293f0f0fa9b0deab0176298e",
+      "size": 1171,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.14.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.15.0.md",
+      "status": "unchanged",
+      "sha256": "6475010ee7d4bc669b06d2aedf3860a5ddb8e8d14929d6380b0b939ac237af6a",
+      "size": 1526,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.15.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.15.1.md",
+      "status": "unchanged",
+      "sha256": "1a722caaf6ef3e52b8f00f173b7f061ecc3740ba4121553f858f06d6da0a6d7b",
+      "size": 1545,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.15.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.16.0.md",
+      "status": "unchanged",
+      "sha256": "c6da804b0c3af93fd8f079756f5bf3a81ab6c589d51cc80a75c002856d727369",
+      "size": 1731,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.16.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.16.1.md",
+      "status": "unchanged",
+      "sha256": "be64da74e5526769b7003857c145a8bc6dbd8290a22c9c44e84cc80015d52fd1",
+      "size": 1354,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.16.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.16.2.md",
+      "status": "unchanged",
+      "sha256": "7c4868d1e51f3186e2a2e7a427c839f5c6e8ca579bfc0905e86624158dfdbd3f",
+      "size": 552,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.16.2.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.16.3.md",
+      "status": "unchanged",
+      "sha256": "2d9bb03701463c16f32894e7c61da0de209067eefb245f60e205345fb9067610",
+      "size": 892,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.16.3.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.17.0-alpha.md",
+      "status": "unchanged",
+      "sha256": "49cd75b969d46b3c00cdf95466e0a81d0027cb250aa71d42e333f4f88e6f53c3",
+      "size": 1025,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.17.0-alpha.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.17.1-alpha.md",
+      "status": "unchanged",
+      "sha256": "da1d8847393d07b9f0a07d704ac5a0c09489f4e7850f24a9631d22a530b9817b",
+      "size": 727,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.17.1-alpha.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.17.2-alpha.md",
+      "status": "unchanged",
+      "sha256": "3fa5a6e3865fb514e4bd3ad5868d7f8502ba0222a068002ce53e27aee80e9ffc",
+      "size": 509,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.17.2-alpha.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.17.3-alpha.md",
+      "status": "unchanged",
+      "sha256": "995685468f0d6bf43b318f051a92ff1607b7fc9c55e6ecb860d5c2236a826f4e",
+      "size": 844,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.17.3-alpha.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.17.4.md",
+      "status": "unchanged",
+      "sha256": "82ba49eee0911f6c6062f21e937f989c013d0a0406c13f174fa3a43501fd014b",
+      "size": 900,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.17.4.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.17.6.md",
+      "status": "unchanged",
+      "sha256": "66e8a970e17ae8a9440360a45c3c7ef9fb00d03fc94dc97238154026cdf3ee27",
+      "size": 1293,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.17.6.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.17.7.md",
+      "status": "unchanged",
+      "sha256": "2f382f97ebe50215902ec941290874fd506e0a605ede18165663265189c6384b",
+      "size": 1281,
+      "original_timestamp": "2026-07-17 07:16:24",
+      "new_timestamp": "2026-07-17 07:16:24"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.17.7.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 07:16:24",
+      "new_timestamp": "2026-07-17 07:16:24"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.17.8.md",
+      "status": "unchanged",
+      "sha256": "928db51a47a186f744e99e61e766e0e70e4e509717590a9bc4cb813105a7c47c",
+      "size": 804,
+      "original_timestamp": "2026-07-17 08:28:16",
+      "new_timestamp": "2026-07-17 08:28:16"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.17.8.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 08:28:16",
+      "new_timestamp": "2026-07-17 08:28:16"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.18.0.md",
+      "status": "unchanged",
+      "sha256": "55929fe6371c092c7d0b154f41fbec2447d2d762ad0085d38deea8b56db17d89",
+      "size": 2120,
+      "original_timestamp": "2026-07-17 09:50:56",
+      "new_timestamp": "2026-07-17 09:50:56"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.18.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 09:50:56",
+      "new_timestamp": "2026-07-17 09:50:56"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.19.0.md",
+      "status": "unchanged",
+      "sha256": "73d0d97acaaca6c69d29bfa9df583621b5e379c7546d791ff3d11d5266bb7e41",
+      "size": 1243,
+      "original_timestamp": "2026-07-17 22:43:32",
+      "new_timestamp": "2026-07-17 22:43:32"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.19.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 22:43:32",
+      "new_timestamp": "2026-07-17 22:43:32"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.19.1.md",
+      "status": "unchanged",
+      "sha256": "867ffb2bd77c3a5d1a782558f2d8ccfa7cb6a3f65be3dd332a054a47ce54b09b",
+      "size": 1373,
+      "original_timestamp": "2026-07-18 00:11:36",
+      "new_timestamp": "2026-07-18 00:11:36"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.19.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 00:11:36",
+      "new_timestamp": "2026-07-18 00:11:36"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.19.2.md",
+      "status": "unchanged",
+      "sha256": "fb2383fb308d5e53c3067b30f81d4bf923ec6dfa73df70ff67b050782ad5109a",
+      "size": 609,
+      "original_timestamp": "2026-07-18 00:20:58",
+      "new_timestamp": "2026-07-18 00:20:58"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.19.2.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 00:20:58",
+      "new_timestamp": "2026-07-18 00:20:58"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.20.2.md",
+      "status": "unchanged",
+      "sha256": "564f29664c139502af143f56382b67538efd00acaff8707f2a0192691ac38807",
+      "size": 261,
+      "original_timestamp": "2026-07-18 05:59:04",
+      "new_timestamp": "2026-07-18 05:59:04"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.20.2.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 05:59:04",
+      "new_timestamp": "2026-07-18 05:59:04"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.20.3.md",
+      "status": "unchanged",
+      "sha256": "80547dd143b63d3af1aa9c6fd7bed6d45995ed95557b301aa2342d576381a69f",
+      "size": 2918,
+      "original_timestamp": "2026-07-18 07:37:44",
+      "new_timestamp": "2026-07-18 07:37:44"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.20.3.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 07:37:44",
+      "new_timestamp": "2026-07-18 07:37:44"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.20.4.md",
+      "status": "unchanged",
+      "sha256": "ce2abe4934a38a247af843c43d718ff10d4dae4a8c51e79a233e7ab774f3c433",
+      "size": 847,
+      "original_timestamp": "2026-07-18 08:01:22",
+      "new_timestamp": "2026-07-18 08:01:22"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.20.4.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 08:01:22",
+      "new_timestamp": "2026-07-18 08:01:22"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.20.5.md",
+      "status": "unchanged",
+      "sha256": "c426b7c103b7a91b1a37e406a3f1c1bdc1d1cca5488eca0744dd1320a93ceb9d",
+      "size": 528,
+      "original_timestamp": "2026-07-18 09:27:04",
+      "new_timestamp": "2026-07-18 09:27:04"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.20.5.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 09:27:04",
+      "new_timestamp": "2026-07-18 09:27:04"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.21.0.md",
+      "status": "unchanged",
+      "sha256": "2e34eed53318d76b761439250b55533c5cc22ddc2333ec484857eb3eace65e47",
+      "size": 1342,
+      "original_timestamp": "2026-07-18 22:35:40",
+      "new_timestamp": "2026-07-18 22:35:40"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.21.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 22:35:40",
+      "new_timestamp": "2026-07-18 22:35:40"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.22.0.md",
+      "status": "unchanged",
+      "sha256": "79d6e4141df20611d4a0cf1d936c5db1cf7c80770a11c292dc395bbb09813a7b",
+      "size": 854,
+      "original_timestamp": "2026-07-18 23:39:32",
+      "new_timestamp": "2026-07-18 23:39:32"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.22.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 23:39:32",
+      "new_timestamp": "2026-07-18 23:39:32"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.22.1.md",
+      "status": "unchanged",
+      "sha256": "ecd6a184698f430d925d0dc462dcf0949558d7096715b77532d007683a8dba3b",
+      "size": 1386,
+      "original_timestamp": "2026-07-19 04:25:18",
+      "new_timestamp": "2026-07-19 04:25:18"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.22.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-19 04:25:18",
+      "new_timestamp": "2026-07-19 04:25:18"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.22.2.md",
+      "status": "unchanged",
+      "sha256": "ce4242f2d4c5c473771b967ab4c3039ffa0f49c3edd79475a635c10db0addcd8",
+      "size": 2079,
+      "original_timestamp": "2026-07-19 06:57:20",
+      "new_timestamp": "2026-07-19 06:57:20"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.22.2.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-19 06:57:20",
+      "new_timestamp": "2026-07-19 06:57:20"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.23.0.md",
+      "status": "unchanged",
+      "sha256": "5e0e96d719d42c85d78253356dcf86177127a2397f21b1d339660b2ae740ad2a",
+      "size": 1764,
+      "original_timestamp": "2026-07-19 20:14:54",
+      "new_timestamp": "2026-07-19 20:14:54"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.23.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-19 20:14:54",
+      "new_timestamp": "2026-07-19 20:14:54"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.23.1.md",
+      "status": "unchanged",
+      "sha256": "95c7d4ada301b332641829af001a2e00131f09092e3519f9c23b726b410cf826",
+      "size": 2075,
+      "original_timestamp": "2026-07-20 10:54:32",
+      "new_timestamp": "2026-07-20 10:54:32"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.23.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-20 10:54:32",
+      "new_timestamp": "2026-07-20 10:54:32"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.24.0.md",
+      "status": "unchanged",
+      "sha256": "ecefe00ed1a0f9c014ee92cf0da6371b3617098e479a85bd8da8875df8d0652d",
+      "size": 2466,
+      "original_timestamp": "2026-07-21 10:18:28",
+      "new_timestamp": "2026-07-21 10:18:28"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.24.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 10:18:28",
+      "new_timestamp": "2026-07-21 10:18:28"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.25.0.md",
+      "status": "unchanged",
+      "sha256": "f0b16e2b0c578ec2176213668fb3d775aee922012dc8e63b45d8b6615cc26ab9",
+      "size": 1408,
+      "original_timestamp": "2026-07-21 20:13:46",
+      "new_timestamp": "2026-07-21 20:13:46"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.25.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 20:13:46",
+      "new_timestamp": "2026-07-21 20:13:46"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.25.1.md",
+      "status": "unchanged",
+      "sha256": "1b73de886d327a2c6715e2ce3cf5f7e97e0e8d237a29589e49adfc0927fd3227",
+      "size": 1035,
+      "original_timestamp": "2026-07-21 21:33:16",
+      "new_timestamp": "2026-07-21 21:33:16"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.25.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 21:33:16",
+      "new_timestamp": "2026-07-21 21:33:16"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.25.2.md",
+      "status": "unchanged",
+      "sha256": "59fd7f04ff03281921f3607c7aff4700e5bd12a5d8e3f9e69385c508a50625ee",
+      "size": 657,
+      "original_timestamp": "2026-07-21 23:41:30",
+      "new_timestamp": "2026-07-21 23:41:30"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.25.2.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 23:41:30",
+      "new_timestamp": "2026-07-21 23:41:30"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.26.0.md",
+      "status": "unchanged",
+      "sha256": "4b6fe792bb07d32288b8014245ce464744c75874fbe3306bc794f17a2af8acb9",
+      "size": 5545,
+      "original_timestamp": "2026-07-22 05:47:00",
+      "new_timestamp": "2026-07-22 05:47:00"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.26.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 05:47:00",
+      "new_timestamp": "2026-07-22 05:47:00"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.26.1.md",
+      "status": "unchanged",
+      "sha256": "5d7df57f68777523676bca6b129911fea8c5e777d472ce060ddd0638de081aa1",
+      "size": 1192,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "__MACOSX/._RELEASE_NOTES_v0.26.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "STORAGE_SETUP.md",
+      "status": "unchanged",
+      "sha256": "b25a4297040cc9715c3bde5e42ed08f03faa512440f929cebd6a13ebedb695d3",
+      "size": 3149,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._STORAGE_SETUP.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "style.css",
+      "status": "unchanged",
+      "sha256": "ed5d6045c27f68b5fb0c36504bd2f26e52ba521e6d4cbc6b2c236244e73ba84a",
+      "size": 3675,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._style.css",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "sw.js",
+      "status": "modified",
+      "original_sha256": "deb2dc9dfb718656bbfdf25be1b8419bbd80ba312b5dadd991a0567eaba10e22",
+      "new_sha256": "437685a957fbbd994ccaea7a900b4cee2ec8544f6ffdeb703147f9ef3615770b",
+      "original_size": 726,
+      "new_size": 726,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 21:48:00"
+    },
+    {
+      "path": "__MACOSX/._sw.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "TEST_GUIDE_v0.17.2-alpha.md",
+      "status": "unchanged",
+      "sha256": "e6ef48c060123136f138862605e3e153fc7a73297a52672435c2b68288da071d",
+      "size": 857,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._TEST_GUIDE_v0.17.2-alpha.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "TEST_GUIDE_v0.17.3-alpha.md",
+      "status": "unchanged",
+      "sha256": "a3f1270197191b784736523948f0d923e4f5027e65ff82615b78523bfb6b6efa",
+      "size": 594,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._TEST_GUIDE_v0.17.3-alpha.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "TEST_GUIDE_v0.17.4.md",
+      "status": "unchanged",
+      "sha256": "90c4d185cf597ef099fc476277427ffc856efd860ccb8ee619970e0f94ddb4bc",
+      "size": 565,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._TEST_GUIDE_v0.17.4.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "TEST_GUIDE_v0.17.6.md",
+      "status": "unchanged",
+      "sha256": "f00241d9f6b93f045acd4403af7733dbe1cf5d6e6e42068b5a9b95ddd0148568",
+      "size": 990,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._TEST_GUIDE_v0.17.6.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "TEST_GUIDE_v0.17.7.md",
+      "status": "unchanged",
+      "sha256": "8367602b50e393c7c821699fa34ba15533431e5d6c757a3a808da71a75ba6755",
+      "size": 1084,
+      "original_timestamp": "2026-07-17 07:16:24",
+      "new_timestamp": "2026-07-17 07:16:24"
+    },
+    {
+      "path": "__MACOSX/._TEST_GUIDE_v0.17.7.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 07:16:24",
+      "new_timestamp": "2026-07-17 07:16:24"
+    },
+    {
+      "path": "TEST_GUIDE_v0.18.0.md",
+      "status": "unchanged",
+      "sha256": "33d3598ec4c7723bb9f5e11f22cf2b1a9c32b5d46743058c89f8dfc1a4c351e2",
+      "size": 1112,
+      "original_timestamp": "2026-07-17 09:50:56",
+      "new_timestamp": "2026-07-17 09:50:56"
+    },
+    {
+      "path": "__MACOSX/._TEST_GUIDE_v0.18.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 09:50:56",
+      "new_timestamp": "2026-07-17 09:50:56"
+    },
+    {
+      "path": "TEST_REPORT_v0.7.0.md",
+      "status": "unchanged",
+      "sha256": "d0ddbad6f05879571c2f2481757e93fdf65893f359a6a5ea11acb1e232c3091d",
+      "size": 2561,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.7.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "TEST_REPORT_v0.8.0.md",
+      "status": "unchanged",
+      "sha256": "a433185d14197c69593b7842cae43095e9eed768ced80fa6570aba9930f969ba",
+      "size": 2359,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.8.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "TEST_REPORT_v0.10.0.md",
+      "status": "unchanged",
+      "sha256": "e87312a92a622914f785b0f0d9a8a13cfd2f58c58d85d060c36ba64ffa6d6533",
+      "size": 1411,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.10.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "TEST_REPORT_v0.12.1.md",
+      "status": "unchanged",
+      "sha256": "dd74cf9ffbfb5de335950cf8c4d52c27b681695ce0ea74df36f72530c0815c5e",
+      "size": 584,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.12.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "TEST_REPORT_v0.13.0.md",
+      "status": "unchanged",
+      "sha256": "faff01a1b6389c62142272a4665b88916d2f34496a650b519005ea8e78984b56",
+      "size": 451,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.13.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "TEST_REPORT_v0.15.0.md",
+      "status": "unchanged",
+      "sha256": "0d1787ff21b2e5e3a4f21d355b59a7776bca54ec2982c389f13651550f95bb73",
+      "size": 995,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.15.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "TEST_REPORT_v0.15.1.md",
+      "status": "unchanged",
+      "sha256": "55c3355025d80215cd1b17b8ea4b6010f5522dc40635f0cb0bb99af33567dcbc",
+      "size": 514,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.15.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "TEST_REPORT_v0.16.0.md",
+      "status": "unchanged",
+      "sha256": "624468a9408dc80b19de25edecd6991db7af97ce73e7b17eb0277edb836fe112",
+      "size": 695,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.16.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "TEST_REPORT_v0.16.1.md",
+      "status": "unchanged",
+      "sha256": "5cd0e5f478ec807d6e05a71e36f7791d8fb6ac01d0409eca87d82ff669f559c2",
+      "size": 887,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.16.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "TEST_REPORT_v0.20.3.md",
+      "status": "unchanged",
+      "sha256": "11c743f25ac350d6134c233ac10802b0f0eb57feddbc239f24836216326f32bf",
+      "size": 3952,
+      "original_timestamp": "2026-07-18 07:38:36",
+      "new_timestamp": "2026-07-18 07:38:36"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.20.3.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 07:38:36",
+      "new_timestamp": "2026-07-18 07:38:36"
+    },
+    {
+      "path": "TEST_REPORT_v0.20.4.md",
+      "status": "unchanged",
+      "sha256": "c09b6851f00c32d0494d6d9bf6752feb10151b2f78a905b65adb38717feed04d",
+      "size": 1162,
+      "original_timestamp": "2026-07-18 08:02:04",
+      "new_timestamp": "2026-07-18 08:02:04"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.20.4.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 08:02:04",
+      "new_timestamp": "2026-07-18 08:02:04"
+    },
+    {
+      "path": "TEST_REPORT_v0.20.5.md",
+      "status": "unchanged",
+      "sha256": "acdb49a580ec9ed5ac8c46f11b625d629d85d2018e8a7a3e148706d821391342",
+      "size": 1162,
+      "original_timestamp": "2026-07-18 09:29:20",
+      "new_timestamp": "2026-07-18 09:29:20"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.20.5.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 09:29:20",
+      "new_timestamp": "2026-07-18 09:29:20"
+    },
+    {
+      "path": "TEST_REPORT_v0.21.0.md",
+      "status": "unchanged",
+      "sha256": "0b6d903f7163e5351a80b4fe62c4c48b9172b5fb2ad22fc4045e8a66a2634fc7",
+      "size": 638,
+      "original_timestamp": "2026-07-18 22:35:40",
+      "new_timestamp": "2026-07-18 22:35:40"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.21.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 22:35:40",
+      "new_timestamp": "2026-07-18 22:35:40"
+    },
+    {
+      "path": "TEST_REPORT_v0.22.0.md",
+      "status": "unchanged",
+      "sha256": "4e2b63daaa7372d187d02b2dc443077a2c7e5725fc9568a0ff22aa815dcef886",
+      "size": 890,
+      "original_timestamp": "2026-07-18 23:41:10",
+      "new_timestamp": "2026-07-18 23:41:10"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.22.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 23:41:10",
+      "new_timestamp": "2026-07-18 23:41:10"
+    },
+    {
+      "path": "TEST_REPORT_v0.22.1.md",
+      "status": "unchanged",
+      "sha256": "ba8aaeadf2ac35c2eae18ec9588fcb242a25dd419d67b07c01a3d553655df073",
+      "size": 1107,
+      "original_timestamp": "2026-07-19 04:25:18",
+      "new_timestamp": "2026-07-19 04:25:18"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.22.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-19 04:25:18",
+      "new_timestamp": "2026-07-19 04:25:18"
+    },
+    {
+      "path": "TEST_REPORT_v0.22.2.md",
+      "status": "unchanged",
+      "sha256": "d5b069bb237028c162d6e96fef82b92135555c90550282e974a6b00f11acd4f1",
+      "size": 1914,
+      "original_timestamp": "2026-07-19 06:57:20",
+      "new_timestamp": "2026-07-19 06:57:20"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.22.2.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-19 06:57:20",
+      "new_timestamp": "2026-07-19 06:57:20"
+    },
+    {
+      "path": "TEST_REPORT_v0.23.0.md",
+      "status": "unchanged",
+      "sha256": "746d252465d5ac0dd5390f3fcc6f842598cb7e2b186349dc2ae097efff4ca63e",
+      "size": 1211,
+      "original_timestamp": "2026-07-19 20:14:54",
+      "new_timestamp": "2026-07-19 20:14:54"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.23.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-19 20:14:54",
+      "new_timestamp": "2026-07-19 20:14:54"
+    },
+    {
+      "path": "TEST_REPORT_v0.23.1.md",
+      "status": "unchanged",
+      "sha256": "71289a24268ebef07b9a5814d72fc1a8872155c04e60b6a57d497370ff846f2d",
+      "size": 1960,
+      "original_timestamp": "2026-07-20 11:04:08",
+      "new_timestamp": "2026-07-20 11:04:08"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.23.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-20 11:04:08",
+      "new_timestamp": "2026-07-20 11:04:08"
+    },
+    {
+      "path": "TEST_REPORT_v0.24.0.md",
+      "status": "unchanged",
+      "sha256": "3cc3b3b8f3236a61a7210014e887e844135670bb14e86875060673725415b431",
+      "size": 3933,
+      "original_timestamp": "2026-07-21 10:18:28",
+      "new_timestamp": "2026-07-21 10:18:28"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.24.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 10:18:28",
+      "new_timestamp": "2026-07-21 10:18:28"
+    },
+    {
+      "path": "TEST_REPORT_v0.25.0.md",
+      "status": "unchanged",
+      "sha256": "7661f5c5ecd7c9b15e49c87c1722f410ee488dd94c5f3c706df58456a2014a5d",
+      "size": 996,
+      "original_timestamp": "2026-07-21 20:13:46",
+      "new_timestamp": "2026-07-21 20:13:46"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.25.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 20:13:46",
+      "new_timestamp": "2026-07-21 20:13:46"
+    },
+    {
+      "path": "TEST_REPORT_v0.25.1.md",
+      "status": "unchanged",
+      "sha256": "80dee7c69629c621f78b9e8289c2c9ef014843ec2cab4abaedae48042eaa4641",
+      "size": 458,
+      "original_timestamp": "2026-07-21 21:33:54",
+      "new_timestamp": "2026-07-21 21:33:54"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.25.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 21:33:54",
+      "new_timestamp": "2026-07-21 21:33:54"
+    },
+    {
+      "path": "TEST_REPORT_v0.25.2.md",
+      "status": "unchanged",
+      "sha256": "21a57a8343de2f61df38703957de8d882e26ff9bae40c9f48a699064959adb76",
+      "size": 533,
+      "original_timestamp": "2026-07-21 23:41:30",
+      "new_timestamp": "2026-07-21 23:41:30"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.25.2.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 23:41:30",
+      "new_timestamp": "2026-07-21 23:41:30"
+    },
+    {
+      "path": "TEST_REPORT_v0.26.0.md",
+      "status": "unchanged",
+      "sha256": "17fd81a6d0ee1d4e6da7a029f939e42f1fe4b690ac352f461847153866dfe5e5",
+      "size": 3349,
+      "original_timestamp": "2026-07-22 05:51:08",
+      "new_timestamp": "2026-07-22 05:51:08"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.26.0.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 05:51:08",
+      "new_timestamp": "2026-07-22 05:51:08"
+    },
+    {
+      "path": "TEST_REPORT_v0.26.1.md",
+      "status": "unchanged",
+      "sha256": "bae6eb815fa13415cce10fdef0e042f98f857c085a2fa839fe4c3a49b3f669e5",
+      "size": 2466,
+      "original_timestamp": "2026-07-22 19:47:50",
+      "new_timestamp": "2026-07-22 19:47:50"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT_v0.26.1.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:47:50",
+      "new_timestamp": "2026-07-22 19:47:50"
+    },
+    {
+      "path": "TEST_REPORT.md",
+      "status": "unchanged",
+      "sha256": "00f92d35fae9ce620bf7a37b7ea5c44a56b9b9f02c84456a2732f467f36b5475",
+      "size": 2623,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._TEST_REPORT.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "tests/",
+      "status": "unchanged",
+      "type": "directory",
+      "original_timestamp": "2026-07-22 19:42:32",
+      "new_timestamp": "2026-07-22 19:42:32"
+    },
+    {
+      "path": "__MACOSX/._tests",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:42:32",
+      "new_timestamp": "2026-07-22 19:42:32"
+    },
+    {
+      "path": "tests/workflow-engine.test.js",
+      "status": "unchanged",
+      "sha256": "68a6cd2b25a48ce26b03efa6dc6d21fe34cd4e9ff3342f317bfda545225893d0",
+      "size": 2043,
+      "original_timestamp": "2026-07-21 09:39:20",
+      "new_timestamp": "2026-07-21 09:39:20"
+    },
+    {
+      "path": "__MACOSX/tests/._workflow-engine.test.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 09:39:20",
+      "new_timestamp": "2026-07-21 09:39:20"
+    },
+    {
+      "path": "tests/sleep-and-insight-stabilization.test.js",
+      "status": "unchanged",
+      "sha256": "d718a1e36c57998f1442bd33a9f96bed11792b6b588315fc9a30a31e38f6b3f3",
+      "size": 3320,
+      "original_timestamp": "2026-07-22 05:16:08",
+      "new_timestamp": "2026-07-22 05:16:08"
+    },
+    {
+      "path": "__MACOSX/tests/._sleep-and-insight-stabilization.test.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 05:16:08",
+      "new_timestamp": "2026-07-22 05:16:08"
+    },
+    {
+      "path": "tests/medication-action-status.test.js",
+      "status": "unchanged",
+      "sha256": "a51193ca7e62be82259852880c04d458b0081427878a5e7ce8ef4374f69e5041",
+      "size": 2568,
+      "original_timestamp": "2026-07-18 07:25:14",
+      "new_timestamp": "2026-07-18 07:25:14"
+    },
+    {
+      "path": "__MACOSX/tests/._medication-action-status.test.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 07:25:14",
+      "new_timestamp": "2026-07-18 07:25:14"
+    },
+    {
+      "path": "tests/activity-foundation.test.js",
+      "status": "unchanged",
+      "sha256": "4adc8eedf169485334a06c641b88febab8d753637f35eb8134ab22326bc146fe",
+      "size": 1068,
+      "original_timestamp": "2026-07-19 06:31:06",
+      "new_timestamp": "2026-07-19 06:31:06"
+    },
+    {
+      "path": "__MACOSX/tests/._activity-foundation.test.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-19 06:31:06",
+      "new_timestamp": "2026-07-19 06:31:06"
+    },
+    {
+      "path": "tests/conversation-security-and-editing.test.js",
+      "status": "unchanged",
+      "sha256": "b8f18d004ba258cc622a6c4d11957b7c55d6945372b82ea2dd1ca6af7b53e620",
+      "size": 1245,
+      "original_timestamp": "2026-07-19 20:14:54",
+      "new_timestamp": "2026-07-19 20:14:54"
+    },
+    {
+      "path": "__MACOSX/tests/._conversation-security-and-editing.test.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-19 20:14:54",
+      "new_timestamp": "2026-07-19 20:14:54"
+    },
+    {
+      "path": "tests/release-structure.test.js",
+      "status": "modified",
+      "original_sha256": "c3d7ed558edc3c25ebcbc5b323b6e64a963198375cecfa21cc58550a618405fe",
+      "new_sha256": "1c0e0042ff293a2eadc39a9b9fddb688b72c4f60adad48c54eb78501ea939f4d",
+      "original_size": 2587,
+      "new_size": 2587,
+      "original_timestamp": "2026-07-22 19:46:18",
+      "new_timestamp": "2026-07-22 21:48:00"
+    },
+    {
+      "path": "__MACOSX/tests/._release-structure.test.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:46:18",
+      "new_timestamp": "2026-07-22 19:46:18"
+    },
+    {
+      "path": "tests/sleep-data-transaction.test.js",
+      "status": "unchanged",
+      "sha256": "09054674563756fed53999519e1227900358e6c3848f767d12f78224dac94362",
+      "size": 2065,
+      "original_timestamp": "2026-07-20 10:56:54",
+      "new_timestamp": "2026-07-20 10:56:54"
+    },
+    {
+      "path": "__MACOSX/tests/._sleep-data-transaction.test.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-20 10:56:54",
+      "new_timestamp": "2026-07-20 10:56:54"
+    },
+    {
+      "path": "tests/v026-regression-contract.test.js",
+      "status": "unchanged",
+      "sha256": "72abf2766d0a9f5967b40b3dd5f1562ff9a094b0c94024f3952bd082d198dea1",
+      "size": 4088,
+      "original_timestamp": "2026-07-22 19:42:32",
+      "new_timestamp": "2026-07-22 19:42:32"
+    },
+    {
+      "path": "__MACOSX/tests/._v026-regression-contract.test.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:42:32",
+      "new_timestamp": "2026-07-22 19:42:32"
+    },
+    {
+      "path": "tests/workbook-real-data-idempotency.test.js",
+      "status": "unchanged",
+      "sha256": "8fd4c5bde40968c7aa12ecab9c8a23aff690fa1a8ccc6b2e8c024cb9794ccaed",
+      "size": 4099,
+      "original_timestamp": "2026-07-18 07:21:08",
+      "new_timestamp": "2026-07-18 07:21:08"
+    },
+    {
+      "path": "__MACOSX/tests/._workbook-real-data-idempotency.test.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 07:21:08",
+      "new_timestamp": "2026-07-18 07:21:08"
+    },
+    {
+      "path": "tests/medication-parser.test.js",
+      "status": "unchanged",
+      "sha256": "159b03e00349324bfc802ef33ba1fcc8851b86106d75e4462100666643999eb3",
+      "size": 1896,
+      "original_timestamp": "2026-07-18 08:00:36",
+      "new_timestamp": "2026-07-18 08:00:36"
+    },
+    {
+      "path": "__MACOSX/tests/._medication-parser.test.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 08:00:36",
+      "new_timestamp": "2026-07-18 08:00:36"
+    },
+    {
+      "path": "tests/dashboard-layout-acceptance.test.js",
+      "status": "unchanged",
+      "sha256": "9d400036f356a9b4a32167f3abf9b9ec31b8536997b4adc2bf76ecc94495bd07",
+      "size": 1428,
+      "original_timestamp": "2026-07-22 05:15:04",
+      "new_timestamp": "2026-07-22 05:15:04"
+    },
+    {
+      "path": "__MACOSX/tests/._dashboard-layout-acceptance.test.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 05:15:04",
+      "new_timestamp": "2026-07-22 05:15:04"
+    },
+    {
+      "path": "tests/trust-workflow-ux.test.js",
+      "status": "unchanged",
+      "sha256": "0019f4678cdd644c6471ed4c442fb424fe29e90731a857a8fd6827cd4f82eccc",
+      "size": 2696,
+      "original_timestamp": "2026-07-22 05:25:42",
+      "new_timestamp": "2026-07-22 05:25:42"
+    },
+    {
+      "path": "__MACOSX/tests/._trust-workflow-ux.test.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 05:25:42",
+      "new_timestamp": "2026-07-22 05:25:42"
+    },
+    {
+      "path": "tests/factor-idempotency.test.js",
+      "status": "unchanged",
+      "sha256": "323607bd722df0dedfe342bb0ed4ca42c53b4bdd00ca4dc57aa7fd0195351137",
+      "size": 1920,
+      "original_timestamp": "2026-07-21 09:56:54",
+      "new_timestamp": "2026-07-21 09:56:54"
+    },
+    {
+      "path": "__MACOSX/tests/._factor-idempotency.test.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 09:56:54",
+      "new_timestamp": "2026-07-21 09:56:54"
+    },
+    {
+      "path": "tests/rendered-workflow-smoke.py",
+      "status": "unchanged",
+      "sha256": "183d397c5e8da66a2015cc813b8fa3e7dd0988f8e523876b7e2b6f66aa4bc92f",
+      "size": 20388,
+      "original_timestamp": "2026-07-22 19:48:10",
+      "new_timestamp": "2026-07-22 19:48:10"
+    },
+    {
+      "path": "__MACOSX/tests/._rendered-workflow-smoke.py",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:48:10",
+      "new_timestamp": "2026-07-22 19:48:10"
+    },
+    {
+      "path": "tests/workbook-preflight.test.js",
+      "status": "unchanged",
+      "sha256": "06abe661ae2ceed68d39c34f1b909f349ba1586148e338f235ec4d4ac0773ad9",
+      "size": 3228,
+      "original_timestamp": "2026-07-18 07:02:24",
+      "new_timestamp": "2026-07-18 07:02:24"
+    },
+    {
+      "path": "__MACOSX/tests/._workbook-preflight.test.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 07:02:24",
+      "new_timestamp": "2026-07-18 07:02:24"
+    },
+    {
+      "path": "tests/support-report-browser-smoke.py",
+      "status": "unchanged",
+      "sha256": "2e65fee6fff667c891353a8dd6f9a990fdaf1b6b48f26ecff2272eba44de8eb1",
+      "size": 5730,
+      "original_timestamp": "2026-07-21 10:06:56",
+      "new_timestamp": "2026-07-21 10:06:56"
+    },
+    {
+      "path": "__MACOSX/tests/._support-report-browser-smoke.py",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 10:06:56",
+      "new_timestamp": "2026-07-21 10:06:56"
+    },
+    {
+      "path": "tests/governance-negative-controls.py",
+      "status": "unchanged",
+      "sha256": "563aa7c9d1b03e8502f36dcf262a414628d90d3aaf40966b0770c63f1fc6c424",
+      "size": 2809,
+      "original_timestamp": "2026-07-20 11:06:18",
+      "new_timestamp": "2026-07-20 11:06:18"
+    },
+    {
+      "path": "__MACOSX/tests/._governance-negative-controls.py",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-20 11:06:18",
+      "new_timestamp": "2026-07-20 11:06:18"
+    },
+    {
+      "path": "tests/navigation-coaching-profile.test.js",
+      "status": "unchanged",
+      "sha256": "88101624f94a280c4ee58461d02a033090aa55744abda910765143109a8e7eea",
+      "size": 1500,
+      "original_timestamp": "2026-07-22 05:15:56",
+      "new_timestamp": "2026-07-22 05:15:56"
+    },
+    {
+      "path": "__MACOSX/tests/._navigation-coaching-profile.test.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 05:15:56",
+      "new_timestamp": "2026-07-22 05:15:56"
+    },
+    {
+      "path": "tests/workbook-source-replacement-backup.test.js",
+      "status": "unchanged",
+      "sha256": "78fc4a4b7a32657780f4a0e0d1fe0011d07ee6ae4ce3da9a00b9ed0ab07cf28c",
+      "size": 2473,
+      "original_timestamp": "2026-07-18 07:25:12",
+      "new_timestamp": "2026-07-18 07:25:12"
+    },
+    {
+      "path": "__MACOSX/tests/._workbook-source-replacement-backup.test.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 07:25:12",
+      "new_timestamp": "2026-07-18 07:25:12"
+    },
+    {
+      "path": "tests/v0261-regression-contract.test.js",
+      "status": "unchanged",
+      "sha256": "4505d831513415b5e499f2197bea435705255aba877d57aa0ff2d47a9c6448e6",
+      "size": 3624,
+      "original_timestamp": "2026-07-22 19:42:32",
+      "new_timestamp": "2026-07-22 19:42:32"
+    },
+    {
+      "path": "__MACOSX/tests/._v0261-regression-contract.test.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:42:32",
+      "new_timestamp": "2026-07-22 19:42:32"
+    },
+    {
+      "path": "tests/workbook-commit-verify.test.js",
+      "status": "unchanged",
+      "sha256": "4d6ccee9cdd448b7820ce1bd2d9c79a3be1cd2519b8acf3771ffdb25d12741b9",
+      "size": 3168,
+      "original_timestamp": "2026-07-18 07:20:42",
+      "new_timestamp": "2026-07-18 07:20:42"
+    },
+    {
+      "path": "__MACOSX/tests/._workbook-commit-verify.test.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-18 07:20:42",
+      "new_timestamp": "2026-07-18 07:20:42"
+    },
+    {
+      "path": "THIRD_PARTY_LICENSES/",
+      "status": "unchanged",
+      "type": "directory",
+      "original_timestamp": "2026-07-22 19:36:38",
+      "new_timestamp": "2026-07-22 19:36:38"
+    },
+    {
+      "path": "__MACOSX/._THIRD_PARTY_LICENSES",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:36:38",
+      "new_timestamp": "2026-07-22 19:36:38"
+    },
+    {
+      "path": "THIRD_PARTY_LICENSES/xlsx-LICENSE",
+      "status": "unchanged",
+      "sha256": "4d2a38ac35cda06a555c84074a819d413339cd3691b822cae50f8f322fe01f64",
+      "size": 11355,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/THIRD_PARTY_LICENSES/._xlsx-LICENSE",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "tools/",
+      "status": "unchanged",
+      "type": "directory",
+      "original_timestamp": "2026-07-22 19:36:38",
+      "new_timestamp": "2026-07-22 19:36:38"
+    },
+    {
+      "path": "__MACOSX/._tools",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:36:38",
+      "new_timestamp": "2026-07-22 19:36:38"
+    },
+    {
+      "path": "tools/project_audit.py",
+      "status": "unchanged",
+      "sha256": "77d6bae7de5fc7322e316557684c4adbf31c020c4be2122b6d10054832d66bcc",
+      "size": 8364,
+      "original_timestamp": "2026-07-21 09:45:40",
+      "new_timestamp": "2026-07-21 09:45:40"
+    },
+    {
+      "path": "__MACOSX/tools/._project_audit.py",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-21 09:45:40",
+      "new_timestamp": "2026-07-21 09:45:40"
+    },
+    {
+      "path": "USABILITY_TESTING.md",
+      "status": "unchanged",
+      "sha256": "29d678a17b723932b21502b3f0a9c0f782572113b3c8bf7acbe0962a8a77d5fa",
+      "size": 1030,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._USABILITY_TESTING.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "version.js",
+      "status": "modified",
+      "original_sha256": "1fcca2b0a039ca127681d4f18c33cd6afbff9e5cb0683f9c72a3a9662a6eacbb",
+      "new_sha256": "00bef23a12f92b449f2780d5c83739d7e5a2f6ed2ba3bbd5c9e5727b76ae9d1c",
+      "original_size": 135,
+      "new_size": 68,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 21:48:00"
+    },
+    {
+      "path": "__MACOSX/._version.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "VERSION.txt",
+      "status": "modified",
+      "original_sha256": "d9bc016a9a5fc3211ddc363d3829834aad8e350b836ec4560070eb7a4c2a0c62",
+      "new_sha256": "a8a5cec9fc3206e89828e7b288be175dafc458bf64e067c5b2a939a7a6b80287",
+      "original_size": 69,
+      "new_size": 32,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 21:48:00"
+    },
+    {
+      "path": "__MACOSX/._VERSION.txt",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 19:44:06",
+      "new_timestamp": "2026-07-22 19:44:06"
+    },
+    {
+      "path": "xlsx-bundle.js",
+      "status": "unchanged",
+      "sha256": "cd4c81425faae9b42cbbe384c49fccf5cb2c8c1d6195d989f9df10ecbd28d1a5",
+      "size": 432475,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._xlsx-bundle.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "ZEKE_CONSTITUTION.md",
+      "status": "unchanged",
+      "sha256": "6162b140be37f98719cfc0f10e25af85838427d0958868f0595427aaed5383f4",
+      "size": 9948,
+      "original_timestamp": "2026-07-22 05:47:00",
+      "new_timestamp": "2026-07-22 05:47:00"
+    },
+    {
+      "path": "__MACOSX/._ZEKE_CONSTITUTION.md",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-22 05:47:00",
+      "new_timestamp": "2026-07-22 05:47:00"
+    },
+    {
+      "path": "zeke-config.js",
+      "status": "unchanged",
+      "sha256": "bbfad67bbca5456c596d6949c77de86133f1285d81939b1d108ac638106b5c39",
+      "size": 289,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "__MACOSX/._zeke-config.js",
+      "status": "unchanged",
+      "sha256": "5389c9239c0a1b43b38a27bc99dd8b28a5b61e7278a5130f9b0d42e3cb2c2852",
+      "size": 212,
+      "original_timestamp": "2026-07-17 06:33:12",
+      "new_timestamp": "2026-07-17 06:33:12"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.27.3.md",
+      "status": "added",
+      "new_sha256": "06809f584b8fa10910727801f7d56ebad55af707811c9a82733cb64e6555cc4b",
+      "new_size": 717,
+      "new_timestamp": "2026-07-22 21:48:00"
+    },
+    {
+      "path": "TEST_REPORT_v0.27.3.md",
+      "status": "added",
+      "new_sha256": "8f2c3f92f588ce65e196a5a843b2787e43024d98e68abf974c330bc132a01a48",
+      "new_size": 256,
+      "new_timestamp": "2026-07-22 21:48:00"
+    },
+    {
+      "path": "tests/v027-mobile-workout.test.js",
+      "status": "added",
+      "new_sha256": "cbdf272143358d105fdea3368c117503a846164eee643dd90176237dfdbc045a",
+      "new_size": 1203,
+      "new_timestamp": "2026-07-22 21:48:00"
+    },
+    {
+      "path": "PACKAGE_AUDIT_v0.27.3.json",
+      "status": "added",
+      "new_sha256": "33e84b77a0b77549be891afdc2bb6e3e117dfd9645bc09637a0b01fb9079d37d",
+      "new_size": 144261,
+      "new_timestamp": "2026-07-22 21:48:00"
+    },
+    {
+      "path": "PACKAGE_AUDIT_v0.27.3.md",
+      "status": "added",
+      "new_sha256": "8b47a4b95cb7a2029312b678d7d12b3761475a39cd8ee589dbbaa6f568c1ce9a",
+      "new_size": 760,
+      "new_timestamp": "2026-07-22 21:48:00"
+    }
+  ]
+}

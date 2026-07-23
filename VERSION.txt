@@ -1,3 +1,2 @@
-ZEKE v0.26.1
-Build 2026.07.22.2
-Fitness Navigation & Evidence Hotfix
+ZEKE v0.27.3
+Build 2026.07.22.4

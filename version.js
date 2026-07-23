@@ -1,1 +1,2 @@
-window.ZEKE_VERSION = window.ZEKE_BUILD = { version: '0.26.1', build: '2026.07.22.2', label: 'Fitness Navigation & Evidence Hotfix' };
+window.ZEKE_VERSION = "0.27.3";
+window.ZEKE_BUILD = "2026.07.22.4";
