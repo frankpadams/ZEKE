@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "release": "0.27.0",
-  "build": "2026.07.22.3",
+  "release": "0.26.1",
+  "build": "2026.07.22.2",
   "artifacts": [
     {
       "path": "00_AI_START_HERE.md",
@@ -277,8 +277,8 @@
     "DEVELOPMENT_MEMORY/README_FIRST.md",
     "DEVELOPMENT_MEMORY/DOCUMENT_INDEX.md"
   ],
-  "current_version": "0.27.0",
-  "current_build": "2026.07.22.3",
+  "current_version": "0.26.1",
+  "current_build": "2026.07.22.2",
   "runtime_files": [
     "index.html",
     "version.js",

@@ -1,3 +1,3 @@
-ZEKE v0.27.0
-Build 2026.07.22.3
-Gym Entry Mockup Fidelity
+ZEKE v0.27.2
+Build 2026.07.22.2319
+Fitness Navigation & Evidence Hotfix
