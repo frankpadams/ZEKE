@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "current_version": "0.27.3",
-  "current_build": "2026.07.22.4",
+  "current_version": "0.27.0",
+  "current_build": "2026.07.22.3",
   "release_label": "Fitness Navigation & Evidence Hotfix",
   "baseline": "v0.25.2 Mobile Workout Save Hotfix",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
@@ -19,7 +19,7 @@
     "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
     "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
     "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
-    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.26.1.md"
+    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.27.0.md"
   ],
   "implemented_this_release": [
     "Preserved the resolved v0.25.2 mobile workout-save path and all v0.26.0 architecture",
@@ -48,7 +48,7 @@
     "User-reviewed mobile Fitness mockups",
     "Legacy asset cleanup review"
   ],
-  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.26.1.md",
+  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.27.0.md",
   "files_to_read_first": [
     "00_AI_START_HERE.md"
   ],

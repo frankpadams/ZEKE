@@ -182,3 +182,7 @@
 ## ERR-042 — Goal guidance risked becoming an AI commitment path
 - **Failure risk:** A goal-review feature could allow an AI response to invent targets or silently save changes.
 - **Prevention:** Keep goal review advisory, show limitations, require explicit user save, and give AI no commit authority.
+
+## 2026-07-22 — Release attempts departed from established packaging and metadata practice
+**Observed:** Intermediate release attempts changed established package presentation and used modification dates that were not adequately verified.
+**Correction:** Discard those attempts as baselines. Rebuild from the untouched v0.26.1 ZIP, use the established in-ZIP continuity organization, preserve unchanged ZIP entry bytes and timestamps, and report only checks actually performed.

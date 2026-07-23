@@ -5,7 +5,7 @@ const assert=(v,m)=>{if(!v)throw new Error(m)};
 const index=read('index.html'),app=read('assets/app.js'),data=read('assets/data-layer.js'),workflow=read('assets/workflow-engine.js'),start=read('00_AI_START_HERE.md');
 const state=JSON.parse(read('DEVELOPMENT_MEMORY/PROJECT_STATE.json'));
 const gate=JSON.parse(read('DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json'));
-const cacheToken='20260722.4';
+const cacheToken='20260722.2';
 assert(index.includes(`<title>ZEKE v${state.current_version}</title>`),'index version missing');
 assert(index.includes(`v${state.current_version} · build ${state.current_build}`),'index build missing');
 assert(!index.includes('v=20260717.7'),'stale cache-busting token remains');

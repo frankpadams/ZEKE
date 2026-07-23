@@ -1,6 +1,6 @@
-# Release Gate — ZEKE v0.26.1
+# Release Gate — ZEKE v0.27.0
 
-**Build:** 2026.07.22.2
+**Build:** 2026.07.22.3
 
 ## Status
 
@@ -8,12 +8,20 @@
 
 **Environment verification outstanding.**
 
-The final ZIP reopen cycle and evidence are recorded in `TEST_REPORT_v0.26.1.md`.
+The final ZIP reopen cycle and evidence are recorded in `TEST_REPORT_v0.27.0.md`.
 
 ## Included scope
 
-The approved scope is recorded in `DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.26.1.md`. This hotfix addresses the Activity Library default and overflow, Dashboard disclosure collapse, generic relationship destinations, and unsupported Coach links while preserving prior resolved behavior.
+The approved scope is recorded in `DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.27.0.md`. This release implements the approved full-width, mockup-led Gym Entry Mode while preserving the prior save path and unrelated resolved behavior.
+
+## Package checks
+
+- Built from the supplied untouched v0.26.1 ZIP.
+- Existing package organization retained; continuity and developer artifacts remain inside the one handoff ZIP.
+- Unchanged file bytes and ZIP modification timestamps are preserved from v0.26.1.
+- Modified and newly created files carry the actual America/New_York build-session time.
+- ZIP reopened into a fresh verification directory before delivery.
 
 ## Environment checks still required
 
-Live Drive, Calendar, AI, deployed cache/service worker, protected workbook, accessibility-device, and physical-device checks.
+Physical-device mockup comparison, live Drive, Calendar, AI, deployed cache/service worker, protected workbook, and accessibility-device checks.
