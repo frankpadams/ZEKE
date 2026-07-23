@@ -97,8 +97,3 @@ Current release identity, scope, artifact authority, lifecycle, supersessions, a
 - Dashboard disclosure state is explicit application state and survives rerenders.
 - Relationship links must resolve to the selected item or an item-specific insufficient-data explanation; unrelated generic fallback is prohibited.
 - Coach considerations must expose the user-data trigger, ZEKE interpretation, specific research sources when applicable, and limitations.
-
-## 2026-07-22 — v0.27.0 Gym Entry mockup fidelity
-- The approved mockup is the implementation specification; structural redesign is deferred until the user reviews a close implementation.
-- Gym Entry Mode uses the full available window. Vertical scrolling is acceptable; horizontal page scrolling is not.
-- Guide imagery depicts adults only, fully clothed. When not matched to the user, the curated library represents diverse adult backgrounds.

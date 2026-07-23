@@ -41,10 +41,10 @@ General requests to begin or continue do not replace explicit approval of a pres
 Always state exactly which levels passed and which remain unverified.
 
 ## Packaging
-1. Stage from a clean directory created from the immediately prior authoritative release ZIP; do not substitute a reconstructed working tree.
+1. Stage from a clean directory.
 2. Synchronize version/build in all active files.
 3. Run the release gate.
-4. Create the single complete handoff ZIP using the existing package organization. Keep developer and continuity artifacts in their established in-package locations.
+4. Create the ZIP.
 5. Reopen the ZIP into a fresh verification directory.
 6. Re-run checksum, version, syntax, structural, document, and applicable regression checks.
 7. Deliver only the verified ZIP.
