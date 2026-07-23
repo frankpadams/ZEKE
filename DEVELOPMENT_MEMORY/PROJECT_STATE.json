@@ -1,8 +1,8 @@
 {
   "schema_version": 2,
-  "current_version": "0.27.2",
-  "current_build": "2026.07.22.2319",
-  "release_label": "Fitness Navigation & Evidence Hotfix",
+  "current_version": "0.28.1",
+  "current_build": "2026.07.23.0418",
+  "release_label": "Exercise-Specific Form Guides",
   "baseline": "v0.25.2 Mobile Workout Save Hotfix",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
   "authoritative_documents": [
@@ -19,16 +19,16 @@
     "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
     "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
     "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
-    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.26.1.md"
+    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.28.1.md",
+    "RELEASE_NOTES_v0.28.1.md",
+    "TEST_REPORT_v0.28.1.md",
+    "FORM_GUIDE_MEDIA_LICENSES.md"
   ],
   "implemented_this_release": [
-    "Preserved the resolved v0.25.2 mobile workout-save path and all v0.26.0 architecture",
-    "Defaulted the Activity Library to Favorites without stale browser-view restoration",
-    "Replaced overflowing activity chips with a responsive selector and search",
-    "Persisted Dashboard trend and private-summary disclosure state through rerenders",
-    "Added activity-specific relationship review and exact insufficient-data states",
-    "Included sleep and activity metrics in paired-date screening",
-    "Added direct research and transparent limitations to Coach considerations"
+    "Added 17 exercise-specific Form Guides with setup, movement, common mistakes, tips, targets, equipment, and level",
+    "Added licensed or public-domain photographs with visible source, creator, and license attribution",
+    "Preserved the existing bottom-sheet workflow and v0.28.0 backend storage paths",
+    "Added explicit offline/photo-load fallback and a truthful unmatched-exercise fallback"
   ],
   "inherited_verified_evidence": [
     "v0.25.2 direct mobile workout save handler and visible failure path",
@@ -36,10 +36,11 @@
     "Deterministic medication, sleep, workbook, provenance, and workflow regressions"
   ],
   "known_issues": [
-    "Physical-device, live storage, live AI, protected workbook, service-worker, and accessibility behavior require environment verification",
-    "Relationship screening is exploratory, same-day, and requires at least five paired observations",
-    "Session-based mobile Fitness redesign remains deferred until user-approved mockups",
-    "Central shared AI and multi-account isolation require protected backend infrastructure"
+    "Built-in injury-aware programs are conservative examples, not diagnosis, physical therapy, medical clearance, or individualized rehabilitation prescriptions",
+    "Program selection and creation use simple alpha dialogs and should be replaced by a polished dedicated Program Library / Builder screen",
+    "Physical-device, live Google Drive, protected workbook, service-worker, and accessibility behavior require environment verification",
+    "Form Guide photographs are loaded from Wikimedia Commons and require network access; written guidance remains available if an image cannot load",
+    "Built-in injury-aware programs are educational planning examples, not diagnosis, physical therapy, medical clearance, or individualized rehabilitation prescriptions"
   ],
   "next_review_items": [
     "Deployed physical-device Save Workout, sleep selector, and modal-entry acceptance",
@@ -48,7 +49,7 @@
     "User-reviewed mobile Fitness mockups",
     "Legacy asset cleanup review"
   ],
-  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.26.1.md",
+  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.28.1.md",
   "files_to_read_first": [
     "00_AI_START_HERE.md"
   ],
@@ -60,6 +61,6 @@
     "real-data workbook regression when fixture is available",
     "final ZIP reopened and byte-compared with staging"
   ],
-  "current_release_label": "Fitness Navigation & Evidence Hotfix",
-  "current_focus": "Faithful implementation of the approved exercise-entry mockup"
+  "current_release_label": "Exercise-Specific Form Guides",
+  "current_focus": "Validate the completed Form Guide and Workout Program workflows on deployed mobile and desktop environments"
 }

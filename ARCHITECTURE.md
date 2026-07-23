@@ -1,11 +1,11 @@
-# ZEKE Architecture — Current v0.27.0 Baseline
+# ZEKE Architecture — Current v0.28.1 Baseline
 
-**Build:** 2026.07.22.3  
-**Release:** Fitness Navigation & Evidence Hotfix
+**Build:** 2026.07.23.0418  
+**Release:** Exercise-Specific Form Guides
 
 ## Authoritative runtime
 
-ZEKE remains a directly editable static web application with no compilation step. The active runtime is `index.html`, `version.js`, `assets/app.js`, `assets/data-layer.js`, `assets/parser.js`, `assets/ai-router.js`, `assets/workflow-engine.js`, `assets/styles.css`, `xlsx-bundle.js`, and `sw.js`. `index.html` is authoritative for load order.
+ZEKE remains a directly editable static web application with no compilation step. The active runtime is `index.html`, `version.js`, `assets/app.js`, `assets/data-layer.js`, `assets/parser.js`, `assets/ai-router.js`, `assets/workflow-engine.js`, `assets/exercise-guides.js`, `assets/styles.css`, `xlsx-bundle.js`, and `sw.js`. `index.html` is authoritative for load order.
 
 Historical hashed bundles and root-level legacy app/style files are not loaded and must not be edited as current source.
 
@@ -65,6 +65,15 @@ The v0.25.2 direct Save Workout handler, form-submit fallback, compatibility tra
 Local package verification cannot establish live credentials, Google Drive/Calendar behavior, AI provider behavior, deployed service-worker replacement, protected real-workbook results, or physical-device accessibility. Those remain environment verification items.
 
 
-## v0.27.0 interaction stabilization
+## v0.26.1 interaction stabilization
 
 Activity Library category selection is presentation state: every fresh application load begins at Favorites, while a user’s current in-session selection may survive ordinary rerenders. Dashboard native disclosures have explicit in-memory open-state tracking. Evidence navigation requires exact context and may show an honest insufficient-data state rather than substituting another pattern.
+
+
+## v0.28 Workout Programs and trusted Gym Entry
+
+Workout Programs are reusable plans stored in connected preferences. Choosing one creates an editable session draft and does not mark any exercise complete. Confirmed exercises are written to the existing workout event ledger with program linkage and transaction provenance. Finish Workout creates the session summary; merely opening or exiting Gym Entry does not. Blank fields remain null/unknown.
+
+## v0.28.1 Form Guide library
+
+`assets/exercise-guides.js` is the local instructional knowledge source and must load before `assets/app.js`. The existing exercise-screen bottom sheet reads from this library and renders Overview, Setup, Movement, Common Mistakes, and Tips. Matched guides include photo source, creator, and license metadata. Photographs are loaded from Wikimedia Commons at runtime; written guidance is local and the UI exposes an honest image-failure state. The library is educational and cannot override injury restrictions or provide medical clearance.

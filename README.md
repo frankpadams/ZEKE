@@ -1,20 +1,22 @@
-# ZEKE v0.27.0
+# ZEKE v0.28.1
 
-**Build:** 2026.07.22.3  
-**Release:** Fitness Navigation & Evidence Hotfix
+**Build:** 2026.07.23.0418  
+**Release:** Exercise-Specific Form Guides
 
-ZEKE is a private, user-owned personal management system. This complete static release advances v0.26.0 and preserves the v0.25.2 mobile workout-save hotfix.
+ZEKE is a private, user-owned personal management system. This patch completes the Form Guide work requested for the v0.28.0 Gym Entry and Workout Programs release without changing its workout-storage paths.
 
-## This hotfix
+## This patch
 
-- Activity Library starts at Favorites.
-- Responsive selector and search replace overflowing activity chips.
-- Dashboard expandable sections retain their state through rerenders.
-- Relationship review is contextual to the selected activity or metric.
-- Coach considerations include direct research sources and clear limitations.
+- Adds 17 exercise-specific Form Guides.
+- Adds licensed or public-domain photographs with visible attribution and source/license links.
+- Adds detailed Setup, Movement, Common Mistakes, and Tips sections.
+- Keeps Form Guide inside the existing exercise-screen bottom sheet.
+- Preserves blank values as unknown and retains the v0.28.0 connected-preferences and workout-event persistence behavior.
 
-Read `00_AI_START_HERE.md`, `HANDOFF_BRIEF.md`, `RELEASE_NOTES_v0.27.0.md`, and `TEST_REPORT_v0.27.0.md`.
+Photographs are loaded from Wikimedia Commons at runtime and therefore require network access. The written guidance remains available if an image cannot load.
+
+Read `00_AI_START_HERE.md`, `HANDOFF_BRIEF.md`, `RELEASE_NOTES_v0.28.1.md`, `TEST_REPORT_v0.28.1.md`, and `FORM_GUIDE_MEDIA_LICENSES.md`.
 
 ## Deploy
 
-Replace the deployed ZEKE files with this folder while preserving intended values in `zeke-config.js`. Hard-refresh once and confirm **v0.27.0 · build 2026.07.22.3**.
+Replace the deployed ZEKE files with this folder while preserving intended values in `zeke-config.js`. Hard-refresh once and confirm **v0.28.1 · build 2026.07.23.0418**.

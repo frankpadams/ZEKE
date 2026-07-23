@@ -1,53 +1,50 @@
 {
   "schema_version": 2,
-  "release": "0.26.1",
-  "build": "2026.07.22.2",
+  "release": "0.28.1",
+  "build": "2026.07.23.0418",
   "current_iteration": {
     "status": "package_verification_complete_environment_verification_outstanding",
     "baseline_verified": true,
-    "baseline_audit_status": "v0.25.2 baseline deterministic tests and hotfix structure reviewed before modification.",
+    "baseline_audit_status": "v0.28.0 package extracted directly and used as the sole baseline; unchanged files are compared against that ZIP by content and archived modification timestamp.",
     "backlog_resurfaced": true,
     "scope_presented": true,
     "user_approved_scope": true,
-    "approved_at": "2026-07-22T04:51:14Z",
-    "approval_evidence": "User reported the v0.26.0 Activity Library, Dashboard disclosure, relationship-link, and Coach-evidence regressions and requested that all raised concerns be addressed.",
-    "release": "0.26.1",
-    "build": "2026.07.22.2",
-    "baseline_release": "0.26.0",
-    "baseline_build": "2026.07.22.1",
+    "approved_at": "2026-07-23T04:07:47Z",
+    "approval_evidence": "User asked to add the omitted licensed photographs and exercise-specific Form Guide content now, to the package just generated, under the standing structure and timestamp requirements.",
+    "release": "0.28.1",
+    "build": "2026.07.23.0418",
+    "baseline_release": "0.28.0",
+    "baseline_build": "2026.07.23.0005",
     "approved_scope": [
-      "Preserve the resolved v0.25.2 mobile workout-save path",
-      "Default the Activity Library to Favorites on every fresh application load",
-      "Replace overflowing activity-type chips with the responsive Favorites, Recent, Strength, Cardio, Mobility/PT, Sports, Custom, and All selector",
-      "Add Activity Library search without creating another horizontal control strip",
-      "Keep Dashboard trend and private-summary disclosures open across normal rerenders until the user closes them",
-      "Make Review relationships open activity-specific evidence or a specific data-sufficiency explanation rather than a generic page",
-      "Include workout and sleep values in paired-date relationship screening",
-      "Attach specific research articles and transparent limitations to Coach considerations",
-      "Preserve the v0.26.0 daily-briefing, Health architecture, sleep-record, medication, goal, profile, and reversible-removal improvements"
+      "Add licensed photographs to the existing exercise Form Guide bottom sheet",
+      "Add useful exercise-specific Setup, Movement, Common Mistakes, and Tips content",
+      "Preserve the v0.28.0 workout-program and backend data-storage behavior",
+      "Maintain the existing file and directory structure",
+      "Preserve original modification timestamps for unchanged files and use real modification timestamps for changed or new files",
+      "Represent unavailable or unmatched guide content honestly rather than fabricating completeness"
     ],
     "explicitly_excluded": [
       "Destructive data migration",
-      "Generic unrelated relationship fallback",
-      "Generic app launcher or copied dynamic membership QR",
-      "Unverified live-provider or physical-device claims"
+      "Changes to v0.28.0 workout-event or connected-preferences storage paths",
+      "Claims that remote Wikimedia photos are embedded or available offline",
+      "Unverified live-provider, protected-workbook, deployed-cache, or physical-device claims"
     ],
     "acceptance_criteria": [
-      "Activity Library starts on Favorites",
-      "No horizontal Activity Library chip overflow",
-      "Dashboard disclosures stay open through rerender",
-      "Relationship review is exact and contextual",
-      "Coach evidence opens direct research sources",
-      "Mobile Save Workout hotfix remains present",
-      "All package tests and governance checks pass"
+      "Exercise guide data loads before the main application",
+      "Seventeen reviewed guides contain all required instructional sections",
+      "Matched guides show a licensed/public-domain photo with visible attribution",
+      "Unmatched guides are labeled as not reviewed for the exact exercise",
+      "Existing workout persistence behavior is unchanged",
+      "Project audit, JavaScript syntax, guide-contract, regression, and ZIP-integrity checks pass",
+      "Unchanged files retain baseline ZIP modification timestamps"
     ],
-    "rollback_plan": "Restore v0.26.0 build 2026.07.22.1; no data migration is required.",
+    "rollback_plan": "Restore ZEKE v0.28.0 build 2026.07.23.0005; no data migration is required.",
     "prior_conversations_reviewed": true,
     "implementation_complete": true,
     "verification_complete": true,
     "package_verification": "complete",
     "environment_verification": "outstanding",
-    "unpacked_file_count": 234
+    "unpacked_file_count": 246
   },
   "next_iteration": {
     "status": "not_open",
@@ -56,6 +53,6 @@
     "scope_presented": false,
     "user_approved_scope": null
   },
-  "current_version": "0.26.1",
-  "current_build": "2026.07.22.2"
+  "current_version": "0.28.1",
+  "current_build": "2026.07.23.0418"
 }

@@ -97,3 +97,11 @@ Current release identity, scope, artifact authority, lifecycle, supersessions, a
 - Dashboard disclosure state is explicit application state and survives rerenders.
 - Relationship links must resolve to the selected item or an item-specific insufficient-data explanation; unrelated generic fallback is prohibited.
 - Coach considerations must expose the user-data trigger, ZEKE interpretation, specific research sources when applicable, and limitations.
+
+
+## 2026-07-23 — v0.28.1 Form Guide completion
+
+- Complete required Form Guide content rather than labeling it as a later dependency.
+- Store reviewed instructional facts locally in `assets/exercise-guides.js`.
+- Load attributed Wikimedia Commons photos at runtime and show the creator/source/license in the UI.
+- Keep an explicit offline image fallback; do not imply remotely loaded photos are packaged locally.

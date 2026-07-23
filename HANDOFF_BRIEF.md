@@ -1,28 +1,30 @@
 # ZEKE Handoff Brief
 
-**Current baseline:** ZEKE v0.27.0 · build 2026.07.22.3  
-**Release:** Gym Entry Mockup Fidelity
+**Current baseline:** ZEKE v0.28.1 · build 2026.07.23.0418
+**Release:** Exercise-Specific Form Guides
 
 Start with `00_AI_START_HERE.md` and `DEVELOPMENT_MEMORY/PROJECT_STATE.json`.
 
 ## Baseline lineage
 
-v0.27.0 is built directly from the untouched v0.26.1 handoff ZIP. It preserves the v0.25.2 mobile workout-save safeguards and the v0.26.1 Fitness navigation and evidence hotfix.
+v0.26.1 patches v0.26.0. v0.26.0 was built on v0.25.2 because v0.25.2 fixed the reported mobile Save Workout failure. Do not roll back the direct save handler, form-submit fallback, visible status, or error path.
 
-## Current user-visible changes
+## Current user-visible fixes
 
-- Gym entry uses the full available window rather than the prior constrained modal card.
-- The approved mockup remains the visual specification; this release does not intentionally redesign its hierarchy.
-- Exercise entry supports set-by-set weight, repetitions, completion, adding sets, and copying Set 1 to all.
-- The page can scroll vertically but prevents horizontal page scrolling, including narrow-phone layouts.
-- Coach's Eye, Progression, Last Workout, Today's Entry, and Form Guide remain distinct sections.
-- Form Guide opens as an edge-to-edge bottom sheet.
-- Guide-media policy is adult-only and fully clothed. When not user-matched, the curated library must represent diverse adult backgrounds. Unreviewed images are not displayed.
-
-## Package continuity
-
-This ZIP remains the complete application, archive, continuity record, test record, and developer handoff. Developer materials remain in their established package locations.
+- Favorites is the non-persisted fresh-load Activity Library default.
+- A responsive selector and search replace the clipped horizontal activity-type control row.
+- Dashboard disclosure open state survives application rerenders.
+- Relationship reviews are tied to the selected activity or metric and never silently fall back to an unrelated pattern.
+- Coach recommendations expose their personal-data trigger, interpretation, research basis, and limits.
 
 ## Verification boundary
 
-Package-local evidence is in `TEST_REPORT_v0.27.0.md`. Live services, deployed cache behavior, protected workbook data, accessibility-device behavior, and physical-device behavior remain environment verification.
+Package-local evidence is in `TEST_REPORT_v0.26.1.md`. Live services, deployed cache behavior, protected workbook data, accessibility-device behavior, and physical-device behavior remain environment verification.
+
+
+## v0.28.1 additions
+
+- The existing Form Guide bottom sheet is now data-driven through `assets/exercise-guides.js`.
+- It contains 17 reviewed exercise-specific guides with visible media attribution.
+- Photos are externally loaded from Wikimedia Commons; do not claim they are embedded/offline.
+- Do not remove or bypass the v0.28.0 workout-event and connected-preferences persistence paths.

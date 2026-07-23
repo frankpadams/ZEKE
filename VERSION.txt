@@ -1,3 +1,3 @@
-ZEKE v0.27.2
-Build 2026.07.22.2319
-Fitness Navigation & Evidence Hotfix
+ZEKE v0.28.1
+Build 2026.07.23.0418
+Exercise-Specific Form Guides

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "release": "0.26.1",
-  "build": "2026.07.22.2",
+  "release": "0.28.1",
+  "build": "2026.07.23.0418",
   "artifacts": [
     {
       "path": "00_AI_START_HERE.md",
@@ -238,7 +238,7 @@
     {
       "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.26.0.md",
       "status": "historical",
-      "purpose": "prior approved iteration record"
+      "purpose": "historical approved scope and implementation record"
     },
     {
       "path": "RELEASE_NOTES_v0.26.0.md",
@@ -252,8 +252,8 @@
     },
     {
       "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.26.1.md",
-      "status": "authoritative",
-      "purpose": "current approved scope and implementation record"
+      "status": "historical",
+      "purpose": "historical approved scope and implementation record"
     },
     {
       "path": "RELEASE_NOTES_v0.26.1.md",
@@ -264,6 +264,26 @@
       "path": "TEST_REPORT_v0.26.1.md",
       "status": "supporting",
       "purpose": "current test and verification evidence"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.28.1.md",
+      "status": "authoritative",
+      "purpose": "current approved scope and implementation record"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.28.1.md",
+      "status": "authoritative",
+      "purpose": "current release summary"
+    },
+    {
+      "path": "TEST_REPORT_v0.28.1.md",
+      "status": "authoritative",
+      "purpose": "current test and verification evidence"
+    },
+    {
+      "path": "FORM_GUIDE_MEDIA_LICENSES.md",
+      "status": "authoritative",
+      "purpose": "current Form Guide media attribution and license record"
     }
   ],
   "historical_patterns": [
@@ -277,11 +297,12 @@
     "DEVELOPMENT_MEMORY/README_FIRST.md",
     "DEVELOPMENT_MEMORY/DOCUMENT_INDEX.md"
   ],
-  "current_version": "0.26.1",
-  "current_build": "2026.07.22.2",
+  "current_version": "0.28.1",
+  "current_build": "2026.07.23.0418",
   "runtime_files": [
     "index.html",
     "version.js",
+    "assets/exercise-guides.js",
     "assets/app.js",
     "assets/data-layer.js",
     "assets/parser.js",
