@@ -1,7 +1,7 @@
 {
   "schema_version": 2,
-  "current_version": "0.26.1",
-  "current_build": "2026.07.22.2",
+  "current_version": "0.27.3",
+  "current_build": "2026.07.22.4",
   "release_label": "Fitness Navigation & Evidence Hotfix",
   "baseline": "v0.25.2 Mobile Workout Save Hotfix",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
