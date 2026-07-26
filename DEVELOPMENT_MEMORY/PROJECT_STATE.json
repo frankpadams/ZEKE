@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
-  "current_version": "0.30.0",
-  "current_build": "2026.07.26.1",
+  "current_version": "0.31.0",
+  "current_build": "2026.07.26.2",
   "release_label": "Mobile Workout Entry and Health Conditions",
   "baseline": "v0.29.0 runtime built from v0.27.2 recovery baseline",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
@@ -23,13 +23,10 @@
     "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.29.0.md"
   ],
   "implemented_this_release": [
-    "Mobile workout-entry Gym action on phones",
-    "Fitness logging hierarchy",
-    "Editable mobile workout date",
-    "Routine templates and manager",
-    "Provider-backed custom activities and routines",
-    "Health condition entry",
-    "All chart range retained"
+    "Mobile workout visual-fidelity styling",
+    "Reviewed Form Guide integration",
+    "Sleep save feedback",
+    "Storage reconnect dialog"
   ],
   "inherited_verified_evidence": [
     "v0.25.2 direct mobile workout save handler and visible failure path",
@@ -85,6 +82,10 @@
     "verified visual Form Guide sequences",
     "provider-backed encrypted AI vault with PIN service and recovery path"
   ],
-  "current_release": "Gym Mode Recovery and Trusted Entry",
-  "updated_at": "2026-07-26T00:02:22-04:00"
+  "current_release": "ZEKE v0.31.0 \u2014 Mobile Workout Visual Fidelity and Form Guides",
+  "updated_at": "2026-07-26T00:02:22-04:00",
+  "known_limitations": [
+    "Additional 20 common-exercise photos not fully curated",
+    "Physical-device visual verification pending"
+  ]
 }
