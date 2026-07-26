@@ -1,29 +1,31 @@
-# AI Start Here — ZEKE v0.28.1
+# AI Start Here — ZEKE v0.27.2 Recovery Baseline
 
-Current build: **2026.07.23.0418 — Exercise-Specific Form Guides**
+**Runtime build:** 2026.07.22.2319  
+**Governance revision:** 2026.07.25.1  
+**Package status:** Governance reconciled; runtime unchanged.
 
 Read in this order:
 
 1. `HANDOFF_BRIEF.md`
 2. `ZEKE_CONSTITUTION.md`
-3. `DEVELOPMENT_MEMORY/PROJECT_STATE.json`
-4. `DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json`
-5. `DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.28.1.md`
-6. `RELEASE_NOTES_v0.28.1.md`
-7. `TEST_REPORT_v0.28.1.md`
-8. `FORM_GUIDE_MEDIA_LICENSES.md`
-9. `ARCHITECTURE.md`
+3. `DEVELOPMENT_MEMORY/GOVERNANCE_RECONCILIATION_2026-07-25.md`
+4. `DEVELOPMENT_MEMORY/PROJECT_STATE.json`
+5. `DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json`
+6. `DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.27.2.md`
+7. `ARCHITECTURE.md`
+8. `DEVELOPMENT_MEMORY/DECISION_LOG.md`
+9. `DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md`
+10. `DEVELOPMENT_MEMORY/BACKLOG.md`
 
-The current runtime is directly editable static HTML/CSS/JavaScript. Preserve the v0.25.2 mobile Save Workout path, the v0.28.0 Workout Programs/backend persistence behavior, and the v0.28.1 exercise-guide load order unless a later approved iteration explicitly supersedes them.
+## Non-negotiable baseline
 
-## Fast orientation
+- v0.27.2 is the approved recovery baseline.
+- v0.28.x is rejected as a forward-development baseline.
+- The approved Gym Mode mockup is a locked specification, not inspiration.
+- Documentation decisions are not proof of implementation.
+- Do not redesign unrelated modules or let phone Gym Mode CSS alter desktop ZEKE.
+- Do not claim Saved, Synced, completed, verified, or fixed without evidence of the exact operation.
 
-The current package is a complete static application. Verify the declared version/build, read the current iteration record, and run the package-local tests before changing code.
+## Before any code edit
 
-## Historian phase
-
-Review the current Decision Log, Backlog, prior iteration record, and reported regression before proposing a replacement. Preserve resolved behavior unless the current approved scope explicitly supersedes it.
-
-## Anti-wandering constraints
-
-Do not redesign unrelated modules, create parallel constitutions, reintroduce generic evidence destinations, change established storage paths without approval, fabricate file dates, or claim live-provider/remote-image/physical-device verification from isolated package tests.
+Complete the project workflow gate, review accessible prior ZEKE decisions, inspect the current rendered baseline, present the exact proposed scope, and obtain explicit user approval. Preserve unchanged bytes and timestamps during packaging.

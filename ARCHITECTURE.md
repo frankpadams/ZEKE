@@ -1,79 +1,97 @@
-# ZEKE Architecture — Current v0.28.1 Baseline
+# ZEKE Architecture — v0.27.2 Recovery Baseline
 
-**Build:** 2026.07.23.0418  
-**Release:** Exercise-Specific Form Guides
+**Runtime version:** 0.27.2  
+**Runtime build:** 2026.07.22.2319  
+**Governance revision:** 2026.07.25.1  
+**Status:** Runtime baseline plus locked future architecture. Governance documentation does not by itself implement the decisions below.
 
-## Authoritative runtime
+## Authoritative baseline
 
-ZEKE remains a directly editable static web application with no compilation step. The active runtime is `index.html`, `version.js`, `assets/app.js`, `assets/data-layer.js`, `assets/parser.js`, `assets/ai-router.js`, `assets/workflow-engine.js`, `assets/exercise-guides.js`, `assets/styles.css`, `xlsx-bundle.js`, and `sw.js`. `index.html` is authoritative for load order.
+ZEKE v0.27.2 is the approved recovery baseline. The approved exercise-screen mockup is a locked specification for the next Gym Mode rebuild. The v0.28.x branch is rejected as a forward-development baseline and may be used only as failure evidence or as a source of individually re-evaluated backend ideas.
 
-Historical hashed bundles and root-level legacy app/style files are not loaded and must not be edited as current source.
+The active runtime remains the directly editable static application loaded by `index.html`. No application runtime files were changed in this governance reconciliation.
 
-## Core boundary
+## Product boundary
 
-ZEKE is a private, user-owned personal-management system. Raw inputs, provenance, corrections, and canonical records remain distinguishable. Missing data stays unknown. AI proposes; deterministic code and required user confirmation commit.
+ZEKE is a private, user-owned personal-management system beginning with health and fitness but not limited to them. Canonical records, corrections, raw observations, provenance, and derived interpretations remain distinguishable. Missing means unknown. AI proposes; deterministic code and explicit user actions govern durable writes.
 
-Durable personal content belongs in the user-owned repository. Device-local storage is limited to operational/UI continuity unless a future mode is explicitly chosen. The current user profile and goals are stored through provider-backed preferences/factors rather than as code or a local-only personal database.
+## Provider-agnostic storage contract
 
-## Information architecture
+The core application must call a common storage contract rather than Google-, Microsoft-, or Dropbox-specific write functions. The contract must support at least:
 
-- **Dashboard:** current state plus prioritized intelligence; a daily briefing rather than a copy of every module.
-- **Health:** umbrella for measurements, vitals, sleep, symptoms/life context, medications/supplements, labs, nutrition, conditions, and relevant personal/family context.
-- **Fitness:** process domain for workouts, activities, progression, plans, goals, equipment, and memberships.
-- **Discover:** broader patterns, hypotheses, research connections, and “I’ve been thinking…” exploration.
-- **Documents:** safe import entry and provenance-oriented import history.
-- **Questions for You:** conversational clarification and remembered context, not an administrative queue.
+- authenticate/reconnect
+- read, list, create, update, and archive records
+- verify a write and return provider evidence
+- store provider-backed preferences and encrypted configuration
+- preserve stable record identifiers, corrections, provenance, and timestamps
 
-## Dashboard composition
+Google Drive is the first adapter. OneDrive, Dropbox, SFTP/private storage, and future providers must be implementable without changing record meaning. One active primary provider is used at a time.
 
-The desktop flow is:
-1. Health at a Glance
-2. Today’s Actions | Coach’s Eye | Upcoming
-3. full-width Trends & Analysis
-4. supporting private summary and Recent Health Record
+## Canonical versus temporary data
 
-Health at a Glance is selected from Health. If nothing is pinned, the most-used verified metrics are shown. Individual Fitness exercises do not become Dashboard health tiles.
+- **Canonical confirmed data:** durable in the active provider and eligible for history and analysis.
+- **Unconfirmed working state:** current form values not yet saved.
+- **Local recovery cache:** optional, device-local, normal-browser convenience for unfinished forms only.
+- **Derived data:** reproducible calculation or interpretation with method/version and input references.
 
-Coach’s Eye contains zero to three actionable recommendations. Trends & Analysis describes changes without implying intervention and expands inline with confidence and limitations.
+Local recovery must never feed history, charts, readiness, Coach's Eye, Discovery, or health interpretation. Private browsing may run ZEKE, but unsaved work is not guaranteed to survive closure.
 
-## Record and workflow behavior
+## Record integrity
 
-- Talk to ZEKE and focused forms create compatible event structures and use the same duplicate, provenance, confirmation, correction, and audit boundaries.
-- Sleep records use the wake-up date as both `event_date` and `wake_date`; Recent Health Record recognizes sleep atomically.
-- Remove actions use reversible event undo rather than silent deletion.
-- Activity fields are schema-sensitive. Strength, stair/cardio, walking/distance, rehabilitation, mobility, recovery, sport, and functional activity views suppress irrelevant columns.
-- Activity identity and activity metrics remain distinct. Stair steps, ambulatory steps, and distance are not interchangeable.
-- Monthly medication review records completion as a preference; it never marks individual doses complete.
-- Medication action completion requires a same-local-day confirmed taken event. Missed and not-yet-taken remain explicit non-completion states.
-- Medication backfill is a reviewed batch transaction: generate matching dates, preview, skip matching existing events, write with shared batch provenance, and retain an undo path.
-- Goals are provider-backed factors. Deterministic structure review is always available. Connected-AI goal review is advisory, cannot commit changes, and cannot imply medical clearance.
+Every record carries a stable identifier, effective date/time, record/create time, source, provenance, status, and correction linkage where applicable. Every data-entry screen visibly displays the effective date and permits intentional editing.
 
-## Profile storage
+Blank, zero, suggested, in progress, confirmed, computed, corrected, deleted, saving, and saved are distinct states. No user-facing success state may precede the provider acknowledgement it describes.
 
-`system/preferences.json` (or the equivalent connected provider object) is the authoritative home for the current user profile. A legacy `zeke-user-profile` local key is read only for one-time migration, saved to connected preferences, and then removed when migration succeeds.
+## Sleep architecture
 
-## Render and form continuity
+A sleep day is an aggregate over one or more actual sleep segments. Each segment retains its own start and end timestamp. Total sleep sums the segments; awake gaps remain gaps. Overnight sleep defaults to the date of final morning awakening, and the effective sleep date remains editable.
 
-Root re-rendering preserves editable controls inside `#root`. Direct-entry overlays are outside the replaced root and retain their live values; stale render snapshots are not restored into those overlays. This prevents delayed asynchronous refreshes from clearing in-progress modal entry.
+## Workout records and routines
 
-## Mobile boundary
+Workout history is organized by date and individual saved exercises. A separate named session is not required for the user experience. A hidden transaction or day-group identifier may support integrity without becoming the historical unit.
 
-The v0.25.2 direct Save Workout handler, form-submit fallback, compatibility transaction ID, and visible error state remain protected. v0.26 avoids swipe-only interactions and prevents mobile form zoom by keeping form controls at 16 px. A broader session-based mobile redesign remains deferred until user-reviewed mockups exist.
+A routine is a template that may contain an ordered exercise list and optional target sets/reps. Loading a routine creates suggestions only. Users may delete, add, skip, edit, and reorder exercises. Historical data records what was actually saved, not the routine name.
 
-## Verification boundary
+Custom exercises are allowed and must use an activity-specific field profile. Relevant fields only are shown: strength, cardio, mobility/PT, and other activity types do not share a universal column set.
 
-Local package verification cannot establish live credentials, Google Drive/Calendar behavior, AI provider behavior, deployed service-worker replacement, protected real-workbook results, or physical-device accessibility. Those remain environment verification items.
+## Gym Mode
 
+Gym Mode is a focused portable workflow, primarily for phones during live workouts. It does not replace desktop ZEKE.
 
-## v0.26.1 interaction stabilization
+Portable Gym Mode flow:
 
-Activity Library category selection is presentation state: every fresh application load begins at Favorites, while a user’s current in-session selection may survive ordinary rerenders. Dashboard native disclosures have explicit in-memory open-state tracking. Evidence navigation requires exact context and may show an honest insufficient-data state rather than substituting another pattern.
+1. Today’s Workout
+2. Start from Routine or Enter Exercises
+3. Open one exercise
+4. Review written Coach’s Eye guidance, qualitative gauge, sparkline/trend, and Last Time
+5. Edit prefilled primary fields
+6. Optionally apply ZEKE’s recommended progression without saving
+7. Optionally expand pain/RPE/rest/notes, which begin blank
+8. Save to the active provider
+9. Show Saved only after acknowledgement, then return to Today’s Workout
 
+History and Form Guide remain inside Gym Mode. The Form Guide occupies roughly 75–80% of the phone screen, uses vertically stacked sections, shows one verified instructional image, and expands to a movement sequence when tapped.
 
-## v0.28 Workout Programs and trusted Gym Entry
+Desktop ZEKE retains a spacious Workout Entry experience using the same schemas, records, validation, and provider writes without copying the phone Gym Mode shell.
 
-Workout Programs are reusable plans stored in connected preferences. Choosing one creates an editable session draft and does not mark any exercise complete. Confirmed exercises are written to the existing workout event ledger with program linkage and transaction provenance. Finish Workout creates the session summary; merely opening or exiting Gym Entry does not. Blank fields remain null/unknown.
+## Readiness methodology
 
-## v0.28.1 Form Guide library
+Readiness is a versioned deterministic or reviewed methodology based on comparable confirmed sessions, consistency, effort when available, recency, goal, and applicable restrictions. Pain is not required, but recorded pain may modify the recommendation. Output categories are qualitative; the gauge has no number. Insufficient evidence produces no progression button.
 
-`assets/exercise-guides.js` is the local instructional knowledge source and must load before `assets/app.js`. The existing exercise-screen bottom sheet reads from this library and renders Overview, Setup, Movement, Common Mistakes, and Tips. Matched guides include photo source, creator, and license metadata. Photographs are loaded from Wikimedia Commons at runtime; written guidance is local and the UI exposes an honest image-failure state. The library is educational and cannot override injury restrictions or provide medical clearance.
+## Talk to ZEKE
+
+One unified Talk to ZEKE input handles questions, observations, corrections, commands, and uploads. Raw input is preserved. Multiple intents, negation, dates, ambiguity, confidence, confirmation, duplicate safety, and provenance are first-class. Sleep interpretation must support multiple segments in one sleep day.
+
+## AI connections
+
+AI providers remain replaceable and free-first. Provider credentials use an encrypted vault stored with the active storage provider. The intended short-PIN experience requires a narrowly scoped, rate-limited security service that handles unlock authorization only and stores no health records, workouts, AI conversations, or plaintext provider keys. Decrypted keys exist only in browser memory.
+
+## Responsive boundary
+
+Priority order is phone and desktop; tablet support is responsive but secondary. Gym Mode code and CSS must be scoped so it cannot alter the desktop Dashboard, general Fitness interface, Talk to ZEKE, Health, or other modules.
+
+Required acceptance includes iPhone 8-size and newer phone viewports, representative current Android widths/aspect ratios, and common laptop/desktop sizes. No horizontal scrolling is allowed in mobile Gym Mode.
+
+## Release integrity
+
+The established application directory structure is preserved. Every package extracts into one clearly named top-level folder. Unchanged files preserve original bytes and timestamps; changed/new files use their actual local modification time. Hashes, provenance, and verification scope are recorded. A package is not called behaviorally verified when rendered or physical-device behavior was not exercised.

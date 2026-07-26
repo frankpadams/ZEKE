@@ -152,4 +152,70 @@ ZEKE may open another application only when it directly completes a ZEKE workflo
 
 ## 34. Visual composition serves comprehension
 
-Panels size from their own content. Expandable analysis receives adequate width. Avoid shared-height or masonry layouts that create large blank areas, and use restrained rounding, density, and hierarchy to make the daily briefing understandable.
+Panels size from their own content. Expandable analysis receives adequate width. Avoid shared-height or masonry layouts that create large blank areas, and use restrained rounding, density, and hierarchy to make the daily briefing understandable.## Governance reconciliation — July 25, 2026
+
+The following principles are binding for future ZEKE work. They clarify and extend the earlier Constitution without claiming that the v0.27.2 runtime already implements them.
+
+## 35. Provider-agnostic durable storage
+
+ZEKE's data model and core services must remain independent of any one storage vendor. Google Drive is the first active adapter, not the permanent architecture. OneDrive, Dropbox, SFTP/private storage, and other user-chosen providers must be supportable through a common storage contract without changing canonical record semantics.
+
+## 36. One active primary provider
+
+ZEKE uses one active primary storage provider at a time. That provider is the durable source of truth for confirmed records, corrections, routines, preferences, and other lasting user data. Multi-provider migration or backup may be added deliberately; automatic multi-provider mirroring is not assumed.
+
+## 37. Local recovery is temporary and noncanonical
+
+Normal-browser use may employ device-local storage only as a temporary recovery cache for unfinished forms. Local recovery content is never canonical, never presented as saved, and never used for history, charts, readiness, Coach's Eye, Discovery, or health interpretation. Incognito/private browsing may be supported, but ZEKE does not promise that unsaved work survives closure of a private session.
+
+## 38. Effective dates are visible and editable
+
+Every screen that creates or corrects a workout, laboratory result, vital, medication event, sleep record, symptom, or comparable observation must visibly show the effective date and permit intentional editing. Event time and record time remain separate.
+
+## 39. Sleep preserves actual segments
+
+A sleep day may contain multiple sleep segments. ZEKE preserves each actual start and end time, sums sleep duration across segments, and does not falsely merge awake gaps into one continuous period. By default, overnight sleep is assigned to the date of the final morning awakening; the date remains editable.
+
+## 40. Workout routines are templates, not historical workout identities
+
+A routine such as Chest Day is a reusable starting template. It may suggest an ordered exercise list and optional targets, but the historical record consists of the exercises and values actually saved. Users may add, remove, skip, edit, or reorder template exercises without changing past history or requiring the workout to be stored as a named routine unit.
+
+## 41. Gym Mode is a focused portable context
+
+Gym Mode is optimized primarily for phone use during a workout and may also be available on tablets by user choice. It must not replace, reshape, or break the full desktop ZEKE experience. Desktop ZEKE retains its broader dashboard, analysis, history, routine-management, and spacious workout-entry interfaces while using the same records and rules.
+
+## 42. Suggested values are not performed facts
+
+Opening an exercise may prefill primary workout fields from the most recent confirmed performance. Applying a ZEKE progression recommendation may alter the current unsaved fields. Neither action saves data or implies the exercise occurred. Optional fields such as pain, RPE, rest, and notes begin blank and are never copied from a prior workout.
+
+## 43. Save language follows the real operation
+
+A confirmed record is not saved until the active provider acknowledges the durable write. When provider storage is the primary write target, the truthful sequence is **Saving to provider → Saved**. ZEKE must not display Saved, Synced, completed indicators, or green checks before the operation they describe succeeds.
+
+## 44. Readiness is qualitative and evidence-bounded
+
+Exercise-readiness guidance uses evidence-based categories and a written explanation. A numberless visual gauge may provide a rough qualitative cue, but it must not imply false precision. Missing information remains missing. Pain is optional; absence of a pain entry is not zero pain. When evidence is insufficient, ZEKE says so and does not offer a progression action.
+
+## 45. Gym Mode navigation preserves context
+
+History, progression, Form Guide, exercise entry, and return paths must remain within the active Gym Mode context on portable devices. Opening history must not silently route to a legacy activity tile or discard current unsaved edits.
+
+## 46. Form Guide media must be truthful
+
+A Form Guide image must visibly depict an adult performing the named exercise at a useful instructional moment and angle. A person resting, posing, or merely holding equipment does not qualify. Licensing and attribution are necessary but not sufficient. Tapping the primary image may reveal a verified movement sequence.
+
+## 47. AI credentials use a separate encrypted vault
+
+AI-provider credentials are not ordinary preferences and must never be stored as plaintext in source code, GitHub, spreadsheets, browser storage, or an ordinarily readable provider file. The intended cross-device design is an encrypted vault stored with the active provider, unlocked by Google/provider identity plus a ZEKE PIN through a narrowly scoped, rate-limited security component. Decrypted credentials remain in memory only. That component stores no health records, workouts, AI conversations, or plaintext provider keys.
+
+## 48. AI-vault recovery is separate from product-data recovery
+
+A recovery code may permit PIN replacement while preserving encrypted AI connections. If both PIN and recovery code are lost, ZEKE may reset the inaccessible credential vault and require provider keys to be entered again. This process is independent of Gym Mode, workout records, and the user's canonical personal repository.
+
+## 49. Release timestamps and provenance are record-integrity requirements
+
+Unchanged files retain their original bytes and original modification timestamps. Changed and new files use their actual modification time. Every delivered archive has one clearly named top-level folder, a file-by-file hash/provenance record, and no fabricated or future-dated modification times. Verification claims must name exactly what was tested.
+
+## 50. Rejected branches do not silently become the baseline
+
+ZEKE v0.27.2 is the approved recovery baseline for the next Gym Mode rebuild. The v0.28.x Gym Mode branch is rejected as a forward-development baseline; it may be consulted only as failure evidence or for selectively re-evaluated backend ideas. No v0.28.x visual or cumulative-CSS behavior is inherited automatically.

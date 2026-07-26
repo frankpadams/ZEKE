@@ -4,9 +4,7 @@ const css=fs.readFileSync('assets/styles.css','utf8');
 const version=fs.readFileSync('version.js','utf8');
 const must=(x,m)=>{if(!x)throw new Error(m)};
 
-const current=(version.match(/version:\s*'([0-9.]+)'/)||[])[1]||'0.0.0';
-const parts=current.split('.').map(Number);
-must(parts[0]>0||(parts[0]===0&&(parts[1]>26||(parts[1]===26&&parts[2]>=1))),'release predates the v0.26.1 regression baseline');
+must(version.includes("version: '0.26.1'")&&version.includes("build: '2026.07.22.2'"),'v0.26.1 metadata missing');
 must(app.includes("activityTab:'favorites'"),'Activity Library must start at Favorites');
 must(!app.includes("localStorage.setItem('zeke.fitness.activityTab.v1'"),'Activity Library view must not persist over the Favorites default');
 must(app.includes('id="activityLibrarySelect"'),'responsive Activity Library selector missing');

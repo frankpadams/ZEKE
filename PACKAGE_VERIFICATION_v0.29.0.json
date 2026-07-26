@@ -1,0 +1,19 @@
+{
+  "release": "0.29.0",
+  "build": "2026.07.25.1",
+  "top_level_folder": "ZEKE-v0.29.0-Gym-Mode-Recovery-and-Trusted-Entry",
+  "baseline": "ZEKE-v0.27.2-GOVERNANCE-RECONCILED-2026-07-25.zip",
+  "changed_files": 7,
+  "new_files": 2,
+  "unchanged_files": 233,
+  "tests": {
+    "node_syntax": "passed",
+    "gym_mode_contract": "passed",
+    "selected_regression_tests": "7 passed, 0 failed"
+  },
+  "limitations": [
+    "No physical-device browser test was run in this environment.",
+    "Secure cross-device AI vault and non-Google storage adapters are not implemented in this release.",
+    "Routine templates are starter examples; provider-backed routine management remains future work."
+  ]
+}

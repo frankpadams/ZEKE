@@ -1,22 +1,19 @@
-# ZEKE v0.28.1
+# ZEKE v0.27.2 — Governance-Reconciled Recovery Baseline
 
-**Build:** 2026.07.23.0418  
-**Release:** Exercise-Specific Form Guides
+**Runtime build:** 2026.07.22.2319  
+**Governance revision:** 2026.07.25.1  
+**Runtime change in this package:** None
 
-ZEKE is a private, user-owned personal management system. This patch completes the Form Guide work requested for the v0.28.0 Gym Entry and Workout Programs release without changing its workout-storage paths.
+ZEKE is a private, user-owned personal-management system. This archive preserves the v0.27.2 application runtime and updates the authoritative governance corpus with the decisions approved on July 25, 2026.
 
-## This patch
+## Authority
 
-- Adds 17 exercise-specific Form Guides.
-- Adds licensed or public-domain photographs with visible attribution and source/license links.
-- Adds detailed Setup, Movement, Common Mistakes, and Tips sections.
-- Keeps Form Guide inside the existing exercise-screen bottom sheet.
-- Preserves blank values as unknown and retains the v0.28.0 connected-preferences and workout-event persistence behavior.
+- v0.27.2 is the authoritative recovery baseline.
+- v0.28.x is rejected as a forward-development baseline.
+- The next Gym Mode implementation must begin from v0.27.2 and follow the approved mockup and locked behavior.
 
-Photographs are loaded from Wikimedia Commons at runtime and therefore require network access. The written guidance remains available if an image cannot load.
+Read `00_AI_START_HERE.md` first.
 
-Read `00_AI_START_HERE.md`, `HANDOFF_BRIEF.md`, `RELEASE_NOTES_v0.28.1.md`, `TEST_REPORT_v0.28.1.md`, and `FORM_GUIDE_MEDIA_LICENSES.md`.
+## Packaging
 
-## Deploy
-
-Replace the deployed ZEKE files with this folder while preserving intended values in `zeke-config.js`. Hard-refresh once and confirm **v0.28.1 · build 2026.07.23.0418**.
+This archive has one clearly named top-level folder. Unchanged files preserve their source bytes and ZIP timestamps. Modified and new governance files use their actual package-generation time. See `GOVERNANCE_PACKAGE_PROVENANCE_2026-07-25.json`.

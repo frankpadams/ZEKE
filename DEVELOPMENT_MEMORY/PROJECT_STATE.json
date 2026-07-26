@@ -1,14 +1,15 @@
 {
-  "schema_version": 2,
-  "current_version": "0.28.1",
-  "current_build": "2026.07.23.0418",
-  "release_label": "Exercise-Specific Form Guides",
-  "baseline": "v0.25.2 Mobile Workout Save Hotfix",
+  "schema_version": 3,
+  "current_version": "0.29.0",
+  "current_build": "2026.07.25.1",
+  "release_label": "Exercise Screen Mockup Fidelity \u2014 Recovery Baseline",
+  "baseline": "v0.27.2 Exercise Screen Mockup Fidelity",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
   "authoritative_documents": [
     "00_AI_START_HERE.md",
     "HANDOFF_BRIEF.md",
     "ZEKE_CONSTITUTION.md",
+    "DEVELOPMENT_MEMORY/GOVERNANCE_RECONCILIATION_2026-07-25.md",
     "DEVELOPMENT_SYSTEM/PROJECT_IDENTITY.md",
     "DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md",
     "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
@@ -19,37 +20,28 @@
     "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
     "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
     "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
-    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.28.1.md",
-    "RELEASE_NOTES_v0.28.1.md",
-    "TEST_REPORT_v0.28.1.md",
-    "FORM_GUIDE_MEDIA_LICENSES.md"
+    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.27.2.md"
   ],
-  "implemented_this_release": [
-    "Added 17 exercise-specific Form Guides with setup, movement, common mistakes, tips, targets, equipment, and level",
-    "Added licensed or public-domain photographs with visible source, creator, and license attribution",
-    "Preserved the existing bottom-sheet workflow and v0.28.0 backend storage paths",
-    "Added explicit offline/photo-load fallback and a truthful unmatched-exercise fallback"
-  ],
+  "implemented_this_release": [],
   "inherited_verified_evidence": [
     "v0.25.2 direct mobile workout save handler and visible failure path",
     "v0.24.0 trust/workflow foundation",
     "Deterministic medication, sleep, workbook, provenance, and workflow regressions"
   ],
   "known_issues": [
-    "Built-in injury-aware programs are conservative examples, not diagnosis, physical therapy, medical clearance, or individualized rehabilitation prescriptions",
-    "Program selection and creation use simple alpha dialogs and should be replaced by a polished dedicated Program Library / Builder screen",
-    "Physical-device, live Google Drive, protected workbook, service-worker, and accessibility behavior require environment verification",
-    "Form Guide photographs are loaded from Wikimedia Commons and require network access; written guidance remains available if an image cannot load",
-    "Built-in injury-aware programs are educational planning examples, not diagnosis, physical therapy, medical clearance, or individualized rehabilitation prescriptions"
+    "Newly locked governance decisions are not implemented by this documentation-only package",
+    "Reported v0.27.2/v0.28.x Gym Mode behavior requires clean recovery implementation and rendered acceptance",
+    "Live storage, AI, protected workbook, service worker, accessibility, and physical-device behavior remain environment verification",
+    "Runtime version label metadata contains historical wording that must be reconciled in the next approved runtime iteration"
   ],
   "next_review_items": [
-    "Deployed physical-device Save Workout, sleep selector, and modal-entry acceptance",
-    "Live Drive profile/goal/sleep persistence and Calendar/AI verification",
-    "Protected real-workbook regression",
-    "User-reviewed mobile Fitness mockups",
-    "Legacy asset cleanup review"
+    "Pre-development checkpoint for clean Gym Mode recovery from v0.27.2",
+    "Provider-neutral storage adapter design and save-state contract",
+    "Rendered phone and desktop acceptance matrix",
+    "Encrypted AI-vault security-service design review",
+    "Sleep multi-segment schema and Talk-to-ZEKE transaction tests"
   ],
-  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.28.1.md",
+  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.27.2.md",
   "files_to_read_first": [
     "00_AI_START_HERE.md"
   ],
@@ -61,6 +53,26 @@
     "real-data workbook regression when fixture is available",
     "final ZIP reopened and byte-compared with staging"
   ],
-  "current_release_label": "Exercise-Specific Form Guides",
-  "current_focus": "Validate the completed Form Guide and Workout Program workflows on deployed mobile and desktop environments"
+  "current_release_label": "Exercise Screen Mockup Fidelity \u2014 Recovery Baseline",
+  "current_focus": "Governance-locked clean Gym Mode recovery from v0.27.2 without desktop regression",
+  "governance_revision": "2026.07.25.1",
+  "runtime_changed_by_governance_revision": false,
+  "rejected_forward_baselines": [
+    "v0.28.0",
+    "v0.28.1"
+  ],
+  "governance_locked_this_revision": [
+    "provider-agnostic storage with one active primary provider",
+    "temporary local recovery for unfinished normal-browser forms only",
+    "visible editable effective date across structured entry screens",
+    "multiple sleep segments per sleep day",
+    "phone-first Gym Mode isolated from desktop ZEKE",
+    "routine templates are not historical workout identities",
+    "prefilled primary exercise fields and unsaved progression application",
+    "qualitative readiness with numberless gauge and written evidence",
+    "Gym-contained history and truthful Form Guide media",
+    "provider-backed encrypted AI vault with PIN service and recovery path",
+    "honest package timestamps and file-level provenance"
+  ],
+  "current_release": "Gym Mode Recovery and Trusted Entry"
 }

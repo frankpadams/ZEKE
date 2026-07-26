@@ -1,1 +1,3 @@
-window.ZEKE_VERSION = window.ZEKE_BUILD = { version: '0.28.1', build: '2026.07.23.0418', label: 'Exercise-Specific Form Guides' };
+window.ZEKE_VERSION = '0.29.0';
+window.ZEKE_BUILD = '2026.07.25.1';
+window.ZEKE_RELEASE = 'Gym Mode Recovery and Trusted Entry';
