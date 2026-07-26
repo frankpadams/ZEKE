@@ -1,4 +1,4 @@
-# ZEKE v0.30.0 — Mobile Workout Entry and Health Conditions
+# ZEKE v0.31.0 — Mobile Workout Visual Fidelity and Form Guides
 
 **Build:** 2026.07.26.1
 

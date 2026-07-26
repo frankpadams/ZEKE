@@ -1,4 +1,4 @@
-# ZEKE v0.30.0 — AI Start Here
+# ZEKE v0.31.0 — Mobile Workout Visual Fidelity and Form Guides
 
 The current authoritative release is **ZEKE v0.30.0 · build 2026.07.26.1**. Read `README.md`, `HANDOFF_BRIEF.md`, `RELEASE_NOTES_v0.30.0.md`, `TEST_REPORT_v0.30.0.md`, `ZEKE_CONSTITUTION.md`, and `DEVELOPMENT_MEMORY/PROJECT_STATE.json` before changing code.
 

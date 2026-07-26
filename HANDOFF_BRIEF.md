@@ -1,4 +1,4 @@
-# ZEKE v0.30.0 Handoff Brief
+# ZEKE v0.31.0 — Mobile Workout Visual Fidelity and Form Guides
 
 **Current version:** 0.30.0  
 **Build:** 2026.07.26.1
