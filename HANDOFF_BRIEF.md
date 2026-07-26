@@ -1,3 +1,26 @@
+# ZEKE v0.30.0 Handoff Brief
+
+**Current version:** 0.30.0  
+**Build:** 2026.07.26.1
+
+## Current focus
+
+ZEKE now treats “Gym” as the phone entry point into the mobile workout-entry experience rather than a separate architectural mode. The mobile interface is optimized for rapid entry while desktop Fitness remains optimized for review, planning, correction, history, and analysis.
+
+## Locked behaviors
+
+- Effective date is visible and editable on workout, condition, lab, measurement, and other structured entry screens.
+- Routines are templates only and do not become historical workout units.
+- Primary workout fields may be prefilled; optional fields remain blank.
+- Prefilled, suggested, or progression-applied values are not saved until confirmed.
+- No elapsed workout timer is required.
+- Form Guide imagery must actually depict the named exercise and retain licensing/attribution.
+- Desktop ZEKE must not regress because of mobile workout-entry work.
+
+---
+
+## Prior continuity content
+
 # ZEKE Handoff Brief
 
 **Current runtime:** ZEKE v0.29.0 · build 2026.07.25.1  

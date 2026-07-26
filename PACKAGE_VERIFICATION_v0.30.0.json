@@ -1,0 +1,27 @@
+{
+  "package": "ZEKE-v0.30.0-Mobile-Workout-Entry-and-Health-Conditions",
+  "version": "0.30.0",
+  "build": "2026.07.26.1",
+  "baseline": "ZEKE-v0.29.0-CONTINUITY-RECONCILED-2026-07-25.zip",
+  "counts": {
+    "unchanged": 238,
+    "modified": 11,
+    "new": 4,
+    "removed": 0
+  },
+  "checks": {
+    "javascript_syntax": "passed",
+    "v030_contract": "passed",
+    "selected_regression_tests": "9 passed",
+    "zip_integrity": "passed",
+    "rendered_browser": "not verified; local navigation blocked by execution environment",
+    "physical_devices": "not verified",
+    "remote_form_guide_images": "not verified"
+  },
+  "known_limitations": [
+    "Fully curated multi-image exercise sequences are not complete for every exercise.",
+    "Secure cross-device AI vault and additional storage-provider adapters remain future work."
+  ],
+  "generated_at": "2026-07-26T00:02:22-04:00",
+  "manifest_scope": "File counts and provenance rows exclude the two package-generated manifest files themselves to avoid self-referential hashes."
+}

@@ -1,3 +1,3 @@
-window.ZEKE_VERSION = '0.29.0';
-window.ZEKE_BUILD = '2026.07.25.1';
-window.ZEKE_RELEASE = 'Gym Mode Recovery and Trusted Entry';
+window.ZEKE_VERSION = '0.30.0';
+window.ZEKE_BUILD = '2026.07.26.1';
+window.ZEKE_RELEASE = 'Mobile Workout Entry and Health Conditions';

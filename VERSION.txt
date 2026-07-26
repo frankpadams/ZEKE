@@ -1,4 +1,4 @@
-ZEKE v0.29.0
-Build 2026.07.25.1
-Gym Mode Recovery and Trusted Entry
-Governance revision 2026.07.25.2
+ZEKE v0.30.0
+Build 2026.07.26.1
+Mobile Workout Entry and Health Conditions
+Governance revision 2026.07.26.1

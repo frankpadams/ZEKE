@@ -1,8 +1,8 @@
 {
   "schema_version": 3,
-  "current_version": "0.29.0",
-  "current_build": "2026.07.25.1",
-  "release_label": "Gym Mode Recovery and Trusted Entry",
+  "current_version": "0.30.0",
+  "current_build": "2026.07.26.1",
+  "release_label": "Mobile Workout Entry and Health Conditions",
   "baseline": "v0.29.0 runtime built from v0.27.2 recovery baseline",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
   "authoritative_documents": [
@@ -23,15 +23,13 @@
     "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.29.0.md"
   ],
   "implemented_this_release": [
-    "mobile-focused Gym Mode with visible editable workout date",
-    "routine/manual/custom one-at-a-time exercise selection and reordering",
-    "primary-field prefill with blank optional fields",
-    "per-set strength entry and activity-specific cardio entry",
-    "qualitative readiness UI and unsaved progression application",
-    "Gym-contained progression history",
-    "truthful Saving to storage then Saved state",
-    "temporary local recovery for unfinished Gym Mode entries",
-    "Form Guide bottom sheet with reviewed-image subset and truthful fallback"
+    "Mobile workout-entry Gym action on phones",
+    "Fitness logging hierarchy",
+    "Editable mobile workout date",
+    "Routine templates and manager",
+    "Provider-backed custom activities and routines",
+    "Health condition entry",
+    "All chart range retained"
   ],
   "inherited_verified_evidence": [
     "v0.25.2 direct mobile workout save handler and visible failure path",
@@ -55,7 +53,7 @@
     "Multi-segment sleep and cross-domain effective dates",
     "Encrypted AI-vault security-service design"
   ],
-  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.29.0.md",
+  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.30.0.md",
   "files_to_read_first": [
     "00_AI_START_HERE.md"
   ],
@@ -87,5 +85,6 @@
     "verified visual Form Guide sequences",
     "provider-backed encrypted AI vault with PIN service and recovery path"
   ],
-  "current_release": "Gym Mode Recovery and Trusted Entry"
+  "current_release": "Gym Mode Recovery and Trusted Entry",
+  "updated_at": "2026-07-26T00:02:22-04:00"
 }

@@ -1,3 +1,27 @@
+# ZEKE v0.30.0 Feature Status
+
+## Implemented in this release
+
+- Mobile bottom-navigation Gym entry
+- Mobile workout entry with editable date
+- Fitness logging action menu
+- Common exercise chooser and library search
+- One-at-a-time activity addition
+- Provider-backed custom activity definitions
+- Provider-backed routine templates and routine manager
+- Dedicated condition entry and management path
+- All-time chart range retained
+
+## Partially implemented / content dependent
+
+- Form Guide media sequences: reviewed lead images and written guidance exist for selected exercises; fully curated multi-image sequences remain incomplete.
+- Secure cross-device AI vault remains architectural work.
+- Additional storage-provider adapters beyond the current implementation remain future work.
+
+---
+
+## Prior continuity content
+
 # ZEKE Feature Status — v0.29.0
 
 **Runtime build:** 2026.07.25.1  

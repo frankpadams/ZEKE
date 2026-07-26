@@ -1,3 +1,15 @@
+# ZEKE v0.30.0 — Mobile Workout Entry and Health Conditions
+
+**Build:** 2026.07.26.1
+
+This is the current authoritative application package. It builds from the continuity-reconciled v0.29.0 baseline and implements the phone-focused workout-entry interface, logging hierarchy, editable entry dates, routines as templates, provider-backed custom activities/routines, and dedicated condition entry. Desktop ZEKE remains a separate full analysis and management experience.
+
+See `RELEASE_NOTES_v0.30.0.md` and `TEST_REPORT_v0.30.0.md` for scope and verification boundaries.
+
+---
+
+## Prior continuity content
+
 # ZEKE v0.29.0 — Gym Mode Recovery and Trusted Entry
 
 **Runtime build:** 2026.07.25.1  
