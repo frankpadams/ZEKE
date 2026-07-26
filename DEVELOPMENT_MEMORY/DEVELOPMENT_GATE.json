@@ -1,52 +1,53 @@
 {
   "schema_version": 3,
-  "release": "0.27.2",
-  "build": "2026.07.22.2319",
-  "current_version": "0.27.2",
-  "current_build": "2026.07.22.2319",
-  "governance_revision": "2026.07.25.1",
+  "release": "0.29.0",
+  "build": "2026.07.25.1",
+  "current_version": "0.29.0",
+  "current_build": "2026.07.25.1",
+  "governance_revision": "2026.07.25.2",
   "current_iteration": {
-    "status": "governance_reconciliation_complete_runtime_unchanged",
+    "status": "continuity_reconciliation_complete_runtime_unchanged",
     "baseline_verified": true,
-    "baseline_audit_status": "The v0.27.2 source ZIP was reopened and used as the byte/timestamp baseline.",
+    "baseline_audit_status": "The original ZEKE-v0.29.0-Gym-Mode-Recovery-and-Trusted-Entry.zip was reopened and used as the runtime byte/timestamp baseline.",
     "backlog_resurfaced": true,
     "scope_presented": true,
     "user_approved_scope": true,
     "approved_at": "2026-07-25",
-    "approval_evidence": "User asked to update governance documentation and approved the recommended architecture decisions in the July 25, 2026 conversation.",
-    "release": "0.27.2",
-    "build": "2026.07.22.2319",
-    "baseline_release": "0.27.2",
-    "baseline_build": "2026.07.22.2319",
+    "approval_evidence": "After the stale README and continuity corpus were identified, the user explicitly asked to perform the documentation-only v0.29.0 reconciliation now.",
+    "release": "0.29.0",
+    "build": "2026.07.25.1",
+    "baseline_release": "0.29.0",
+    "baseline_build": "2026.07.25.1",
+    "source_recovery_baseline": "0.27.2",
     "approved_scope": [
-      "Reconcile authoritative governance documentation without changing runtime behavior",
-      "Preserve v0.27.2 as the recovery baseline and reject v0.28.x as a forward baseline",
-      "Record provider-neutral storage, editable dates, multi-segment sleep, Gym Mode, AI-vault, and release-integrity decisions"
+      "Reconcile every current-authority and standing continuity document to the actual v0.29.0 runtime and its evidence boundaries",
+      "Preserve every runtime, style, route, data, and test file byte-for-byte with its original v0.29.0 ZIP timestamp",
+      "Add the missing v0.29.0 iteration record, test report, continuity matrix, and current package provenance",
+      "Classify partial and unimplemented requirements honestly rather than treating governance decisions as completed features"
     ],
     "explicitly_excluded": [
-      "Runtime code changes",
-      "Gym Mode defect fixes",
-      "AI vault implementation",
-      "Live provider verification",
-      "Physical-device verification",
-      "Deployment changes"
+      "Application runtime, CSS, route, data-layer, parser, AI-router, service-worker, and test-code changes",
+      "New Gym Mode behavior or visual fixes",
+      "Live-provider, physical-device, protected-workbook, and credentialed-AI verification",
+      "Secure AI-vault and additional storage-provider implementation"
     ],
     "acceptance_criteria": [
-      "Authoritative documents agree on v0.27.2 and build 2026.07.22.2319",
-      "One clearly labeled top-level extraction folder",
-      "Unchanged files preserve source bytes and timestamps",
-      "Changed and new governance files use actual local modification time",
-      "Package provenance and hashes are included",
-      "No runtime implementation claims exceed evidence"
+      "Authoritative documents agree on v0.29.0 and build 2026.07.25.1",
+      "Current iteration record and artifact lifecycles agree with Project State",
+      "Runtime files match the original v0.29.0 ZIP byte-for-byte and retain original ZIP timestamps",
+      "Changed/new continuity files use actual local modification time",
+      "One clearly labeled top-level extraction folder and file-level provenance are included",
+      "Project audit reports zero errors and governance negative controls pass",
+      "Release claims remain within named evidence"
     ],
-    "rollback_plan": "Return to the untouched ZEKE-v0.27.2-Exercise-Screen-Mockup-Fidelity-VERIFIED.zip; no runtime or data migration is involved.",
+    "rollback_plan": "Return to the original ZEKE-v0.29.0-Gym-Mode-Recovery-and-Trusted-Entry.zip for the same runtime with stale continuity documents, or to v0.27.2 only if the v0.29.0 runtime itself is explicitly rejected.",
     "prior_conversations_reviewed": true,
-    "implementation_complete": false,
-    "governance_reconciliation_complete": true,
+    "implementation_complete": true,
+    "continuity_reconciliation_complete": true,
     "verification_complete": true,
     "package_verification": "complete",
     "environment_verification": "outstanding",
-    "unpacked_file_count": 240
+    "unpacked_file_count": 249
   },
   "next_iteration": {
     "status": "not_open",
@@ -54,6 +55,6 @@
     "backlog_resurfaced": false,
     "scope_presented": false,
     "user_approved_scope": null,
-    "required_baseline": "0.27.2"
+    "required_baseline": "0.29.0"
   }
 }

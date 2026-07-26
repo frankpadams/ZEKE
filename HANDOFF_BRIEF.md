@@ -1,31 +1,41 @@
 # ZEKE Handoff Brief
 
-**Authoritative runtime baseline:** ZEKE v0.27.2 · build 2026.07.22.2319  
-**Governance revision:** 2026.07.25.1  
-**Recovery position:** v0.27.2 is authoritative; v0.28.x is rejected as a forward-development baseline.
+**Current runtime:** ZEKE v0.29.0 · build 2026.07.25.1  
+**Governance revision:** 2026.07.25.2  
+**Source lineage:** v0.27.2 recovery baseline → clean v0.29.0 Gym Mode recovery.  
+**Rejected path:** v0.28.x remains rejected as a forward-development baseline.
 
-Start with `00_AI_START_HERE.md`, then read `ZEKE_CONSTITUTION.md`, `DEVELOPMENT_MEMORY/GOVERNANCE_RECONCILIATION_2026-07-25.md`, and `DEVELOPMENT_MEMORY/PROJECT_STATE.json`.
+Start with `00_AI_START_HERE.md`, then read the Constitution, Project State, current iteration record, Architecture, Feature Status, and current Test Report.
 
 ## What this package is
 
-This is the v0.27.2 runtime plus reconciled governance documentation. No Gym Mode or application behavior is claimed fixed by this documentation-only revision.
+This is the v0.29.0 application runtime plus fully reconciled governance and continuity documentation. The continuity reconciliation did not change application source, styles, routes, tests, or runtime behavior.
 
-## Locked direction
+## Implemented in the v0.29.0 runtime
 
-- Storage is provider-agnostic, with one active primary provider at a time.
-- Confirmed records live with that provider; optional local storage is temporary unfinished-form recovery only.
-- Incognito use is allowed, but preservation of unsaved work is not guaranteed.
-- Effective dates are visible and editable on every data-entry screen.
-- Sleep supports multiple true segments in the same sleep day.
-- Gym Mode is phone-first and must not break desktop ZEKE.
-- Routines are starting templates, not mandatory historical workout units.
-- Primary exercise fields may be prefilled from prior confirmed performance; optional details remain blank.
-- Readiness is qualitative, evidence-bounded, and may use a numberless gauge plus written explanation.
-- History and Form Guide remain within Gym Mode.
-- Form Guide images must actually show the named exercise being performed.
-- AI keys use a provider-backed encrypted vault, PIN unlock through a narrowly scoped security service, and recovery-code/reset paths.
-- Release packaging, timestamps, hashes, and verification language are integrity requirements.
+- A mobile-focused Gym Mode entry flow with a visible editable workout date.
+- Start from Routine or Enter Exercises; commonly used exercises, library search, and custom exercise entry.
+- One-at-a-time exercise addition, reordering, and explicit Suggested / Not started / In progress / Saved states.
+- Primary-field prefill from the most recent confirmed exercise entry; optional RPE, pain, rest, and notes begin blank.
+- Per-set editable load/reps, activity-specific strength/cardio fields, optional cardio intensity range.
+- Written Coach’s Eye output, qualitative numberless gauge, and an unsaved Apply Recommended Progression action.
+- Progression history inside Gym Mode.
+- Saving to storage → Saved language, with failure retained for retry.
+- Temporary local recovery for unfinished normal-browser workout entry.
+- A Form Guide bottom sheet with a reviewed-image subset and truthful no-image fallback.
+
+## Not yet established by this runtime
+
+- Provider-agnostic storage adapters beyond the current Google-oriented implementation.
+- The secure cross-device AI credential vault and PIN security service.
+- Multiple sleep segments in one sleep day.
+- Editable effective dates on every structured entry screen.
+- A separate spacious desktop Workout Entry experience.
+- Provider-backed routine management.
+- A real multi-image Form Guide movement sequence.
+- A research-reviewed readiness methodology; the current v0.29.0 rule is a simple heuristic.
+- Physical-device and deployed-provider acceptance.
 
 ## Development boundary
 
-Do not patch the rejected v0.28.x interface forward. Begin the next implementation from v0.27.2, preserve the approved mockup, establish state and persistence tests first, and keep mobile Gym Mode changes scoped away from desktop ZEKE.
+Continue from v0.29.0, not from v0.28.x. Protect desktop ZEKE, keep storage semantics provider-neutral, preserve blank-versus-zero and suggested-versus-confirmed distinctions, and require rendered phone/desktop evidence before visual or behavioral claims.

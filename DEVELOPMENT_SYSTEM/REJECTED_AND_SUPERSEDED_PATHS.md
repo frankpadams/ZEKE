@@ -11,3 +11,5 @@
 - **Phone Gym Mode as a replacement for desktop ZEKE** — rejected; Gym Mode is a focused portable workflow and desktop ZEKE remains a full management and analysis experience.
 - **Plaintext AI API keys in provider files, spreadsheets, browser storage, source code, or GitHub** — rejected; AI credentials require a separately encrypted vault and controlled unlock path.
 - **Provider-backed autosave of every unfinished keystroke as canonical data** — rejected; optional local recovery may protect unfinished normal-browser work, but confirmed provider writes remain explicit.
+
+- **The original v0.29.0 runtime package as continuity-complete authority** — superseded by the v0.29.0 continuity-reconciled package because its runtime was current but its README, gate, registry, and standing documents were stale. The original ZIP remains historical runtime/package evidence.

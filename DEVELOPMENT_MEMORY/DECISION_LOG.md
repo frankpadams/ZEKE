@@ -118,3 +118,10 @@ Current release identity, scope, artifact authority, lifecycle, supersessions, a
 - **DEC-051:** AI-provider credentials use a provider-backed encrypted vault, PIN unlock through a narrowly scoped rate-limited security component, in-memory plaintext only, recovery code, and destructive vault reset when recovery is impossible.
 - **DEC-052:** AI-vault recovery is separate from Gym Mode or personal-record recovery.
 - **DEC-053:** Honest timestamps, one labeled extraction folder, preserved unchanged bytes/timestamps, hashes, and narrow verification claims are release-integrity requirements.
+
+
+## 2026-07-25 — v0.29.0 authority and continuity reconciliation
+
+- **DEC-054:** ZEKE v0.29.0 is the current runtime and forward-development baseline. v0.27.2 remains its historical recovery source; v0.28.x remains rejected.
+- **DEC-055:** A current release is not authoritative until the README, handoff, architecture, feature status, state/gate, current iteration, test report, backlog, decision/error memory, artifact registry, project identity/health, and release gate agree with the actual runtime and evidence.
+- **DEC-056:** Governance-locked requirements must be labeled implemented, partial, or unimplemented. A release may not infer implementation from the Constitution or decision log.

@@ -1,0 +1,54 @@
+{
+  "release": "0.29.0",
+  "runtime_build": "2026.07.25.1",
+  "governance_revision": "2026.07.25.2",
+  "package_kind": "continuity reconciliation; runtime unchanged",
+  "source_package": "ZEKE-v0.29.0-Gym-Mode-Recovery-and-Trusted-Entry.zip",
+  "top_level_folder": "ZEKE-v0.29.0-CONTINUITY-RECONCILED-2026-07-25",
+  "generated_local_time": "2026-07-25T21:34:01-04:00",
+  "timezone": "America/New_York",
+  "file_counts": {
+    "unchanged": 218,
+    "modified": 26,
+    "new": 5,
+    "total": 249
+  },
+  "runtime_preservation": {
+    "status": "passed",
+    "files": [
+      "index.html",
+      "version.js",
+      "assets/app.js",
+      "assets/data-layer.js",
+      "assets/parser.js",
+      "assets/ai-router.js",
+      "assets/workflow-engine.js",
+      "assets/styles.css",
+      "sw.js"
+    ]
+  },
+  "tests": {
+    "project_audit": "passed: 0 errors, 0 warnings",
+    "governance_negative_controls": "passed: 9 of 9",
+    "active_javascript_syntax": "passed: 8 checked files",
+    "javascript_regression_run": {
+      "passed": 15,
+      "failed": 2,
+      "blocked_external_fixture": 2
+    },
+    "known_failed_contracts": [
+      "sleep-and-insight-stabilization.test.js: broader workout create/edit schema identifier contract requires review",
+      "v0261-regression-contract.test.js: obsolete v0.26.1 version metadata assertion"
+    ],
+    "fixture_blocked": [
+      "workbook-preflight.test.js requires ZEKE_TEST_DATA_ROOT",
+      "workbook-real-data-idempotency.test.js requires ZEKE_TEST_DATA_ROOT"
+    ]
+  },
+  "limitations": [
+    "No physical-device or deployed-browser acceptance was performed.",
+    "No live storage-provider or AI-provider credentials were available.",
+    "Provider-agnostic adapters, secure AI vault, multi-segment sleep, cross-domain dates, provider-backed routines, separate desktop Workout Entry, reviewed readiness methodology, and real Form Guide image sequences remain incomplete.",
+    "Final ZIP SHA-256 is published in the external verification report because an archive cannot contain a stable hash of itself."
+  ]
+}

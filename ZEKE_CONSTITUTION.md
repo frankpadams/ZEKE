@@ -154,7 +154,7 @@ ZEKE may open another application only when it directly completes a ZEKE workflo
 
 Panels size from their own content. Expandable analysis receives adequate width. Avoid shared-height or masonry layouts that create large blank areas, and use restrained rounding, density, and hierarchy to make the daily briefing understandable.## Governance reconciliation — July 25, 2026
 
-The following principles are binding for future ZEKE work. They clarify and extend the earlier Constitution without claiming that the v0.27.2 runtime already implements them.
+The following principles are binding for ZEKE work. They were approved before the v0.29.0 recovery implementation. Current implementation status varies by principle and is recorded in `FEATURE_STATUS.md`; governance approval never substitutes for evidence.
 
 ## 35. Provider-agnostic durable storage
 
@@ -218,4 +218,4 @@ Unchanged files retain their original bytes and original modification timestamps
 
 ## 50. Rejected branches do not silently become the baseline
 
-ZEKE v0.27.2 is the approved recovery baseline for the next Gym Mode rebuild. The v0.28.x Gym Mode branch is rejected as a forward-development baseline; it may be consulted only as failure evidence or for selectively re-evaluated backend ideas. No v0.28.x visual or cumulative-CSS behavior is inherited automatically.
+ZEKE v0.27.2 was the approved recovery source for the clean Gym Mode rebuild. ZEKE v0.29.0 is the current runtime and forward-development baseline. The v0.28.x Gym Mode branch remains rejected; it may be consulted only as failure evidence or for selectively re-evaluated backend ideas. No v0.28.x visual or cumulative-CSS behavior is inherited automatically.

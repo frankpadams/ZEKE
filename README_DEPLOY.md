@@ -1,9 +1,13 @@
-# Deploy ZEKE v0.20.3
+# Deploy ZEKE v0.29.0
 
 1. Back up the currently deployed ZEKE folder.
-2. Delete or replace all deployed ZEKE application files; do not merge this with an older build.
-3. Upload the complete contents of this release.
-4. Hard-refresh and clear the old service worker/cache if the prior build remains visible.
-5. Verify **v0.20.3 · build 2026.07.17.12** in the UI.
-6. In Settings, run **Run preflight** before the first connected-workbook synchronization.
-7. Review the preflight counts. Do not synchronize if conflicts or unsupported updates are reported.
+2. Replace the deployed application files with the complete contents of this package; do not merge selected files into an older build.
+3. Preserve `zeke-config.js` only when intentionally carrying forward the deployment-specific configuration and after comparing it with the packaged file.
+4. Deploy over HTTPS.
+5. Hard-refresh. The v0.29.0 entry page attempts to unregister older ZEKE service workers and clear old project caches, but manual browser cache clearing may still be needed.
+6. Verify **v0.29.0 · build 2026.07.25.1** in the UI.
+7. Reconnect the active storage provider if authorization has expired.
+8. Test a non-sensitive save and confirm the record is visible after refresh before relying on the deployment.
+9. Test Gym Mode on a phone and verify that desktop ZEKE remains intact.
+
+Deployment does not by itself verify live-provider writes, physical-device layout, AI providers, protected workbooks, or the future encrypted AI credential vault. Record those checks separately.

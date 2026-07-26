@@ -14,7 +14,7 @@ ZEKE is a private, user-owned personal-management system, beginning with health 
 
 ## Current architecture — challengeable with justification
 
-The v0.27.2 browser application is the approved recovery baseline. Confirmed records belong with one active primary user-chosen provider. Normal-browser local storage may be used only for temporary unfinished-form recovery and is never canonical. AI credentials follow a separate encrypted-vault architecture.
+ZEKE v0.29.0 · build 2026.07.25.1 is the current runtime and forward-development baseline. It was rebuilt from v0.27.2; v0.28.x remains rejected. Confirmed records belong with one active primary user-chosen provider. Normal-browser local storage may be used only for temporary unfinished-form recovery and is never canonical. AI credentials follow a separate encrypted-vault architecture that is not yet implemented.
 
 ## Encouraged fresh thinking
 

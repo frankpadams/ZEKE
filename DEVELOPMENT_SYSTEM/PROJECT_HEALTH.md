@@ -1,25 +1,30 @@
-# Project Health — v0.27.2
+# Project Health — v0.29.0
 
-**Runtime build:** 2026.07.22.2319  
-**Governance revision:** 2026.07.25.1
+**Runtime build:** 2026.07.25.1  
+**Governance revision:** 2026.07.25.2
 
 ## Current position
 
-- Runtime baseline: v0.27.2.
+- Current runtime and forward baseline: v0.29.0.
+- Recovery lineage: v0.27.2.
 - v0.28.x: rejected as a forward-development baseline.
-- Governance corpus: reconciled to the decisions approved July 25, 2026.
-- Runtime behavior: unchanged by this package.
+- Continuity corpus: reconciled to the actual v0.29.0 application and evidence.
+- Runtime files: unchanged by this continuity-only package.
 
-## Highest risks before the next implementation
+## Current strengths
 
-- Gym Mode state and navigation defects must not be patched forward from v0.28.x.
-- Mobile Gym Mode changes must remain scoped away from desktop ZEKE.
-- Save language must correspond to real provider acknowledgement.
-- Storage abstractions must remain provider-neutral.
-- Optional local recovery must never become canonical data.
-- Exercise-media review must verify the depicted movement, not merely licensing fields.
-- Release timestamps and provenance must remain honest and independently verifiable.
+- The Gym Mode source includes the core locked entry states, date, prefill, optional blank fields, qualitative gauge, progression action, contained history, and truthful save wording.
+- Package-local structural and deterministic tests cover several protected workflows.
+- Current authority, lifecycle, and packaging evidence are coherent.
+
+## Highest risks
+
+- Physical phone and desktop acceptance has not been completed.
+- The current readiness rule is a simple heuristic, not the approved research-reviewed methodology.
+- Form Guide expansion is not a true visual movement sequence, and media coverage is incomplete.
+- Provider-neutral storage, multi-segment sleep, cross-domain editable dates, provider-backed routines, desktop Workout Entry, and secure AI vault remain incomplete.
+- Historical tests contain some obsolete metadata/schema assumptions and must be reviewed without weakening genuine regressions.
 
 ## Required next gate
 
-Before code changes, present a scoped recovery plan based on v0.27.2, define rendered phone/desktop acceptance, and obtain explicit user approval.
+Before new runtime changes, inspect the deployed/rendered v0.29.0 baseline on representative phone and desktop sizes, resurface the backlog, present one bounded scope, and obtain explicit approval.

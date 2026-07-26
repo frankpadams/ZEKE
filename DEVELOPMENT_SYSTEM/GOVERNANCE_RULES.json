@@ -1,7 +1,7 @@
 {
-  "schema_version": 2,
-  "current_version": "0.27.2",
-  "current_build": "2026.07.22.2319",
+  "schema_version": 3,
+  "current_version": "0.29.0",
+  "current_build": "2026.07.25.1",
   "immutable_principles": [
     "user_owned_canonical_data",
     "ai_advisory_deterministic_commit",
@@ -71,12 +71,16 @@
     "phone Gym Mode changes cannot alter desktop ZEKE",
     "saved status requires provider acknowledgement",
     "local recovery data is excluded from canonical views and analysis",
-    "exercise media requires movement-level human verification"
+    "exercise media requires movement-level human verification",
+    "current implementation status is classified as implemented partial or unimplemented",
+    "current continuity matrix exists and all standing documents are reviewed",
+    "current release test report exists and matches evidence"
   ],
-  "governance_revision": "2026.07.25.1",
+  "governance_revision": "2026.07.25.2",
   "rejected_forward_baselines": [
     "0.28.0",
     "0.28.1"
   ],
-  "approved_recovery_baseline": "0.27.2"
+  "approved_recovery_baseline": "0.27.2",
+  "current_forward_baseline": "0.29.0"
 }

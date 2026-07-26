@@ -1,28 +1,31 @@
-# Release Gate — ZEKE v0.27.2 Governance Reconciliation
+# Release Gate — ZEKE v0.29.0 Continuity Reconciliation
 
-**Runtime build:** 2026.07.22.2319  
-**Governance revision:** 2026.07.25.1
+**Runtime build:** 2026.07.25.1  
+**Governance revision:** 2026.07.25.2
 
 ## Status
 
 **Package verification complete.**  
 **Environment verification outstanding.**  
-**Runtime implementation unchanged by this governance-only package.**
+**Runtime files unchanged by this continuity reconciliation.**
 
 ## Scope
 
-This package updates authoritative governance documentation only. No runtime source, styles, routes, persistence logic, or application behavior is claimed changed.
+Reconcile the v0.29.0 README, handoff, architecture, feature status, current state/gate, current iteration, test evidence, backlog, decision/error memory, artifact registry, identity/health/status documents, and package provenance. Preserve the application runtime exactly.
 
 ## Package acceptance
 
-- One clearly named top-level extraction folder
-- No `__MACOSX`/AppleDouble packaging artifacts
-- Unchanged source files copied byte-for-byte with original ZIP timestamps
-- Changed/new governance files stamped at actual America/New_York package-generation time
-- File-level SHA-256 provenance manifest included
-- JSON and Markdown structural checks completed
-- Archive reopened and compared to the staged manifest
+- One clearly named top-level extraction folder.
+- No `__MACOSX` or AppleDouble artifacts.
+- Runtime/source/test files outside the reconciled documentation set remain byte-identical to the original v0.29.0 ZIP and preserve source ZIP timestamps.
+- Modified/new continuity files use the actual America/New_York package-generation time.
+- Current version/build agree across machine-readable and human-readable authorities.
+- Current iteration and artifact lifecycle are coherent.
+- Relative Markdown links resolve.
+- Project audit reports zero errors.
+- Governance negative controls pass.
+- Final archive is reopened and compared with the package provenance manifest.
 
-## Runtime non-claims
+## Verification boundary
 
-The package does not claim Gym Mode defects are fixed, AI vault is implemented, live providers are verified, or phone/desktop rendered acceptance has passed.
+Package integrity and continuity coherence do not prove physical-device layout, deployed storage, live AI providers, protected real-workbook behavior, accessibility, or the unimplemented secure AI vault/provider adapters.

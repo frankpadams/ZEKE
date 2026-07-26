@@ -1,0 +1,2242 @@
+{
+  "schema_version": 2,
+  "release": "0.29.0",
+  "runtime_build": "2026.07.25.1",
+  "governance_revision": "2026.07.25.2",
+  "package_name": "ZEKE-v0.29.0-CONTINUITY-RECONCILED-2026-07-25.zip",
+  "top_level_folder": "ZEKE-v0.29.0-CONTINUITY-RECONCILED-2026-07-25",
+  "source_package": "ZEKE-v0.29.0-Gym-Mode-Recovery-and-Trusted-Entry.zip",
+  "generated_local_time": "2026-07-25T21:34:01-04:00",
+  "timezone": "America/New_York",
+  "manifest_scope": "all package files except this provenance manifest itself",
+  "files": [
+    {
+      "path": "00_AI_START_HERE.md",
+      "status": "modified",
+      "sha256": "a4f99855023bfc50bd4a91f59b140b3a2a11cba48f9f12b550f4ffb83c551088",
+      "size": 2686,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "def3ec67b73a6d59a8995168d9d2162ce7f2a3f5c33f1e81621006cc7743a90f"
+    },
+    {
+      "path": "AI_PACKET_WORKFLOW.md",
+      "status": "unchanged",
+      "sha256": "9501418b8725c0ae5a6af759164d88c984d23e4e55bc16a7e3cf2349735adb9f",
+      "size": 1430,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "9501418b8725c0ae5a6af759164d88c984d23e4e55bc16a7e3cf2349735adb9f"
+    },
+    {
+      "path": "AI_PROVIDER_MATRIX_v0.6.0.md",
+      "status": "unchanged",
+      "sha256": "ea310e03abdff4f02022a24a379e8af973d6b7b9a3679494d41de0b4bb01fd4c",
+      "size": 2145,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "ea310e03abdff4f02022a24a379e8af973d6b7b9a3679494d41de0b4bb01fd4c"
+    },
+    {
+      "path": "AI_SETUP.md",
+      "status": "unchanged",
+      "sha256": "b2078cb8fe881981f3bf1e05fc92ffdbfebfdb5127a3534cbdc09d473cc2bb67",
+      "size": 911,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "b2078cb8fe881981f3bf1e05fc92ffdbfebfdb5127a3534cbdc09d473cc2bb67"
+    },
+    {
+      "path": "ALPHA_GOOGLE_CONNECTION.md",
+      "status": "unchanged",
+      "sha256": "060990365fc9cdd05ea1ad72321f6bb9250c9ee24f5ec7af85e3ed0a73294c9d",
+      "size": 3210,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "060990365fc9cdd05ea1ad72321f6bb9250c9ee24f5ec7af85e3ed0a73294c9d"
+    },
+    {
+      "path": "APPLE_HEALTH_SETUP.md",
+      "status": "unchanged",
+      "sha256": "808f4462a12a575ecde4451fabbe9a94eff0a11f55709d939122dac7cb6f6905",
+      "size": 1399,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "808f4462a12a575ecde4451fabbe9a94eff0a11f55709d939122dac7cb6f6905"
+    },
+    {
+      "path": "ARCHITECTURE.md",
+      "status": "modified",
+      "sha256": "446c4636f2f0a842e32ae3ad8c874ae5c668eb4d7a7664730577514fbc108dbb",
+      "size": 6205,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "8ebae10816b7f0fff4c4e6981f8664ef82bce012d3d9211cf7c2c91cfc84017c"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/BACKLOG.md",
+      "status": "modified",
+      "sha256": "61289183b3e749375b51e86eef1c9dff2c6dd049ef60d94d975da45244df3c8d",
+      "size": 9725,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "6171e43d6216fd9119a34d0e85fef81d1de02ab8652deb69e21ffee709205e0d"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/CONTINUITY_RECONCILIATION_v0.22.2.md",
+      "status": "unchanged",
+      "sha256": "80d7a13c03dc9c56d279a8fe76bd84804d1aaf20a1d851971c3f3672b554120e",
+      "size": 1447,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-19T06:40:16",
+      "source_sha256": "80d7a13c03dc9c56d279a8fe76bd84804d1aaf20a1d851971c3f3672b554120e"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/CONTINUITY_RECONCILIATION_v0.29.0.md",
+      "status": "new",
+      "sha256": "1c399cb24a1cba733f4efc9cdb8ce905de4beab2c94e9bde4907d13785f240f4",
+      "size": 2688,
+      "timestamp_source": "actual continuity-reconciliation creation time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/DECISION_LOG.md",
+      "status": "modified",
+      "sha256": "950bccda7a5e879de272c49db00d5027ffa0843805adca894ed2e5272bed8f06",
+      "size": 13953,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "a4b078bb7c02d23a279cd367125cf32e2255f5b5a4e416ad348209fe62280af3"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
+      "status": "modified",
+      "sha256": "a500da4ce6ffcc4feb4b2e8e3da2fe1bf64672e6f488e1d9b4fcf63c97efa0ff",
+      "size": 20402,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "b0ad57236724fcdd320d278f9700795e95187dd9d25a85bc22b4b4c6304be2f0"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json",
+      "status": "modified",
+      "sha256": "101a011d4036142575fa4498ede3a8c5ed8a7865a0b311a9d5b0042096afe55f",
+      "size": 3154,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "70f6fab43ac5974d12c1050ff759024f1087ca2671908733a8eaaf212efcd742"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
+      "status": "unchanged",
+      "sha256": "193854dce82db028d291d19d9c8eb0f2cb1fa16dbc9ed546d5ec8ed77fa475db",
+      "size": 2813,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T07:24:26",
+      "source_sha256": "193854dce82db028d291d19d9c8eb0f2cb1fa16dbc9ed546d5ec8ed77fa475db"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/DOCUMENT_INDEX.md",
+      "status": "unchanged",
+      "sha256": "f64439ccbc825ebc37ae156e02ca4fcb629ddbea466b3e05b84c7f232ba0ba50",
+      "size": 267,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T22:35:40",
+      "source_sha256": "f64439ccbc825ebc37ae156e02ca4fcb629ddbea466b3e05b84c7f232ba0ba50"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/GOVERNANCE_ITERATION_2026-07-25.md",
+      "status": "unchanged",
+      "sha256": "60c496a6fecc106301bc048d3c014f711fdb8a7fc2d55dd00b03e0b8c4488581",
+      "size": 933,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-25T14:37:38",
+      "source_sha256": "60c496a6fecc106301bc048d3c014f711fdb8a7fc2d55dd00b03e0b8c4488581"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/GOVERNANCE_RECONCILIATION_2026-07-25.md",
+      "status": "modified",
+      "sha256": "e9e5826bd624e0b2a38ead3223125ea3ada275a3eb42846418e46ed03fca9b3a",
+      "size": 5623,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "cb78366e6863599dc9e206e5b7050cc2d086e9d857cf7a23982c256f1b2a835f"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.20.2.md",
+      "status": "unchanged",
+      "sha256": "429f9c82fe825e545f825a08e2474301d6f14b9abd1375b558b0b10adab440c8",
+      "size": 1111,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T06:00:44",
+      "source_sha256": "429f9c82fe825e545f825a08e2474301d6f14b9abd1375b558b0b10adab440c8"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.20.3.md",
+      "status": "unchanged",
+      "sha256": "4b3ddb43cfa21608eaf9bedeab9fcc421c096ade23817b152fc1f7014a84d4e6",
+      "size": 4872,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T07:38:36",
+      "source_sha256": "4b3ddb43cfa21608eaf9bedeab9fcc421c096ade23817b152fc1f7014a84d4e6"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.20.4.md",
+      "status": "unchanged",
+      "sha256": "c065f0ca60f88d8e7ff500cc8e1bde7e282e8322e452dde152a06f05d7f447c6",
+      "size": 1367,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T08:01:22",
+      "source_sha256": "c065f0ca60f88d8e7ff500cc8e1bde7e282e8322e452dde152a06f05d7f447c6"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.20.5.md",
+      "status": "unchanged",
+      "sha256": "bca2459d900124187d9ca8a11666f13c9ac51dd7193113892e200d7fcc9a03cd",
+      "size": 1477,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T09:28:46",
+      "source_sha256": "bca2459d900124187d9ca8a11666f13c9ac51dd7193113892e200d7fcc9a03cd"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.21.0.md",
+      "status": "unchanged",
+      "sha256": "5803f0a08c804938a3b260d3084a51d3dba97472d9272de4c2b1d7fa62a26dfd",
+      "size": 1305,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T22:35:40",
+      "source_sha256": "5803f0a08c804938a3b260d3084a51d3dba97472d9272de4c2b1d7fa62a26dfd"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.0.md",
+      "status": "unchanged",
+      "sha256": "094118784f7f6bfac269a8aaf486744bdeacfafd65add05982b55a6664a4508b",
+      "size": 2181,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T23:40:14",
+      "source_sha256": "094118784f7f6bfac269a8aaf486744bdeacfafd65add05982b55a6664a4508b"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.1.md",
+      "status": "unchanged",
+      "sha256": "716726bc631a472ec3b5ba9513d93ae987eb151f68804ee969673cdd71911bd3",
+      "size": 2754,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-19T04:25:18",
+      "source_sha256": "716726bc631a472ec3b5ba9513d93ae987eb151f68804ee969673cdd71911bd3"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.2.md",
+      "status": "unchanged",
+      "sha256": "4362532346a731f8aa3b8372a878cd2e93bb9a7e651d2172406fae167c036b8c",
+      "size": 4452,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-19T06:58:34",
+      "source_sha256": "4362532346a731f8aa3b8372a878cd2e93bb9a7e651d2172406fae167c036b8c"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.23.0.md",
+      "status": "unchanged",
+      "sha256": "0045126bca73ad0364edc9e0317c770b36220c7222e561ea1cba6eac42e7f9da",
+      "size": 1068,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-19T20:15:26",
+      "source_sha256": "0045126bca73ad0364edc9e0317c770b36220c7222e561ea1cba6eac42e7f9da"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.23.1.md",
+      "status": "unchanged",
+      "sha256": "a3628af9dbf77e036c9fa0fb5b765eea262b76c901a419b4a81e2007c1f90296",
+      "size": 3346,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-20T10:54:32",
+      "source_sha256": "a3628af9dbf77e036c9fa0fb5b765eea262b76c901a419b4a81e2007c1f90296"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.24.0.md",
+      "status": "unchanged",
+      "sha256": "aab1f6f7c3ae20af025335f83de619b9c327478fe2271881253330521777a0e9",
+      "size": 4496,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-21T10:18:28",
+      "source_sha256": "aab1f6f7c3ae20af025335f83de619b9c327478fe2271881253330521777a0e9"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.25.0.md",
+      "status": "unchanged",
+      "sha256": "335eb4ac4c7cfc04ecdae3d55af8d53523c773fb237497589ec6cccd2bd31571",
+      "size": 1311,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-21T21:33:54",
+      "source_sha256": "335eb4ac4c7cfc04ecdae3d55af8d53523c773fb237497589ec6cccd2bd31571"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.25.1.md",
+      "status": "unchanged",
+      "sha256": "1d90085a4073ae84e892c062653325a00cd51f1935228d0a747f0cee7f6eff52",
+      "size": 1048,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-21T21:33:54",
+      "source_sha256": "1d90085a4073ae84e892c062653325a00cd51f1935228d0a747f0cee7f6eff52"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.25.2.md",
+      "status": "unchanged",
+      "sha256": "8294bb8de9823ae44ba166069a4ea16616fcd5b00aaac4f2445e8ae774134b7f",
+      "size": 317,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-21T23:41:30",
+      "source_sha256": "8294bb8de9823ae44ba166069a4ea16616fcd5b00aaac4f2445e8ae774134b7f"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.26.0.md",
+      "status": "unchanged",
+      "sha256": "d7c4c9a20c37f1490f923a84acbc06f7ec025c2be989e42a7a609d2f01bb3a60",
+      "size": 5783,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-22T05:51:08",
+      "source_sha256": "d7c4c9a20c37f1490f923a84acbc06f7ec025c2be989e42a7a609d2f01bb3a60"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.26.1.md",
+      "status": "unchanged",
+      "sha256": "54591cc8f385d9a9dff9cf34c98b5fa274e933cb9f46b19db7efb92d36a5854d",
+      "size": 3171,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-22T19:44:06",
+      "source_sha256": "54591cc8f385d9a9dff9cf34c98b5fa274e933cb9f46b19db7efb92d36a5854d"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.27.2.md",
+      "status": "unchanged",
+      "sha256": "b96e19b82399ddf326e6e3e0eaab63a0edfc86ce13c7cfb70373acedb541126d",
+      "size": 1091,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-25T14:37:38",
+      "source_sha256": "b96e19b82399ddf326e6e3e0eaab63a0edfc86ce13c7cfb70373acedb541126d"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.29.0.md",
+      "status": "new",
+      "sha256": "26e1d0ff8d34b0c7127895eacb0a3c5c6dfbd8fdfae83df4c102783ed30bca97",
+      "size": 2576,
+      "timestamp_source": "actual continuity-reconciliation creation time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/PROJECT_STATE.json",
+      "status": "modified",
+      "sha256": "2b1d31e01e835241e034bef64236ee5aa583f3350772efb9957a30c1f413b63c",
+      "size": 4635,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "305a68ec87d900d9f69a6599345eb04deac4215f6bb133bd55795e91f67885af"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/README_FIRST.md",
+      "status": "unchanged",
+      "sha256": "24537f6875fa49c7e95358c1f6572eca3774473c9dd2ead14f264a977f7203d0",
+      "size": 193,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T22:35:40",
+      "source_sha256": "24537f6875fa49c7e95358c1f6572eca3774473c9dd2ead14f264a977f7203d0"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/RELEASE_CHECKSUMS.json",
+      "status": "unchanged",
+      "sha256": "52912f4907fc039981f57b5769886201a277cbf8bcc60939e5c811ba0f97fc66",
+      "size": 24347,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-22T19:49:46",
+      "source_sha256": "52912f4907fc039981f57b5769886201a277cbf8bcc60939e5c811ba0f97fc66"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
+      "status": "modified",
+      "sha256": "f51460d1112c6d02b5d7df66aa0c1fe4c8257dc43a7c6725642a7e85a3420b15",
+      "size": 1511,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "2a2a3daf84333c24ca9844a94ae12cc3c9343d111ae80930b3d40463b024b0e5"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
+      "status": "modified",
+      "sha256": "67f8399b1dd734102074cb8b8229eaf54994f5ff9eee674b06e3b8082cee3e1b",
+      "size": 11308,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "915c5a72651d07e8455d812e4778d2290f3b8231870d25135d8de175809eec86"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md",
+      "status": "modified",
+      "sha256": "a12a13b1311ce64fc1599003ec63f408f26a387f05f073caf54d94930e9eace1",
+      "size": 1801,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "1922a84444101cb07cf0070c0a2fd392198b2763c4e49f2b8e3f9cdcd6cd0603"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/COMPREHENSION_CHECKPOINT.md",
+      "status": "modified",
+      "sha256": "b94031603874982499f81497d78c1c7023b9ffc95b76c9fecf94fff0ace27373",
+      "size": 1378,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "6d2bfaf8022373c53608a3c75326f8989ceae07ca874fee7fc393cca8f850a81"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
+      "status": "modified",
+      "sha256": "c2423536ea221022faf6b4d6ddb24b50ace65e5a0d91a6dc0015f1609e210846",
+      "size": 3608,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "5c7a275de7741b993a196cee95442595615b57885cea9b8265380a7d5b1d397d"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md",
+      "status": "modified",
+      "sha256": "712bf98ccce7ba8c419ea15ad2251582754bd2261aa4ff46b1675aa5f623ce75",
+      "size": 1556,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "80d5848f11454553d2de66dde8a9abce6886a83df53bc8845ace569293cbbce8"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/PROJECT_IDENTITY.md",
+      "status": "modified",
+      "sha256": "10d8d1cbb484c1c18fac607162880f9a6ea68cd3fe3092582b5a6e55df3d5908",
+      "size": 1708,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "ebb9f44a6ba59e13a1b1b66a2acac08a71f6c498d2fbfeac394e11350e6a16c2"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/REJECTED_AND_SUPERSEDED_PATHS.md",
+      "status": "modified",
+      "sha256": "71286d08714cc1e62e3be415dbe046d70e67a335328dd228cece114ad453ece7",
+      "size": 2047,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "8ff785a6d4e1667a748a850309b0823c1269cfd935cc1bea60412417f889417e"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/RUNTIME_DIAGNOSTICS.md",
+      "status": "modified",
+      "sha256": "435ffc7904212ce0c086bc489874393a3c4cb8611947bba58ba4b47907ae3fcb",
+      "size": 3200,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "bb571140e2b003f98c6b3a093f43a81703a8f676725f4eeedbfc20df5017df45"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/STATUS_LANGUAGE.md",
+      "status": "modified",
+      "sha256": "cc173123aa5e57c62dc97ee14c18f5178ac80c82a1f8d452beb47ac36606ce40",
+      "size": 2527,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "b60c68caf776c51c10319434a65d048f9efb9af3dc9d1336b5092ebb649dec8a"
+    },
+    {
+      "path": "EVIDENCE_LIBRARY_v0.6.0.md",
+      "status": "unchanged",
+      "sha256": "0e48723392852d13921df8529e4b961874e17b5f49d2c9eb38e7fd3d9ce1c535",
+      "size": 2111,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "0e48723392852d13921df8529e4b961874e17b5f49d2c9eb38e7fd3d9ce1c535"
+    },
+    {
+      "path": "FEATURE_STATUS.md",
+      "status": "modified",
+      "sha256": "03d85f0383630d1541f16722a43f1809ffd7e85a1457ea5be2b6b79f6c48fdd9",
+      "size": 2982,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "ca2159cfdabb3aa80abe0e239c21233cb21d2a62c72cced958c709aa3a810c1f"
+    },
+    {
+      "path": "GOOGLE_SETUP.md",
+      "status": "unchanged",
+      "sha256": "060990365fc9cdd05ea1ad72321f6bb9250c9ee24f5ec7af85e3ed0a73294c9d",
+      "size": 3210,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "060990365fc9cdd05ea1ad72321f6bb9250c9ee24f5ec7af85e3ed0a73294c9d"
+    },
+    {
+      "path": "GOVERNANCE_PACKAGE_PROVENANCE_2026-07-25.json",
+      "status": "unchanged",
+      "sha256": "468d172b1f36ad06d1f27f08fad2d37943c87ab5aa7658d81ec172aa98aacbd1",
+      "size": 92347,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-25T14:37:38",
+      "source_sha256": "468d172b1f36ad06d1f27f08fad2d37943c87ab5aa7658d81ec172aa98aacbd1"
+    },
+    {
+      "path": "HANDOFF_BRIEF.md",
+      "status": "modified",
+      "sha256": "c323d85e3f22cf599660b005aa7d2b6677a99c1ba65bb9aca2fa88453eb4dc97",
+      "size": 2512,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "c1d9197c42dda159a96e0db974f4fdc7bdd3a482e6d1d4dea4f957f9263d44aa"
+    },
+    {
+      "path": "HISTORICAL_ARTIFACTS_NOTE.md",
+      "status": "unchanged",
+      "sha256": "a4babeab7ff12e75d77e01b2d9a64d11dca0d41e6af27c66e542085ea1725bc6",
+      "size": 664,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-21T09:43:08",
+      "source_sha256": "a4babeab7ff12e75d77e01b2d9a64d11dca0d41e6af27c66e542085ea1725bc6"
+    },
+    {
+      "path": "INDEPENDENT_AI_REVIEW_REQUEST_v0.22.0.md",
+      "status": "unchanged",
+      "sha256": "99940279c778efd964f30b941e4b67fca809cb570f2afc86f43b03663d164dd9",
+      "size": 1207,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T23:39:32",
+      "source_sha256": "99940279c778efd964f30b941e4b67fca809cb570f2afc86f43b03663d164dd9"
+    },
+    {
+      "path": "INDEPENDENT_AI_REVIEW_REQUEST_v0.22.1.md",
+      "status": "unchanged",
+      "sha256": "35e683f2a82e57b3dfc520759a5bc8cb37bd1c3ab71edb669631fc4703466d15",
+      "size": 1711,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-19T04:25:18",
+      "source_sha256": "35e683f2a82e57b3dfc520759a5bc8cb37bd1c3ab71edb669631fc4703466d15"
+    },
+    {
+      "path": "MIGRATION_NOTES_v0.8.0.md",
+      "status": "unchanged",
+      "sha256": "d7d834e166f239b510baafb50aec830ffd5737b4e0c4ac87af7705c8f36946af",
+      "size": 871,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "d7d834e166f239b510baafb50aec830ffd5737b4e0c4ac87af7705c8f36946af"
+    },
+    {
+      "path": "PACKAGE_PROVENANCE_v0.29.0.json",
+      "status": "unchanged",
+      "sha256": "26df88baad95e2858914a0558bcc47f09329b6486a8d51f69dc4ab86d0c4fb12",
+      "size": 63933,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-25T20:57:00",
+      "source_sha256": "26df88baad95e2858914a0558bcc47f09329b6486a8d51f69dc4ab86d0c4fb12"
+    },
+    {
+      "path": "PACKAGE_VERIFICATION_v0.29.0-CONTINUITY.json",
+      "status": "new",
+      "sha256": "2fad2a0ab3c9bfb4a5549b4d6f91e75e0b7d8f59724dcb9889ea299b7f062911",
+      "size": 2064,
+      "timestamp_source": "actual continuity-reconciliation creation time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400"
+    },
+    {
+      "path": "PACKAGE_VERIFICATION_v0.29.0.json",
+      "status": "unchanged",
+      "sha256": "641b7db25784b6a771ccae94b8cc88eaeeceb247f817ddc636f3d350bebb2462",
+      "size": 695,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-25T20:57:00",
+      "source_sha256": "641b7db25784b6a771ccae94b8cc88eaeeceb247f817ddc636f3d350bebb2462"
+    },
+    {
+      "path": "PATCH_NOTES_v0.5.1.md",
+      "status": "unchanged",
+      "sha256": "f4fc39d068be275b8934f7989609d4dea947cdac6b3a7a9d133bf6d8375134c5",
+      "size": 1298,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "f4fc39d068be275b8934f7989609d4dea947cdac6b3a7a9d133bf6d8375134c5"
+    },
+    {
+      "path": "PATCH_NOTES_v0.5.2.md",
+      "status": "unchanged",
+      "sha256": "164742bb5306db13198dceaadf02636a9f334149531ba7e41159ec18208db892",
+      "size": 1641,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "164742bb5306db13198dceaadf02636a9f334149531ba7e41159ec18208db892"
+    },
+    {
+      "path": "PATCH_NOTES_v0.6.0.md",
+      "status": "unchanged",
+      "sha256": "828abe274ba7416c06fb02c9d777fce01ce91c249091a15417be7f8b1bf9f33d",
+      "size": 4441,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "828abe274ba7416c06fb02c9d777fce01ce91c249091a15417be7f8b1bf9f33d"
+    },
+    {
+      "path": "PATCH_NOTES_v0.6.1.md",
+      "status": "unchanged",
+      "sha256": "87888a80bc7e23dffcfaf0dff582ea809521a83abd205995565079e4b91a7c71",
+      "size": 610,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "87888a80bc7e23dffcfaf0dff582ea809521a83abd205995565079e4b91a7c71"
+    },
+    {
+      "path": "PATCH_NOTES_v0.6.2.md",
+      "status": "unchanged",
+      "sha256": "a5a3f44509ad811ebb719eddd345264d65f001436d1e5c571463e995acf283ea",
+      "size": 2028,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "a5a3f44509ad811ebb719eddd345264d65f001436d1e5c571463e995acf283ea"
+    },
+    {
+      "path": "PATCH_NOTES_v0.6.4.md",
+      "status": "unchanged",
+      "sha256": "e9320f54b10ad57c2e2527dd200c82ea2bf31ecb09bc2412ce90e4e9d11c2245",
+      "size": 3263,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "e9320f54b10ad57c2e2527dd200c82ea2bf31ecb09bc2412ce90e4e9d11c2245"
+    },
+    {
+      "path": "PATCH_NOTES_v0.6.5.md",
+      "status": "unchanged",
+      "sha256": "a9286c825c53267b26e2be9f3e2befdd2eb2c985a8f4613a5f00896210a9713a",
+      "size": 2446,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "a9286c825c53267b26e2be9f3e2befdd2eb2c985a8f4613a5f00896210a9713a"
+    },
+    {
+      "path": "PATCH_NOTES_v0.6.6.md",
+      "status": "unchanged",
+      "sha256": "943d87305bebdbe15216d2694d9adc5fd8b05cd2159f72d33a56e6d47ea670fa",
+      "size": 1482,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "943d87305bebdbe15216d2694d9adc5fd8b05cd2159f72d33a56e6d47ea670fa"
+    },
+    {
+      "path": "README.md",
+      "status": "modified",
+      "sha256": "dfe0f80811148de95ab8501550eb414a395b5b256d6276eb5bedc5e4dfa4d15b",
+      "size": 1516,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "818d106c166e3b2ee76776fd848ceb752b36531e4d926772c80af0153664dfe2"
+    },
+    {
+      "path": "README_DEPLOY.md",
+      "status": "modified",
+      "sha256": "a2787724679547307824395f831fc11250e18e5df6c36e26188eb2d19dc4a221",
+      "size": 1063,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "a57757da2ed1d5b2114cd2725b38bde51bc7ecba6c0f33a80fa8f13aa51d3d23"
+    },
+    {
+      "path": "READ_THIS_FIRST.md",
+      "status": "unchanged",
+      "sha256": "e11ca5e6d439d99fcc3926afa2be6028cbbe79640fb85b4b45b4c06d838edec8",
+      "size": 210,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T09:27:04",
+      "source_sha256": "e11ca5e6d439d99fcc3926afa2be6028cbbe79640fb85b4b45b4c06d838edec8"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.10.0.md",
+      "status": "unchanged",
+      "sha256": "1e7d0470cbe6b625829dd183a840be5f5ed30a653cf8bc1af82dec980cceaee4",
+      "size": 2089,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "1e7d0470cbe6b625829dd183a840be5f5ed30a653cf8bc1af82dec980cceaee4"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.10.1.md",
+      "status": "unchanged",
+      "sha256": "d6679af493f641123ebe737181fc024af842909402e7195198b42ccf62c19234",
+      "size": 649,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "d6679af493f641123ebe737181fc024af842909402e7195198b42ccf62c19234"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.10.2.md",
+      "status": "unchanged",
+      "sha256": "903ac5a78823d5b461dca3c899665862918fe12f7e5c144ec324e520b4d11023",
+      "size": 612,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "903ac5a78823d5b461dca3c899665862918fe12f7e5c144ec324e520b4d11023"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.10.3.md",
+      "status": "unchanged",
+      "sha256": "ee3de639168dd82f5a7c69d15fbd76eed2d8c35eacfe0f457b824fd06e0f548f",
+      "size": 400,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "ee3de639168dd82f5a7c69d15fbd76eed2d8c35eacfe0f457b824fd06e0f548f"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.11.0.md",
+      "status": "unchanged",
+      "sha256": "69822de51955a374f45faca5a6818ea9c9c7a759f484738c4e8948db04d7b19c",
+      "size": 1471,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "69822de51955a374f45faca5a6818ea9c9c7a759f484738c4e8948db04d7b19c"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.12.0.md",
+      "status": "unchanged",
+      "sha256": "95c7d62fa025dab9ec307e97c34db59f02ccafc59343c6f60a9db58d738fe28d",
+      "size": 1325,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "95c7d62fa025dab9ec307e97c34db59f02ccafc59343c6f60a9db58d738fe28d"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.12.1.md",
+      "status": "unchanged",
+      "sha256": "ce65c0581b748619f36a9953794b1c14cd4847434d80922f183058c44d751b6f",
+      "size": 1172,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "ce65c0581b748619f36a9953794b1c14cd4847434d80922f183058c44d751b6f"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.13.0.md",
+      "status": "unchanged",
+      "sha256": "c4cc51d371f472750f173789823a14fdc095f2562632d3e557a601cfae7400a6",
+      "size": 1364,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "c4cc51d371f472750f173789823a14fdc095f2562632d3e557a601cfae7400a6"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.14.0.md",
+      "status": "unchanged",
+      "sha256": "801c1c1d2d754f49424e92331c8e6e84790c0b67293f0f0fa9b0deab0176298e",
+      "size": 1171,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "801c1c1d2d754f49424e92331c8e6e84790c0b67293f0f0fa9b0deab0176298e"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.15.0.md",
+      "status": "unchanged",
+      "sha256": "6475010ee7d4bc669b06d2aedf3860a5ddb8e8d14929d6380b0b939ac237af6a",
+      "size": 1526,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "6475010ee7d4bc669b06d2aedf3860a5ddb8e8d14929d6380b0b939ac237af6a"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.15.1.md",
+      "status": "unchanged",
+      "sha256": "1a722caaf6ef3e52b8f00f173b7f061ecc3740ba4121553f858f06d6da0a6d7b",
+      "size": 1545,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "1a722caaf6ef3e52b8f00f173b7f061ecc3740ba4121553f858f06d6da0a6d7b"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.16.0.md",
+      "status": "unchanged",
+      "sha256": "c6da804b0c3af93fd8f079756f5bf3a81ab6c589d51cc80a75c002856d727369",
+      "size": 1731,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "c6da804b0c3af93fd8f079756f5bf3a81ab6c589d51cc80a75c002856d727369"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.16.1.md",
+      "status": "unchanged",
+      "sha256": "be64da74e5526769b7003857c145a8bc6dbd8290a22c9c44e84cc80015d52fd1",
+      "size": 1354,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "be64da74e5526769b7003857c145a8bc6dbd8290a22c9c44e84cc80015d52fd1"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.16.2.md",
+      "status": "unchanged",
+      "sha256": "7c4868d1e51f3186e2a2e7a427c839f5c6e8ca579bfc0905e86624158dfdbd3f",
+      "size": 552,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "7c4868d1e51f3186e2a2e7a427c839f5c6e8ca579bfc0905e86624158dfdbd3f"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.16.3.md",
+      "status": "unchanged",
+      "sha256": "2d9bb03701463c16f32894e7c61da0de209067eefb245f60e205345fb9067610",
+      "size": 892,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "2d9bb03701463c16f32894e7c61da0de209067eefb245f60e205345fb9067610"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.17.0-alpha.md",
+      "status": "unchanged",
+      "sha256": "49cd75b969d46b3c00cdf95466e0a81d0027cb250aa71d42e333f4f88e6f53c3",
+      "size": 1025,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "49cd75b969d46b3c00cdf95466e0a81d0027cb250aa71d42e333f4f88e6f53c3"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.17.1-alpha.md",
+      "status": "unchanged",
+      "sha256": "da1d8847393d07b9f0a07d704ac5a0c09489f4e7850f24a9631d22a530b9817b",
+      "size": 727,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "da1d8847393d07b9f0a07d704ac5a0c09489f4e7850f24a9631d22a530b9817b"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.17.2-alpha.md",
+      "status": "unchanged",
+      "sha256": "3fa5a6e3865fb514e4bd3ad5868d7f8502ba0222a068002ce53e27aee80e9ffc",
+      "size": 509,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "3fa5a6e3865fb514e4bd3ad5868d7f8502ba0222a068002ce53e27aee80e9ffc"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.17.3-alpha.md",
+      "status": "unchanged",
+      "sha256": "995685468f0d6bf43b318f051a92ff1607b7fc9c55e6ecb860d5c2236a826f4e",
+      "size": 844,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "995685468f0d6bf43b318f051a92ff1607b7fc9c55e6ecb860d5c2236a826f4e"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.17.4.md",
+      "status": "unchanged",
+      "sha256": "82ba49eee0911f6c6062f21e937f989c013d0a0406c13f174fa3a43501fd014b",
+      "size": 900,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "82ba49eee0911f6c6062f21e937f989c013d0a0406c13f174fa3a43501fd014b"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.17.6.md",
+      "status": "unchanged",
+      "sha256": "66e8a970e17ae8a9440360a45c3c7ef9fb00d03fc94dc97238154026cdf3ee27",
+      "size": 1293,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "66e8a970e17ae8a9440360a45c3c7ef9fb00d03fc94dc97238154026cdf3ee27"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.17.7.md",
+      "status": "unchanged",
+      "sha256": "2f382f97ebe50215902ec941290874fd506e0a605ede18165663265189c6384b",
+      "size": 1281,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T07:16:24",
+      "source_sha256": "2f382f97ebe50215902ec941290874fd506e0a605ede18165663265189c6384b"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.17.8.md",
+      "status": "unchanged",
+      "sha256": "928db51a47a186f744e99e61e766e0e70e4e509717590a9bc4cb813105a7c47c",
+      "size": 804,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T08:28:16",
+      "source_sha256": "928db51a47a186f744e99e61e766e0e70e4e509717590a9bc4cb813105a7c47c"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.18.0.md",
+      "status": "unchanged",
+      "sha256": "55929fe6371c092c7d0b154f41fbec2447d2d762ad0085d38deea8b56db17d89",
+      "size": 2120,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T09:50:56",
+      "source_sha256": "55929fe6371c092c7d0b154f41fbec2447d2d762ad0085d38deea8b56db17d89"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.19.0.md",
+      "status": "unchanged",
+      "sha256": "73d0d97acaaca6c69d29bfa9df583621b5e379c7546d791ff3d11d5266bb7e41",
+      "size": 1243,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T22:43:32",
+      "source_sha256": "73d0d97acaaca6c69d29bfa9df583621b5e379c7546d791ff3d11d5266bb7e41"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.19.1.md",
+      "status": "unchanged",
+      "sha256": "867ffb2bd77c3a5d1a782558f2d8ccfa7cb6a3f65be3dd332a054a47ce54b09b",
+      "size": 1373,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T00:11:36",
+      "source_sha256": "867ffb2bd77c3a5d1a782558f2d8ccfa7cb6a3f65be3dd332a054a47ce54b09b"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.19.2.md",
+      "status": "unchanged",
+      "sha256": "fb2383fb308d5e53c3067b30f81d4bf923ec6dfa73df70ff67b050782ad5109a",
+      "size": 609,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T00:20:58",
+      "source_sha256": "fb2383fb308d5e53c3067b30f81d4bf923ec6dfa73df70ff67b050782ad5109a"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.20.2.md",
+      "status": "unchanged",
+      "sha256": "564f29664c139502af143f56382b67538efd00acaff8707f2a0192691ac38807",
+      "size": 261,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T05:59:04",
+      "source_sha256": "564f29664c139502af143f56382b67538efd00acaff8707f2a0192691ac38807"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.20.3.md",
+      "status": "unchanged",
+      "sha256": "80547dd143b63d3af1aa9c6fd7bed6d45995ed95557b301aa2342d576381a69f",
+      "size": 2918,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T07:37:44",
+      "source_sha256": "80547dd143b63d3af1aa9c6fd7bed6d45995ed95557b301aa2342d576381a69f"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.20.4.md",
+      "status": "unchanged",
+      "sha256": "ce2abe4934a38a247af843c43d718ff10d4dae4a8c51e79a233e7ab774f3c433",
+      "size": 847,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T08:01:22",
+      "source_sha256": "ce2abe4934a38a247af843c43d718ff10d4dae4a8c51e79a233e7ab774f3c433"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.20.5.md",
+      "status": "unchanged",
+      "sha256": "c426b7c103b7a91b1a37e406a3f1c1bdc1d1cca5488eca0744dd1320a93ceb9d",
+      "size": 528,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T09:27:04",
+      "source_sha256": "c426b7c103b7a91b1a37e406a3f1c1bdc1d1cca5488eca0744dd1320a93ceb9d"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.21.0.md",
+      "status": "unchanged",
+      "sha256": "2e34eed53318d76b761439250b55533c5cc22ddc2333ec484857eb3eace65e47",
+      "size": 1342,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T22:35:40",
+      "source_sha256": "2e34eed53318d76b761439250b55533c5cc22ddc2333ec484857eb3eace65e47"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.22.0.md",
+      "status": "unchanged",
+      "sha256": "79d6e4141df20611d4a0cf1d936c5db1cf7c80770a11c292dc395bbb09813a7b",
+      "size": 854,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T23:39:32",
+      "source_sha256": "79d6e4141df20611d4a0cf1d936c5db1cf7c80770a11c292dc395bbb09813a7b"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.22.1.md",
+      "status": "unchanged",
+      "sha256": "ecd6a184698f430d925d0dc462dcf0949558d7096715b77532d007683a8dba3b",
+      "size": 1386,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-19T04:25:18",
+      "source_sha256": "ecd6a184698f430d925d0dc462dcf0949558d7096715b77532d007683a8dba3b"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.22.2.md",
+      "status": "unchanged",
+      "sha256": "ce4242f2d4c5c473771b967ab4c3039ffa0f49c3edd79475a635c10db0addcd8",
+      "size": 2079,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-19T06:57:20",
+      "source_sha256": "ce4242f2d4c5c473771b967ab4c3039ffa0f49c3edd79475a635c10db0addcd8"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.23.0.md",
+      "status": "unchanged",
+      "sha256": "5e0e96d719d42c85d78253356dcf86177127a2397f21b1d339660b2ae740ad2a",
+      "size": 1764,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-19T20:14:54",
+      "source_sha256": "5e0e96d719d42c85d78253356dcf86177127a2397f21b1d339660b2ae740ad2a"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.23.1.md",
+      "status": "unchanged",
+      "sha256": "95c7d4ada301b332641829af001a2e00131f09092e3519f9c23b726b410cf826",
+      "size": 2075,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-20T10:54:32",
+      "source_sha256": "95c7d4ada301b332641829af001a2e00131f09092e3519f9c23b726b410cf826"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.24.0.md",
+      "status": "unchanged",
+      "sha256": "ecefe00ed1a0f9c014ee92cf0da6371b3617098e479a85bd8da8875df8d0652d",
+      "size": 2466,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-21T10:18:28",
+      "source_sha256": "ecefe00ed1a0f9c014ee92cf0da6371b3617098e479a85bd8da8875df8d0652d"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.25.0.md",
+      "status": "unchanged",
+      "sha256": "f0b16e2b0c578ec2176213668fb3d775aee922012dc8e63b45d8b6615cc26ab9",
+      "size": 1408,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-21T20:13:46",
+      "source_sha256": "f0b16e2b0c578ec2176213668fb3d775aee922012dc8e63b45d8b6615cc26ab9"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.25.1.md",
+      "status": "unchanged",
+      "sha256": "1b73de886d327a2c6715e2ce3cf5f7e97e0e8d237a29589e49adfc0927fd3227",
+      "size": 1035,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-21T21:33:16",
+      "source_sha256": "1b73de886d327a2c6715e2ce3cf5f7e97e0e8d237a29589e49adfc0927fd3227"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.25.2.md",
+      "status": "unchanged",
+      "sha256": "59fd7f04ff03281921f3607c7aff4700e5bd12a5d8e3f9e69385c508a50625ee",
+      "size": 657,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-21T23:41:30",
+      "source_sha256": "59fd7f04ff03281921f3607c7aff4700e5bd12a5d8e3f9e69385c508a50625ee"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.26.0.md",
+      "status": "unchanged",
+      "sha256": "4b6fe792bb07d32288b8014245ce464744c75874fbe3306bc794f17a2af8acb9",
+      "size": 5545,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-22T05:47:00",
+      "source_sha256": "4b6fe792bb07d32288b8014245ce464744c75874fbe3306bc794f17a2af8acb9"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.26.1.md",
+      "status": "unchanged",
+      "sha256": "5d7df57f68777523676bca6b129911fea8c5e777d472ce060ddd0638de081aa1",
+      "size": 1192,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-22T19:44:06",
+      "source_sha256": "5d7df57f68777523676bca6b129911fea8c5e777d472ce060ddd0638de081aa1"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.27.2.md",
+      "status": "unchanged",
+      "sha256": "ea8b984405a080d842057859c9451b51d78f687cc39520e7b1ada2c7ad1a2ece",
+      "size": 733,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-25T14:37:38",
+      "source_sha256": "ea8b984405a080d842057859c9451b51d78f687cc39520e7b1ada2c7ad1a2ece"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.29.0.md",
+      "status": "modified",
+      "sha256": "340620dc4de0f2eda539d61b5cfec8ee99de60aa614d56280738c796257ac2c1",
+      "size": 2145,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "cc179d16fb754374cd122f0d914701aae0a9324d8f5383559c955a5a3896e82d"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.7.0.md",
+      "status": "unchanged",
+      "sha256": "f59c650095396367c45f9c7e518542d3c5ab413e279ce8983017e96ea6560399",
+      "size": 3636,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "f59c650095396367c45f9c7e518542d3c5ab413e279ce8983017e96ea6560399"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.8.0.md",
+      "status": "unchanged",
+      "sha256": "09b68e5d8fcf1a14bf73ecf0dcfae641f1e8895862876e9da745ff49b2ba9d74",
+      "size": 3416,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "09b68e5d8fcf1a14bf73ecf0dcfae641f1e8895862876e9da745ff49b2ba9d74"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.8.1.md",
+      "status": "unchanged",
+      "sha256": "3c13d8618ec1e2ccbef732f68b087cbdcb8a2a91caaf3c319ba926d6fdddd8d8",
+      "size": 916,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "3c13d8618ec1e2ccbef732f68b087cbdcb8a2a91caaf3c319ba926d6fdddd8d8"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.8.2.md",
+      "status": "unchanged",
+      "sha256": "1b5463cf7f9e8eb94115efeb8c3d2fd7377a6901013282626355ca93eccbff47",
+      "size": 756,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "1b5463cf7f9e8eb94115efeb8c3d2fd7377a6901013282626355ca93eccbff47"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.8.3.md",
+      "status": "unchanged",
+      "sha256": "f28150b20b45d8c701fe4e208cfe472e1038bf5a31c6802a9368e6163c11b742",
+      "size": 1117,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "f28150b20b45d8c701fe4e208cfe472e1038bf5a31c6802a9368e6163c11b742"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.9.0.md",
+      "status": "unchanged",
+      "sha256": "dfe50aad75ead1508b78fabf6ee04917f8ce2d3c5ae2692db61d8499a958a23f",
+      "size": 1040,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "dfe50aad75ead1508b78fabf6ee04917f8ce2d3c5ae2692db61d8499a958a23f"
+    },
+    {
+      "path": "STORAGE_SETUP.md",
+      "status": "unchanged",
+      "sha256": "99e33bf8a5099ff7264f425e5ab6b10d9d96ea9bceb33499cc84ff427208b4e0",
+      "size": 2045,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-25T14:37:38",
+      "source_sha256": "99e33bf8a5099ff7264f425e5ab6b10d9d96ea9bceb33499cc84ff427208b4e0"
+    },
+    {
+      "path": "TEST_GUIDE_v0.17.2-alpha.md",
+      "status": "unchanged",
+      "sha256": "e6ef48c060123136f138862605e3e153fc7a73297a52672435c2b68288da071d",
+      "size": 857,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "e6ef48c060123136f138862605e3e153fc7a73297a52672435c2b68288da071d"
+    },
+    {
+      "path": "TEST_GUIDE_v0.17.3-alpha.md",
+      "status": "unchanged",
+      "sha256": "a3f1270197191b784736523948f0d923e4f5027e65ff82615b78523bfb6b6efa",
+      "size": 594,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "a3f1270197191b784736523948f0d923e4f5027e65ff82615b78523bfb6b6efa"
+    },
+    {
+      "path": "TEST_GUIDE_v0.17.4.md",
+      "status": "unchanged",
+      "sha256": "90c4d185cf597ef099fc476277427ffc856efd860ccb8ee619970e0f94ddb4bc",
+      "size": 565,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "90c4d185cf597ef099fc476277427ffc856efd860ccb8ee619970e0f94ddb4bc"
+    },
+    {
+      "path": "TEST_GUIDE_v0.17.6.md",
+      "status": "unchanged",
+      "sha256": "f00241d9f6b93f045acd4403af7733dbe1cf5d6e6e42068b5a9b95ddd0148568",
+      "size": 990,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "f00241d9f6b93f045acd4403af7733dbe1cf5d6e6e42068b5a9b95ddd0148568"
+    },
+    {
+      "path": "TEST_GUIDE_v0.17.7.md",
+      "status": "unchanged",
+      "sha256": "8367602b50e393c7c821699fa34ba15533431e5d6c757a3a808da71a75ba6755",
+      "size": 1084,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T07:16:24",
+      "source_sha256": "8367602b50e393c7c821699fa34ba15533431e5d6c757a3a808da71a75ba6755"
+    },
+    {
+      "path": "TEST_GUIDE_v0.18.0.md",
+      "status": "unchanged",
+      "sha256": "33d3598ec4c7723bb9f5e11f22cf2b1a9c32b5d46743058c89f8dfc1a4c351e2",
+      "size": 1112,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T09:50:56",
+      "source_sha256": "33d3598ec4c7723bb9f5e11f22cf2b1a9c32b5d46743058c89f8dfc1a4c351e2"
+    },
+    {
+      "path": "TEST_REPORT.md",
+      "status": "modified",
+      "sha256": "190003e5058f15d646e401b0e3ec6ca082f06597e0f5910ba7387f34188ac211",
+      "size": 269,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "00f92d35fae9ce620bf7a37b7ea5c44a56b9b9f02c84456a2732f467f36b5475"
+    },
+    {
+      "path": "TEST_REPORT_v0.10.0.md",
+      "status": "unchanged",
+      "sha256": "e87312a92a622914f785b0f0d9a8a13cfd2f58c58d85d060c36ba64ffa6d6533",
+      "size": 1411,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "e87312a92a622914f785b0f0d9a8a13cfd2f58c58d85d060c36ba64ffa6d6533"
+    },
+    {
+      "path": "TEST_REPORT_v0.12.1.md",
+      "status": "unchanged",
+      "sha256": "dd74cf9ffbfb5de335950cf8c4d52c27b681695ce0ea74df36f72530c0815c5e",
+      "size": 584,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "dd74cf9ffbfb5de335950cf8c4d52c27b681695ce0ea74df36f72530c0815c5e"
+    },
+    {
+      "path": "TEST_REPORT_v0.13.0.md",
+      "status": "unchanged",
+      "sha256": "faff01a1b6389c62142272a4665b88916d2f34496a650b519005ea8e78984b56",
+      "size": 451,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "faff01a1b6389c62142272a4665b88916d2f34496a650b519005ea8e78984b56"
+    },
+    {
+      "path": "TEST_REPORT_v0.15.0.md",
+      "status": "unchanged",
+      "sha256": "0d1787ff21b2e5e3a4f21d355b59a7776bca54ec2982c389f13651550f95bb73",
+      "size": 995,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "0d1787ff21b2e5e3a4f21d355b59a7776bca54ec2982c389f13651550f95bb73"
+    },
+    {
+      "path": "TEST_REPORT_v0.15.1.md",
+      "status": "unchanged",
+      "sha256": "55c3355025d80215cd1b17b8ea4b6010f5522dc40635f0cb0bb99af33567dcbc",
+      "size": 514,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "55c3355025d80215cd1b17b8ea4b6010f5522dc40635f0cb0bb99af33567dcbc"
+    },
+    {
+      "path": "TEST_REPORT_v0.16.0.md",
+      "status": "unchanged",
+      "sha256": "624468a9408dc80b19de25edecd6991db7af97ce73e7b17eb0277edb836fe112",
+      "size": 695,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "624468a9408dc80b19de25edecd6991db7af97ce73e7b17eb0277edb836fe112"
+    },
+    {
+      "path": "TEST_REPORT_v0.16.1.md",
+      "status": "unchanged",
+      "sha256": "5cd0e5f478ec807d6e05a71e36f7791d8fb6ac01d0409eca87d82ff669f559c2",
+      "size": 887,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "5cd0e5f478ec807d6e05a71e36f7791d8fb6ac01d0409eca87d82ff669f559c2"
+    },
+    {
+      "path": "TEST_REPORT_v0.20.3.md",
+      "status": "unchanged",
+      "sha256": "11c743f25ac350d6134c233ac10802b0f0eb57feddbc239f24836216326f32bf",
+      "size": 3952,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T07:38:36",
+      "source_sha256": "11c743f25ac350d6134c233ac10802b0f0eb57feddbc239f24836216326f32bf"
+    },
+    {
+      "path": "TEST_REPORT_v0.20.4.md",
+      "status": "unchanged",
+      "sha256": "c09b6851f00c32d0494d6d9bf6752feb10151b2f78a905b65adb38717feed04d",
+      "size": 1162,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T08:02:04",
+      "source_sha256": "c09b6851f00c32d0494d6d9bf6752feb10151b2f78a905b65adb38717feed04d"
+    },
+    {
+      "path": "TEST_REPORT_v0.20.5.md",
+      "status": "unchanged",
+      "sha256": "acdb49a580ec9ed5ac8c46f11b625d629d85d2018e8a7a3e148706d821391342",
+      "size": 1162,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T09:29:20",
+      "source_sha256": "acdb49a580ec9ed5ac8c46f11b625d629d85d2018e8a7a3e148706d821391342"
+    },
+    {
+      "path": "TEST_REPORT_v0.21.0.md",
+      "status": "unchanged",
+      "sha256": "0b6d903f7163e5351a80b4fe62c4c48b9172b5fb2ad22fc4045e8a66a2634fc7",
+      "size": 638,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T22:35:40",
+      "source_sha256": "0b6d903f7163e5351a80b4fe62c4c48b9172b5fb2ad22fc4045e8a66a2634fc7"
+    },
+    {
+      "path": "TEST_REPORT_v0.22.0.md",
+      "status": "unchanged",
+      "sha256": "4e2b63daaa7372d187d02b2dc443077a2c7e5725fc9568a0ff22aa815dcef886",
+      "size": 890,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T23:41:10",
+      "source_sha256": "4e2b63daaa7372d187d02b2dc443077a2c7e5725fc9568a0ff22aa815dcef886"
+    },
+    {
+      "path": "TEST_REPORT_v0.22.1.md",
+      "status": "unchanged",
+      "sha256": "ba8aaeadf2ac35c2eae18ec9588fcb242a25dd419d67b07c01a3d553655df073",
+      "size": 1107,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-19T04:25:18",
+      "source_sha256": "ba8aaeadf2ac35c2eae18ec9588fcb242a25dd419d67b07c01a3d553655df073"
+    },
+    {
+      "path": "TEST_REPORT_v0.22.2.md",
+      "status": "unchanged",
+      "sha256": "d5b069bb237028c162d6e96fef82b92135555c90550282e974a6b00f11acd4f1",
+      "size": 1914,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-19T06:57:20",
+      "source_sha256": "d5b069bb237028c162d6e96fef82b92135555c90550282e974a6b00f11acd4f1"
+    },
+    {
+      "path": "TEST_REPORT_v0.23.0.md",
+      "status": "unchanged",
+      "sha256": "746d252465d5ac0dd5390f3fcc6f842598cb7e2b186349dc2ae097efff4ca63e",
+      "size": 1211,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-19T20:14:54",
+      "source_sha256": "746d252465d5ac0dd5390f3fcc6f842598cb7e2b186349dc2ae097efff4ca63e"
+    },
+    {
+      "path": "TEST_REPORT_v0.23.1.md",
+      "status": "unchanged",
+      "sha256": "71289a24268ebef07b9a5814d72fc1a8872155c04e60b6a57d497370ff846f2d",
+      "size": 1960,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-20T11:04:08",
+      "source_sha256": "71289a24268ebef07b9a5814d72fc1a8872155c04e60b6a57d497370ff846f2d"
+    },
+    {
+      "path": "TEST_REPORT_v0.24.0.md",
+      "status": "unchanged",
+      "sha256": "3cc3b3b8f3236a61a7210014e887e844135670bb14e86875060673725415b431",
+      "size": 3933,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-21T10:18:28",
+      "source_sha256": "3cc3b3b8f3236a61a7210014e887e844135670bb14e86875060673725415b431"
+    },
+    {
+      "path": "TEST_REPORT_v0.25.0.md",
+      "status": "unchanged",
+      "sha256": "7661f5c5ecd7c9b15e49c87c1722f410ee488dd94c5f3c706df58456a2014a5d",
+      "size": 996,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-21T20:13:46",
+      "source_sha256": "7661f5c5ecd7c9b15e49c87c1722f410ee488dd94c5f3c706df58456a2014a5d"
+    },
+    {
+      "path": "TEST_REPORT_v0.25.1.md",
+      "status": "unchanged",
+      "sha256": "80dee7c69629c621f78b9e8289c2c9ef014843ec2cab4abaedae48042eaa4641",
+      "size": 458,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-21T21:33:54",
+      "source_sha256": "80dee7c69629c621f78b9e8289c2c9ef014843ec2cab4abaedae48042eaa4641"
+    },
+    {
+      "path": "TEST_REPORT_v0.25.2.md",
+      "status": "unchanged",
+      "sha256": "21a57a8343de2f61df38703957de8d882e26ff9bae40c9f48a699064959adb76",
+      "size": 533,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-21T23:41:30",
+      "source_sha256": "21a57a8343de2f61df38703957de8d882e26ff9bae40c9f48a699064959adb76"
+    },
+    {
+      "path": "TEST_REPORT_v0.26.0.md",
+      "status": "unchanged",
+      "sha256": "17fd81a6d0ee1d4e6da7a029f939e42f1fe4b690ac352f461847153866dfe5e5",
+      "size": 3349,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-22T05:51:08",
+      "source_sha256": "17fd81a6d0ee1d4e6da7a029f939e42f1fe4b690ac352f461847153866dfe5e5"
+    },
+    {
+      "path": "TEST_REPORT_v0.26.1.md",
+      "status": "unchanged",
+      "sha256": "bae6eb815fa13415cce10fdef0e042f98f857c085a2fa839fe4c3a49b3f669e5",
+      "size": 2466,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-22T19:47:50",
+      "source_sha256": "bae6eb815fa13415cce10fdef0e042f98f857c085a2fa839fe4c3a49b3f669e5"
+    },
+    {
+      "path": "TEST_REPORT_v0.27.2.md",
+      "status": "unchanged",
+      "sha256": "6dc13f28d8fc06dd7885bef44e2732d70dc999d4ed3b0255b0f17ea4c4d00e91",
+      "size": 1248,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-25T14:37:38",
+      "source_sha256": "6dc13f28d8fc06dd7885bef44e2732d70dc999d4ed3b0255b0f17ea4c4d00e91"
+    },
+    {
+      "path": "TEST_REPORT_v0.29.0.md",
+      "status": "new",
+      "sha256": "e12f25ea60d746d2120d5dab22d02c82c5e6180550c220bb69aff6c9eadcfd27",
+      "size": 4249,
+      "timestamp_source": "actual continuity-reconciliation creation time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400"
+    },
+    {
+      "path": "TEST_REPORT_v0.7.0.md",
+      "status": "unchanged",
+      "sha256": "d0ddbad6f05879571c2f2481757e93fdf65893f359a6a5ea11acb1e232c3091d",
+      "size": 2561,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "d0ddbad6f05879571c2f2481757e93fdf65893f359a6a5ea11acb1e232c3091d"
+    },
+    {
+      "path": "TEST_REPORT_v0.8.0.md",
+      "status": "unchanged",
+      "sha256": "a433185d14197c69593b7842cae43095e9eed768ced80fa6570aba9930f969ba",
+      "size": 2359,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "a433185d14197c69593b7842cae43095e9eed768ced80fa6570aba9930f969ba"
+    },
+    {
+      "path": "THIRD_PARTY_LICENSES/xlsx-LICENSE",
+      "status": "unchanged",
+      "sha256": "4d2a38ac35cda06a555c84074a819d413339cd3691b822cae50f8f322fe01f64",
+      "size": 11355,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "4d2a38ac35cda06a555c84074a819d413339cd3691b822cae50f8f322fe01f64"
+    },
+    {
+      "path": "USABILITY_TESTING.md",
+      "status": "unchanged",
+      "sha256": "29d678a17b723932b21502b3f0a9c0f782572113b3c8bf7acbe0962a8a77d5fa",
+      "size": 1030,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "29d678a17b723932b21502b3f0a9c0f782572113b3c8bf7acbe0962a8a77d5fa"
+    },
+    {
+      "path": "VERSION.txt",
+      "status": "modified",
+      "sha256": "02d7d82b8f0725479cd225b6bd2185d1c64e93f200f7891c65311789766151fd",
+      "size": 101,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "ffe4fc045f68b8492f9b2fc49eaf5a8b7c05382e507efad86113a8491e5459e6"
+    },
+    {
+      "path": "ZEKE_CONSTITUTION.md",
+      "status": "modified",
+      "sha256": "930524c5f0dedb0df9f089a086d9151349159c84d8ced4c4a5e8ff1f2460d9a8",
+      "size": 16578,
+      "timestamp_source": "actual continuity-reconciliation modification time in America/New_York",
+      "zip_timestamp_local": "2026-07-25T21:34:01-0400",
+      "source_sha256": "814449fa34db628038b8487840b9b2ea8ce766441a172ea305f29c428504e6f9"
+    },
+    {
+      "path": "alpha-connection-setup.html",
+      "status": "unchanged",
+      "sha256": "e157eb676be7991b3a5ef2c55af368535f3840a8965a78725e6b47b64966b2fe",
+      "size": 2958,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "e157eb676be7991b3a5ef2c55af368535f3840a8965a78725e6b47b64966b2fe"
+    },
+    {
+      "path": "app.js",
+      "status": "unchanged",
+      "sha256": "ed0c1e47eaa1786d704c32d29cf70c9c004cb123dddeb1e7a802e2a3ce8694e3",
+      "size": 14878,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T23:38:02",
+      "source_sha256": "ed0c1e47eaa1786d704c32d29cf70c9c004cb123dddeb1e7a802e2a3ce8694e3"
+    },
+    {
+      "path": "apps-script/CalendarSync.gs",
+      "status": "unchanged",
+      "sha256": "526123b6cefb3e7083101d19414b2bf452da3b50b6b5919a9433f8a59a0721bf",
+      "size": 2263,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "526123b6cefb3e7083101d19414b2bf452da3b50b6b5919a9433f8a59a0721bf"
+    },
+    {
+      "path": "apps-script/Code.gs",
+      "status": "unchanged",
+      "sha256": "272cdb7fe3e3048da91eec53dbb883c626da71a4c063085601296e591bcdbd5c",
+      "size": 30558,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "272cdb7fe3e3048da91eec53dbb883c626da71a4c063085601296e591bcdbd5c"
+    },
+    {
+      "path": "apps-script/Config.gs",
+      "status": "unchanged",
+      "sha256": "8ca0a49106837058fe02cb914cfdbfa1915c217e97e39d52742d705ca4ef6724",
+      "size": 2188,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "8ca0a49106837058fe02cb914cfdbfa1915c217e97e39d52742d705ca4ef6724"
+    },
+    {
+      "path": "apps-script/DashboardData.gs",
+      "status": "unchanged",
+      "sha256": "034fc94a2f2d0f8a4c9ea0011e21302fb8fd72882f95d54836e89a2c2749cb69",
+      "size": 3824,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "034fc94a2f2d0f8a4c9ea0011e21302fb8fd72882f95d54836e89a2c2749cb69"
+    },
+    {
+      "path": "apps-script/ExerciseEngine.gs",
+      "status": "unchanged",
+      "sha256": "a41dd31473fee5e04a87180856bec943cfa5ddcf973646fcbdeb4d9060a382c2",
+      "size": 3598,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "a41dd31473fee5e04a87180856bec943cfa5ddcf973646fcbdeb4d9060a382c2"
+    },
+    {
+      "path": "apps-script/Gemini.gs",
+      "status": "unchanged",
+      "sha256": "7bf65ff9ddd1109604c79eccfb9571e86329cd24a08e09e653ae9928854b2d4b",
+      "size": 5171,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "7bf65ff9ddd1109604c79eccfb9571e86329cd24a08e09e653ae9928854b2d4b"
+    },
+    {
+      "path": "apps-script/ImportHealth.gs",
+      "status": "unchanged",
+      "sha256": "ce2fe008202954163bd2d7a9ff49fe2f265dddcb80af498e167165a66046c840",
+      "size": 4536,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "ce2fe008202954163bd2d7a9ff49fe2f265dddcb80af498e167165a66046c840"
+    },
+    {
+      "path": "apps-script/Index.html",
+      "status": "unchanged",
+      "sha256": "98d7db23b80e12c48c5dc9fde9f3bdab3a5d43f937f7dc2cfb02c2de1bdc13b8",
+      "size": 6750,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "98d7db23b80e12c48c5dc9fde9f3bdab3a5d43f937f7dc2cfb02c2de1bdc13b8"
+    },
+    {
+      "path": "apps-script/appsscript.json",
+      "status": "unchanged",
+      "sha256": "9711ade640d5771bca4e4c6eb471bbe70225b491ab5ccc84cc50a458262dd5c8",
+      "size": 362,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "9711ade640d5771bca4e4c6eb471bbe70225b491ab5ccc84cc50a458262dd5c8"
+    },
+    {
+      "path": "assets/BarChart-DvX4T78N.js",
+      "status": "unchanged",
+      "sha256": "5703d7a05aa492396241e16bb76d5f87b8962c354bbec5e571e555058f1ea403",
+      "size": 381280,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "5703d7a05aa492396241e16bb76d5f87b8962c354bbec5e571e555058f1ea403"
+    },
+    {
+      "path": "assets/Dashboard-CC7fWrnm.js",
+      "status": "unchanged",
+      "sha256": "4ebf07ab780f338a6689736fa115a999c3aa52867d09f26a09e4ec73e7e1d7ef",
+      "size": 35442,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "4ebf07ab780f338a6689736fa115a999c3aa52867d09f26a09e4ec73e7e1d7ef"
+    },
+    {
+      "path": "assets/Dashboard-D7yRMup4.js",
+      "status": "unchanged",
+      "sha256": "4b1c98a56bc0f28222b7360d23939385e2afffce7b8dd13315459ec4ad7e77fb",
+      "size": 418140,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "4b1c98a56bc0f28222b7360d23939385e2afffce7b8dd13315459ec4ad7e77fb"
+    },
+    {
+      "path": "assets/DataPage-TfJc2bGC.js",
+      "status": "unchanged",
+      "sha256": "a023695e1cc08b3b54dba49bc04f529ab832eeecd2423c04154a324912491490",
+      "size": 21955,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "a023695e1cc08b3b54dba49bc04f529ab832eeecd2423c04154a324912491490"
+    },
+    {
+      "path": "assets/DataPage-mgWBGcEd.js",
+      "status": "unchanged",
+      "sha256": "85082693b3c364b8401bb2d6ca7a391560c6b2952d554e99d1fa1d0fb5ce648f",
+      "size": 22213,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "85082693b3c364b8401bb2d6ca7a391560c6b2952d554e99d1fa1d0fb5ce648f"
+    },
+    {
+      "path": "assets/ExerciseAnalytics-D3u-5Ph7.js",
+      "status": "unchanged",
+      "sha256": "96f4f3cb6895e63ce4aae29d15c77ac3e109456bbee746f24dc7d71d2baf0851",
+      "size": 20162,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "96f4f3cb6895e63ce4aae29d15c77ac3e109456bbee746f24dc7d71d2baf0851"
+    },
+    {
+      "path": "assets/Settings-5OAre9PF.js",
+      "status": "unchanged",
+      "sha256": "a0f12d6cb2ce81363d297c57252ddca2dc5a8a924d1153859b6dede22c2b74ef",
+      "size": 9605,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "a0f12d6cb2ce81363d297c57252ddca2dc5a8a924d1153859b6dede22c2b74ef"
+    },
+    {
+      "path": "assets/Settings-UD6i6CkP.js",
+      "status": "unchanged",
+      "sha256": "e847dbed1f3eb30a79c5857f4ed7dc2245daa721bf7b2fecda02e866f8674c5f",
+      "size": 76850,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "e847dbed1f3eb30a79c5857f4ed7dc2245daa721bf7b2fecda02e866f8674c5f"
+    },
+    {
+      "path": "assets/activity-CRS-1KdS.js",
+      "status": "unchanged",
+      "sha256": "bd6bbd8428a40ff68a8cbb316a1d099655af5b5f8358a17d42ea3dd4c1ecc973",
+      "size": 223,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "bd6bbd8428a40ff68a8cbb316a1d099655af5b5f8358a17d42ea3dd4c1ecc973"
+    },
+    {
+      "path": "assets/ai-router.js",
+      "status": "unchanged",
+      "sha256": "11c16a5994400c34dc584bcb06d62894dd39e04dd7d482ef7fe8a840f7589aea",
+      "size": 24108,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-19T20:14:08",
+      "source_sha256": "11c16a5994400c34dc584bcb06d62894dd39e04dd7d482ef7fe8a840f7589aea"
+    },
+    {
+      "path": "assets/app.js",
+      "status": "unchanged",
+      "sha256": "43493a1025f8ac83e74e008f1c5a67349db7c6582e4cc2d685c3d4119e76fc5a",
+      "size": 442941,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-25T20:57:00",
+      "source_sha256": "43493a1025f8ac83e74e008f1c5a67349db7c6582e4cc2d685c3d4119e76fc5a"
+    },
+    {
+      "path": "assets/branding/ZEKE_Brand_Board_2026-07.jpg",
+      "status": "unchanged",
+      "sha256": "5a99895d95da193eff44c60c1f5f1f06e4e1450256a03cf223a8728e529e5d9f",
+      "size": 354484,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "5a99895d95da193eff44c60c1f5f1f06e4e1450256a03cf223a8728e529e5d9f"
+    },
+    {
+      "path": "assets/branding/zeke-app-icon-provisional.png",
+      "status": "unchanged",
+      "sha256": "6a70f91a168347461b9c07e72876861b2e926b6dbec77773b997ab20f89a8d5b",
+      "size": 126974,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "6a70f91a168347461b9c07e72876861b2e926b6dbec77773b997ab20f89a8d5b"
+    },
+    {
+      "path": "assets/branding/zeke-mark-provisional.png",
+      "status": "unchanged",
+      "sha256": "ab793947dbfa9368b810678cbcf9558394b06fb962ce9547ec5efcad91298ac2",
+      "size": 117701,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "ab793947dbfa9368b810678cbcf9558394b06fb962ce9547ec5efcad91298ac2"
+    },
+    {
+      "path": "assets/circle-check-DyVAjDpS.js",
+      "status": "unchanged",
+      "sha256": "41cd9cb2e9fcab7e17815a3df388a5dd9253231194d69f4f3bddf04e05645868",
+      "size": 167,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "41cd9cb2e9fcab7e17815a3df388a5dd9253231194d69f4f3bddf04e05645868"
+    },
+    {
+      "path": "assets/data-layer.js",
+      "status": "unchanged",
+      "sha256": "be317e26b3eaeaf4550bd637fa35c7339db2e6a0bd5ebc5fda5a74339a17d22c",
+      "size": 47947,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-21T09:55:32",
+      "source_sha256": "be317e26b3eaeaf4550bd637fa35c7339db2e6a0bd5ebc5fda5a74339a17d22c"
+    },
+    {
+      "path": "assets/index-B4jPvT6w.js",
+      "status": "unchanged",
+      "sha256": "cbf99f1e4df1de51cd4d86f9f8a705dcee2c3135a547359fe26aac9c32df47c4",
+      "size": 378127,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "cbf99f1e4df1de51cd4d86f9f8a705dcee2c3135a547359fe26aac9c32df47c4"
+    },
+    {
+      "path": "assets/index-CJYG1J-w.css",
+      "status": "unchanged",
+      "sha256": "d1c7a4a4dec3c6662452308cda3ed46c6b1e48901dc5a3fa2cef8878eb162429",
+      "size": 19015,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "d1c7a4a4dec3c6662452308cda3ed46c6b1e48901dc5a3fa2cef8878eb162429"
+    },
+    {
+      "path": "assets/index-DdqVwvm-.css",
+      "status": "unchanged",
+      "sha256": "5ff5e7a0262b860d02c88f884d29861eac0656df13b3af7f781b318fcdef6039",
+      "size": 27728,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "5ff5e7a0262b860d02c88f884d29861eac0656df13b3af7f781b318fcdef6039"
+    },
+    {
+      "path": "assets/index-nm8p_7L6.js",
+      "status": "unchanged",
+      "sha256": "038e826d56b147bd87010a1fccf545c95c45c6728004d9842a21df2144719d80",
+      "size": 275986,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "038e826d56b147bd87010a1fccf545c95c45c6728004d9842a21df2144719d80"
+    },
+    {
+      "path": "assets/interpreter-CwMccpfV.js",
+      "status": "unchanged",
+      "sha256": "86f71c06b2486e4b0c2d24be3e2767573f5710b7b43a73f8f3fa32e724f0edf3",
+      "size": 2454,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "86f71c06b2486e4b0c2d24be3e2767573f5710b7b43a73f8f3fa32e724f0edf3"
+    },
+    {
+      "path": "assets/parser.js",
+      "status": "unchanged",
+      "sha256": "10628c231f5d0fcdc958439511992cd45e0539c7f98d2f0ae0a9008cd0d71c81",
+      "size": 17431,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-22T05:05:00",
+      "source_sha256": "10628c231f5d0fcdc958439511992cd45e0539c7f98d2f0ae0a9008cd0d71c81"
+    },
+    {
+      "path": "assets/plus-DC7NdPme.js",
+      "status": "unchanged",
+      "sha256": "9b0b5882e820a2c5b6777fdbef3ec907774f5735a0782cd46510d34af2a16f53",
+      "size": 799,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "9b0b5882e820a2c5b6777fdbef3ec907774f5735a0782cd46510d34af2a16f53"
+    },
+    {
+      "path": "assets/plus-YOVDfM0X.js",
+      "status": "unchanged",
+      "sha256": "191c16cdece1b43a4eff35ac22deaf8a4297e9cc2099627b795d4cfcc3cd6696",
+      "size": 649,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "191c16cdece1b43a4eff35ac22deaf8a4297e9cc2099627b795d4cfcc3cd6696"
+    },
+    {
+      "path": "assets/styles.css",
+      "status": "unchanged",
+      "sha256": "4db617c7ae068524aee0e5cd97b13ff7df43090f8c67be761cec80deb4bb2b0c",
+      "size": 151180,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-25T20:57:00",
+      "source_sha256": "4db617c7ae068524aee0e5cd97b13ff7df43090f8c67be761cec80deb4bb2b0c"
+    },
+    {
+      "path": "assets/workflow-engine.js",
+      "status": "unchanged",
+      "sha256": "e333f55ad8fbc7ec15c998bea1e6072335e2ec7baa4283363b0d94c3e7e1264a",
+      "size": 10840,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-21T09:40:50",
+      "source_sha256": "e333f55ad8fbc7ec15c998bea1e6072335e2ec7baa4283363b0d94c3e7e1264a"
+    },
+    {
+      "path": "assets/zeke-ai-router-test.css",
+      "status": "unchanged",
+      "sha256": "213a61b0a967eb6c980948dc69880a266a4bc7d73dcc972e58b69157867f9279",
+      "size": 3260,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "213a61b0a967eb6c980948dc69880a266a4bc7d73dcc972e58b69157867f9279"
+    },
+    {
+      "path": "assets/zeke-ai-router-test.js",
+      "status": "unchanged",
+      "sha256": "48aa8f473acc40f4a23c1b170e609915af14daf46164df781e58712c5c1cdf95",
+      "size": 14797,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "48aa8f473acc40f4a23c1b170e609915af14daf46164df781e58712c5c1cdf95"
+    },
+    {
+      "path": "assets/zeke-ai-router-v060.css",
+      "status": "unchanged",
+      "sha256": "cde643bc2c0d2b59466dff6a2e0aa484cf31224ce64e7f2a076da0d2e5f9cbc2",
+      "size": 5430,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "cde643bc2c0d2b59466dff6a2e0aa484cf31224ce64e7f2a076da0d2e5f9cbc2"
+    },
+    {
+      "path": "assets/zeke-ai-router-v060.js",
+      "status": "unchanged",
+      "sha256": "6bb8cc0ad18334efef6d1d8882ed0fb05ab59892c9b4c10267aa4f2501ad0be1",
+      "size": 20855,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "6bb8cc0ad18334efef6d1d8882ed0fb05ab59892c9b4c10267aa4f2501ad0be1"
+    },
+    {
+      "path": "assets/zeke-ai-router-v061.css",
+      "status": "unchanged",
+      "sha256": "ceabeae0be6e983953f4041786a4481e679de35291ff2929410bcd110348548a",
+      "size": 6253,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "ceabeae0be6e983953f4041786a4481e679de35291ff2929410bcd110348548a"
+    },
+    {
+      "path": "assets/zeke-ai-router-v061.js",
+      "status": "unchanged",
+      "sha256": "918e79738e78fdd5a92a7d3b26567506e8e39b5a38bf8fae4df9a53c299a58c3",
+      "size": 21880,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "918e79738e78fdd5a92a7d3b26567506e8e39b5a38bf8fae4df9a53c299a58c3"
+    },
+    {
+      "path": "assets/zeke-ai-router-v064.css",
+      "status": "unchanged",
+      "sha256": "ceabeae0be6e983953f4041786a4481e679de35291ff2929410bcd110348548a",
+      "size": 6253,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "ceabeae0be6e983953f4041786a4481e679de35291ff2929410bcd110348548a"
+    },
+    {
+      "path": "assets/zeke-ai-router-v064.js",
+      "status": "unchanged",
+      "sha256": "8e63dc7b3379144217a81281116509f46387bb231a845f21f16931a4172ddaca",
+      "size": 21787,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "8e63dc7b3379144217a81281116509f46387bb231a845f21f16931a4172ddaca"
+    },
+    {
+      "path": "assets/zeke-app-v065.css",
+      "status": "unchanged",
+      "sha256": "1822e3b76a13d45e5678fd19367ee4983ae5eaef2b752df16772d742a8aab1fc",
+      "size": 10041,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "1822e3b76a13d45e5678fd19367ee4983ae5eaef2b752df16772d742a8aab1fc"
+    },
+    {
+      "path": "assets/zeke-app-v065.js",
+      "status": "unchanged",
+      "sha256": "25d8e7e2f3a80c60789fb64bd14120e66e50782576a2714a44e2d0496e904c47",
+      "size": 25868,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "25d8e7e2f3a80c60789fb64bd14120e66e50782576a2714a44e2d0496e904c47"
+    },
+    {
+      "path": "assets/zeke-app-v066.css",
+      "status": "unchanged",
+      "sha256": "1822e3b76a13d45e5678fd19367ee4983ae5eaef2b752df16772d742a8aab1fc",
+      "size": 10041,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "1822e3b76a13d45e5678fd19367ee4983ae5eaef2b752df16772d742a8aab1fc"
+    },
+    {
+      "path": "assets/zeke-app-v066.js",
+      "status": "unchanged",
+      "sha256": "0f752f5d37af3ff5804956de44072cdf876226b50b5f85f539806af1e954e5db",
+      "size": 25873,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "0f752f5d37af3ff5804956de44072cdf876226b50b5f85f539806af1e954e5db"
+    },
+    {
+      "path": "assets/zeke-core-data-v066.js",
+      "status": "unchanged",
+      "sha256": "8c63fb910b0e3eb747e3f537a1d8c3afad72b11b7a59a3b4a424ad8f573b592b",
+      "size": 377996,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "8c63fb910b0e3eb747e3f537a1d8c3afad72b11b7a59a3b4a424ad8f573b592b"
+    },
+    {
+      "path": "assets/zeke-experience-v060.css",
+      "status": "unchanged",
+      "sha256": "0341757bcede2cbdd48aaae684014da863fae172215b4d7d6143416637cb79b0",
+      "size": 13251,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "0341757bcede2cbdd48aaae684014da863fae172215b4d7d6143416637cb79b0"
+    },
+    {
+      "path": "assets/zeke-experience-v060.js",
+      "status": "unchanged",
+      "sha256": "5a199d10cab484214f61630287b50609ee4789caf6ca0325ec5a38c6aa3b2f89",
+      "size": 28220,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "5a199d10cab484214f61630287b50609ee4789caf6ca0325ec5a38c6aa3b2f89"
+    },
+    {
+      "path": "assets/zeke-experience-v062.css",
+      "status": "unchanged",
+      "sha256": "9b0fdeaea99a5587f21a065690b26f66d7d35d720d7f0b5c0b151139fadbde8b",
+      "size": 17224,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "9b0fdeaea99a5587f21a065690b26f66d7d35d720d7f0b5c0b151139fadbde8b"
+    },
+    {
+      "path": "assets/zeke-experience-v062.js",
+      "status": "unchanged",
+      "sha256": "54232831035937fe46ae4b09c6968af880ba778676faeb2a26737101a50052f9",
+      "size": 36111,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "54232831035937fe46ae4b09c6968af880ba778676faeb2a26737101a50052f9"
+    },
+    {
+      "path": "assets/zeke-experience-v064.css",
+      "status": "unchanged",
+      "sha256": "1305cd7ab96daf0e3dcea9940eb6a1b128b0959b1461301920b66215ec136eac",
+      "size": 19727,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "1305cd7ab96daf0e3dcea9940eb6a1b128b0959b1461301920b66215ec136eac"
+    },
+    {
+      "path": "assets/zeke-experience-v064.js",
+      "status": "unchanged",
+      "sha256": "e213f6e5e90c618fff0bf6bd8b40f9a0b01a2c74f74dce416cbf80338356a0c7",
+      "size": 48572,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "e213f6e5e90c618fff0bf6bd8b40f9a0b01a2c74f74dce416cbf80338356a0c7"
+    },
+    {
+      "path": "docs/branding/Brand_Guidelines.md",
+      "status": "unchanged",
+      "sha256": "26255721cc7e990a6319a6390dcb441ec795db6226e67944e5bb813738829625",
+      "size": 1346,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "26255721cc7e990a6319a6390dcb441ec795db6226e67944e5bb813738829625"
+    },
+    {
+      "path": "index.html",
+      "status": "unchanged",
+      "sha256": "6da5f47cd5876033625afad07e8273fa5007fbf7fbfcbd19f41ff451bbe96ef2",
+      "size": 2103,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-25T20:57:00",
+      "source_sha256": "6da5f47cd5876033625afad07e8273fa5007fbf7fbfcbd19f41ff451bbe96ef2"
+    },
+    {
+      "path": "manifest.webmanifest",
+      "status": "unchanged",
+      "sha256": "7b98d9b521d9a1d8f5319c237595c05223d2af6685cd831743bed51f3bdc0aad",
+      "size": 314,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-21T20:12:48",
+      "source_sha256": "7b98d9b521d9a1d8f5319c237595c05223d2af6685cd831743bed51f3bdc0aad"
+    },
+    {
+      "path": "oauth-callback.html",
+      "status": "unchanged",
+      "sha256": "b8996ea857264c42d8d99956c8cee00677f83ab2e68af29df19d80b49dc48cb3",
+      "size": 158,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "b8996ea857264c42d8d99956c8cee00677f83ab2e68af29df19d80b49dc48cb3"
+    },
+    {
+      "path": "style.css",
+      "status": "unchanged",
+      "sha256": "ed5d6045c27f68b5fb0c36504bd2f26e52ba521e6d4cbc6b2c236244e73ba84a",
+      "size": 3675,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "ed5d6045c27f68b5fb0c36504bd2f26e52ba521e6d4cbc6b2c236244e73ba84a"
+    },
+    {
+      "path": "sw.js",
+      "status": "unchanged",
+      "sha256": "efa761c9e599b73aaafc7cf5d5ec050ee273f422b54e94d2ab81f797eafd8067",
+      "size": 726,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-25T20:57:00",
+      "source_sha256": "efa761c9e599b73aaafc7cf5d5ec050ee273f422b54e94d2ab81f797eafd8067"
+    },
+    {
+      "path": "tests/activity-foundation.test.js",
+      "status": "unchanged",
+      "sha256": "4adc8eedf169485334a06c641b88febab8d753637f35eb8134ab22326bc146fe",
+      "size": 1068,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-19T06:31:06",
+      "source_sha256": "4adc8eedf169485334a06c641b88febab8d753637f35eb8134ab22326bc146fe"
+    },
+    {
+      "path": "tests/conversation-security-and-editing.test.js",
+      "status": "unchanged",
+      "sha256": "b8f18d004ba258cc622a6c4d11957b7c55d6945372b82ea2dd1ca6af7b53e620",
+      "size": 1245,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-19T20:14:54",
+      "source_sha256": "b8f18d004ba258cc622a6c4d11957b7c55d6945372b82ea2dd1ca6af7b53e620"
+    },
+    {
+      "path": "tests/dashboard-layout-acceptance.test.js",
+      "status": "unchanged",
+      "sha256": "9d400036f356a9b4a32167f3abf9b9ec31b8536997b4adc2bf76ecc94495bd07",
+      "size": 1428,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-22T05:15:04",
+      "source_sha256": "9d400036f356a9b4a32167f3abf9b9ec31b8536997b4adc2bf76ecc94495bd07"
+    },
+    {
+      "path": "tests/factor-idempotency.test.js",
+      "status": "unchanged",
+      "sha256": "323607bd722df0dedfe342bb0ed4ca42c53b4bdd00ca4dc57aa7fd0195351137",
+      "size": 1920,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-21T09:56:54",
+      "source_sha256": "323607bd722df0dedfe342bb0ed4ca42c53b4bdd00ca4dc57aa7fd0195351137"
+    },
+    {
+      "path": "tests/governance-negative-controls.py",
+      "status": "unchanged",
+      "sha256": "563aa7c9d1b03e8502f36dcf262a414628d90d3aaf40966b0770c63f1fc6c424",
+      "size": 2809,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-20T11:06:18",
+      "source_sha256": "563aa7c9d1b03e8502f36dcf262a414628d90d3aaf40966b0770c63f1fc6c424"
+    },
+    {
+      "path": "tests/gym-mode-v029.test.js",
+      "status": "unchanged",
+      "sha256": "5b8cd095eeb9cb003233c7508df627b2f7a25aa4f0a4793b535dde92829f6495",
+      "size": 1417,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-25T20:57:00",
+      "source_sha256": "5b8cd095eeb9cb003233c7508df627b2f7a25aa4f0a4793b535dde92829f6495"
+    },
+    {
+      "path": "tests/medication-action-status.test.js",
+      "status": "unchanged",
+      "sha256": "a51193ca7e62be82259852880c04d458b0081427878a5e7ce8ef4374f69e5041",
+      "size": 2568,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T07:25:14",
+      "source_sha256": "a51193ca7e62be82259852880c04d458b0081427878a5e7ce8ef4374f69e5041"
+    },
+    {
+      "path": "tests/medication-parser.test.js",
+      "status": "unchanged",
+      "sha256": "159b03e00349324bfc802ef33ba1fcc8851b86106d75e4462100666643999eb3",
+      "size": 1896,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T08:00:36",
+      "source_sha256": "159b03e00349324bfc802ef33ba1fcc8851b86106d75e4462100666643999eb3"
+    },
+    {
+      "path": "tests/navigation-coaching-profile.test.js",
+      "status": "unchanged",
+      "sha256": "88101624f94a280c4ee58461d02a033090aa55744abda910765143109a8e7eea",
+      "size": 1500,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-22T05:15:56",
+      "source_sha256": "88101624f94a280c4ee58461d02a033090aa55744abda910765143109a8e7eea"
+    },
+    {
+      "path": "tests/release-structure.test.js",
+      "status": "unchanged",
+      "sha256": "95e313a0d575f88d325205b5eef54f0d84bcdb46e6e243366cc478a917262388",
+      "size": 2587,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-25T20:57:00",
+      "source_sha256": "95e313a0d575f88d325205b5eef54f0d84bcdb46e6e243366cc478a917262388"
+    },
+    {
+      "path": "tests/rendered-workflow-smoke.py",
+      "status": "unchanged",
+      "sha256": "183d397c5e8da66a2015cc813b8fa3e7dd0988f8e523876b7e2b6f66aa4bc92f",
+      "size": 20388,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-22T19:48:10",
+      "source_sha256": "183d397c5e8da66a2015cc813b8fa3e7dd0988f8e523876b7e2b6f66aa4bc92f"
+    },
+    {
+      "path": "tests/sleep-and-insight-stabilization.test.js",
+      "status": "unchanged",
+      "sha256": "d718a1e36c57998f1442bd33a9f96bed11792b6b588315fc9a30a31e38f6b3f3",
+      "size": 3320,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-22T05:16:08",
+      "source_sha256": "d718a1e36c57998f1442bd33a9f96bed11792b6b588315fc9a30a31e38f6b3f3"
+    },
+    {
+      "path": "tests/sleep-data-transaction.test.js",
+      "status": "unchanged",
+      "sha256": "09054674563756fed53999519e1227900358e6c3848f767d12f78224dac94362",
+      "size": 2065,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-20T10:56:54",
+      "source_sha256": "09054674563756fed53999519e1227900358e6c3848f767d12f78224dac94362"
+    },
+    {
+      "path": "tests/support-report-browser-smoke.py",
+      "status": "unchanged",
+      "sha256": "2e65fee6fff667c891353a8dd6f9a990fdaf1b6b48f26ecff2272eba44de8eb1",
+      "size": 5730,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-21T10:06:56",
+      "source_sha256": "2e65fee6fff667c891353a8dd6f9a990fdaf1b6b48f26ecff2272eba44de8eb1"
+    },
+    {
+      "path": "tests/trust-workflow-ux.test.js",
+      "status": "unchanged",
+      "sha256": "0019f4678cdd644c6471ed4c442fb424fe29e90731a857a8fd6827cd4f82eccc",
+      "size": 2696,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-22T05:25:42",
+      "source_sha256": "0019f4678cdd644c6471ed4c442fb424fe29e90731a857a8fd6827cd4f82eccc"
+    },
+    {
+      "path": "tests/v026-regression-contract.test.js",
+      "status": "unchanged",
+      "sha256": "72abf2766d0a9f5967b40b3dd5f1562ff9a094b0c94024f3952bd082d198dea1",
+      "size": 4088,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-22T19:42:32",
+      "source_sha256": "72abf2766d0a9f5967b40b3dd5f1562ff9a094b0c94024f3952bd082d198dea1"
+    },
+    {
+      "path": "tests/v0261-regression-contract.test.js",
+      "status": "unchanged",
+      "sha256": "4505d831513415b5e499f2197bea435705255aba877d57aa0ff2d47a9c6448e6",
+      "size": 3624,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-22T19:42:32",
+      "source_sha256": "4505d831513415b5e499f2197bea435705255aba877d57aa0ff2d47a9c6448e6"
+    },
+    {
+      "path": "tests/workbook-commit-verify.test.js",
+      "status": "unchanged",
+      "sha256": "4d6ccee9cdd448b7820ce1bd2d9c79a3be1cd2519b8acf3771ffdb25d12741b9",
+      "size": 3168,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T07:20:42",
+      "source_sha256": "4d6ccee9cdd448b7820ce1bd2d9c79a3be1cd2519b8acf3771ffdb25d12741b9"
+    },
+    {
+      "path": "tests/workbook-preflight.test.js",
+      "status": "unchanged",
+      "sha256": "06abe661ae2ceed68d39c34f1b909f349ba1586148e338f235ec4d4ac0773ad9",
+      "size": 3228,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T07:02:24",
+      "source_sha256": "06abe661ae2ceed68d39c34f1b909f349ba1586148e338f235ec4d4ac0773ad9"
+    },
+    {
+      "path": "tests/workbook-real-data-idempotency.test.js",
+      "status": "unchanged",
+      "sha256": "8fd4c5bde40968c7aa12ecab9c8a23aff690fa1a8ccc6b2e8c024cb9794ccaed",
+      "size": 4099,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T07:21:08",
+      "source_sha256": "8fd4c5bde40968c7aa12ecab9c8a23aff690fa1a8ccc6b2e8c024cb9794ccaed"
+    },
+    {
+      "path": "tests/workbook-source-replacement-backup.test.js",
+      "status": "unchanged",
+      "sha256": "78fc4a4b7a32657780f4a0e0d1fe0011d07ee6ae4ce3da9a00b9ed0ab07cf28c",
+      "size": 2473,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-18T07:25:12",
+      "source_sha256": "78fc4a4b7a32657780f4a0e0d1fe0011d07ee6ae4ce3da9a00b9ed0ab07cf28c"
+    },
+    {
+      "path": "tests/workflow-engine.test.js",
+      "status": "unchanged",
+      "sha256": "68a6cd2b25a48ce26b03efa6dc6d21fe34cd4e9ff3342f317bfda545225893d0",
+      "size": 2043,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-21T09:39:20",
+      "source_sha256": "68a6cd2b25a48ce26b03efa6dc6d21fe34cd4e9ff3342f317bfda545225893d0"
+    },
+    {
+      "path": "tools/project_audit.py",
+      "status": "unchanged",
+      "sha256": "77d6bae7de5fc7322e316557684c4adbf31c020c4be2122b6d10054832d66bcc",
+      "size": 8364,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-21T09:45:40",
+      "source_sha256": "77d6bae7de5fc7322e316557684c4adbf31c020c4be2122b6d10054832d66bcc"
+    },
+    {
+      "path": "version.js",
+      "status": "unchanged",
+      "sha256": "fa42f7f6898f862a742d5a7e3ed9c399dda318efc3c6cf522456f8195e9d0151",
+      "size": 129,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-25T20:57:00",
+      "source_sha256": "fa42f7f6898f862a742d5a7e3ed9c399dda318efc3c6cf522456f8195e9d0151"
+    },
+    {
+      "path": "xlsx-bundle.js",
+      "status": "unchanged",
+      "sha256": "cd4c81425faae9b42cbbe384c49fccf5cb2c8c1d6195d989f9df10ecbd28d1a5",
+      "size": 432475,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "cd4c81425faae9b42cbbe384c49fccf5cb2c8c1d6195d989f9df10ecbd28d1a5"
+    },
+    {
+      "path": "zeke-config.js",
+      "status": "unchanged",
+      "sha256": "bbfad67bbca5456c596d6949c77de86133f1285d81939b1d108ac638106b5c39",
+      "size": 289,
+      "timestamp_source": "preserved from original v0.29.0 ZIP",
+      "zip_timestamp": "2026-07-17T06:33:12",
+      "source_sha256": "bbfad67bbca5456c596d6949c77de86133f1285d81939b1d108ac638106b5c39"
+    }
+  ]
+}

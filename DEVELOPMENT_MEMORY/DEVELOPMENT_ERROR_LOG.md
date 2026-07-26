@@ -206,3 +206,9 @@
 ## ERR-048 — Mobile-focused changes risked redefining desktop ZEKE
 - **Failure risk:** Gym Mode responsive work was discussed as a universal layout rather than a phone-focused context within the larger product.
 - **Prevention:** Scope Gym Mode selectors and routes under a dedicated root. Test phone and desktop independently and prohibit desktop regressions.
+
+
+## ERR-049 — v0.29.0 runtime shipped with stale continuity authority
+- **Failure:** The v0.29.0 application package updated runtime code and only part of `PROJECT_STATE.json`, while README, handoff, architecture, feature status, gate, backlog, registry, project identity/health, status language, and current iteration/test records still described v0.27.2 or older releases.
+- **Impact:** The newest code package could not be trusted as the authoritative development handoff, and a future developer could follow obsolete recovery instructions or misclassify unimplemented features.
+- **Prevention:** Apply DEC-055. Every release must include a document-by-document reconciliation matrix, a current iteration and test report, zero-error project audit, lifecycle-correct artifact registry, and runtime-byte comparison before it can be called authoritative.

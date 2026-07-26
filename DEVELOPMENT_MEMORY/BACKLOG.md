@@ -1,7 +1,7 @@
 # ZEKE Backlog
 
 **Status:** Authoritative  
-**Current baseline:** v0.26.1 · build 2026.07.22.2
+**Current baseline:** v0.29.0 · build 2026.07.25.1
 
 | ID | Item | Priority | Status | Origin | Resurface when |
 |---|---|---:|---|---|---|
@@ -75,17 +75,26 @@ The v0.23.1 stabilization scope remains complete locally. Do not reopen it as fe
 | MED-026 | Validate monthly medication/supplement review against real schedules and corrections | Medium | Requires one month of real use |
 | SEARCH-026 | Add richer global search filters and direct record focus | Medium | Current search is intentionally lightweight |
 
-## Governance reconciliation backlog — July 25, 2026
+
+
+## Current v0.29.0 disposition — July 25, 2026
 
 | ID | Item | Priority | Status / prerequisite |
 |---|---|---:|---|
-| DATA-027 | Implement provider-neutral storage adapter contract and one-primary-provider semantics | Critical | Before expanding durable record writers |
-| DATA-028 | Add visible editable effective date to every structured entry screen | Critical | Cross-domain acceptance required |
-| SLEEP-027 | Support multiple sleep segments per sleep day without merging gaps | High | Talk to ZEKE and direct entry must share schema |
-| GYM-027 | Rebuild Gym Mode from v0.27.2 against the locked mockup and state model | Critical | Do not patch v0.28.x forward |
-| GYM-028 | Add routine templates, custom exercises, prefilled primary fields, and unsaved progression application | High | After core save/navigation acceptance |
-| GYM-029 | Implement Gym-contained History and verified Form Guide sequence | High | Media review manifest required |
-| DESK-027 | Build spacious desktop Workout Entry without importing phone Gym Mode shell | High | Shared schema/provider layer required |
-| AI-027 | Design and implement encrypted provider-backed AI vault with PIN security service | High | Separate security review and recovery flow |
-| QA-027 | Rendered phone/desktop regression matrix and physical-device acceptance | Critical | Required before behavioral verification claim |
-| REL-027 | Automate unchanged-byte/timestamp preservation and file-level release provenance | Critical | Required for every next package |
+| DATA-027 | Implement provider-neutral storage adapter contract and one-primary-provider semantics | Critical | Not implemented; current data layer remains Google-oriented |
+| DATA-028 | Add visible editable effective date to every structured entry screen | Critical | Partially implemented in Gym Mode; cross-domain work remains |
+| SLEEP-027 | Support multiple sleep segments per sleep day without merging gaps | High | Not implemented; Talk to ZEKE and direct entry must share one schema |
+| GYM-027 | Rebuild Gym Mode from v0.27.2 against the locked mockup and state model | Critical | Implemented in v0.29.0; rendered/physical-device acceptance remains outstanding |
+| GYM-028 | Routine templates, custom exercises, prefilled primary fields, and unsaved progression application | High | Partially implemented; durable provider-backed routine management remains |
+| GYM-029 | Gym-contained History and verified Form Guide sequence | High | History implemented structurally; actual movement sequence and complete media review manifest remain |
+| GYM-030 | Replace simple readiness heuristic with reviewed, versioned evidence methodology | High | Required before calling guidance research-supported |
+| DESK-027 | Build spacious desktop Workout Entry without importing phone Gym Mode shell | High | Not implemented |
+| AI-027 | Implement encrypted provider-backed AI vault with PIN security service | High | Not implemented; separate security review required |
+| QA-027 | Rendered phone/desktop matrix and physical-device acceptance | Critical | Outstanding; required before behavioral verification claim |
+| QA-028 | Reconcile or retire stale historical regression tests that assert obsolete metadata/schema strings | Medium | Review test purpose before modification; do not weaken protected behavior |
+| REL-027 | Automate byte/timestamp preservation and file-level provenance | Critical | Performed for this package; automation/regression hardening remains |
+| DOC-004 | Enforce release-wide continuity coherence before delivery | Critical | Current package reconciled; future release gate must fail on stale current documents |
+
+### Immediate next review boundary
+
+Before any new runtime work, use v0.29.0 as the baseline, run the phone/desktop acceptance review, and choose a separately approved scope from the unresolved items above. Do not treat governance-locked items as already implemented.

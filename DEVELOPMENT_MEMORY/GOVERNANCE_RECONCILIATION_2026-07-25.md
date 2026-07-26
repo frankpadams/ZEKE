@@ -1,3 +1,5 @@
+> **Current-status note (2026.07.25.2):** This document accurately records the July 25 decisions and the then-current v0.27.2 recovery baseline. ZEKE v0.29.0 is now the current runtime built from that baseline. Use `PROJECT_STATE.json`, `FEATURE_STATUS.md`, and `ITERATION_RECORD_v0.29.0.md` for present implementation status.
+
 # Governance Reconciliation — July 25, 2026
 
 **Status:** Authoritative  
