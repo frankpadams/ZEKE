@@ -1,7 +1,7 @@
 {
-  "schema_version": 1,
-  "release": "0.28.1",
-  "build": "2026.07.23.0418",
+  "schema_version": 2,
+  "release": "0.27.2",
+  "build": "2026.07.22.2319",
   "artifacts": [
     {
       "path": "00_AI_START_HERE.md",
@@ -238,7 +238,7 @@
     {
       "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.26.0.md",
       "status": "historical",
-      "purpose": "historical approved scope and implementation record"
+      "purpose": "prior approved iteration record"
     },
     {
       "path": "RELEASE_NOTES_v0.26.0.md",
@@ -253,37 +253,47 @@
     {
       "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.26.1.md",
       "status": "historical",
-      "purpose": "historical approved scope and implementation record"
+      "purpose": "prior approved scope and implementation record"
     },
     {
       "path": "RELEASE_NOTES_v0.26.1.md",
-      "status": "supporting",
-      "purpose": "current release summary"
+      "status": "historical",
+      "purpose": "historical release evidence"
     },
     {
       "path": "TEST_REPORT_v0.26.1.md",
+      "status": "historical",
+      "purpose": "historical release evidence"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/GOVERNANCE_RECONCILIATION_2026-07-25.md",
+      "status": "authoritative",
+      "purpose": "binding July 25 governance decisions"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/GOVERNANCE_ITERATION_2026-07-25.md",
       "status": "supporting",
-      "purpose": "current test and verification evidence"
+      "purpose": "governance-only approved scope record"
     },
     {
-      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.28.1.md",
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.27.2.md",
       "status": "authoritative",
-      "purpose": "current approved scope and implementation record"
+      "purpose": "current runtime iteration record"
     },
     {
-      "path": "RELEASE_NOTES_v0.28.1.md",
-      "status": "authoritative",
-      "purpose": "current release summary"
+      "path": "RELEASE_NOTES_v0.27.2.md",
+      "status": "supporting",
+      "purpose": "current runtime release summary"
     },
     {
-      "path": "TEST_REPORT_v0.28.1.md",
-      "status": "authoritative",
-      "purpose": "current test and verification evidence"
+      "path": "TEST_REPORT_v0.27.2.md",
+      "status": "supporting",
+      "purpose": "current runtime test evidence"
     },
     {
-      "path": "FORM_GUIDE_MEDIA_LICENSES.md",
-      "status": "authoritative",
-      "purpose": "current Form Guide media attribution and license record"
+      "path": "GOVERNANCE_PACKAGE_PROVENANCE_2026-07-25.json",
+      "status": "generated",
+      "purpose": "file-level package provenance"
     }
   ],
   "historical_patterns": [
@@ -297,17 +307,17 @@
     "DEVELOPMENT_MEMORY/README_FIRST.md",
     "DEVELOPMENT_MEMORY/DOCUMENT_INDEX.md"
   ],
-  "current_version": "0.28.1",
-  "current_build": "2026.07.23.0418",
+  "current_version": "0.27.2",
+  "current_build": "2026.07.22.2319",
   "runtime_files": [
     "index.html",
     "version.js",
-    "assets/exercise-guides.js",
     "assets/app.js",
     "assets/data-layer.js",
     "assets/parser.js",
     "assets/ai-router.js",
     "assets/workflow-engine.js",
     "assets/styles.css"
-  ]
+  ],
+  "governance_revision": "2026.07.25.1"
 }

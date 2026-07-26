@@ -1,7 +1,7 @@
 {
-  "schema_version": 1,
-  "current_version": "0.28.1",
-  "current_build": "2026.07.23.0418",
+  "schema_version": 2,
+  "current_version": "0.27.2",
+  "current_build": "2026.07.22.2319",
   "immutable_principles": [
     "user_owned_canonical_data",
     "ai_advisory_deterministic_commit",
@@ -17,7 +17,22 @@
     "coach_actionable_trends_descriptive",
     "questions_for_you_conversational",
     "activity_relevant_fields",
-    "mobile_save_hotfix_protected"
+    "mobile_save_hotfix_protected",
+    "provider_agnostic_storage_contract",
+    "one_active_primary_provider",
+    "confirmed_provider_backed_records",
+    "local_recovery_noncanonical",
+    "effective_date_visible_editable",
+    "multi_segment_sleep_preserved",
+    "gym_mode_phone_first_desktop_isolated",
+    "routine_template_not_history_unit",
+    "suggested_not_confirmed",
+    "saved_requires_provider_ack",
+    "qualitative_readiness_no_false_precision",
+    "form_guide_media_truth",
+    "encrypted_ai_credential_vault",
+    "honest_timestamp_provenance",
+    "v0272_recovery_baseline_v028_rejected"
   ],
   "supersessions": [
     {
@@ -46,6 +61,22 @@
     "release claims do not exceed evidence",
     "workflow engine is registered and loads before application",
     "local workflow persistence excludes personal source and proposal content",
-    "support report export excludes credentials"
-  ]
+    "support report export excludes credentials",
+    "one clearly labeled top-level extraction folder",
+    "unchanged entries preserve original bytes and timestamps",
+    "changed and new entries use actual local modification time",
+    "file-level hashes and provenance are published",
+    "no future-dated package entries",
+    "governance-only revision does not claim runtime implementation",
+    "phone Gym Mode changes cannot alter desktop ZEKE",
+    "saved status requires provider acknowledgement",
+    "local recovery data is excluded from canonical views and analysis",
+    "exercise media requires movement-level human verification"
+  ],
+  "governance_revision": "2026.07.25.1",
+  "rejected_forward_baselines": [
+    "0.28.0",
+    "0.28.1"
+  ],
+  "approved_recovery_baseline": "0.27.2"
 }

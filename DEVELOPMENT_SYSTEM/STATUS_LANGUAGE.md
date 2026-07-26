@@ -1,31 +1,33 @@
 # Required Status Language
 
-**Current baseline:** ZEKE v0.24.0 · build 2026.07.21.1
+**Runtime baseline:** ZEKE v0.27.2 · build 2026.07.22.2319  
+**Governance revision:** 2026.07.25.1
 
 ## Development and release claims
 
-- **Verified**: directly demonstrated by a named test, inspection, rendered run, deployed check, or reopened-package comparison.
-- **Implemented, unverified**: code exists but the relevant behavior was not directly exercised.
-- **Proposed**: approved or suggested direction not implemented.
-- **Hypothesis**: suspected explanation awaiting evidence.
-- **Historical**: accurate only as a record of an earlier state.
+- **Verified:** directly demonstrated by a named test, inspection, rendered run, deployed check, physical-device check, or reopened-package comparison.
+- **Package integrity verified:** archive structure, bytes, hashes, timestamps, and document checks passed; this does not prove runtime behavior.
+- **Implemented, unverified:** code exists but the relevant behavior was not directly exercised.
+- **Governance locked:** the user approved the requirement; code may not yet implement it.
+- **Proposed:** suggested direction not yet approved.
+- **Hypothesis:** suspected explanation awaiting evidence.
+- **Historical:** accurate only as a record of an earlier state.
+- **Rejected:** not an approved forward-development path.
 
-Release notes and handoffs must not use “working,” “fixed,” “safe,” or “ready” where only implementation is known.
+Release notes and handoffs must not use “working,” “fixed,” “safe,” “synced,” “ready,” or “verified” where the named evidence does not support that claim.
 
-## User-facing workflow states
+## User-facing persistence states
 
-Talk to ZEKE uses plain outcome language:
+- **Not started:** no user entry has been made.
+- **Suggested:** values or exercises were deliberately loaded from a routine, previous performance, or recommendation but are not performed facts.
+- **In progress:** the user has entered or changed something that is not yet durably saved.
+- **Saving to provider:** the durable write is in progress.
+- **Saved:** the active provider acknowledged the durable write.
+- **Save failed:** the provider did not acknowledge the write; current entry remains available for correction or retry where possible.
+- **Unsaved changes:** a saved record was edited again but the correction has not been saved.
 
-- **Understanding** — the message is preserved and being interpreted.
-- **AI checking** — a connected AI is being consulted.
-- **Waiting for you** — a specific answer changes what ZEKE can do.
-- **Ready for confirmation** — a proposed change exists, but nothing has been saved yet.
-- **Waiting for correction** — the original remains preserved and no replacement has been saved.
-- **Completed** — the interaction reached an explicit outcome.
-- **Not saved** — no structured record changed.
-- **Already recorded** — an existing record was kept rather than creating a duplicate.
-- **Dismissed** — the original may remain preserved, but no structured change was made.
-- **Paused** — a newer unrelated workflow superseded the active one.
-- **Could not complete** — ZEKE preserved what it could and does not claim success.
+A separate **Synced** state is used only if ZEKE later implements a real local-durable-save plus remote-sync architecture with a verifiable queue and acknowledgement. It must not be simulated.
 
-Every closure message must state what changed—or that nothing changed. A retry must distinguish saved, already saved, duplicate, failed, and not saved outcomes.
+## Talk to ZEKE closure language
+
+Every meaningful interaction states what changed—or that nothing changed. Retry and correction paths distinguish saved, already recorded, duplicate, failed, dismissed, waiting for clarification, and not saved.

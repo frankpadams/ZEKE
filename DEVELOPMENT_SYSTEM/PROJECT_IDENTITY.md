@@ -1,17 +1,21 @@
 # Project Identity
 
-ZEKE is a private, user-owned personal management system, beginning with health and fitness but not limited to them. It is not merely a chatbot, a medical device, or a cloud-owned personal database.
+ZEKE is a private, user-owned personal-management system, beginning with health and fitness but not limited to them. It is not merely a chatbot, fitness logger, medical device, or cloud-owned personal database.
 
 ## Immutable unless explicitly reopened by the user
-- The user owns canonical data and chooses its storage provider.
-- AI may interpret and propose; deterministic code and user confirmation govern canonical writes.
-- Provenance, reversibility, and uncertainty must remain visible.
-- The interface should remove user friction rather than make users classify inputs unnecessarily.
-- Empty or unsupported visualizations collapse instead of reserving space or inventing meaning.
+
+- The user owns canonical data and chooses the active storage provider.
+- Storage semantics are provider-agnostic; Google Drive is an adapter, not the architecture.
+- AI may interpret and propose; deterministic code and explicit user action govern canonical writes.
+- Provenance, reversibility, effective dates, and uncertainty remain visible.
+- Missing is not zero; suggested is not confirmed; in progress is not saved; saved is not synced unless a separate sync operation exists.
+- Phone-focused Gym Mode must not replace or break desktop ZEKE.
 - Personal records must not be silently inferred, carried forward as current, or marked complete without evidence.
 
 ## Current architecture — challengeable with justification
-The present browser application uses user-owned repository storage, deterministic parsers, optional AI routing, read-only preflight, reviewed commit, verification, journal, and mirror regeneration. Architecture documentation describes what exists today; roadmap and backlog describe possible futures.
+
+The v0.27.2 browser application is the approved recovery baseline. Confirmed records belong with one active primary user-chosen provider. Normal-browser local storage may be used only for temporary unfinished-form recovery and is never canonical. AI credentials follow a separate encrypted-vault architecture.
 
 ## Encouraged fresh thinking
-Question unnecessary complexity, brittle UI assumptions, testing gaps, repetitive confirmation friction, weak recovery paths, and ways to improve mobile use. Fresh proposals must respect immutable principles and pass findings/scope approval before implementation.
+
+Question unnecessary complexity, brittle UI assumptions, testing gaps, weak recovery paths, and ways to improve phone and desktop experiences. Fresh proposals must respect immutable principles and pass findings/scope approval before implementation.

@@ -98,10 +98,23 @@ Current release identity, scope, artifact authority, lifecycle, supersessions, a
 - Relationship links must resolve to the selected item or an item-specific insufficient-data explanation; unrelated generic fallback is prohibited.
 - Coach considerations must expose the user-data trigger, ZEKE interpretation, specific research sources when applicable, and limitations.
 
+## 2026-07-25 — Recovery baseline, storage, health-entry, Gym Mode, and AI-vault decisions
 
-## 2026-07-23 — v0.28.1 Form Guide completion
-
-- Complete required Form Guide content rather than labeling it as a later dependency.
-- Store reviewed instructional facts locally in `assets/exercise-guides.js`.
-- Load attributed Wikimedia Commons photos at runtime and show the creator/source/license in the UI.
-- Keep an explicit offline image fallback; do not imply remotely loaded photos are packaged locally.
+- **DEC-036:** ZEKE v0.27.2 is the approved recovery baseline. The v0.28.x Gym Mode branch is rejected as a forward-development baseline.
+- **DEC-037:** Storage is provider-agnostic. Google Drive is the first adapter; OneDrive, Dropbox, SFTP/private storage, and future providers use the same canonical record contract.
+- **DEC-038:** ZEKE uses one active primary storage provider at a time. Confirmed records and corrections are durable there.
+- **DEC-039:** Normal-browser local storage may hold temporary unfinished-form recovery only. It is noncanonical and cannot feed history or analysis. Incognito does not guarantee preservation of unsaved work.
+- **DEC-040:** Every workout, lab, vital, medication, sleep, symptom, and comparable entry screen visibly shows an editable effective date.
+- **DEC-041:** A sleep day may contain multiple separately preserved sleep segments. Overnight sleep defaults to the date of final morning awakening; awake gaps are not counted as sleep.
+- **DEC-042:** Workout history is adequately grouped by day and individual saved exercises. User-facing named sessions are not required.
+- **DEC-043:** Routines such as Chest Day are reusable starting templates, not mandatory historical workout identities. They may include optional target sets/reps.
+- **DEC-044:** Custom exercises are supported through activity-specific field profiles.
+- **DEC-045:** Gym Mode is primarily a phone workflow for live gym entry. Desktop ZEKE uses a spacious Workout Entry experience and must not be altered by phone-specific layout code.
+- **DEC-046:** Opening an exercise may prefill primary fields from the most recent confirmed performance. Optional pain, RPE, rest, and notes remain blank. Applying a recommended progression changes the unsaved form only.
+- **DEC-047:** Readiness uses evidence-based categories plus written explanation. A numberless speedometer-style visual is permitted as a rough qualitative cue; insufficient evidence produces no progression action.
+- **DEC-048:** Gym Mode History and Form Guide remain inside Gym Mode and preserve current unsaved entry state.
+- **DEC-049:** Form Guide media must be manually verified to depict the named exercise being performed; licensing metadata alone is not verification.
+- **DEC-050:** Saved means the active provider acknowledged the durable write. A separate Synced state is prohibited unless ZEKE later implements and verifies a distinct synchronization layer.
+- **DEC-051:** AI-provider credentials use a provider-backed encrypted vault, PIN unlock through a narrowly scoped rate-limited security component, in-memory plaintext only, recovery code, and destructive vault reset when recovery is impossible.
+- **DEC-052:** AI-vault recovery is separate from Gym Mode or personal-record recovery.
+- **DEC-053:** Honest timestamps, one labeled extraction folder, preserved unchanged bytes/timestamps, hashes, and narrow verification claims are release-integrity requirements.

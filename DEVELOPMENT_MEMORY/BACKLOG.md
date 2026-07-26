@@ -74,3 +74,18 @@ The v0.23.1 stabilization scope remains complete locally. Do not reopen it as fe
 | UI-026B | Drag-and-drop Dashboard tile editing and layout profiles | Medium | v0.26 provides explicit reordering; drag/drop requires a separately approved responsive design |
 | MED-026 | Validate monthly medication/supplement review against real schedules and corrections | Medium | Requires one month of real use |
 | SEARCH-026 | Add richer global search filters and direct record focus | Medium | Current search is intentionally lightweight |
+
+## Governance reconciliation backlog — July 25, 2026
+
+| ID | Item | Priority | Status / prerequisite |
+|---|---|---:|---|
+| DATA-027 | Implement provider-neutral storage adapter contract and one-primary-provider semantics | Critical | Before expanding durable record writers |
+| DATA-028 | Add visible editable effective date to every structured entry screen | Critical | Cross-domain acceptance required |
+| SLEEP-027 | Support multiple sleep segments per sleep day without merging gaps | High | Talk to ZEKE and direct entry must share schema |
+| GYM-027 | Rebuild Gym Mode from v0.27.2 against the locked mockup and state model | Critical | Do not patch v0.28.x forward |
+| GYM-028 | Add routine templates, custom exercises, prefilled primary fields, and unsaved progression application | High | After core save/navigation acceptance |
+| GYM-029 | Implement Gym-contained History and verified Form Guide sequence | High | Media review manifest required |
+| DESK-027 | Build spacious desktop Workout Entry without importing phone Gym Mode shell | High | Shared schema/provider layer required |
+| AI-027 | Design and implement encrypted provider-backed AI vault with PIN security service | High | Separate security review and recovery flow |
+| QA-027 | Rendered phone/desktop regression matrix and physical-device acceptance | Critical | Required before behavioral verification claim |
+| REL-027 | Automate unchanged-byte/timestamp preservation and file-level release provenance | Critical | Required for every next package |

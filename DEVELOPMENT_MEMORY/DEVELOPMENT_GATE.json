@@ -1,58 +1,59 @@
 {
-  "schema_version": 2,
-  "release": "0.28.1",
-  "build": "2026.07.23.0418",
+  "schema_version": 3,
+  "release": "0.27.2",
+  "build": "2026.07.22.2319",
+  "current_version": "0.27.2",
+  "current_build": "2026.07.22.2319",
+  "governance_revision": "2026.07.25.1",
   "current_iteration": {
-    "status": "package_verification_complete_environment_verification_outstanding",
+    "status": "governance_reconciliation_complete_runtime_unchanged",
     "baseline_verified": true,
-    "baseline_audit_status": "v0.28.0 package extracted directly and used as the sole baseline; unchanged files are compared against that ZIP by content and archived modification timestamp.",
+    "baseline_audit_status": "The v0.27.2 source ZIP was reopened and used as the byte/timestamp baseline.",
     "backlog_resurfaced": true,
     "scope_presented": true,
     "user_approved_scope": true,
-    "approved_at": "2026-07-23T04:07:47Z",
-    "approval_evidence": "User asked to add the omitted licensed photographs and exercise-specific Form Guide content now, to the package just generated, under the standing structure and timestamp requirements.",
-    "release": "0.28.1",
-    "build": "2026.07.23.0418",
-    "baseline_release": "0.28.0",
-    "baseline_build": "2026.07.23.0005",
+    "approved_at": "2026-07-25",
+    "approval_evidence": "User asked to update governance documentation and approved the recommended architecture decisions in the July 25, 2026 conversation.",
+    "release": "0.27.2",
+    "build": "2026.07.22.2319",
+    "baseline_release": "0.27.2",
+    "baseline_build": "2026.07.22.2319",
     "approved_scope": [
-      "Add licensed photographs to the existing exercise Form Guide bottom sheet",
-      "Add useful exercise-specific Setup, Movement, Common Mistakes, and Tips content",
-      "Preserve the v0.28.0 workout-program and backend data-storage behavior",
-      "Maintain the existing file and directory structure",
-      "Preserve original modification timestamps for unchanged files and use real modification timestamps for changed or new files",
-      "Represent unavailable or unmatched guide content honestly rather than fabricating completeness"
+      "Reconcile authoritative governance documentation without changing runtime behavior",
+      "Preserve v0.27.2 as the recovery baseline and reject v0.28.x as a forward baseline",
+      "Record provider-neutral storage, editable dates, multi-segment sleep, Gym Mode, AI-vault, and release-integrity decisions"
     ],
     "explicitly_excluded": [
-      "Destructive data migration",
-      "Changes to v0.28.0 workout-event or connected-preferences storage paths",
-      "Claims that remote Wikimedia photos are embedded or available offline",
-      "Unverified live-provider, protected-workbook, deployed-cache, or physical-device claims"
+      "Runtime code changes",
+      "Gym Mode defect fixes",
+      "AI vault implementation",
+      "Live provider verification",
+      "Physical-device verification",
+      "Deployment changes"
     ],
     "acceptance_criteria": [
-      "Exercise guide data loads before the main application",
-      "Seventeen reviewed guides contain all required instructional sections",
-      "Matched guides show a licensed/public-domain photo with visible attribution",
-      "Unmatched guides are labeled as not reviewed for the exact exercise",
-      "Existing workout persistence behavior is unchanged",
-      "Project audit, JavaScript syntax, guide-contract, regression, and ZIP-integrity checks pass",
-      "Unchanged files retain baseline ZIP modification timestamps"
+      "Authoritative documents agree on v0.27.2 and build 2026.07.22.2319",
+      "One clearly labeled top-level extraction folder",
+      "Unchanged files preserve source bytes and timestamps",
+      "Changed and new governance files use actual local modification time",
+      "Package provenance and hashes are included",
+      "No runtime implementation claims exceed evidence"
     ],
-    "rollback_plan": "Restore ZEKE v0.28.0 build 2026.07.23.0005; no data migration is required.",
+    "rollback_plan": "Return to the untouched ZEKE-v0.27.2-Exercise-Screen-Mockup-Fidelity-VERIFIED.zip; no runtime or data migration is involved.",
     "prior_conversations_reviewed": true,
-    "implementation_complete": true,
+    "implementation_complete": false,
+    "governance_reconciliation_complete": true,
     "verification_complete": true,
     "package_verification": "complete",
     "environment_verification": "outstanding",
-    "unpacked_file_count": 246
+    "unpacked_file_count": 240
   },
   "next_iteration": {
     "status": "not_open",
     "baseline_verified": false,
     "backlog_resurfaced": false,
     "scope_presented": false,
-    "user_approved_scope": null
-  },
-  "current_version": "0.28.1",
-  "current_build": "2026.07.23.0418"
+    "user_approved_scope": null,
+    "required_baseline": "0.27.2"
+  }
 }

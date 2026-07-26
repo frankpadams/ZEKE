@@ -1,19 +1,28 @@
-# Release Gate — ZEKE v0.28.1
+# Release Gate — ZEKE v0.27.2 Governance Reconciliation
 
-**Build:** 2026.07.23.0418
+**Runtime build:** 2026.07.22.2319  
+**Governance revision:** 2026.07.25.1
 
 ## Status
 
-**Package verification complete.**
+**Package verification complete.**  
+**Environment verification outstanding.**  
+**Runtime implementation unchanged by this governance-only package.**
 
-**Environment verification outstanding.**
+## Scope
 
-The final ZIP reopen cycle, baseline byte/timestamp comparison, syntax checks, guide-contract checks, project audit, and regression evidence are recorded in `TEST_REPORT_v0.28.1.md` and the external package-verification report.
+This package updates authoritative governance documentation only. No runtime source, styles, routes, persistence logic, or application behavior is claimed changed.
 
-## Included scope
+## Package acceptance
 
-The approved scope is recorded in `DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.28.1.md`. This patch completes licensed photography and exercise-specific Form Guide content while preserving the v0.28.0 Workout Programs and backend persistence paths.
+- One clearly named top-level extraction folder
+- No `__MACOSX`/AppleDouble packaging artifacts
+- Unchanged source files copied byte-for-byte with original ZIP timestamps
+- Changed/new governance files stamped at actual America/New_York package-generation time
+- File-level SHA-256 provenance manifest included
+- JSON and Markdown structural checks completed
+- Archive reopened and compared to the staged manifest
 
-## Environment checks still required
+## Runtime non-claims
 
-Live Wikimedia image delivery, live Drive/Sheets persistence, Calendar/AI, deployed cache/service worker, protected workbook, accessibility-device, and physical-device checks.
+The package does not claim Gym Mode defects are fixed, AI vault is implemented, live providers are verified, or phone/desktop rendered acceptance has passed.

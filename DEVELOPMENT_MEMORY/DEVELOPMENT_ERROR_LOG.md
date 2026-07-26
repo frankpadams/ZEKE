@@ -182,3 +182,27 @@
 ## ERR-042 — Goal guidance risked becoming an AI commitment path
 - **Failure risk:** A goal-review feature could allow an AI response to invent targets or silently save changes.
 - **Prevention:** Keep goal review advisory, show limitations, require explicit user save, and give AI no commit authority.
+
+## ERR-043 — Mockup fidelity was not protected during feature expansion
+- **Failure:** Workout programs, guides, readiness, and backend changes were added without a rendered gate proving that the approved exercise screen remained intact.
+- **Prevention:** Treat the approved mockup as a locked acceptance artifact. Compare rendered phone output before packaging and stop on deviation.
+
+## ERR-044 — UI states claimed saving or synchronization before the corresponding operation
+- **Failure:** Saved/Syncing/Synced language and completion indicators appeared before or without a distinct acknowledged backend stage.
+- **Prevention:** Model explicit states and map each label to a real operation. With provider-first writes, use Saving to provider → Saved only.
+
+## ERR-045 — Gym Mode navigation escaped to the legacy Fitness interface
+- **Failure:** View History removed the Gym Mode context and opened a regular activity tile.
+- **Prevention:** Use bounded Gym Mode navigation for exercise entry, history, progression, guide, and return paths. Preserve unsaved state.
+
+## ERR-046 — Exercise media passed metadata checks without depicting the exercise
+- **Failure:** Licensing/source fields were treated as sufficient verification even when an image showed resting, equipment only, or an ambiguous movement.
+- **Prevention:** Require a human-reviewed media manifest confirming the exact exercise and movement phase.
+
+## ERR-047 — Release timestamps and folder presentation damaged record trust
+- **Failure:** Packages used misleading or future-seeming timestamps and unclear extraction structure.
+- **Prevention:** Copy unchanged ZIP entries directly with original metadata, stamp changed/new files at actual local modification time, include one labeled root folder, reopen the archive, and publish file-level provenance.
+
+## ERR-048 — Mobile-focused changes risked redefining desktop ZEKE
+- **Failure risk:** Gym Mode responsive work was discussed as a universal layout rather than a phone-focused context within the larger product.
+- **Prevention:** Scope Gym Mode selectors and routes under a dedicated root. Test phone and desktop independently and prohibit desktop regressions.
