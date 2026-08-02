@@ -57,6 +57,32 @@
   const clone = (v) => structuredClone(v);
   const emit = (name = 'zeke:data-changed') => window.dispatchEvent(new CustomEvent(name, { detail: snapshot() }));
   const nowIso = () => new Date().toISOString();
+  let eventWriteQueue = Promise.resolve();
+
+  function normalizeEventForStorage(event = {}) {
+    const structured = { ...(event.structured || {}) };
+    // Optional physiological measurements must never use zero as a stand-in for missing.
+    for (const key of ['average_hr','heart_rate','resting_hr','max_hr','min_hr']) {
+      if (structured[key] != null && (!Number.isFinite(Number(structured[key])) || Number(structured[key]) <= 0)) delete structured[key];
+    }
+    for (const key of ['distance_mi','duration_min','weight','reps','sets','steps']) {
+      if (structured[key] === '' || structured[key] === undefined) delete structured[key];
+    }
+    if (structured.include_in_analysis == null && !['raw_input','correction'].includes(String(event.category || '').toLowerCase())) structured.include_in_analysis = true;
+    return { ...event, structured };
+  }
+
+  function eventIdentity(event = {}) {
+    const e = normalizeEventForStorage(event), st = e.structured || {};
+    const timestamp = String(e.timestamp || '').replace(/\.\d{3}Z$/, 'Z');
+    const keys = ['metric_id','value','unit','exercise','activity_profile','workout_id','set_number','weight','weight_unit','reps','sets','duration_min','steps','distance_mi','medication_name','canonical_medication_id','dose','status','start_time','end_time','sleep_quality'];
+    return JSON.stringify([String(e.category || '').toLowerCase(), timestamp, keys.map(k => st[k] ?? null)]);
+  }
+
+  function activeForIdentity(event = {}) {
+    const status = String(event.structured?.interpretation_status || '').toLowerCase();
+    return event.structured?.include_in_analysis !== false && !['invalid','quarantined','undone','deleted','superseded'].includes(status);
+  }
 
   function safeSetupMeta() {
     try { return JSON.parse(localStorage.getItem(SETUP_KEY) || 'null'); }
@@ -403,6 +429,7 @@ Content-Type: ${mimeType}
         }
       } catch { /* Keep the new empty connection registry. */ }
     }
+    await reconcileKnownAnswers({ persistChanges: true });
     emit();
   }
 
@@ -502,21 +529,32 @@ Content-Type: ${mimeType}
   async function getAIConnections() { return clone(state.aiConnections); }
   async function listAIExchanges() { return clone([...state.aiExchanges].sort(byTimeDesc)); }
 
-  async function addEvent(event) {
+  async function addEvent(event, { allowExactDuplicate = false } = {}) {
     if (!state.provider) throw new Error('Connect storage before saving personal data.');
-    const normalized = {
-      schema_version: 2,
-      id: event.id || crypto.randomUUID(),
-      recorded_at: event.recorded_at || nowIso(),
-      timestamp: event.timestamp || nowIso(),
-      provenance: { source: 'manual', ...(event.provenance || {}) },
-      ...event
+    const operation = async () => {
+      const cleaned = normalizeEventForStorage(event);
+      const normalized = {
+        schema_version: 3,
+        id: cleaned.id || crypto.randomUUID(),
+        recorded_at: cleaned.recorded_at || nowIso(),
+        timestamp: cleaned.timestamp || nowIso(),
+        provenance: { source: 'manual', ...(cleaned.provenance || {}) },
+        ...cleaned
+      };
+      if (!allowExactDuplicate && !['raw_input','correction'].includes(String(normalized.category || '').toLowerCase())) {
+        const identity = eventIdentity(normalized);
+        const existing = state.events.find(e => activeForIdentity(e) && eventIdentity(e) === identity);
+        if (existing) return clone(existing);
+      }
+      state.events = [...state.events, normalized];
+      try { await persist('events'); }
+      catch (error) { state.events = state.events.filter(e => e.id !== normalized.id); throw error; }
+      emit();
+      return clone(normalized);
     };
-    state.events = [...state.events, normalized];
-    try { await persist('events'); }
-    catch (error) { state.events = state.events.filter(e => e.id !== normalized.id); throw error; }
-    emit();
-    return clone(normalized);
+    const queued = eventWriteQueue.then(operation, operation);
+    eventWriteQueue = queued.catch(() => {});
+    return queued;
   }
 
   async function updateEvent(id, patch, { appendCorrection = true } = {}) {
@@ -567,6 +605,72 @@ Content-Type: ${mimeType}
     state.events = [...state.events, ...corrections];
     await persist('events'); emit();
     return { undone };
+  }
+
+  async function supersedeEvent(id, replacement, reason = 'Record corrected by user') {
+    const original = state.events.find(e => e.id === id);
+    if (!original) throw new Error('Record not found.');
+    const now = nowIso();
+    const replacementEvent = normalizeEventForStorage({
+      ...replacement,
+      id: replacement.id || crypto.randomUUID(),
+      recorded_at: replacement.recorded_at || now,
+      provenance: { ...(replacement.provenance || {}), source: replacement.provenance?.source || 'user-correction', supersedes_event_id: id }
+    });
+    const before = clone(state.events);
+    const updatedOriginal = {
+      ...original,
+      updated_at: now,
+      structured: { ...(original.structured || {}), interpretation_status: 'superseded', include_in_analysis: false, superseded_at: now, superseded_by_event_id: replacementEvent.id, supersession_reason: reason }
+    };
+    state.events = state.events.map(e => e.id === id ? updatedOriginal : e);
+    state.events.push(replacementEvent, {
+      schema_version: 3, id: crypto.randomUUID(), category: 'correction', timestamp: now, recorded_at: now,
+      raw_text: reason,
+      structured: { target_event_id: id, replacement_event_id: replacementEvent.id, before: original, after: replacementEvent, operation: 'supersede' },
+      provenance: { source: 'user-correction' }
+    });
+    try { await persist('events'); }
+    catch (error) { state.events = before; throw error; }
+    emit();
+    return clone(replacementEvent);
+  }
+
+  function medicationScheduleAnswers() {
+    const map = new Map();
+    for (const item of state.actions?.catalog || []) {
+      if (!item?.schedule?.type) continue;
+      const names = [item.id, item.label, item.canonical_medication_id].filter(Boolean).map(v => String(v).toLowerCase());
+      const days = Array.isArray(item.schedule.days) ? item.schedule.days : [];
+      const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+      const answer = item.schedule.type === 'weekly' ? `Weekly${days.length ? ` on ${days.map(d => dayNames[Number(d)] || d).join(', ')}` : ''}` : String(item.schedule.type);
+      for (const name of names) map.set(name.replace(/^med-/, ''), answer);
+    }
+    return map;
+  }
+
+  async function reconcileKnownAnswers({ persistChanges = true } = {}) {
+    const schedules = medicationScheduleAnswers();
+    let changed = 0;
+    const seenOpen = new Map();
+    state.factors = state.factors.map(f => {
+      const key = String(f.question_key || '').toLowerCase();
+      let next = f;
+      if (key.startsWith('med_schedule:') && !['resolved','dismissed','unknown'].includes(f.status)) {
+        const med = key.split(':').slice(1).join(':').replace(/^med-/, '');
+        const answer = schedules.get(med) || [...schedules.entries()].find(([name]) => name.includes(med) || med.includes(name))?.[1];
+        if (answer) { next = { ...f, status:'resolved', answer, resolved_at:nowIso(), updated_at:nowIso(), resolution_source:'confirmed-actions-catalog' }; changed++; }
+      }
+      if (next.question_key && !['resolved','dismissed','unknown'].includes(next.status)) {
+        const qk = String(next.question_key);
+        if (seenOpen.has(qk)) { next = { ...next, status:'superseded', resolved_at:nowIso(), updated_at:nowIso(), superseded_by_factor_id:seenOpen.get(qk) }; changed++; }
+        else seenOpen.set(qk, next.id);
+      }
+      return next;
+    });
+    if (changed && persistChanges && state.provider) await persist('factors');
+    if (changed) emit();
+    return { changed };
   }
 
   async function addRawInput(rawText, context = {}) {
@@ -664,7 +768,7 @@ Content-Type: ${mimeType}
     return saveFactor({ ...current, status, answer, resolved_at: ['resolved','dismissed','unknown'].includes(status) ? nowIso() : current.resolved_at });
   }
 
-  async function saveActions(actions) { state.actions = clone(actions); await persist('actions'); emit(); return clone(state.actions); }
+  async function saveActions(actions) { state.actions = clone(actions); await persist('actions'); await reconcileKnownAnswers({ persistChanges:true }); emit(); return clone(state.actions); }
   async function savePreferences(preferences) { state.preferences = clone(preferences); await persist('preferences'); emit(); return clone(state.preferences); }
   async function saveAIConnections(connections) { state.aiConnections = clone(connections); await persist('aiConnections'); emit('zeke:ai-connection-changed'); return clone(state.aiConnections); }
   async function addAIExchange(exchange) { state.aiExchanges = [...state.aiExchanges, { id: crypto.randomUUID(), timestamp: nowIso(), ...exchange }]; await persist('aiExchanges'); emit('zeke:ai-exchange-changed'); }
@@ -878,7 +982,7 @@ Content-Type: ${mimeType}
 
   window.ZekeData = {
     bootstrap, connect, reconnect, disconnect, snapshot, safeSetupMeta,
-    listEvents, addEvent, updateEvent, undoEvents, addRawInput, confirmRawInput, findLikelyDuplicates,
+    listEvents, addEvent, updateEvent, supersedeEvent, undoEvents, addRawInput, confirmRawInput, findLikelyDuplicates, reconcileKnownAnswers,
     listFactors, saveFactor, resolveFactor, listDiscoveries,
     getActions, saveActions, getPreferences, savePreferences,
     getAIConnections, saveAIConnections, listAIExchanges, addAIExchange,
