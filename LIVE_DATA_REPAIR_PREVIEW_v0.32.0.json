@@ -1,0 +1,89 @@
+{
+  "generated_at": "2026-08-02T23:30:00Z",
+  "read_only": true,
+  "event_count": 332,
+  "exact_duplicate_groups": [
+    {
+      "ids": [
+        "beadb89d-42aa-4511-92b7-edeff223fa22",
+        "5825baf2-447e-406e-a0fc-767b9ab5764f"
+      ],
+      "category": "sleep",
+      "timestamp": "2026-07-16T01:30:00.000Z"
+    },
+    {
+      "ids": [
+        "5936be9e-e6b9-4d33-9aab-846c6a734bfe",
+        "24aaa6c7-c543-40d9-847c-6be85a674b9d"
+      ],
+      "category": "measurement",
+      "timestamp": "2026-07-18T12:00:00"
+    },
+    {
+      "ids": [
+        "f3ebd210-ed1f-4d7f-ac38-5fb310bf4576",
+        "2c7ffa14-1c95-4691-a2c4-b6a1894943da"
+      ],
+      "category": "medication",
+      "timestamp": null
+    },
+    {
+      "ids": [
+        "abf0a129-ef5e-42f9-8585-cc3032424f0f",
+        "0a96bcec-8b1f-4bdd-a452-ffde0858b992"
+      ],
+      "category": "measurement",
+      "timestamp": "2026-08-01T12:00:00"
+    },
+    {
+      "ids": [
+        "c4c2cf60-e6f9-4a27-918f-af57347365c5",
+        "66320be7-bbd3-4432-9b64-bcf40a3d4afb"
+      ],
+      "category": "measurement",
+      "timestamp": "2026-08-01T12:00:00"
+    }
+  ],
+  "sleep_over_12_hours": [
+    {
+      "id": "e576660d-2154-42a1-aaa0-701c96799749",
+      "timestamp": "2026-08-01T13:30:00.000Z",
+      "value": 20,
+      "unit": "hr"
+    }
+  ],
+  "activity_repairs_needed": [
+    {
+      "id": "9683a967-76af-420b-895d-dbf9314954f6",
+      "exercise": "Kayak",
+      "timestamp": "2026-07-28T12:00:00",
+      "issues": [
+        "steps stored for kayaking",
+        "zero average heart rate",
+        "distance missing"
+      ]
+    }
+  ],
+  "open_medication_schedule_questions": [
+    {
+      "id": "021b4a97-74da-45c9-b8e3-46279b8d9ca7",
+      "question_key": "med_schedule:mounjaro",
+      "question": "I know mounjaro is part of your history, but I don't want to guess its schedule. How often is it supposed to be taken?"
+    }
+  ],
+  "confirmed_actions": [
+    {
+      "id": "med-tirzepatide",
+      "label": "Mounjaro",
+      "schedule": {
+        "type": "weekly",
+        "days": [
+          5
+        ],
+        "usual": true
+      },
+      "dose": 15,
+      "unit": "mg"
+    }
+  ]
+}

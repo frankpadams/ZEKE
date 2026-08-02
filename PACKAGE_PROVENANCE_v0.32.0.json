@@ -1,0 +1,17 @@
+{
+  "product": "Project ZEKE",
+  "version": "0.32.0",
+  "build": "2026.08.02.1",
+  "label": "Data Integrity and Workflow Reconciliation",
+  "source": "ZEKE-main (3).zip supplied 2026-08-02",
+  "live_data_basis": "drive-download-20260802T230439Z-1-001.zip supplied 2026-08-02",
+  "scope": [
+    "event write serialization and exact idempotency",
+    "record supersession transaction",
+    "medication schedule question reconciliation",
+    "missing-versus-zero normalization",
+    "bicycling and kayaking activity field correction",
+    "version and cache metadata"
+  ],
+  "live_data_modified": false
+}

@@ -1,4 +1,4 @@
-const CACHE = 'project-zeke-0.30.0-2026.07.26.1';
+const CACHE = 'project-zeke-0.32.0-2026.08.02.1';
 self.addEventListener('install', event => { self.skipWaiting(); event.waitUntil(caches.open(CACHE)); });
 self.addEventListener('activate', event => event.waitUntil(Promise.all([
   self.clients.claim(),
