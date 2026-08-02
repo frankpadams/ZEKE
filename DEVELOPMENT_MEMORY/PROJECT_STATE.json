@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
-  "current_version": "0.31.0",
-  "current_build": "2026.07.26.2",
+  "current_version": "0.32.0",
+  "current_build": "2026.08.02.1",
   "release_label": "Mobile Workout Entry and Health Conditions",
   "baseline": "v0.29.0 runtime built from v0.27.2 recovery baseline",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
