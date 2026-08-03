@@ -1,9 +1,5 @@
-PROJECT ZEKE v0.3.0 — STATIC SITE PACKAGE
+ZEKE v0.40.0 · build 2026.08.03.1
 
-Upload the CONTENTS of this folder to the document root of the HTTPS domain or subdomain where Zeke should run.
+Upload the complete package contents to the repository root. Do not upload only files that appear newer by timestamp. Verify version/build at startup after GitHub Pages deploys.
 
-Important:
-- index.html must be directly in the document root.
-- Upload the assets folder and all files together.
-- After upload, open READ_THIS_FIRST.md for the Google account connection steps.
-- The host serves application code. Personal Zeke event data is not bundled in this package.
+See DEPLOYMENT_MANIFEST_v0.40.0.md and BUILD_MANIFEST_v0.40.0.json.
