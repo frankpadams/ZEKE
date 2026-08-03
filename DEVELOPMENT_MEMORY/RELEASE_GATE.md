@@ -1,31 +1,30 @@
-# Release Gate — ZEKE v0.29.0 Continuity Reconciliation
+# Release Gate — ZEKE v0.40.0
 
-**Runtime build:** 2026.07.25.1  
-**Governance revision:** 2026.07.25.2
+**Runtime build:** 2026.08.03.1  
+**Governance revision:** 2026.08.03.1
 
 ## Status
 
 **Package verification complete.**  
-**Environment verification outstanding.**  
-**Runtime files unchanged by this continuity reconciliation.**
+**Environment verification outstanding.**
 
-## Scope
+## Package acceptance completed
 
-Reconcile the v0.29.0 README, handoff, architecture, feature status, current state/gate, current iteration, test evidence, backlog, decision/error memory, artifact registry, identity/health/status documents, and package provenance. Preserve the application runtime exactly.
+- Current version/build agree across runtime, service worker, state, gate, registry, release notes, and test report.
+- JavaScript syntax and current deterministic regression tests pass.
+- Rendered Chromium smoke tests pass on desktop and 390×844 mobile viewport without horizontal overflow or page errors.
+- Live-data fixtures detect expected integrity candidate classes without modifying source files.
+- Governance audit and negative controls pass.
+- Build/deployment/provenance manifests enumerate the verified runtime set and file hashes.
+- Changed/new files use actual package-generation time; no future-dated entries are allowed.
 
-## Package acceptance
+## Environment verification outstanding
 
-- One clearly named top-level extraction folder.
-- No `__MACOSX` or AppleDouble artifacts.
-- Runtime/source/test files outside the reconciled documentation set remain byte-identical to the original v0.29.0 ZIP and preserve source ZIP timestamps.
-- Modified/new continuity files use the actual America/New_York package-generation time.
-- Current version/build agree across machine-readable and human-readable authorities.
-- Current iteration and artifact lifecycle are coherent.
-- Relative Markdown links resolve.
-- Project audit reports zero errors.
-- Governance negative controls pass.
-- Final archive is reopened and compared with the package provenance manifest.
+- Deployed Google Drive authentication, repair backup, approved repair writes, and undo.
+- Physical iPhone and representative Android interaction.
+- Remote public-domain exercise media availability and visual correctness in deployment.
+- Real-world review of each proposed live-data repair before approval.
 
-## Verification boundary
+## Rollback
 
-Package integrity and continuity coherence do not prove physical-device layout, deployed storage, live AI providers, protected real-workbook behavior, accessibility, or the unimplemented secure AI vault/provider adapters.
+Restore the previous complete repository package. For an applied data repair, use the provider-backed integrity backup under `imports/backups/` or the in-session Undo action before closing the session.

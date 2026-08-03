@@ -1,32 +1,37 @@
 {
   "schema_version": 3,
-  "current_version": "0.32.0",
-  "current_build": "2026.08.02.1",
-  "release_label": "Mobile Workout Entry and Health Conditions",
+  "current_version": "0.40.0",
+  "current_build": "2026.08.03.1",
+  "release_label": "Trust, Mobile, Dashboard & Fitness Milestone",
   "baseline": "v0.29.0 runtime built from v0.27.2 recovery baseline",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
   "authoritative_documents": [
     "00_AI_START_HERE.md",
-    "HANDOFF_BRIEF.md",
-    "ZEKE_CONSTITUTION.md",
-    "DEVELOPMENT_MEMORY/GOVERNANCE_RECONCILIATION_2026-07-25.md",
-    "DEVELOPMENT_SYSTEM/PROJECT_IDENTITY.md",
-    "DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md",
-    "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
-    "DEVELOPMENT_MEMORY/PROJECT_STATE.json",
-    "DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json",
     "DEVELOPMENT_MEMORY/BACKLOG.md",
     "DEVELOPMENT_MEMORY/DECISION_LOG.md",
     "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
+    "DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json",
     "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
+    "DEVELOPMENT_MEMORY/GOVERNANCE_RECONCILIATION_2026-07-25.md",
+    "DEVELOPMENT_MEMORY/PROJECT_STATE.json",
     "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
-    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.29.0.md"
+    "DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md",
+    "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
+    "DEVELOPMENT_SYSTEM/PROJECT_IDENTITY.md",
+    "HANDOFF_BRIEF.md",
+    "ZEKE_CONSTITUTION.md",
+    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.40.0.md"
   ],
   "implemented_this_release": [
-    "Mobile workout visual-fidelity styling",
-    "Reviewed Form Guide integration",
-    "Sleep save feedback",
-    "Storage reconnect dialog"
+    "Canonical JSON integrity scanner and guided Repair Center with backups, provenance, and session undo",
+    "Exact duplicate-write prevention and correction/supersession support",
+    "Question reconciliation against confirmed medication schedules and duplicate question consolidation",
+    "Lighter dashboard composition based on the approved visual direction with truthful-data rules",
+    "Mobile-wide quick logging, responsive navigation, sticky save/cancel actions, and accessible guide access",
+    "102-entry equipment-aware activity/exercise knowledge catalog with 12 built-in routines",
+    "Expanded form guidance with setup, movement, common mistakes, breathing, modifications, and mind-muscle cues",
+    "Weekly workout expectation planner that does not infer commitment from open calendar time",
+    "Build manifest, service-worker cache versioning, and runtime dependency documentation"
   ],
   "inherited_verified_evidence": [
     "v0.25.2 direct mobile workout save handler and visible failure path",
@@ -34,23 +39,19 @@
     "deterministic medication, sleep, workbook, provenance, and workflow regressions"
   ],
   "known_issues": [
-    "Physical iPhone, representative Android, desktop, accessibility, and deployed-provider acceptance remain outstanding",
-    "Readiness uses a simple three-entry heuristic and is not yet the reviewed research-supported methodology",
-    "Form Guide tap does not yet display a true multi-image movement sequence and media coverage remains incomplete",
-    "Provider-agnostic storage adapters beyond the current Google-oriented data layer are not implemented",
-    "Secure cross-device AI credential vault and PIN service are not implemented",
-    "Multiple sleep segments, cross-domain editable dates, provider-backed routine management, and separate desktop Workout Entry remain incomplete",
-    "Several historical regression tests assert obsolete metadata or schema strings and require careful review"
+    "Remote public-domain exercise media requires a network connection; a truthful written-guide fallback is shown when media is absent or unavailable",
+    "The core high-use guides are manually curated; lower-priority catalog entries use normalized professional-consensus templates pending deeper evidence review",
+    "Physical iPhone, representative Android, and live Google Drive acceptance still require deployment testing by the alpha user",
+    "Provider adapters beyond Google Drive remain roadmap work",
+    "Advanced periodization, wearable live workout interfaces, and a locally hosted full media library remain roadmap-scale enhancements"
   ],
   "next_review_items": [
-    "Rendered and physical-device Gym Mode acceptance without desktop regression",
-    "Research-reviewed readiness methodology",
-    "Form Guide image sequence and media manifest",
-    "Provider-neutral storage adapter contract",
-    "Multi-segment sleep and cross-domain effective dates",
-    "Encrypted AI-vault security-service design"
+    "Deploy v0.40.0 and complete guided repair of the live authoritative JSON",
+    "Physical-device mobile acceptance across dashboard, logging, questions, repairs, and form guides",
+    "Review highest-use Planet Fitness/Bowflex/dumbbell knowledge objects and media mappings",
+    "Continue deep evidence review for the expanded catalog"
   ],
-  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.30.0.md",
+  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.40.0.md",
   "files_to_read_first": [
     "00_AI_START_HERE.md"
   ],
@@ -63,29 +64,27 @@
     "real-data workbook regression when fixture is available",
     "final ZIP reopened and compared with provenance"
   ],
-  "current_release_label": "Gym Mode Recovery and Trusted Entry",
-  "current_focus": "Verify and refine the v0.29.0 Gym Mode recovery while implementing remaining provider-neutral, sleep, desktop, routine, media, readiness, and AI-vault contracts in separately approved scopes",
-  "governance_revision": "2026.07.25.2",
-  "runtime_changed_by_governance_revision": false,
+  "current_release_label": "Trust, Mobile, Dashboard & Fitness Milestone",
+  "current_focus": "Canonical JSON integrity, truthful dashboard, mobile-wide usability, and equipment-aware fitness knowledge",
+  "governance_revision": "2026.08.03.1",
+  "runtime_changed_by_governance_revision": true,
   "rejected_forward_baselines": [
     "v0.28.0",
     "v0.28.1"
   ],
   "historical_recovery_source": "v0.27.2",
   "governance_locked_not_fully_implemented": [
-    "provider-agnostic storage with one active primary provider",
-    "visible editable effective date across all structured entry screens",
+    "provider-agnostic storage adapters beyond Google Drive",
     "multiple sleep segments per sleep day",
-    "spacious desktop Workout Entry isolated from phone Gym Mode",
-    "provider-backed routine management",
-    "research-reviewed qualitative readiness methodology",
-    "verified visual Form Guide sequences",
-    "provider-backed encrypted AI vault with PIN service and recovery path"
+    "provider-backed encrypted AI vault with PIN service and recovery path",
+    "mature research-reviewed readiness and adaptive periodization methodology",
+    "locally controlled full exercise media library"
   ],
-  "current_release": "ZEKE v0.31.0 \u2014 Mobile Workout Visual Fidelity and Form Guides",
-  "updated_at": "2026-07-26T00:02:22-04:00",
+  "current_release": "ZEKE v0.40.0 \u2014 Trust, Mobile, Dashboard & Fitness Milestone",
+  "updated_at": "2026-08-02T21:10:00-04:00",
   "known_limitations": [
-    "Additional 20 common-exercise photos not fully curated",
-    "Physical-device visual verification pending"
+    "Live Google Drive repair and physical-device verification remain outstanding",
+    "Remote public-domain exercise media requires network access and has a truthful fallback",
+    "Lower-priority knowledge objects await deeper manual evidence review"
   ]
 }

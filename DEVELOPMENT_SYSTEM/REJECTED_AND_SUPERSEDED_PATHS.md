@@ -13,3 +13,4 @@
 - **Provider-backed autosave of every unfinished keystroke as canonical data** — rejected; optional local recovery may protect unfinished normal-browser work, but confirmed provider writes remain explicit.
 
 - **The original v0.29.0 runtime package as continuity-complete authority** — superseded by the v0.29.0 continuity-reconciled package because its runtime was current but its README, gate, registry, and standing documents were stale. The original ZIP remains historical runtime/package evidence.
+- **A separate phone Gym Mode as a distinct application architecture** — superseded in v0.40.0 by one responsive ZEKE application whose entire mobile experience prioritizes navigation, entry, repair, and coaching while preserving desktop capability.

@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
-  "current_version": "0.29.0",
-  "current_build": "2026.07.25.1",
+  "current_version": "0.40.0",
+  "current_build": "2026.08.03.1",
   "immutable_principles": [
     "user_owned_canonical_data",
     "ai_advisory_deterministic_commit",
@@ -24,7 +24,6 @@
     "local_recovery_noncanonical",
     "effective_date_visible_editable",
     "multi_segment_sleep_preserved",
-    "gym_mode_phone_first_desktop_isolated",
     "routine_template_not_history_unit",
     "suggested_not_confirmed",
     "saved_requires_provider_ack",
@@ -32,7 +31,11 @@
     "form_guide_media_truth",
     "encrypted_ai_credential_vault",
     "honest_timestamp_provenance",
-    "v0272_recovery_baseline_v028_rejected"
+    "v0272_recovery_baseline_v028_rejected",
+    "mobile_whole_app_low_friction_no_separate_gym_mode",
+    "truthful_visuals_only",
+    "repair_asks_about_reality_not_database_structure",
+    "knowledge_claims_have_source_and_review_state"
   ],
   "supersessions": [
     {
@@ -68,19 +71,22 @@
     "file-level hashes and provenance are published",
     "no future-dated package entries",
     "governance-only revision does not claim runtime implementation",
-    "phone Gym Mode changes cannot alter desktop ZEKE",
     "saved status requires provider acknowledgement",
     "local recovery data is excluded from canonical views and analysis",
     "exercise media requires movement-level human verification",
     "current implementation status is classified as implemented partial or unimplemented",
     "current continuity matrix exists and all standing documents are reviewed",
-    "current release test report exists and matches evidence"
+    "current release test report exists and matches evidence",
+    "mobile changes preserve one coherent app and desktop capability",
+    "quantitative visuals use recorded data or disclose insufficiency",
+    "live data repairs require review backup provenance and rollback",
+    "runtime cache and build manifests agree"
   ],
-  "governance_revision": "2026.07.25.2",
+  "governance_revision": "2026.08.03.1",
   "rejected_forward_baselines": [
     "0.28.0",
     "0.28.1"
   ],
   "approved_recovery_baseline": "0.27.2",
-  "current_forward_baseline": "0.29.0"
+  "current_forward_baseline": "0.40.0"
 }

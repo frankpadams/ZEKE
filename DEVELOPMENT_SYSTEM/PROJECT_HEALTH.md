@@ -1,30 +1,33 @@
-# Project Health — v0.29.0
+# Project Health — v0.40.0
 
-**Runtime build:** 2026.07.25.1  
-**Governance revision:** 2026.07.25.2
+**Runtime build:** 2026.08.03.1  
+**Governance revision:** 2026.08.03.1
 
 ## Current position
 
-- Current runtime and forward baseline: v0.29.0.
-- Recovery lineage: v0.27.2.
-- v0.28.x: rejected as a forward-development baseline.
-- Continuity corpus: reconciled to the actual v0.29.0 application and evidence.
-- Runtime files: unchanged by this continuity-only package.
+- Current forward baseline: v0.40.0.
+- Canonical data: active provider-backed JSON repository.
+- Historical recovery lineage: v0.27.2; v0.28.x remains rejected.
+- Package verification: complete.
+- Environment verification: outstanding.
 
 ## Current strengths
 
-- The Gym Mode source includes the core locked entry states, date, prefill, optional blank fields, qualitative gauge, progression action, contained history, and truthful save wording.
-- Package-local structural and deterministic tests cover several protected workflows.
-- Current authority, lifecycle, and packaging evidence are coherent.
+- Deterministic repair detection, backups, provenance, supersession/quarantine, and undo are integrated.
+- Current JS regression suite and rendered desktop/mobile smoke tests pass.
+- Dashboard and recent-activity views have explicit truthful-data behavior.
+- Mobile uses the complete app architecture rather than a disconnected gym-only route.
+- Fitness has an equipment-aware knowledge layer, structured fields, routines, weekly planning, and richer guides.
+- Runtime/cache/version identities agree.
 
-## Highest risks
+## Highest remaining risks
 
-- Physical phone and desktop acceptance has not been completed.
-- The current readiness rule is a simple heuristic, not the approved research-reviewed methodology.
-- Form Guide expansion is not a true visual movement sequence, and media coverage is incomplete.
-- Provider-neutral storage, multi-segment sleep, cross-domain editable dates, provider-backed routines, desktop Workout Entry, and secure AI vault remain incomplete.
-- Historical tests contain some obsolete metadata/schema assumptions and must be reviewed without weakening genuine regressions.
+- Live Google Drive repair and restore behavior has not yet been exercised after deployment.
+- Physical iPhone and Android acceptance remains outstanding.
+- Remote exercise media can disappear or fail; written fallback mitigates but does not eliminate that dependency.
+- Lower-priority knowledge objects need deeper manual evidence review.
+- The app remains a static alpha and is not a medical device or HIPAA environment.
 
-## Required next gate
+## Required deployment gate
 
-Before new runtime changes, inspect the deployed/rendered v0.29.0 baseline on representative phone and desktop sizes, resurface the backlog, present one bounded scope, and obtain explicit approval.
+Deploy the complete verified runtime set, confirm v0.40.0 / build 2026.08.03.1 at startup, connect Google Drive, review—not blindly apply—the proposed repair list, verify the backup appears, and test representative desktop and mobile workflows.

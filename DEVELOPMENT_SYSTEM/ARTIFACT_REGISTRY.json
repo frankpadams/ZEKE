@@ -1,10 +1,10 @@
 {
   "schema_version": 3,
-  "release": "0.29.0",
-  "build": "2026.07.25.1",
-  "current_version": "0.29.0",
-  "current_build": "2026.07.25.1",
-  "governance_revision": "2026.07.25.2",
+  "release": "0.40.0",
+  "build": "2026.08.03.1",
+  "current_version": "0.40.0",
+  "current_build": "2026.08.03.1",
+  "governance_revision": "2026.08.03.1",
   "artifacts": [
     {
       "path": "00_AI_START_HERE.md",
@@ -123,8 +123,8 @@
     },
     {
       "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.29.0.md",
-      "status": "authoritative",
-      "purpose": "current approved scope and implementation record"
+      "status": "historical",
+      "purpose": "historical approved scope and implementation record"
     },
     {
       "path": "DEVELOPMENT_MEMORY/PROJECT_STATE.json",
@@ -350,6 +350,46 @@
       "path": "ZEKE_CONSTITUTION.md",
       "status": "authoritative",
       "purpose": "immutable product principles"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.40.0.md",
+      "status": "authoritative",
+      "purpose": "current approved scope and implementation record"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.40.0.md",
+      "status": "supporting",
+      "purpose": "current release scope and limitations"
+    },
+    {
+      "path": "TEST_REPORT_v0.40.0.md",
+      "status": "supporting",
+      "purpose": "current package verification evidence"
+    },
+    {
+      "path": "DEPLOYMENT_MANIFEST_v0.40.0.md",
+      "status": "supporting",
+      "purpose": "current deployment and post-deployment checks"
+    },
+    {
+      "path": "BUILD_MANIFEST_v0.40.0.json",
+      "status": "generated",
+      "purpose": "current runtime file hashes and compatibility"
+    },
+    {
+      "path": "PACKAGE_PROVENANCE_v0.40.0.json",
+      "status": "generated",
+      "purpose": "current package file provenance"
+    },
+    {
+      "path": "PACKAGE_VERIFICATION_v0.40.0.json",
+      "status": "generated",
+      "purpose": "final archive verification"
+    },
+    {
+      "path": "ARCHIVE_MANIFEST_v0.40.0.json",
+      "status": "generated",
+      "purpose": "safe historical consolidation record"
     }
   ],
   "historical_patterns": [
@@ -365,12 +405,20 @@
   ],
   "runtime_files": [
     "index.html",
+    "manifest.webmanifest",
+    "sw.js",
     "version.js",
-    "assets/app.js",
+    "zeke-config.js",
+    "xlsx-bundle.js",
+    "assets/styles.css",
     "assets/data-layer.js",
     "assets/parser.js",
     "assets/ai-router.js",
     "assets/workflow-engine.js",
-    "assets/styles.css"
+    "assets/exercise-guides.js",
+    "assets/knowledge-base.js",
+    "assets/integrity-engine.js",
+    "assets/app.js",
+    "assets/branding/zeke-mark-provisional.png"
   ]
 }

@@ -1,53 +1,45 @@
 {
   "schema_version": 3,
-  "release": "0.29.0",
-  "build": "2026.07.25.1",
-  "current_version": "0.29.0",
-  "current_build": "2026.07.25.1",
+  "release": "0.40.0",
+  "build": "2026.08.03.1",
+  "current_version": "0.40.0",
+  "current_build": "2026.08.03.1",
   "governance_revision": "2026.07.25.2",
   "current_iteration": {
-    "status": "continuity_reconciliation_complete_runtime_unchanged",
+    "status": "package_verified_environment_verification_outstanding",
     "baseline_verified": true,
-    "baseline_audit_status": "The original ZEKE-v0.29.0-Gym-Mode-Recovery-and-Trusted-Entry.zip was reopened and used as the runtime byte/timestamp baseline.",
+    "baseline_audit_status": "Built from the complete ZEKE GitHub repository supplied by the user and compared with the live Project Zeke Google Drive export.",
     "backlog_resurfaced": true,
     "scope_presented": true,
     "user_approved_scope": true,
-    "approved_at": "2026-07-25",
-    "approval_evidence": "After the stale README and continuity corpus were identified, the user explicitly asked to perform the documentation-only v0.29.0 reconciliation now.",
-    "release": "0.29.0",
-    "build": "2026.07.25.1",
-    "baseline_release": "0.29.0",
-    "baseline_build": "2026.07.25.1",
-    "source_recovery_baseline": "0.27.2",
+    "approved_at": "2026-08-02",
+    "approval_evidence": "The user explicitly requested one coordinated major release and then said \u201cnow go for it.\u201d",
+    "release": "0.40.0",
+    "build": "2026.08.03.1",
+    "baseline_release": "0.33.0",
+    "baseline_build": "2026.08.02.3",
     "approved_scope": [
-      "Reconcile every current-authority and standing continuity document to the actual v0.29.0 runtime and its evidence boundaries",
-      "Preserve every runtime, style, route, data, and test file byte-for-byte with its original v0.29.0 ZIP timestamp",
-      "Add the missing v0.29.0 iteration record, test report, continuity matrix, and current package provenance",
-      "Classify partial and unimplemented requirements honestly rather than treating governance decisions as completed features"
-    ],
-    "explicitly_excluded": [
-      "Application runtime, CSS, route, data-layer, parser, AI-router, service-worker, and test-code changes",
-      "New Gym Mode behavior or visual fixes",
-      "Live-provider, physical-device, protected-workbook, and credentialed-AI verification",
-      "Secure AI-vault and additional storage-provider implementation"
+      "Repair authoritative JSON integrity issues",
+      "Implement the approved lighter dashboard direction with truthful visualizations",
+      "Apply mobile improvements across the whole app",
+      "Expand activity/exercise knowledge, form guides, routines, and weekly planning",
+      "Clean repository structure and strengthen deployment verification"
     ],
     "acceptance_criteria": [
-      "Authoritative documents agree on v0.29.0 and build 2026.07.25.1",
-      "Current iteration record and artifact lifecycles agree with Project State",
-      "Runtime files match the original v0.29.0 ZIP byte-for-byte and retain original ZIP timestamps",
-      "Changed/new continuity files use actual local modification time",
-      "One clearly labeled top-level extraction folder and file-level provenance are included",
-      "Project audit reports zero errors and governance negative controls pass",
-      "Release claims remain within named evidence"
+      "No silent live-data rewriting; guided repairs create backups and preserve provenance",
+      "All displayed quantitative graphics are driven by available data or disclose insufficient data",
+      "Mobile has complete navigation, entry, repair, question, and guide access without a separate gym-only app",
+      "Runtime files share one version/cache token and build manifest",
+      "Automated structural and rendered smoke tests pass"
     ],
-    "rollback_plan": "Return to the original ZEKE-v0.29.0-Gym-Mode-Recovery-and-Trusted-Entry.zip for the same runtime with stale continuity documents, or to v0.27.2 only if the v0.29.0 runtime itself is explicitly rejected.",
+    "rollback_plan": "Restore the previous GitHub repository package and the automatic integrity backup stored under imports/backups/.",
     "prior_conversations_reviewed": true,
     "implementation_complete": true,
-    "continuity_reconciliation_complete": true,
     "verification_complete": true,
     "package_verification": "complete",
     "environment_verification": "outstanding",
-    "unpacked_file_count": 249
+    "unpacked_file_count": 355,
+    "verified_at": "2026-08-03T01:13:11.233075Z"
   },
   "next_iteration": {
     "status": "not_open",
@@ -55,6 +47,6 @@
     "backlog_resurfaced": false,
     "scope_presented": false,
     "user_approved_scope": null,
-    "required_baseline": "0.29.0"
+    "required_baseline": "0.40.0"
   }
 }
