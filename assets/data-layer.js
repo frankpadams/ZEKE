@@ -57,32 +57,6 @@
   const clone = (v) => structuredClone(v);
   const emit = (name = 'zeke:data-changed') => window.dispatchEvent(new CustomEvent(name, { detail: snapshot() }));
   const nowIso = () => new Date().toISOString();
-  let eventWriteQueue = Promise.resolve();
-
-  function normalizeEventForStorage(event = {}) {
-    const structured = { ...(event.structured || {}) };
-    // Optional physiological measurements must never use zero as a stand-in for missing.
-    for (const key of ['average_hr','heart_rate','resting_hr','max_hr','min_hr']) {
-      if (structured[key] != null && (!Number.isFinite(Number(structured[key])) || Number(structured[key]) <= 0)) delete structured[key];
-    }
-    for (const key of ['distance_mi','duration_min','weight','reps','sets','steps']) {
-      if (structured[key] === '' || structured[key] === undefined) delete structured[key];
-    }
-    if (structured.include_in_analysis == null && !['raw_input','correction'].includes(String(event.category || '').toLowerCase())) structured.include_in_analysis = true;
-    return { ...event, structured };
-  }
-
-  function eventIdentity(event = {}) {
-    const e = normalizeEventForStorage(event), st = e.structured || {};
-    const timestamp = String(e.timestamp || '').replace(/\.\d{3}Z$/, 'Z');
-    const keys = ['metric_id','value','unit','exercise','activity_profile','workout_id','set_number','weight','weight_unit','reps','sets','duration_min','steps','distance_mi','medication_name','canonical_medication_id','dose','status','start_time','end_time','sleep_quality'];
-    return JSON.stringify([String(e.category || '').toLowerCase(), timestamp, keys.map(k => st[k] ?? null)]);
-  }
-
-  function activeForIdentity(event = {}) {
-    const status = String(event.structured?.interpretation_status || '').toLowerCase();
-    return event.structured?.include_in_analysis !== false && !['invalid','quarantined','undone','deleted','superseded'].includes(status);
-  }
 
   function safeSetupMeta() {
     try { return JSON.parse(localStorage.getItem(SETUP_KEY) || 'null'); }
@@ -429,7 +403,6 @@ Content-Type: ${mimeType}
         }
       } catch { /* Keep the new empty connection registry. */ }
     }
-    await reconcileKnownAnswers({ persistChanges: true });
     emit();
   }
 
@@ -529,32 +502,54 @@ Content-Type: ${mimeType}
   async function getAIConnections() { return clone(state.aiConnections); }
   async function listAIExchanges() { return clone([...state.aiExchanges].sort(byTimeDesc)); }
 
-  async function addEvent(event, { allowExactDuplicate = false } = {}) {
+  function stableEventValue(value) {
+    if (Array.isArray(value)) return value.map(stableEventValue);
+    if (value && typeof value === 'object') return Object.fromEntries(Object.entries(value)
+      .filter(([key]) => !['id','recorded_at','created_at','updated_at','source_fingerprint','source_key','integrity_normalized_at'].includes(key))
+      .sort(([a],[b]) => a.localeCompare(b))
+      .map(([key,item]) => [key, stableEventValue(item)]));
+    return value;
+  }
+
+  function eventWriteFingerprint(event = {}) {
+    return JSON.stringify(stableEventValue({
+      category: event.category || '',
+      timestamp: event.timestamp || '',
+      raw_text: event.raw_text || '',
+      structured: event.structured || {},
+      transaction_id: event.provenance?.transaction_id || event.structured?.transaction_id || '',
+      source: event.provenance?.source || '',
+      source_cell: event.provenance?.source_cell || '',
+      source_row: event.provenance?.source_row ?? '',
+      file: event.provenance?.file || ''
+    }));
+  }
+
+  function activeForWrite(event = {}) {
+    const status=String(event.structured?.interpretation_status||event.structured?.data_quality_status||'').toLowerCase();
+    return event.structured?.include_in_analysis!==false && !['undone','superseded','invalid','quarantined','deleted'].includes(status);
+  }
+
+  async function addEvent(event, options = {}) {
     if (!state.provider) throw new Error('Connect storage before saving personal data.');
-    const operation = async () => {
-      const cleaned = normalizeEventForStorage(event);
-      const normalized = {
-        schema_version: 3,
-        id: cleaned.id || crypto.randomUUID(),
-        recorded_at: cleaned.recorded_at || nowIso(),
-        timestamp: cleaned.timestamp || nowIso(),
-        provenance: { source: 'manual', ...(cleaned.provenance || {}) },
-        ...cleaned
-      };
-      if (!allowExactDuplicate && !['raw_input','correction'].includes(String(normalized.category || '').toLowerCase())) {
-        const identity = eventIdentity(normalized);
-        const existing = state.events.find(e => activeForIdentity(e) && eventIdentity(e) === identity);
-        if (existing) return clone(existing);
-      }
-      state.events = [...state.events, normalized];
-      try { await persist('events'); }
-      catch (error) { state.events = state.events.filter(e => e.id !== normalized.id); throw error; }
-      emit();
-      return clone(normalized);
+    const normalized = {
+      schema_version: 3,
+      id: event.id || crypto.randomUUID(),
+      recorded_at: event.recorded_at || nowIso(),
+      timestamp: event.timestamp || nowIso(),
+      provenance: { source: 'manual', ...(event.provenance || {}) },
+      ...event
     };
-    const queued = eventWriteQueue.then(operation, operation);
-    eventWriteQueue = queued.catch(() => {});
-    return queued;
+    const fingerprint=eventWriteFingerprint(normalized);
+    if (!options.allowExactDuplicate) {
+      const existing=state.events.find(row=>activeForWrite(row)&&eventWriteFingerprint(row)===fingerprint);
+      if(existing) return {...clone(existing),deduplicated_write:true};
+    }
+    state.events = [...state.events, normalized];
+    try { await persist('events'); }
+    catch (error) { state.events = state.events.filter(e => e.id !== normalized.id); throw error; }
+    emit();
+    return clone(normalized);
   }
 
   async function updateEvent(id, patch, { appendCorrection = true } = {}) {
@@ -605,72 +600,6 @@ Content-Type: ${mimeType}
     state.events = [...state.events, ...corrections];
     await persist('events'); emit();
     return { undone };
-  }
-
-  async function supersedeEvent(id, replacement, reason = 'Record corrected by user') {
-    const original = state.events.find(e => e.id === id);
-    if (!original) throw new Error('Record not found.');
-    const now = nowIso();
-    const replacementEvent = normalizeEventForStorage({
-      ...replacement,
-      id: replacement.id || crypto.randomUUID(),
-      recorded_at: replacement.recorded_at || now,
-      provenance: { ...(replacement.provenance || {}), source: replacement.provenance?.source || 'user-correction', supersedes_event_id: id }
-    });
-    const before = clone(state.events);
-    const updatedOriginal = {
-      ...original,
-      updated_at: now,
-      structured: { ...(original.structured || {}), interpretation_status: 'superseded', include_in_analysis: false, superseded_at: now, superseded_by_event_id: replacementEvent.id, supersession_reason: reason }
-    };
-    state.events = state.events.map(e => e.id === id ? updatedOriginal : e);
-    state.events.push(replacementEvent, {
-      schema_version: 3, id: crypto.randomUUID(), category: 'correction', timestamp: now, recorded_at: now,
-      raw_text: reason,
-      structured: { target_event_id: id, replacement_event_id: replacementEvent.id, before: original, after: replacementEvent, operation: 'supersede' },
-      provenance: { source: 'user-correction' }
-    });
-    try { await persist('events'); }
-    catch (error) { state.events = before; throw error; }
-    emit();
-    return clone(replacementEvent);
-  }
-
-  function medicationScheduleAnswers() {
-    const map = new Map();
-    for (const item of state.actions?.catalog || []) {
-      if (!item?.schedule?.type) continue;
-      const names = [item.id, item.label, item.canonical_medication_id].filter(Boolean).map(v => String(v).toLowerCase());
-      const days = Array.isArray(item.schedule.days) ? item.schedule.days : [];
-      const dayNames = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-      const answer = item.schedule.type === 'weekly' ? `Weekly${days.length ? ` on ${days.map(d => dayNames[Number(d)] || d).join(', ')}` : ''}` : String(item.schedule.type);
-      for (const name of names) map.set(name.replace(/^med-/, ''), answer);
-    }
-    return map;
-  }
-
-  async function reconcileKnownAnswers({ persistChanges = true } = {}) {
-    const schedules = medicationScheduleAnswers();
-    let changed = 0;
-    const seenOpen = new Map();
-    state.factors = state.factors.map(f => {
-      const key = String(f.question_key || '').toLowerCase();
-      let next = f;
-      if (key.startsWith('med_schedule:') && !['resolved','dismissed','unknown'].includes(f.status)) {
-        const med = key.split(':').slice(1).join(':').replace(/^med-/, '');
-        const answer = schedules.get(med) || [...schedules.entries()].find(([name]) => name.includes(med) || med.includes(name))?.[1];
-        if (answer) { next = { ...f, status:'resolved', answer, resolved_at:nowIso(), updated_at:nowIso(), resolution_source:'confirmed-actions-catalog' }; changed++; }
-      }
-      if (next.question_key && !['resolved','dismissed','unknown'].includes(next.status)) {
-        const qk = String(next.question_key);
-        if (seenOpen.has(qk)) { next = { ...next, status:'superseded', resolved_at:nowIso(), updated_at:nowIso(), superseded_by_factor_id:seenOpen.get(qk) }; changed++; }
-        else seenOpen.set(qk, next.id);
-      }
-      return next;
-    });
-    if (changed && persistChanges && state.provider) await persist('factors');
-    if (changed) emit();
-    return { changed };
   }
 
   async function addRawInput(rawText, context = {}) {
@@ -768,7 +697,7 @@ Content-Type: ${mimeType}
     return saveFactor({ ...current, status, answer, resolved_at: ['resolved','dismissed','unknown'].includes(status) ? nowIso() : current.resolved_at });
   }
 
-  async function saveActions(actions) { state.actions = clone(actions); await persist('actions'); await reconcileKnownAnswers({ persistChanges:true }); emit(); return clone(state.actions); }
+  async function saveActions(actions) { state.actions = clone(actions); await persist('actions'); emit(); return clone(state.actions); }
   async function savePreferences(preferences) { state.preferences = clone(preferences); await persist('preferences'); emit(); return clone(state.preferences); }
   async function saveAIConnections(connections) { state.aiConnections = clone(connections); await persist('aiConnections'); emit('zeke:ai-connection-changed'); return clone(state.aiConnections); }
   async function addAIExchange(exchange) { state.aiExchanges = [...state.aiExchanges, { id: crypto.randomUUID(), timestamp: nowIso(), ...exchange }]; await persist('aiExchanges'); emit('zeke:ai-exchange-changed'); }
@@ -923,8 +852,44 @@ Content-Type: ${mimeType}
   async function createIntegrityBackup(reason = 'data-integrity-change') {
     if (!state.provider) throw new Error('Connect storage before changing personal data.');
     const path=`imports/backups/integrity-${new Date().toISOString().replace(/[:.]/g,'-')}.json`;
-    await state.provider.writeJson(path,{created_at:nowIso(),reason,app_version:window.ZEKE_VERSION||'',events:state.events});
+    await state.provider.writeJson(path,{created_at:nowIso(),reason,app_version:window.ZEKE_BUILD||window.ZEKE_VERSION||'',events:state.events,factors:state.factors,discoveries:state.discoveries,actions:state.actions});
     return path;
+  }
+
+  async function applyIntegrityRepairs(candidates = []) {
+    if (!state.provider) throw new Error('Connect storage before changing personal data.');
+    const plans=(candidates||[]).filter(Boolean);
+    if(!plans.length)return {applied:0,details:[]};
+    const before={events:clone(state.events),factors:clone(state.factors),discoveries:clone(state.discoveries)};
+    const backupPath=await createIntegrityBackup('guided integrity repairs');
+    const now=nowIso(),details=[];
+    const markEvent=(event,reason,status='quarantined')=>({
+      ...event,updated_at:now,structured:{...(event.structured||{}),interpretation_status:status,data_quality_status:status,include_in_analysis:false,integrity_reason:reason,integrity_reviewed_at:now},provenance:{...(event.provenance||{}),integrity_reviewed_at:now}
+    });
+    for(const plan of plans){
+      const type=plan.type,ids=new Set((plan.items||[]).map(x=>x.id).filter(Boolean));
+      if(type==='exact-duplicate'){
+        const keep=plan.keep?.id||plan.items?.[0]?.id;state.events=state.events.map(e=>ids.has(e.id)&&e.id!==keep?markEvent(e,'Exact duplicate retained only in audit','superseded'):e);details.push({type,kept:keep,superseded:[...ids].filter(id=>id!==keep)});
+      }else if(type==='import-artifact'){
+        state.events=state.events.map(e=>ids.has(e.id)?markEvent(e,'Historical spreadsheet legend or instruction, not a health event'):e);details.push({type,quarantined:[...ids]});
+      }else if(type==='implausible-sleep'&&plan.keep){
+        const bad=plan.items?.[0]?.id,keep=plan.keep.id;state.events=state.events.map(e=>e.id===bad?markEvent({...e,structured:{...(e.structured||{}),superseded_by:keep}},'Implausible sleep record superseded after user review','superseded'):e);details.push({type,superseded:[bad],kept:keep});
+      }else if(type==='paddle-fields'||type==='zero-as-missing'){
+        state.events=state.events.map(e=>{if(!ids.has(e.id))return e;const st={...(e.structured||{})};if(type==='paddle-fields'){delete st.steps;delete st.ambulatory_steps;st.activity_profile='sport';st.data_quality_status='needs_distance_review';}if(Number(st.average_hr)===0)delete st.average_hr;if(Number(st.avg_hr)===0)delete st.avg_hr;return {...e,updated_at:now,structured:st,provenance:{...(e.provenance||{}),integrity_reviewed_at:now}}});details.push({type,updated:[...ids]});
+      }else if(type==='answered-question'){
+        state.factors=state.factors.map(f=>ids.has(f.id)?{...f,status:'resolved',resolution:'Already answered by confirmed medication schedule',updated_at:now}:f);details.push({type,resolved:[...ids]});
+      }else if(type==='duplicate-discovery'){
+        const keep=plan.keep?.id||plan.items?.[0]?.id;state.discoveries=state.discoveries.map(d=>ids.has(d.id)&&d.id!==keep?{...d,status:'superseded',superseded_by:keep,updated_at:now}:d);details.push({type,kept:keep,superseded:[...ids].filter(id=>id!==keep)});
+      }else if(type==='stale-discovery'){
+        state.discoveries=state.discoveries.map(d=>ids.has(d.id)?{...d,status:'stale',stale_reason:'Newer canonical workout data invalidated the earlier data-sufficiency premise',updated_at:now}:d);details.push({type,stale:[...ids]});
+      }
+    }
+    state.events.push({schema_version:3,id:crypto.randomUUID(),category:'correction',timestamp:now,recorded_at:now,raw_text:'Guided data-integrity repairs applied',structured:{operation:'integrity_batch',details,backup_path:backupPath,interpretation_status:'confirmed',include_in_analysis:false},provenance:{source:'ZEKE Data Integrity Center'}});
+    try{await Promise.all([persist('events'),persist('factors'),persist('discoveries')]);}
+    catch(error){state.events=before.events;state.factors=before.factors;state.discoveries=before.discoveries;throw error;}
+    state.lastIntegrityUndo={...before,reason:`Applied ${details.length} guided repair(s)`,backup_path:backupPath};
+    await saveImportBatch({type:'guided-data-integrity-repair',source:'ZEKE Data Integrity Center',counts:{repairs_applied:details.length},message:`Applied ${details.length} guided repair(s). Backup: ${backupPath}`,details});
+    emit();return {applied:details.length,details,backup_path:backupPath};
   }
 
   async function mergeActivityEntities({ canonicalName, aliases = [] } = {}) {
@@ -969,9 +934,9 @@ Content-Type: ${mimeType}
     const undo=state.lastIntegrityUndo;
     if(!undo?.events) throw new Error('There is no cleanup action to undo in this session.');
     await createIntegrityBackup('before undoing data-integrity change');
-    const current=clone(state.events); state.events=clone(undo.events);
-    state.lastIntegrityUndo={events:current,reason:`Undo of: ${undo.reason}`};
-    await persist('events'); emit();
+    const current={events:clone(state.events),factors:clone(state.factors),discoveries:clone(state.discoveries)}; state.events=clone(undo.events); if(undo.factors)state.factors=clone(undo.factors); if(undo.discoveries)state.discoveries=clone(undo.discoveries);
+    state.lastIntegrityUndo={...current,reason:`Undo of: ${undo.reason}`};
+    await Promise.all([persist('events'),persist('factors'),persist('discoveries')]); emit();
     await saveImportBatch({type:'data-integrity-undo',source:'ZEKE Data Integrity Center',counts:{restored_records:state.events.length},message:`Undid: ${undo.reason}`});
     return {restored:state.events.length,reason:undo.reason};
   }
@@ -982,14 +947,14 @@ Content-Type: ${mimeType}
 
   window.ZekeData = {
     bootstrap, connect, reconnect, disconnect, snapshot, safeSetupMeta,
-    listEvents, addEvent, updateEvent, supersedeEvent, undoEvents, addRawInput, confirmRawInput, findLikelyDuplicates, reconcileKnownAnswers,
+    listEvents, addEvent, updateEvent, undoEvents, addRawInput, confirmRawInput, findLikelyDuplicates,
     listFactors, saveFactor, resolveFactor, listDiscoveries,
     getActions, saveActions, getPreferences, savePreferences,
     getAIConnections, saveAIConnections, listAIExchanges, addAIExchange,
     listConversation, appendConversation, saveConversation,
     listImportBatches, saveImportBatch, mergeHistoryPackage,
     saveSyncSource, getSyncSource, readSyncSourceWorkbook, updateSyncSourceWorkbook, preflightSourceEvents, verifySourceEvents, reconcileSourceEvents,
-    listCalendarEvents, mergeActivityEntities, removeExactDuplicateEvents, undoLastIntegrityChange, hasIntegrityUndo,
-    constants: { PATHS, SETUP_KEY }
+    listCalendarEvents, mergeActivityEntities, removeExactDuplicateEvents, applyIntegrityRepairs, undoLastIntegrityChange, hasIntegrityUndo,
+    eventWriteFingerprint, constants: { PATHS, SETUP_KEY }
   };
 })();

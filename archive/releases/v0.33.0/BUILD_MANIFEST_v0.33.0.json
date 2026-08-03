@@ -1,0 +1,72 @@
+{
+  "version": "0.33.0",
+  "build": "2026.08.02.3",
+  "generated_at": "2026-08-03T00:27:17.289812+00:00",
+  "runtime_files": [
+    {
+      "path": "index.html",
+      "sha256": "d612cf35764d6991a96805c12e059a600268bd0caa62f8b0d0e137c3eab95779",
+      "bytes": 2184
+    },
+    {
+      "path": "version.js",
+      "sha256": "d47325de1304cd590c42b13a52420502d5ad9ce562434ea7b3c6e3e160870c0a",
+      "bytes": 141
+    },
+    {
+      "path": "zeke-config.js",
+      "sha256": "bbfad67bbca5456c596d6949c77de86133f1285d81939b1d108ac638106b5c39",
+      "bytes": 289
+    },
+    {
+      "path": "xlsx-bundle.js",
+      "sha256": "cd4c81425faae9b42cbbe384c49fccf5cb2c8c1d6195d989f9df10ecbd28d1a5",
+      "bytes": 432475
+    },
+    {
+      "path": "assets/styles.css",
+      "sha256": "9a91dbab944d2618e0231026322a7019f84a3d7d10676fc6d1eeee90c80e5ad5",
+      "bytes": 164708
+    },
+    {
+      "path": "assets/data-layer.js",
+      "sha256": "be317e26b3eaeaf4550bd637fa35c7339db2e6a0bd5ebc5fda5a74339a17d22c",
+      "bytes": 47947
+    },
+    {
+      "path": "assets/parser.js",
+      "sha256": "10628c231f5d0fcdc958439511992cd45e0539c7f98d2f0ae0a9008cd0d71c81",
+      "bytes": 17431
+    },
+    {
+      "path": "assets/ai-router.js",
+      "sha256": "11c16a5994400c34dc584bcb06d62894dd39e04dd7d482ef7fe8a840f7589aea",
+      "bytes": 24108
+    },
+    {
+      "path": "assets/workflow-engine.js",
+      "sha256": "e333f55ad8fbc7ec15c998bea1e6072335e2ec7baa4283363b0d94c3e7e1264a",
+      "bytes": 10840
+    },
+    {
+      "path": "assets/exercise-guides.js",
+      "sha256": "d28ae11d1ae7fd1d292b0b80afee68cf1ca63e0e9edb25b498072f29dcd53660",
+      "bytes": 35331
+    },
+    {
+      "path": "assets/app.js",
+      "sha256": "cbab979907b052ab479d5f5d6f27eb2f35846358212e4183cf4680d6a4e95bf0",
+      "bytes": 466705
+    },
+    {
+      "path": "sw.js",
+      "sha256": "30a74f78dc14e6b4f38d00935222c6c0d90d3ba6588dbcb576b7bfcb9204fc49",
+      "bytes": 726
+    },
+    {
+      "path": "manifest.webmanifest",
+      "sha256": "7b98d9b521d9a1d8f5319c237595c05223d2af6685cd831743bed51f3bdc0aad",
+      "bytes": 314
+    }
+  ]
+}

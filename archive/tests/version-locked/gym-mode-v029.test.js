@@ -1,0 +1,18 @@
+const fs=require('fs'),path=require('path');
+const root=path.resolve(__dirname,'..');
+const app=fs.readFileSync(path.join(root,'assets/app.js'),'utf8');
+const css=fs.readFileSync(path.join(root,'assets/styles.css'),'utf8');
+const must=(v,m)=>{if(!v)throw new Error(m)};
+must(app.includes('Saving to storage…'),'truthful save-in-progress state missing');
+must(!app.includes('Synced to Drive ☁'),'false synced state remains in Gym Mode');
+must(app.includes('Apply Recommended Progression'),'recommended progression control missing');
+must(app.includes('Not enough evidence'),'insufficient-evidence readiness state missing');
+must(app.includes('Prefilled from last confirmed entry'),'primary prefill source is not disclosed');
+must(app.includes('Add optional details'),'collapsed optional details missing');
+must(app.includes('intensity_min')&&app.includes('intensity_max'),'cardio intensity range missing');
+must(app.includes('renderHistory(item,index)'),'Gym-contained history route missing');
+must(app.includes("x.status='suggested'"),'routine suggestion state missing');
+must(app.includes('gymWorkoutDate'),'visible editable workout date missing');
+must(app.includes('Verified movement image not yet available'),'truthful guide-image fallback missing');
+must(css.includes('.zeke-qualitative-gauge'),'qualitative speedometer missing');
+console.log(JSON.stringify({ok:true,contract:'ZEKE_GYM_MODE_V029'},null,2));
