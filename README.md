@@ -1,37 +1,26 @@
-# ZEKE v0.31.0 — Mobile Workout Visual Fidelity and Form Guides
+# ZEKE v0.40.0 — Trust, Mobile, Dashboard & Fitness Milestone
 
-**Build:** 2026.07.26.1
+**Build:** 2026.08.03.1  
+**Canonical data:** User-owned JSON repository in the active storage provider  
+**Package status:** Package verification complete; live deployment and physical-device verification remain outstanding.
 
-This is the current authoritative application package. It builds from the continuity-reconciled v0.29.0 baseline and implements the phone-focused workout-entry interface, logging hierarchy, editable entry dates, routines as templates, provider-backed custom activities/routines, and dedicated condition entry. Desktop ZEKE remains a separate full analysis and management experience.
+ZEKE is a private personal knowledge and management system. This release coordinates data integrity, a guided Repair Center, a lighter truthful dashboard, mobile-wide low-friction interaction, and an equipment-aware fitness knowledge foundation.
 
-See `RELEASE_NOTES_v0.30.0.md` and `TEST_REPORT_v0.30.0.md` for scope and verification boundaries.
+## Start here
 
----
+1. Read `00_AI_START_HERE.md`.
+2. Review `RELEASE_NOTES_v0.40.0.md` and `TEST_REPORT_v0.40.0.md`.
+3. Deploy the complete verified runtime set described in `DEPLOYMENT_MANIFEST_v0.40.0.md`.
+4. After connecting Google Drive, open **Review & Repair** from the dashboard to review proposed repairs to the authoritative JSON.
 
-## Prior continuity content
+## Important boundaries
 
-# ZEKE v0.29.0 — Gym Mode Recovery and Trusted Entry
+- No repair is silently applied to live canonical data.
+- Each approved repair creates a provider-backed backup and audit history.
+- Visualizations use actual recorded data or clearly state that data are insufficient.
+- The whole mobile application prioritizes navigation, entry, repairs, questions, coaching, and form guides; there is no separate gym-only application.
+- Remote public-domain exercise media may require a network connection. Written guidance and a truthful unavailable-media state remain functional.
 
-**Runtime build:** 2026.07.25.1  
-**Governance revision:** 2026.07.25.2  
-**Continuity status:** Reconciled to the actual v0.29.0 runtime.  
-**Runtime change in this continuity package:** None.
+## Current verification
 
-ZEKE is a private, user-owned personal-management system. This archive is the continuity-complete master package for the v0.29.0 runtime that was rebuilt from the approved v0.27.2 recovery baseline.
-
-## Current authority
-
-- v0.29.0 is the current runtime and forward-development baseline.
-- v0.27.2 remains the historical recovery source from which v0.29.0 was built.
-- v0.28.x remains rejected as a forward-development baseline.
-- The July 25 governance decisions remain binding; implementation status is recorded in `FEATURE_STATUS.md` and `DEVELOPMENT_MEMORY/PROJECT_STATE.json`.
-
-## Important verification boundary
-
-Package structure, continuity coherence, hashes, timestamps, syntax, and package-local tests are documented. Physical iPhone/Android testing, deployed-provider behavior, live credentials, and full rendered acceptance remain environment verification.
-
-Begin with `00_AI_START_HERE.md`.
-
-## Packaging
-
-The archive has one clearly named top-level folder. Runtime files are byte-identical to the original v0.29.0 runtime candidate and retain their original ZIP timestamps. Only genuinely reconciled governance/continuity files have new timestamps. See `PACKAGE_PROVENANCE_v0.29.0-CONTINUITY.json` and `PACKAGE_VERIFICATION_v0.29.0-CONTINUITY.json`.
+Automated syntax, deterministic regression, live-data fixture, governance, and rendered Chromium smoke tests are documented in `TEST_REPORT_v0.40.0.md`. Physical iPhone/Android behavior, live Google Drive permissions, and remote-media availability require deployment verification.
