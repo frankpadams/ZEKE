@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "product": "Project ZEKE",
+  "release": "0.40.0",
+  "build": "2026.08.03.1",
+  "generated_at": "2026-08-03T01:13:11.233075Z",
+  "repository_schema_version": 3,
+  "cache_name": "project-zeke-v0.40.0-20260803.1",
+  "knowledge_objects": 102,
+  "built_in_routines": 12,
+  "compatible_canonical_data": "schema_version 3; migration and repair are user-reviewed",
+  "runtime_files": [
+    {
+      "path": "index.html",
+      "bytes": 1969,
+      "sha256": "b5987560d362c1cb7e5a7bd864ff99d80c1176ff680b8c265cfb9b1917e810e4",
+      "modified_utc": "2026-08-03T00:55:31.703511Z"
+    },
+    {
+      "path": "manifest.webmanifest",
+      "bytes": 426,
+      "sha256": "39840c6aa792f8ec4018e4ecf5fabfc4c63f686f77d12878307e124ac5bda274",
+      "modified_utc": "2026-08-03T00:55:31.703511Z"
+    },
+    {
+      "path": "sw.js",
+      "bytes": 1574,
+      "sha256": "37d58e1a3ca5630309b139d246b2c2075ad4873fd828c774e9c04cd9141b07c1",
+      "modified_utc": "2026-08-03T00:55:31.703511Z"
+    },
+    {
+      "path": "version.js",
+      "bytes": 197,
+      "sha256": "2ac965e7212d009f32910c5306e0e31ec2656ce99fa7de342b7389229021316c",
+      "modified_utc": "2026-08-03T00:55:31.703511Z"
+    },
+    {
+      "path": "zeke-config.js",
+      "bytes": 289,
+      "sha256": "bbfad67bbca5456c596d6949c77de86133f1285d81939b1d108ac638106b5c39",
+      "modified_utc": "2026-07-26T18:13:02Z"
+    },
+    {
+      "path": "xlsx-bundle.js",
+      "bytes": 432475,
+      "sha256": "cd4c81425faae9b42cbbe384c49fccf5cb2c8c1d6195d989f9df10ecbd28d1a5",
+      "modified_utc": "2026-07-26T18:13:02Z"
+    },
+    {
+      "path": "assets/styles.css",
+      "bytes": 172186,
+      "sha256": "f39433cecbd8c1d71eb24746e805294a2f7272b6bf689189c7b709a039f69f57",
+      "modified_utc": "2026-08-03T00:55:31.711511Z"
+    },
+    {
+      "path": "assets/data-layer.js",
+      "bytes": 54136,
+      "sha256": "47748fa92fd909bbec935205653a25b835e3e43c1705580724a5a11b7c0be224",
+      "modified_utc": "2026-08-03T00:55:31.711511Z"
+    },
+    {
+      "path": "assets/parser.js",
+      "bytes": 17431,
+      "sha256": "10628c231f5d0fcdc958439511992cd45e0539c7f98d2f0ae0a9008cd0d71c81",
+      "modified_utc": "2026-07-26T18:13:02Z"
+    },
+    {
+      "path": "assets/ai-router.js",
+      "bytes": 24108,
+      "sha256": "11c16a5994400c34dc584bcb06d62894dd39e04dd7d482ef7fe8a840f7589aea",
+      "modified_utc": "2026-07-26T18:13:02Z"
+    },
+    {
+      "path": "assets/workflow-engine.js",
+      "bytes": 10840,
+      "sha256": "e333f55ad8fbc7ec15c998bea1e6072335e2ec7baa4283363b0d94c3e7e1264a",
+      "modified_utc": "2026-07-26T18:13:02Z"
+    },
+    {
+      "path": "assets/exercise-guides.js",
+      "bytes": 35331,
+      "sha256": "d28ae11d1ae7fd1d292b0b80afee68cf1ca63e0e9edb25b498072f29dcd53660",
+      "modified_utc": "2026-07-26T18:13:02Z"
+    },
+    {
+      "path": "assets/knowledge-base.js",
+      "bytes": 192636,
+      "sha256": "11dda92e401b972b575e628647c542a90f1b4e258437fdcb966d000605402520",
+      "modified_utc": "2026-08-03T01:11:45.375540Z"
+    },
+    {
+      "path": "assets/integrity-engine.js",
+      "bytes": 8135,
+      "sha256": "c92d59e6025285c92b7caaac9270c2f8406b62a5a50f1aa636ec40e9018885f4",
+      "modified_utc": "2026-08-03T00:55:47.443512Z"
+    },
+    {
+      "path": "assets/app.js",
+      "bytes": 483270,
+      "sha256": "15027ed382e9fa7ba1fe79b788b9448d5cecbef1733e493316a910ab429a2a0a",
+      "modified_utc": "2026-08-03T01:05:13.531528Z"
+    },
+    {
+      "path": "assets/branding/zeke-mark-provisional.png",
+      "bytes": 117701,
+      "sha256": "ab793947dbfa9368b810678cbcf9558394b06fb962ce9547ec5efcad91298ac2",
+      "modified_utc": "2026-07-26T18:13:02Z"
+    }
+  ],
+  "deployment_rule": "Deploy this runtime set as one consistent unit; do not choose files by timestamp alone."
+}

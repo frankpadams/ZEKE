@@ -1,64 +1,36 @@
-# ZEKE v0.30.0 Feature Status
+# ZEKE v0.40.0 Feature Status
 
-## Implemented in this release
+**Build:** 2026.08.03.1
 
-- Mobile bottom-navigation Gym entry
-- Mobile workout entry with editable date
-- Fitness logging action menu
-- Common exercise chooser and library search
-- One-at-a-time activity addition
-- Provider-backed custom activity definitions
-- Provider-backed routine templates and routine manager
-- Dedicated condition entry and management path
-- All-time chart range retained
+## Implemented and package-tested
 
-## Partially implemented / content dependent
-
-- Form Guide media sequences: reviewed lead images and written guidance exist for selected exercises; fully curated multi-image sequences remain incomplete.
-- Secure cross-device AI vault remains architectural work.
-- Additional storage-provider adapters beyond the current implementation remain future work.
-
----
-
-## Prior continuity content
-
-# ZEKE Feature Status — v0.29.0
-
-**Runtime build:** 2026.07.25.1  
-**Governance revision:** 2026.07.25.2
-
-## Implemented in the v0.29.0 runtime
-
-| Area | Status | Evidence / limitation |
+| Area | Status | Boundary |
 |---|---|---|
-| Mobile-focused Gym Mode shell | Implemented, package-tested | Structural/contract tests passed; physical-device acceptance outstanding. |
-| Visible editable workout date | Implemented in Gym Mode | Cross-domain effective-date requirement remains incomplete. |
-| Routine/manual/custom exercise start | Implemented as starter behavior | Provider-backed routine library and revisions are not implemented. |
-| Explicit exercise states | Implemented | Suggested, Not started, In progress, Saved; deployed behavior still needs acceptance. |
-| Primary-field prefill | Implemented | Uses most recent confirmed entry; optional details begin blank. |
-| Per-set strength entry | Implemented | Load and reps editable per set; zero load/reps rejected. |
-| Cardio-specific fields | Implemented for current profiles | Duration required; intensity may be blank or a range. Broader activity schema coverage remains incomplete. |
-| Qualitative readiness UI | Implemented as heuristic | Numberless gauge and written categories exist; methodology is not yet research-reviewed. |
-| Apply Recommended Progression | Implemented | Changes current unsaved form only. |
-| Gym-contained history | Implemented structurally | Full rendered phone acceptance outstanding. |
-| Save language | Implemented | Saving to storage → Saved; no Gym Mode Synced claim. |
-| Local unfinished-entry recovery | Implemented for Gym Mode | Uses local browser storage; noncanonical and not guaranteed in private browsing. |
-| Form Guide bottom sheet | Partially implemented | Reviewed-image subset and truthful fallback exist; true image sequence and complete media review manifest remain outstanding. |
+| Canonical JSON integrity scan | Implemented | Deterministic supported candidate types only |
+| Guided Repair Center | Implemented | User approval required; live-provider acceptance outstanding |
+| Provider-backed repair backup and audit | Implemented | Google Drive path requires deployment verification |
+| Exact duplicate-write prevention | Implemented | Based on normalized write fingerprint |
+| Question reconciliation | Implemented for confirmed medication schedules and duplicate identities | Broader semantic reconciliation remains iterative |
+| Lighter dashboard composition | Implemented | Uses truthful data/insufficient-data states |
+| Mobile-wide responsive navigation and entry | Implemented | Physical-device acceptance outstanding |
+| Activity-specific structured fields | Implemented for strength, cardio, sport, rehab, recovery, mobility/functional profiles | Catalog depth will continue to expand |
+| Exercise/activity knowledge base | 101 objects | Core high-use objects deeply curated; lower-priority objects use cautious templates |
+| Built-in routines | 12 templates | Templates only, not historical workout identities |
+| Weekly workout expectation planner | Implemented | Does not infer commitment from open calendar time |
+| Rich form guides and mind-muscle cues | Implemented for knowledge objects | Not medical advice; evidence strength varies |
+| Version/build splash and cache manifest | Implemented | Deployment must replace the complete verified runtime set |
 
-## Governance locked but not implemented or not complete
+## Partial or environment-dependent
 
-- Provider-agnostic storage adapters and one-contract substitution beyond the current Google-oriented data layer.
-- Secure cross-device AI credential vault, PIN service, and recovery flow.
-- Multiple sleep segments per sleep day across Talk to ZEKE and direct entry.
-- Visible editable effective dates on every workout, lab, vital, medication, sleep, symptom, and comparable entry screen.
-- Separate spacious desktop Workout Entry experience.
-- Provider-backed routine creation, editing, revision, and reuse.
-- Research-supported versioned readiness methodology.
-- Complete Form Guide movement sequences and human-reviewed media manifest.
-- Physical iPhone 8-and-newer, representative Android, desktop, accessibility, and deployed-provider acceptance.
+- Remote public-domain images depend on network and source availability; truthful no-image fallback is implemented.
+- Live Google Drive reconnect, write, backup, repair, and undo require deployed testing with the user’s account.
+- Physical iPhone and representative Android acceptance remains outstanding.
+- Deep manual evidence review is complete for the core high-use set, not every catalog object.
 
-## Explicit non-claims
+## Roadmap-scale items not represented as complete
 
-The v0.29.0 package is not evidence that non-Google storage works, AI keys are securely portable, sleep segmentation is complete, every Form Guide image/sequence is correct, or Gym Mode has passed real-device acceptance.
-
-See `RELEASE_NOTES_v0.29.0.md` and `TEST_REPORT_v0.29.0.md`.
+- Full locally hosted exercise media library and professionally reviewed movement sequences.
+- Mature adaptive periodization and validated recovery/readiness modeling.
+- Watch/live wearable workout interfaces.
+- Provider adapters beyond Google Drive.
+- Full long-form evidence library for every exercise variation.

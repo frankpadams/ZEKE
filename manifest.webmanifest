@@ -1,9 +1,17 @@
 {
   "name": "Project ZEKE",
   "short_name": "ZEKE",
-  "start_url": "./#/health/dashboard",
+  "description": "Private personal knowledge and health workspace",
+  "start_url": "./index.html?v=20260803.1",
   "display": "standalone",
-  "background_color": "#030c1c",
-  "theme_color": "#030c1c",
-  "icons": [{"src":"./assets/branding/zeke-app-icon-provisional.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}]
+  "background_color": "#f4f7fb",
+  "theme_color": "#f4f7fb",
+  "icons": [
+    {
+      "src": "assets/branding/zeke-mark-provisional.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
 }

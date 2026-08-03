@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "release": "0.40.0",
+  "build": "2026.08.03.1",
+  "policy": "Only files confirmed outside the active index/service-worker runtime chain were moved. Historical registered evidence remains in place unless its registry path is updated.",
+  "moves": [
+    {"from": "app.js", "to": "archive/legacy-root/app.js", "reason": "unreferenced legacy root application source; active runtime is assets/app.js"},
+    {"from": "style.css", "to": "archive/legacy-root/style.css", "reason": "unreferenced legacy root stylesheet; active runtime is assets/styles.css"},
+    {"from": "README_PATCH.txt", "to": "archive/legacy-root/README_PATCH.txt", "reason": "superseded patch-era instruction"},
+    {"from": "ZEKE_V0_6_PATCH_NOTES.txt", "to": "archive/legacy-root/ZEKE_V0_6_PATCH_NOTES.txt", "reason": "historical patch-era note"},
+    {"from": "BUILD_MANIFEST_v0.33.0.json", "to": "archive/releases/v0.33.0/BUILD_MANIFEST_v0.33.0.json", "reason": "superseded partial-release manifest"},
+    {"from": "FILES_TO_REPLACE_v0.33.0.txt", "to": "archive/releases/v0.33.0/FILES_TO_REPLACE_v0.33.0.txt", "reason": "superseded partial-release deployment list"},
+    {"from": "RELEASE_NOTES_v0.33.0.md", "to": "archive/releases/v0.33.0/RELEASE_NOTES_v0.33.0.md", "reason": "superseded partial-release notes"}
+  ],
+  "active_runtime_unchanged_by_move": true
+}
