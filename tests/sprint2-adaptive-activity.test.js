@@ -1,0 +1,16 @@
+const fs=require('fs');
+const app=fs.readFileSync('assets/app.js','utf8');
+const css=fs.readFileSync('assets/styles.css','utf8');
+const version=fs.readFileSync('VERSION.txt','utf8').trim().split(/\r?\n/)[0];
+const must=(v,m)=>{if(!v)throw new Error(m)};
+must(/^0\.40\.([2-9]|[1-9][0-9]+)$/.test(version),'Sprint 2 features require v0.40.2 or later');
+must(app.includes('ACTIVITY_FIELD_DEFINITIONS'),'field registry missing');
+must(app.includes('PROFILE_FIELD_DEFAULTS'),'profile schemas missing');
+must(app.includes("if(/cheerleaders?|cheer leader|band diagonal|alternating.*band/.test(n))return 'rehab'"),'Cheerleaders PT classification missing');
+must(app.includes("fields:['sets','reps','band_resistance','pain_before','pain_during','pain_after','difficulty','rom_change','injury_context']"),'Cheerleaders schema missing');
+must(app.includes('data-custom-field'),'custom field chooser missing');
+must(app.includes('data-custom-required'),'required/optional controls missing');
+must(app.includes("activity_schema_version:'2'"),'schema provenance missing');
+must(app.includes('Weight is never required unless you explicitly add it'),'non-weight PT guidance missing');
+must(css.includes('.custom-field-grid'),'custom field mobile styles missing');
+console.log('Sprint 2 adaptive activity checks passed');

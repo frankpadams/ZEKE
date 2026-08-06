@@ -27,7 +27,7 @@ must(app.includes('potential_health_event'),'Potential Health Events support mis
 must(app.includes('potential_health_events:potentialHealthEvents()'),'Potential Health Events missing from AI packet/context');
 must(app.includes('activityChartDescriptor'),'activity graph descriptor missing');
 must(app.includes('activity-chart-label')&&css.includes('.activity-chart-status'),'activity graph label/explanation support missing');
-for(const cls of ['workout-rpe','workout-pain-before','workout-pain-during','workout-pain-after','workout-technique','workout-injury-context'])must(app.includes(cls),`${cls} missing from workout entry/edit schema`);
+for(const token of ["rpe:{label:'Effort / RPE (0–10)'","pain_before:{label:'Pain before (0–10)'","pain_during:{label:'Pain during (0–10)'","pain_after:{label:'Pain after (0–10)'","technique_notes:{label:'Technique / form'","injury_context:{label:'Injury or PT context'",'editWorkoutRpe','editWorkoutPainBefore','editWorkoutPainDuring','editWorkoutPainAfter','editWorkoutTechnique','editWorkoutInjury'])must(app.includes(token),`${token} missing from adaptive workout entry/edit schema`);
 must(app.includes('Confirm this sleep entry'),'concrete sleep review title missing');
 must(!app.includes('Exercise parsing opportunity'),'internal parsing language leaked into app output');
 must(data.includes('async function undoEvents'),'undo support missing');

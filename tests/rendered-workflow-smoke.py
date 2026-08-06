@@ -51,7 +51,7 @@ interaction_audit_js=r"""() => {
 with sync_playwright() as p:
     browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox','--disable-dev-shm-usage','--disable-gpu'])
     for route in ['health/dashboard','fitness','health','questions','insights']:
-        page=browser.new_page(viewport={'width':1440,'height':1000});errors=[]
+        print('ROUTE',route,flush=True); page=browser.new_page(viewport={'width':1440,'height':1000});page.set_default_timeout(5000);errors=[]
         page.on('pageerror',lambda e,errors=errors:errors.append(str(e)))
         page.evaluate(f"location.hash='#/{route}'");page.set_content(html,wait_until='load');page.wait_for_timeout(1800)
         results['routes'][route]={'text':len(page.locator('#root').inner_text()),'errors':errors}
@@ -75,10 +75,12 @@ with sync_playwright() as p:
                 page.locator('[data-range="quarter"]').first.click();page.wait_for_timeout(120)
                 after=page.locator('.trend-analysis-item').first.evaluate('(el)=>el.open')
                 private=page.locator('.private-summary').first
-                private.locator('summary').click();page.wait_for_timeout(150)
-                private_before=private.evaluate('(el)=>el.open')
-                page.locator('[data-range="month"]').first.click();page.wait_for_timeout(120)
-                private_after=page.locator('.private-summary').first.evaluate('(el)=>el.open')
+                private_before=private_after=True
+                if private.count():
+                    private.locator('summary').click();page.wait_for_timeout(150)
+                    private_before=private.evaluate('(el)=>el.open')
+                    page.locator('[data-range="month"]').first.click();page.wait_for_timeout(120)
+                    private_after=page.locator('.private-summary').first.evaluate('(el)=>el.open')
                 results['interactions']['dashboard_disclosure']={'opened':before,'survived_rerender':after,'private_opened':private_before,'private_survived_rerender':private_after}
         if route=='health':
             page.locator('[data-log-metric="sleep_duration"]').first.click()
@@ -115,8 +117,13 @@ with sync_playwright() as p:
             results['interactions']['goal_setting']={'review':page.locator('#goalReview').inner_text(),'stored_in_workspace_copy':'workspace' in page.locator('#goalModal').inner_text().lower()}
             page.evaluate("document.querySelector('#goalForm').requestSubmit()");page.wait_for_timeout(500)
             results['interactions']['goal_setting']['saved']=page.locator('.goal-row',has_text='Build strength safely').count()==1
-            page.locator('#logWorkoutBtn').click()
-            results['interactions']['workout_create']={x:page.locator('.'+x).count()>=1 for x in ['workout-rpe','workout-pain-before','workout-pain-during','workout-pain-after','workout-technique','workout-injury-context']}
+            page.locator('#addActivityBtn').click();page.wait_for_timeout(80)
+            page.locator('#newActivityName').fill('Cheerleaders Test')
+            page.locator('#newActivityProfile').select_option('rehab');page.wait_for_timeout(80)
+            page.evaluate("document.querySelector('#addActivityForm').requestSubmit()");page.wait_for_timeout(180)
+            results['interactions']['workout_create']={x:page.locator('[data-activity-field="'+x+'"]').count()>=1 for x in ['sets','reps','band_resistance','pain_before','pain_during','pain_after','difficulty','rom_change','injury_context']}
+            results['interactions']['workout_create']['weight_not_required']=page.locator('[data-activity-field="weight"][required]').count()==0
+            results['interactions']['workout_create']['profile']=page.locator('#directActivityProfile').input_value()
         if route=='questions':
             page.locator('[data-review-question]').first.click()
             results['interactions']['review']={'title':page.locator('.review-intro h1').inner_text(),'source':page.locator('.review-source blockquote').inner_text(),'proposal_fields':page.locator('.review-proposal-grid>div').count(),'actions':page.locator('.review-decision-actions button').all_inner_texts()}
@@ -128,8 +135,8 @@ with sync_playwright() as p:
             page.locator('#cancelRecurringActionSchedule').click()
         results['routes'][route]['interaction_audit']=page.evaluate(interaction_audit_js)
         page.close()
-    page=browser.new_page(viewport={'width':420,'height':900});errors=[];page.on('pageerror',lambda e:errors.append(str(e)));page.evaluate("location.hash='#/health/dashboard'");page.set_content(html,wait_until='load');page.wait_for_timeout(1500);results['routes']['mobile_dashboard']={'text':len(page.locator('#root').inner_text()),'errors':errors,'interaction_audit':page.evaluate(interaction_audit_js)};page.close()
-    page=browser.new_page(viewport={'width':390,'height':844});errors=[];page.on('pageerror',lambda e:errors.append(str(e)));page.evaluate("location.hash='#/fitness'");page.set_content(html,wait_until='load');page.wait_for_timeout(1500);results['routes']['mobile_fitness']={'text':len(page.locator('#root').inner_text()),'errors':errors,'interaction_audit':page.evaluate(interaction_audit_js),'selector':page.locator('#activityLibrarySelect').input_value(),'panel_overflow':page.locator('.fitness-library-panel').evaluate('(el)=>el.scrollWidth>el.clientWidth+1'),'controls_overflow':page.locator('.activity-library-controls').evaluate('(el)=>el.scrollWidth>el.clientWidth+1')};page.close();browser.close()
+    print('ROUTE mobile_dashboard',flush=True); page=browser.new_page(viewport={'width':420,'height':900});page.set_default_timeout(5000);errors=[];page.on('pageerror',lambda e:errors.append(str(e)));page.evaluate("location.hash='#/health/dashboard'");page.set_content(html,wait_until='load');page.wait_for_timeout(1500);results['routes']['mobile_dashboard']={'text':len(page.locator('#root').inner_text()),'errors':errors,'interaction_audit':page.evaluate(interaction_audit_js)};page.close()
+    print('ROUTE mobile_fitness',flush=True); page=browser.new_page(viewport={'width':390,'height':844});page.set_default_timeout(5000);errors=[];page.on('pageerror',lambda e:errors.append(str(e)));page.evaluate("location.hash='#/fitness'");page.set_content(html,wait_until='load');page.wait_for_timeout(1500);results['routes']['mobile_fitness']={'text':len(page.locator('#root').inner_text()),'errors':errors,'interaction_audit':page.evaluate(interaction_audit_js),'selector':page.locator('#activityLibrarySelect').input_value(),'panel_overflow':page.locator('.fitness-library-panel').evaluate('(el)=>el.scrollWidth>el.clientWidth+1'),'controls_overflow':page.locator('.activity-library-controls').evaluate('(el)=>el.scrollWidth>el.clientWidth+1')};page.close();browser.close()
 print(json.dumps(results,indent=2))
 assert all(not x['errors'] and x['text']>500 for x in results['routes'].values())
 assert results['routes']['mobile_fitness']['selector']=='favorites' and not results['routes']['mobile_fitness']['panel_overflow'] and not results['routes']['mobile_fitness']['controls_overflow']
@@ -138,7 +145,7 @@ assert results['interactions']['workflow_resume']['button'] and results['interac
 assert results['interactions']['medication_confirmation']['confirmed'] and 'Taken today' in results['interactions']['medication_confirmation']['choices']
 assert results['interactions']['search']['results']>=1 and results['interactions']['search']['sleep_match']
 assert all(results['interactions']['sleep_log'].values())
-assert all(results['interactions']['workout_create'].values())
+assert all(results['interactions']['workout_create'][x] for x in ['sets','reps','band_resistance','pain_before','pain_during','pain_after','difficulty','rom_change','injury_context','weight_not_required']) and results['interactions']['workout_create']['profile']=='rehab'
 assert results['interactions']['fitness_defaults']['favorites_active'] and results['interactions']['fitness_defaults']['chip_row_removed'] and results['interactions']['fitness_defaults']['search_visible'] and not results['interactions']['fitness_defaults']['panel_overflow'] and not results['interactions']['fitness_defaults']['controls_overflow']
 assert results['interactions']['fitness_defaults']['view_order']==['Favorites','Recent','Strength','Cardio','Mobility/PT','Sports','Custom','All']
 assert all(results['interactions']['dashboard_disclosure'].values())
