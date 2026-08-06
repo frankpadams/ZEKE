@@ -1,0 +1,78 @@
+{
+  "schema_version": 1,
+  "version": "0.40.4",
+  "build": "2026.08.06.4",
+  "label": "Sprint 4 \u00b7 Governance & Continuity",
+  "runtime_files": [
+    {
+      "path": "index.html",
+      "sha256": "6fe79a5776f7521ea227d8c5c6379003067e80672b9deffc65c9a91180f25ed9",
+      "bytes": 1970
+    },
+    {
+      "path": "version.js",
+      "sha256": "0f51815ec9fa08917d7e823a4011cfcf2229aee7939550e791c0237538024af0",
+      "bytes": 188
+    },
+    {
+      "path": "zeke-config.js",
+      "sha256": "bbfad67bbca5456c596d6949c77de86133f1285d81939b1d108ac638106b5c39",
+      "bytes": 289
+    },
+    {
+      "path": "xlsx-bundle.js",
+      "sha256": "cd4c81425faae9b42cbbe384c49fccf5cb2c8c1d6195d989f9df10ecbd28d1a5",
+      "bytes": 432475
+    },
+    {
+      "path": "sw.js",
+      "sha256": "7e7514cdc7771b0c1285b94b2c474787b0979c70fd0d56713e0e3ae43de5cbed",
+      "bytes": 1576
+    },
+    {
+      "path": "assets/data-layer.js",
+      "sha256": "47748fa92fd909bbec935205653a25b835e3e43c1705580724a5a11b7c0be224",
+      "bytes": 54136
+    },
+    {
+      "path": "assets/parser.js",
+      "sha256": "10628c231f5d0fcdc958439511992cd45e0539c7f98d2f0ae0a9008cd0d71c81",
+      "bytes": 17431
+    },
+    {
+      "path": "assets/ai-router.js",
+      "sha256": "11c16a5994400c34dc584bcb06d62894dd39e04dd7d482ef7fe8a840f7589aea",
+      "bytes": 24108
+    },
+    {
+      "path": "assets/workflow-engine.js",
+      "sha256": "e333f55ad8fbc7ec15c998bea1e6072335e2ec7baa4283363b0d94c3e7e1264a",
+      "bytes": 10840
+    },
+    {
+      "path": "assets/exercise-guides.js",
+      "sha256": "d28ae11d1ae7fd1d292b0b80afee68cf1ca63e0e9edb25b498072f29dcd53660",
+      "bytes": 35331
+    },
+    {
+      "path": "assets/knowledge-base.js",
+      "sha256": "11dda92e401b972b575e628647c542a90f1b4e258437fdcb966d000605402520",
+      "bytes": 192636
+    },
+    {
+      "path": "assets/integrity-engine.js",
+      "sha256": "c92d59e6025285c92b7caaac9270c2f8406b62a5a50f1aa636ec40e9018885f4",
+      "bytes": 8135
+    },
+    {
+      "path": "assets/app.js",
+      "sha256": "16df981f87d9164038f2a5d21e15f77fc35e27fef60253c16f97c292a6bc8f0d",
+      "bytes": 489511
+    },
+    {
+      "path": "assets/styles.css",
+      "sha256": "e31fe506ff251ff77564c0a913cae96323816fe717b4899b6cabbe4b0b06c04b",
+      "bytes": 180178
+    }
+  ]
+}

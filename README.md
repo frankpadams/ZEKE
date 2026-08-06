@@ -1,26 +1,17 @@
-# ZEKE v0.40.0 — Trust, Mobile, Dashboard & Fitness Milestone
+# ZEKE v0.40.5 RC1 — Verification Hardening
 
-**Build:** 2026.08.03.1  
-**Canonical data:** User-owned JSON repository in the active storage provider  
-**Package status:** Package verification complete; live deployment and physical-device verification remain outstanding.
+**Build:** 2026.08.06.5  
+**Package status:** Package-local Sprint 4 verification complete; environment verification outstanding.
 
-ZEKE is a private personal knowledge and management system. This release coordinates data integrity, a guided Repair Center, a lighter truthful dashboard, mobile-wide low-friction interaction, and an equipment-aware fitness knowledge foundation.
+ZEKE is a private, user-owned personal-management system. This package preserves the v0.40.0–v0.40.3 runtime lineage and consolidates governance, release history, current state, and future-team handoff information.
 
 ## Start here
 
 1. Read `00_AI_START_HERE.md`.
-2. Review `RELEASE_NOTES_v0.40.0.md` and `TEST_REPORT_v0.40.0.md`.
-3. Deploy the complete verified runtime set described in `DEPLOYMENT_MANIFEST_v0.40.0.md`.
-4. After connecting Google Drive, open **Review & Repair** from the dashboard to review proposed repairs to the authoritative JSON.
+2. Use `DOCUMENTATION_MAP.md` to distinguish current authority from historical evidence.
+3. Review `PROJECT_STATE.md`, `KNOWN_ISSUES.md`, and `ROADMAP.md`.
+4. Review `TEST_REPORT_v0.40.5.md` before treating the package as a release candidate.
 
-## Important boundaries
+## Verification boundary
 
-- No repair is silently applied to live canonical data.
-- Each approved repair creates a provider-backed backup and audit history.
-- Visualizations use actual recorded data or clearly state that data are insufficient.
-- The whole mobile application prioritizes navigation, entry, repairs, questions, coaching, and form guides; there is no separate gym-only application.
-- Remote public-domain exercise media may require a network connection. Written guidance and a truthful unavailable-media state remain functional.
-
-## Current verification
-
-Automated syntax, deterministic regression, live-data fixture, governance, and rendered Chromium smoke tests are documented in `TEST_REPORT_v0.40.0.md`. Physical iPhone/Android behavior, live Google Drive permissions, and remote-media availability require deployment verification.
+Package-local checks do not establish live Google Drive behavior, physical-device behavior, or remote-media availability. Those remain environment-verification requirements.

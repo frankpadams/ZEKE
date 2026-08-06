@@ -1,35 +1,38 @@
-# AI Start Here — ZEKE v0.40.0
+# AI / Developer Start Here — ZEKE v0.40.5
 
-**Build:** 2026.08.03.1  
-**Governance revision:** 2026.08.03.1  
-**Current forward baseline:** v0.40.0
+**Build:** 2026.08.06.5  
+**Current forward baseline:** v0.40.5  
+**Sprint:** Governance & Continuity
 
-Read in this order before changing code:
+## Read in this order before editing
 
-1. `HANDOFF_BRIEF.md`
-2. `ZEKE_CONSTITUTION.md`
-3. `DEVELOPMENT_MEMORY/PROJECT_STATE.json`
-4. `DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json`
-5. `DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.40.0.md`
-6. `ARCHITECTURE.md`
-7. `FEATURE_STATUS.md`
-8. `RELEASE_NOTES_v0.40.0.md`
-9. `TEST_REPORT_v0.40.0.md`
-10. `DEVELOPMENT_MEMORY/DECISION_LOG.md`
+1. `ZEKE_CONSTITUTION.md`
+2. `PROJECT_STATE.md`
+3. `ARCHITECTURE.md`
+4. `FEATURE_STATUS.md`
+5. `DECISION_LOG.md`
+6. `KNOWN_ISSUES.md`
+7. `ROADMAP.md`
+8. `PRE_IMPLEMENTATION_REVIEW.md`
+9. `POST_RELEASE_REVIEW.md`
+10. `DOCUMENTATION_MAP.md`
 11. `DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md`
 12. `DEVELOPMENT_MEMORY/BACKLOG.md`
 
-## Non-negotiable position
+## Current runtime
 
-- The user-owned JSON repository is already authoritative; the historical spreadsheet is provenance, not the active record.
-- AI may interpret and propose. Deterministic code plus explicit user action govern canonical writes.
-- Missing is not zero. Suggested is not confirmed. Saved requires an acknowledged provider write.
-- Corrections preserve provenance and supersede or quarantine old records rather than silently rewriting history.
-- Every graph, route, trend, streak, comparison, and insight must represent actual available data or disclose insufficient data.
-- Mobile improvements apply to the whole application. Do not recreate a separate Gym Mode architecture.
-- Exercise media must truthfully depict the named movement and retain source/license metadata; otherwise show the written guide without an image.
-- Do not restore rejected v0.28.x code or stale v0.29/v0.31 authority text.
+`index.html` loads the readable static runtime. There is no compilation step. Verify the dependency chain from `ARCHITECTURE.md` and the current build manifest before changing code.
 
-## Active runtime
+## Non-negotiable rules
 
-`index.html` loads `version.js`, `zeke-config.js`, `xlsx-bundle.js`, `assets/data-layer.js`, `assets/parser.js`, `assets/ai-router.js`, `assets/workflow-engine.js`, `assets/exercise-guides.js`, `assets/knowledge-base.js`, `assets/integrity-engine.js`, `assets/app.js`, and `assets/styles.css`. The service worker and build manifest must agree with build 2026.08.03.1.
+- Preserve user ownership, raw observations, provenance, reversibility, missing-as-unknown, and provider-acknowledged saves.
+- AI is advisory and replaceable.
+- Mobile workout capture is part of one ZEKE interface; do not recreate a separate Gym application.
+- Talk to ZEKE/input remains a primary interaction, especially on mobile.
+- Show only fields meaningful to the selected activity/schema.
+- Do not describe planned work as implemented or unrun checks as verified.
+- Begin each sprint with governance review; end it with updated canonical docs, named test evidence, and a self-describing package.
+
+## Next task
+
+Sprint 5: verification and release-candidate hardening. Do not add broad feature scope before classifying the current regression and environment-verification boundary.

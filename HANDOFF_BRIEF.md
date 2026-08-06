@@ -1,23 +1,24 @@
-# ZEKE v0.40.0 Handoff Brief
+# ZEKE v0.40.5 Handoff Brief
 
-**Current version:** 0.40.0  
-**Build:** 2026.08.03.1  
-**Status:** Package verification complete; environment verification outstanding.
+**Build:** 2026.08.06.5  
+**Status:** Sprint 4 documentation/governance consolidation complete; Sprint 5 verification remains.
 
-## What changed
+## Product in one paragraph
 
-- Added a deterministic Integrity Engine and user-facing Repair Center for the authoritative JSON.
-- Added provider-backed repair backups, correction/audit records, duplicate-write prevention, and session undo.
-- Reconciles answered medication-schedule questions and consolidates duplicate question identities.
-- Rebuilt the dashboard toward the approved lighter mockup using truthful data states.
-- Applied navigation, entry, modal, and guide improvements across the whole mobile app rather than a separate gym mode.
-- Added 102 equipment-aware exercise/activity knowledge objects, 12 built-in routines, weekly workout expectation planning, and richer form guidance.
-- Added unified version/cache tokens, runtime manifesting, and deployment verification documents.
+ZEKE is a private, user-owned personal-management system with health and fitness as its first domain. It uses one Talk to ZEKE interaction, provider-backed canonical records, deterministic write rules, explicit confirmation/provenance, adaptive activity schemas, and a responsive interface that must remain one product rather than separate dashboard/gym applications.
 
-## Expected live repair candidates
+## Current lineage
 
-The supplied live-data fixture produced candidates for exact duplicates, an imported spreadsheet legend artifact, a 20-hour sleep entry, zero-valued missing heart rate, malformed paddling fields, an already-answered Mounjaro schedule question, and stale/duplicate discoveries. The app must rescan the connected live repository; fixture counts are not a promise about the deployed state.
+- v0.40.0: trust, integrity, dashboard/mobile, and fitness-knowledge baseline
+- v0.40.1: unified mobile input and targeted whitespace/density improvements
+- v0.40.2: adaptive activity schemas, custom fields, PT/rehab and recovery handling
+- v0.40.3: reversible activity recommendation preferences
+- v0.40.5: governance, documentation consolidation, and package identity reconciliation
 
-## Verification boundary
+## What to do next
 
-Package-local automated and rendered tests passed. Deployment still requires the alpha user to verify Google Drive connection, provider writes/backups, actual mobile layout, remote exercise media, and the proposed live-data repairs before applying them.
+Run Sprint 5 verification from this exact package. Classify tests honestly, perform rendered desktop/mobile checks where supported, prepare deployment acceptance instructions for live Google Drive and physical devices, and create a release candidate only after current docs/runtime/manifests agree.
+
+## Critical limits
+
+Live Google Drive and physical-device acceptance are not established by package-local tests. The legacy multi-exercise editor is not fully migrated to adaptive schemas. Recommendation preferences do not yet fully weight generated routines.
