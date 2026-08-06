@@ -1,30 +1,30 @@
-# Release Gate — ZEKE v0.40.0
+# Release Gate — ZEKE v0.40.5
 
-**Runtime build:** 2026.08.03.1  
-**Governance revision:** 2026.08.03.1
+**Runtime build:** 2026.08.06.5  
+**Governance revision:** 2026.08.06.5
 
 ## Status
 
-**Package verification complete.**  
-**Environment verification outstanding.**
+**Package verification complete for Sprint 5 release-candidate scope.**  
+**Package verification complete; user/environment acceptance outstanding.**
 
-## Package acceptance completed
+## Sprint 4 acceptance completed
 
-- Current version/build agree across runtime, service worker, state, gate, registry, release notes, and test report.
-- JavaScript syntax and current deterministic regression tests pass.
-- Rendered Chromium smoke tests pass on desktop and 390×844 mobile viewport without horizontal overflow or page errors.
-- Live-data fixtures detect expected integrity candidate classes without modifying source files.
-- Governance audit and negative controls pass.
-- Build/deployment/provenance manifests enumerate the verified runtime set and file hashes.
-- Changed/new files use actual package-generation time; no future-dated entries are allowed.
+- Current version/build agree across runtime identity, cache token, state, gate, rules, registry, release notes, and test report.
+- Active JavaScript syntax, Sprint 2, Sprint 3, activity foundation, release structure, governance negative controls, and project audit passed.
+- Historical release-note snapshots remain preserved under `docs/history/release-notes/`.
+- Current documentation identifies implemented, partial, deferred, failed-test, and environment-dependent work.
+
+## Broader suite boundary
+
+Sixteen JavaScript tests passed. Five returned non-zero: three require the unavailable protected fixture and two contain legacy expectations requiring Sprint 5 reconciliation. These are documented in `TEST_REPORT_v0.40.5.md` and are not represented as passing.
 
 ## Environment verification outstanding
 
-- Deployed Google Drive authentication, repair backup, approved repair writes, and undo.
-- Physical iPhone and representative Android interaction.
-- Remote public-domain exercise media availability and visual correctness in deployment.
-- Real-world review of each proposed live-data repair before approval.
+- Deployed Google Drive authentication and durable write/readback.
+- Physical iPhone and representative Android interaction/accessibility.
+- Remote form-guide media availability and correctness.
 
 ## Rollback
 
-Restore the previous complete repository package. For an applied data repair, use the provider-backed integrity backup under `imports/backups/` or the in-session Undo action before closing the session.
+Restore the complete v0.40.3 Sprint 3 package. Sprint 4 introduces no personal-record migration.

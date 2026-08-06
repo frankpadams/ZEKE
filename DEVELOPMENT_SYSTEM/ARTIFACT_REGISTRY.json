@@ -1,25 +1,50 @@
 {
   "schema_version": 3,
-  "release": "0.40.0",
-  "build": "2026.08.03.1",
-  "current_version": "0.40.0",
-  "current_build": "2026.08.03.1",
-  "governance_revision": "2026.08.03.1",
+  "release": "0.40.5",
+  "build": "2026.08.06.5",
+  "current_version": "0.40.5",
+  "current_build": "2026.08.06.5",
+  "governance_revision": "2026.08.06.5",
   "artifacts": [
     {
       "path": "00_AI_START_HERE.md",
       "status": "authoritative",
-      "purpose": "single startup authority"
+      "purpose": "current authority"
     },
     {
       "path": "ARCHITECTURE.md",
+      "status": "authoritative",
+      "purpose": "current authority"
+    },
+    {
+      "path": "ARCHIVE_MANIFEST_v0.40.0.json",
+      "status": "generated",
+      "purpose": "safe historical consolidation record"
+    },
+    {
+      "path": "BUILD_MANIFEST_v0.40.0.json",
+      "status": "generated",
+      "purpose": "current runtime file hashes and compatibility"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "status": "authoritative",
+      "purpose": "current authority"
+    },
+    {
+      "path": "DECISION_LOG.md",
+      "status": "authoritative",
+      "purpose": "current authority"
+    },
+    {
+      "path": "DEPLOYMENT_MANIFEST_v0.40.0.md",
       "status": "supporting",
-      "purpose": "current architecture and implementation boundary"
+      "purpose": "current deployment and post-deployment checks"
     },
     {
       "path": "DEVELOPMENT_MEMORY/BACKLOG.md",
       "status": "authoritative",
-      "purpose": "deferred work and resurfacing"
+      "purpose": "current authority"
     },
     {
       "path": "DEVELOPMENT_MEMORY/CONTINUITY_RECONCILIATION_v0.22.2.md",
@@ -39,12 +64,12 @@
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
       "status": "authoritative",
-      "purpose": "failure memory"
+      "purpose": "current authority"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json",
       "status": "authoritative",
-      "purpose": "authorization and phase state"
+      "purpose": "current authority"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
@@ -127,6 +152,16 @@
       "purpose": "historical approved scope and implementation record"
     },
     {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.40.0.md",
+      "status": "historical",
+      "purpose": "current approved scope and implementation record"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.40.4.md",
+      "status": "historical",
+      "purpose": "current authority"
+    },
+    {
       "path": "DEVELOPMENT_MEMORY/PROJECT_STATE.json",
       "status": "authoritative",
       "purpose": "current release state"
@@ -134,12 +169,12 @@
     {
       "path": "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
       "status": "authoritative",
-      "purpose": "current release evidence"
+      "purpose": "current authority"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md",
       "status": "authoritative",
-      "purpose": "authority order and lifecycle"
+      "purpose": "current authority"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/COMPREHENSION_CHECKPOINT.md",
@@ -149,7 +184,7 @@
     {
       "path": "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
       "status": "authoritative",
-      "purpose": "machine-enforced invariants"
+      "purpose": "current authority"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md",
@@ -159,7 +194,7 @@
     {
       "path": "DEVELOPMENT_SYSTEM/PROJECT_IDENTITY.md",
       "status": "authoritative",
-      "purpose": "identity and challenge boundaries"
+      "purpose": "current authority"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/REJECTED_AND_SUPERSEDED_PATHS.md",
@@ -177,9 +212,14 @@
       "purpose": "required claim and persistence-state language"
     },
     {
-      "path": "FEATURE_STATUS.md",
+      "path": "DOCUMENTATION_MAP.md",
       "status": "supporting",
-      "purpose": "current feature implementation and verification inventory"
+      "purpose": "authority and lifecycle navigation"
+    },
+    {
+      "path": "FEATURE_STATUS.md",
+      "status": "authoritative",
+      "purpose": "current authority"
     },
     {
       "path": "GOVERNANCE_PACKAGE_PROVENANCE_2026-07-25.json",
@@ -188,8 +228,8 @@
     },
     {
       "path": "HANDOFF_BRIEF.md",
-      "status": "authoritative",
-      "purpose": "rapid current-state orientation"
+      "status": "supporting",
+      "purpose": "future-team handoff"
     },
     {
       "path": "HISTORICAL_ARTIFACTS_NOTE.md",
@@ -202,6 +242,11 @@
       "purpose": "historical release/review evidence"
     },
     {
+      "path": "KNOWN_ISSUES.md",
+      "status": "authoritative",
+      "purpose": "current authority"
+    },
+    {
       "path": "PACKAGE_PROVENANCE_v0.29.0-CONTINUITY.json",
       "status": "generated",
       "purpose": "current file-level package provenance"
@@ -210,6 +255,11 @@
       "path": "PACKAGE_PROVENANCE_v0.29.0.json",
       "status": "historical",
       "purpose": "original v0.29.0 runtime package provenance"
+    },
+    {
+      "path": "PACKAGE_PROVENANCE_v0.40.0.json",
+      "status": "generated",
+      "purpose": "current package file provenance"
     },
     {
       "path": "PACKAGE_VERIFICATION_v0.29.0-CONTINUITY.json",
@@ -222,6 +272,26 @@
       "purpose": "original v0.29.0 runtime package verification"
     },
     {
+      "path": "PACKAGE_VERIFICATION_v0.40.0.json",
+      "status": "generated",
+      "purpose": "final archive verification"
+    },
+    {
+      "path": "POST_RELEASE_REVIEW.md",
+      "status": "supporting",
+      "purpose": "current sprint review"
+    },
+    {
+      "path": "PRE_IMPLEMENTATION_REVIEW.md",
+      "status": "supporting",
+      "purpose": "current sprint pre-review"
+    },
+    {
+      "path": "PROJECT_STATE.md",
+      "status": "authoritative",
+      "purpose": "current authority"
+    },
+    {
       "path": "README.md",
       "status": "supporting",
       "purpose": "current deployment and release overview"
@@ -232,59 +302,24 @@
       "purpose": "current deployment instructions"
     },
     {
-      "path": "RELEASE_NOTES_v0.20.5.md",
-      "status": "historical",
-      "purpose": "historical release or test evidence"
+      "path": "RELEASE_NOTES.md",
+      "status": "authoritative",
+      "purpose": "current authority"
     },
     {
-      "path": "RELEASE_NOTES_v0.22.1.md",
-      "status": "historical",
-      "purpose": "historical release or test evidence"
+      "path": "RELEASE_NOTES_v0.40.4.md",
+      "status": "generated",
+      "purpose": "exact-release compatibility snapshot"
     },
     {
-      "path": "RELEASE_NOTES_v0.22.2.md",
-      "status": "historical",
-      "purpose": "historical release or test evidence"
+      "path": "ROADMAP.md",
+      "status": "authoritative",
+      "purpose": "current authority"
     },
     {
-      "path": "RELEASE_NOTES_v0.23.0.md",
-      "status": "historical",
-      "purpose": "historical release or test evidence"
-    },
-    {
-      "path": "RELEASE_NOTES_v0.23.1.md",
-      "status": "historical",
-      "purpose": "historical release or test evidence"
-    },
-    {
-      "path": "RELEASE_NOTES_v0.24.0.md",
-      "status": "historical",
-      "purpose": "historical release or test evidence"
-    },
-    {
-      "path": "RELEASE_NOTES_v0.25.2.md",
-      "status": "historical",
-      "purpose": "historical release or test evidence"
-    },
-    {
-      "path": "RELEASE_NOTES_v0.26.0.md",
-      "status": "historical",
-      "purpose": "historical release or test evidence"
-    },
-    {
-      "path": "RELEASE_NOTES_v0.26.1.md",
-      "status": "historical",
-      "purpose": "historical release or test evidence"
-    },
-    {
-      "path": "RELEASE_NOTES_v0.27.2.md",
-      "status": "historical",
-      "purpose": "historical release or test evidence"
-    },
-    {
-      "path": "RELEASE_NOTES_v0.29.0.md",
+      "path": "SPRINT_4_GOVERNANCE_CONTINUITY_REVIEW.md",
       "status": "supporting",
-      "purpose": "current runtime release summary"
+      "purpose": "sprint scope and boundary"
     },
     {
       "path": "TEST_REPORT.md",
@@ -347,49 +382,104 @@
       "purpose": "current test and verification evidence"
     },
     {
-      "path": "ZEKE_CONSTITUTION.md",
-      "status": "authoritative",
-      "purpose": "immutable product principles"
-    },
-    {
-      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.40.0.md",
-      "status": "authoritative",
-      "purpose": "current approved scope and implementation record"
-    },
-    {
-      "path": "RELEASE_NOTES_v0.40.0.md",
-      "status": "supporting",
-      "purpose": "current release scope and limitations"
-    },
-    {
       "path": "TEST_REPORT_v0.40.0.md",
       "status": "supporting",
       "purpose": "current package verification evidence"
     },
     {
-      "path": "DEPLOYMENT_MANIFEST_v0.40.0.md",
+      "path": "TEST_REPORT_v0.40.4.md",
       "status": "supporting",
-      "purpose": "current deployment and post-deployment checks"
+      "purpose": "current package test evidence"
     },
     {
-      "path": "BUILD_MANIFEST_v0.40.0.json",
-      "status": "generated",
-      "purpose": "current runtime file hashes and compatibility"
+      "path": "ZEKE_CONSTITUTION.md",
+      "status": "authoritative",
+      "purpose": "current authority"
     },
     {
-      "path": "PACKAGE_PROVENANCE_v0.40.0.json",
-      "status": "generated",
-      "purpose": "current package file provenance"
+      "path": "docs/history/release-notes/RELEASE_NOTES_v0.20.5.md",
+      "status": "historical",
+      "purpose": "historical release or test evidence"
     },
     {
-      "path": "PACKAGE_VERIFICATION_v0.40.0.json",
-      "status": "generated",
-      "purpose": "final archive verification"
+      "path": "docs/history/release-notes/RELEASE_NOTES_v0.22.1.md",
+      "status": "historical",
+      "purpose": "historical release or test evidence"
     },
     {
-      "path": "ARCHIVE_MANIFEST_v0.40.0.json",
+      "path": "docs/history/release-notes/RELEASE_NOTES_v0.22.2.md",
+      "status": "historical",
+      "purpose": "historical release or test evidence"
+    },
+    {
+      "path": "docs/history/release-notes/RELEASE_NOTES_v0.23.0.md",
+      "status": "historical",
+      "purpose": "historical release or test evidence"
+    },
+    {
+      "path": "docs/history/release-notes/RELEASE_NOTES_v0.23.1.md",
+      "status": "historical",
+      "purpose": "historical release or test evidence"
+    },
+    {
+      "path": "docs/history/release-notes/RELEASE_NOTES_v0.24.0.md",
+      "status": "historical",
+      "purpose": "historical release or test evidence"
+    },
+    {
+      "path": "docs/history/release-notes/RELEASE_NOTES_v0.25.2.md",
+      "status": "historical",
+      "purpose": "historical release or test evidence"
+    },
+    {
+      "path": "docs/history/release-notes/RELEASE_NOTES_v0.26.0.md",
+      "status": "historical",
+      "purpose": "historical release or test evidence"
+    },
+    {
+      "path": "docs/history/release-notes/RELEASE_NOTES_v0.26.1.md",
+      "status": "historical",
+      "purpose": "historical release or test evidence"
+    },
+    {
+      "path": "docs/history/release-notes/RELEASE_NOTES_v0.27.2.md",
+      "status": "historical",
+      "purpose": "historical release or test evidence"
+    },
+    {
+      "path": "docs/history/release-notes/RELEASE_NOTES_v0.29.0.md",
+      "status": "supporting",
+      "purpose": "current runtime release summary"
+    },
+    {
+      "path": "docs/history/release-notes/RELEASE_NOTES_v0.40.0.md",
+      "status": "supporting",
+      "purpose": "current release scope and limitations"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.40.5.md",
+      "status": "authoritative",
+      "purpose": "current iteration record"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.40.5.md",
+      "status": "supporting",
+      "purpose": "version-specific release-note snapshot"
+    },
+    {
+      "path": "TEST_REPORT_v0.40.5.md",
+      "status": "supporting",
+      "purpose": "current release test evidence"
+    },
+    {
+      "path": "BUILD_MANIFEST_v0.40.5.json",
       "status": "generated",
-      "purpose": "safe historical consolidation record"
+      "purpose": "current build manifest"
+    },
+    {
+      "path": "PACKAGE_PROVENANCE_v0.40.5.json",
+      "status": "generated",
+      "purpose": "current package provenance"
     }
   ],
   "historical_patterns": [

@@ -1,52 +1,52 @@
 {
   "schema_version": 3,
-  "release": "0.40.0",
-  "build": "2026.08.03.1",
-  "current_version": "0.40.0",
-  "current_build": "2026.08.03.1",
-  "governance_revision": "2026.07.25.2",
+  "release": "0.40.5",
+  "build": "2026.08.06.5",
+  "current_version": "0.40.5",
+  "current_build": "2026.08.06.5",
+  "governance_revision": "2026.08.06.5",
   "current_iteration": {
-    "status": "package_verified_environment_verification_outstanding",
+    "status": "package_verified_user_environment_acceptance_outstanding",
     "baseline_verified": true,
-    "baseline_audit_status": "Built from the complete ZEKE GitHub repository supplied by the user and compared with the live Project Zeke Google Drive export.",
+    "baseline_audit_status": "Built from the verified v0.40.4 Sprint 4 package in the active workspace.",
     "backlog_resurfaced": true,
     "scope_presented": true,
     "user_approved_scope": true,
-    "approved_at": "2026-08-02",
-    "approval_evidence": "The user explicitly requested one coordinated major release and then said \u201cnow go for it.\u201d",
-    "release": "0.40.0",
-    "build": "2026.08.03.1",
-    "baseline_release": "0.33.0",
-    "baseline_build": "2026.08.02.3",
+    "approved_at": "2026-08-06",
+    "approval_evidence": "The user requested the next sprint after accepting Sprint 4.",
+    "release": "0.40.5",
+    "build": "2026.08.06.5",
+    "baseline_release": "0.40.4",
+    "baseline_build": "2026.08.06.4",
     "approved_scope": [
-      "Repair authoritative JSON integrity issues",
-      "Implement the approved lighter dashboard direction with truthful visualizations",
-      "Apply mobile improvements across the whole app",
-      "Expand activity/exercise knowledge, form guides, routines, and weekly planning",
-      "Clean repository structure and strengthen deployment verification"
+      "Run all applicable JavaScript, Python, governance, package-structure, and rendered-browser checks.",
+      "Classify each failure as regression, obsolete expectation, missing external fixture, or environment-dependent acceptance.",
+      "Verify mobile and desktop information density, unified input priority, modal behavior, activity entry, custom schemas, PT/recovery logging, recommendation preferences, and save-result language.",
+      "Reconcile service-worker/runtime manifest and package provenance.",
+      "Produce a clearly labeled release candidate, not a final release, until user acceptance."
     ],
     "acceptance_criteria": [
-      "No silent live-data rewriting; guided repairs create backups and preserve provenance",
-      "All displayed quantitative graphics are driven by available data or disclose insufficient data",
-      "Mobile has complete navigation, entry, repair, question, and guide access without a separate gym-only app",
-      "Runtime files share one version/cache token and build manifest",
-      "Automated structural and rendered smoke tests pass"
+      "Applicable package-local regressions pass",
+      "Rendered desktop and mobile workflows have no page errors or horizontal overflow",
+      "Adaptive PT/custom activity entry is verified without mandatory weight",
+      "Governance audit and negative controls pass",
+      "Environment acceptance remains explicitly outstanding"
     ],
-    "rollback_plan": "Restore the previous GitHub repository package and the automatic integrity backup stored under imports/backups/.",
+    "rollback_plan": "Restore the complete v0.40.4 Sprint 4 package. No personal-data migration is introduced by Sprint 5.",
     "prior_conversations_reviewed": true,
     "implementation_complete": true,
     "verification_complete": true,
     "package_verification": "complete",
     "environment_verification": "outstanding",
-    "unpacked_file_count": 355,
-    "verified_at": "2026-08-03T01:13:11.233075Z"
+    "verified_at": "2026-08-06T10:23:00-04:00",
+    "unpacked_file_count": 388
   },
   "next_iteration": {
-    "status": "not_open",
+    "status": "awaiting_user_acceptance",
     "baseline_verified": false,
     "backlog_resurfaced": false,
     "scope_presented": false,
     "user_approved_scope": null,
-    "required_baseline": "0.40.0"
+    "required_baseline": "0.40.5"
   }
 }

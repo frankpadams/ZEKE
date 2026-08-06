@@ -1,37 +1,39 @@
 {
   "schema_version": 3,
-  "current_version": "0.40.0",
-  "current_build": "2026.08.03.1",
-  "release_label": "Trust, Mobile, Dashboard & Fitness Milestone",
+  "current_version": "0.40.5",
+  "current_build": "2026.08.06.5",
+  "release_label": "Sprint 5 \u00b7 Verification Hardening RC1",
   "baseline": "v0.29.0 runtime built from v0.27.2 recovery baseline",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
   "authoritative_documents": [
     "00_AI_START_HERE.md",
+    "ARCHITECTURE.md",
+    "CHANGELOG.md",
+    "DECISION_LOG.md",
     "DEVELOPMENT_MEMORY/BACKLOG.md",
     "DEVELOPMENT_MEMORY/DECISION_LOG.md",
     "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
     "DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json",
     "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
     "DEVELOPMENT_MEMORY/GOVERNANCE_RECONCILIATION_2026-07-25.md",
+    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.40.5.md",
     "DEVELOPMENT_MEMORY/PROJECT_STATE.json",
     "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
     "DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md",
     "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
     "DEVELOPMENT_SYSTEM/PROJECT_IDENTITY.md",
-    "HANDOFF_BRIEF.md",
-    "ZEKE_CONSTITUTION.md",
-    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.40.0.md"
+    "FEATURE_STATUS.md",
+    "KNOWN_ISSUES.md",
+    "PROJECT_STATE.md",
+    "RELEASE_NOTES.md",
+    "ROADMAP.md",
+    "ZEKE_CONSTITUTION.md"
   ],
   "implemented_this_release": [
-    "Canonical JSON integrity scanner and guided Repair Center with backups, provenance, and session undo",
-    "Exact duplicate-write prevention and correction/supersession support",
-    "Question reconciliation against confirmed medication schedules and duplicate question consolidation",
-    "Lighter dashboard composition based on the approved visual direction with truthful-data rules",
-    "Mobile-wide quick logging, responsive navigation, sticky save/cancel actions, and accessible guide access",
-    "102-entry equipment-aware activity/exercise knowledge catalog with 12 built-in routines",
-    "Expanded form guidance with setup, movement, common mistakes, breathing, modifications, and mind-muscle cues",
-    "Weekly workout expectation planner that does not infer commitment from open calendar time",
-    "Build manifest, service-worker cache versioning, and runtime dependency documentation"
+    "Regression-suite reconciliation for current adaptive activity and unified mobile architecture",
+    "Rendered desktop/mobile workflow verification and bounded browser tests",
+    "Accessible names for activity-entry close controls",
+    "Release-candidate identity, test evidence, and package provenance reconciliation"
   ],
   "inherited_verified_evidence": [
     "v0.25.2 direct mobile workout save handler and visible failure path",
@@ -46,12 +48,11 @@
     "Advanced periodization, wearable live workout interfaces, and a locally hosted full media library remain roadmap-scale enhancements"
   ],
   "next_review_items": [
-    "Deploy v0.40.0 and complete guided repair of the live authoritative JSON",
-    "Physical-device mobile acceptance across dashboard, logging, questions, repairs, and form guides",
-    "Review highest-use Planet Fitness/Bowflex/dumbbell knowledge objects and media mappings",
-    "Continue deep evidence review for the expanded catalog"
+    "Deploy RC1 and verify live Google Drive write/readback",
+    "Complete physical iPhone and representative Android acceptance",
+    "Collect user acceptance feedback and prepare final v0.41.0 milestone"
   ],
-  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.40.0.md",
+  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.40.5.md",
   "files_to_read_first": [
     "00_AI_START_HERE.md"
   ],
@@ -64,9 +65,9 @@
     "real-data workbook regression when fixture is available",
     "final ZIP reopened and compared with provenance"
   ],
-  "current_release_label": "Trust, Mobile, Dashboard & Fitness Milestone",
-  "current_focus": "Canonical JSON integrity, truthful dashboard, mobile-wide usability, and equipment-aware fitness knowledge",
-  "governance_revision": "2026.08.03.1",
+  "current_release_label": "Sprint 5 \u00b7 Verification Hardening RC1",
+  "current_focus": "Release-candidate verification, regression reconciliation, accessibility hardening, and user acceptance preparation",
+  "governance_revision": "2026.08.06.5",
   "runtime_changed_by_governance_revision": true,
   "rejected_forward_baselines": [
     "v0.28.0",
@@ -80,8 +81,8 @@
     "mature research-reviewed readiness and adaptive periodization methodology",
     "locally controlled full exercise media library"
   ],
-  "current_release": "ZEKE v0.40.0 \u2014 Trust, Mobile, Dashboard & Fitness Milestone",
-  "updated_at": "2026-08-02T21:10:00-04:00",
+  "current_release": "ZEKE v0.40.5 RC1 \u2014 Verification Hardening",
+  "updated_at": "2026-08-06T10:23:00-04:00",
   "known_limitations": [
     "Live Google Drive repair and physical-device verification remain outstanding",
     "Remote public-domain exercise media requires network access and has a truthful fallback",

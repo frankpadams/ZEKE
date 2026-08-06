@@ -125,3 +125,5 @@ Current release identity, scope, artifact authority, lifecycle, supersessions, a
 - **DEC-054:** ZEKE v0.29.0 is the current runtime and forward-development baseline. v0.27.2 remains its historical recovery source; v0.28.x remains rejected.
 - **DEC-055:** A current release is not authoritative until the README, handoff, architecture, feature status, state/gate, current iteration, test report, backlog, decision/error memory, artifact registry, project identity/health, and release gate agree with the actual runtime and evidence.
 - **DEC-056:** Governance-locked requirements must be labeled implemented, partial, or unimplemented. A release may not infer implementation from the Constitution or decision log.
+
+- **DEC-057:** Release history uses cumulative canonical `RELEASE_NOTES.md` and `CHANGELOG.md`; version-specific release notes remain archived historical snapshots. Every package must be independently understandable by an unfamiliar future development team.

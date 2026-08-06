@@ -1,7 +1,7 @@
 # ZEKE Backlog
 
 **Status:** Authoritative  
-**Current baseline:** v0.29.0 · build 2026.07.25.1
+**Current baseline:** v0.40.4 · build 2026.08.06.4
 
 | ID | Item | Priority | Status | Origin | Resurface when |
 |---|---|---:|---|---|---|
