@@ -20,3 +20,19 @@
 ## New Sprint 4 decision
 
 **DEC-S4-001 — Canonical documentation set:** The normal current-state entry points are `00_AI_START_HERE.md`, `ZEKE_CONSTITUTION.md`, `PROJECT_STATE.md`, `ARCHITECTURE.md`, `FEATURE_STATUS.md`, `ROADMAP.md`, `KNOWN_ISSUES.md`, `DECISION_LOG.md`, `CHANGELOG.md`, and `RELEASE_NOTES.md`. Historical artifacts remain available but cannot override these unless explicitly designated in the authority map.
+
+## v0.41.0 decisions — Fitness Intelligence & Clarity
+
+13. **Exercise identity:** a movement/exercise family and an exact equipment/variation are related but distinct identities. Variation is the progression unit.
+14. **Load basis:** load semantics are structured (for example displayed machine load, per-hand dumbbell, total barbell/system load, Bowflex setting, band resistance, bodyweight/assistance, or unknown). Different bases are not silently converted or compared.
+15. **Historical repair:** existing records are never silently rewritten. Preserve the entered name/raw evidence and add reviewed identity metadata only after appropriate confidence/review.
+16. **PT naming:** show full understandable PT exercise names first with recognized therapist shorthand in parentheses. Do not expand an uncertain clinic-specific abbreviation without evidence.
+17. **PT split movements:** grouped paper labels such as ER/IR may be convenient routine groupings, but external rotation and internal rotation remain separately loggable and may use different resistance.
+18. **Form guide:** recognition/setup guidance is a core PT-library feature; generic guides never override clinician-specific instructions.
+19. **Progressive overload:** next-session targets appear inside the workout logger for the exact variation, include the reason, and use personal performance/effort/context before published evidence.
+20. **Discover:** user-facing Discover is a curated set of meaningful findings. Internal analytical buckets and raw correlation output are secondary drill-downs.
+21. **Trend recency:** recurring analysis prioritizes Now → Recent → Longer-term context and should not repeatedly present an unchanged lifetime fact as a fresh insight.
+22. **Range ownership:** time-frame controls live with the content they control; Dashboard and Fitness range state are independent.
+23. **Today:** the Dashboard Today area contains only genuinely time-relevant, directly actionable items and hides when there is nothing useful to show.
+24. **Duplicate review:** duplicate resolution asks a plain-language comparison question and shows both candidate records before asking the user to decide.
+25. **Scheduled adherence:** medication-specific scheduled-dose assumptions are opt-in, provenance-marked as assumed rather than explicitly confirmed, and remain correctable by the user.

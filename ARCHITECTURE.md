@@ -1,7 +1,7 @@
-# ZEKE Architecture — v0.40.0
+# ZEKE Architecture — v0.41.0 RC1
 
-**Runtime build:** 2026.08.03.1  
-**Governance revision:** 2026.08.03.1
+**Runtime build:** 2026.08.07.1  
+**Governance revision:** 2026.08.07.1
 
 ## Product and data boundary
 
@@ -13,7 +13,7 @@ AI interprets and proposes. Deterministic code and explicit user action govern c
 
 The readable static files loaded by `index.html` are the **authoritative runtime**. There is **no compilation step**. Unreferenced root-level or archived code is **legacy** evidence and must not be treated as active merely because it exists in the repository.
 
-The static app is loaded by `index.html`; there is no build step. Active local runtime files are listed in `BUILD_MANIFEST_v0.40.0.json` and `DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json`. The service worker uses one release-specific cache and removes earlier ZEKE caches during activation.
+The static app is loaded by `index.html`; there is no build step. Active local runtime files are recorded in the current v0.41.0 build manifest/provenance artifacts; historical manifests remain audit evidence. The service worker uses one release-specific cache and removes earlier ZEKE caches during activation.
 
 ## Integrity architecture
 
@@ -42,3 +42,16 @@ Google Drive remains the active implemented provider. Provider-neutral semantics
 ## Verification boundary
 
 Automated package and rendered-browser evidence does not establish physical-device behavior, live provider permissions, remote-media availability, or clinical validity of personalized recommendations. Those remain explicitly labeled environment/content verification.
+
+
+## v0.41.0 fitness identity and intelligence architecture
+
+Workout identity now separates a broad movement/exercise family from the exact performed variation. New structured workout records may carry `exercise_family`, `variation_name`, `variation_id`, `equipment_type`, `load_basis`, `identity_schema_version`, and identity confidence. The original `exercise` value remains the human-entered/displayed record and is not destructively normalized.
+
+Progression histories and next-session targets operate on exact variations. Cross-equipment loads are never automatically converted or merged. Historical records without sufficient equipment evidence remain unspecified until the user reviews a proposed mapping; accepted mappings are applied as corrections/metadata while preserving raw/provenance history.
+
+The progressive-overload planner is deterministic and explainable. It considers comparable load/repetition history, RPE/RIR when available, pain/injury/PT context, and long gaps. Research evidence can support the rule but does not replace user performance or clinician guidance.
+
+Discover applies a screening layer after mathematical association calculation. Tiny samples, cross-exercise workout correlations, same-activity metric artifacts, and strong shared time trends are suppressed from the primary user-facing feed unless a conceptually meaningful relationship justifies surfacing them. The advanced pattern view remains available for inspection.
+
+Medication adherence assumptions are opt-in per medication schedule. Generated expected-dose records use a distinct assumed interpretation/provenance state and can be converted to explicit confirmation or corrected/undone when the user reports a missed, delayed, changed, or extra dose.

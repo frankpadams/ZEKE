@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## v0.41.0 RC1 — Fitness Intelligence & Clarity
+
+- Added exact exercise-family/variation/equipment/load-basis identity with review-based historical metadata migration.
+- Added PT shorthand expansion, additional rehab entries, and form-guide recognition support.
+- Added explainable in-logger progressive-overload targets using exact-variation history and RPE/RIR/pain safeguards.
+- Redesigned Discover around findings and strengthened pattern screening.
+- Reoriented Trends & Analysis toward current/recent momentum.
+- Moved Dashboard ranges into the sections they control.
+- Simplified duplicate review and added opt-in schedule-assumed medication adherence.
+
+
 ## v0.40.5 RC1 — Verification Hardening
 
 - Reconciled stale tests with adaptive activity schemas and unified mobile input.
