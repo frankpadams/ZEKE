@@ -1,0 +1,251 @@
+{
+  "version": "0.41.0",
+  "build": "2026.08.07.1",
+  "baseline": "0.40.5",
+  "baseline_build": "2026.08.06.5",
+  "package_label": "Fitness Intelligence & Clarity RC1",
+  "generated_at": "2026-08-07T00:39:48-04:00",
+  "hash_algorithm": "sha256",
+  "parent_package": {
+    "filename": "ZEKE-v0.40.5-RC1-Verification-Hardening(2).zip",
+    "sha256": "838c1a7335d6dca11ccecb97717fe4b6ede164bbb24266ad4354124fb3cdc767",
+    "extracted_reference": "/mnt/data/zeke_0405/ZEKE-v0.40.5-RC1-Verification-Hardening"
+  },
+  "comparison": {
+    "new_file_count": 5,
+    "changed_file_count": 32,
+    "deleted_file_count": 0,
+    "unchanged_file_count": 356,
+    "new_files": [
+      {
+        "path": "BUILD_MANIFEST_v0.41.0.json",
+        "size": 67070,
+        "sha256": "58826b42cb69d977de3a1d68ac4130cb2d237d63b450fa6110c61e03ae09fb83"
+      },
+      {
+        "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.41.0.md",
+        "size": 2149,
+        "sha256": "c5f1c778c8723bc35fe438dcd08246a4cf562095d40fc99dc3642b5b0f61adf4"
+      },
+      {
+        "path": "RELEASE_NOTES_v0.41.0.md",
+        "size": 2507,
+        "sha256": "5773b422af4ba166a5d67a141355c7cc4989b4830403a930a8a46bb6b2cbc7f0"
+      },
+      {
+        "path": "TEST_REPORT_v0.41.0.md",
+        "size": 3769,
+        "sha256": "3ba12108fe5f2eeb1d10e6d97d4c239bed4a1f246d190981eaa77e7ff95850b6"
+      },
+      {
+        "path": "tests/v041-fitness-intelligence.test.js",
+        "size": 2830,
+        "sha256": "dde4674296ad3b15cad533b84a59b099dbf597c4e050f5b7ccd677d8f3df40d4"
+      }
+    ],
+    "changed_files": [
+      {
+        "path": "00_AI_START_HERE.md",
+        "before_sha256": "ad4100c923accf4eaf46ee5a61fd31806158f47b34bf946fc5593cb9d033dc87",
+        "after_sha256": "921cca85e4361fba4cd49e3a5af1c65aca16ca952d5d30c967dff772f0ec8023",
+        "after_size": 2499
+      },
+      {
+        "path": "ARCHITECTURE.md",
+        "before_sha256": "5fa51854592f9618dbadc6c5e2095e7b7215e9d352eb205fc5c5b4cd4c3989b2",
+        "after_sha256": "706074e9b56ff616e65824cb24121a60857f1621ed6a4094a900788a37111bef",
+        "after_size": 5711
+      },
+      {
+        "path": "CHANGELOG.md",
+        "before_sha256": "64abb463da3a26f34b1e7c4978f7a3014cf18104b31701691dc689f3d1ab6bdf",
+        "after_sha256": "d58c61b957627cd65a38d80bce4c14880fc5414142b6d9179fb618ee377baa9f",
+        "after_size": 2639
+      },
+      {
+        "path": "DECISION_LOG.md",
+        "before_sha256": "48f336b31dd6a393a18d5e9228a458b2e1c8d91e17e2ca1bd5d7c4df4261e2ae",
+        "after_sha256": "6971c6886a33cb175b5e7cc8d47dbc73f73f8199261b32e5cf910007c28d0460",
+        "after_size": 4329
+      },
+      {
+        "path": "DEVELOPMENT_MEMORY/BACKLOG.md",
+        "before_sha256": "e1c5833a28f1077868a97da1c70a180789c5fdb8519763bec04c3a90f15addca",
+        "after_sha256": "75ed8defb5a5c0927f67c4c4af5d679c8a22f304b41fb67f127fb612f7acf5af",
+        "after_size": 11043
+      },
+      {
+        "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json",
+        "before_sha256": "7d3f453fb813308682dd1fab7155c73f7b18d2f0a22c29958aaa078670841c1c",
+        "after_sha256": "e96c18c297bfcba8799de3a9228aa4ac56e90bc259d339359b19875d5b3cb1e3",
+        "after_size": 3231
+      },
+      {
+        "path": "DEVELOPMENT_MEMORY/PROJECT_STATE.json",
+        "before_sha256": "d92ae7b80e908018514b9e1522228207c0129e93e204c015cf6f604e46f55608",
+        "after_sha256": "5ee99967f4814ae4463a7ddf2e565fb9c1a3c59fbb4ae201f82b32198c942bf2",
+        "after_size": 4386
+      },
+      {
+        "path": "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
+        "before_sha256": "fefb91ff76a4018e7546cf7289095f67a7d1ddf1d16a35384cbde1d70be29b24",
+        "after_sha256": "36503f6b386e8e8bdb81108c31d401e8113dab143ee1123035616f6f9fa9cc6e",
+        "after_size": 3152
+      },
+      {
+        "path": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
+        "before_sha256": "ed31ef34f9b25bb213b0c7d48a053839aec7d7d8d0ad743c65d1002e00f51783",
+        "after_sha256": "04a84ce10a786a6364896dbb9db9ce563fec1039a093f92666163fc21eac5519",
+        "after_size": 16015
+      },
+      {
+        "path": "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
+        "before_sha256": "690431a678c871bd8c6b1d82557512ce07fba16c62130549a0c58e7c6ccb9e1b",
+        "after_sha256": "9ff8646e94d4706dc08ba7c48eeee503a9de009909256fdcf1d9bf66f0e697ab",
+        "after_size": 3964
+      },
+      {
+        "path": "DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md",
+        "before_sha256": "6f6f0c7d912d50876bf7bd481b07f8d9fe9c71ccc184ba87b985874a14732f67",
+        "after_sha256": "bc1984efaf8de580ef3bc29452eca0a7233bc7c922a39cfc8467aecb2a1b1e74",
+        "after_size": 2123
+      },
+      {
+        "path": "FEATURE_STATUS.md",
+        "before_sha256": "3bc2fa860f7b33df7cc2773cae6bb78fb976a67f2fdc77b3d8018ade279fdeb2",
+        "after_sha256": "df38ab0e9497b64e6384bf936e6f8c0f9eff09a64ac20f96b44605edd25b071d",
+        "after_size": 2491
+      },
+      {
+        "path": "HANDOFF_BRIEF.md",
+        "before_sha256": "6e0b1b6e8d1077f71269a3492466645f9b3fe1699ce1c5b45b1fa04d01ab7f47",
+        "after_sha256": "9170156a33a373528a51ceea8f764975dd9d0b6efe35f6b008e39102762dddc3",
+        "after_size": 1155
+      },
+      {
+        "path": "KNOWN_ISSUES.md",
+        "before_sha256": "fb9aadd101f5823f8e25eed2943ab0ea305149990c894ff6735341b9bce575c8",
+        "after_sha256": "fc87d2af974d0f8759b65c68d3ce9cde4cbe240760fe4c96da2a1989b5db9886",
+        "after_size": 2519
+      },
+      {
+        "path": "POST_RELEASE_REVIEW.md",
+        "before_sha256": "c59c52a2a270054e91a4be2e510ee6d10cffc5a52af107e65dd517885fcd0f98",
+        "after_sha256": "47b00533529a70fee14ab4ff266b95abcdb2145afdbf71c62ee33d08366d912b",
+        "after_size": 2125
+      },
+      {
+        "path": "PRE_IMPLEMENTATION_REVIEW.md",
+        "before_sha256": "6ce396faceacac31efc2445e00aaf030de06b6fd82eaf6f42e309740f878c883",
+        "after_sha256": "e2eb9336dd23f80c1634fa1b7e0dab1c8b28409fd9117e86a33f1fa33470cb4b",
+        "after_size": 4603
+      },
+      {
+        "path": "PROJECT_STATE.md",
+        "before_sha256": "f0e1e35f4f936b8910ae0379b4079be14b1e698d8a01f9043301e3c58d0dcdeb",
+        "after_sha256": "67d41e0a594d7a7b079aa44e7e0c7dcd213c07d2bd72a6bc3d7a9dcb53984936",
+        "after_size": 2926
+      },
+      {
+        "path": "README.md",
+        "before_sha256": "d51dbeefa55dcfde646a71c7b8d5f44ff47ada1375e037699bcb5de2cebad900",
+        "after_sha256": "7c757142cd5f0a0fae45358c5454f45a51b455a1b9e0f2a6ef04ce403f65985c",
+        "after_size": 983
+      },
+      {
+        "path": "README_DEPLOY.md",
+        "before_sha256": "e176200927ad27fe75d2293011fe7305fb51cf6ea906e561bca2081643147aca",
+        "after_sha256": "90d096a47d9008e7a69a1f0faa92ec4bf67f977d6f1a17fa60b3dff9335c3753",
+        "after_size": 1064
+      },
+      {
+        "path": "RELEASE_NOTES.md",
+        "before_sha256": "f27dbd7a25693ab8cfc96f350bb787c54e7d750b4236abb49857b50e3bcd7eb5",
+        "after_sha256": "0bca940a9ffd7d5591a3c191029a2e5da71801a7f697f23067d4a82802f0e12a",
+        "after_size": 89024
+      },
+      {
+        "path": "ROADMAP.md",
+        "before_sha256": "8aa61ea2a1b638aef4699ddce68e6a3d502504184076216a631c05cf8b8db7e0",
+        "after_sha256": "85f54cd5cbe0eeba0ed95d002aadfddbf0509ed743b3fc10cdc51e79decdc306",
+        "after_size": 1395
+      },
+      {
+        "path": "TEST_REPORT.md",
+        "before_sha256": "190003e5058f15d646e401b0e3ec6ca082f06597e0f5910ba7387f34188ac211",
+        "after_sha256": "e2b92dd33617a0dd5e3c5307b517033cbb7b475f960564919ccc3a48fe1912f1",
+        "after_size": 300
+      },
+      {
+        "path": "VERSION.txt",
+        "before_sha256": "1da012a703d1c24ebb50a178d325df4f8119c3636e93707b740fefa8ee39f841",
+        "after_sha256": "86ac9ac821c4bdc46b2f4097a19f72186f72b8e3e96323a28979e95990955c5a",
+        "after_size": 26
+      },
+      {
+        "path": "assets/app.js",
+        "before_sha256": "60ad3f4fa3a67f2f50598483112c94ccb6b8060cc8d81d22c9312c40a1afbfe0",
+        "after_sha256": "5334454f8ad19d2e70c7071a05da3d0163e2ccc6bf0ead85493334aa5a52fff0",
+        "after_size": 522838
+      },
+      {
+        "path": "assets/knowledge-base.js",
+        "before_sha256": "11dda92e401b972b575e628647c542a90f1b4e258437fdcb966d000605402520",
+        "after_sha256": "5a728c1b1b08eb26c54f548d62245a64258485c139845692983a62f7db990799",
+        "after_size": 206795
+      },
+      {
+        "path": "assets/styles.css",
+        "before_sha256": "e31fe506ff251ff77564c0a913cae96323816fe717b4899b6cabbe4b0b06c04b",
+        "after_sha256": "b50cfc1abb9012eb82b85ec132ff89d321752a17c303e19bab7016f15349a1a3",
+        "after_size": 184789
+      },
+      {
+        "path": "index.html",
+        "before_sha256": "e37fac8930e2e7bbb8e59f75e045441be248b88b1debe2ca7ba85d03c714edb3",
+        "after_sha256": "617f2cde1bba58a281a530dc175c4922f488a4857b51a7212d73386e45aeeb5e",
+        "after_size": 1959
+      },
+      {
+        "path": "sw.js",
+        "before_sha256": "41a836d223332f1822f4c2f6674838ee482c804029e35dcf63bc6dcb3ea1b741",
+        "after_sha256": "c95ad22e078ece00d100d135a1eca87eca235de60bfc69c49abcf274bddac3d4",
+        "after_size": 1576
+      },
+      {
+        "path": "tests/governance-negative-controls.py",
+        "before_sha256": "5dac43538bce4c6701ed94bf29133e43b5c3b60a91c0262852b9b1d8d81d73d7",
+        "after_sha256": "3748b284dfee0c2f3c5702fc19975c907937d37b9e85abf4211458523ac081fb",
+        "after_size": 2847
+      },
+      {
+        "path": "tests/release-structure.test.js",
+        "before_sha256": "36d699bb6c1144db0ee4a6f27c94b02c24af8a039cc2039308dad2882eebbdcb",
+        "after_sha256": "1854b8cdfbef0c4e3ab1534ce60b69af05eda656cf876e25ae1e5b3ec139f14f",
+        "after_size": 1378
+      },
+      {
+        "path": "tests/rendered-workflow-smoke.py",
+        "before_sha256": "9109ba9733945204285f8f239c78ece257c420f5aedbe9253e6a9b54e7546e03",
+        "after_sha256": "d29d1c06cb0e10a4dd4e0e72d87dca9c0c33cceb4a787436a4eec876809c770b",
+        "after_size": 21595
+      },
+      {
+        "path": "version.js",
+        "before_sha256": "7ca25a4b4519f352115353759020968d776abb3936f219b90c9707bb4c735aaa",
+        "after_sha256": "5af2abd5eb86a2281c083a0732b32dabd48bd14c7dd57fbe29c26c0fac8b592c",
+        "after_size": 187
+      }
+    ],
+    "deleted_files": []
+  },
+  "safety_notes": [
+    "The user-provided events (3).json was external read-only reference data and is not part of this package.",
+    "Ambiguous historical exercise equipment is not silently inferred; the app provides a review-based correction workflow.",
+    "BUILD_MANIFEST_v0.41.0.json excludes itself and PACKAGE_PROVENANCE_v0.41.0.json to avoid self-referential hashes."
+  ],
+  "build_manifest": {
+    "path": "BUILD_MANIFEST_v0.41.0.json",
+    "sha256": "58826b42cb69d977de3a1d68ac4130cb2d237d63b450fa6110c61e03ae09fb83"
+  }
+}

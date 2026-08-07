@@ -1,30 +1,21 @@
 # ZEKE Roadmap
 
-**Status:** Canonical current roadmap. Completed work belongs in `CHANGELOG.md`, not here.
+**Status:** Canonical current roadmap. Completed work belongs in `CHANGELOG.md`.
 
-## Next — Sprint 5: Verification and Release-Candidate Hardening
+## Current — v0.41.0 RC acceptance
 
-- Run all applicable JavaScript, Python, governance, package-structure, and rendered-browser checks.
-- Classify each failure as regression, obsolete expectation, missing external fixture, or environment-dependent acceptance.
-- Verify mobile and desktop information density, unified input priority, modal behavior, activity entry, custom schemas, PT/recovery logging, recommendation preferences, and save-result language.
-- Reconcile service-worker/runtime manifest and package provenance.
-- Produce a clearly labeled release candidate, not a final release, until user acceptance.
+- Complete package-local regression, governance, and rendered-browser checks.
+- Deploy the complete RC and verify live Google Drive connection/write/readback.
+- Verify representative desktop and physical mobile behavior for Dashboard, Discover, workout logging, PT form guides, duplicate review, and medication schedule modes.
+- Treat newly observed issues as blockers only when they compromise an accepted v0.41 workflow, data integrity, or core navigation.
 
-## Release candidate acceptance
+## Near-term fitness follow-up
 
-- User tests deployed desktop and physical mobile behavior.
-- Live Google Drive connection/write/readback is verified.
-- No known critical regression remains open.
-- Current documentation and runtime identity agree.
-
-## Later fitness roadmap
-
-- Refactor the legacy multi-exercise editor to consume the same schema service as direct activity entry.
-- Apply recommendation preferences to routine generation, not only library/Coach’s Eye selection.
-- Richer modality-specific history and progression charts.
-- Equipment-aware duration-constrained workout generation and weekly split recommendations.
-- Context-specific warm-up/cool-down guidance and advanced workout structures.
-- Continued evidence review and truthful media expansion.
+- Continue expanding verified PT/form-guide images without substituting unrelated imagery.
+- Improve Training Environment defaults for exact exercise variations.
+- Apply activity recommendation preferences more deeply to generated routines.
+- Add richer warm-up/cool-down and advanced structures (supersets, circuits, drop sets) after the v0.41 logger is accepted.
+- Continue evidence review and refine progressive-overload rules with transparent uncertainty.
 
 ## Later platform roadmap
 

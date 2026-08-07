@@ -1,5 +1,7 @@
 # Current ZEKE Test Report
 
-**Status: Superseded redirect.**
+**Status: redirect to current release evidence.**
 
-The current release test evidence is in [`TEST_REPORT_v0.29.0.md`](TEST_REPORT_v0.29.0.md). This generic filename previously contained a historical v0.6.0 report and must not be treated as current evidence.
+The current package verification evidence is in [`TEST_REPORT_v0.41.0.md`](TEST_REPORT_v0.41.0.md).
+
+Historical version-specific reports remain evidence for their own releases only and do not override the current report.
