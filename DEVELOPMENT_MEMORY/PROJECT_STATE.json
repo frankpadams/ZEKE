@@ -1,9 +1,9 @@
 {
   "schema_version": 3,
-  "current_version": "0.40.5",
-  "current_build": "2026.08.06.5",
-  "release_label": "Sprint 5 \u00b7 Verification Hardening RC1",
-  "baseline": "v0.29.0 runtime built from v0.27.2 recovery baseline",
+  "current_version": "0.41.0",
+  "current_build": "2026.08.07.1",
+  "release_label": "Fitness Intelligence & Clarity RC1",
+  "baseline": "Exact user-deployed ZEKE v0.40.5 build 2026.08.06.5",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
   "authoritative_documents": [
     "00_AI_START_HERE.md",
@@ -16,7 +16,7 @@
     "DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json",
     "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
     "DEVELOPMENT_MEMORY/GOVERNANCE_RECONCILIATION_2026-07-25.md",
-    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.40.5.md",
+    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.41.0.md",
     "DEVELOPMENT_MEMORY/PROJECT_STATE.json",
     "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
     "DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md",
@@ -30,10 +30,11 @@
     "ZEKE_CONSTITUTION.md"
   ],
   "implemented_this_release": [
-    "Regression-suite reconciliation for current adaptive activity and unified mobile architecture",
-    "Rendered desktop/mobile workflow verification and bounded browser tests",
-    "Accessible names for activity-entry close controls",
-    "Release-candidate identity, test evidence, and package provenance reconciliation"
+    "Exact exercise family/variation/equipment/load-basis identity and review-based historical metadata repair",
+    "Expanded PT shorthand, activity fields, and form-guide recognition support",
+    "Point-of-logging progressive-overload targets with RPE/RIR, pain/PT, gap, and evidence handling",
+    "Discover signal-quality redesign and recent-oriented Trends & Analysis",
+    "Section-owned Dashboard ranges, compact Today, plain-language duplicate review, and medication adherence modes"
   ],
   "inherited_verified_evidence": [
     "v0.25.2 direct mobile workout save handler and visible failure path",
@@ -41,18 +42,17 @@
     "deterministic medication, sleep, workbook, provenance, and workflow regressions"
   ],
   "known_issues": [
-    "Remote public-domain exercise media requires a network connection; a truthful written-guide fallback is shown when media is absent or unavailable",
-    "The core high-use guides are manually curated; lower-priority catalog entries use normalized professional-consensus templates pending deeper evidence review",
-    "Physical iPhone, representative Android, and live Google Drive acceptance still require deployment testing by the alpha user",
-    "Provider adapters beyond Google Drive remain roadmap work",
-    "Advanced periodization, wearable live workout interfaces, and a locally hosted full media library remain roadmap-scale enhancements"
+    "Physical mobile and live Google Drive acceptance require deployed user testing",
+    "Verified movement imagery is not yet available for every PT exercise; written fallback remains",
+    "Ambiguous historical equipment remains intentionally unspecified until user review",
+    "Provider adapters beyond Google Drive remain roadmap work"
   ],
   "next_review_items": [
-    "Deploy RC1 and verify live Google Drive write/readback",
-    "Complete physical iPhone and representative Android acceptance",
-    "Collect user acceptance feedback and prepare final v0.41.0 milestone"
+    "Deploy v0.41.0 RC1 and verify live Google Drive write/readback",
+    "Complete physical mobile acceptance and collect user feedback",
+    "Review ambiguous historical exercise identities only through the non-destructive mapping workflow"
   ],
-  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.40.5.md",
+  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.41.0.md",
   "files_to_read_first": [
     "00_AI_START_HERE.md"
   ],
@@ -65,9 +65,9 @@
     "real-data workbook regression when fixture is available",
     "final ZIP reopened and compared with provenance"
   ],
-  "current_release_label": "Sprint 5 \u00b7 Verification Hardening RC1",
-  "current_focus": "Release-candidate verification, regression reconciliation, accessibility hardening, and user acceptance preparation",
-  "governance_revision": "2026.08.06.5",
+  "current_release_label": "Fitness Intelligence & Clarity RC1",
+  "current_focus": "Fitness intelligence, PT recognition, meaningful Discover/Trends, and user-friendly trust workflows",
+  "governance_revision": "2026.08.07.1",
   "runtime_changed_by_governance_revision": true,
   "rejected_forward_baselines": [
     "v0.28.0",
@@ -81,11 +81,12 @@
     "mature research-reviewed readiness and adaptive periodization methodology",
     "locally controlled full exercise media library"
   ],
-  "current_release": "ZEKE v0.40.5 RC1 \u2014 Verification Hardening",
-  "updated_at": "2026-08-06T10:23:00-04:00",
+  "current_release": "ZEKE v0.41.0 RC1 \u2014 Fitness Intelligence & Clarity",
+  "updated_at": "2026-08-07T00:39:48-04:00",
   "known_limitations": [
-    "Live Google Drive repair and physical-device verification remain outstanding",
-    "Remote public-domain exercise media requires network access and has a truthful fallback",
-    "Lower-priority knowledge objects await deeper manual evidence review"
+    "Live Google Drive and physical-device verification remain outstanding",
+    "Remote form-guide media requires network access and has a truthful fallback",
+    "Some clinic-specific PT shorthand/media requires continued curation",
+    "Three protected-workbook regressions require ZEKE_TEST_DATA_ROOT; three retained historical tests contain obsolete v0.40/v2 UX/schema expectations"
   ]
 }

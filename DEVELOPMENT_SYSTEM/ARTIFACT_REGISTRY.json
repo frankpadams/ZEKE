@@ -1,10 +1,10 @@
 {
   "schema_version": 3,
-  "release": "0.40.5",
-  "build": "2026.08.06.5",
-  "current_version": "0.40.5",
-  "current_build": "2026.08.06.5",
-  "governance_revision": "2026.08.06.5",
+  "release": "0.41.0",
+  "build": "2026.08.07.1",
+  "current_version": "0.41.0",
+  "current_build": "2026.08.07.1",
+  "governance_revision": "2026.08.07.1",
   "artifacts": [
     {
       "path": "00_AI_START_HERE.md",
@@ -24,7 +24,7 @@
     {
       "path": "BUILD_MANIFEST_v0.40.0.json",
       "status": "generated",
-      "purpose": "current runtime file hashes and compatibility"
+      "purpose": "historical generated release evidence"
     },
     {
       "path": "CHANGELOG.md",
@@ -259,7 +259,7 @@
     {
       "path": "PACKAGE_PROVENANCE_v0.40.0.json",
       "status": "generated",
-      "purpose": "current package file provenance"
+      "purpose": "historical generated release evidence"
     },
     {
       "path": "PACKAGE_VERIFICATION_v0.29.0-CONTINUITY.json",
@@ -308,8 +308,8 @@
     },
     {
       "path": "RELEASE_NOTES_v0.40.4.md",
-      "status": "generated",
-      "purpose": "exact-release compatibility snapshot"
+      "status": "historical",
+      "purpose": "historical release-note snapshot"
     },
     {
       "path": "ROADMAP.md",
@@ -318,8 +318,8 @@
     },
     {
       "path": "SPRINT_4_GOVERNANCE_CONTINUITY_REVIEW.md",
-      "status": "supporting",
-      "purpose": "sprint scope and boundary"
+      "status": "historical",
+      "purpose": "historical release/test/sprint evidence"
     },
     {
       "path": "TEST_REPORT.md",
@@ -378,18 +378,18 @@
     },
     {
       "path": "TEST_REPORT_v0.29.0.md",
-      "status": "supporting",
-      "purpose": "current test and verification evidence"
+      "status": "historical",
+      "purpose": "historical release/test/sprint evidence"
     },
     {
       "path": "TEST_REPORT_v0.40.0.md",
-      "status": "supporting",
-      "purpose": "current package verification evidence"
+      "status": "historical",
+      "purpose": "historical release/test/sprint evidence"
     },
     {
       "path": "TEST_REPORT_v0.40.4.md",
-      "status": "supporting",
-      "purpose": "current package test evidence"
+      "status": "historical",
+      "purpose": "historical release/test/sprint evidence"
     },
     {
       "path": "ZEKE_CONSTITUTION.md",
@@ -458,28 +458,53 @@
     },
     {
       "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.40.5.md",
-      "status": "authoritative",
+      "status": "historical",
       "purpose": "current iteration record"
     },
     {
       "path": "RELEASE_NOTES_v0.40.5.md",
-      "status": "supporting",
-      "purpose": "version-specific release-note snapshot"
+      "status": "historical",
+      "purpose": "historical release-note snapshot"
     },
     {
       "path": "TEST_REPORT_v0.40.5.md",
-      "status": "supporting",
-      "purpose": "current release test evidence"
+      "status": "historical",
+      "purpose": "historical release/test/sprint evidence"
     },
     {
       "path": "BUILD_MANIFEST_v0.40.5.json",
       "status": "generated",
-      "purpose": "current build manifest"
+      "purpose": "historical generated release evidence"
     },
     {
       "path": "PACKAGE_PROVENANCE_v0.40.5.json",
       "status": "generated",
-      "purpose": "current package provenance"
+      "purpose": "historical generated release evidence"
+    },
+    {
+      "path": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.41.0.md",
+      "status": "authoritative",
+      "purpose": "current approved scope and implementation record"
+    },
+    {
+      "path": "RELEASE_NOTES_v0.41.0.md",
+      "status": "supporting",
+      "purpose": "current release-specific notes"
+    },
+    {
+      "path": "TEST_REPORT_v0.41.0.md",
+      "status": "generated",
+      "purpose": "current package verification evidence"
+    },
+    {
+      "path": "BUILD_MANIFEST_v0.41.0.json",
+      "status": "generated",
+      "purpose": "current package file hashes"
+    },
+    {
+      "path": "PACKAGE_PROVENANCE_v0.41.0.json",
+      "status": "generated",
+      "purpose": "current package provenance and hashes"
     }
   ],
   "historical_patterns": [

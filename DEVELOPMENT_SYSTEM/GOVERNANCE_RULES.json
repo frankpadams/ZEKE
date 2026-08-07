@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
-  "current_version": "0.40.5",
-  "current_build": "2026.08.06.5",
+  "current_version": "0.41.0",
+  "current_build": "2026.08.07.1",
   "immutable_principles": [
     "user_owned_canonical_data",
     "ai_advisory_deterministic_commit",
@@ -82,11 +82,11 @@
     "live data repairs require review backup provenance and rollback",
     "runtime cache and build manifests agree"
   ],
-  "governance_revision": "2026.08.06.4",
+  "governance_revision": "2026.08.07.1",
   "rejected_forward_baselines": [
     "0.28.0",
     "0.28.1"
   ],
   "approved_recovery_baseline": "0.27.2",
-  "current_forward_baseline": "0.40.4"
+  "current_forward_baseline": "0.41.0"
 }

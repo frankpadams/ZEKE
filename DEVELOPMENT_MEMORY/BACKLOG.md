@@ -98,3 +98,17 @@ The v0.23.1 stabilization scope remains complete locally. Do not reopen it as fe
 ### Immediate next review boundary
 
 Before any new runtime work, use v0.29.0 as the baseline, run the phone/desktop acceptance review, and choose a separately approved scope from the unresolved items above. Do not treat governance-locked items as already implemented.
+
+## Approved v0.41.0 work queue
+- FIT-041-01 — exercise family / exact variation / equipment / load-basis identity layer.
+- FIT-041-02 — non-destructive historical workout identity review and migration UI.
+- FIT-041-03 — expanded PT activity catalog with full names + abbreviations and separate ER/IR records.
+- FIT-041-04 — PT recognition/form guides with media where verified and clinician-override language.
+- FIT-041-05 — in-logger progressive-overload target using recent exact-variation history plus RPE/RIR/context and evidence links.
+- DISC-041-01 — Discover-first meaningful findings; Pattern Lab becomes advanced drill-down; remove duplicate questions/empty buckets.
+- DISC-041-02 — suppress tiny-sample, same-session, redundant and shared-time-trend correlations from user-facing findings.
+- TREND-041-01 — Now/Recent/Context trend analysis with comparable recent windows and change-of-trend language.
+- DASH-041-01 — move Dashboard time-range controls into affected sections and decouple Dashboard/Fitness range state.
+- DASH-041-02 — evolve Today’s Actions into compact Today and hide when empty.
+- TRUST-041-01 — plain-language side-by-side duplicate review.
+- MED-041-01 — opt-in medication assumed-as-scheduled adherence mode with explicit assumed provenance and corrections.
