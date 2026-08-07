@@ -72,14 +72,14 @@ with sync_playwright() as p:
             if trend.count():
                 trend.locator('summary').click();page.wait_for_timeout(150)
                 before=trend.evaluate('(el)=>el.open')
-                page.locator('[data-range="quarter"]').first.click();page.wait_for_timeout(120)
+                page.locator('[data-dashboard-range-kind="trend"][data-dashboard-range="quarter"]').click();page.wait_for_timeout(120)
                 after=page.locator('.trend-analysis-item').first.evaluate('(el)=>el.open')
                 private=page.locator('.private-summary').first
                 private_before=private_after=True
                 if private.count():
                     private.locator('summary').click();page.wait_for_timeout(150)
                     private_before=private.evaluate('(el)=>el.open')
-                    page.locator('[data-range="month"]').first.click();page.wait_for_timeout(120)
+                    page.locator('[data-dashboard-range-kind="health"][data-dashboard-range="month"]').click();page.wait_for_timeout(120)
                     private_after=page.locator('.private-summary').first.evaluate('(el)=>el.open')
                 results['interactions']['dashboard_disclosure']={'opened':before,'survived_rerender':after,'private_opened':private_before,'private_survived_rerender':private_after}
         if route=='health':
@@ -155,5 +155,5 @@ assert results['interactions']['goal_setting']['saved'] and results['interaction
 assert all(results['interactions']['sleep_edit'].values())
 assert results['interactions']['medication_review']['monthly_checkin']
 assert 'ready to save' in results['interactions']['medication_backfill']['preview'] and 'skipped' in results['interactions']['medication_backfill']['preview'] and results['interactions']['medication_backfill']['saved_rows']>=3
-review=results['interactions']['review'];assert review['title']=='Confirm this sleep entry' and review['source'] and review['proposal_fields']>=1 and review['preserved_after_later_count']>=1 and any(x in review['actions'] for x in ['Answer now','Confirm or correct','Answer this question'])
+review=results['interactions']['review'];assert review['title']=='Confirm this sleep entry' and review['source'] and review['proposal_fields']>=1 and review['preserved_after_later_count']>=1 and any(x in review['actions'] for x in ['Answer now','Confirm or correct','Answer this question','Answer this'])
 assert results['interactions']['recurring_action_editor']['present'] and results['interactions']['recurring_action_editor']['save_label']=='Save recurring schedule'
