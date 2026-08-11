@@ -144,7 +144,34 @@
     if(events.length){const hash=stableHash(lower(text));const counters={};events.forEach(e=>{const day=e.timestamp.slice(0,10);counters[day]=(counters[day]||0)+1;const id=`workout:${day}:${hash}`;e.structured={...e.structured,workout_id:id,session_id:id,activity_index:counters[day],modality:e.structured.exercise==='stair climber'?'cardio':e.structured.exercise==='massage chair'?'recovery':'strength'};e.provenance={source:'deterministic-workout-parser'};});return{confidence:.96,summary:`${new Set(events.map(e=>e.timestamp.slice(0,10))).size} workout session${new Set(events.map(e=>e.timestamp.slice(0,10))).size===1?'':'s'}, ${events.length} activities`,events};}
     const exercise=context.exercise||findAlias(text,EXERCISE_ALIASES)?.canonical;if(!exercise)return null;return{confidence:.75,needsClarification:true,summary:exercise,events:[parseExerciseChunk(exercise,text,now(context),text)]};
   }
-  function parseSingle(text,context={}){if(isAmbiguousBP(text)&&!context.exercise&&!context.metric)return{type:'ambiguity',confidence:.45,choices:['blood pressure','bench press'],raw:text};if(context.metric==='weight'&&/^\s*\d{2,3}(?:\.\d+)?\s*$/.test(text))return{confidence:.98,summary:`weight ${norm(text)} lb`,events:[{category:'measurement',timestamp:now(context),raw_text:text,structured:{metric_id:'weight',value:num(text),unit:'lb',interpretation_status:'confirmed'}}]};return parseBloodPressure(text,context)||parseWeight(text,context)||parseSleep(text,context)||parseMedication(text,context)||parseWorkout(text,context)||{type:'unstructured',confidence:.35,summary:'an observation that needs more interpretation',events:[]};}
+  function retrospectiveRange(text,base){
+    const l=lower(text); let m=l.match(/(?:past|last|previous)\s+(\d+)\s+days?/i);
+    if(m){const n=Math.max(1,Math.min(366,Number(m[1]))),end=new Date(base),start=new Date(base);start.setDate(start.getDate()-(n-1));start.setHours(12,0,0,0);end.setHours(12,0,0,0);return{start,end,label:`past ${n} days`,count:n};}
+    m=l.match(/(?:past|last|previous)\s+(\d+)\s+months?/i);
+    if(m){const n=Math.max(1,Math.min(24,Number(m[1]))),end=new Date(base),start=new Date(base);start.setMonth(start.getMonth()-n);start.setHours(12,0,0,0);end.setHours(12,0,0,0);return{start,end,label:`past ${n} months`,count:null};}
+    return null;
+  }
+  function rangeDays(range){const out=[];for(const d=new Date(range.start);d<=range.end;d.setDate(d.getDate()+1)){const x=new Date(d);x.setHours(12,0,0,0);out.push(x.toISOString())}return out;}
+  function parseClinicalExposure(text,context={}){
+    const l=lower(text), ts=now(context);
+    if(/\b(vaccine|vaccination|vaccinated|flu shot|covid shot|booster|immunization)\b/i.test(text)){
+      const label=(text.match(/\b(?:flu|influenza|covid(?:-19)?|tetanus|tdap|shingles|zoster|pneumococcal|rsv|hepatitis\s*[ab])\b/i)||[])[0]||'vaccination';
+      return{type:'clinical-exposure',confidence:.9,summary:`vaccination: ${label}`,events:[{category:'vaccination',timestamp:ts,raw_text:text,structured:{name:label,status:'administered',interpretation_status:'confirmed'},provenance:{source:'user-report',user_confirmed:true}}]};
+    }
+    if(/\b(allergy shot|allergy shots|immunotherapy)\b/i.test(text))return{type:'clinical-exposure',confidence:.94,summary:'allergy immunotherapy session',events:[{category:'immunotherapy',timestamp:ts,raw_text:text,structured:{name:'allergy immunotherapy',status:'administered',interpretation_status:'confirmed'},provenance:{source:'user-report',user_confirmed:true}}]};
+    if(/\b(donated blood|blood donation)\b/i.test(text))return{type:'context-exposure',confidence:.94,summary:'blood donation',events:[{category:'context',timestamp:ts,raw_text:text,structured:{context_type:'blood_donation',label:'Blood donation',interpretation_status:'confirmed'},provenance:{source:'user-report',user_confirmed:true}}]};
+    return null;
+  }
+  function parseRetrospectiveAssertion(text,context={}){
+    const base=context?.active_date?new Date(`${context.active_date}T12:00:00`):nowDate(context),range=retrospectiveRange(text,base);if(!range)return null;
+    if(/adequate\s+protein|enough\s+protein|met\s+(?:my\s+)?protein/i.test(text)){
+      const dates=rangeDays(range);return{type:'retrospective-range',confidence:.98,bulk:true,summary:`adequate protein for ${range.label}`,events:dates.map(ts=>({category:'nutrition',timestamp:ts,raw_text:text,structured:{metric_id:'protein_adequacy',status:'adequate',value:true,interpretation_status:'confirmed',retrospective_range:range.label},provenance:{source:'user-retrospective-range',user_confirmed:true,reported_at:now(context)}}))};
+    }
+    if(/(?:did(?:n't| not)|haven't|have not)\s+miss(?:ed)?\s+(?:any\s+)?(?:med(?:ication)?\s+)?doses?/i.test(text))return{type:'medication-adherence-range',confidence:.99,bulk:true,needsScheduleReconciliation:true,summary:`no missed medication doses for ${range.label}`,range:{start:range.start.toISOString(),end:range.end.toISOString(),label:range.label},events:[],provenance:{source:'user-retrospective-range',user_confirmed:true}};
+    if(/\b(?:sick|ill|injured|pain|sore|stiff|fatigued|dehydrated)\b/i.test(text))return{type:'context-range',confidence:.82,bulk:true,needsClarification:true,clarificationQuestion:`I understood that this applies across ${range.label}. What health/context label should ZEKE use for the period?`,range:{start:range.start.toISOString(),end:range.end.toISOString(),label:range.label},events:[]};
+    return null;
+  }
+  function parseSingle(text,context={}){if(isAmbiguousBP(text)&&!context.exercise&&!context.metric)return{type:'ambiguity',confidence:.45,choices:['blood pressure','bench press'],raw:text};if(context.metric==='weight'&&/^\s*\d{2,3}(?:\.\d+)?\s*$/.test(text))return{confidence:.98,summary:`weight ${norm(text)} lb`,events:[{category:'measurement',timestamp:now(context),raw_text:text,structured:{metric_id:'weight',value:num(text),unit:'lb',interpretation_status:'confirmed'}}]};return parseBloodPressure(text,context)||parseWeight(text,context)||parseSleep(text,context)||parseClinicalExposure(text,context)||parseRetrospectiveAssertion(text,context)||parseMedication(text,context)||parseWorkout(text,context)||{type:'unstructured',confidence:.35,summary:'an observation that needs more interpretation',events:[]};}
   function interpret(text,context={}){return parseSingle(text,context);}
   window.ZekeParser={interpret,isAmbiguousBP,resolveDateToken,aliases:{medications:MED_ALIASES,exercises:EXERCISE_ALIASES},canonicalMedicationId:value=>findAlias(value,MED_ALIASES)?.canonical||lower(value).replace(/[^a-z0-9]+/g,'_')};
 })();

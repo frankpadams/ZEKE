@@ -1153,9 +1153,20 @@
   function reviewStatusHTML(repairs=repairCandidates()){
     return `<section class="panel review-status-card ${repairs.length?'needs-review':'clear'}"><div><span class="review-status-icon">${repairs.length?'!':'✓'}</span><div><small>DATA INTEGRITY</small><strong>${repairs.length?`${repairs.length} item${repairs.length===1?'':'s'} need review`:'Current scan is clear'}</strong><p>${repairs.length?'ZEKE has evidence and a recommended action for each item.':'No known duplicate, import-artifact, impossible-zero, or stale-question issue is currently active.'}</p></div></div><button class="${repairs.length?'primary':'secondary'} compact" data-route="data-integrity">${repairs.length?'Review now':'View audit'}</button></section>`;
   }
+  function timelineSnapshotHTML(){
+    const all=window.ZekeLongitudinal?.timeline?.(state.events,state.calendar)||[],today=new Date(),start=new Date(today);start.setDate(start.getDate()-10);const end=new Date(today);end.setDate(end.getDate()+3);
+    const rows=all.filter(x=>{const d=new Date(x.start);return d>=start&&d<=end&&x.kind!=='medication'}),groups=[
+      {key:'workout',label:'Workouts & activity',match:x=>['workout','exercise','activity','fitness'].includes(x.kind)},
+      {key:'health',label:'Health context',match:x=>['illness','injury','symptom','observation','vaccination','immunotherapy','context'].includes(x.kind)},
+      {key:'recovery',label:'Sleep & recovery',match:x=>['sleep','recovery'].includes(x.kind)},
+      {key:'calendar',label:'Calendar',match:x=>x.kind==='calendar'}
+    ].map(g=>({...g,items:rows.filter(g.match)})).filter(g=>g.items.length);
+    const days=Array.from({length:14},(_,i)=>{const d=new Date(start);d.setDate(d.getDate()+i);return d}),dayKey=d=>window.ZekeLongitudinal?.day?.(d)||'';
+    return `<section class="panel timeline-snapshot"><div class="section-head"><div><span class="tile-kicker">WHAT'S BEEN HAPPENING?</span><h2>Timeline Snapshot</h2><p>Recent and upcoming events shown together so timing is visible. Markers represent recorded data only.</p></div><button class="text-action" data-route="calendar">Open full timeline</button></div>${groups.length?`<div class="timeline-axis">${days.map((d,i)=>`<span class="${dayKey(d)===dayKey(today)?'today':''}">${i%2===0?d.toLocaleDateString(undefined,{month:'short',day:'numeric'}):''}</span>`).join('')}</div><div class="timeline-rows">${groups.map(g=>`<div class="timeline-row"><strong>${esc(g.label)}</strong><div class="timeline-track">${days.map(d=>{const items=g.items.filter(x=>x.day===dayKey(d));return `<span class="timeline-day ${dayKey(d)===dayKey(today)?'today':''}">${items.map(x=>`<i class="timeline-marker kind-${esc(x.kind)}" title="${esc(x.label)} · ${esc(fmtDate(x.start,{month:'short',day:'numeric'}))}"></i>`).join('')}</span>`}).join('')}</div></div>`).join('')}</div><div class="timeline-legend"><span><i class="timeline-marker kind-workout"></i> recorded event</span><span>Medication details are excluded from this dashboard view by default.</span></div>`:`<div class="timeline-empty"><strong>No timeline events in this window.</strong><span>ZEKE will not invent activity to fill the visualization.</span></div>`}</section>`;
+  }
   function dashboardHTML() {
     const repairs=repairCandidates();
-    return `${coverageHTML()}<div class="dashboard-v3">${dashboardStoryCardsHTML()}${healthGlanceHTML(8)}<div class="dashboard-main-grid"><div>${weeklyPlanHTML()}${coachHTML()}</div><div>${todayActionsHTML()}${upcomingHTML()}</div></div>${trendPanelHTML()}<div class="dashboard-lower-grid">${truthfulRecentActivityHTML()}${reviewStatusHTML(repairs)}</div></div>`;
+    return `${coverageHTML()}<div class="dashboard-v3">${dashboardStoryCardsHTML()}${healthGlanceHTML(8)}${timelineSnapshotHTML()}<div class="dashboard-main-grid"><div>${weeklyPlanHTML()}${coachHTML()}</div><div>${todayActionsHTML()}${upcomingHTML()}</div></div>${trendPanelHTML()}<div class="dashboard-lower-grid">${truthfulRecentActivityHTML()}${reviewStatusHTML(repairs)}</div></div>`;
   }
 
   function isSuppressedIntegrityArtifact(e){
