@@ -219,3 +219,31 @@ Unchanged files retain their original bytes and original modification timestamps
 ## 50. Rejected branches do not silently become the baseline
 
 ZEKE v0.27.2 was the approved recovery source for the clean Gym Mode rebuild. ZEKE v0.29.0 is the current runtime and forward-development baseline. The v0.28.x Gym Mode branch remains rejected; it may be consulted only as failure evidence or for selectively re-evaluated backend ideas. No v0.28.x visual or cumulative-CSS behavior is inherited automatically.
+
+## 51. Longitudinal context is a first-class record property
+
+ZEKE represents facts as points, repeated occurrences, or time-bounded intervals. Retrospective statements may cover many dates, but their provenance must state when the user reported the range. Bulk interpretation is previewable, correctable, and must not silently overwrite contradictory evidence.
+
+## 52. One knowledge model, many lenses
+
+Health, Fitness, Timeline/Calendar, Body Area, Documents, Trends, Discover, and Coach's Eye are lenses over one provenance-preserving longitudinal model. Feature-specific copies of the user's truth must not become competing systems of record.
+
+## 53. Recognition is an auditable pipeline, not magic
+
+Uploaded files, screenshots, images, and pasted content pass through explicit ingestion stages: capture context and metadata; extract available content; identify deterministic signals; classify with bounded confidence; use replaceable AI only where semantic interpretation adds value; validate against schemas; ask when ambiguity remains; review before commit. The original source remains linked to imported facts.
+
+## 54. Source reference information remains source-specific
+
+Clinical reference ranges, thresholds, flags, percentiles, and interpretive bands shown by a source are stored with that source result and are not silently generalized into universal thresholds. ZEKE-derived interpretation remains separately labeled.
+
+## 55. Calendar disclosure is staged and granular
+
+Before connecting an external calendar, ZEKE explains read/write scope and third-party privacy implications. Before creating or syncing a dedicated ZEKE calendar, ZEKE separately explains what ZEKE data will leave the repository. Sensitive categories may require per-event approval; medication details and highly private context are excluded by default. Calendar sync never becomes the canonical health record.
+
+## 56. Visualizations represent evidence, not decoration masquerading as data
+
+Charts, timelines, gauges, body maps, comparison graphics, and status indicators that appear quantitative must be generated from real records or clearly labeled illustrative content. ZEKE does not fabricate scores, trends, events, or precision to make the interface appear intelligent.
+
+## 57. Examples validate mechanisms; they do not become product rules
+
+User-specific examples may be used as regression scenarios, but implementation remains generalized across activities, exposures, body areas, symptoms, outcomes, and users. A single anecdote must not become hard-coded coaching logic.
