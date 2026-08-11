@@ -1,0 +1,15 @@
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const ctx={window:{},console,Date};vm.createContext(ctx);
+for(const f of ['assets/parser.js','assets/longitudinal-schema.js','assets/ingestion-engine.js','assets/calendar-privacy.js'])vm.runInContext(fs.readFileSync(f,'utf8'),ctx,{filename:f});
+let p=ctx.window.ZekeParser.interpret('I had adequate protein for each of the past 12 days',{now:'2026-08-11T04:00:00Z'});
+assert.equal(p.type,'retrospective-range');assert.equal(p.events.length,12);assert(p.events.every(e=>e.provenance.user_confirmed));
+p=ctx.window.ZekeParser.interpret("I didn't miss any med doses in the past 2 months",{now:'2026-08-11T04:00:00Z'});
+assert.equal(p.type,'medication-adherence-range');assert.equal(p.needsScheduleReconciliation,true);assert.equal(p.events.length,0);
+p=ctx.window.ZekeParser.interpret('I got my allergy shot today',{now:'2026-08-11T04:00:00Z'});assert.equal(p.events[0].category,'immunotherapy');
+p=ctx.window.ZekeParser.interpret('I donated blood today',{now:'2026-08-11T04:00:00Z'});assert.equal(p.events[0].structured.context_type,'blood_donation');
+let c=ctx.window.ZekeIngestion.classify({filename:'scan.pdf',text:'DXA Total body BMD T-score Z-score lean mass fat mass android gynoid'});assert.equal(c.document_type,'dexa');assert.equal(c.confidence,'high');
+let r=ctx.window.ZekeIngestion.sourceRange({low:80,high:100,unit:'mg/dL',source:'report'});assert.equal(r.universal,false);assert.equal(r.kind,'source_reported_reference');
+let q=ctx.window.ZekeCalendarPrivacy.preview({title:'Private health event'},'medication',{});assert.equal(q.blocked,true);
+q=ctx.window.ZekeCalendarPrivacy.preview({title:'Workout'},'workout',{});assert.equal(q.mode,'ask');assert(q.privacy_notice);
+const t=ctx.window.ZekeLongitudinal.timeline([{id:'1',category:'vaccination',timestamp:'2026-08-10T12:00:00Z',structured:{name:'flu'}}],[]);assert.equal(t[0].kind,'vaccination');
+console.log('v0.42 longitudinal/ingestion tests passed');
