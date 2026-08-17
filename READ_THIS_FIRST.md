@@ -1,9 +1,5 @@
-# ZEKE v0.42.0 RC1
+# Superseded entry point
 
-1. Read `ZEKE_CONSTITUTION.md`.
-2. Read `PROJECT_STATE.md`.
-3. Read `DEVELOPMENT_MEMORY/CONTINUITY_RECONCILIATION_v0.42.0.md`.
-4. Read `RELEASE_NOTES_v0.42.0.md` and `HANDOFF_BRIEF.md`.
-5. Run the package tests before deployment.
+**Status: superseded.** Do not use this file as current release guidance.
 
-The complete folder is the deployment/handoff unit. Do not deploy selected files from an older release over it.
+Start with [`00_AI_START_HERE.md`](00_AI_START_HERE.md), then follow the living documentation map and current release gate. Historical information from prior entry instructions is retained in the consolidated histories.

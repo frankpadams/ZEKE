@@ -1,57 +1,81 @@
-# ZEKE Architecture — v0.41.0 RC1
+# ZEKE Architecture — v0.43.0 RC2.1
 
-**Runtime build:** 2026.08.07.1  
-**Governance revision:** 2026.08.07.1
+**Runtime build:** 2026.08.16.3  
+**Repository schema:** 5
 
 ## Product and data boundary
 
-ZEKE is a private, user-owned personal knowledge and management system. The active provider-backed JSON repository is canonical. Historical workbooks and imports remain provenance only. Raw observations, confirmed records, corrections, supersessions, quarantined artifacts, derived insights, and UI state remain distinct.
+ZEKE is a private, user-owned personal knowledge and management system. The active provider-backed JSON repository is canonical. Raw observations, confirmed records, schedule-derived assumptions, corrections, supersessions, quarantined artifacts, derived insights, source documents, generated reports, and temporary UI state are distinct classes of information.
 
-AI interprets and proposes. Deterministic code and explicit user action govern canonical writes. Missing is unknown, not zero. A save is complete only after the active provider acknowledges it.
+AI interprets, summarizes, and proposes. Deterministic code plus explicit user choices govern canonical writes. Missing is unknown, not zero. A provider-backed save is complete only after the provider acknowledges the write.
 
-## Runtime dependency chain
+## Runtime
 
-The readable static files loaded by `index.html` are the **authoritative runtime**. There is **no compilation step**. Unreferenced root-level or archived code is **legacy** evidence and must not be treated as active merely because it exists in the repository.
+`index.html` loads the readable static runtime directly. There is no compilation step. The service worker is release-specific. The authoritative runtime is the readable static runtime in this package; historical and legacy assets are evidence or migration inputs, not active code. Current runtime files and tests in this package are authoritative.
 
-The static app is loaded by `index.html`; there is no build step. Active local runtime files are recorded in the current v0.41.0 build manifest/provenance artifacts; historical manifests remain audit evidence. The service worker uses one release-specific cache and removes earlier ZEKE caches during activation.
+## Storage/provider boundary
+
+Google Drive is the implemented alpha provider. Provider-neutral semantics remain binding. The Drive root is `Project Zeke`; canonical JSON is stored under managed subpaths such as `health/events.json`, `system/actions.json`, `system/preferences.json`, and `system/ai-connections.json`.
+
+Browser local/session storage is limited to setup/session and UI convenience state. It is not the authoritative health record. Provider OAuth access tokens remain session-scoped. AI provider credentials intentionally live in the connected workspace so they can follow the user across devices; they are excluded from reports and diagnostics. Legacy device-only AI-key storage is migrated away.
+
+## Longitudinal event architecture
+
+`health/events.json` is the primary dated event stream. Events carry stable IDs, timestamps, structured fields, provenance, interpretation/confirmation state, and correction history. `updateEvent()` preserves the prior version in a correction event unless explicitly disabled for purely technical metadata changes.
+
+Historical corrections do not erase evidence. Records excluded from analysis remain auditable. Sources/methods are preserved so measurements from DEXA, smart scales, manual entry, labs, or other methods are not silently treated as interchangeable.
+
+## Medication architecture
+
+Medication identity/schedule and dose occurrence history are separate:
+
+- `system/actions.json` stores standing medication schedules, dose/unit, start/history dates, and adherence mode.
+- `health/events.json` stores individual dated medication occurrences.
+- Occurrence statuses include taken, missed, delayed, partial, unknown, and not-yet-taken where applicable.
+- An occurrence may be explicit/confirmed or `assumed_from_schedule`.
+- For an opted-in assume-scheduled medication, ZEKE reconstructs missing expected occurrences from the known schedule start date through today and continues future due occurrences.
+- A later correction updates the exact dated occurrence and preserves correction provenance. Schedule changes never rewrite prior dose history.
+- Longitudinal questions such as “When did I last have a dose?” are answered from occurrence history and exceptions, not from schedule text alone.
+
+## Conversation/workflow architecture
+
+A conversation message can be a write request, a read-only question, a clarification, or meta/product feedback. An unfinished write workflow may be suspended while a read-only question is answered and then remain available for later resumption. Product/system feedback is explicitly classified as meta-conversation and excluded from health analysis.
+
+Workflow status must agree with canonical storage outcome. The UI must never simultaneously claim that a record is both saved and not saved.
+
+## Calendar architecture
+
+Google Calendar is a contextual source. Scheduling is never proof of completion. Calendar reconciliation has two phases:
+
+1. **Candidate screening** — mobile-first review of up to the prior year, using fast Relevant / Not relevant / Unsure decisions.
+2. **Health confirmation** — only selected candidates become detailed Questions for You. ZEKE compares them with existing health records first and avoids duplicates.
+
+Confirmed calendar candidates are saved as dated health/context events with `calendar-confirmed-retrospective` provenance. Allergy/immunotherapy and vaccination candidates become clinical-exposure-style events when confirmed. Non-occurring appointments remain calendar context only.
+
+## Measurements and Body Composition
+
+Health → Measurements is the user-facing hierarchy. DEXA is a measurement method/source, not navigation. Body Composition supports body-fat %, fat mass, lean mass, VAT, appendicular lean mass index, bone mineral content/density, T/Z scores, regional lean mass, and vendor-specific future metrics. Provenance and method remain attached to each measurement.
+
+## Fitness identity architecture
+
+A canonical exercise owns variation-specific histories. New/normalized workout records can carry `exercise_family`, `variation_name`, `variation_id`, `equipment_type`, `load_basis`, and identity confidence. The original user-entered exercise wording remains preserved.
+
+Machine, Bowflex, dumbbell, barbell, cable, band, bodyweight, and other variations are not mechanically equivalent. Canonical exercise charts overlay variations as distinct series on shared axes. Cross-variation predictive relationships may be learned from the user's data but are evidence-based estimates, not universal conversions.
+
+## Mobile exercise architecture
+
+The normal `+ Log Exercise` page is the mobile exercise-entry surface. There is no Gym Mode. Set display and entry are the same rows. Load/reps can differ by set; effort/pain are optional. Variation-aware Coach and Form Guide sections remain on the page and may collapse. High-quality PT visual guides are a publication gate. `DESIGN_AUTHORITY.md` is the visual contract.
+
+## Reports/export architecture
+
+The canonical JSON repository is source of truth. Generated XLSX/JSON outputs are reports. The Health Record Workbook is produced on demand from the current longitudinal store and includes medication dose history, measurements/body composition, labs, illness/injury context, clinical exposures, fitness, and provenance.
+
+Legacy connected workbooks (including SJN1-style data sources) are import/migration/reconciliation inputs only. Spreadsheet edits do not silently mutate ZEKE; any future re-import uses explicit review/compare/commit semantics.
 
 ## Integrity architecture
 
-`assets/integrity-engine.js` scans canonical JSON for narrowly defined candidates such as exact duplicates, known import artifacts, implausible sleep duration, zero-as-missing heart rate, malformed paddling fields, answered questions, and stale or duplicate discoveries.
-
-`assets/data-layer.js` applies only user-approved repairs. Before mutation it creates a provider-backed integrity backup. Repairs preserve IDs, provenance, reason, supersession/quarantine state, and a correction audit record. Session undo restores the pre-repair event/factor/discovery state. No distance or other missing fact is invented.
-
-## Dashboard and visual truth
-
-The dashboard follows the approved lighter information-dense direction: story cards, Health at a Glance, weekly plan, Coach’s Eye, recent activity, and review status. Quantitative visuals are generated from recorded points. Unsupported routes, trends, or correlations are omitted or replaced with an explicit insufficient-data state.
-
-## Mobile architecture
-
-Mobile is the same application and information architecture, responsively prioritized for quick navigation, low-friction structured or natural-language entry, clear completion/exit paths, repairs, questions, coaching, and form guides. A workout can have contextual logging controls, but there is no separate gym-only application.
-
-## Fitness knowledge architecture
-
-`assets/knowledge-base.js` supplies shared equipment-aware exercise/activity objects and routines. Global knowledge is separate from user history. Each object can contain movement family, equipment, muscles, setup, execution, mistakes, breathing, mind-muscle cues, modifications, evidence metadata, and media provenance. High-use objects are manually curated; lower-priority objects use cautious normalized templates pending deeper evidence review.
-
-User-specific load, reps, pain, technique notes, injury context, preferences, and progression remain in canonical user records. Machine, Bowflex, dumbbell, barbell, Smith, cable, and bodyweight variations remain distinct while sharing broader movement families.
-
-## Storage and provider boundary
-
-Google Drive remains the active implemented provider. Provider-neutral semantics remain binding, but adapters for OneDrive, Dropbox, and other providers are not implemented in this release. Temporary local UI recovery is noncanonical and excluded from analysis.
+`assets/integrity-engine.js` detects supported duplicate/import/data-quality candidates. `assets/data-layer.js` applies only reviewed changes, preserving provenance and correction history. Missing values are not invented. Current review-based exercise canonicalization follows the same non-destructive principle.
 
 ## Verification boundary
 
-Automated package and rendered-browser evidence does not establish physical-device behavior, live provider permissions, remote-media availability, or clinical validity of personalized recommendations. Those remain explicitly labeled environment/content verification.
-
-
-## v0.41.0 fitness identity and intelligence architecture
-
-Workout identity now separates a broad movement/exercise family from the exact performed variation. New structured workout records may carry `exercise_family`, `variation_name`, `variation_id`, `equipment_type`, `load_basis`, `identity_schema_version`, and identity confidence. The original `exercise` value remains the human-entered/displayed record and is not destructively normalized.
-
-Progression histories and next-session targets operate on exact variations. Cross-equipment loads are never automatically converted or merged. Historical records without sufficient equipment evidence remain unspecified until the user reviews a proposed mapping; accepted mappings are applied as corrections/metadata while preserving raw/provenance history.
-
-The progressive-overload planner is deterministic and explainable. It considers comparable load/repetition history, RPE/RIR when available, pain/injury/PT context, and long gaps. Research evidence can support the rule but does not replace user performance or clinician guidance.
-
-Discover applies a screening layer after mathematical association calculation. Tiny samples, cross-exercise workout correlations, same-activity metric artifacts, and strong shared time trends are suppressed from the primary user-facing feed unless a conceptually meaningful relationship justifies surfacing them. The advanced pattern view remains available for inspection.
-
-Medication adherence assumptions are opt-in per medication schedule. Generated expected-dose records use a distinct assumed interpretation/provenance state and can be converted to explicit confirmation or corrected/undone when the user reports a missed, delayed, changed, or extra dose.
+Automated package and rendered-browser evidence does not prove live-provider permissions, physical-device usability, external image availability, or clinical effectiveness. Physical-phone acceptance and complete PT media verification remain explicit release gates.

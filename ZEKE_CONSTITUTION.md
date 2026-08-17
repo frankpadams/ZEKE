@@ -180,9 +180,9 @@ A sleep day may contain multiple sleep segments. ZEKE preserves each actual star
 
 A routine such as Chest Day is a reusable starting template. It may suggest an ordered exercise list and optional targets, but the historical record consists of the exercises and values actually saved. Users may add, remove, skip, edit, or reorder template exercises without changing past history or requiring the workout to be stored as a named routine unit.
 
-## 41. Gym Mode is a focused portable context
+## 41. Mobile exercise/workout entry is a focused portable context
 
-Gym Mode is optimized primarily for phone use during a workout and may also be available on tablets by user choice. It must not replace, reshape, or break the full desktop ZEKE experience. Desktop ZEKE retains its broader dashboard, analysis, history, routine-management, and spacious workout-entry interfaces while using the same records and rules.
+Mobile exercise/workout entry is part of the same ZEKE application, reached through ordinary logging such as `+ Log Exercise`; it is not a separate “Gym Mode.” It is optimized for phone use during a workout and may also be available on tablets. It must not replace, reshape, or break the full desktop ZEKE experience. Desktop ZEKE retains its broader dashboard, analysis, history, routine-management, and spacious workout-entry interfaces while using the same records and rules.
 
 ## 42. Suggested values are not performed facts
 
@@ -196,9 +196,9 @@ A confirmed record is not saved until the active provider acknowledges the durab
 
 Exercise-readiness guidance uses evidence-based categories and a written explanation. A numberless visual gauge may provide a rough qualitative cue, but it must not imply false precision. Missing information remains missing. Pain is optional; absence of a pain entry is not zero pain. When evidence is insufficient, ZEKE says so and does not offer a progression action.
 
-## 45. Gym Mode navigation preserves context
+## 45. Mobile exercise-entry navigation preserves context
 
-History, progression, Form Guide, exercise entry, and return paths must remain within the active Gym Mode context on portable devices. Opening history must not silently route to a legacy activity tile or discard current unsaved edits.
+History, progression, Form Guide, exercise entry, and return paths must preserve the active mobile exercise-entry context. Opening history must not silently route to an unrelated legacy activity tile or discard current unsaved edits.
 
 ## 46. Form Guide media must be truthful
 
@@ -210,7 +210,7 @@ AI-provider credentials are not ordinary preferences and must never be stored as
 
 ## 48. AI-vault recovery is separate from product-data recovery
 
-A recovery code may permit PIN replacement while preserving encrypted AI connections. If both PIN and recovery code are lost, ZEKE may reset the inaccessible credential vault and require provider keys to be entered again. This process is independent of Gym Mode, workout records, and the user's canonical personal repository.
+A recovery code may permit PIN replacement while preserving encrypted AI connections. If both PIN and recovery code are lost, ZEKE may reset the inaccessible credential vault and require provider keys to be entered again. This process is independent of mobile workout entry, workout records, and the user's canonical personal repository.
 
 ## 49. Release timestamps and provenance are record-integrity requirements
 

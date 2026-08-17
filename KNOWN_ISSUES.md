@@ -1,39 +1,34 @@
-# ZEKE Known Issues
+# ZEKE Known Issues — v0.43.0 RC2.1
 
-**Status:** Canonical current issue register
+**Build:** 2026.08.16.3
 
-## Open — requires environment verification
+## Release blockers
 
-- Physical iPhone and representative Android acceptance has not been completed for the current sprint lineage.
-- Live Google Drive reconnect, durable write/readback, repair backup, and undo require deployed testing with the user’s account.
-- Remote form-guide media depends on network/source availability; written-guide fallback remains required.
+1. **PT visual coverage is incomplete.** The last RC1 audit identified verified two-frame/appropriate visual coverage for 8 of 14 rehab/PT entries. Remaining known visual gaps: Band Internal Rotation, Doorway Chest Stretch, D1, D2, No Monies, and Cheerleaders. Do not substitute mechanically different images merely to make the count pass.
+2. **Physical-phone visual acceptance is outstanding.** Browser viewport tests are not equivalent to real-device comparison against `DESIGN_AUTHORITY.md`.
 
-## Open — implementation limitations
+## Environment verification outstanding
 
-- Parts of the older multi-exercise workout editor still use legacy strength/cardio branching rather than the adaptive schema service.
-- Activity recommendation preferences do not yet fully weight generated routines.
-- Provider adapters beyond Google Drive are not implemented.
-- Lower-priority exercise knowledge objects require deeper evidence/media review.
-- Full correction-history/revert experience remains incomplete.
+- Live Drive read/write/reconnect across multiple devices.
+- Cross-device AI credential sync and provider test on a second device.
+- Real-calendar 365-day retrospective scan volume/performance and user acceptance.
+- External form-guide media availability in deployed environment.
 
-## Documentation/history
+## Security limitation
 
-- Numerous historical test reports, iteration records, manifests, and provenance snapshots remain intentionally preserved. Use `DOCUMENTATION_MAP.md`; do not treat every historical file as current authority.
+AI API keys are synced through the user-owned connected ZEKE workspace to satisfy cross-device persistence. In RC2 they rely on Drive account/OAuth confidentiality rather than a separate end-to-end encrypted credential vault. Keys are excluded from reports, diagnostics, and public package files. A hardened encrypted vault is a future security enhancement.
 
-## Resolved in Sprint 4
+## Historical issues resolved or structurally addressed in RC2
 
-- Root-level release-note sprawl was consolidated into `RELEASE_NOTES.md`; version-specific snapshots were archived.
-- Current package identity and startup/handoff documents were reconciled after Sprint 3.
-
-## User-observed v0.40.5 issues accepted for v0.41.0
-
-- Discover still separates Overview and Pattern Lab and uses large navigation/empty-state cards rather than surfacing the findings themselves.
-- Pattern output can promote high-correlation, tiny-sample or same-session workout relationships that are mathematically real but not useful.
-- Trends & Analysis often repeats lifetime change instead of explaining current/recent momentum.
-- Dashboard time-frame controls sit in the top bar and visually imply global control.
-- Today’s Actions is dominated by recurring schedules and is not yet a compact daily-action surface.
-- Workout normalization can merge equipment variations into one progression history.
-- PT exercise coverage, shorthand expansion, and recognition/form-guide support remain incomplete.
-- The workout logger does not yet provide an explainable next-session progressive-overload target at the point of entry.
-- Duplicate-record review exposes technical concepts and does not clearly compare both candidate records.
-- Medication schedules do not yet offer an opt-in assumed-as-scheduled adherence mode.
+- Side menu collapsing into horizontal button rows at mobile/intermediate widths.
+- Mobile body-measurement flow assuming waist only.
+- Recent Health Record lacking edit/remove.
+- Exercise entry separating set display from set input.
+- Canonical exercise tile incorrectly splitting variation histories.
+- DEXA treated as a separate navigation concept rather than measurement provenance.
+- Device-only AI API key persistence.
+- Old connected workbook presented as an ongoing authoritative health store.
+- Medication history represented only as standing schedule rather than dated occurrences.
+- Last-dose question requiring redundant user input despite stored schedule/history.
+- Product feedback being eligible for health-event interpretation.
+- Pending write workflow monopolizing later read-only conversation.

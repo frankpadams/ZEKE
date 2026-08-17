@@ -36,3 +36,13 @@
 23. **Today:** the Dashboard Today area contains only genuinely time-relevant, directly actionable items and hides when there is nothing useful to show.
 24. **Duplicate review:** duplicate resolution asks a plain-language comparison question and shows both candidate records before asking the user to decide.
 25. **Scheduled adherence:** medication-specific scheduled-dose assumptions are opt-in, provenance-marked as assumed rather than explicitly confirmed, and remain correctable by the user.
+## v0.43 RC2/RC2.1 binding decisions
+
+21. **Dose occurrences are first-class history.** A recurring medication schedule does not replace a dated occurrence ledger. Expected occurrences may be generated as assumptions only when the owner opts into that behavior; assumptions remain distinguishable from confirmed administrations and are retroactively editable.
+22. **Historical dose backfill preserves uncertainty.** Existing schedules, prior records, and retrospective adherence statements may reconstruct history, but inferred occurrences must never be relabeled as directly observed.
+23. **Calendar evidence requires confirmation.** Retrospective calendar candidate review is a mobile-first UX. Calendar entries remain candidate evidence until confirmed; reconciliation deduplicates against existing health records before asking detailed questions.
+24. **Reports are outputs, not a second database.** Human-readable XLSX/CSV/JSON reports are generated from canonical longitudinal records. Legacy workbooks are migration/reconciliation sources until verified, not competing sources of truth.
+25. **Cross-device AI credentials use connected user-owned storage.** Browser-local API-key storage is legacy/noncanonical. Secret values are excluded from reports, diagnostics, source packages, and screenshots/logging wherever practicable.
+26. **Historical Gym Mode references are superseded.** Current mobile exercise entry is reached through `+ Log Exercise`; no separate Gym product mode should be reintroduced from historical documents or tests.
+27. **Package-alone handoff is a release requirement.** A competent new team must be able to continue from the package without this chat history.
+

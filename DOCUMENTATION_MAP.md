@@ -25,7 +25,7 @@
 
 ## Historical evidence
 
-- `docs/history/release-notes/`
+- Historical per-version release notes are consolidated verbatim into `CHANGELOG.md`; no separate release-note directory is shipped.
 - `DEVELOPMENT_MEMORY/ITERATION_RECORD_*.md`
 - Version-specific test reports, manifests, package verifications, and provenance snapshots
 
@@ -34,3 +34,7 @@ Historical evidence explains how the project arrived here. It does not override 
 ## Runtime authority
 
 The files actually loaded by `index.html` are the active application. Unreferenced source, old bundles, fixtures, and historical artifacts are not active merely because they are present.
+
+## Historical interpretation rule
+
+Historical documents may contain superseded terms or architectures. Use `DECISION_LOG.md`, `CURRENT_RELEASE_SCOPE.md`, `DESIGN_AUTHORITY.md`, `PROJECT_STATE.md`, and `RELEASE_NOTES.md` to resolve current behavior. Historical material is traceability, not authority.
