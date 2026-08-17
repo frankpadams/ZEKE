@@ -27,11 +27,11 @@ def stale_registry_header(d):
 def stale_project_health(d):
     p=d/'DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md'; j=json.loads((d/'DEVELOPMENT_MEMORY/PROJECT_STATE.json').read_text()); p.write_text(p.read_text().replace(f"# Project Health — v{j['current_version']}",'# Project Health — v0.20.5'))
 def contradictory_release_gate(d):
-    p=d/'DEVELOPMENT_MEMORY/RELEASE_GATE.md'; t=p.read_text(); t=t.replace('**Package verification complete for the v0.41.0 RC1 scope.**','**Pending final verification.**',1); p.write_text(t)
+    p=d/'DEVELOPMENT_MEMORY/RELEASE_GATE.md'; t=p.read_text(); p.write_text(t+'\n**Package verification complete.**\n')
 def wrong_iteration_lifecycle(d):
     p=d/'DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json'; j=json.loads(p.read_text());
     for a in j['artifacts']:
-        if a.get('path')=='DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.22.0.md': a['status']='authoritative'
+        if a.get('path')=='DEVELOPMENT_MEMORY/ITERATION_HISTORY.md': a['status']='supporting'
     p.write_text(json.dumps(j,indent=2))
 for n,m in [('stale version',stale_version),('scope mismatch',scope_mismatch),('constitutional conflict',constitution_conflict),('wrong file count',wrong_count),('broken link',broken_link),('stale registry header',stale_registry_header),('stale Project Health identity',stale_project_health),('contradictory release gate',contradictory_release_gate),('wrong current iteration lifecycle',wrong_iteration_lifecycle)]: run_case(n,m)
 print('All governance negative controls passed.')

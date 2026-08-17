@@ -6,7 +6,7 @@ assert(index.indexOf('assets/workflow-engine.js')<index.indexOf('assets/app.js')
 assert(app.includes('Diagnostics & Exports')&&app.includes('Download Support & Improvement Report'),'support export missing from Settings');
 for(const tab of ['Executive Summary','Technical Errors','Unresolved Interactions','AI Consultation History','User Corrections','UX Feedback','Potential Health Events','Audit History','Conversation Metrics','Workflow History','Developer Notes'])assert(app.includes(`'${tab}'`)||app.includes(tab),`support tab missing: ${tab}`);
 assert(app.includes('Questions for You')&&app.includes('Things I’ve Learned')&&!app.includes('Kept in Waiting for You'),'Questions for You and remembered-context tabs missing or stale terminology remains');
-for(const section of ['Original information','ZEKE’s understanding','Proposed record or action','Why it matters','What ZEKE will do'])assert(app.includes(section),`review section missing: ${section}`);
+for(const section of ['What ZEKE received','What ZEKE thinks it means','Why ZEKE is asking','What happens after your answer'])assert(app.includes(section),`review section missing: ${section}`);
 assert(app.includes('They moved in the same direction')&&app.includes('They moved in opposite directions'),'direction-neutral pattern wording missing');
 assert(app.includes('Nothing has been saved yet.')&&app.includes('No structured record was changed.'),'closure status language missing');
 assert(app.includes('openMedicationScheduleModal')&&app.includes('Save medication schedule'),'medication schedule editor missing');

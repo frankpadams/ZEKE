@@ -102,15 +102,15 @@ with sync_playwright() as p:
         if route=='fitness':
             selector=page.locator('#activityLibrarySelect')
             results['interactions']['fitness_defaults']={'favorites_active':selector.input_value()=='favorites','chip_row_removed':page.locator('.fitness-library-panel .library-tabs').count()==0,'view_order':selector.locator('option').all_inner_texts(),'panel_overflow':page.locator('.fitness-library-panel').evaluate('(el)=>el.scrollWidth>el.clientWidth+1'),'controls_overflow':page.locator('.activity-library-controls').evaluate('(el)=>el.scrollWidth>el.clientWidth+1')}
-            page.locator('#activityLibrarySearch').fill('seated');page.wait_for_timeout(80)
-            results['interactions']['fitness_defaults']['search_visible']=page.locator('[data-activity-name="Seated Row"]:visible').count()==1
+            page.locator('#activityLibrarySearch').fill('row');page.wait_for_timeout(80)
+            results['interactions']['fitness_defaults']['search_visible']=page.locator('[data-activity-name="Row"]:visible').count()==1
             page.locator('#activityLibrarySearch').fill('');
-            page.locator('[data-activity-name="Seated Row"]').click();page.wait_for_timeout(100)
+            page.locator('[data-activity-name="Row"]').click();page.wait_for_timeout(100)
             results['interactions']['fitness_defaults']['activity_detail']=page.locator('.activity-expanded-detail').count()==1
-            page.locator('[data-activity-pattern="Seated Row"]').click();page.wait_for_timeout(80)
-            results['interactions']['relationship_review']={'modal':page.locator('#activityRelationshipModal').count()==1,'specific_activity':'Seated Row' in page.locator('#activityRelationshipModal').inner_text(),'not_generic':'No tested relationship yet for Seated Row' in page.locator('#activityRelationshipModal').inner_text()}
+            page.locator('[data-activity-pattern="Row"]').click();page.wait_for_timeout(80)
+            results['interactions']['relationship_review']={'modal':page.locator('#activityRelationshipModal').count()==1,'specific_activity':'Row' in page.locator('#activityRelationshipModal').inner_text(),'not_generic':'No tested relationship yet for Row' in page.locator('#activityRelationshipModal').inner_text()}
             page.locator('#closeActivityRelationship').click()
-            page.locator('[data-coach-evidence="Seated Row"]').last.click();page.wait_for_timeout(80)
+            page.locator('[data-coach-evidence="Row"]').last.click();page.wait_for_timeout(80)
             results['interactions']['coach_evidence']={'modal':page.locator('#coachEvidenceModal').count()==1,'pubmed_links':page.locator('#coachEvidenceModal a[href*="pubmed.ncbi.nlm.nih.gov"]').count(),'personal_trigger':'What in your data triggered this' in page.locator('#coachEvidenceModal').inner_text()}
             page.locator('#closeCoachEvidence').click()
             page.locator('#addGoalBtn').click();page.locator('#goalStatement').fill('Build strength safely while protecting my shoulder');page.locator('#reviewGoalBtn').click();page.wait_for_timeout(80)
@@ -121,9 +121,11 @@ with sync_playwright() as p:
             page.locator('#newActivityName').fill('Cheerleaders Test')
             page.locator('#newActivityProfile').select_option('rehab');page.wait_for_timeout(80)
             page.evaluate("document.querySelector('#addActivityForm').requestSubmit()");page.wait_for_timeout(180)
-            results['interactions']['workout_create']={x:page.locator('[data-activity-field="'+x+'"]').count()>=1 for x in ['sets','reps','band_resistance','pain_before','pain_during','pain_after','difficulty','rom_change','injury_context']}
-            results['interactions']['workout_create']['weight_not_required']=page.locator('[data-activity-field="weight"][required]').count()==0
-            results['interactions']['workout_create']['profile']=page.locator('#directActivityProfile').input_value()
+            results['interactions']['workout_create']={x:page.locator('[data-activity-field="'+x+'"]').count()>=1 for x in ['band_resistance','pain_before','pain_during','pain_after','difficulty','rom_change','injury_context']}
+            results['interactions']['workout_create']['sets']=page.locator('.mobile-exercise-set-row').count()>=1
+            results['interactions']['workout_create']['reps']=page.locator('.mobile-set-reps').count()>=1
+            results['interactions']['workout_create']['weight_not_required']=page.locator('.mobile-set-weight[required]').count()==0 and page.locator('[data-activity-field="weight"][required]').count()==0
+            results['interactions']['workout_create']['profile']=page.locator('.mobile-exercise-page').get_attribute('data-activity-profile')
         if route=='questions':
             page.locator('[data-review-question]').first.click()
             results['interactions']['review']={'title':page.locator('.review-intro h1').inner_text(),'source':page.locator('.review-source blockquote').inner_text(),'proposal_fields':page.locator('.review-proposal-grid>div').count(),'actions':page.locator('.review-decision-actions button').all_inner_texts()}

@@ -26,7 +26,7 @@ ver=str(state.get('current_version','')); build=str(state.get('current_build',''
 if not ver or not build: errors.append('project state lacks current version/build')
 
 # Identity agreement in current authorities/supporting release docs
-identity_files=['VERSION.txt','version.js','README.md','DEVELOPMENT_MEMORY/PROJECT_STATE.json','DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json','DEVELOPMENT_MEMORY/RELEASE_GATE.md',state.get('current_iteration_record',''),f'RELEASE_NOTES_v{ver}.md',f'TEST_REPORT_v{ver}.md']
+identity_files=['VERSION.txt','version.js','README.md','DEVELOPMENT_MEMORY/PROJECT_STATE.json','DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json','DEVELOPMENT_MEMORY/RELEASE_GATE.md',state.get('current_iteration_record',''),'CHANGELOG.md','TEST_REPORT.md','PACKAGE_HISTORY.json']
 for rel in [x for x in identity_files if x]:
     t=text(rel)
     if ver not in t: errors.append(f'current version {ver} absent from {rel}')
@@ -75,9 +75,17 @@ project_health=text('DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md')
 if f'# Project Health — v{ver}' not in project_health:
     errors.append('Project Health identity is stale or missing current version')
 release_gate=text('DEVELOPMENT_MEMORY/RELEASE_GATE.md')
-if 'package verification complete' not in release_gate.lower():
-    errors.append('release gate does not state package verification completion')
-if 'environment verification outstanding' not in release_gate.lower():
+pkg_status=str(gate.get('current_iteration',{}).get('package_verification','')).lower()
+if pkg_status not in {'in_progress','complete','blocked'}:
+    errors.append(f'unknown package-verification status: {pkg_status!r}')
+if pkg_status=='complete' and 'package verification complete' not in release_gate.lower():
+    errors.append('gate JSON says package verification complete but RELEASE_GATE.md does not')
+if pkg_status!='complete' and 'package verification complete' in release_gate.lower():
+    errors.append('RELEASE_GATE.md falsely states package verification complete')
+env_status=str(gate.get('current_iteration',{}).get('environment_verification','')).lower()
+if env_status not in {'outstanding','complete','blocked','not_required'}:
+    errors.append(f'unknown environment-verification status: {env_status!r}')
+if env_status=='outstanding' and 'environment verification outstanding' not in release_gate.lower():
     errors.append('release gate does not preserve environment-verification boundary')
 if 'pending final verification' in release_gate.lower():
     errors.append('release gate uses ambiguous contradictory pending-final-verification status')
@@ -85,12 +93,8 @@ if str(registry.get('release','')) != ver or str(registry.get('current_version',
     errors.append('artifact registry release/current_version fields disagree')
 if str(registry.get('build','')) != build or str(registry.get('current_build','')) != build:
     errors.append('artifact registry build/current_build fields disagree')
-current_iterations=[p for p,a in registered.items() if p.startswith('DEVELOPMENT_MEMORY/ITERATION_RECORD_v') and a.get('status')=='authoritative']
-if current_iterations != [iteration]:
-    errors.append(f'current iteration lifecycle mismatch: authoritative iteration records={current_iterations!r}, expected={[iteration]!r}')
-for pth,a in registered.items():
-    if pth.startswith('DEVELOPMENT_MEMORY/ITERATION_RECORD_v') and pth != iteration and a.get('status')!='historical':
-        errors.append(f'prior iteration record is not historical: {pth}')
+if iteration!='DEVELOPMENT_MEMORY/ITERATION_HISTORY.md': errors.append('current iteration record must use the living consolidated ITERATION_HISTORY.md')
+if registered.get(iteration,{}).get('status')!='authoritative': errors.append('consolidated iteration history is not authoritative')
 
 # Known constitutional supersession
 constitution=text('ZEKE_CONSTITUTION.md').lower()
@@ -103,6 +107,23 @@ if 'separate ask and tell inputs' not in rejected or 'superseded' not in rejecte
 actual=sum(1 for p in root.rglob('*') if p.is_file())
 recorded=gate.get('current_iteration',{}).get('unpacked_file_count')
 if recorded!=actual: errors.append(f'gate file count {recorded} disagrees with actual {actual}')
+
+# Living-document package hygiene: historical information belongs in consolidated authorities,
+# not a new per-release pile of test/release/provenance files.
+legacy_patterns=[
+    re.compile(r'^TEST_REPORT_v',re.I),
+    re.compile(r'^RELEASE_NOTES_v',re.I),
+    re.compile(r'^PATCH(?:_|-)NOTES?_v',re.I),
+    re.compile(r'^PACKAGE_PROVENANCE',re.I),
+    re.compile(r'^PACKAGE_AUDIT_v',re.I),
+    re.compile(r'^ZEKE_v.*(?:SHA256|MANIFEST|PROVENANCE)',re.I),
+]
+for p in root.rglob('*'):
+    if not p.is_file(): continue
+    rel=str(p.relative_to(root))
+    name=p.name
+    if any(rx.search(name) for rx in legacy_patterns):
+        errors.append(f'per-release document should be consolidated into living history: {rel}')
 
 # Markdown links
 link_re=re.compile(r'\[[^\]]+\]\((?!https?://|mailto:|#)([^)]+)\)')

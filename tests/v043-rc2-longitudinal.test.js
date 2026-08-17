@@ -1,0 +1,17 @@
+const fs=require('fs'),path=require('path');
+const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
+const app=read('assets/app.js'),data=read('assets/data-layer.js'),ai=read('assets/ai-router.js'),docs=read('CURRENT_RELEASE_SCOPE.md'),design=read('DESIGN_AUTHORITY.md'),version=read('version.js');
+const must=(v,m)=>{if(!v)throw new Error(m)};
+must(/build: '2026\.08\.16\.[23]'/.test(version)&&version.includes("repositorySchema: 5"),'RC2 runtime identity/schema missing');
+for(const token of ['history_start_date','assumed_from_schedule','confirmation_status','openMedicationOccurrenceEditModal','saveMedicationOccurrence','medicationLastDoseAnswer'])must(app.includes(token),`medication occurrence requirement missing: ${token}`);
+must(app.includes('corrected_from_assumption')&&app.includes('user_corrected'),'retroactive medication assumption correction missing');
+must(app.includes('suspendedWorkflowId')&&app.includes('isConversationInterruption')&&app.includes('product_feedback_or_meta_conversation'),'workflow interruption/meta-conversation protection missing');
+for(const token of ['pastDays:365','Relevant','Not relevant','Unsure','calendar-confirmed-retrospective','calendar_confirm:'])must(app.includes(token),`calendar reconciliation requirement missing: ${token}`);
+must(data.includes("maxResults=Math.max(1,Math.min(2500")&&data.includes("pageToken"),'calendar year-range pagination support missing');
+for(const token of ['Health Reports & Export','downloadHealthRecordWorkbook','Medication Dose History','Body Composition','Legacy workbook migration / reconciliation'])must(app.includes(token),`health report/legacy workbook requirement missing: ${token}`);
+must(ai.includes("credential_storage:c.key?'connected_workspace':'none'")&&ai.includes('LEGACY_DEVICE_CONNECTIONS_KEY')&&ai.includes('clearLegacyDeviceConnections'),'connected-workspace AI credential migration missing');
+must(!ai.includes('saveDeviceConnections()'),'AI router still persists active credentials through legacy device save path');
+must(app.includes('Saved in connected Drive — paste only to replace')&&app.includes('Connect & sync'),'AI credential UI does not describe cross-device connected storage');
+must(docs.includes('Generated spreadsheets are reports')&&docs.includes('Medication occurrence history')&&docs.includes('Package continuity'),'self-describing release contract incomplete');
+must(design.includes('Do not reintroduce “Gym Mode.”')&&design.includes('One integrated set table')&&design.includes('shared multi-series chart'),'design authority missing approved/superseded decisions');
+console.log(JSON.stringify({ok:true,checks:13},null,2));

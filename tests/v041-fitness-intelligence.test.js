@@ -2,7 +2,7 @@ const fs=require('fs'),path=require('path');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
 const app=read('assets/app.js'),kb=read('assets/knowledge-base.js'),css=read('assets/styles.css'),index=read('index.html'),version=read('version.js');
 const must=(v,m)=>{if(!v)throw new Error(m)};
-must(index.includes('ZEKE v0.41.0')&&version.includes("build: '2026.08.07.1'"),'v0.41 identity missing');
+must(/<title>ZEKE v0\.(4[1-9]|[5-9][0-9]|[1-9][0-9]{2,})\./.test(index)&&version.includes('version:'),'fitness-intelligence release identity missing');
 for(const field of ['exercise_family','variation_name','equipment_type','load_basis','identity_schema_version'])must(app.includes(field),`exercise identity field missing: ${field}`);
 must(app.includes('openExerciseIdentityReviewModal')&&app.includes('Leave equipment / variation unspecified'),'non-destructive historical identity review missing');
 must(app.includes('activityRecommendation')&&app.includes('RPE')&&app.includes('RIR')&&app.includes('Why / evidence'),'progressive overload logger/evidence missing');

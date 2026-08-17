@@ -3,10 +3,10 @@ const root=path.resolve(__dirname,'..'),read=rel=>fs.readFileSync(path.join(root
 const must=(x,m)=>{if(!x)throw new Error(m)};
 const state=JSON.parse(read('DEVELOPMENT_MEMORY/PROJECT_STATE.json')),gate=JSON.parse(read('DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json')),index=read('index.html'),version=read('version.js'),sw=read('sw.js');
 const v=state.current_version,b=state.current_build,token=b.replace(/\./g,'').replace(/^([0-9]{8})([0-9])$/,'$1.$2');
-must(v==='0.41.0'&&b==='2026.08.07.1','project state metadata mismatch');
+must(/^0\.\d+\.\d+$/.test(v)&&/^2026\.\d{2}\.\d{2}\.\d+$/.test(b),'project state metadata mismatch');
 must(gate.current_version===v&&gate.current_iteration.user_approved_scope===true,'development gate mismatch');
 must(index.includes(`<title>ZEKE v${v}</title>`)&&index.includes(`v${v} · build ${b}`),'startup metadata mismatch');
 must(version.includes(`version: '${v}'`)&&version.includes(`build: '${b}'`)&&sw.includes(`v${v}`),'runtime/cache metadata mismatch');
 const order=['data-layer.js','parser.js','ai-router.js','workflow-engine.js','exercise-guides.js','knowledge-base.js','integrity-engine.js','app.js'];for(let i=1;i<order.length;i++)must(index.indexOf(order[i-1])<index.indexOf(order[i]),`runtime load order wrong: ${order[i-1]} before ${order[i]}`);
-must(index.includes('v=20260807.1'),'current cache token absent');
+must(index.includes(`v=${b.replaceAll('.','').replace(/^([0-9]{8})([0-9])$/,'$1.$2')}`),'current cache token absent');
 console.log(JSON.stringify({ok:true,version:v,build:b},null,2));

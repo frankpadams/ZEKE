@@ -1,0 +1,16 @@
+const fs=require('fs'),path=require('path');
+const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
+const app=read('assets/app.js'),css=read('assets/styles.css'),index=read('index.html'),version=read('version.js');
+const must=(v,m)=>{if(!v)throw new Error(m)};
+must(index.includes('ZEKE v0.43.0')&&version.includes("version: '0.43.0'")&&/build: '2026\.08\.16\.[23]'/.test(version),'v0.43 runtime identity missing');
+for(const token of ['mobile-exercise-page','mobileExerciseVariation','Create new variation','mobile-exercise-set-row','mobile-set-rpe','mobile-set-pain','Why this recommendation?','mobile-exercise-form'])must(app.includes(token),`mobile exercise requirement missing: ${token}`);
+must(app.includes('set_rpe')&&app.includes('set_pain'),'per-set effort/pain persistence missing');
+must(app.includes('workoutFamilyGroups')&&app.includes('familyVariationChart')&&app.includes('shared axes'),'canonical exercise / variation chart architecture missing');
+for(const name of ['Planet Fitness — Independent-Arm Bicep Curl Machine','Planet Fitness — Bilateral/Linked-Arm Bicep Curl Machine','Dumbbell Bicep Curl','Bowflex Bicep Curl','Planet Fitness — Lat Pulldown Machine','Bowflex Lat Pulldown'])must(app.includes(name),`known variation mapping missing: ${name}`);
+must(app.includes("/^lat pulldown$/i")&&app.includes("/^independent bicep curl$/i"),'reviewable user-context historical mappings missing');
+must(app.includes('openExerciseIdentityReviewModal')&&app.includes('correction_note'),'historical exercise consolidation workflow missing');
+for(const metric of ['chest_circumference','hip_circumference','body_fat_pct','fat_mass','lean_mass','visceral_fat_mass','appendicular_lean_mass_index','bone_mineral_density','bone_t_score','bone_z_score','right_arm_lean_mass','left_leg_lean_mass'])must(app.includes(metric),`body/body-composition metric missing: ${metric}`);
+must(app.includes('openBodyMeasurementModal')&&app.includes('DEXA is recorded as the source/method')&&app.includes('measurement_method'),'body measurement / DEXA provenance workflow missing');
+must(app.includes('data-edit-recent-event')&&app.includes('openRecentEventEditModal')&&app.includes('appendCorrection:true'),'Recent Health Record edit/correction path missing');
+must(css.includes('.sidebar nav{display:flex!important;flex-direction:column!important')&&css.includes('.mobile-exercise-set-row')&&css.includes('.family-variation-chart'),'mobile navigation / exercise / chart styles missing');
+console.log(JSON.stringify({ok:true,checks:14},null,2));
