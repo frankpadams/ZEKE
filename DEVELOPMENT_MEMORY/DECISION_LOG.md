@@ -127,3 +127,14 @@ Current release identity, scope, artifact authority, lifecycle, supersessions, a
 - **DEC-056:** Governance-locked requirements must be labeled implemented, partial, or unimplemented. A release may not infer implementation from the Constitution or decision log.
 
 - **DEC-057:** Release history uses cumulative canonical `RELEASE_NOTES.md` and `CHANGELOG.md`; version-specific release notes remain archived historical snapshots. Every package must be independently understandable by an unfamiliar future development team.
+
+## 2026-08-17 — v0.43 RC2/RC2.1 longitudinal and continuity decisions
+
+- **DEC-050:** Medication schedules and medication dose occurrences are distinct entities. Each expected/actual administration can be represented as a dated occurrence with status and provenance.
+- **DEC-051:** Schedule-derived medication occurrences are assumptions, never silent confirmations. A user correction such as “I missed last Friday” updates the matching occurrence and retains correction history.
+- **DEC-052:** Historical medication occurrences should be reconstructed from existing trusted evidence where possible; confidence/provenance must survive the migration.
+- **DEC-053:** Retrospective calendar reconciliation is a mobile-first review workflow: candidate list first, Relevant / Not relevant / Unsure triage second, detailed confirmation only for selected unresolved candidates. Calendar candidates do not become health facts merely because they were scheduled.
+- **DEC-054:** The legacy connected health workbook is not the ongoing canonical record. It remains a migration/reconciliation source until its useful content is verified. Human-readable workbooks are generated reports from canonical records.
+- **DEC-055:** AI-provider keys persist through the connected user-owned storage workspace for multi-device continuity. Browser-local keys are noncanonical and should be migrated/cleared. Keys must not be included in standard exports, support reports, repository source, or package artifacts.
+- **DEC-056:** Historical “Gym Mode” references remain traceability records only. The current mobile interaction is ordinary `+ Log Exercise` / workout entry.
+- **DEC-057:** Every release package must be self-describing enough for an unfamiliar competent team to identify current authority, architecture, implemented state, approved design targets, verification boundary, known blockers, and next work without access to prior conversation.

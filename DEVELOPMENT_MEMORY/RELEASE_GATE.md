@@ -1,48 +1,55 @@
-# Release Gate — ZEKE v0.41.0 RC1
+# Release Gate — ZEKE v0.43.0 RC2.1
 
-**Runtime build:** 2026.08.07.1  
-**Governance revision:** 2026.08.07.1
+**Runtime build:** 2026.08.16.3  
+**Governance revision:** 2026.08.16.3
 
 ## Status
 
-**Package verification complete for the v0.41.0 RC1 scope.**  
-**Environment verification outstanding.**
+**RC2 implementation is substantially complete; promotion remains blocked by PT visual completeness, physical-device acceptance, and live connected-data verification.**
 
-This package is a release candidate built directly from the exact v0.40.5 package the user deployed successfully. It is not yet represented as user-deployed or production-accepted.
+## Approved release-gate scope
 
-## Scope verified in-package
+- Preserve approved mobile design authority for `+ Log Exercise`; no separate Gym Mode.
+- Maintain canonical exercise families with variation-specific histories and shared-axis multi-series charts.
+- Keep inline per-set load/reps and optional effort/pain with Coach rationale and integrated form guide.
+- Maintain dated medication dose occurrence history with assumed/confirmed provenance, retroactive correction, and historical reconstruction.
+- Fix conversational workflow interruption, deterministic last-dose reasoning, save-state integrity, and meta-conversation exclusion from health data.
+- Add mobile past-year calendar candidate screening with Relevant / Not relevant / Unsure, then dedupe and explicit confirmation before health-record backfill.
+- Generate Health Reports/Export from canonical longitudinal data and demote the legacy connected workbook to migration/reconciliation.
+- Sync AI provider credentials through the connected user-owned workspace across devices; migrate and clear legacy local-only keys.
+- Keep mobile/intermediate side navigation vertical and overflow-safe.
+- Keep the package self-describing for a new team through current architecture, design authority, release scope, tests, known issues, and history.
 
-- Exact exercise family / variation / equipment / load-basis identity, with ambiguous historical equipment left unknown until review.
-- Non-destructive historical exercise-identity review that appends correction metadata rather than overwriting original exercise wording.
-- Expanded PT/rehab library, readable abbreviation expansion, separate ER/IR records, flexible rehab fields, and verified public-domain images where a movement-level match was available.
-- Progressive-overload guidance embedded in workout logging, with RPE/RIR, pain/PT, gap, uncertainty, exact-variation, and evidence handling.
-- Discover primary feed centered on screened findings rather than system buckets; Pattern Lab is a secondary “Explore all patterns” drill-down.
-- Recent-oriented Trends & Analysis and section-owned Dashboard timeframe controls.
-- Compact Today behavior, plain-language duplicate review, and medication-specific adherence modes including opt-in schedule-assumed doses with explicit provenance.
+## Environment verification
 
-## Verification evidence
+**Environment verification outstanding.** Live connected Drive behavior and physical-device acceptance are not established by package-local testing.
 
-- Active JavaScript syntax checks: passed.
-- v0.41 structural/regression test: passed (15 checks).
-- Form-guide library regression: passed.
-- Release-structure identity/runtime-order regression: passed.
-- Rendered Chromium workflow smoke: passed on desktop and mobile routes with no page errors, missing control names, unbound visible controls, or tested mobile activity-library overflow.
-- Support-report browser smoke: passed.
-- Governance negative controls: passed.
-- Broader JavaScript suite: 16 passed; 6 returned non-zero and are classified in `TEST_REPORT_v0.41.0.md` rather than represented as passing.
+## Verification required before promotion
 
-## Classified non-zero tests
+1. Project audit and governance negative controls pass.
+2. Applicable JavaScript regression suite passes; unavailable protected fixtures are explicitly classified.
+3. Rendered mobile navigation/exercise-entry workflows pass without horizontal overflow.
+4. Longitudinal medication/calendar/report/credential RC2 regression passes.
+5. Final ZIP readback/hash verification passes.
+6. Six missing PT visual guides are completed with exact verified media.
+7. Physical-phone visual acceptance against `DESIGN_AUTHORITY.md` is complete.
+8. Live Google Drive read/write and cross-device credential behavior are verified in the user environment.
+9. Self-describing package continuity reconciliation passes: current release notes exist, active docs agree on architecture, and historical superseded language cannot be mistaken for current authority.
 
-Three require the external protected `ZEKE_TEST_DATA_ROOT` fixture and therefore cannot run in this package-only environment. Three are historical/legacy expectation tests whose assertions intentionally conflict with v0.41 identity or the approved v0.41 UX/schema changes. Current v0.41 replacement coverage passed.
+## Security boundary
 
-## Environment verification outstanding
-
-- Deploy the complete package as one consistent set and confirm startup identity/cache activation.
-- Confirm live Google Drive authentication and provider-backed write/readback.
-- Confirm the revised workout logger, duplicate review, medication adherence settings, and Discover/Trends behavior with real user data.
-- Complete physical mobile acceptance on representative devices.
-- Confirm remote form-guide media availability in the deployed environment; truthful written fallback remains required.
+Connected AI keys are stored in the user-owned connected workspace and excluded from reports/logs. This alpha relies on Drive account/OAuth confidentiality; it does not yet provide a separate ZEKE-managed end-to-end encryption layer.
 
 ## Rollback
 
-Restore the complete user-deployed v0.40.5 package. v0.41 historical exercise-identity repair uses correction-based metadata and is designed to remain reviewable/reversible.
+Retain the prior complete package as rollback unit. Longitudinal corrections preserve source/provenance rather than destructively rewriting unrelated history.
+
+
+## RC2.1 package-local verification
+
+- Project audit: 0 errors / 0 warnings.
+- JavaScript regression suite: 26 passed / 0 failed (external fixture-dependent checks skip explicitly when fixture is unavailable).
+- Phone rendered smoke: passed vertical navigation, no horizontal overflow, variation selector/create path, three inline set rows, optional effort/pain, Coach/Why, and Form Guide.
+- Continuity/self-description regression: passed.
+
+These package-local passes do not clear the physical-phone, live-connected-provider, legacy-data reconciliation, or six-PT-visual promotion gates.

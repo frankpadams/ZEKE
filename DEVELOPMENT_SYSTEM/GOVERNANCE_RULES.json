@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
-  "current_version": "0.41.0",
-  "current_build": "2026.08.07.1",
+  "current_version": "0.43.0",
+  "current_build": "2026.08.16.3",
   "immutable_principles": [
     "user_owned_canonical_data",
     "ai_advisory_deterministic_commit",
@@ -29,13 +29,18 @@
     "saved_requires_provider_ack",
     "qualitative_readiness_no_false_precision",
     "form_guide_media_truth",
-    "encrypted_ai_credential_vault",
+    "connected_workspace_ai_credentials_cross_device",
     "honest_timestamp_provenance",
     "v0272_recovery_baseline_v028_rejected",
     "mobile_whole_app_low_friction_no_separate_gym_mode",
     "truthful_visuals_only",
     "repair_asks_about_reality_not_database_structure",
-    "knowledge_claims_have_source_and_review_state"
+    "knowledge_claims_have_source_and_review_state",
+    "medication_occurrences_are_dated_revision_safe",
+    "calendar_scheduled_is_not_confirmed",
+    "generated_reports_not_canonical_databases",
+    "meta_conversation_excluded_from_health_record",
+    "package_self_describing"
   ],
   "supersessions": [
     {
@@ -82,11 +87,13 @@
     "live data repairs require review backup provenance and rollback",
     "runtime cache and build manifests agree"
   ],
-  "governance_revision": "2026.08.07.1",
+  "governance_revision": "2026.08.16.2",
   "rejected_forward_baselines": [
     "0.28.0",
     "0.28.1"
   ],
   "approved_recovery_baseline": "0.27.2",
-  "current_forward_baseline": "0.41.0"
+  "current_forward_baseline": "0.43.0",
+  "release": "0.43.0",
+  "build": "2026.08.16.2"
 }

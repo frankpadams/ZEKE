@@ -2,22 +2,16 @@
   'use strict';
 
   const memoryConnections = new Map();
-  const DEVICE_CONNECTIONS_KEY = 'ZEKE_AI_DEVICE_CONNECTIONS_V1';
+  const LEGACY_DEVICE_CONNECTIONS_KEY = 'ZEKE_AI_DEVICE_CONNECTIONS_V1';
 
-  function loadDeviceConnections(){
+  function loadLegacyDeviceConnections(){
     try {
-      const parsed=JSON.parse(localStorage.getItem(DEVICE_CONNECTIONS_KEY)||'{}');
+      const parsed=JSON.parse(localStorage.getItem(LEGACY_DEVICE_CONNECTIONS_KEY)||'{}');
       return parsed && typeof parsed==='object' ? parsed : {};
     } catch { return {}; }
   }
-  function saveDeviceConnections(){
-    const out={};
-    for(const [provider,c] of memoryConnections){
-      if(c.rememberOnDevice && c.key){
-        out[provider]={key:c.key,model:c.model||'',endpoint:c.endpoint||'',privacy:c.privacy||'minimum-necessary',enabled:c.enabled!==false,lastTestedAt:c.lastTestedAt||null,lastTestOk:Boolean(c.lastTestOk)};
-      }
-    }
-    try { localStorage.setItem(DEVICE_CONNECTIONS_KEY,JSON.stringify(out)); } catch {}
+  function clearLegacyDeviceConnections(){
+    try { localStorage.removeItem(LEGACY_DEVICE_CONNECTIONS_KEY); } catch {}
   }
 
   const PROVIDERS = {
@@ -60,42 +54,49 @@
   async function saveMetadata(){
     if(!window.ZekeData) return;
     const connections=[...memoryConnections.values()].map(c=>({
-      provider:c.provider,enabled:c.enabled!==false,model:c.model||'',endpoint:c.endpoint||'',privacy:c.privacy||'minimum-necessary',lastTestedAt:c.lastTestedAt||null,lastTestOk:Boolean(c.lastTestOk)
+      provider:c.provider,enabled:c.enabled!==false,model:c.model||'',endpoint:c.endpoint||'',privacy:c.privacy||'minimum-necessary',
+      credential:c.key?{type:'api_key',value:c.key}:null,
+      credential_storage:c.key?'connected_workspace':'none',
+      lastTestedAt:c.lastTestedAt||null,lastTestOk:Boolean(c.lastTestOk)
     }));
-    try{await ZekeData.saveAIConnections({connections});}catch{}
+    await ZekeData.saveAIConnections({schema_version:2,credential_policy:'connected_workspace',connections});
   }
 
   async function hydrateMetadata(){
     const meta=await loadMetadata();
-    const device=loadDeviceConnections();
-    const providers=new Set([...(meta.connections||[]).map(c=>c.provider),...Object.keys(device)]);
+    const legacy=loadLegacyDeviceConnections();
+    const providers=new Set([...(meta.connections||[]).map(c=>c.provider),...Object.keys(legacy)]);
+    let migrated=false;
     for(const provider of providers){
       const cloud=(meta.connections||[]).find(c=>c.provider===provider)||{};
-      const local=device[provider]||{};
-      const key=local.key||'';
-      const lastTestOk=Boolean(local.lastTestOk ?? cloud.lastTestOk);
-      memoryConnections.set(provider,{...cloud,...local,provider,key,rememberOnDevice:Boolean(local.key),connected:Boolean(key&&lastTestOk),lastTestOk});
+      const oldLocal=legacy[provider]||{};
+      const key=cloud.credential?.value||cloud.key||oldLocal.key||'';
+      if(!cloud.credential?.value && oldLocal.key) migrated=true;
+      const lastTestOk=Boolean(cloud.lastTestOk ?? oldLocal.lastTestOk);
+      memoryConnections.set(provider,{...oldLocal,...cloud,provider,key,syncedCredential:Boolean(key),connected:Boolean(key&&lastTestOk),lastTestOk});
     }
+    if(migrated){
+      try{await saveMetadata();clearLegacyDeviceConnections();}catch{}
+    }else if(Object.keys(legacy).length){clearLegacyDeviceConnections();}
     return status();
   }
 
   function status(){
     return {providers:[...memoryConnections.values()].map(c=>({
-      provider:c.provider,enabled:c.enabled!==false,model:c.model||'',endpoint:c.endpoint||'',connected:Boolean(c.connected),hasSessionKey:Boolean(c.key),rememberOnDevice:Boolean(c.rememberOnDevice),lastTestedAt:c.lastTestedAt||null,lastTestOk:Boolean(c.lastTestOk),privacy:c.privacy||'minimum-necessary'
+      provider:c.provider,enabled:c.enabled!==false,model:c.model||'',endpoint:c.endpoint||'',connected:Boolean(c.connected),hasSessionKey:Boolean(c.key),syncedCredential:Boolean(c.key),credentialStorage:c.key?'connected_workspace':'none',lastTestedAt:c.lastTestedAt||null,lastTestOk:Boolean(c.lastTestOk),privacy:c.privacy||'minimum-necessary'
     }))};
   }
 
-  async function configure({provider,key='',model='',endpoint='',privacy='minimum-necessary',enabled=true,rememberOnDevice=false}){
+  async function configure({provider,key='',model='',endpoint='',privacy='minimum-necessary',enabled=true}){
     const def=providerDefinition(provider); if(!def) throw new Error(`Unknown AI provider: ${provider}`);
     const existing=memoryConnections.get(provider)||{};
-    memoryConnections.set(provider,{...existing,provider,key:key||existing.key||'',model:model||existing.model||def.suggestedModels?.[0]||'',endpoint:endpoint||existing.endpoint||def.endpoint||'',privacy,enabled,rememberOnDevice:Boolean(rememberOnDevice),connected:Boolean(existing.connected&&(!key||key===existing.key))});
-    saveDeviceConnections();
+    memoryConnections.set(provider,{...existing,provider,key:key||existing.key||'',model:model||existing.model||def.suggestedModels?.[0]||'',endpoint:endpoint||existing.endpoint||def.endpoint||'',privacy,enabled,syncedCredential:Boolean(key||existing.key),connected:Boolean(existing.connected&&(!key||key===existing.key))});
     await saveMetadata();
     window.dispatchEvent(new CustomEvent('zeke:ai-router-changed',{detail:status()}));
     return status();
   }
 
-  async function remove(provider){memoryConnections.delete(provider);saveDeviceConnections();await saveMetadata();window.dispatchEvent(new CustomEvent('zeke:ai-router-changed',{detail:status()}));}
+  async function remove(provider){memoryConnections.delete(provider);await saveMetadata();window.dispatchEvent(new CustomEvent('zeke:ai-router-changed',{detail:status()}));}
 
   function taskWeight(task,c){
     let n=c.freeFirst?100:0;
@@ -294,7 +295,7 @@ Deterministic parser draft for comparison (may be incomplete; never copy invente
     if(def.kind!=='ollama' && !c.key && !def.requiresEndpoint) throw new Error('Enter an API key first.');
     if(def.requiresEndpoint && !c.endpoint) throw new Error('Enter the secure relay or service endpoint first.');
     const result=await callConnection(c,'Reply with exactly ZEKE_OK',{maxTokens:20,temperature:0});
-    const ok=/ZEKE_OK/i.test(result.text); c.lastTestedAt=new Date().toISOString(); c.lastTestOk=ok; c.connected=ok; memoryConnections.set(provider,c); saveDeviceConnections(); await saveMetadata();
+    const ok=/ZEKE_OK/i.test(result.text); c.lastTestedAt=new Date().toISOString(); c.lastTestOk=ok; c.connected=ok; memoryConnections.set(provider,c); await saveMetadata();
     if(!ok) throw new Error(`Connection responded, but validation was unexpected: ${result.text.slice(0,120)}`);
     return {ok:true,provider:result.provider,model:result.model};
   }

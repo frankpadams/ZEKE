@@ -1,34 +1,32 @@
-# Project Health — v0.41.0
+# Project Health — v0.43.0
 
-**Runtime build:** 2026.08.07.1  
-**Governance revision:** 2026.08.07.1
+**Runtime build:** 2026.08.16.3  
+**Governance revision:** 2026.08.16.3
 
 ## Current position
 
-- Last user-deployed baseline: v0.40.5 · build 2026.08.06.5.
-- Current package candidate: v0.41.0 RC1 · build 2026.08.07.1.
-- Canonical personal data remains provider-backed/user-owned; the supplied events JSON was reference-only and was not edited.
-- Package verification: complete for the approved v0.41.0 RC1 scope.
-- Environment verification: outstanding.
+- Last confirmed user-deployed baseline remains v0.40.5.
+- Current package candidate: v0.43.0 RC2.1 · build 2026.08.16.3.
+- Package-local audit, governance, JavaScript, and rendered mobile/workflow checks are passing.
+- Environment verification outstanding: live Google Drive/cross-device behavior and physical-device acceptance still require the user environment.
 
-## Strengths of this candidate
+## Implemented in RC2
 
-- Fitness history now has an explicit identity boundary between movement family and exact equipment/variation.
-- Progressive-overload guidance is placed at the point of logging rather than isolated in analysis.
-- PT shorthand is more readable, flexible rehab fields are supported, and form-guide recognition help is expanded.
-- Discover and Trends are oriented toward meaningful/recent information instead of exposing analytical machinery or repeating lifetime facts.
-- Dashboard timeframe ownership is visually local rather than misleadingly global.
-- Duplicate review and medication adherence workflows use more direct user language while preserving provenance.
-- Package-local browser/syntax/governance checks are green; remaining non-zero JavaScript tests are explicitly classified.
+- Approved mobile `+ Log Exercise` architecture remains authoritative; no separate Gym Mode.
+- Canonical exercises preserve variation-specific histories and shared-axis variation charts.
+- Medication schedules now support reconstructable dated occurrence histories with assumed-vs-confirmed provenance and retroactive correction.
+- Direct medication-history questions can be answered from longitudinal occurrences while unrelated pending write workflows remain resumable.
+- Meta/product feedback is excluded from health-event creation.
+- Mobile calendar review can scan the prior year, triage potential health relevance, dedupe, and ask for explicit confirmation before backfill.
+- Health Reports & Export generates current workbook/JSON output from canonical data; the legacy connected workbook is migration/reconciliation only.
+- AI provider credentials are synced through connected workspace configuration so they can follow the user across devices; legacy local-only keys are migrated and cleared.
+- Current release scope and design authority are package-local so a new team can continue without prior chat history.
 
-## Highest remaining risks
+## Remaining blockers
 
-- Live Google Drive and physical-device acceptance remain outside package-local verification.
-- Historical exercise records with ambiguous equipment must remain unspecified until the user reviews them.
-- Not every clinic-specific PT movement has a verified image; unverified imagery must not be substituted merely to fill the UI.
-- Progressive-overload recommendations depend on data quality and should remain conservative when exact variation, effort, pain, or recent continuity is unclear.
-- External protected-workbook tests require the unavailable `ZEKE_TEST_DATA_ROOT` fixture.
+- PT visual audit remains blocked on six exact movement guides: Band Internal Rotation, Doorway Chest Stretch, D1, D2, No Monies, and Cheerleaders.
+- Physical-phone visual acceptance against `DESIGN_AUTHORITY.md` remains outstanding.
+- Live Drive write/readback, historical medication reconstruction against real data, retrospective calendar behavior, and cross-device credential continuity require deployed-environment verification.
+- The alpha connected-workspace credential model relies on Drive/OAuth confidentiality and does not yet add a separate ZEKE-managed end-to-end encryption layer.
 
-## Next gate
-
-Deploy v0.41.0 RC1 as one consistent package, verify live provider write/readback and physical mobile behavior, then collect user acceptance before promoting the RC beyond candidate status.
+- RC2.1 package-local JS suite: 26/26 passed; project audit 0/0; phone rendered smoke passed. Environment gates remain open.

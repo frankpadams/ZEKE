@@ -337,19 +337,27 @@ Content-Type: ${mimeType}
       return { rootId: this.rootId, rootName: ROOT_NAME, manifest };
     }
 
-    async listCalendarEvents(days = 14) {
-      const timeMin = new Date().toISOString();
-      const timeMax = new Date(Date.now() + days * 864e5).toISOString();
-      const params = new URLSearchParams({
-        timeMin, timeMax, singleEvents: 'true', orderBy: 'startTime', maxResults: '50'
-      });
-      const result = await this.api(`https://www.googleapis.com/calendar/v3/calendars/primary/events?${params}`);
-      return (result.items || []).map(event => ({
+    async listCalendarEvents(options = 14) {
+      const cfg=typeof options==='number'?{pastDays:0,futureDays:options,maxResults:50}:({...options});
+      const pastDays=Math.max(0,Number(cfg.pastDays||0)),futureDays=Math.max(0,Number(cfg.futureDays??14)),maxResults=Math.max(1,Math.min(2500,Number(cfg.maxResults||250)));
+      const now=Date.now(),timeMin=new Date(now-pastDays*864e5).toISOString(),timeMax=new Date(now+futureDays*864e5).toISOString();
+      const collected=[];let pageToken='';
+      do{
+        const params=new URLSearchParams({timeMin,timeMax,singleEvents:'true',orderBy:'startTime',maxResults:String(Math.min(250,maxResults-collected.length))});
+        if(pageToken)params.set('pageToken',pageToken);
+        const result=await this.api(`https://www.googleapis.com/calendar/v3/calendars/primary/events?${params}`);
+        collected.push(...(result.items||[]));pageToken=result.nextPageToken||'';
+      }while(pageToken&&collected.length<maxResults);
+      return collected.slice(0,maxResults).map(event => ({
         id: event.id,
+        calendar_id: event.organizer?.email||'primary',
         title: event.summary || '(Untitled event)',
         start: event.start?.dateTime || event.start?.date,
         end: event.end?.dateTime || event.end?.date,
-        location: event.location || ''
+        location: event.location || '',
+        description: event.description || '',
+        status: event.status || 'confirmed',
+        htmlLink: event.htmlLink || ''
       }));
     }
 

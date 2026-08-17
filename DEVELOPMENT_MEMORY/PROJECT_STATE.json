@@ -1,12 +1,13 @@
 {
   "schema_version": 3,
-  "current_version": "0.41.0",
-  "current_build": "2026.08.07.1",
-  "release_label": "Fitness Intelligence & Clarity RC1",
+  "current_version": "0.43.0",
+  "current_build": "2026.08.16.3",
+  "release_label": "Longitudinal Integrity & Sync RC2",
   "baseline": "Exact user-deployed ZEKE v0.40.5 build 2026.08.06.5",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
   "authoritative_documents": [
     "00_AI_START_HERE.md",
+    "RELEASE_NOTES.md",
     "ARCHITECTURE.md",
     "CHANGELOG.md",
     "DECISION_LOG.md",
@@ -15,8 +16,6 @@
     "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
     "DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json",
     "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
-    "DEVELOPMENT_MEMORY/GOVERNANCE_RECONCILIATION_2026-07-25.md",
-    "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.41.0.md",
     "DEVELOPMENT_MEMORY/PROJECT_STATE.json",
     "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
     "DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md",
@@ -25,16 +24,30 @@
     "FEATURE_STATUS.md",
     "KNOWN_ISSUES.md",
     "PROJECT_STATE.md",
-    "RELEASE_NOTES.md",
     "ROADMAP.md",
-    "ZEKE_CONSTITUTION.md"
+    "ZEKE_CONSTITUTION.md",
+    "DEVELOPMENT_MEMORY/ITERATION_HISTORY.md",
+    "DEVELOPMENT_MEMORY/CONTINUITY_HISTORY.md",
+    "TEST_REPORT.md",
+    "TEST_GUIDE.md",
+    "PACKAGE_HISTORY.json",
+    "CURRENT_RELEASE_SCOPE.md",
+    "DESIGN_AUTHORITY.md"
   ],
   "implemented_this_release": [
-    "Exact exercise family/variation/equipment/load-basis identity and review-based historical metadata repair",
-    "Expanded PT shorthand, activity fields, and form-guide recognition support",
-    "Point-of-logging progressive-overload targets with RPE/RIR, pain/PT, gap, and evidence handling",
-    "Discover signal-quality redesign and recent-oriented Trends & Analysis",
-    "Section-owned Dashboard ranges, compact Today, plain-language duplicate review, and medication adherence modes"
+    "Authoritative mobile + Log Exercise page with inline per-set weight/reps and optional effort/pain",
+    "Canonical exercise tiles with variation-specific shared-axis chart series and variation-aware logging",
+    "Intelligent historical mapping suggestions for known Dumbbell/Bowflex/Planet Fitness exercise wording while preserving original text",
+    "Body Measurement chooser including circumference and Body Composition metrics with source/method provenance including DEXA",
+    "Recent Health Record edit and remove controls with correction/audit preservation",
+    "Vertical mobile side-drawer navigation contract across responsive breakpoints",
+    "Package/document consolidation and release-gate classification work",
+    "Medication occurrence history reconstruction with assumed/confirmed provenance and retroactive correction",
+    "Mobile past-year calendar candidate screening and confirmation/backfill workflow",
+    "Health Reports & Export with generated workbook/JSON and legacy workbook demotion",
+    "Connected-workspace AI credential sync across devices with legacy local-key migration",
+    "Conversation interruption handling, medication-history answering, and meta-conversation exclusion from health data",
+    "Self-describing design authority and current-release scope documents"
   ],
   "inherited_verified_evidence": [
     "v0.25.2 direct mobile workout save handler and visible failure path",
@@ -42,17 +55,19 @@
     "deterministic medication, sleep, workbook, provenance, and workflow regressions"
   ],
   "known_issues": [
-    "Physical mobile and live Google Drive acceptance require deployed user testing",
-    "Verified movement imagery is not yet available for every PT exercise; written fallback remains",
-    "Ambiguous historical equipment remains intentionally unspecified until user review",
-    "Provider adapters beyond Google Drive remain roadmap work"
+    "Physical-device visual acceptance against approved mobile references remains user-environment verification",
+    "Every included PT exercise must have a verified high-quality visual guide before final publish; six catalog items still lack verified media",
+    "Live Google Drive write/readback and protected workbook tests require connected user environment / ZEKE_TEST_DATA_ROOT",
+    "Connected-workspace AI API keys are Drive-account protected in this alpha but do not yet have an additional ZEKE-managed end-to-end encryption layer",
+    "Cross-variation predictive modeling is architectural groundwork only; user-specific relationships require sufficient history before use"
   ],
   "next_review_items": [
-    "Deploy v0.41.0 RC1 and verify live Google Drive write/readback",
-    "Complete physical mobile acceptance and collect user feedback",
-    "Review ambiguous historical exercise identities only through the non-destructive mapping workflow"
+    "Complete six missing PT visuals",
+    "Complete physical mobile acceptance against DESIGN_AUTHORITY.md",
+    "Verify live Google Drive credential/event/report readback",
+    "Review medication historical backfill against real user data before final promotion"
   ],
-  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_RECORD_v0.41.0.md",
+  "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_HISTORY.md",
   "files_to_read_first": [
     "00_AI_START_HERE.md"
   ],
@@ -65,9 +80,9 @@
     "real-data workbook regression when fixture is available",
     "final ZIP reopened and compared with provenance"
   ],
-  "current_release_label": "Fitness Intelligence & Clarity RC1",
-  "current_focus": "Fitness intelligence, PT recognition, meaningful Discover/Trends, and user-friendly trust workflows",
-  "governance_revision": "2026.08.07.1",
+  "current_release_label": "Longitudinal Integrity & Sync RC2",
+  "current_focus": "Longitudinal medication occurrence history, retrospective mobile calendar reconciliation, Health Reports & Export, cross-device connected-workspace AI credentials, conversational workflow integrity, and approved mobile design fidelity",
+  "governance_revision": "2026.08.16.3",
   "runtime_changed_by_governance_revision": true,
   "rejected_forward_baselines": [
     "v0.28.0",
@@ -81,8 +96,8 @@
     "mature research-reviewed readiness and adaptive periodization methodology",
     "locally controlled full exercise media library"
   ],
-  "current_release": "ZEKE v0.41.0 RC1 \u2014 Fitness Intelligence & Clarity",
-  "updated_at": "2026-08-07T00:39:48-04:00",
+  "current_release": "ZEKE v0.43.0 RC2.1 \u2014 Longitudinal Integrity & Sync RC2",
+  "updated_at": "2026-08-16T23:58:00-04:00",
   "known_limitations": [
     "Live Google Drive and physical-device verification remain outstanding",
     "Remote form-guide media requires network access and has a truthful fallback",
