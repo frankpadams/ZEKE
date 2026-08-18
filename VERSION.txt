@@ -1,2 +1,2 @@
-ZEKE v0.43.2 — Mobile-First Interface Rebuild
-Build 2026.08.17.2
+ZEKE v0.43.3 — Mobile Mockup Fidelity Rebuild
+Build 2026.08.17.3

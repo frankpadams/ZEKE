@@ -1,33 +1,30 @@
-# ZEKE v0.43.2 — Mobile-First Interface Rebuild PATCH
+# ZEKE v0.43.3 — Mobile Mockup Fidelity Rebuild PATCH
 
-Baseline: the current GitHub `main` build identified as ZEKE v0.43.1 / build 2026.08.17.1.
+This replaces the unsuccessful v0.43.2 mobile overlay.
 
-This is an overlay patch, not a full repository archive. Copy these files over the matching paths in the v0.43.1 site.
+## Why v0.43.2 felt wrong
 
-## What this changes
+It was still primarily a CSS treatment of the existing mobile layout. Worse, it set the existing sidebar to `display:none`, while the app's **More** button works by adding `body.nav-open` to reveal that sidebar. That is why More became unresponsive.
 
-- Removes generic Fitness Insights (including A1c/glucose relationship cards) from the mobile Fitness root.
-- Removes Goals from the mobile Fitness root; the Fitness landing screen is training-first.
-- Adds a purpose-built mobile Fitness tab strip: Library / My exercises / Workouts.
-- Re-composes Fitness cards and workout history for phone density instead of desktop-card stacking.
-- Makes Dashboard metric tiles compact instead of full-width giant cards.
-- Puts Timeline ahead of the large Health-at-a-Glance block on mobile.
-- Collapses exercise form-guide detail by default; visual/form guidance remains one tap away.
-- Fixes the mobile action-bar collision systemically: exercise Save/Done and sheet/form actions sit above the persistent ZEKE bottom navigation and iOS safe area.
-- Adds extra scroll padding so the last controls cannot end underneath fixed navigation/action chrome.
-- Leaves desktop behavior and shared ZEKE data/business logic unchanged.
+## v0.43.3 design source
 
-## Files
+This pass is explicitly reverse-engineered from the approved Aug 18 mobile mockup collages:
+- Dashboard/Home: dark greeting header, Timeline Snapshot first, compact Health card, persistent 5-item bottom navigation.
+- Fitness: purpose-built tab bar, search-first canonical exercise library, compact canonical cards with variation-specific lines and legend.
+- Exercise detail: focused full-screen surface instead of an infinitely expanding desktop card.
+- Logging/PT: sheet/full-screen forms, concise form guide, persistent safe Save controls.
+- More: real side drawer using the existing ZEKE navigation and functionality.
 
-- `index.html`
-- `version.js`
-- `VERSION.txt`
-- `sw.js`
-- `assets/mobile-first-rebuild-v0432.css` (new)
-- `assets/mobile-first-rebuild-v0432.js` (new)
+## Important functional fixes
 
-## Important
+- **More works again.** The existing sidebar is preserved and styled as the mockup drawer; the More click has a capture-phase reliability handler.
+- Generic A1c/glucose relationship insight is suppressed on the mobile Fitness root.
+- Save/Submit action bars sit above the ZEKE bottom navigation and iOS safe-area.
+- Exercise form guides collapse initially rather than consuming the entire screen.
+- Splash/loading page always visibly includes version and build.
 
-The existing `assets/mobile-mockup-fidelity-v044.css/js` remain in place and load first. This new mobile-first layer loads after them and deliberately supersedes piecemeal rules where necessary.
+## Install
 
-After deployment, hard refresh once on iPhone/Safari so the updated service-worker cache is activated.
+Copy these files over the matching paths in the deployed ZEKE site. If v0.43.2 files are present, this version no longer references them, so they can be removed later.
+
+After deployment, hard-refresh once on iPhone Safari to activate the new service-worker cache.
