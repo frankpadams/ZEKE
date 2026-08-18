@@ -1,27 +1,19 @@
-ZEKE v0.17.4 · build 2026.07.17.1 · Preview
+ZEKE mobile mockup-fidelity patch
+Baseline: current GitHub main v0.43.1 / build 2026.08.17.1
 
-PURPOSE
-This small root-level patch repairs deployment/cache behavior. The repository already
-contains the updated assets/app.js and assets/styles.css, but an old service-worker/cache
-path could keep the browser on stale nested assets.
+Contents:
+- index.html: current production index plus two new mobile fidelity assets.
+- assets/mobile-mockup-fidelity-v044.css: mobile-only visual fidelity layer.
+- assets/mobile-mockup-fidelity-v044.js: broken form-guide image fail-safe.
 
-UPLOAD THESE THREE FILES TO THE REPOSITORY ROOT
-- index.html
-- version.js
-- sw.js
+Purpose:
+- Move production mobile styling toward the approved six-screen mockup standard.
+- Preserve desktop styling and existing functional code.
+- Make exercise entry feel like a native, organized mobile workflow.
+- Make fitness analytics calmer and less nested.
+- Prevent a broken exercise image from rendering as an empty/broken box.
 
-Replace the existing files with the same names.
+Important limitation:
+The connected GitHub integration allowed read access but returned HTTP 403 on write/create operations, so this patch could not be committed automatically. It is prepared to overlay onto the current repository/deployment.
 
-DO NOT upload these files inside the assets folder.
-DO NOT replace zeke-config.js.
-DO NOT change health data or Google Drive files.
-
-EXPECTED AFTER GITHUB PAGES UPDATES
-- Splash: v0.17.4 · build 2026.07.17.1 · Preview
-- Persistent header logo and version/build
-- Exercise tile button opens a numerical form
-- Review count uses grouped review tasks
-- Active Date remains available for today or historical entry
-
-First open the direct GitHub Pages URL. A normal reload should be sufficient because
-index.html unregisters the stale service worker and clears old Project ZEKE caches.
+This patch intentionally does not claim to fix the underlying Bicep Curl data-series reconciliation or medication-language parsing. Those require source-logic changes and regression tests, not CSS.
