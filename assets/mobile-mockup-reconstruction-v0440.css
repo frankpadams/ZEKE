@@ -1,0 +1,245 @@
+
+/* ZEKE v0.44.0
+   Dedicated mobile presentation layer reconstructed from the approved mobile mockups.
+   Existing ZEKE DOM remains as a hidden functional/data source on phones.
+   Desktop is untouched. */
+
+@media (max-width:760px){
+  :root{
+    --zm-navy:#082f4f;
+    --zm-navy-deep:#06243d;
+    --zm-teal:#12a3a5;
+    --zm-teal-dark:#0a7f8d;
+    --zm-blue:#2c79a7;
+    --zm-green:#29aa6a;
+    --zm-orange:#e3a13a;
+    --zm-red:#d95e5e;
+    --zm-ink:#12253a;
+    --zm-muted:#758597;
+    --zm-border:#e1e8ee;
+    --zm-bg:#f5f8fa;
+    --zm-card:#ffffff;
+    --zm-shadow:0 8px 28px rgba(20,52,75,.075);
+    --zm-bottom:74px;
+  }
+
+  html,body,#root{min-height:100%;background:var(--zm-bg)!important;color:var(--zm-ink)!important}
+  body{margin:0!important;overflow-x:hidden!important;-webkit-font-smoothing:antialiased!important}
+
+  /* The original app stays alive underneath for state, storage, and event handlers. */
+  body.zm-mobile-active #root>.app-shell,
+  body.zm-mobile-active #root>.connection-screen,
+  body.zm-mobile-active #root>.startup-screen:not(.zm-startup-clone){
+    visibility:hidden!important;
+    position:fixed!important;
+    left:-200vw!important;
+    width:100vw!important;
+    pointer-events:none!important;
+  }
+
+  #zekeMobileApp{
+    position:relative!important;
+    z-index:80!important;
+    min-height:100dvh!important;
+    background:var(--zm-bg)!important;
+    color:var(--zm-ink)!important;
+    padding-bottom:calc(var(--zm-bottom) + env(safe-area-inset-bottom))!important;
+  }
+
+  .zm-topbar{
+    position:sticky;top:0;z-index:110;
+    min-height:68px;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto;
+    align-items:center;
+    gap:12px;
+    padding:10px 16px;
+    background:linear-gradient(120deg,var(--zm-navy-deep),var(--zm-navy));
+    color:#fff;
+    box-shadow:0 3px 12px rgba(4,27,44,.12);
+  }
+  .zm-brand{display:flex;align-items:center;gap:10px;min-width:0}
+  .zm-mark{width:36px;height:36px;border-radius:11px;background:rgba(255,255,255,.12);display:grid;place-items:center;font-weight:900;font-size:17px}
+  .zm-brand-copy{min-width:0}
+  .zm-brand-copy strong{display:block;font-size:19px;line-height:1.1;letter-spacing:.01em;color:#fff}
+  .zm-brand-copy span{display:block;margin-top:3px;font-size:11px;color:rgba(255,255,255,.72);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .zm-top-actions{display:flex;align-items:center;gap:7px}
+  .zm-icon-button,.zm-avatar-button{
+    width:40px;height:40px;border-radius:12px;border:0;
+    display:grid;place-items:center;
+    background:rgba(255,255,255,.10);color:#fff;font-size:19px;
+  }
+  .zm-avatar-button{border-radius:50%;font-size:13px;font-weight:850;background:#eaf7f7;color:#0c6877}
+
+  .zm-page{padding:15px 14px 24px}
+  .zm-section{margin:0 0 17px}
+  .zm-section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:9px}
+  .zm-section-head h2{margin:0;font-size:18px;line-height:1.15;letter-spacing:-.018em;color:var(--zm-ink)}
+  .zm-section-head span,.zm-link{font-size:12px;color:var(--zm-blue);font-weight:750}
+  .zm-link{border:0;background:transparent;padding:5px 0}
+
+  .zm-card{
+    background:var(--zm-card);border:1px solid var(--zm-border);border-radius:17px;
+    box-shadow:var(--zm-shadow);
+  }
+
+  /* Dashboard */
+  .zm-glance{padding:13px 12px}
+  .zm-glance-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+  .zm-glance-title strong{font-size:14px}
+  .zm-glance-title span{font-size:11px;color:var(--zm-muted)}
+  .zm-glance-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}
+  .zm-stat{min-width:0;padding:9px 7px;border-radius:13px;background:#f8fbfc;border:1px solid #e9eff3}
+  .zm-stat small{display:block;font-size:9px;color:var(--zm-muted);font-weight:750;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .zm-stat strong{display:block;margin-top:5px;font-size:17px;line-height:1.05;letter-spacing:-.025em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .zm-stat em{display:block;margin-top:5px;font-style:normal;font-size:9px;color:var(--zm-green);font-weight:700}
+  .zm-mini-line{height:15px;margin-top:4px;position:relative;overflow:hidden}
+  .zm-mini-line::after{content:"";position:absolute;left:1px;right:1px;bottom:3px;height:2px;border-radius:3px;background:linear-gradient(90deg,#8bd8bd 0 16%,#55bea0 16% 40%,#72c9ae 40% 57%,#39b589 57% 76%,#199e74 76%)}
+
+  .zm-actions-card{overflow:hidden}
+  .zm-action-row{display:grid;grid-template-columns:32px minmax(0,1fr) auto;align-items:center;gap:10px;padding:11px 12px;border-top:1px solid #edf1f4}
+  .zm-action-row:first-child{border-top:0}
+  .zm-action-icon{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:#eaf7f1;color:var(--zm-green);font-size:14px;font-weight:850}
+  .zm-action-icon.pending{background:#fff4e4;color:var(--zm-orange)}
+  .zm-action-main{min-width:0}
+  .zm-action-main strong{display:block;font-size:13px;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .zm-action-main small{display:block;margin-top:3px;font-size:10px;color:var(--zm-muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .zm-chevron{color:#a0adb8;font-size:20px}
+
+  .zm-coach{padding:12px}
+  .zm-coach-top{display:flex;gap:10px;align-items:flex-start}
+  .zm-coach-badge{width:32px;height:32px;flex:0 0 auto;border-radius:10px;background:#e7f5f6;color:var(--zm-teal-dark);display:grid;place-items:center;font-size:16px}
+  .zm-coach-copy strong{display:block;font-size:13px;line-height:1.3}
+  .zm-coach-copy p{margin:4px 0 0;font-size:11px;line-height:1.4;color:var(--zm-muted)}
+  .zm-coach-spark{height:34px;margin-top:8px;border-radius:10px;background:linear-gradient(180deg,#f2faf8,#fff);position:relative;overflow:hidden}
+  .zm-coach-spark::after{content:"";position:absolute;left:7%;right:7%;bottom:10px;height:2px;background:linear-gradient(90deg,#8bd6c6,#1da58b);transform:skewY(-5deg)}
+
+  .zm-log-primary{
+    width:100%;min-height:50px;border:0;border-radius:15px;
+    background:linear-gradient(120deg,#1198a4,#13b0a3);color:#fff;
+    font-size:15px;font-weight:850;box-shadow:0 8px 20px rgba(17,152,164,.18)
+  }
+
+  /* Fitness */
+  .zm-fitness-hero{padding:14px;background:linear-gradient(145deg,#0a3656,#0d4a6c);color:#fff;border:0}
+  .zm-fitness-hero .eyebrow{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:#7fd9db;font-weight:850}
+  .zm-fitness-hero h1{margin:5px 0 4px;font-size:24px;letter-spacing:-.03em}
+  .zm-fitness-hero p{margin:0;font-size:11px;line-height:1.45;color:rgba(255,255,255,.75)}
+  .zm-train-actions{display:grid;grid-template-columns:1.25fr .75fr;gap:8px;margin-top:12px}
+  .zm-train-actions button{min-height:46px;border-radius:13px;font-weight:850}
+  .zm-start-workout{border:0;background:#12a8a2;color:#fff}
+  .zm-log-one{border:1px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:#fff}
+
+  .zm-tabs{display:flex;gap:3px;padding:4px;background:#eaf0f4;border-radius:13px;margin:12px 0}
+  .zm-tab{flex:1;min-height:37px;border:0;border-radius:10px;background:transparent;color:#637486;font-size:11px;font-weight:800}
+  .zm-tab.active{background:#fff;color:#0c7386;box-shadow:0 2px 8px rgba(24,57,81,.08)}
+
+  .zm-search{position:relative;margin-bottom:10px}
+  .zm-search input{width:100%;height:44px;border:1px solid #dce5eb;border-radius:13px;background:#fff;padding:0 42px 0 13px;font-size:16px;color:var(--zm-ink);outline:none}
+  .zm-search span{position:absolute;right:13px;top:11px;color:#8090a0}
+
+  .zm-exercise-list{display:grid;gap:9px}
+  .zm-exercise{
+    width:100%;text-align:left;border:1px solid var(--zm-border);background:#fff;border-radius:16px;
+    padding:12px;box-shadow:0 5px 18px rgba(18,49,72,.045)
+  }
+  .zm-exercise-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+  .zm-exercise strong{font-size:15px;line-height:1.2}
+  .zm-exercise small{display:block;margin-top:3px;font-size:10px;color:var(--zm-muted)}
+  .zm-exercise-value{font-size:13px;font-weight:850;color:#17354e;white-space:nowrap}
+  .zm-chart{height:48px;margin-top:9px;border-radius:9px;background:
+      linear-gradient(#f6fafc,#f6fafc),
+      repeating-linear-gradient(0deg,transparent,transparent 15px,#edf2f5 15px,#edf2f5 16px);
+      position:relative;overflow:hidden}
+  .zm-chart::after{content:"";position:absolute;left:5%;right:5%;top:50%;height:3px;border-radius:3px;background:linear-gradient(90deg,#4e91c2,#36a4b0,#28a985);transform:skewY(-5deg)}
+  .zm-variation-pills{display:flex;gap:5px;overflow-x:auto;margin-top:7px;scrollbar-width:none}
+  .zm-pill{flex:0 0 auto;padding:5px 7px;border-radius:999px;border:1px solid #dfe8ed;background:#fff;font-size:9px;color:#526577;font-weight:700}
+
+  .zm-progress-card{padding:13px}
+  .zm-progress-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;padding:10px 0;border-top:1px solid #edf1f4}
+  .zm-progress-row:first-child{border-top:0}
+  .zm-progress-row strong{font-size:13px}.zm-progress-row small{display:block;margin-top:3px;font-size:10px;color:var(--zm-muted)}
+  .zm-progress-row b{font-size:12px;color:var(--zm-teal-dark)}
+
+  /* Health */
+  .zm-health-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+  .zm-health-metric{padding:12px;min-height:118px}
+  .zm-health-metric small{font-size:10px;color:var(--zm-muted);font-weight:750}
+  .zm-health-metric strong{display:block;margin-top:8px;font-size:23px;letter-spacing:-.03em}
+  .zm-health-metric em{display:block;margin-top:4px;font-style:normal;font-size:9px;color:var(--zm-green)}
+  .zm-health-metric .zm-mini-line{margin-top:9px}
+
+  /* Bottom nav – user-approved primary architecture */
+  .zm-bottom-nav{
+    position:fixed;left:0;right:0;bottom:0;z-index:130;
+    height:calc(var(--zm-bottom) + env(safe-area-inset-bottom));
+    display:grid;grid-template-columns:repeat(3,1fr);
+    padding:5px 14px env(safe-area-inset-bottom);
+    background:rgba(255,255,255,.98);border-top:1px solid #dfe7ec;
+    box-shadow:0 -6px 20px rgba(15,42,62,.06);backdrop-filter:blur(15px)
+  }
+  .zm-nav{position:relative;border:0;background:transparent;color:#738394;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:10px;font-weight:780}
+  .zm-nav span{font-size:21px}.zm-nav.active{color:var(--zm-teal-dark)}
+  .zm-nav.active::before{content:"";position:absolute;top:0;width:42px;height:3px;border-radius:0 0 5px 5px;background:var(--zm-teal)}
+
+  /* Bottom sheet */
+  .zm-scrim{position:fixed;inset:0;z-index:190;background:rgba(3,19,32,.38);display:flex;align-items:flex-end}
+  .zm-sheet{width:100%;border-radius:22px 22px 0 0;background:#fff;padding:10px 14px calc(16px + env(safe-area-inset-bottom));box-shadow:0 -18px 46px rgba(6,30,47,.2)}
+  .zm-handle{width:40px;height:4px;border-radius:999px;background:#d8e0e5;margin:0 auto 12px}
+  .zm-sheet-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .zm-sheet-head h2{margin:0;font-size:18px}.zm-sheet-close{width:38px;height:38px;border:0;border-radius:50%;background:#f0f4f6;color:#506476;font-size:20px}
+  .zm-choice{width:100%;display:grid;grid-template-columns:38px minmax(0,1fr) auto;gap:10px;align-items:center;text-align:left;padding:11px 4px;border:0;border-top:1px solid #edf1f3;background:#fff}
+  .zm-choice:first-of-type{border-top:0}
+  .zm-choice-icon{width:36px;height:36px;border-radius:11px;display:grid;place-items:center;background:#e8f4f8;color:#23799b;font-size:18px}
+  .zm-choice:nth-of-type(2) .zm-choice-icon{background:#e9f6ee;color:#2c9d64}
+  .zm-choice:nth-of-type(3) .zm-choice-icon{background:#f0edfb;color:#7657b5}
+  .zm-choice strong{display:block;font-size:13px}.zm-choice small{display:block;margin-top:3px;font-size:10px;color:var(--zm-muted);line-height:1.35}
+  .zm-sheet-cancel{width:100%;height:44px;border:0;background:transparent;color:var(--zm-blue);font-weight:800}
+
+  /* Secondary nav */
+  .zm-secondary{
+    position:fixed;inset:0;z-index:200;background:rgba(3,19,32,.38);display:flex;justify-content:flex-end
+  }
+  .zm-secondary-panel{width:min(86vw,340px);height:100dvh;background:#fff;padding:17px 13px calc(17px + env(safe-area-inset-bottom));box-shadow:-14px 0 40px rgba(6,30,47,.18);overflow:auto}
+  .zm-secondary-head{display:flex;justify-content:space-between;align-items:center;padding:0 3px 12px}
+  .zm-secondary-head strong{font-size:18px}.zm-secondary-list{display:grid;gap:4px}
+  .zm-secondary-item{min-height:48px;border:0;border-radius:12px;background:transparent;text-align:left;padding:10px 12px;color:#29465f;font-size:14px;font-weight:730}
+  .zm-secondary-item:hover{background:#f0f6f8}
+  .zm-version{margin-top:18px;padding:12px;border-top:1px solid #e4eaef;font-size:11px;color:#667c8f;font-weight:700}
+
+  /* Splash */
+  .zm-startup-clone{
+    min-height:100dvh;display:grid;place-items:center;padding:24px;background:linear-gradient(180deg,#f7fbfc,#eef4f7)
+  }
+  .zm-startup-card{text-align:center}
+  .zm-startup-mark{width:72px;height:72px;margin:0 auto 15px;border-radius:22px;background:linear-gradient(145deg,var(--zm-navy),var(--zm-teal-dark));color:#fff;display:grid;place-items:center;font-size:30px;font-weight:900;box-shadow:0 14px 35px rgba(8,47,79,.18)}
+  .zm-startup-name{font-size:25px;font-weight:900;letter-spacing:.08em;color:#11304a}
+  .zm-startup-message{margin-top:8px;font-size:13px;color:#728595}
+  .zm-startup-version{margin-top:17px;font-size:12px;font-weight:850;color:#3b617a}
+  .zm-startup-build{margin-top:4px;font-size:10px;color:#8797a5}
+
+  /* Existing modals launched from the mobile shell must remain visible. */
+  body.zm-mobile-active .direct-entry-overlay,
+  body.zm-mobile-active .zeke-sheet-scrim,
+  body.zm-mobile-active .drawer-backdrop,
+  body.zm-mobile-active .global-talk-backdrop,
+  body.zm-mobile-active #quickLogBackdrop,
+  body.zm-mobile-active .zeke-mini-dialog{
+    visibility:visible!important;
+    left:0!important;
+    pointer-events:auto!important;
+    z-index:300!important
+  }
+
+  /* Safe action positioning for existing forms */
+  body.zm-mobile-active .direct-entry-actions{
+    position:sticky!important;bottom:0!important;z-index:310!important;
+    margin:10px -16px -16px!important;padding:10px 16px calc(10px + env(safe-area-inset-bottom))!important;
+    background:rgba(255,255,255,.98)!important;border-top:1px solid #dfe6eb!important;
+  }
+}
+
+@media(max-width:390px){
+  .zm-page{padding-left:12px;padding-right:12px}
+  .zm-glance-grid{gap:5px}.zm-stat{padding-left:6px;padding-right:6px}.zm-stat strong{font-size:15px}
+}
