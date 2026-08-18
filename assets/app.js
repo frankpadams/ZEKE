@@ -1213,7 +1213,27 @@
     const days=Array.from({length:14},(_,i)=>{const d=new Date(start);d.setDate(d.getDate()+i);return d}),dayKey=d=>window.ZekeLongitudinal?.day?.(d)||'';
     return `<section class="panel timeline-snapshot"><div class="section-head"><div><span class="tile-kicker">WHAT'S BEEN HAPPENING?</span><h2>Timeline Snapshot</h2><p>Recent and upcoming events shown together so timing is visible. Markers represent recorded data only.</p></div><button class="text-action" data-route="calendar">Open full timeline</button></div>${groups.length?`<div class="timeline-axis">${days.map((d,i)=>`<span class="${dayKey(d)===dayKey(today)?'today':''}">${i%2===0?d.toLocaleDateString(undefined,{month:'short',day:'numeric'}):''}</span>`).join('')}</div><div class="timeline-rows">${groups.map(g=>`<div class="timeline-row"><strong>${esc(g.label)}</strong><div class="timeline-track">${days.map(d=>{const items=g.items.filter(x=>x.day===dayKey(d));return `<span class="timeline-day ${dayKey(d)===dayKey(today)?'today':''}">${items.map(x=>`<i class="timeline-marker kind-${esc(x.kind)}" title="${esc(x.label)} · ${esc(fmtDate(x.start,{month:'short',day:'numeric'}))}"></i>`).join('')}</span>`}).join('')}</div></div>`).join('')}</div><div class="timeline-legend"><span><i class="timeline-marker kind-workout"></i> recorded event</span><span>Medication details are excluded from this dashboard view by default.</span></div>`:`<div class="timeline-empty"><strong>No timeline events in this window.</strong><span>ZEKE will not invent activity to fill the visualization.</span></div>`}</section>`;
   }
+  function mobileViewport(){return window.matchMedia?.('(max-width:760px)')?.matches===true}
+  function mobileDashboardHTML(){
+    const today=dayKey(new Date()),questions=reviewTasks().length;
+    const workouts=dedupeDisplayEvents(state.events.filter(e=>recordIsActive(e)&&isWorkoutEvent(e)&&dayKey(e.timestamp||e.recorded_at)===today));
+    const sleep=latestMetric('sleep_duration'),steps=latestMetric('steps');
+    const snapshot=[
+      {icon:'⌁',label:'Workouts',value:String(workouts.length),sub:workouts.length?`${workouts.length} recorded today`:'None recorded today',route:'fitness'},
+      {icon:'☾',label:'Sleep',value:sleep?durationLabel(sleep.value):'—',sub:sleep?fmtDate(sleep.date):'No recent sleep',route:'health'},
+      {icon:'◌',label:'Steps',value:steps?Number(steps.value).toLocaleString():'—',sub:steps?fmtDate(steps.date):'No recent steps',route:'health'}
+    ];
+    const recent=dedupeDisplayEvents(state.events.filter(e=>recordIsActive(e)&&(isWorkoutEvent(e)||['measurement','lab','sleep','symptom','life_event','potential_health_event'].includes(semanticCategory(e))))).sort((a,b)=>new Date(b.timestamp||b.recorded_at)-new Date(a.timestamp||a.recorded_at)).slice(0,5);
+    return `<div class="mobile-home-screen">
+      <section class="mobile-status-strip"><div><i></i><strong>Data current</strong><span>Last evidence ${esc(fmtDate((recent[0]?.timestamp||recent[0]?.recorded_at||new Date()),{month:'short',day:'numeric'}))}</span></div><button data-route="questions">${questions} Question${questions===1?'':'s'} for You <b>›</b></button></section>
+      <section class="mobile-section mobile-snapshot"><div class="mobile-section-head"><div><span class="mobile-kicker">TODAY'S SNAPSHOT</span><h2>Today at a glance</h2></div></div><div class="mobile-snapshot-grid">${snapshot.map(x=>`<button class="mobile-snapshot-card" data-route="${x.route}"><span class="mobile-snapshot-icon">${x.icon}</span><small>${x.label}</small><strong>${esc(x.value)}</strong><em>${esc(x.sub)}</em></button>`).join('')}</div></section>
+      ${timelineSnapshotHTML().replace('panel timeline-snapshot','panel timeline-snapshot mobile-timeline-card')}
+      <section class="mobile-section mobile-recent"><div class="mobile-section-head"><div><span class="mobile-kicker">RECENTLY LOGGED</span><h2>Recent activity</h2></div><button class="text-action" data-route="health">View all</button></div><div class="mobile-recent-list">${recent.map(e=>{const cat=semanticCategory(e),work=isWorkoutEvent(e),w=work?workoutStructured(e):null;return `<button class="mobile-recent-row" data-route="${work?'fitness':'health'}"><span class="recent-icon ${esc(cat)}">${work?'⌁':cat==='sleep'?'☾':'•'}</span><span><strong>${esc(w?.exercise||humanEvent(e))}</strong><small>${esc(fmtDate(e.timestamp||e.recorded_at,{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}))} · ${esc(cat.replaceAll('_',' '))}</small></span><b>›</b></button>`}).join('')||'<div class="empty-inline">Nothing has been logged yet.</div>'}</div></section>
+      <details class="mobile-home-more"><summary>More from ZEKE</summary>${dashboardStoryCardsHTML()}<div class="dashboard-main-grid"><div>${weeklyPlanHTML()}${coachHTML()}</div><div>${todayActionsHTML()}${upcomingHTML()}</div></div>${trendPanelHTML()}<div class="dashboard-lower-grid">${reviewStatusHTML(repairCandidates())}</div></details>
+    </div>`;
+  }
   function dashboardHTML() {
+    if(mobileViewport())return mobileDashboardHTML();
     const repairs=repairCandidates();
     return `${coverageHTML()}<div class="dashboard-v3">${dashboardStoryCardsHTML()}${healthGlanceHTML(8)}${timelineSnapshotHTML()}<div class="dashboard-main-grid"><div>${weeklyPlanHTML()}${coachHTML()}</div><div>${todayActionsHTML()}${upcomingHTML()}</div></div>${trendPanelHTML()}<div class="dashboard-lower-grid">${truthfulRecentActivityHTML()}${reviewStatusHTML(repairs)}</div></div>`;
   }
@@ -2146,6 +2166,8 @@
   }
 
   function topbarHTML() {
+    const mobile=mobileViewport();
+    if(mobile)return `<header class="topbar mobile-app-header"><button class="mobile-header-identity brand-home" data-route="dashboard" title="Home"><img src="./assets/branding/zeke-mark-provisional.png" alt="ZEKE"><span><small>ZEKE</small><strong>${esc(state.route==='dashboard'?greetingText():state.route==='fitness'?'Fitness':state.route==='health'?'Health':state.route==='questions'?'Questions for You':state.route==='settings'?'Settings':'ZEKE')}</strong></span></button><div class="mobile-header-actions"><button class="mobile-header-icon" id="topTalkBtn" aria-label="Talk to ZEKE">✦</button><button class="mobile-header-icon" id="mobileMoreHeader" aria-label="More">☰</button><button class="mobile-header-log primary quick-log-trigger" id="quickLogBtn">+ Log</button></div></header>`;
     return `<header class="topbar"><button class="topbar-brand brand-home" data-route="dashboard" title="Return to Dashboard"><img src="./assets/branding/zeke-mark-provisional.png" alt="ZEKE"><div><strong>ZEKE</strong><span>v${esc(BUILD.version)} · ${esc(BUILD.build)}</span></div></button><div class="topbar-greeting"><h1>${esc(greetingText())}</h1><p>${new Date().toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric',year:'numeric'})}</p></div><div class="top-actions"><button class="primary compact quick-log-trigger" id="quickLogBtn">+ Log</button><button class="secondary compact labeled-top-action" id="topTalkBtn" title="Open the unified conversation">Talk</button><button class="secondary compact labeled-top-action" id="searchBtn" title="Search ZEKE">Search</button><button class="secondary compact labeled-top-action" id="statusBtn" title="ZEKE status">Status</button></div></header>`;
   }
 
@@ -2183,7 +2205,7 @@
     return `<div class="connection-screen"><div class="connect-card wide"><div class="brand-mark big">Z</div><h1>Choose where ZEKE keeps your data</h1><p>Connect a user-owned storage provider. Google Drive is available in this alpha; the architecture is ready for additional adapters.</p>${storageCardsHTML()}<button class="primary large" data-connect-storage="google-drive">Connect Google Drive</button><div class="build-label center">v${esc(BUILD.version)} · ${esc(BUILD.build)}</div></div></div>`;
   }
 
-  function loadingHTML(message='Starting ZEKE…') { return `<div class="loading-screen"><div class="brand-mark big">Z</div><div class="spinner"></div><p>${esc(message)}</p><div class="build-label center">v${esc(BUILD.version)} · ${esc(BUILD.build)}</div></div>`; }
+  function loadingHTML(message='Starting ZEKE…') { return `<div class="loading-screen mobile-loading-screen"><img class="loading-logo" src="./assets/branding/zeke-mark-provisional.png" alt="ZEKE"><strong>ZEKE</strong><div class="spinner"></div><p>${esc(message)}</p><div class="startup-version loading-version">v${esc(BUILD.version)} · build ${esc(BUILD.build)}</div></div>`; }
 
   function editableKey(el) {
     if(!el || !(el instanceof HTMLElement)) return null;
@@ -3459,6 +3481,7 @@
     $('#helpBtn')?.addEventListener('click',()=>showToast(`Help for ${state.route}: click metric tiles for evidence and interpretation; use Talk to ZEKE to log, correct, or backfill data.`));
     $('#statusBtn')?.addEventListener('click',()=>{const ai=(state.ai?.providers||[]).filter(x=>x.connected).map(x=>x.label||x.provider).join(', ')||'none';showToast(`ZEKE status — storage: ${state.storage?.providerId||'not connected'}; AI: ${ai}; open reviews: ${openQuestions().length}.`);});
     $('#mobileMoreButton')?.addEventListener('click',()=>document.body.classList.add('nav-open'));
+    $('#mobileMoreHeader')?.addEventListener('click',()=>document.body.classList.add('nav-open'));
     $('#sidebarClose')?.addEventListener('click',()=>document.body.classList.remove('nav-open'));
     $('#sidebarScrim')?.addEventListener('click',()=>document.body.classList.remove('nav-open'));
     $('#globalTalkButton')?.addEventListener('click',()=>document.body.classList.add('global-talk-open'));
