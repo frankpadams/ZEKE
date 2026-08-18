@@ -1,5 +1,29 @@
 # ZEKE Iteration History
 
+## Current iteration — ZEKE v0.43.1 — Mobile Professional Polish
+
+**Build:** 2026.08.17.1  
+**Parent:** ZEKE v0.43.0 RC2.1 · build 2026.08.16.3
+
+**User direction:** focus 100% on the mobile interface; inspect the approved mockups; verify reachable workflows are useful and expected; edit until the result is functional, beautiful, and professional; do not sacrifice functionality.
+
+### Implemented
+
+- Restored approved dark-navy/teal/white mobile visual language and stronger hierarchy.
+- Reworked mobile bottom navigation, drawer, dashboard/health cards, Fitness cards, and workout header/sticky controls.
+- Promoted exact variation/equipment from optional details to top-of-workout exercise setup before Coach guidance.
+- Kept exact-variation history/mechanical identity separate while retaining canonical exercise aggregation.
+- Corrected canonical strength charts to independent line series per variation on shared axes and omitted unknown load rather than plotting false zero values.
+- Preserved per-set load, reps, optional effort/RPE, and pain in workout save payloads.
+- Replaced oversized empty progression states with compact useful messages.
+- Added package-local multi-width rendered mobile regression coverage.
+
+### Verification boundary
+
+Package-local mobile browser acceptance can verify geometry, workflow order, controls, chart semantics, and overflow. It cannot substitute for final physical-phone acceptance or live provider behavior. The existing six-item PT visual gate remains open and is not concealed by this focused mobile pass.
+
+---
+
 ## Prior RC1 iteration — ZEKE v0.43.0 RC1
 
 **Build:** 2026.08.15.1  

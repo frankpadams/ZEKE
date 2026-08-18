@@ -1,8 +1,8 @@
 {
   "schema_version": 3,
-  "current_version": "0.43.0",
-  "current_build": "2026.08.16.3",
-  "release_label": "Longitudinal Integrity & Sync RC2",
+  "current_version": "0.43.1",
+  "current_build": "2026.08.17.1",
+  "release_label": "Mobile Professional Polish",
   "baseline": "Exact user-deployed ZEKE v0.40.5 build 2026.08.06.5",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
   "authoritative_documents": [
@@ -35,6 +35,12 @@
     "DESIGN_AUTHORITY.md"
   ],
   "implemented_this_release": [
+    "Professional mobile visual system restored from approved mockup language without removing existing functionality",
+    "Variation-first workout entry places exact equipment/variation before variation-dependent Coach guidance",
+    "Canonical strength charts render one independent line series per exact variation on shared axes; missing load is omitted rather than plotted as zero",
+    "Compact single-session/insufficient-data progression states replace large empty charts",
+    "Responsive mobile header, drawer, bottom navigation, card hierarchy, and sticky actions corrected for phone use",
+    "Per-set effort/RPE and pain persist in both direct and batch workout entry flows",
     "Authoritative mobile + Log Exercise page with inline per-set weight/reps and optional effort/pain",
     "Canonical exercise tiles with variation-specific shared-axis chart series and variation-aware logging",
     "Intelligent historical mapping suggestions for known Dumbbell/Bowflex/Planet Fitness exercise wording while preserving original text",
@@ -55,7 +61,7 @@
     "deterministic medication, sleep, workbook, provenance, and workflow regressions"
   ],
   "known_issues": [
-    "Physical-device visual acceptance against approved mobile references remains user-environment verification",
+    "Physical-device visual acceptance against approved mobile references remains user-environment verification; automated 320–430 px rendered acceptance is passing.",
     "Every included PT exercise must have a verified high-quality visual guide before final publish; six catalog items still lack verified media",
     "Live Google Drive write/readback and protected workbook tests require connected user environment / ZEKE_TEST_DATA_ROOT",
     "Connected-workspace AI API keys are Drive-account protected in this alpha but do not yet have an additional ZEKE-managed end-to-end encryption layer",
@@ -80,9 +86,9 @@
     "real-data workbook regression when fixture is available",
     "final ZIP reopened and compared with provenance"
   ],
-  "current_release_label": "Longitudinal Integrity & Sync RC2",
-  "current_focus": "Longitudinal medication occurrence history, retrospective mobile calendar reconciliation, Health Reports & Export, cross-device connected-workspace AI credentials, conversational workflow integrity, and approved mobile design fidelity",
-  "governance_revision": "2026.08.16.3",
+  "current_release_label": "Mobile Professional Polish",
+  "current_focus": "Mobile-first interface professionalism and workflow usability, preserving all v0.43 longitudinal functionality while restoring approved visual fidelity.",
+  "governance_revision": "2026.08.17.1",
   "runtime_changed_by_governance_revision": true,
   "rejected_forward_baselines": [
     "v0.28.0",
@@ -96,10 +102,10 @@
     "mature research-reviewed readiness and adaptive periodization methodology",
     "locally controlled full exercise media library"
   ],
-  "current_release": "ZEKE v0.43.0 RC2.1 \u2014 Longitudinal Integrity & Sync RC2",
-  "updated_at": "2026-08-16T23:58:00-04:00",
+  "current_release": "ZEKE v0.43.1 — Mobile Professional Polish",
+  "updated_at": "2026-08-17T01:13:28-04:00",
   "known_limitations": [
-    "Live Google Drive and physical-device verification remain outstanding",
+    "Live Google Drive and physical-device verification remain outstanding; package-local mobile rendered verification passes.",
     "Remote form-guide media requires network access and has a truthful fallback",
     "Some clinic-specific PT shorthand/media requires continued curation",
     "Three protected-workbook regressions require ZEKE_TEST_DATA_ROOT; three retained historical tests contain obsolete v0.40/v2 UX/schema expectations"

@@ -1,10 +1,10 @@
 {
   "schema_version": 4,
-  "release": "0.43.0",
-  "build": "2026.08.16.3",
-  "current_version": "0.43.0",
-  "current_build": "2026.08.16.3",
-  "governance_revision": "2026.08.16.3",
+  "release": "0.43.1",
+  "build": "2026.08.17.1",
+  "current_version": "0.43.1",
+  "current_build": "2026.08.17.1",
+  "governance_revision": "2026.08.17.1",
   "artifacts": [
     {
       "path": "RELEASE_NOTES.md",

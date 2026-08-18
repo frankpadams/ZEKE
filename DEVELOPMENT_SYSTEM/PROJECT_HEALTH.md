@@ -1,12 +1,12 @@
-# Project Health — v0.43.0
+# Project Health — v0.43.1
 
-**Runtime build:** 2026.08.16.3  
-**Governance revision:** 2026.08.16.3
+**Runtime build:** 2026.08.17.1  
+**Governance revision:** 2026.08.17.1
 
 ## Current position
 
 - Last confirmed user-deployed baseline remains v0.40.5.
-- Current package candidate: v0.43.0 RC2.1 · build 2026.08.16.3.
+- Current package candidate: v0.43.1 · build 2026.08.17.1 · Mobile Professional Polish.
 - Package-local audit, governance, JavaScript, and rendered mobile/workflow checks are passing.
 - Environment verification outstanding: live Google Drive/cross-device behavior and physical-device acceptance still require the user environment.
 
