@@ -190,7 +190,7 @@
         "schema_version": 1,
         "version": "0.40.4",
         "build": "2026.08.06.4",
-        "label": "Sprint 4 · Governance & Continuity",
+        "label": "Sprint 4 \u00b7 Governance & Continuity",
         "runtime_files": [
           {
             "path": "index.html",
@@ -27980,7 +27980,7 @@
         "Variation-first workout coaching workflow",
         "Independent exact-variation chart lines with missing-load omission",
         "Responsive mobile navigation/header/card cleanup",
-        "Package-local 320–430 px workflow/overflow verification"
+        "Package-local 320\u2013430 px workflow/overflow verification"
       ]
     },
     {
@@ -27996,6 +27996,15 @@
         "Conversation interruption/meta-data integrity",
         "Self-describing design authority and release scope"
       ]
+    }
+  ],
+  "releases": [
+    {
+      "version": "0.44.0",
+      "build": "2026.08.18.0",
+      "label": "Mobile Mockup Rebuild",
+      "baseline": "0.43.1 full package",
+      "notes": "Mobile interface rebuilt against approved mockup while preserving shared data/business logic."
     }
   ]
 }

@@ -1,3 +1,15 @@
+# ZEKE v0.44.0 — Mobile Mockup Rebuild
+
+- Mobile Home rebuilt to match approved mockup hierarchy: status, Today snapshot, Timeline, Recently Logged.
+- Five-item bottom navigation retained as Home / Health / ZEKE / Fitness / More.
+- Mobile header rebuilt as a compact app header.
+- Fitness is library-first with Library / My Exercises / Workouts presentation; generic A1c/health relationship content is not part of the mobile Fitness landing view.
+- Canonical exercise cards continue using independent variation series from the existing family chart logic.
+- Mobile exercise detail becomes a focused full-screen surface.
+- Mobile forms and exercise actions reserve the bottom navigation + iOS safe area.
+- Static and dynamic splash/loading states explicitly show version/build.
+- Desktop and shared data/business logic are preserved from v0.43.1.
+
 # ZEKE v0.43.1 — Mobile Professional Polish
 
 **Build:** 2026.08.17.1  

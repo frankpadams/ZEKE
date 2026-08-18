@@ -1,2 +1,2 @@
-ZEKE v0.44.0 — Mobile Mockup Reconstruction
-Build 2026.08.17.5
+ZEKE v0.44.0 — Mobile Mockup Rebuild
+Build 2026.08.18.0

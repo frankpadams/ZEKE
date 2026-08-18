@@ -1,3 +1,20 @@
+# Current release verification — v0.44.0
+
+Static checks performed during build:
+- app.js parses with Node.
+- mobile-native.js parses with Node.
+- 5-item mobile bottom navigation remains present.
+- More drawer binding exists for both bottom-nav and mobile-header More.
+- static splash contains v0.44.0/build 2026.08.18.0.
+- dynamic loading HTML contains version/build.
+- service-worker cache includes mobile-native CSS/JS.
+- mobile Home has explicit status/snapshot/timeline/recent hierarchy.
+- mobile Fitness presentation hides generic fitness insight/Goals content and exposes library-first tabs.
+
+Physical iPhone screenshot acceptance remains required after deployment.
+
+---
+
 # ZEKE Living Test Report
 
 ## Current candidate — v0.43.1 Mobile Professional Polish
