@@ -1,6 +1,6 @@
-# ZEKE Architecture — v0.43.0 RC2.1
+# ZEKE Architecture — v0.43.1
 
-**Runtime build:** 2026.08.16.3  
+**Runtime build:** 2026.08.17.1  
 **Repository schema:** 5
 
 ## Product and data boundary

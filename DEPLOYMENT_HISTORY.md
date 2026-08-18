@@ -5,12 +5,12 @@ Historical file-replacement and upload instructions retained for traceability. C
 
 ---
 
-## Current candidate status — v0.43.0 RC2.1
+## Current candidate status — v0.43.1
 
-**Build:** 2026.08.16.3  
-**Deployment status:** Not promoted/deployed by this package-generation step.
+**Build:** 2026.08.17.1  
+**Deployment status:** Not deployed by this package-generation step.
 
-RC2.1 is a continuity-reconciled release candidate. Use the full package as the replacement unit when/if deployment is approved; do not selectively copy files by timestamp. Final promotion still requires the release gates in `DEVELOPMENT_MEMORY/RELEASE_GATE.md`.
+v0.43.1 is the mobile professional-polish successor to v0.43.0 RC2.1. Use the full package as the replacement unit when/if deployment is approved; do not selectively copy files by timestamp. Existing broader release gates remain in `DEVELOPMENT_MEMORY/RELEASE_GATE.md`.
 
 ---
 

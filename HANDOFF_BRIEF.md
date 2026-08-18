@@ -1,17 +1,17 @@
-# ZEKE Handoff Brief — v0.43.0 RC2.1
+# ZEKE Handoff Brief — v0.43.1
 
-**Build:** 2026.08.16.3  
-**Release label:** Longitudinal Integrity & Sync RC2
+**Build:** 2026.08.17.1  
+**Release label:** Mobile Professional Polish
 
 Start with `00_AI_START_HERE.md`. The package is designed to stand alone without prior conversation history.
 
-## What changed in RC2
+## What changed in v0.43.1
 
-RC2 continues the RC1 mobile exercise/body-composition work and addresses issues exposed by real use: medication dose occurrences are treated as longitudinal dated data; known schedules can reconstruct assumed historical occurrences; assumed occurrences can be corrected retroactively; direct medication-history questions are answered from stored occurrences rather than requiring redundant clarification; meta/product feedback is kept out of health data; read-only questions can interrupt an unfinished write workflow without being hijacked by it; retrospective calendar relevance review was added as a mobile-first workflow; Health Reports & Export replaces the old workbook as the normal human-readable reporting path; the connected workbook is demoted to legacy migration/reconciliation; and AI provider credentials sync through the connected workspace rather than local browser storage.
+The runtime was not simplified. This pass corrected the phone interface around the existing v0.43 feature set. The authoritative mobile visual language is again dark navy / teal / white with compact, information-rich cards and clear hierarchy. Workout entry now resolves exact variation before variation-dependent coaching; exact-variation histories stay mechanically distinct; canonical charts display separate variation lines on shared axes; missing load is unknown rather than zero; per-set effort/pain is preserved; insufficient-data progression does not waste a large empty chart; and phone header/drawer/bottom-navigation/sticky-action geometry was corrected.
 
 ## Design authority
 
-Read `DESIGN_AUTHORITY.md`. Do not reintroduce Gym Mode. Do not separate set display from set entry. Do not collapse variations into separate canonical tiles. Do not make total volume the primary exercise metric merely because it appeared in an older analytics mockup.
+Read `DESIGN_AUTHORITY.md`. Do not reintroduce Gym Mode. Do not separate set display from set entry. Do not hide a required variation decision under optional details. Do not join unlike equipment histories into one line. Do not reintroduce the oversized mobile ZEKE center blob or duplicate floating action.
 
 ## Data authority
 
@@ -19,4 +19,4 @@ Canonical longitudinal JSON is source of truth. Generated XLSX/JSON outputs are 
 
 ## Release status
 
-This remains a release candidate. PT visual-guide completion and physical-phone visual acceptance remain hard gates. Run `TEST_GUIDE.md` and `tests/v043-rc2-longitudinal.test.js` before any promotion.
+Package-local mobile rendered verification passes across phone widths and the main workout/analytics regression paths. The broader release remains gated by the six missing PT visual guides plus physical-device/live-provider verification. Run `TEST_GUIDE.md`, `tests/mobile-professional-polish.test.js`, `tests/mobile-professional-polish.test.py`, the full JS suite, and `python tools/project_audit.py` before any further promotion.

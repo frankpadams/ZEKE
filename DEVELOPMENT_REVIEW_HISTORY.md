@@ -5,6 +5,16 @@ Consolidated sprint, pre/post implementation, and independent-review history. Di
 
 ---
 
+## 2026-08-17 — v0.43.1 mobile workflow and visual-fidelity review
+
+**Build:** 2026.08.17.1
+
+Reviewed the live screenshot failures against the package-local approved mobile design authority and the July 26 mockup. Corrected task ordering, chart semantics, responsive geometry, and visual hierarchy rather than treating the pass as superficial CSS. Key findings were: variation-dependent coaching appeared before variation selection; missing load could become false zero points; canonical variation history was visually connected as one series; single-point progression wasted space; phone header/date layers could obscure content; and mobile navigation/branding had drifted from the mockup. The current implementation addresses those issues while retaining all existing functional surfaces.
+
+Package-local rendered verification now covers 320–430 px phone widths and the key direct/batch workout paths. Physical-phone and live-provider verification are still not claimed.
+
+---
+
 ## 2026-08-17 — RC2.1 continuity and authority review
 
 **Build:** 2026.08.16.3

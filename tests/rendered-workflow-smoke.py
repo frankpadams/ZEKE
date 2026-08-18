@@ -103,14 +103,14 @@ with sync_playwright() as p:
             selector=page.locator('#activityLibrarySelect')
             results['interactions']['fitness_defaults']={'favorites_active':selector.input_value()=='favorites','chip_row_removed':page.locator('.fitness-library-panel .library-tabs').count()==0,'view_order':selector.locator('option').all_inner_texts(),'panel_overflow':page.locator('.fitness-library-panel').evaluate('(el)=>el.scrollWidth>el.clientWidth+1'),'controls_overflow':page.locator('.activity-library-controls').evaluate('(el)=>el.scrollWidth>el.clientWidth+1')}
             page.locator('#activityLibrarySearch').fill('row');page.wait_for_timeout(80)
-            results['interactions']['fitness_defaults']['search_visible']=page.locator('[data-activity-name="Row"]:visible').count()==1
+            results['interactions']['fitness_defaults']['search_visible']=page.locator('[data-activity-name="Seated Row"]:visible').count()==1
             page.locator('#activityLibrarySearch').fill('');
-            page.locator('[data-activity-name="Row"]').click();page.wait_for_timeout(100)
+            page.locator('[data-activity-name="Seated Row"]').click();page.wait_for_timeout(100)
             results['interactions']['fitness_defaults']['activity_detail']=page.locator('.activity-expanded-detail').count()==1
-            page.locator('[data-activity-pattern="Row"]').click();page.wait_for_timeout(80)
-            results['interactions']['relationship_review']={'modal':page.locator('#activityRelationshipModal').count()==1,'specific_activity':'Row' in page.locator('#activityRelationshipModal').inner_text(),'not_generic':'No tested relationship yet for Row' in page.locator('#activityRelationshipModal').inner_text()}
+            page.locator('[data-activity-pattern="Seated Row"]').click();page.wait_for_timeout(80)
+            results['interactions']['relationship_review']={'modal':page.locator('#activityRelationshipModal').count()==1,'specific_activity':'Seated Row' in page.locator('#activityRelationshipModal').inner_text(),'not_generic':'No tested relationship yet for Seated Row' in page.locator('#activityRelationshipModal').inner_text()}
             page.locator('#closeActivityRelationship').click()
-            page.locator('[data-coach-evidence="Row"]').last.click();page.wait_for_timeout(80)
+            page.locator('[data-coach-evidence="Seated Row"]').last.click();page.wait_for_timeout(80)
             results['interactions']['coach_evidence']={'modal':page.locator('#coachEvidenceModal').count()==1,'pubmed_links':page.locator('#coachEvidenceModal a[href*="pubmed.ncbi.nlm.nih.gov"]').count(),'personal_trigger':'What in your data triggered this' in page.locator('#coachEvidenceModal').inner_text()}
             page.locator('#closeCoachEvidence').click()
             page.locator('#addGoalBtn').click();page.locator('#goalStatement').fill('Build strength safely while protecting my shoulder');page.locator('#reviewGoalBtn').click();page.wait_for_timeout(80)

@@ -1,3 +1,21 @@
+# ZEKE Changelog
+
+## Current release — v0.43.1
+
+**Build:** 2026.08.17.1  
+**Label:** Mobile Professional Polish
+
+- Restored approved mockup-level mobile visual hierarchy across Dashboard/Health/Fitness/workout surfaces while preserving the v0.43 longitudinal feature set.
+- Replaced oversized mobile center-navigation blob with a compact balanced ZEKE entry and removed the duplicate floating ZEKE orb on phone widths.
+- Moved exact variation/equipment selection before variation-dependent Coach content in workout entry.
+- Added/retained per-set effort/RPE and pain in direct and batch strength entry.
+- Corrected canonical exercise charts so each exact variation is its own line on shared axes; missing load is omitted and never rendered as 0 lb.
+- Collapsed one-session/insufficient-data progression into a compact truthful state.
+- Corrected mobile workout header/date/sticky controls, drawer width, period ownership, and phone overflow behavior.
+- Added dedicated mobile professional-polish source and rendered regression tests.
+
+---
+
 # ZEKE Release & Patch History
 
 Authoritative living release, patch, and migration history. Information from superseded per-version files is retained below.

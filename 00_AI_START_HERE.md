@@ -1,7 +1,7 @@
-# AI / Developer Start Here — ZEKE v0.43.0 RC2.1
+# AI / Developer Start Here — ZEKE v0.43.1
 
-**Build:** 2026.08.16.3  
-**Release label:** Longitudinal Integrity & Sync RC2  
+**Build:** 2026.08.17.1  
+**Release label:** Mobile Professional Polish  
 **Last known user-deployed baseline:** v0.40.5 · build 2026.08.06.5
 
 This package is intentionally self-describing. A new developer or AI team should be able to continue ZEKE using this package alone. Do not assume access to prior chats.

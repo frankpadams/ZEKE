@@ -2,7 +2,7 @@ const fs=require('fs'),path=require('path');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
 const app=read('assets/app.js'),css=read('assets/styles.css'),index=read('index.html'),version=read('version.js');
 const must=(v,m)=>{if(!v)throw new Error(m)};
-must(index.includes('ZEKE v0.43.0')&&version.includes("version: '0.43.0'")&&/build: '2026\.08\.16\.[23]'/.test(version),'v0.43 runtime identity missing');
+must(/<title>ZEKE v0\.43\.\d+<\/title>/.test(index)&&/version: '0\.43\.\d+'/.test(version)&&/build: '2026\.08\.(16|17)\.\d+'/.test(version),'v0.43 runtime identity missing');
 for(const token of ['mobile-exercise-page','mobileExerciseVariation','Create new variation','mobile-exercise-set-row','mobile-set-rpe','mobile-set-pain','Why this recommendation?','mobile-exercise-form'])must(app.includes(token),`mobile exercise requirement missing: ${token}`);
 must(app.includes('set_rpe')&&app.includes('set_pain'),'per-set effort/pain persistence missing');
 must(app.includes('workoutFamilyGroups')&&app.includes('familyVariationChart')&&app.includes('shared axes'),'canonical exercise / variation chart architecture missing');

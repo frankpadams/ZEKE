@@ -1,2 +1,2 @@
-ZEKE v0.43.0 RC2.1
-Build 2026.08.16.3
+ZEKE v0.43.1 — Mobile Professional Polish
+Build 2026.08.17.1

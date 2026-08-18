@@ -2,20 +2,21 @@
   "schema_version": 1,
   "purpose": "Living consolidated package/build/provenance/verification history. Superseded individual files are intentionally removed after their contents are retained here.",
   "current_release": {
-    "version": "0.43.0",
-    "build": "2026.08.16.3",
-    "label": "Longitudinal Integrity & Sync RC2.1 \u2014 continuity reconciled",
-    "status": "release-candidate-blocked",
+    "version": "0.43.1",
+    "build": "2026.08.17.1",
+    "label": "Mobile Professional Polish",
+    "status": "package-local-verified-release-candidate-blocked",
     "publish_ready": false,
     "blockers": [
       "6 PT/rehab entries lack exact reviewed two-frame visual media",
       "physical-phone visual acceptance outstanding",
-      "live Google Drive/Calendar and cross-device credential verification outstanding",
-      "legacy workbook/data migration reconciliation against real data outstanding"
+      "live Google Drive/Calendar and cross-device credential verification outstanding"
     ],
     "notes": [
-      "RC2 runtime behavior retained; RC2.1 reconciles current/history documentation and package self-description.",
-      "Historical Gym Mode material is retained only as traceability and is superseded by current + Log Exercise architecture."
+      "Focused mobile-only interface pass preserves v0.43 longitudinal and connected-data functionality.",
+      "Exact variation is selected before variation-dependent coaching in workout entry.",
+      "Canonical strength charts use independent exact-variation line series on shared axes; missing load remains unknown.",
+      "Package-local phone-width and broad maintained-workflow regressions pass."
     ]
   },
   "historical_records": [
@@ -189,7 +190,7 @@
         "schema_version": 1,
         "version": "0.40.4",
         "build": "2026.08.06.4",
-        "label": "Sprint 4 \u00b7 Governance & Continuity",
+        "label": "Sprint 4 · Governance & Continuity",
         "runtime_files": [
           {
             "path": "index.html",
@@ -27963,12 +27964,25 @@
       }
     }
   ],
-  "current_version": "0.43.0",
-  "current_build": "2026.08.16.2",
-  "governance_revision": "2026.08.16.2",
-  "release": "0.43.0",
-  "build": "2026.08.16.2",
+  "current_version": "0.43.1",
+  "current_build": "2026.08.17.1",
+  "governance_revision": "2026.08.17.1",
+  "release": "0.43.1",
+  "build": "2026.08.17.1",
   "history": [
+    {
+      "version": "0.43.1",
+      "build": "2026.08.17.1",
+      "label": "Mobile Professional Polish",
+      "status": "release_candidate",
+      "notes": [
+        "Mobile mockup-fidelity/professional polish pass",
+        "Variation-first workout coaching workflow",
+        "Independent exact-variation chart lines with missing-load omission",
+        "Responsive mobile navigation/header/card cleanup",
+        "Package-local 320–430 px workflow/overflow verification"
+      ]
+    },
     {
       "version": "0.43.0",
       "build": "2026.08.16.2",

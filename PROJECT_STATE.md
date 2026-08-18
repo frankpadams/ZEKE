@@ -1,36 +1,32 @@
 # ZEKE Current Project State
 
-**Package:** v0.43.0 RC2.1  
-**Build:** 2026.08.16.3  
-**Release label:** Longitudinal Integrity & Sync RC2  
-**Parent candidate:** v0.43.0 RC1 · build 2026.08.15.1  
-**Last known user-deployed baseline:** v0.40.5 · build 2026.08.06.5
+**Package:** v0.43.1  
+**Build:** 2026.08.17.1  
+**Release label:** Mobile Professional Polish  
+**Parent candidate:** v0.43.0 RC2.1 · build 2026.08.16.3  
+**Last known user-deployed baseline before this package:** v0.43.0 RC2.1 screenshot review
 
 ## Current direction
 
-v0.43 remains a release candidate focused on three connected goals: trustworthy longitudinal data, intelligent use of that data in conversation/coaching, and an attractive mobile interface that makes entry/correction easy.
+v0.43.1 is a focused mobile-interface implementation pass over the RC2.1 longitudinal runtime. The goal is not feature reduction: existing data, health, calendar, medication, report/export, AI-credential, editing, and coaching infrastructure is retained while mobile task order, responsiveness, and visual polish are corrected.
 
-RC1 established the authoritative mobile `+ Log Exercise` implementation, canonical exercise/variation charting, reviewable exercise consolidation, Body Composition/DEXA provenance, Recent Health Record editing/removal, responsive vertical navigation, and package/document consolidation.
+## Mobile changes now implemented
 
-RC2 adds/changes:
-
-- connected-workspace AI credential sync across devices (legacy local API-key storage migrated away);
-- medication dose occurrences as first-class dated history with assumed-vs-confirmed evidence;
-- historical reconstruction of opted-in schedule-derived occurrences from the known schedule start;
-- retroactive medication occurrence editing and correction history;
-- deterministic “last dose” answers from longitudinal medication history;
-- read-only question interruption without unfinished workflow hijacking;
-- meta/product-feedback classification that does not create health events;
-- mobile-first retrospective calendar scan of the prior year with Relevant / Not relevant / Unsure triage;
-- Questions for You confirmation of selected calendar candidates and deduplicated health-record backfill;
-- Health Reports & Export with generated multi-tab Health Record Workbook and canonical JSON export;
-- demotion of the old connected workbook to legacy migration/reconciliation only;
-- package-local design authority and full release-scope documents for team continuity.
+- Mockup-aligned dark navy/teal/white mobile hierarchy and professional card treatment.
+- Balanced five-item bottom navigation; no oversized blue center blob; no duplicate floating ZEKE orb at phone widths.
+- Narrower vertical drawer with coherent active-state styling.
+- Variation/equipment selection at the top of workout entry before Coach's Eye can depend on it.
+- Exact-variation last-session/coaching context.
+- Per-set load/reps plus optional per-set effort/RPE and pain.
+- Compact progression when there is not enough comparable data to graph.
+- Independent variation line series on canonical exercise charts; missing load is omitted rather than treated as zero.
+- Fitness period control moved inside the library context it governs.
+- Workout header/date/sticky controls corrected to avoid covering content.
 
 ## Canonical data boundary
 
-User-owned provider-backed JSON remains canonical. Schedule-derived events are explicitly marked assumed. Calendar items remain candidate evidence until confirmed. DEXA is measurement provenance. Generated spreadsheets are reports. AI credentials are system configuration stored in connected user-owned storage and excluded from exports.
+User-owned provider-backed JSON remains canonical. Schedule-derived medication events are explicitly marked assumed. Calendar items remain candidate evidence until confirmed. DEXA is measurement provenance. Generated spreadsheets are reports. AI credentials are system configuration stored in connected user-owned storage and excluded from exports.
 
-## Current blockers
+## Current blockers outside the completed mobile package-local pass
 
-The package remains RC until all PT/rehab visual guides are mechanically correct and verified, and the implementation receives physical-phone visual acceptance against `DESIGN_AUTHORITY.md`. Live provider behavior also requires deployed-environment verification.
+Six PT/rehab movements still lack verified exact visual media. Final physical-phone acceptance and live Google Drive/Calendar/cross-device behavior remain environment verification. Package-local rendered mobile acceptance currently passes at 320, 375, 390, and 430 px.

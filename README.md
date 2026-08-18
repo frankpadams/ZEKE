@@ -1,7 +1,7 @@
-# ZEKE v0.43.0 RC2.1 — Longitudinal Integrity & Sync
+# ZEKE v0.43.1 — Mobile Professional Polish
 
-**Build:** 2026.08.16.3  
-**Status:** production release candidate; not yet promoted beyond RC.
+**Build:** 2026.08.17.1  
+**Status:** package-local mobile implementation verified; final promotion still respects existing PT-media, physical-device, and live-provider gates.
 
 ZEKE is a private, user-owned personal-management application. This package is intentionally **self-describing**: a new developer or AI team should be able to resume development from this package alone, without prior chat history.
 
@@ -14,16 +14,18 @@ ZEKE is a private, user-owned personal-management application. This package is i
 5. `PROJECT_STATE.md`, `FEATURE_STATUS.md`, `KNOWN_ISSUES.md`
 6. `DEVELOPMENT_MEMORY/RELEASE_GATE.md` and `TEST_REPORT.md`
 
-## RC2 focus
+## v0.43.1 focus — mobile professionalism without functional loss
 
-- approved mobile `+ Log Exercise` composition, canonical exercise/variation model, inline multi-set editing, Coach rationale, and integrated form guidance;
-- dated medication occurrence history with schedule-derived assumptions, explicit confirmation, retroactive correction, and historical reconstruction;
-- interruption-safe conversation handling and deterministic medication-history answers;
-- mobile past-year calendar relevance review followed by confirmation/deduplication before health-record backfill;
-- Health Reports & Export generated from canonical longitudinal data; legacy workbook retained only for migration/reconciliation;
-- AI provider credentials synced through the connected user-owned workspace rather than browser-local storage;
-- vertical responsive navigation and package continuity/governance cleanup.
+- restored the approved dark-navy / teal / white mobile design language instead of the flatter generic-card drift;
+- removed the oversized center-navigation “blue blob” and duplicate floating ZEKE action while preserving ZEKE access in bottom navigation and the drawer;
+- corrected phone header, drawer, card, spacing, sticky-action, and responsive behavior across core routes;
+- moved exact exercise variation/equipment selection **before** variation-dependent Coach guidance in workout entry;
+- preserved per-set load/reps and optional per-set effort/RPE and pain in direct and batch workout workflows;
+- corrected canonical strength charts to render **one independent line per exact variation** on shared axes; observations from unlike equipment are never connected;
+- missing/unrecorded load remains unknown and is omitted rather than becoming a false 0 lb point;
+- replaced oversized empty progression charts with compact insufficient-data states;
+- kept all v0.43 longitudinal medication, calendar, body-composition, report/export, credential, correction-history, and provenance functionality intact.
 
 ## Release boundary
 
-Do not promote beyond RC until six remaining PT/rehab visual guides are verified, physical-phone visual acceptance is complete, and live connected Drive behavior (including cross-device credentials and longitudinal read/write) is verified. Connected-workspace API keys are protected by the user's Drive account/OAuth in this alpha; ZEKE does not yet add a separate end-to-end encryption layer.
+Package-local phone-width rendered checks pass at 320, 375, 390, and 430 px, including core-route overflow checks and the variation-first workout flow. Do not claim final production promotion until the six remaining PT/rehab visual guides are verified and the outstanding physical-device/live-provider checks in `DEVELOPMENT_MEMORY/RELEASE_GATE.md` are completed.

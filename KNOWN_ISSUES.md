@@ -1,11 +1,11 @@
-# ZEKE Known Issues — v0.43.0 RC2.1
+# ZEKE Known Issues — v0.43.1
 
-**Build:** 2026.08.16.3
+**Build:** 2026.08.17.1
 
 ## Release blockers
 
 1. **PT visual coverage is incomplete.** The last RC1 audit identified verified two-frame/appropriate visual coverage for 8 of 14 rehab/PT entries. Remaining known visual gaps: Band Internal Rotation, Doorway Chest Stretch, D1, D2, No Monies, and Cheerleaders. Do not substitute mechanically different images merely to make the count pass.
-2. **Physical-phone visual acceptance is outstanding.** Browser viewport tests are not equivalent to real-device comparison against `DESIGN_AUTHORITY.md`.
+2. **Physical-phone visual acceptance is outstanding.** Package-local rendered checks now pass at 320, 375, 390, and 430 px and the current screenshots have been visually reviewed, but browser viewport tests are not equivalent to final real-device comparison against `DESIGN_AUTHORITY.md`.
 
 ## Environment verification outstanding
 
@@ -18,7 +18,7 @@
 
 AI API keys are synced through the user-owned connected ZEKE workspace to satisfy cross-device persistence. In RC2 they rely on Drive account/OAuth confidentiality rather than a separate end-to-end encrypted credential vault. Keys are excluded from reports, diagnostics, and public package files. A hardened encrypted vault is a future security enhancement.
 
-## Historical issues resolved or structurally addressed in RC2
+## Historical issues resolved or structurally addressed through v0.43.1
 
 - Side menu collapsing into horizontal button rows at mobile/intermediate widths.
 - Mobile body-measurement flow assuming waist only.
@@ -32,3 +32,8 @@ AI API keys are synced through the user-owned connected ZEKE workspace to satisf
 - Last-dose question requiring redundant user input despite stored schedule/history.
 - Product feedback being eligible for health-event interpretation.
 - Pending write workflow monopolizing later read-only conversation.
+- Canonical exercise chart connecting unlike variation points into one line.
+- Missing workout load rendered as a false 0 lb chart point.
+- Variation selector buried below Coach guidance as an optional detail.
+- Oversized mobile center-navigation blue blob and duplicate floating ZEKE action.
+- Workout header/date controls overlapping phone content.

@@ -1,3 +1,39 @@
+# ZEKE Living Test Report
+
+## Current candidate — v0.43.1 Mobile Professional Polish
+
+**Build:** 2026.08.17.1  
+**Verification status:** package-local mobile implementation and archive-readiness checks passing; broader PT visual, physical-device, and live-provider gates remain explicit.
+
+### Mobile and workflow verification passed
+
+- Active JavaScript syntax: **12/12 runtime files passed** (`version.js`, app/data/parser/AI/workflow/form-guide/knowledge/integrity/longitudinal/ingestion/calendar modules).
+- Package-local JavaScript regression suite: **23 passed, 0 failed, 4 fixture-dependent skips** across 27 `*.test.js` files. The skipped tests require protected live/workbook fixtures and self-identify as skipped when those fixtures are unavailable.
+- `tests/mobile-professional-polish.test.js` — source contract passed for independent exact-variation chart series, missing-load omission, variation-before-Coach workflow, per-set effort/pain, complete three-path mobile logging menu, navigation cleanup, and the professional mobile visual layer.
+- `tests/mobile-professional-polish.test.py` — rendered acceptance passed at **320, 375, 390, 430, and 768 px**. Core routes had no horizontal overflow; phone widths retained a balanced five-item bottom nav and no duplicate floating ZEKE control; the drawer occupied ~76.9% of a 390 px screen; and the mobile logging sheet retained Enter one activity / Start from routine / Repeat last workout without overflow.
+- The same rendered test confirmed the Lat Pulldown canonical chart uses **two independent line paths** for two loaded exact variations, four loaded points total, and **no series for the missing-load Machine observation**. It also confirmed no duplicate Bowflex canonical tile, in-card period control, and loaded-summary logic based on comparable data.
+- The batch workout path confirmed exact variation appears **before** Coach's Eye, same-variation history is used, variation is absent from Optional Details, every set has distinct effort and pain controls, a one-session progression state contains no empty graph, and the date/header does not cover the first set.
+- `tests/v043-mobile-rendered-smoke.py` — direct single-exercise flow passed: variation selector/create-new, three inline set rows, per-set load/reps/effort/pain, Coach + Why, Form Guide, no dialog overflow, and no fabricated `RPE 0`/`RIR 0` when effort data is missing.
+- `tests/rendered-workflow-smoke.py` — broad maintained workflows passed across Dashboard, Fitness, Health, Questions, Insights, and phone routes with no page errors or unnamed/unbound visible controls. Medication confirmation/backfill, search, dashboard disclosures, Fitness search/detail/evidence, goal save, rehab activity creation, sleep log/edit, review deferral, and recurring-schedule editing remained functional.
+- `tests/v040-rendered-smoke.py` and `tests/support-report-browser-smoke.py` passed.
+- `python tests/governance-negative-controls.py`: **9/9 negative controls passed**.
+- `python tools/project_audit.py`: **0 errors, 0 warnings** before final manifest generation.
+
+### Explicit release boundary
+
+`node tests/pt-visual-release-gate.js` remains intentionally **blocked**: 14 included rehab/PT entries, 8 with verified two-frame guides, and 6 without acceptable exact-movement visual coverage:
+
+- Shoulder Internal Rotation — Resistance Band (IR)
+- Doorway Chest Stretch
+- PNF Shoulder Diagonal 1 (D1)
+- PNF Shoulder Diagonal 2 (D2)
+- Shoulder External-Rotation “No Monies” Exercise
+- Cheerleaders — Resistance Band
+
+Physical-phone acceptance and live Google Drive/Calendar/cross-device-provider checks are not established by package-local Chromium. These blockers are not concealed or reclassified as passing.
+
+---
+
 ## v0.43.0 RC2.1 continuity/self-description reconciliation
 
 **Build:** 2026.08.16.3

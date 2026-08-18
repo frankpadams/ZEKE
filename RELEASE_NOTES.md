@@ -1,41 +1,38 @@
-# ZEKE v0.43.0 RC2.1 — Continuity-Reconciled Release Candidate
+# ZEKE v0.43.1 — Mobile Professional Polish
 
-**Build:** 2026.08.16.3  
-**Runtime basis:** v0.43.0 RC2 longitudinal-integrity implementation  
-**Status:** Release candidate; not yet approved for final production deployment.
+**Build:** 2026.08.17.1  
+**Runtime basis:** v0.43.0 RC2.1 Continuity-Reconciled  
+**Status:** Mobile implementation and package-local rendered verification complete; broader release gates remain explicit.
 
-## What this candidate contains
+## Mobile interface correction
 
-- Mobile `+ Log Exercise` follows the approved phone composition: canonical exercise, explicit variation, inline editable sets, optional effort/pain, Coach recommendation/rationale, and integrated Form Guide.
-- Canonical exercise families retain variation-specific histories and shared-axis multi-series charts.
-- Body Composition lives under Health → Measurements; DEXA is source/provenance rather than a top-level feature.
-- Medication schedules are distinct from dated dose occurrences. Occurrences can be assumed from a confirmed schedule, explicitly confirmed, missed, delayed, partial, unknown, or retroactively corrected.
-- Historical medication occurrence reconstruction is supported without converting schedule-derived events into false certainty.
-- Read-only health questions may interrupt an unfinished write workflow; product/meta feedback is excluded from the health record.
-- The calendar-to-health reconciliation UX is specifically **mobile-first**: review up to the prior year, triage candidate events as Relevant / Not relevant / Unsure, then deduplicate and explicitly confirm before backfill.
-- Health Reports & Export is the normal human-readable reporting path. The legacy connected workbook is retained only for migration/reconciliation until its useful data has been verified as represented in canonical records.
-- AI provider credentials are persisted in the connected user-owned workspace for cross-device continuity, not as authoritative browser-local settings. Keys are excluded from normal reports, diagnostics, and package content.
-- The package is intended to be self-describing for a new development team. Current state, architecture, decisions, design authority, tests, known issues, release gate, and historical continuity are included.
+This release is a focused mobile-quality pass. It preserves the existing v0.43 functionality while bringing phone workflows back to the approved design language in `DESIGN_AUTHORITY.md` and the July mobile mockup.
 
-## Continuity reconciliation in RC2.1
+### Workout / Fitness
 
-This governance/build increment does not claim new live-environment verification. It reconciles the current documentation corpus with the implemented RC2 architecture and the latest user decisions. In particular:
+- Exact variation/equipment is now a primary exercise-setup decision, placed before Coach's Eye. ZEKE no longer tells the user to choose a variation while hiding that choice under “optional details.”
+- Coach history and recommendations use the selected exact variation whenever the distinction affects load interpretation.
+- Strength set rows preserve separate load, reps, optional effort/RPE, and optional pain values per set.
+- A one-session progression state is compact and truthful rather than reserving a large empty graph.
+- Canonical exercise analytics now draw each exact variation as a separate line series on one shared chronological/load chart. Different variations are never connected to one another.
+- Missing/unrecorded load is omitted from load charts and summaries; it is never coerced to 0 lb.
+- Fitness period controls live inside the Fitness library context they govern.
 
-1. Added this living `RELEASE_NOTES.md`, which the canonical documentation map already required.
-2. Recorded that retrospective calendar review is a **mobile-specific interaction requirement**, while the underlying candidate-event/provenance model remains shared.
-3. Recorded that API credentials must persist through connected Drive/workspace storage across devices rather than device-local browser storage.
-4. Recorded that historic dose-event data must be reconstructed and remain retroactively editable with assumed-vs-confirmed provenance.
-5. Recorded that exported workbooks are generated reports, not competing canonical databases.
-6. Added supersession guidance so historical “Gym Mode” documents cannot override the current `+ Log Exercise` architecture.
-7. Reaffirmed that the final package must stand alone as a handoff artifact.
+### Mobile visual system
 
-## Still blocking final promotion
+- Restored the approved dark-navy header, teal actions, crisp hierarchy, compact white cards, restrained semantic accents, and phone-first spacing.
+- Removed the oversized center-navigation blue blob.
+- Removed the duplicate floating ZEKE orb on phone widths while keeping ZEKE available through bottom navigation and the drawer.
+- Tightened the mobile drawer and kept navigation vertically stacked.
+- Corrected the workout header/date composition so fixed/sticky elements do not cover the exercise form.
+- Dashboard/Health and Fitness now use a more coherent shared ZEKE visual language rather than unrelated card styles.
 
-- Six PT/rehab movements still need exact, reviewed two-frame visual guides: Band Internal Rotation, Doorway Chest Stretch, D1, D2, No Monies, and Cheerleaders.
-- Physical-phone comparison against the approved exercise-page and broader mobile design references remains required.
-- Live Google Drive/Calendar read-write and cross-device credential persistence still require environment verification.
-- Legacy workbook/data migration must be checked against the owner’s real data before the workbook UI is fully retired.
+## Functionality preserved
 
-## Verification language
+The v0.43 longitudinal-data work remains present: medication occurrences and correction history, retrospective calendar reconciliation, Health Reports & Export, Body Composition/DEXA provenance, Recent Health Record edit/remove, connected-workspace AI credential persistence, conversation interruption/meta separation, unified Talk to ZEKE, and provider-backed canonical data rules.
 
-Package-local tests can establish deterministic code, structure, and rendered browser behavior. They do not establish physical-device acceptance, live provider behavior, remote-media uptime, or clinical effectiveness.
+## Verification boundary
+
+Automated/package-local verification includes JavaScript syntax/regressions, rendered workflow tests, 320–430 px route overflow checks, drawer/nav geometry, variation-first batch entry, per-set effort/pain controls, compact single-session progression, and multi-series canonical charts. Physical-phone acceptance, live Drive/Calendar behavior, and six outstanding PT visual guides remain outside what this local package can truthfully establish.
+
+Historical release details are retained in `CHANGELOG.md`, `TEST_REPORT.md`, `DEVELOPMENT_MEMORY/ITERATION_HISTORY.md`, and `PACKAGE_HISTORY.json` rather than proliferating per-version files.

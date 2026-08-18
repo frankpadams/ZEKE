@@ -46,6 +46,7 @@ with sync_playwright() as pw:
       'coach':page.locator('.mobile-exercise-coach').count()==1,
       'coach_last': 'LAST WORKOUT' in page.locator('.mobile-exercise-coach').inner_text(),
       'coach_why': 'Why this recommendation?' in page.locator('.mobile-exercise-coach').inner_text(),
+      'coach_text': page.locator('.mobile-exercise-coach').inner_text(),
       'form_guide':page.locator('.mobile-exercise-form').count()==1,
       'dialog_overflow':page.locator('.mobile-exercise-page').evaluate('(el)=>el.scrollWidth>el.clientWidth+1'),
       'errors':errors,
@@ -58,3 +59,4 @@ e=results['exercise_page']
 assert e['profile']=='strength' and e['variation_selector'] and e['create_variation'] and e['sets']>=1
 assert e['weight_inputs']==e['sets']==e['rep_inputs']==e['effort_inputs']==e['pain_inputs']
 assert e['coach'] and e['coach_last'] and e['coach_why'] and e['form_guide'] and not e['dialog_overflow'],e
+assert 'RPE 0' not in e['coach_text'] and 'RIR 0' not in e['coach_text'],e

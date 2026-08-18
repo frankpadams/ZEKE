@@ -1,6 +1,10 @@
-# ZEKE v0.43.0 RC2.1 — Current Release Scope
+# ZEKE v0.43.1 — Current Release Scope
 
 This file is the complete current release contract. It supersedes scattered conversational requirements.
+
+## v0.43.1 mobile acceptance overlay
+
+The current implementation pass is deliberately mobile-only. Preserve every functional requirement below, but phone task order and presentation must also satisfy `DESIGN_AUTHORITY.md`: required variation selection precedes variation-dependent coaching; canonical strength charts show independent exact-variation lines; missing load is omitted rather than plotted as zero; insufficient-data charts collapse to useful compact states; no phone overlay/header obscures content; navigation remains vertical/balanced; and no functionality is removed merely to improve appearance.
 
 ## A. Mobile exercise entry
 

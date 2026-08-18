@@ -1,8 +1,14 @@
-# ZEKE v0.43.0 RC2.1 Feature Status
+# ZEKE v0.43.1 Feature Status
 
-**Build:** 2026.08.16.3
+**Build:** 2026.08.17.1
 
 ## Implemented in package
+
+- Professional mockup-aligned mobile visual system across Dashboard/Health/Fitness/workout surfaces.
+- Variation-first batch workout entry; exact variation is resolved before variation-dependent coaching.
+- Canonical strength charts with independent exact-variation line series and missing-load omission.
+- Compact truthful progression state when fewer than two comparable observations exist.
+- Mobile bottom navigation without oversized center blob or duplicate floating ZEKE control.
 
 - Canonical user-owned JSON repository with provenance/corrections.
 - Unified Talk to ZEKE conversation and workflow engine.
