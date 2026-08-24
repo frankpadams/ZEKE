@@ -1,6 +1,6 @@
 # Required Status Language
 
-**Current runtime:** ZEKE v0.46.0 · build 2026.08.24.2  
+**Current runtime:** ZEKE v0.46.0 · build 2026.08.24.3  
 **Governance revision:** 2026.08.24.3  
 **Reviewed:** 2026-08-24
 
@@ -35,3 +35,6 @@ A separate **Synced** state is valid only after ZEKE implements and verifies a d
 ## Talk to ZEKE closure language
 
 Every meaningful interaction states what changed—or that nothing changed. Retry and correction paths distinguish saved, already recorded, duplicate, failed, dismissed, waiting for clarification, and not saved.
+
+
+Current continuity review: v0.46.0 · build 2026.08.24.3 · governance 2026.08.24.4.

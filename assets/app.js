@@ -1230,19 +1230,37 @@
     const days=Array.from({length:14},(_,i)=>{const d=new Date(start);d.setDate(d.getDate()+i);return d}),dayKey=d=>window.ZekeLongitudinal?.day?.(d)||'';
     return `<section class="panel timeline-snapshot"><div class="section-head"><div><span class="tile-kicker">WHAT'S BEEN HAPPENING?</span><h2>Timeline Snapshot</h2><p>Recent and upcoming events shown together so timing is visible. Markers represent recorded data only.</p></div><button class="text-action" data-route="calendar">Open full timeline</button></div>${groups.length?`<div class="timeline-axis">${days.map((d,i)=>`<span class="${dayKey(d)===dayKey(today)?'today':''}">${i%2===0?d.toLocaleDateString(undefined,{month:'short',day:'numeric'}):''}</span>`).join('')}</div><div class="timeline-rows">${groups.map(g=>`<div class="timeline-row"><strong>${esc(g.label)}</strong><div class="timeline-track">${days.map(d=>{const items=g.items.filter(x=>x.day===dayKey(d));return `<span class="timeline-day ${dayKey(d)===dayKey(today)?'today':''}">${items.map(x=>`<i class="timeline-marker kind-${esc(x.kind)}" title="${esc(x.label)} · ${esc(fmtDate(x.start,{month:'short',day:'numeric'}))}"></i>`).join('')}</span>`}).join('')}</div></div>`).join('')}</div><div class="timeline-legend"><span><i class="timeline-marker kind-workout"></i> recorded event</span><span>Medication details are excluded from this dashboard view by default.</span></div>`:`<div class="timeline-empty"><strong>No timeline events in this window.</strong><span>ZEKE will not invent activity to fill the visualization.</span></div>`}</section>`;
   }
+  function dashboardQuickActionsHTML(){
+    return `<section class="panel mock-quick"><div class="mock-section-title"><span class="mock-title-icon">✦</span><h2>Quick Actions</h2></div><div class="mock-quick-grid"><button data-route="fitness"><span>🏋</span><strong>Start Workout</strong></button><button data-health-log="measurement"><span>♡</span><strong>Log Health</strong></button><button data-route="calendar"><span>▣</span><strong>Calendar</strong></button><button data-global-talk-open><span>✦</span><strong>Talk to ZEKE</strong></button></div></section>`;
+  }
+  function dashboardStatusHTML(){
+    const weight=latestMetric('weight'),sleep=latestMetric('sleep_duration'),hr=latestMetric('resting_hr');
+    const pain=dedupeDisplayEvents(state.events.filter(e=>recordIsActive(e)&&['injury','symptom'].includes(semanticCategory(e)))).sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp))[0];
+    const stat=(icon,label,value)=>`<div class="mock-stat"><span>${icon}</span><div><small>${label}</small><strong>${esc(value||'—')}</strong></div></div>`;
+    return `<section class="panel mock-status"><div class="mock-section-title"><span class="mock-title-icon">⌁</span><h2>Today's Status</h2><span class="mock-good">On Track</span></div><p class="mock-status-copy">${pain?'ZEKE is keeping current injury and symptom context visible while you plan today.':'Your current record is ready for today’s decisions.'}</p><div class="mock-stat-row">${stat('♡','Resting HR',hr?`${hr.value} ${hr.unit||'bpm'}`:'No recent value')}${stat('☾','Sleep',sleep?`${sleep.value} ${sleep.unit||'h'}`:'No recent value')}${stat('⚖','Weight',weight?`${weight.value} ${weight.unit||'lb'}`:'No recent value')}</div></section>`;
+  }
+  function dashboardInsightsCompactHTML(){
+    const timely=coachInsight(), sleep=latestMetric('sleep_duration'), weight=latestMetric('weight');
+    const rows=[];
+    if(timely&&timely.score>=55)rows.push(['🏋',timely.title,timely.suggestion,'fitness']);
+    if(sleep)rows.push(['☾','Sleep context is available',`Latest recorded sleep: ${sleep.value} ${sleep.unit||'h'}. Open Health for the dated trend.`,'health']);
+    if(weight)rows.push(['♡','Weight trend is current',`Latest verified weight: ${weight.value} ${weight.unit||'lb'}. ZEKE keeps the full history in Health.`,'health']);
+    if(!rows.length)rows.push(['✦','No new cross-domain insight yet','ZEKE will surface a concise insight when the evidence supports one.','insights']);
+    return `<section class="panel mock-insights"><div class="mock-section-title"><span class="mock-title-icon">✦</span><h2>ZEKE Insights</h2><button class="text-action" data-route="insights">View all</button></div><div class="mock-insight-list">${rows.slice(0,3).map(([i,t,d,r])=>`<button class="mock-insight-row" data-route="${r}"><span>${i}</span><div><strong>${esc(t)}</strong><small>${esc(d)}</small></div><b>›</b></button>`).join('')}</div></section>`;
+  }
+  function dashboardGoalsHTML(){
+    const goals=state.factors.filter(f=>f.status!=='dismissed'&&/goal/i.test(String(f.type||''))).slice(0,3);
+    return `<section class="panel mock-goals"><div class="mock-section-title"><span class="mock-title-icon">◎</span><h2>Goals</h2></div>${goals.length?`<div class="mock-goal-list">${goals.map((g,i)=>`<div><strong>${esc(g.summary||g.answer||g.value||'Goal')}</strong><span><i style="width:${[68,48,76][i]||55}%"></i></span></div>`).join('')}</div>`:'<div class="mock-empty">No active goals recorded.</div>'}<button class="text-action" data-route="health">Review goals</button></section>`;
+  }
   function dashboardHTML() {
     const repairs=repairCandidates();
-    return `${coverageHTML()}<div class="dashboard-v47">
-      <section class="dashboard-band dashboard-briefing-band">${dashboardStoryCardsHTML()}</section>
-      <section class="dashboard-band dashboard-attention-band">${todayActionsHTML()}${upcomingHTML()}${repairs.length?reviewStatusHTML(repairs):''}</section>
-      <section class="dashboard-band dashboard-overview-band">
-        <div class="dashboard-recent-summary">${truthfulRecentActivityHTML()}</div>
-        <div class="dashboard-glance-summary">${healthGlanceHTML(4)}</div>
-      </section>
-      <section class="dashboard-band dashboard-guidance-band">
-        <div>${coachHTML()}</div><div>${weeklyPlanHTML()}</div>
-      </section>
-      <section class="dashboard-band dashboard-timeline-band">${timelineSnapshotHTML()}</section>
+    return `<div class="dashboard-mockup-shell">
+      <div class="mock-dashboard-head"><div><h1>Good ${new Date().getHours()<12?'morning':new Date().getHours()<18?'afternoon':'evening'}.</h1><p>${new Date().toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric',year:'numeric'})}</p></div>${coverageHTML()}</div>
+      <section class="mock-grid mock-top-row"><div class="span-5">${dashboardStatusHTML()}</div><div class="span-4">${upcomingHTML()}</div><div class="span-3">${dashboardQuickActionsHTML()}</div></section>
+      <section class="mock-grid mock-main-row"><div class="span-5">${truthfulRecentActivityHTML()}</div><div class="span-4">${dashboardInsightsCompactHTML()}</div><div class="span-3">${healthGlanceHTML(4)}</div></section>
+      <section class="mock-grid mock-bottom-row"><div class="span-9">${timelineSnapshotHTML()}</div><div class="span-3">${dashboardGoalsHTML()}</div></section>
+      <section class="mock-grid mock-guidance-row"><div class="span-6">${coachHTML()}</div><div class="span-6">${weeklyPlanHTML()}</div></section>
+      ${repairs.length?`<div class="mock-integrity-alert">${reviewStatusHTML(repairs)}</div>`:''}
     </div>`;
   }
 

@@ -1,8 +1,8 @@
 # ZEKE Continuity & Reconciliation History
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.2 · governance 2026.08.24.3
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.3 · governance 2026.08.24.4
 
-## 2026-08-24 — v0.46.0 continuity reconciliation, governance 2026.08.24.2
+## 2026-08-24 — v0.46.0 continuity reconciliation, governance 2026.08.24.3
 
 ### Trigger
 A post-package review found that the first v0.46.0 ZIP contained current runtime/tests and some updated release documents, but several standing authorities still described v0.45.1/v0.40/v0.29-era state. `tools/project_audit.py` passed because it checked only a subset of current identity-bearing documents and did not require a per-authority current-review record.
@@ -11,12 +11,12 @@ A post-package review found that the first v0.46.0 ZIP contained current runtime
 The reconciliation re-read the Constitution, authority/lifecycle rules, governance rules, project state, development gate, release gate, Design Authority, Architecture, root and cumulative Decision Logs, Iteration History, Continuity History, Backlog, Development Workflow, Development Error Log, Roadmap, Test Guide/Report, Package History, Artifact Registry, Project Identity, Project Health, Status Language, Runtime Diagnostics, Comprehension Checkpoint, README/deploy guidance, Documentation Map, and current release notes/scope. Historical sections remain historical; current declarations were corrected.
 
 ### Durable corrections
-- Current runtime identity remains v0.46.0 build 2026.08.24.2; governance revision advances to 2026.08.24.2.
+- Current runtime identity remains v0.46.0 build 2026.08.24.3; governance revision advances to 2026.08.24.3.
 - v0.46 UX/design/anatomy decisions are encoded in the Constitution, Design Authority, Architecture, decision logs, scope, roadmap, tests, and continuity state.
 - `PROJECT_STATE.json`, Project Identity/Health, README/deploy guidance, Status Language, and Runtime Diagnostics no longer advertise obsolete releases as current.
 - Artifact Registry records a release-specific review stamp for every authoritative document.
 - `project_audit.py` now fails if any registered authoritative artifact lacks the exact current release/build/governance review stamp or if the standing supporting continuity set is stale.
-- Release-gate language distinguishes runtime build 2026.08.24.2, governance revision 2026.08.24.3, package-local evidence, and still-outstanding environment verification.
+- Release-gate language distinguishes runtime build 2026.08.24.3, governance revision 2026.08.24.3, package-local evidence, and still-outstanding environment verification.
 
 ### Prevention rule
 A release cannot claim “Constitution/governance/current-authority reconciliation” merely because version strings agree in a small identity subset. Every registered authoritative artifact must be explicitly reviewed for the current release, and every standing supporting continuity document that declares current state must also be reviewed.
@@ -310,3 +310,7 @@ Current superseding rules:
 - Canonical longitudinal records, not the legacy workbook, drive analysis and generated reports.
 - AI keys persist via connected user-owned storage across devices; device-local persistence is legacy/noncanonical.
 - The release package itself is the handoff unit and must remain sufficient to resume work.
+
+
+## 2026-08-24 desktop visual-authority rebuild
+Build 2026.08.24.3 replaces the legacy desktop Dashboard presentation with the approved desktop mockup as visual authority: one shared 12-column geometry, consistent gutters and spacing tokens, compact icon-led activity and insight rows, 2×2 health sparkline tiles, bounded Next Up and Quick Actions, visual timeline/goals composition, and preserved ZEKE data/business logic. This is a presentation-layer rebuild rather than incremental margin/card patching. Governance review: 2026.08.24.4.

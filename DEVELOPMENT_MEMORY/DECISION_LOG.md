@@ -1,6 +1,6 @@
 # Decision Log
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.2 · governance 2026.08.24.3
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.3 · governance 2026.08.24.4
 
 **Status:** Authoritative and cumulative
 
@@ -21,7 +21,7 @@
 - Variation rows are recency-ordered and show their latest own performance; redundant “Last,” “Current,” or variation-count labels are removed.
 - Expanded exercise charts keep variation histories as independent series on shared axes and preserve missing-as-unknown semantics.
 - Workout recommendations show a short “Why this” up front with deeper reasoning available on demand.
-- Runtime v0.46.0 build 2026.08.24.2 remains unchanged by governance revision 2026.08.24.3; this revision reconciles standing documentation and hardens the release audit.
+- Runtime v0.46.0 build 2026.08.24.3 remains unchanged by governance revision 2026.08.24.3; this revision reconciles standing documentation and hardens the release audit.
 - **DEC-001:** AI proposes; deterministic code commits canonical data.
 - **DEC-002:** Empty data never reserves visualization space.
 - **DEC-003:** Dashboard uses independent content-sized rows rather than paired long columns.

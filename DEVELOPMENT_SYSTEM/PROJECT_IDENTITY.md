@@ -1,6 +1,6 @@
 # Project Identity — ZEKE v0.46.0
 
-**Runtime build:** 2026.08.24.2  
+**Runtime build:** 2026.08.24.3  
 **Governance revision:** 2026.08.24.3  
 **Current authority review:** 2026-08-24
 
@@ -20,6 +20,6 @@ ZEKE is a private, user-owned personal-management and knowledge system, beginnin
 - Exercise/PT/injury/body-area relationships use a shared governable reference layer; reference anatomy is not the personal health record and does not automatically prohibit activity.
 
 ## Current architecture — challengeable with justification
-ZEKE v0.46.0 build 2026.08.24.2 is the current forward baseline. The historical recovery source remains v0.43.1 plus the verified v0.44.1 patch lineage; v0.28.x remains a rejected development path. Google Drive is the active provider implementation while provider-neutral semantics remain binding. The current release adds explicit UX composition, body-area navigation, variation-aware analytics, and versioned anatomy/reference knowledge over the existing longitudinal/adaptive-training architecture.
+ZEKE v0.46.0 build 2026.08.24.3 is the current forward baseline. The historical recovery source remains v0.43.1 plus the verified v0.44.1 patch lineage; v0.28.x remains a rejected development path. Google Drive is the active provider implementation while provider-neutral semantics remain binding. The current release adds explicit UX composition, body-area navigation, variation-aware analytics, and versioned anatomy/reference knowledge over the existing longitudinal/adaptive-training architecture.
 
-Governance revision 2026.08.24.3 updates continuity/audit documentation only; it does not silently change runtime behavior beyond build 2026.08.24.2.
+Governance revision 2026.08.24.3 updates continuity/audit documentation only; it does not silently change runtime behavior beyond build 2026.08.24.3.
