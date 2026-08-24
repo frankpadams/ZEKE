@@ -143,7 +143,7 @@
   color:#4f6d84!important;font-size:12px!important;font-weight:800!important;margin-top:13px!important
 }
 .startup-screen:after{
-  content:"ZEKE v0.44.1 · build 2026.08.18.1";
+  content:"";
   position:fixed;left:0;right:0;bottom:calc(24px + var(--z-safe));z-index:9999;
   text-align:center;color:#526f86;font-size:11px;font-weight:800;letter-spacing:.025em;pointer-events:none
 }

@@ -1,7 +1,7 @@
 # Runtime Diagnostics
 
 **Status:** Supporting current design  
-**Current baseline:** v0.29.0 · build 2026.07.25.1
+**Current baseline:** v0.46.0 · build 2026.08.24.1 · governance 2026.08.24.2
 
 Runtime diagnostics support product repair. They are not canonical health data, not proof that a feature works, and not a substitute for a reproducible test.
 

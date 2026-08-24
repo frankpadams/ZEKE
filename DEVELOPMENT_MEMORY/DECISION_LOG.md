@@ -1,7 +1,27 @@
 # Decision Log
 
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.1 · governance 2026.08.24.2
+
 **Status:** Authoritative and cumulative
 
+
+## 2026-08-24 — v0.46.0 UX Architecture + Connected Anatomy
+
+- The screen is the unit of visual quality; component-level success cannot certify an unusable composition.
+- Dashboard is a cross-domain daily briefing, with only a selective Health snapshot.
+- Stable visual identities and microvisuals support scanning before reading.
+- Recent Activity may intentionally scroll in a bounded desktop window; mobile normally uses natural page flow.
+- Talk to ZEKE must always be easy to close and must preserve predictable closed/compact/expanded state without stale scroll locks.
+- Consequential buttons must visibly enter selected/working/result states.
+- Exercise discovery is browse-first; body-area navigation is a primary non-search path.
+- Exercise detail links primary and secondary body areas. Body-area views can link to exercises, PT/rehab, history, and known injury/symptom context.
+- ZEKE maintains a shared, versioned anatomy/body-structure reference layer mapping muscles, joints, bones/body areas, useful soft tissue, laterality, and movement patterns; primary/secondary/stabilizer and direct/indirect involvement are distinguished where supported.
+- Anatomy relationships are contextual and never automatically convert into exercise prohibitions.
+- Reference knowledge must support provenance, review state, refresh/diff/validation, rollback, and stale warnings without overwriting user-specific records or clinician/PT facts.
+- Variation rows are recency-ordered and show their latest own performance; redundant “Last,” “Current,” or variation-count labels are removed.
+- Expanded exercise charts keep variation histories as independent series on shared axes and preserve missing-as-unknown semantics.
+- Workout recommendations show a short “Why this” up front with deeper reasoning available on demand.
+- Runtime v0.46.0 build 2026.08.24.1 remains unchanged by governance revision 2026.08.24.2; this revision reconciles standing documentation and hardens the release audit.
 - **DEC-001:** AI proposes; deterministic code commits canonical data.
 - **DEC-002:** Empty data never reserves visualization space.
 - **DEC-003:** Dashboard uses independent content-sized rows rather than paired long columns.

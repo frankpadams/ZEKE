@@ -1,5 +1,20 @@
 # ZEKE Backlog
 
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.1 · governance 2026.08.24.2
+
+## Post-v0.46.0 environment / follow-up queue
+
+| ID | Item | Priority | Status / prerequisite |
+|---|---|---:|---|
+| UX-046-A | Owner desktop acceptance of Dashboard composition, Recent Activity density/scrolling, Questions feedback, and Talk close/expand/collapse | Critical | Environment verification outstanding; requires deployed hands-on use |
+| UX-046-B | Owner physical-phone acceptance of current mobile routes and Talk state behavior | Critical | Environment verification outstanding |
+| PROV-046 | Live Google Drive/Calendar durable read/write and staged privacy acceptance | Critical | Requires deployed connected provider |
+| AI-046 | Live connected-AI workout recommendation plus short-Why/deep-reasoning acceptance | High | Requires user-authorized provider |
+| KNOW-046 | Define production source-review cadence and signed/validated reference-knowledge pack update workflow beyond the current local version/staleness mechanism | High | Architecture/governance locked; broader source-refresh pipeline remains future work |
+| QA-046 | Maintain reference screenshots/structural rendered assertions for major routes and cold-load scroll behavior | High | Continue every visual release |
+| DATA-046 | Review first real PDF/screenshot/DEXA ingestion result before bulk reliance | High | Requires deployed real source |
+
+
 **Status:** Authoritative  
 **Current baseline:** v0.40.4 · build 2026.08.06.4
 

@@ -1,5 +1,7 @@
 # Authority, Consistency, and Artifact Lifecycle
 
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.1 · governance 2026.08.24.2
+
 ## Authority order
 
 1. `00_AI_START_HERE.md`
@@ -28,3 +30,9 @@ Rejected or superseded development paths belong in `REJECTED_AND_SUPERSEDED_PATH
 ## Link and orphan rules
 
 All relative Markdown links must resolve. Every authoritative document must be reachable from the root entry point or authority map. Unreferenced current documents must be archived, linked, or removed. Generated bundles and dependencies remain subject to release structure and provenance checks.
+
+
+## Current-release review stamps
+Every artifact registered as **Authoritative** must carry current-release review metadata in `ARTIFACT_REGISTRY.json`: release, runtime build, governance revision, and review date. The stamp means the document was re-read for contradictions and newly binding decisions; it is not a substitute for runtime testing.
+
+The project audit must compare the complete authoritative set, not only a selected identity subset. Standing Supporting documents that themselves declare current release/state are also reviewed each release. Historical content can retain old version strings when clearly historical.

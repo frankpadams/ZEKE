@@ -1,5 +1,7 @@
 # Development Error Log
 
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.1 · governance 2026.08.24.2
+
 **Status:** Authoritative and cumulative
 
 ## ERR-001 — Partial version synchronization
@@ -212,3 +214,14 @@
 - **Failure:** The v0.29.0 application package updated runtime code and only part of `PROJECT_STATE.json`, while README, handoff, architecture, feature status, gate, backlog, registry, project identity/health, status language, and current iteration/test records still described v0.27.2 or older releases.
 - **Impact:** The newest code package could not be trusted as the authoritative development handoff, and a future developer could follow obsolete recovery instructions or misclassify unimplemented features.
 - **Prevention:** Apply DEC-055. Every release must include a document-by-document reconciliation matrix, a current iteration and test report, zero-error project audit, lifecycle-correct artifact registry, and runtime-byte comparison before it can be called authoritative.
+
+
+## ERR-050 — Current-authority reconciliation falsely passed on a partial identity audit (2026-08-24)
+
+**Observed:** The first v0.46.0 package passed `tools/project_audit.py` and claimed Constitution/governance reconciliation even though `00_AI_START_HERE.md`, `PROJECT_IDENTITY.md`, portions of `PROJECT_STATE.json`, Design/Architecture continuity, and other standing documents still described prior releases.
+
+**Root cause:** The audit checked version/build presence in a limited identity list and registry membership, but did not require every registered authoritative artifact to carry evidence that it was reviewed for the current release/governance revision. Supporting documents that declared “current” state were also outside the identity check.
+
+**Prevention:** Every registered authoritative artifact now receives a release/build/governance review stamp in `ARTIFACT_REGISTRY.json`; the audit compares the full authoritative set. A standing supporting-continuity list is also checked. Current release claims must fail when those reviews are absent or stale.
+
+**Lesson:** Passing an automated governance check is not itself evidence that the check covers the actual continuity contract. The audit must validate the whole authority graph, not only a convenient subset.

@@ -1,26 +1,35 @@
-# ZEKE v0.45.1 Release Gate
+# ZEKE v0.46.0 Release Gate
 
-**Build:** 2026.08.23.4
+**Runtime build:** 2026.08.24.1  
+**Governance revision:** 2026.08.24.2
 
 ## Current status
-- Implementation: complete for approved package scope.
+- Runtime implementation: complete for approved v0.46.0 package scope.
+- Continuity/governance reconciliation: complete for governance 2026.08.24.2.
 - **Package verification complete.**
 - **Environment verification outstanding.**
 
+## Continuity gate
+- Complete registered authoritative set re-read for current release, not only identity-bearing files.
+- Every authoritative Artifact Registry entry carries release/build/governance/review-date metadata.
+- Standing supporting continuity documents were reviewed and current-state declarations corrected.
+- Constitution, Design Authority, Architecture, Current Release Scope, Decision Logs, Iteration/Continuity History, Project State/Identity/Health, Roadmap, Test Guide/Report, Package History, and release notes encode the v0.46.0 UX/anatomy decisions.
+- `tools/project_audit.py` now fails on stale/missing full-authority review metadata.
+
 ## Package-local gates passed
-- Constitution/governance/current-authority reconciliation.
-- JavaScript syntax and package-local regression suites.
-- Movement-specific PT visual release gate for all included rehab entries.
-- Rendered mobile/desktop workflow smokes supported by the package-local environment.
-- Runtime dependency/cache/identity consistency.
-- File-level SHA-256/provenance manifest generated as `BUILD_MANIFEST.json`.
-- Final archive is required to pass ZIP integrity, safe-path, portable-permission, clean-extraction, and extracted-tree hash comparison before delivery.
+- project audit: 0 errors / 0 warnings; governance negative controls: 11/11 intentional failures detected;
+- active JavaScript syntax checks and package-local regression suite; all executable JS tests passed; three external-fixture tests explicitly SKIPPED;
+- movement-specific PT visual gate for all 14 included rehab entries;
+- rendered mobile/desktop workflow checks, including 320/375/390/430/768 mobile widths and current desktop workflow routes;
+- runtime dependency/cache/identity checks;
+- refreshed file-level SHA-256/provenance manifest;
+- clean ZIP extraction, safe paths, portable permissions, ZIP integrity, and extracted-tree hash comparison.
 
 ## Environment verification outstanding
-- Owner physical-phone visual/workflow acceptance against `DESIGN_AUTHORITY.md`.
-- Representative owner desktop hands-on workflow acceptance.
-- Live Google Drive/Calendar behavior.
-- Connected-AI provider workout/clinical consultation behavior.
-- First real PDF/screenshot/DEXA extraction review in deployment.
+- owner physical-phone visual/workflow acceptance against `DESIGN_AUTHORITY.md`;
+- representative owner desktop hands-on workflow acceptance;
+- live Google Drive/Calendar behavior;
+- connected-AI provider workout/clinical consultation behavior;
+- first real PDF/screenshot/DEXA extraction review in deployment.
 
 No environment-dependent item is counted as passed by package-local inspection.

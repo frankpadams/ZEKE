@@ -1,3 +1,17 @@
+
+
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.1 · governance 2026.08.24.2
+## Full standing-authority reconciliation
+Before packaging any release, review **every artifact registered as authoritative**, not merely files containing the version string. Update the Artifact Registry review stamp for each authority only after reading it for contradictions, stale current-state claims, newly binding user decisions, implementation status, and verification boundaries. Also review the standing supporting-continuity set defined by the registry/audit.
+
+A release must fail when:
+- an authoritative artifact lacks the current release/build/governance review stamp;
+- a supporting continuity document still declares an obsolete release as current;
+- Design Authority, Architecture, scope, decision logs, project state, gate, tests, and release notes disagree about a durable decision;
+- a release-gate pass is asserted without the named evidence.
+
+Rendered UX verification includes cold-load scroll reachability, readable card widths, visible response to consequential controls, Talk close/expand/collapse states, and representative screen composition—not horizontal overflow alone.
+
 # Development Workflow
 
 **Status:** Authoritative

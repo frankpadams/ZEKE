@@ -1,115 +1,199 @@
 {
   "schema_version": 4,
-  "release": "0.45.1",
-  "build": "2026.08.23.4",
-  "current_version": "0.45.1",
-  "current_build": "2026.08.23.4",
-  "governance_revision": "2026.08.23.4",
+  "release": "0.46.0",
+  "build": "2026.08.24.1",
+  "current_version": "0.46.0",
+  "current_build": "2026.08.24.1",
+  "governance_revision": "2026.08.24.2",
   "artifacts": [
     {
       "path": "RELEASE_NOTES.md",
       "status": "authoritative",
-      "purpose": "current release candidate summary and promotion blockers"
+      "purpose": "current release candidate summary and promotion blockers",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "00_AI_START_HERE.md",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "living current authority",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "ARCHITECTURE.md",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "living current authority",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "DECISION_LOG.md",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "living current authority",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "DEVELOPMENT_MEMORY/BACKLOG.md",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "living current authority",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "DEVELOPMENT_MEMORY/CONTINUITY_HISTORY.md",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "living current authority",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DECISION_LOG.md",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "living current authority",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "living current authority",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "living current authority",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "living current authority",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "DEVELOPMENT_MEMORY/ITERATION_HISTORY.md",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "living current authority",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "DEVELOPMENT_MEMORY/PROJECT_STATE.json",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "living current authority",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "living current authority",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "living current authority",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "living current authority",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/PROJECT_IDENTITY.md",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "living current authority",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "PACKAGE_HISTORY.json",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "living current authority",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "ROADMAP.md",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "living current authority",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "TEST_GUIDE.md",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "living current authority",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "TEST_REPORT.md",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "living current authority",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "ZEKE_CONSTITUTION.md",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "living current authority",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "README.md",
@@ -214,12 +298,20 @@
     {
       "path": "CURRENT_RELEASE_SCOPE.md",
       "status": "authoritative",
-      "purpose": "current implementation scope, status, and safety boundary"
+      "purpose": "current implementation scope, status, and safety boundary",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "DESIGN_AUTHORITY.md",
       "status": "authoritative",
-      "purpose": "approved visual and mobile design authority"
+      "purpose": "approved visual and mobile design authority",
+      "reviewed_release": "0.46.0",
+      "reviewed_build": "2026.08.24.1",
+      "reviewed_governance_revision": "2026.08.24.2",
+      "reviewed_date": "2026-08-24"
     },
     {
       "path": "BUILD_MANIFEST.json",
@@ -249,6 +341,7 @@
     "assets/workflow-engine.js",
     "assets/exercise-guides.js",
     "assets/knowledge-base.js",
+    "assets/anatomy-knowledge.js",
     "assets/integrity-engine.js",
     "assets/app.js",
     "assets/branding/zeke-mark-provisional.png",
@@ -261,5 +354,23 @@
     "assets/mobile-native.js",
     "assets/mobile-polish-v0441.css",
     "assets/mobile-polish-v0441.js"
-  ]
+  ],
+  "standing_supporting_continuity": [
+    "README.md",
+    "README_DEPLOY.md",
+    "DOCUMENTATION_MAP.md",
+    "DEVELOPMENT_REVIEW_HISTORY.md",
+    "USABILITY_TESTING.md",
+    "DEVELOPMENT_SYSTEM/COMPREHENSION_CHECKPOINT.md",
+    "DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md",
+    "DEVELOPMENT_SYSTEM/RUNTIME_DIAGNOSTICS.md",
+    "DEVELOPMENT_SYSTEM/STATUS_LANGUAGE.md"
+  ],
+  "continuity_review": {
+    "release": "0.46.0",
+    "build": "2026.08.24.1",
+    "governance_revision": "2026.08.24.2",
+    "reviewed_date": "2026-08-24",
+    "status": "complete"
+  }
 }

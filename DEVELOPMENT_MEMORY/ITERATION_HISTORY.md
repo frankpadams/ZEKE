@@ -1,5 +1,46 @@
 # ZEKE Iteration History
 
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.1 · governance 2026.08.24.2
+
+## Current iteration — ZEKE v0.46.0 — UX Architecture + Connected Anatomy
+
+**Build:** 2026.08.24.1  
+**Date:** 2026-08-24  
+**Status:** Runtime package-local verification complete; continuity reconciled in governance 2026.08.24.2; environment verification outstanding.
+
+### Approved scope
+- Rebuild desktop Dashboard around user priorities rather than component categories
+- Fix scroll/lifecycle traps and make all rendered content reachable
+- Rebuild Talk to ZEKE close/expand/collapse interaction with predictable state
+- Give Questions for You immediate visible feedback after consequential decisions
+- Make exercise discovery browse-first with body-area navigation and optional search
+- Connect exercises, body areas, injuries/PT context, and versioned anatomy reference knowledge
+- Preserve separate exercise-variation histories and compare them on shared axes
+- Show a short decision-relevant Why this explanation before deeper workout-planning reasoning
+- Keep stable visual identities and compact visual cues across Recent Activity and Dashboard
+- Enforce current runtime version identity from one source and prevent stale startup strings
+
+### Implementation summary
+- Purpose-driven desktop Dashboard composition and selective Health snapshot.
+- Scan-friendly Recent Activity with stable visual category cues.
+- Talk to ZEKE close/expand/collapse state model repaired.
+- Questions for You decision feedback made immediate and visible.
+- Browse-first Fitness library with linked body areas and injury context.
+- Versioned anatomy/body-structure knowledge registry added.
+- Exercise variations retain independent shared-axis chart series with recency-ordered summaries including load, reps, and sets.
+- Workout planning surfaces a short “Why this” before deeper reasoning.
+- Runtime version labels now derive from the current build authority.
+
+### Continuity reconciliation
+- Re-read and updated every registered authoritative continuity document for v0.46.0.
+- Corrected stale current-state declarations inherited from v0.45.1/v0.40/v0.29-era documents.
+- Added binding Constitution/Design/Architecture rules for screen-level UX, visible action feedback, reachability, body/anatomy relationships, and governed reference-knowledge updates.
+- Strengthened the project audit to require current-release review stamps across the full authoritative set.
+- Runtime behavior remains build 2026.08.24.1; documentation/governance revision is 2026.08.24.2.
+
+---
+
+
 ## Current iteration — ZEKE v0.45.0 — Adaptive Training + Mobile-First Recovery
 
 **Build:** 2026.08.23.2  

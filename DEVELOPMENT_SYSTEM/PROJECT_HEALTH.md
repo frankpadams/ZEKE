@@ -1,20 +1,24 @@
-# Project Health — v0.45.1
+# Project Health — v0.46.0
 
-**Runtime/package build:** 2026.08.23.4  
-**Governance revision:** 2026.08.23.4
+**Runtime/package build:** 2026.08.24.1  
+**Governance revision:** 2026.08.24.2  
+**Review date:** 2026-08-24
 
 ## Current state
-- Current package: v0.45.1 · build 2026.08.23.4 · Integrated Fitness + Adaptive Training.
-- Product implementation: integrated for approved package scope.
-- Governance/static reconciliation: complete subject to final package audit.
-- PT visual package-local gate: passed for all 14 included rehab entries; local schematic guides are movement-specific and clinician-directed.
-- Rendered browser checks: package-local desktop/mobile workflows pass where executed.
-- Environment verification: outstanding for owner physical-device acceptance and live connected-provider behavior.
+- Current package: v0.46.0 · build 2026.08.24.1 · UX Architecture + Connected Anatomy.
+- Product implementation: integrated for the approved v0.46.0 runtime scope.
+- Continuity/governance: reconciled in governance revision 2026.08.24.2 after a post-package audit found stale standing authorities in the first v0.46.0 package.
+- Project audit: strengthened to require current review stamps across every registered authoritative document plus standing supporting-continuity files.
+- PT visual package-local gate: passed for all 14 included rehab entries; clinician-specific instructions remain authoritative.
+- Rendered browser checks: package-local desktop/mobile workflows pass where executed; owner visual acceptance remains outstanding.
+- Environment verification: outstanding for owner physical-device/desktop acceptance and live connected-provider behavior.
 
-## Integrity boundaries
+## Integrity / UX boundaries
 - AI is advisory and replaceable; user-owned canonical data remains authoritative.
-- Clinical facts, explicit clinician/PT restrictions, AI inferences, and observed exercise response remain distinct and provenance-bearing.
-- No blank symptom/pain field is interpreted as absence of symptoms.
+- Clinical facts, clinician/PT restrictions, reference anatomy, AI inferences, and observed exercise response remain distinguishable and provenance-bearing.
+- Blank symptom/pain fields remain unknown.
 - Navigation is informational by default; mutation requires explicit user action.
-- Mobile presentation changes may not create a competing data model or remove desktop capability.
+- Every consequential action must visibly respond.
+- Content reachability and first-load scrolling are functional requirements.
+- Mobile composition may differ from desktop without creating a competing data model.
 - Release claims may not exceed checks actually performed.
