@@ -4,7 +4,7 @@
   'use strict';
   const PACK = Object.freeze({
     id: 'zeke-anatomy-core',
-    version: '2026.08.24.1',
+    version: '2026.08.24.2',
     reviewed_at: '2026-08-24',
     review_interval_days: 90,
     source: 'ZEKE curated exercise catalog + anatomy normalization layer',

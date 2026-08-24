@@ -1,8 +1,8 @@
 {
   "schema_version": 2,
   "version": "0.46.0",
-  "build": "2026.08.24.1",
-  "governance_revision": "2026.08.24.2",
+  "build": "2026.08.24.2",
+  "governance_revision": "2026.08.24.3",
   "generated_at": "2026-08-24T17:36:00Z",
   "scope": "All package files except RELEASE_CHECKSUMS.json and BUILD_MANIFEST.json to avoid circular hashing.",
   "sha256": {

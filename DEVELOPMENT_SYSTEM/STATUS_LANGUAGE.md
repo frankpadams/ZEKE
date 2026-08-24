@@ -1,7 +1,7 @@
 # Required Status Language
 
-**Current runtime:** ZEKE v0.46.0 · build 2026.08.24.1  
-**Governance revision:** 2026.08.24.2  
+**Current runtime:** ZEKE v0.46.0 · build 2026.08.24.2  
+**Governance revision:** 2026.08.24.3  
 **Reviewed:** 2026-08-24
 
 ## Development and release claims

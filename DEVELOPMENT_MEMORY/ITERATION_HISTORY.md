@@ -1,10 +1,10 @@
 # ZEKE Iteration History
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.1 · governance 2026.08.24.2
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.2 · governance 2026.08.24.3
 
 ## Current iteration — ZEKE v0.46.0 — UX Architecture + Connected Anatomy
 
-**Build:** 2026.08.24.1  
+**Build:** 2026.08.24.2  
 **Date:** 2026-08-24  
 **Status:** Runtime package-local verification complete; continuity reconciled in governance 2026.08.24.2; environment verification outstanding.
 
@@ -36,7 +36,7 @@
 - Corrected stale current-state declarations inherited from v0.45.1/v0.40/v0.29-era documents.
 - Added binding Constitution/Design/Architecture rules for screen-level UX, visible action feedback, reachability, body/anatomy relationships, and governed reference-knowledge updates.
 - Strengthened the project audit to require current-release review stamps across the full authoritative set.
-- Runtime behavior remains build 2026.08.24.1; documentation/governance revision is 2026.08.24.2.
+- Runtime behavior remains build 2026.08.24.2; documentation/governance revision is 2026.08.24.2.
 
 ---
 

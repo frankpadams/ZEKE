@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const BUILD = window.ZEKE_BUILD || window.ZEKE_VERSION || { version: '0.45.1', build: '2026.08.23.4', label: 'Integrated Fitness + Adaptive Training' };
+  const BUILD = window.ZEKE_BUILD || window.ZEKE_VERSION || { version: '0.45.1', build: '2026.08.23.4', label: 'UX Architecture + Connected Anatomy' };
   const state = {
     route:'dashboard', range:localStorage.getItem('zeke-fitness-range')||'month', dashboardHealthRange:localStorage.getItem('zeke-dashboard-health-range')||'month', dashboardTrendRange:localStorage.getItem('zeke-dashboard-trend-range')||'quarter', selectedMetric:'weight',
     events:[], factors:[], discoveries:[], actions:{catalog:[],daily_states:{}}, calendar:[], calendarReview:[], calendarReviewLoaded:false,
@@ -1095,7 +1095,7 @@
   }
 
   function upcomingHTML() {
-    const rows=state.calendar.slice(0,4).map(e=>`<div class="calendar-row"><div class="calendar-date"><strong>${esc(fmtDate(e.start,{month:'short',day:'numeric'}))}</strong><span>${esc(fmtTime(e.start))}</span></div><div><strong>${esc(e.title)}</strong>${e.location?`<small>${esc(e.location)}</small>`:''}</div></div>`).join('');
+    const rows=state.calendar.slice(0,3).map(e=>`<div class="calendar-row"><div class="calendar-date"><strong>${esc(fmtDate(e.start,{month:'short',day:'numeric'}))}</strong><span>${esc(fmtTime(e.start))}</span></div><div><strong>${esc(e.title)}</strong>${e.location?`<small>${esc(e.location)}</small>`:''}</div></div>`).join('');
     return `<section class="panel upcoming-panel"><div class="section-head"><div><span class="tile-kicker">WHAT'S COMING UP?</span><h2>Upcoming</h2><p>Dates and times are explicit; scheduling is not proof of completion.</p></div><button class="text-action" data-route="calendar">View calendar</button></div>${rows||'<div class="empty-inline">No connected upcoming events.</div>'}</section>`;
   }
 
@@ -1211,7 +1211,7 @@
     return `<section class="panel weekly-plan-card"><div class="section-head"><div><span class="tile-kicker">THIS WEEK</span><h2>Lightweight workout planning</h2><p>Tell ZEKE what you realistically expect—empty calendar time is never treated as commitment.</p></div><button class="text-action" id="openWeeklyPlan">Edit details</button></div><div class="weekly-plan-questions"><div><strong>How many more gym workouts?</strong><div class="plan-choices" data-plan-kind="gym">${choices(plan.gym_remaining)}</div></div><div><strong>How many home dumbbell / Bowflex workouts?</strong><div class="plan-choices" data-plan-kind="home">${choices(plan.home_remaining)}</div></div></div>${answered&&routine?`<div class="weekly-plan-result"><div><small>Suggested structure</small><strong>${esc(routine.name)}</strong><p>${esc(routine.note||'')}</p></div><div class="routine-session-chips">${sessions}</div><button class="secondary compact" id="openRoutineLibrary">Review routines</button></div>`:'<div class="weekly-plan-empty">Two quick answers are enough. ZEKE will suggest a structure without assuming your remaining availability.</div>'}</section>`;
   }
   function truthfulRecentActivityHTML(){
-    const rows=dedupeDisplayEvents(state.events.filter(e=>recordIsActive(e)&&(isWorkoutEvent(e)||semanticCategory(e)==='sleep'||['measurement','lab','medication','immunotherapy','vaccination','symptom','injury'].includes(semanticCategory(e))))).sort((a,b)=>new Date(b.timestamp||b.recorded_at)-new Date(a.timestamp||a.recorded_at)).slice(0,12);
+    const rows=dedupeDisplayEvents(state.events.filter(e=>recordIsActive(e)&&(isWorkoutEvent(e)||semanticCategory(e)==='sleep'||['measurement','lab','medication','immunotherapy','vaccination','symptom','injury'].includes(semanticCategory(e))))).sort((a,b)=>new Date(b.timestamp||b.recorded_at)-new Date(a.timestamp||a.recorded_at)).slice(0,5);
     const iconFor=(cat,w)=>w?'🏋':cat==='sleep'?'☾':cat==='medication'?'◒':cat==='immunotherapy'||cat==='vaccination'?'✚':cat==='injury'||cat==='symptom'?'◇':cat==='lab'?'⌁':'♡';
     const labelFor=(cat,w)=>w?'Workout':cat==='sleep'?'Sleep':cat==='medication'?'Medication':cat==='immunotherapy'?'Allergy / immunotherapy':cat==='vaccination'?'Vaccination':cat==='injury'?'Injury':cat==='symptom'?'Symptom':cat==='lab'?'Lab':'Measurement';
     return `<section class="panel truthful-recent recent-activity-window"><div class="section-head sticky-panel-head"><div><span class="tile-kicker">RECENT ACTIVITY</span><h2>What happened recently</h2><p>Recorded events, visually grouped so you can scan before reading.</p></div><button class="text-action" data-route="health">View all</button></div><div class="truthful-recent-list recent-activity-scroll">${rows.map(e=>{const cat=semanticCategory(e),w=isWorkoutEvent(e)?workoutStructured(e):null,k=w?window.ZekeKnowledgeBase?.get?.(w.exercise):null,details=w?[w.variation||w.equipment||'',w.weight!=null?`${w.weight} ${w.weight_unit||'lb'}`:'',w.reps!=null?`${w.reps} reps`:'',w.sets!=null?`${w.sets} sets`:'',w.rpe!=null?`RPE ${w.rpe}`:'',w.pain!=null?`pain ${w.pain}`:''].filter(Boolean).join(' · '):humanEvent(e);return `<article class="recent-activity-row kind-${esc(cat)}"><span class="recent-visual" aria-hidden="true">${iconFor(cat,w)}</span><div class="recent-copy"><span class="recent-kind">${esc(labelFor(cat,w))}</span><strong>${esc(w?.exercise||humanEvent(e))}</strong><p>${esc(details||'Recorded without additional numeric details')}</p><small>${esc(fmtDate(e.timestamp||e.recorded_at,{month:'short',day:'numeric',year:'numeric'}))}</small></div>${k?`<button class="icon-btn recent-open" data-form-guide="${esc(k.name)}" aria-label="Open ${esc(k.name)}">›</button>`:'<span></span>'}</article>`}).join('')||'<div class="empty-inline compact-empty-state">No recent verified records.</div>'}</div></section>`;
@@ -1232,14 +1232,17 @@
   }
   function dashboardHTML() {
     const repairs=repairCandidates();
-    return `${coverageHTML()}<div class="dashboard-v46">
-      <div class="dashboard-v46-top">
-        <div class="dashboard-v46-main">${dashboardStoryCardsHTML()}${truthfulRecentActivityHTML()}</div>
-        <aside class="dashboard-v46-rail">${todayActionsHTML()}${upcomingHTML()}${reviewStatusHTML(repairs)}</aside>
-      </div>
-      <div class="dashboard-v46-middle"><div>${thinkingHTML()}</div><div>${healthGlanceHTML(4)}</div></div>
-      ${timelineSnapshotHTML()}
-      <div class="dashboard-v46-bottom"><div>${weeklyPlanHTML()}</div><div>${coachHTML()}</div></div>
+    return `${coverageHTML()}<div class="dashboard-v47">
+      <section class="dashboard-band dashboard-briefing-band">${dashboardStoryCardsHTML()}</section>
+      <section class="dashboard-band dashboard-attention-band">${todayActionsHTML()}${upcomingHTML()}${repairs.length?reviewStatusHTML(repairs):''}</section>
+      <section class="dashboard-band dashboard-overview-band">
+        <div class="dashboard-recent-summary">${truthfulRecentActivityHTML()}</div>
+        <div class="dashboard-glance-summary">${healthGlanceHTML(4)}</div>
+      </section>
+      <section class="dashboard-band dashboard-guidance-band">
+        <div>${coachHTML()}</div><div>${weeklyPlanHTML()}</div>
+      </section>
+      <section class="dashboard-band dashboard-timeline-band">${timelineSnapshotHTML()}</section>
     </div>`;
   }
 

@@ -1,10 +1,10 @@
 {
   "schema_version": 3,
   "release": "0.46.0",
-  "build": "2026.08.24.1",
+  "build": "2026.08.24.2",
   "current_version": "0.46.0",
-  "current_build": "2026.08.24.1",
-  "governance_revision": "2026.08.24.2",
+  "current_build": "2026.08.24.2",
+  "governance_revision": "2026.08.24.3",
   "current_iteration": {
     "status": "v0460_runtime_verified_continuity_reconciled",
     "baseline_verified": true,
@@ -13,9 +13,9 @@
     "scope_presented": true,
     "user_approved_scope": true,
     "approved_at": "2026-08-24",
-    "approval_evidence": "User explicitly approved the consolidated UX stabilization and architecture release scope and said \u201cbuild this.\u201d",
+    "approval_evidence": "User explicitly approved the consolidated UX stabilization and architecture release scope and said “build this.”",
     "release": "0.46.0",
-    "build": "2026.08.24.1",
+    "build": "2026.08.24.2",
     "baseline_release": "0.43.1",
     "baseline_build": "2026.08.17.1",
     "approved_scope": [
@@ -42,7 +42,7 @@
       "Body-area links surface related exercise and recorded injury/symptom context without automatic prohibitions",
       "Variation chart keeps independent series on shared axes and omits unknown load"
     ],
-    "rollback_plan": "Restore the prior complete deployed release if runtime regression is observed; governance revision 2026.08.24.2 is documentation/audit-only and does not change canonical user records.",
+    "rollback_plan": "Restore the prior complete deployed release if runtime regression is observed; governance revision 2026.08.24.3 is documentation/audit-only and does not change canonical user records.",
     "prior_conversations_reviewed": true,
     "implementation_complete": true,
     "verification_complete": true,
@@ -55,7 +55,7 @@
     },
     "continuity_reconciliation": "complete",
     "continuity_reviewed_at": "2026-08-24T13:24:32-04:00",
-    "governance_revision": "2026.08.24.2",
+    "governance_revision": "2026.08.24.3",
     "verification_completed_at": "2026-08-24T13:35:00-04:00"
   },
   "next_iteration": {

@@ -1,13 +1,13 @@
 # Project Health — v0.46.0
 
-**Runtime/package build:** 2026.08.24.1  
-**Governance revision:** 2026.08.24.2  
+**Runtime/package build:** 2026.08.24.2  
+**Governance revision:** 2026.08.24.3  
 **Review date:** 2026-08-24
 
 ## Current state
-- Current package: v0.46.0 · build 2026.08.24.1 · UX Architecture + Connected Anatomy.
+- Current package: v0.46.0 · build 2026.08.24.2 · UX Architecture + Connected Anatomy.
 - Product implementation: integrated for the approved v0.46.0 runtime scope.
-- Continuity/governance: reconciled in governance revision 2026.08.24.2 after a post-package audit found stale standing authorities in the first v0.46.0 package.
+- Continuity/governance: reconciled in governance revision 2026.08.24.3 after a post-package audit found stale standing authorities in the first v0.46.0 package.
 - Project audit: strengthened to require current review stamps across every registered authoritative document plus standing supporting-continuity files.
 - PT visual package-local gate: passed for all 14 included rehab entries; clinician-specific instructions remain authoritative.
 - Rendered browser checks: package-local desktop/mobile workflows pass where executed; owner visual acceptance remains outstanding.
