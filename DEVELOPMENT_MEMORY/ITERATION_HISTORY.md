@@ -1,5 +1,29 @@
 # ZEKE Iteration History
 
+## Current iteration — ZEKE v0.45.0 — Adaptive Training + Mobile-First Recovery
+
+**Build:** 2026.08.23.2  
+**Date:** 2026-08-23  
+**Status:** Package governance/static verification complete; environment verification outstanding.
+
+### Approved scope
+- Reconstruct one complete authoritative package from the last available full build and verified later patch
+- Use a coherent mobile-first presentation layer rather than piecemeal responsive patches while preserving functionality and desktop behavior
+- Add adaptive PT/rehab, strength, and cardio training intelligence
+- Interpret supplied clinical context into source-traceable anatomy, movement/load implications, explicit restrictions, rehab emphasis, confidence, and uncertainty
+- Keep clinician restrictions, source facts, AI inference, and observed response distinct
+- Support connected AI plus provider-agnostic manual AI consultation packets
+- Use actual exercise response to support progression/regression without treating missing pain as pain-free
+- Preserve canonical exercise variation histories as independent series on shared charts
+- Consolidate current documentation without deleting substantive historical information
+- Reconcile the full package against the Constitution and machine-readable governance before promotion
+
+### Verification boundary
+Package-local governance/static checks do not prove physical-device usability, live-provider behavior, remote media availability, or clinical effectiveness. Those remain explicit gates.
+
+---
+
+
 ## Current iteration — ZEKE v0.43.1 — Mobile Professional Polish
 
 **Build:** 2026.08.17.1  
@@ -1137,3 +1161,47 @@ Runtime implementation is in progress and the package remains an RC. Current wor
 - Reconciled historic/standing documents with the implemented medication occurrence, mobile calendar review, Health Reports & Export, and connected-workspace AI-key behavior.
 - Marked historical Gym Mode descriptions as superseded architecture rather than deleting historical evidence.
 - Reaffirmed package-alone handoff as a promotion criterion.
+
+
+## v0.45.1 · build 2026.08.23.4 — Integrated Fitness + Adaptive Training
+
+**Approved:** 2026-08-23. User requested the pre-release audit findings be fixed and a polished real release be produced for hands-on use.
+
+### Approved scope
+- Deliver one complete, self-contained ZEKE release reconstructed from the last full v0.43.1 package plus verified subsequent work
+- Use a coherent mobile-first presentation layer while preserving desktop behavior and shared canonical data/workflows
+- Keep Log as a distinct top-level action while Fitness supports non-mutating exploration, planning, performance, coaching, and review
+- Make workout recommendations editable before Start and transfer accepted proposals into the active workout
+- Adapt remaining workout work from completed exercise order, pain/RPE, fatigue context, clinical constraints, and user choices
+- Use location and remembered equipment profiles such as Planet Fitness and home gym when planning workouts
+- Preserve canonical exercise families with independent variation series and unknown load as unknown
+- Require truthful movement-specific two-frame visual guides for included PT/rehab exercises
+- Provide source-first PDF and screenshot ingestion with embedded text before OCR, classification, provenance, review, and explicit confirmation before structured save
+- Support DEXA within the general body-composition and document-ingestion architecture rather than as a required standalone system
+- Represent illness, injury, and contextual events as dated or time-bounded records with ongoing and approximate-range support
+- Provide medication reconciliation for active/stopped status, possible aliases/duplicates, schedule, and adherence semantics
+- Keep Google access separate from permission to create/use a ZEKE calendar and preserve granular sensitive-category privacy choices
+- Consolidate Dashboard observations into one changing Insights surface instead of fixed artificial insight-type cards
+- Preserve clinical source facts, clinician/PT restrictions, AI inference, and observed exercise response as distinct evidence classes
+- Support connected AI and a provider-agnostic manual AI consultation fallback
+- Reconcile the complete package against the Constitution, living documentation, machine-readable governance, and regression tests before release
+
+### Implementation summary
+- Complete reconstructed v0.45.1 package with portable runtime architecture
+- Top-level Log plus non-mutating Fitness exploration/planning/training workflow
+- Editable adaptive workout proposals transferred into active workout entry
+- Live adapt-remaining-workout planning using saved work, order, pain/RPE, fatigue, and clinical constraints
+- Remembered equipment/location profiles for Planet Fitness and home environments
+- Movement-specific verified two-frame schematic PT guides for all included rehab entries
+- Generic PDF/image intake with embedded-text-first PDF extraction, OCR fallback, source hash/provenance, preview, AI/manual extraction, and review-before-save
+- DEXA structured extraction path inside generic document intake
+- Illness/injury/context interval entry with ongoing and approximate dates
+- Medication reconciliation surface with alias grouping, status, schedule, and adherence mode
+- Staged calendar connection/creation consent and per-category ask/always/never privacy preferences
+- Single Dashboard Insights surface and Fitness-specific pattern filtering
+- Canonical exercise variation histories and charts retained
+- Manual and connected-AI clinical/workout consultation retained
+
+### Verification boundary
+- Package-local regression/governance/syntax/media checks must pass before packaging.
+- Physical-device and live-provider validation remain environment verification and may not be claimed without execution.

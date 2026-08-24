@@ -7,15 +7,15 @@ must(/<title>ZEKE v0\./.test(index)&&/build 2026\./.test(index),'current version
 for(const file of ['knowledge-base.js','integrity-engine.js','data-layer.js','workflow-engine.js','app.js'])must(index.includes(file),`${file} missing from runtime chain`);
 must(index.indexOf('knowledge-base.js')<index.indexOf('app.js')&&index.indexOf('integrity-engine.js')<index.indexOf('app.js'),'new modules load after app');
 const vmVersion=(version.match(/version: '([^']+)'/)||[])[1],vmBuild=(version.match(/build: '([^']+)'/)||[])[1];must(vmVersion&&vmBuild&&sw.includes(`project-zeke-v${vmVersion}-${vmBuild}`),'version/cache mismatch');
-must(app.includes('dashboard-v3')&&app.includes('dashboard-story-grid')&&app.includes('weeklyPlanHTML')&&app.includes('truthfulRecentActivityHTML'),'approved dashboard structure missing');
+must(app.includes('dashboard-v3')&&app.includes('dashboard-insights-panel')&&app.includes('weeklyPlanHTML')&&app.includes('truthfulRecentActivityHTML'),'current dashboard structure missing');
 must(app.includes('Not enough data')||app.includes('not enough'),'truthful insufficient-data language missing');
-must(app.includes('<b>ZEKE</b>')&&app.includes('Talk to ZEKE')&&!app.includes('<b>Gym</b>'),'mobile center action must prioritize unified ZEKE input, not a separate Gym mode');
+must(app.includes('Talk to ZEKE')&&!app.includes('<b>Gym</b>')&&app.includes('id="mobileLogButton"'),'mobile navigation must retain unified ZEKE input, no Gym mode, and explicit top-level Log');
 must(app.includes('openKnowledgeGuide')&&app.includes('Mind-muscle / targeting cues')&&app.includes('Verified movement image not yet available'),'knowledge guide or truthful media fallback missing');
 must(app.includes('More gym workouts')&&app.includes('More home workouts')&&app.includes('It will not assign days unless you choose them'),'lightweight weekly planning contract missing');
 must(app.includes("distance_mi:{label:'Distance (mi)'")&&app.includes("steps:{label:'Steps'")&&app.includes("average_hr:{label:'Average HR'")&&app.includes('function activitySchema(name,profile)'),'adaptive activity-specific fields missing');
 must(data.includes('eventWriteFingerprint')&&data.includes('applyIntegrityRepairs')&&data.includes('createIntegrityBackup'),'integrity persistence foundation missing');
 must(integrity.includes('Spreadsheet legend imported as health data')&&integrity.includes('stale-discovery')&&integrity.includes('answered-question'),'integrity detector coverage missing');
-must(css.includes('.dashboard-story-grid')&&css.includes('.knowledge-guide-grid')&&css.includes('@media(max-width:680px)'),'responsive v0.40 styling missing');
+must(css.includes('.knowledge-guide-grid')&&css.includes('@media(max-width:680px)'),'responsive knowledge-guide styling missing');
 const context={window:{},console,Date,Intl,JSON,Math,Number,String,Object,Array,Map,Set,RegExp};context.window=context;vm.createContext(context);vm.runInContext(knowledge,context);vm.runInContext(integrity,context);
 must(context.ZekeKnowledgeBase.count>=100,'knowledge catalog is too small');
 must(context.ZekeKnowledgeBase.routines.length>=10,'built-in routine catalog is too small');

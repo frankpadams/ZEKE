@@ -27,7 +27,7 @@ def runtime(rel, storage_shim=True):
         text=re.sub(r'\blocalStorage\b','window.__ZEKE_LS',text)
         text=re.sub(r'\bsessionStorage\b','window.__ZEKE_SS',text)
     return f'<script>{text}</script>'
-html='<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'+shim+f'<style>{css}</style>'+seed+runtime('xlsx-bundle.js',False)+runtime('version.js')+runtime('assets/data-layer.js')+runtime('assets/parser.js')+runtime('assets/ai-router.js')+runtime('assets/workflow-engine.js')+'</head><body><div id="root"></div>'+runtime('assets/app.js')+'</body></html>'
+html='<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">'+shim+f'<style>{css}</style>'+seed+runtime('xlsx-bundle.js',False)+runtime('version.js')+runtime('assets/data-layer.js')+runtime('assets/parser.js')+runtime('assets/ai-router.js')+runtime('assets/workflow-engine.js')+runtime('assets/exercise-guides.js')+runtime('assets/knowledge-base.js')+runtime('assets/integrity-engine.js')+runtime('assets/longitudinal-schema.js')+runtime('assets/ingestion-engine.js')+runtime('assets/document-intake.js')+runtime('assets/calendar-privacy.js')+runtime('assets/training-intelligence.js')+'</head><body><div id="root"></div>'+runtime('assets/app.js')+'</body></html>'
 
 with tempfile.TemporaryDirectory() as td, sync_playwright() as p:
     browser=p.chromium.launch(executable_path='/usr/bin/chromium',headless=True,args=['--no-sandbox','--disable-dev-shm-usage','--disable-gpu'])

@@ -1,0 +1,150 @@
+/* ZEKE v0.44.1 — mobile mockup fidelity polish */
+@media(max-width:760px){
+:root{
+  --z-navy:#06233d;--z-navy2:#0a4564;--z-teal:#0b8da2;--z-teal2:#087487;
+  --z-bg:#f4f8fb;--z-card:#fff;--z-ink:#14283d;--z-muted:#718092;--z-line:#dce6ed;
+  --z-nav:74px;--z-safe:env(safe-area-inset-bottom);
+}
+
+/* Make the drawer definitely readable on white, regardless of inherited desktop/dark rules. */
+.sidebar,.sidebar *{opacity:1!important;filter:none!important}
+.sidebar{background:#fff!important;color:#17324a!important}
+.sidebar .nav-item{color:#29465f!important;font-weight:760!important}
+.sidebar .nav-item span{color:#2a90aa!important}
+.sidebar .nav-item.active{color:#0a6779!important;background:linear-gradient(90deg,#dff3f4,#eef8f8)!important;border-left:4px solid #20a1b2!important}
+.sidebar .questions-for-you-card{background:#eaf7f7!important;color:#20465c!important;border-color:#cce7e8!important}
+.sidebar .questions-for-you-card strong{color:#17384f!important}
+.sidebar .questions-for-you-card small,.sidebar .privacy-note{color:#647f94!important}
+.sidebar .build-label{color:#59758e!important;font-weight:700!important}
+
+/* Exercise drill-in: stop looking like a desktop table card pasted into the page. */
+.fitness-progress-card.is-expanded{
+  padding:76px 14px calc(var(--z-nav) + 24px + var(--z-safe))!important;
+  background:var(--z-bg)!important;
+}
+.fitness-progress-card.is-expanded:before{
+  content:"Overview   History   Insights"!important;
+  height:68px!important;background:linear-gradient(118deg,var(--z-navy),#073a58)!important;
+  box-shadow:0 1px 0 rgba(255,255,255,.08)!important
+}
+.fitness-progress-card.is-expanded .fitness-card-head{
+  padding:14px!important;border-radius:16px!important
+}
+.fitness-progress-card.is-expanded .fitness-card-head strong{font-size:22px!important}
+.fitness-progress-card.is-expanded .activity-chart-block{
+  padding:14px!important;border-radius:16px!important
+}
+.fitness-progress-card.is-expanded .fitness-facts{
+  padding:10px!important;border-radius:14px!important
+}
+.fitness-progress-card.is-expanded .activity-expanded-detail{
+  padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important
+}
+
+/* History area — mockup list rows with obvious touch affordance. */
+.activity-expanded-detail .activity-detail-heading{
+  display:flex!important;align-items:center!important;justify-content:space-between!important;
+  padding:4px 2px 8px!important
+}
+.activity-expanded-detail .activity-detail-heading h3{
+  margin:0!important;font-size:21px!important;letter-spacing:-.025em!important
+}
+.activity-expanded-detail .activity-detail-heading:after{
+  content:"Tap a session for details"!important;font-size:10px!important;color:#7b8b9c!important;font-weight:700!important
+}
+.activity-expanded-detail .table-wrap{overflow:visible!important}
+.activity-expanded-detail table,.activity-expanded-detail tbody{display:block!important;width:100%!important}
+.activity-expanded-detail thead{display:none!important}
+.activity-expanded-detail tr{
+  position:relative!important;display:grid!important;
+  grid-template-columns:74px minmax(0,1fr) auto!important;
+  gap:3px 10px!important;align-items:center!important;
+  padding:12px 38px 12px 12px!important;margin:0 0 7px!important;
+  border:1px solid var(--z-line)!important;border-radius:14px!important;background:#fff!important;
+  box-shadow:0 3px 11px rgba(17,48,70,.035)!important
+}
+.activity-expanded-detail tr:after{
+  content:"›";position:absolute;right:13px;top:50%;transform:translateY(-50%);
+  color:#8da0af;font-size:24px;font-weight:400
+}
+.activity-expanded-detail td{
+  border:0!important;padding:0!important;min-width:0!important;font-size:13px!important;color:var(--z-ink)!important
+}
+.activity-expanded-detail td:first-child{font-weight:800!important;color:#435b70!important}
+.activity-expanded-detail td:nth-child(2){font-weight:750!important}
+.activity-expanded-detail td:nth-child(3){font-weight:750!important}
+.activity-expanded-detail td:nth-child(n+4){grid-column:2/4!important;color:#748496!important;font-size:11px!important}
+
+/* Coach becomes a concise note, not half the screen. */
+.activity-expanded-detail .coach-rec{
+  margin:10px 0!important;padding:13px 14px!important;border:1px solid #cfe5e5!important;
+  border-radius:15px!important;background:linear-gradient(145deg,#eef9f8,#f8fbfc)!important
+}
+.activity-expanded-detail .coach-rec strong{font-size:14px!important}
+.activity-expanded-detail .coach-rec p{
+  margin:5px 0 0!important;font-size:13px!important;line-height:1.42!important;
+  display:-webkit-box!important;-webkit-line-clamp:3!important;-webkit-box-orient:vertical!important;overflow:hidden!important
+}
+.activity-expanded-detail .coach-rec details:not([open])>*:not(summary){display:none!important}
+.activity-expanded-detail .coach-rec details summary{font-size:12px!important;color:#0e7286!important;font-weight:800!important}
+
+/* Recommendation preference gets demoted; it should not visually compete with history. */
+.activity-expanded-detail .recommendation-preference,
+.activity-expanded-detail [class*="recommendation-preference"]{
+  margin-top:9px!important;padding:11px!important;border-radius:14px!important
+}
+
+/* Exercise logging: recommendation is concise and "why" is collapsed. */
+.mobile-exercise-coach{padding:12px 14px!important;margin-bottom:9px!important}
+.mobile-exercise-coach .coach-last{padding-bottom:7px!important}
+.mobile-exercise-coach .coach-suggestion{padding-top:8px!important}
+.mobile-exercise-coach .coach-suggestion strong{font-size:15px!important;line-height:1.3!important}
+.mobile-exercise-coach .coach-suggestion p{
+  font-size:12px!important;line-height:1.38!important;
+  display:-webkit-box!important;-webkit-line-clamp:2!important;-webkit-box-orient:vertical!important;overflow:hidden!important
+}
+.mobile-exercise-coach details:not([open])>*:not(summary){display:none!important}
+.mobile-exercise-coach details summary{min-height:38px!important;display:flex!important;align-items:center!important}
+
+/* Set entry: prioritize weight and reps without removing optional data. */
+.mobile-exercise-entry{padding:13px!important}
+.mobile-set-columns{font-size:9px!important}
+.mobile-exercise-set-row{
+  grid-template-columns:26px minmax(0,1fr) minmax(0,.82fr) minmax(0,.58fr) minmax(0,.58fr) 30px!important;
+  gap:5px!important;padding:8px 6px!important
+}
+.mobile-exercise-set-row input{
+  min-width:0!important;width:100%!important;height:40px!important;padding:0 4px!important;font-size:16px!important;border-radius:10px!important
+}
+.mobile-exercise-set-row .optional-set-field input{background:#f7f9fb!important;color:#546a7e!important}
+.set-remove{width:30px!important;height:40px!important}
+.mock-add-set{min-height:42px!important}
+
+/* Sticky action bar retains priority above five-tab nav. */
+.mobile-exercise-actions{
+  bottom:calc(var(--z-nav) + var(--z-safe))!important;
+  padding:9px 14px!important;grid-template-columns:.72fr 1.28fr!important;
+  background:rgba(255,255,255,.985)!important;backdrop-filter:blur(15px)!important;
+  border-top:1px solid #d8e2e9!important;box-shadow:0 -8px 22px rgba(15,40,61,.09)!important
+}
+.mobile-exercise-actions button{min-height:50px!important;font-size:15px!important}
+
+/* Health/Fitness utility rows should look like finished app rows, not grey prototype rectangles. */
+.mobile-tool-row,.mobile-quick-row,
+.mobile-health-tools button,.mobile-fitness-quickstart button,
+[class*="health-tool"] button,[class*="quick-start"] button{
+  border-radius:14px!important;border:1px solid var(--z-line)!important;background:#fff!important;
+  box-shadow:0 3px 11px rgba(17,48,70,.035)!important;color:var(--z-ink)!important
+}
+
+/* Splash identity: hard guarantee visible version/build. */
+.startup-version{
+  display:block!important;visibility:visible!important;opacity:1!important;
+  color:#4f6d84!important;font-size:12px!important;font-weight:800!important;margin-top:13px!important
+}
+.startup-screen:after{
+  content:"ZEKE v0.44.1 · build 2026.08.18.1";
+  position:fixed;left:0;right:0;bottom:calc(24px + var(--z-safe));z-index:9999;
+  text-align:center;color:#526f86;font-size:11px;font-weight:800;letter-spacing:.025em;pointer-events:none
+}
+}

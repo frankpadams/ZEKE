@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
-  "current_version": "0.43.1",
-  "current_build": "2026.08.17.1",
+  "current_version": "0.45.1",
+  "current_build": "2026.08.23.4",
   "immutable_principles": [
     "user_owned_canonical_data",
     "ai_advisory_deterministic_commit",
@@ -40,7 +40,14 @@
     "calendar_scheduled_is_not_confirmed",
     "generated_reports_not_canonical_databases",
     "meta_conversation_excluded_from_health_record",
-    "package_self_describing"
+    "package_self_describing",
+    "clinical_source_restriction_ai_inference_observed_response_distinct",
+    "adaptive_training_progression_response_bounded",
+    "navigation_informational_mutation_explicit",
+    "document_ingestion_source_first_review_before_commit",
+    "calendar_connection_and_write_consent_separate",
+    "pt_media_movement_specific_truthful",
+    "adaptive_workout_order_and_response_aware"
   ],
   "supersessions": [
     {
@@ -87,13 +94,13 @@
     "live data repairs require review backup provenance and rollback",
     "runtime cache and build manifests agree"
   ],
-  "governance_revision": "2026.08.17.1",
+  "governance_revision": "2026.08.23.4",
   "rejected_forward_baselines": [
     "0.28.0",
     "0.28.1"
   ],
-  "approved_recovery_baseline": "0.27.2",
-  "current_forward_baseline": "0.43.1",
-  "release": "0.43.1",
-  "build": "2026.08.17.1"
+  "approved_recovery_baseline": "0.43.1",
+  "current_forward_baseline": "0.45.1",
+  "release": "0.45.1",
+  "build": "2026.08.23.4"
 }

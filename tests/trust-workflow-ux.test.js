@@ -13,7 +13,7 @@ assert(app.includes('openMedicationScheduleModal')&&app.includes('Save medicatio
 assert(app.includes('openRecurringActionScheduleModal')&&app.includes('Save recurring schedule'),'generic recurring-action schedule editor missing');
 assert(app.includes('async function deferQuestion')&&app.includes('moved behind newer questions'),'Later must preserve questions instead of resolving them');
 assert(app.includes('Your earlier workflow is still open:')&&app.includes('data-resume-workflow'),'restored workflow resume affordance missing');
-assert(app.includes("['xlsx','xls','json','csv','tsv'].includes(ext)"),'Talk attachment routing missing');
+for(const ext of ['xlsx','xls','json','csv','tsv','pdf','png','jpg','jpeg','webp'])assert(app.includes(`'${ext}'`)||app.includes(`\"${ext}\"`),`Talk attachment routing missing: ${ext}`);
 assert(css.includes('v0.24.0 Trust, Conversation & Workflow')&&css.includes('.workflow-status')&&css.includes('.memory-tabs'),'v0.24 styles missing');
 assert(/authoritative runtime/i.test(architecture)&&/legacy/i.test(architecture)&&/no compilation step/i.test(architecture),'architecture does not clarify static runtime and legacy assets');
 console.log(JSON.stringify({ok:true,checks:14},null,2));

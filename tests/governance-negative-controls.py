@@ -21,13 +21,13 @@ def constitution_conflict(d):
 def wrong_count(d):
     p=d/'DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json'; j=json.loads(p.read_text()); j['current_iteration']['unpacked_file_count']=1; p.write_text(json.dumps(j,indent=2))
 def broken_link(d):
-    p=d/'HANDOFF_BRIEF.md'; p.write_text(p.read_text()+'\n[broken](missing-file.md)\n')
+    p=d/'CURRENT_RELEASE_SCOPE.md'; p.write_text(p.read_text()+'\n[broken](missing-file.md)\n')
 def stale_registry_header(d):
     p=d/'DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json'; j=json.loads(p.read_text()); j['release']='0.20.5'; p.write_text(json.dumps(j,indent=2))
 def stale_project_health(d):
     p=d/'DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md'; j=json.loads((d/'DEVELOPMENT_MEMORY/PROJECT_STATE.json').read_text()); p.write_text(p.read_text().replace(f"# Project Health — v{j['current_version']}",'# Project Health — v0.20.5'))
 def contradictory_release_gate(d):
-    p=d/'DEVELOPMENT_MEMORY/RELEASE_GATE.md'; t=p.read_text(); p.write_text(t+'\n**Package verification complete.**\n')
+    p=d/'DEVELOPMENT_MEMORY/RELEASE_GATE.md'; t=p.read_text(); p.write_text(t+'\n**Pending final verification.**\n')
 def wrong_iteration_lifecycle(d):
     p=d/'DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json'; j=json.loads(p.read_text());
     for a in j['artifacts']:

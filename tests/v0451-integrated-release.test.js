@@ -1,0 +1,16 @@
+const fs=require('fs'),path=require('path');
+const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
+const app=read('assets/app.js'),ti=read('assets/training-intelligence.js'),di=read('assets/document-intake.js'),kb=read('assets/knowledge-base.js'),cal=read('assets/calendar-privacy.js'),index=read('index.html'),sw=read('sw.js'),constitution=read('ZEKE_CONSTITUTION.md');
+const must=(v,m)=>{if(!v)throw new Error(m)};
+for(const token of ['id="globalLogNav"','id="mobileLogButton"','Opening an exercise or workout never creates a record by itself','id="fitnessBuildBtn"'])must(app.includes(token),`Fitness/Log workflow missing: ${token}`);
+for(const token of ['proposedBlocks','proposedBlockItem','startProposedWorkout','adaptRemainingWorkoutBtn','adapt_remaining','workout_order','equipment_available','equipment_profiles'])must(app.includes(token)||ti.includes(token),`adaptive workout workflow missing: ${token}`);
+must(ti.includes('previously loaded muscles')||ti.includes('already loaded')||ti.includes('workout order'),'order/fatigue-aware planner instruction missing');
+for(const token of ['application/pdf','embedded PDF text','OCR','sha256','classification','confidence'])must(di.toLowerCase().includes(token.toLowerCase()),`document intake evidence missing: ${token}`);
+must(index.includes('assets/document-intake.js')&&sw.includes('assets/document-intake.js'),'document intake missing from runtime/cache');
+for(const token of ['start_date','end_date','ongoing','approximate_date','openMedicationReconciliationModal','possible_alias_duplicate','calendarCreateConsent','data-calendar-category'])must(app.includes(token),`longitudinal/reconciliation/privacy workflow missing: ${token}`);
+must(app.includes('dashboard-insights-panel')&&!app.includes('dashboard-story-grid'),'Dashboard insights were not consolidated');
+must(app.includes('FITNESS_PATTERN_METRICS')||app.includes('fitnessPattern'),'Fitness pattern filtering missing');
+for(const id of ['pt-band-internal-rotation','pt-doorway-chest-stretch','pt-no-monies','pt-pnf-d1','pt-pnf-d2','pt-cheerleaders'])must(kb.includes(`\"guide_signature\":\"${id}:movement-specific:2026-08-23\"`),`verified PT guide signature missing: ${id}`);
+must(cal.toLowerCase().includes('medication')&&cal.toLowerCase().includes('never'),'medication calendar default privacy boundary missing');
+for(const phrase of ['Navigation is informational by default','Workout recommendations remain proposals until accepted','Rehab media must depict the named movement truthfully'])must(constitution.includes(phrase),`constitutional release principle missing: ${phrase}`);
+console.log(JSON.stringify({ok:true,release:'0.45.1',checks:13},null,2));

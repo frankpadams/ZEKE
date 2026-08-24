@@ -60,7 +60,7 @@ for key,row in results.items():
     assert not row['errors'],(key,row['errors'])
     assert row['text_length']>500,(key,row['text_length'])
     assert not row['horizontal_overflow'],(key,'horizontal overflow')
-assert results['health_dashboard']['dashboard_v3'] and results['health_dashboard']['story_cards']>=3 and results['health_dashboard']['weekly_plan']
-assert results['mobile_health_dashboard']['mobile_log_label'].replace('\n',' ').strip().endswith('ZEKE')
+assert results['health_dashboard']['dashboard_v3'] and results['health_dashboard']['story_cards']==0 and results['health_dashboard']['weekly_plan']
+assert results['mobile_health_dashboard']['mobile_log_label'].replace('\n',' ').strip().endswith('Log')
 assert results['fitness']['catalog_cards']>=50 and results['fitness'].get('guide_open') and results['fitness'].get('guide_has_targeting')
 assert results['data-integrity']['repair_cards']>=4 and results['data-integrity']['has_legend'] and results['data-integrity']['has_sleep'] and results['data-integrity']['has_real_question']

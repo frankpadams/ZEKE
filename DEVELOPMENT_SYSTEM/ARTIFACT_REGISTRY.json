@@ -1,10 +1,10 @@
 {
   "schema_version": 4,
-  "release": "0.43.1",
-  "build": "2026.08.17.1",
-  "current_version": "0.43.1",
-  "current_build": "2026.08.17.1",
-  "governance_revision": "2026.08.17.1",
+  "release": "0.45.1",
+  "build": "2026.08.23.4",
+  "current_version": "0.45.1",
+  "current_build": "2026.08.23.4",
+  "governance_revision": "2026.08.23.4",
   "artifacts": [
     {
       "path": "RELEASE_NOTES.md",
@@ -18,11 +18,6 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "status": "authoritative",
-      "purpose": "living current authority"
-    },
-    {
-      "path": "CHANGELOG.md",
       "status": "authoritative",
       "purpose": "living current authority"
     },
@@ -92,22 +87,7 @@
       "purpose": "living current authority"
     },
     {
-      "path": "FEATURE_STATUS.md",
-      "status": "authoritative",
-      "purpose": "living current authority"
-    },
-    {
-      "path": "KNOWN_ISSUES.md",
-      "status": "authoritative",
-      "purpose": "living current authority"
-    },
-    {
       "path": "PACKAGE_HISTORY.json",
-      "status": "authoritative",
-      "purpose": "living current authority"
-    },
-    {
-      "path": "PROJECT_STATE.md",
       "status": "authoritative",
       "purpose": "living current authority"
     },
@@ -144,12 +124,7 @@
     {
       "path": "DOCUMENTATION_MAP.md",
       "status": "supporting",
-      "purpose": "supporting current/historical context"
-    },
-    {
-      "path": "HANDOFF_BRIEF.md",
-      "status": "supporting",
-      "purpose": "supporting current/historical context"
+      "purpose": "map of living current documentation"
     },
     {
       "path": "HISTORICAL_ARTIFACTS_NOTE.md",
@@ -157,14 +132,9 @@
       "purpose": "supporting current/historical context"
     },
     {
-      "path": "DEPLOYMENT_HISTORY.md",
-      "status": "supporting",
-      "purpose": "supporting current/historical context"
-    },
-    {
       "path": "DEVELOPMENT_REVIEW_HISTORY.md",
       "status": "supporting",
-      "purpose": "supporting current/historical context"
+      "purpose": "consolidated historical implementation/status/handoff/known-issue/deployment context"
     },
     {
       "path": "LEGACY_ARTIFACT_HISTORY.json",
@@ -244,16 +214,21 @@
     {
       "path": "CURRENT_RELEASE_SCOPE.md",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "current implementation scope, status, and safety boundary"
     },
     {
       "path": "DESIGN_AUTHORITY.md",
       "status": "authoritative",
-      "purpose": "living current authority"
+      "purpose": "approved visual and mobile design authority"
+    },
+    {
+      "path": "BUILD_MANIFEST.json",
+      "status": "generated",
+      "purpose": "current build file-by-file SHA-256/provenance manifest; excludes itself to avoid self-reference"
     }
   ],
   "historical_patterns": [
-    "Historical content is consolidated into CHANGELOG.md, TEST_REPORT.md, TEST_GUIDE.md, PACKAGE_HISTORY.json, DEVELOPMENT_MEMORY/ITERATION_HISTORY.md, DEVELOPMENT_MEMORY/CONTINUITY_HISTORY.md, DEVELOPMENT_REVIEW_HISTORY.md, DEPLOYMENT_HISTORY.md, and LEGACY_ARTIFACT_HISTORY.json"
+    "Historical release, test, package, deployment, and status information is consolidated into RELEASE_NOTES.md, TEST_REPORT.md, TEST_GUIDE.md, PACKAGE_HISTORY.json, DEVELOPMENT_MEMORY/ITERATION_HISTORY.md, DEVELOPMENT_MEMORY/CONTINUITY_HISTORY.md, DEVELOPMENT_REVIEW_HISTORY.md, and LEGACY_ARTIFACT_HISTORY.json."
   ],
   "superseded_entry_files": [
     "READ_THIS_FIRST.md",
@@ -276,6 +251,15 @@
     "assets/knowledge-base.js",
     "assets/integrity-engine.js",
     "assets/app.js",
-    "assets/branding/zeke-mark-provisional.png"
+    "assets/branding/zeke-mark-provisional.png",
+    "assets/longitudinal-schema.js",
+    "assets/ingestion-engine.js",
+    "assets/document-intake.js",
+    "assets/calendar-privacy.js",
+    "assets/training-intelligence.js",
+    "assets/mobile-native.css",
+    "assets/mobile-native.js",
+    "assets/mobile-polish-v0441.css",
+    "assets/mobile-polish-v0441.js"
   ]
 }

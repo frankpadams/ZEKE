@@ -1,32 +1,20 @@
-# Project Health — v0.43.1
+# Project Health — v0.45.1
 
-**Runtime build:** 2026.08.17.1  
-**Governance revision:** 2026.08.17.1
+**Runtime/package build:** 2026.08.23.4  
+**Governance revision:** 2026.08.23.4
 
-## Current position
+## Current state
+- Current package: v0.45.1 · build 2026.08.23.4 · Integrated Fitness + Adaptive Training.
+- Product implementation: integrated for approved package scope.
+- Governance/static reconciliation: complete subject to final package audit.
+- PT visual package-local gate: passed for all 14 included rehab entries; local schematic guides are movement-specific and clinician-directed.
+- Rendered browser checks: package-local desktop/mobile workflows pass where executed.
+- Environment verification: outstanding for owner physical-device acceptance and live connected-provider behavior.
 
-- Last confirmed user-deployed baseline remains v0.40.5.
-- Current package candidate: v0.43.1 · build 2026.08.17.1 · Mobile Professional Polish.
-- Package-local audit, governance, JavaScript, and rendered mobile/workflow checks are passing.
-- Environment verification outstanding: live Google Drive/cross-device behavior and physical-device acceptance still require the user environment.
-
-## Implemented in RC2
-
-- Approved mobile `+ Log Exercise` architecture remains authoritative; no separate Gym Mode.
-- Canonical exercises preserve variation-specific histories and shared-axis variation charts.
-- Medication schedules now support reconstructable dated occurrence histories with assumed-vs-confirmed provenance and retroactive correction.
-- Direct medication-history questions can be answered from longitudinal occurrences while unrelated pending write workflows remain resumable.
-- Meta/product feedback is excluded from health-event creation.
-- Mobile calendar review can scan the prior year, triage potential health relevance, dedupe, and ask for explicit confirmation before backfill.
-- Health Reports & Export generates current workbook/JSON output from canonical data; the legacy connected workbook is migration/reconciliation only.
-- AI provider credentials are synced through connected workspace configuration so they can follow the user across devices; legacy local-only keys are migrated and cleared.
-- Current release scope and design authority are package-local so a new team can continue without prior chat history.
-
-## Remaining blockers
-
-- PT visual audit remains blocked on six exact movement guides: Band Internal Rotation, Doorway Chest Stretch, D1, D2, No Monies, and Cheerleaders.
-- Physical-phone visual acceptance against `DESIGN_AUTHORITY.md` remains outstanding.
-- Live Drive write/readback, historical medication reconstruction against real data, retrospective calendar behavior, and cross-device credential continuity require deployed-environment verification.
-- The alpha connected-workspace credential model relies on Drive/OAuth confidentiality and does not yet add a separate ZEKE-managed end-to-end encryption layer.
-
-- RC2.1 package-local JS suite: 26/26 passed; project audit 0/0; phone rendered smoke passed. Environment gates remain open.
+## Integrity boundaries
+- AI is advisory and replaceable; user-owned canonical data remains authoritative.
+- Clinical facts, explicit clinician/PT restrictions, AI inferences, and observed exercise response remain distinct and provenance-bearing.
+- No blank symptom/pain field is interpreted as absence of symptoms.
+- Navigation is informational by default; mutation requires explicit user action.
+- Mobile presentation changes may not create a competing data model or remove desktop capability.
+- Release claims may not exceed checks actually performed.
