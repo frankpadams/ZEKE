@@ -1,6 +1,6 @@
 # ZEKE Consolidated Development Review History
 
-## v0.46.0 · build 2026.08.24.1 · governance 2026.08.24.2 — continuity reconciliation review
+## v0.46.0 · build 2026.08.24.2 · governance 2026.08.24.3 — continuity reconciliation review
 
 A post-build review found that runtime and feature documentation had advanced to v0.46.0, while several standing current authorities still carried earlier release identities or lacked the new UX/anatomy decisions. This was a governance defect, not a new runtime feature implementation.
 

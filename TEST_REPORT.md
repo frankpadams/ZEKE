@@ -1,14 +1,14 @@
 # ZEKE Current Test Report — v0.46.0
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.1 · governance 2026.08.24.2
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.2 · governance 2026.08.24.3
 
-**Build:** 2026.08.24.1  
+**Build:** 2026.08.24.2  
 **Package-local status:** release-gate checks passed before final ZIP generation.  
 **Environment status:** outstanding where noted below.
 
 ## Continuity reconciliation verification — governance 2026.08.24.2
 
-The post-package continuity audit identified stale standing authority documents that the original project audit did not detect. Governance revision 2026.08.24.2 re-read/reconciled the entire registered authoritative set and strengthened `tools/project_audit.py` to require current review stamps across that set plus standing supporting-continuity documents.
+The post-package continuity audit identified stale standing authority documents that the original project audit did not detect. Governance revision 2026.08.24.3 re-read/reconciled the entire registered authoritative set and strengthened `tools/project_audit.py` to require current review stamps across that set plus standing supporting-continuity documents.
 
 Verification for this reconciliation includes:
 - JSON parse validation for Project State, Development Gate, Governance Rules, Artifact Registry, Package History, and Release Checksums;
@@ -19,13 +19,13 @@ Verification for this reconciliation includes:
 - active JavaScript syntax/regression suites to confirm the documentation reconciliation did not damage runtime files;
 - reopened ZIP integrity/path/permission/hash comparison before final delivery.
 
-Runtime behavior remains build 2026.08.24.1; this continuity revision does not promote unrun environment behavior to Verified.
+Runtime behavior remains build 2026.08.24.2; this continuity revision does not promote unrun environment behavior to Verified.
 
 
 ## Passed package-local checks
 
 - `python tools/project_audit.py`: **0 errors, 0 warnings** after governance/current-document reconciliation.
-- `python tests/governance-negative-controls.py`: **11/11 negative controls passed** (including stale full-authority review stamp and stale supporting-continuity governance state).
+- `python tests/governance-negative-controls.py`: **12/12 negative controls passed** (including stale full-authority review stamp and stale supporting-continuity governance state).
 - Active JavaScript syntax: **all `.js` files parsed successfully with `node --check`**.
 - Package-local JavaScript regression suite: **all executable tests returned success**, including v0.46.0 integrated release, Fitness/Log workflow, canonical exercise/variation behavior, sleep, medication, workflow, security/editing, form-guide, ingestion, workbook transaction, and historical protected-contract tests.
 - PT visual release gate: **14 rehab entries passed; 6 newly local guide pairs verified movement-specific**. The six local pairs were also visually reviewed as named-movement schematics; they are explicitly clinician-directed rather than pretending to be individualized PT instruction.

@@ -76,6 +76,10 @@ govrev=str(rules.get('governance_revision',''))
 if not govrev: errors.append('governance rules lack governance_revision')
 for rel in sorted(reg_auth):
     a=registered.get(rel,{})
+    # If an authority carries a current-review header, that header itself must agree with the governance source of truth.
+    head='\n'.join(text(rel).splitlines()[:12])
+    m=re.search(r'Current authority review:.*?governance\s+([0-9.]+)', head, re.I)
+    if m and m.group(1)!=govrev: errors.append(f'authoritative artifact current-review header governance stale: {rel}')
     if str(a.get('reviewed_release',''))!=ver: errors.append(f'authoritative artifact not reviewed for current release: {rel}')
     if str(a.get('reviewed_build',''))!=build: errors.append(f'authoritative artifact review build stale: {rel}')
     if str(a.get('reviewed_governance_revision',''))!=govrev: errors.append(f'authoritative artifact governance review stale: {rel}')

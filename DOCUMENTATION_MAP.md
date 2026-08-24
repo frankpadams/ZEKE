@@ -1,6 +1,6 @@
 # ZEKE Documentation Map
 
-**Reviewed:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.1 · governance 2026.08.24.2
+**Reviewed:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.2 · governance 2026.08.24.3
 
 ## Authority chain
 1. `00_AI_START_HERE.md`
@@ -13,7 +13,7 @@
 8. `DEVELOPMENT_MEMORY/RELEASE_GATE.md`, `TEST_REPORT.md`, `TEST_GUIDE.md`
 9. `RELEASE_NOTES.md`, `ROADMAP.md`, `PACKAGE_HISTORY.json`
 
-The full authoritative set is machine-registered in `DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json`. Governance revision 2026.08.24.2 records a current-release review stamp for every authoritative entry.
+The full authoritative set is machine-registered in `DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json`. Governance revision 2026.08.24.3 records a current-release review stamp for every authoritative entry.
 
 ## Supporting current continuity
 `README.md`, `README_DEPLOY.md`, `DOCUMENTATION_MAP.md`, `DEVELOPMENT_REVIEW_HISTORY.md`, `DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md`, `DEVELOPMENT_SYSTEM/PROJECT_IDENTITY.md`, `DEVELOPMENT_SYSTEM/STATUS_LANGUAGE.md`, `DEVELOPMENT_SYSTEM/RUNTIME_DIAGNOSTICS.md`, `DEVELOPMENT_SYSTEM/COMPREHENSION_CHECKPOINT.md`, and `USABILITY_TESTING.md` support the current handoff. Supporting documents do not override higher authority.

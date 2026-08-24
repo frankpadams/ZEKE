@@ -1,17 +1,17 @@
 {
   "schema_version": 2,
   "release": "0.46.0",
-  "build": "2026.08.24.1",
-  "governance_revision": "2026.08.24.2",
+  "build": "2026.08.24.2",
+  "governance_revision": "2026.08.24.3",
   "hash_algorithm": "sha256",
   "scope": "All package files except BUILD_MANIFEST.json itself to avoid self-referential hashing. Final ZIP hash is published externally.",
   "file_count_hashed": 142,
   "files": [
     {
       "path": "00_AI_START_HERE.md",
-      "sha256": "7ec4bb5da2afc6afb0a54109fb18cf3500a08932b872a69c53aa5cc8c6ae119d",
+      "sha256": "e8288f4859ed83bdc20e666d2073e3a8dbd952135db56393c36ee2218acf6160",
       "bytes": 4611,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:42:17+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
@@ -51,72 +51,72 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "sha256": "61e0442893dc455e7d83292c3153c3940cc7a023bffbd04d41b8a33000f175f8",
+      "sha256": "9d54eb6f845cb272d5a069ca29a59d5b61096d248fd2eed5300a95ca1d7eb1d9",
       "bytes": 11301,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:42:17+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "CURRENT_RELEASE_SCOPE.md",
-      "sha256": "18635159f24fde556ceaf1965328ea9b7e7136fba5b7ac835c323affcfc5e8e3",
+      "sha256": "704027657670313d7a19834b962b857a6815bd9562088f279b1baf000cf3ff87",
       "bytes": 6183,
-      "mtime": "2026-08-24T17:32:16+0000",
+      "mtime": "2026-08-24T18:43:12+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "DECISION_LOG.md",
-      "sha256": "7ec4372e355e955d4f35b6d107a8f954180c4837a0931503e418a1996d7b52e7",
+      "sha256": "ac9f0d9545ee185d797612dbbff74287264836135d47d7f3c75cfa7dadff8f68",
       "bytes": 9093,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "DESIGN_AUTHORITY.md",
-      "sha256": "8a3df4bca496582da8d4a28b212c60d62620aad265d3bf568d09f0630e9e4e7d",
+      "sha256": "cb97f96851b0a15ec9544473ed4b101cfee8b5fe9ede693a15c8ac294febd04e",
       "bytes": 9393,
-      "mtime": "2026-08-24T17:32:16+0000",
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "DEVELOPMENT_MEMORY/BACKLOG.md",
-      "sha256": "3faf8cad46b67f94b42d01bfa07f8c982507bb8a8c4f5886c4c1225402b7899b",
+      "sha256": "932c71f8fae37f1312be4dae7d54191adef9f9b8f5ea92d8513823c39bfb75d0",
       "bytes": 12480,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "DEVELOPMENT_MEMORY/CONTINUITY_HISTORY.md",
-      "sha256": "1db6ecde332d7a8073d9f85987ec34f9e83e5b93b8147fcb5c0dd2ac3d99279c",
+      "sha256": "4e40b7aca2628f556668d197e2118da42720d19ea9c2ce4f59f3ec99432fc65a",
       "bytes": 18579,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DECISION_LOG.md",
-      "sha256": "1102c105c2c45ef4c1480ea2a7cc13c7ccfde4ee445d170aeae0a9a0de3f5cf3",
+      "sha256": "0ac83de6b3c9a04d61eb30f25bdcd21375ded16c01a6656bf74d3a7fccb168af",
       "bytes": 18262,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
-      "sha256": "2de8e07a2f82191052831a0c42b109bf1e31cf256dddf71e1da2cd8107713e8e",
+      "sha256": "126c6fd4d1761c8d4824ac3aa7d25b8d0b421f44eed1421ba5fe76dbe318cc5e",
       "bytes": 21794,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json",
-      "sha256": "4bc31b4e12202bb5ddc87b301858965a336b38a5b442bb22d1c8c97f4d990904",
-      "bytes": 3949,
-      "mtime": "2026-08-24T17:34:55+0000",
+      "sha256": "5685c357628b010dc2f4a7b913e2b0630aab28773b197cd426d60090da466420",
+      "bytes": 3943,
+      "mtime": "2026-08-24T18:42:17+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
-      "sha256": "d98066e4b6800a829db633f00eb3f1de48c7122a82445a28079497cb0844afa6",
+      "sha256": "55b8f0a815912fe16b9dd15a63031ebafb1f81991e1dd1e4aa899cda68c20a89",
       "bytes": 4023,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
@@ -135,16 +135,16 @@
     },
     {
       "path": "DEVELOPMENT_MEMORY/ITERATION_HISTORY.md",
-      "sha256": "66e6685258598d15f01ed751f49b0d982ca30617e06ded2ed65ea0e564c8c396",
+      "sha256": "811d74fa82ebc583c31f77dedfeaed91c054c97082ced935f07a4c2a64211041",
       "bytes": 73181,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "DEVELOPMENT_MEMORY/PROJECT_STATE.json",
-      "sha256": "a18c8a3bef434d49429095553d6350bea7d17fac115a047cda1cdc0bd0791a06",
-      "bytes": 6396,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "sha256": "c9c3d067b2990507a0c632b40fe5ef8cffd0b2df04913932bfe218e00e19e60b",
+      "bytes": 6390,
+      "mtime": "2026-08-24T18:42:17+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
@@ -156,65 +156,65 @@
     },
     {
       "path": "DEVELOPMENT_MEMORY/RELEASE_CHECKSUMS.json",
-      "sha256": "283fea4c43c045ce30c13411b6f6af5dea44c5cc217dca4dbc95e325c50df348",
+      "sha256": "479ceb9ec389b384c6ca6fe008bbb3b8b5e731ee447533e5def3353ec9a68355",
       "bytes": 15326,
-      "mtime": "2026-08-24T17:35:12+0000",
+      "mtime": "2026-08-24T18:42:17+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
-      "sha256": "2309cd28634689755f53152325a941be7905235099f179489f8d240e9cc5ca2e",
+      "sha256": "07f990834cd3e0348baa50dff3fffbc94a813e57ba305009b93236499dcae367",
       "bytes": 2130,
-      "mtime": "2026-08-24T17:34:55+0000",
+      "mtime": "2026-08-24T18:43:12+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "DEVELOPMENT_REVIEW_HISTORY.md",
-      "sha256": "07033e81b692a97121d230f2efd19842025b52123fb7c17f7b6f4e7fd2543daa",
+      "sha256": "f59e5b03b358b9a407c2810ec3ac7ab938df9e7abc30d7ef3bc53435a7fa222c",
       "bytes": 33808,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
-      "sha256": "098e5907ecfe9ec98b1101f58865d17e9d32bd60966d65dc377ba2c29a5c56f7",
+      "sha256": "a50198175e89a50fc4cd90d9f5670e44ead72daf78c05acc9774416aede52b45",
       "bytes": 12236,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:42:17+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md",
-      "sha256": "041323d3e8a60e8d3fa7ee52b7906e8be4b7aad7938d616e4e5195c272eb2319",
+      "sha256": "e08c35c3cfc7e9088d83c85d6f570f1f61e2bef3d2651cfd7a1563607a6444cb",
       "bytes": 2541,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/COMPREHENSION_CHECKPOINT.md",
-      "sha256": "abab15255e3bd7895916497d0d8e3cb779787c532777edcfaccbb937c8efaae2",
+      "sha256": "4c4ef68f5e2e154e2743e181cac9e2fe311bc4f2d71f190927de6c92c75d8197",
       "bytes": 1983,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
-      "sha256": "8b148ab43fcd7ab2857800d8ef4b94a579f25f4c46166ab5646b5b587f0f9be6",
+      "sha256": "0607763aec45c7d9513652ad50ad6cead6ef15730402de67f66fea8681b940f1",
       "bytes": 5379,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:42:17+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md",
-      "sha256": "e07aa5c098bf9aa7f9e079b98ce9e0bbf365c952c46fd1195f164dd4cd8113e4",
+      "sha256": "09efbe002b83d592ef02985ea3214d96cab7a381fd6a7e00a56057073f725a3c",
       "bytes": 1691,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:42:17+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/PROJECT_IDENTITY.md",
-      "sha256": "8b2747ec3bdb2af6b63f0046942bf2514f1e63713f01c88ce8900f9404450cd6",
+      "sha256": "3175864a8e6922b3099ac86aef0e67b8ea760dcd105c4c50edbdd2e8ec159220",
       "bytes": 2343,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:43:12+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
@@ -226,23 +226,23 @@
     },
     {
       "path": "DEVELOPMENT_SYSTEM/RUNTIME_DIAGNOSTICS.md",
-      "sha256": "1b7c57e7a6a41ffa43d6f90f570a3426635ffef32380d968abbb2574a5d00346",
+      "sha256": "03691f340bad08979f28678eddebb862b512c30930ff9ec742631955ac00c441",
       "bytes": 3227,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/STATUS_LANGUAGE.md",
-      "sha256": "afce466838333f6eda1b2a71a3f6dedc482af46897a914692a97998fadff7408",
+      "sha256": "c8f0a392557108a6c593a74de295cb297df7bd6217b54cec51c21d34a3278383",
       "bytes": 2554,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:42:17+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "DOCUMENTATION_MAP.md",
-      "sha256": "c37d45c34c205e1a80c0312cee039ee3b1783e3f397af29e4fd7a041ae4f4b47",
+      "sha256": "9b265f73397242e537547ba81e40719a69d9458742e82eaf75fa457cb8b4e18f",
       "bytes": 1812,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:43:12+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
@@ -282,23 +282,23 @@
     },
     {
       "path": "PACKAGE_HISTORY.json",
-      "sha256": "5a8f8663bf17f3c67d1699f5cf0a798893f6c925140a1fb5f5cc9ad86e673c6b",
-      "bytes": 1215201,
-      "mtime": "2026-08-24T17:34:55+0000",
+      "sha256": "ac9ca4718dc1e81dd5f5d737891f6a9ab97ebefe32f30bd2e3db64262a100211",
+      "bytes": 1215185,
+      "mtime": "2026-08-24T18:42:17+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "README.md",
-      "sha256": "cdbaf27656c0d1f14a636c08671daaa2407c92995aa55a1ee14486c921d39975",
+      "sha256": "6ca78d3d74c766b391189f6f9f18790425e4468b52163a896ab680dce497a00a",
       "bytes": 1816,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:43:12+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "README_DEPLOY.md",
-      "sha256": "38eb0d5d524ee4ceb4adb967af58c67d57acf0d2399f49fbf1d3eea5420e6fc6",
+      "sha256": "d2657fb3a8c17d5b7ed7db6bd5de5c7e7dfbf0b502f1ed5c536d07e4cb0b1db3",
       "bytes": 1382,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:43:12+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
@@ -310,16 +310,16 @@
     },
     {
       "path": "RELEASE_NOTES.md",
-      "sha256": "e0da0d7014f99235bec1befab67b8af5f14f375fb59e50fe354d6daa58c81e64",
-      "bytes": 218569,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "sha256": "5a0d75399aa05cedb307b750d54c9971a66959b7137dfca64325780f1bca0a61",
+      "bytes": 220219,
+      "mtime": "2026-08-24T18:43:12+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "ROADMAP.md",
-      "sha256": "dac5e1b10c024c68bf9059d3287ae29507275e94bc8e1c1c7829a69ef687ade1",
+      "sha256": "23c179a5b6b4d21a87fafce6978cb442c12fca713483e52aed5e64d6de3a0ffe",
       "bytes": 1978,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
@@ -331,16 +331,16 @@
     },
     {
       "path": "TEST_GUIDE.md",
-      "sha256": "912a880a10f2d243e778b694156d11383a5dc2d755331e5a096c5b93214f9bd4",
+      "sha256": "9945ea88ca07fb21e47657b043a047d54c6bc3c587d347e84255933f9db1093f",
       "bytes": 9013,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "TEST_REPORT.md",
-      "sha256": "a3e8c1544a3ab563923c95144cd6bd4e98239bc9b2541353f59e5a87b1e521ec",
+      "sha256": "88b6b666dbcfb4d9acc4af44b72f665470096d98877671c413d98d4ef17d8b02",
       "bytes": 4234,
-      "mtime": "2026-08-24T17:34:55+0000",
+      "mtime": "2026-08-24T18:43:12+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
@@ -352,23 +352,23 @@
     },
     {
       "path": "USABILITY_TESTING.md",
-      "sha256": "6ee50cfea5278c3883802e3eb01523ea63542d6516662849aa2008db9b5cee5b",
+      "sha256": "c25608d454d7299c92c16f483dab3a1484460b4a88980a87583bbe7a220dd2cf",
       "bytes": 1844,
-      "mtime": "2026-08-24T17:31:44+0000",
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "VERSION.txt",
-      "sha256": "1d84a0dd40547b32fa57ab38c71ff252860cd6cee2be01e7878b47c820b2e6d1",
+      "sha256": "be6488808bf0490488016e86fa191aa016af8867f9a5bfeab2b18175f4c04c11",
       "bytes": 68,
-      "mtime": "2026-08-24T17:14:50+0000",
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "ZEKE_CONSTITUTION.md",
-      "sha256": "0347e0ff9753820d12622d5e500c1405f3b1a47d552c8f2caf5ef544d464606f",
+      "sha256": "15d3ea8ae56d368c47db13df2b54a362aee64878d9595a2015974698e24e2648",
       "bytes": 26276,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
@@ -450,16 +450,16 @@
     },
     {
       "path": "assets/anatomy-knowledge.js",
-      "sha256": "993eccec46f10e8bada8a6dbe8f526c241649379707bd6a7067933150799f33c",
+      "sha256": "c54648e851664db0a59f18c9f7d1e640594a8721b692b1a8cd69c74ccdf2efd5",
       "bytes": 3538,
-      "mtime": "2026-08-24T17:14:02+0000",
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "assets/app.js",
-      "sha256": "9d939d919f15d554c98df739f837e8b40c206ed6d7c00fe293b96d75ac52d274",
-      "bytes": 624670,
-      "mtime": "2026-08-24T17:15:34+0000",
+      "sha256": "22574115cc8fdd2604a1e58e3c54a11205c010c181c9b74842dff38d1bcce579",
+      "bytes": 624890,
+      "mtime": "2026-08-24T18:08:08+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
@@ -502,6 +502,13 @@
       "sha256": "3c38410386263bd735c57c39727f13d14958dafcb6c3fca8c7e700872b684e50",
       "bytes": 6393,
       "mtime": "2026-08-23T18:08:18+0000",
+      "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
+    },
+    {
+      "path": "assets/exercise-guides.js",
+      "sha256": "d28ae11d1ae7fd1d292b0b80afee68cf1ca63e0e9edb25b498072f29dcd53660",
+      "bytes": 35331,
+      "mtime": "2026-08-06T13:00:32+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
@@ -589,13 +596,6 @@
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
-      "path": "assets/exercise-guides.js",
-      "sha256": "d28ae11d1ae7fd1d292b0b80afee68cf1ca63e0e9edb25b498072f29dcd53660",
-      "bytes": 35331,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
-    },
-    {
       "path": "assets/ingestion-engine.js",
       "sha256": "0c7ff28e4473ea68438d475c7cba3fa035d6aa404a04cd7ea1ed5378489108b9",
       "bytes": 1858,
@@ -646,9 +646,9 @@
     },
     {
       "path": "assets/mobile-polish-v0441.js",
-      "sha256": "7593bc12e5a0d6b25cf2d7cf7ad0795b49cf0d57d18cec446580a30019d611b7",
+      "sha256": "dff4c2aa86022c56bbe744dfec06500cfd6017495f8645496373eed899f294a0",
       "bytes": 2725,
-      "mtime": "2026-08-24T17:14:50+0000",
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
@@ -660,9 +660,9 @@
     },
     {
       "path": "assets/styles.css",
-      "sha256": "089d5ac903d274c6d9d0af1a3c72c1f2eef93b12363bf71ae1c0a34ec6e52bf3",
-      "bytes": 244312,
-      "mtime": "2026-08-24T17:15:34+0000",
+      "sha256": "20a9eb3abec24deb60475eaadff862ad0c3fd80b2622ba15744739cb2e353055",
+      "bytes": 248681,
+      "mtime": "2026-08-24T18:08:08+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
@@ -688,9 +688,9 @@
     },
     {
       "path": "index.html",
-      "sha256": "1d61548fb4f556053a4d6c470f2796fced950f610e88c996e30027067313922b",
-      "bytes": 2667,
-      "mtime": "2026-08-24T17:16:22+0000",
+      "sha256": "265c904a9c62afdf4cfe9dc508110a98005dafee432c78961f17ba583c5238be",
+      "bytes": 2664,
+      "mtime": "2026-08-24T18:09:34+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
@@ -709,9 +709,9 @@
     },
     {
       "path": "sw.js",
-      "sha256": "4d9e304b7eb71495c1070f86c44357e158d330bbb68aa9c6ee2902f52b9f4f3c",
+      "sha256": "3bae997f612aba3502b3a1a30d50c6019ce08a3387a65b0a987f68f7252945bb",
       "bytes": 1896,
-      "mtime": "2026-08-24T17:16:22+0000",
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
@@ -730,9 +730,9 @@
     },
     {
       "path": "tests/dashboard-layout-acceptance.test.js",
-      "sha256": "85efce34b43842fff499d305f4556bb9c8f0d6a6e65499a4d9e67c33c258dfe2",
-      "bytes": 1487,
-      "mtime": "2026-08-24T17:15:52+0000",
+      "sha256": "2d5c7bc08ddc05760fe4df41088481097705a463b43bb752041515748fd4d81d",
+      "bytes": 1898,
+      "mtime": "2026-08-24T18:08:54+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
@@ -751,9 +751,9 @@
     },
     {
       "path": "tests/governance-negative-controls.py",
-      "sha256": "9800c2a7c3433f11b083b41d86d2c1f1efa3987abb71fc4378f83c22d15d5355",
-      "bytes": 3349,
-      "mtime": "2026-08-24T17:32:26+0000",
+      "sha256": "b7df9ddd5d9d98944a9c7138003ce42f7467bff1dced7a1cef213156db87533e",
+      "bytes": 3585,
+      "mtime": "2026-08-24T18:42:47+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
@@ -863,16 +863,16 @@
     },
     {
       "path": "tests/v040-major-milestone.test.js",
-      "sha256": "6b74fe06f23c1fe3fa0d0c81688815fe7bce890990fbe97fc180c19b19b6dfe5",
-      "bytes": 5102,
-      "mtime": "2026-08-24T17:16:38+0000",
+      "sha256": "0afbbdf568317a3e1008c2463227d7dce1c025371606c074b02ab7716515cfb1",
+      "bytes": 5133,
+      "mtime": "2026-08-24T18:08:58+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "tests/v040-rendered-smoke.py",
-      "sha256": "7f564946b7d4c905f9837d22cbff596f0b8e828efedc255cc53e6b867a873fd3",
-      "bytes": 8263,
-      "mtime": "2026-08-24T17:18:38+0000",
+      "sha256": "574efaf1d775929b5fea54779a60af15ed9250456aa64be67c1d3b9137211704",
+      "bytes": 8279,
+      "mtime": "2026-08-24T18:07:18+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
@@ -926,9 +926,9 @@
     },
     {
       "path": "tests/v046-ux-architecture.test.js",
-      "sha256": "9e863989444e62a75cb6919ab7eede8b4e39f8271451b95c892c23e0197c74ed",
-      "bytes": 2244,
-      "mtime": "2026-08-24T17:16:38+0000",
+      "sha256": "7451173f4ac5cd027bfd45cb82bb9a27c04c81558072b088ffa4094a113bb0d4",
+      "bytes": 2368,
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
@@ -975,16 +975,16 @@
     },
     {
       "path": "tools/project_audit.py",
-      "sha256": "1f42bf24c921d3e176528c8a78b81a99a005de2fa455d0107ef69f9bcc62195d",
-      "bytes": 11678,
-      "mtime": "2026-08-24T17:31:25+0000",
+      "sha256": "5d74c82ead7a8768593319a152a81b08d65cc2fc0348ff278177dad18594321e",
+      "bytes": 12051,
+      "mtime": "2026-08-24T18:42:31+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {
       "path": "version.js",
-      "sha256": "85b88ea9788cb3e485399c3ed0020d240d98802793f0b117918a126e1c4e6e0a",
+      "sha256": "00bb008a0c283755962ab854df954fb9690810a857e6d83975f5ab27cabd4ec8",
       "bytes": 229,
-      "mtime": "2026-08-24T17:14:50+0000",
+      "mtime": "2026-08-24T18:09:22+0000",
       "provenance": "current package file; unchanged historical bytes retained where not modified, changed/new files use actual local modification time"
     },
     {

@@ -1,10 +1,10 @@
 # Project ZEKE v0.46.0
 
-**Runtime build:** 2026.08.24.1  
-**Governance revision:** 2026.08.24.2  
+**Runtime build:** 2026.08.24.2  
+**Governance revision:** 2026.08.24.3  
 **Release:** UX Architecture + Connected Anatomy
 
-ZEKE is a private, user-owned personal-management application. This package preserves the integrated longitudinal/Fitness/adaptive-training foundation and adds the v0.46.0 UX composition and connected-anatomy runtime. Governance revision 2026.08.24.2 reconciles the complete continuity/documentation chain after a post-package audit; runtime behavior remains build 2026.08.24.1.
+ZEKE is a private, user-owned personal-management application. This package preserves the integrated longitudinal/Fitness/adaptive-training foundation and adds the v0.46.0 UX composition and connected-anatomy runtime. Governance revision 2026.08.24.3 reconciles the complete continuity/documentation chain after a post-package audit; runtime behavior remains build 2026.08.24.2.
 
 ## Start here
 1. `00_AI_START_HERE.md`

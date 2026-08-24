@@ -35,10 +35,12 @@ def stale_authority_review(d):
     p.write_text(json.dumps(j,indent=2))
 def stale_supporting_continuity(d):
     p=d/'DEVELOPMENT_SYSTEM/STATUS_LANGUAGE.md'; p.write_text(p.read_text().replace('2026.08.24.2','2026.07.25.2'))
+def stale_authority_header_governance(d):
+    p=d/'DESIGN_AUTHORITY.md'; p.write_text(p.read_text().replace('governance 2026.08.24.3','governance 2026.08.24.2',1))
 def wrong_iteration_lifecycle(d):
     p=d/'DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json'; j=json.loads(p.read_text());
     for a in j['artifacts']:
         if a.get('path')=='DEVELOPMENT_MEMORY/ITERATION_HISTORY.md': a['status']='supporting'
     p.write_text(json.dumps(j,indent=2))
-for n,m in [('stale version',stale_version),('scope mismatch',scope_mismatch),('constitutional conflict',constitution_conflict),('wrong file count',wrong_count),('broken link',broken_link),('stale registry header',stale_registry_header),('stale Project Health identity',stale_project_health),('contradictory release gate',contradictory_release_gate),('wrong current iteration lifecycle',wrong_iteration_lifecycle),('stale authority review stamp',stale_authority_review),('stale supporting continuity',stale_supporting_continuity)]: run_case(n,m)
+for n,m in [('stale version',stale_version),('scope mismatch',scope_mismatch),('constitutional conflict',constitution_conflict),('wrong file count',wrong_count),('broken link',broken_link),('stale registry header',stale_registry_header),('stale Project Health identity',stale_project_health),('contradictory release gate',contradictory_release_gate),('wrong current iteration lifecycle',wrong_iteration_lifecycle),('stale authority review stamp',stale_authority_review),('stale authority header governance',stale_authority_header_governance),('stale supporting continuity',stale_supporting_continuity)]: run_case(n,m)
 print('All governance negative controls passed.')

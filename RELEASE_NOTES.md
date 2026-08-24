@@ -1,8 +1,26 @@
 # ZEKE Release Notes
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.1 · governance 2026.08.24.2
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.2 · governance 2026.08.24.3
 
-## v0.46.0 · build 2026.08.24.1 — UX Architecture + Connected Anatomy
+## v0.46.0 · build 2026.08.24.2 — UX Architecture + Connected Anatomy
+
+### Governance reconciliation — 2026.08.24.3
+
+- Reconciled the current governance identity tuple across the Constitution, Design Authority, decision/continuity authorities, project state/gate, artifact registry, release scope, test/reporting documents, README/deployment guidance, and standing continuity documents.
+- Runtime remains **v0.46.0 · build 2026.08.24.2**; governance revision **2026.08.24.3** is documentation/audit-only.
+- Strengthened `tools/project_audit.py` so an authoritative document whose visible current-review header disagrees with the governance source of truth fails the release audit.
+- Added a matching negative control; the governance negative-control suite is now **12/12**.
+
+
+### Build 2026.08.24.2 — Desktop composition structural correction
+- Replaced the height-coupled desktop Dashboard arrangement with page-owned horizontal bands and independent nested layout contexts.
+- Removed the tall side-rail composition that allowed Today/Upcoming/Data Integrity height to delay unrelated Dashboard content.
+- Dashboard Recent Activity is now a bounded summary by item count rather than a nested vertical scroll region.
+- Clean Data Integrity status no longer consumes Dashboard real estate; issues surface only when action is needed.
+- Upcoming is capped to the next three items on Dashboard and long titles/locations truncate instead of starving the column.
+- Removed the second redundant Insights surface from Dashboard.
+- Added structural acceptance coverage for the banded composition and updated rendered checks.
+- Corrected startup subtitle/fallback identity remnants so runtime identity has one current value.
 
 This release is a UX stabilization and architecture pass. It rebuilds the desktop Dashboard around user priorities, makes consequential interactions visibly responsive, improves exercise browsing and variation history, and adds a versioned anatomy knowledge layer connecting Fitness, PT, body areas, and injury context.
 
@@ -10,7 +28,7 @@ This release is a UX stabilization and architecture pass. It rebuilds the deskto
 - Re-read the complete registered authoritative continuity set after discovering that the first v0.46.0 package still contained stale current-state declarations in several standing documents.
 - Updated the Constitution, Design Authority, Architecture, scope, decision/iteration/continuity records, Project State/Identity/Health, roadmap, test guidance, README/deploy guidance, status/diagnostic metadata, and package history to the v0.46.0 UX/anatomy decisions.
 - Added full-authority current-review stamps to the Artifact Registry and strengthened `tools/project_audit.py` so a stale standing authority can no longer pass merely because a smaller identity subset agrees.
-- Runtime code remains **v0.46.0 · build 2026.08.24.1**; this is governance/documentation revision **2026.08.24.2**, not a hidden runtime feature change.
+- Runtime code remains **v0.46.0 · build 2026.08.24.2**; this is governance/documentation revision **2026.08.24.2**, not a hidden runtime feature change.
 
 ### User experience and desktop composition
 - Rebuilt the Dashboard around **what matters now, what changed, what is next, and what needs attention** rather than equal-sized feature cards.
@@ -35,7 +53,7 @@ This release is a UX stabilization and architecture pass. It rebuilds the deskto
 - Reference knowledge carries version/review metadata and remains separate from personal records.
 
 ### Identity and release safety
-- Runtime build identity is centralized at **v0.46.0 · build 2026.08.24.1** and stale v0.44 startup strings were removed from inherited mobile-polish layers.
+- Runtime build identity is centralized at **v0.46.0 · build 2026.08.24.2** and stale v0.44 startup strings were removed from inherited mobile-polish layers.
 - Package-local governance, syntax, regression, PT visual, rendered workflow, mobile rendered, and support-report checks pass. External-real-data fixture tests remain explicitly skipped when their fixture is unavailable.
 
 ### Environment checks still required

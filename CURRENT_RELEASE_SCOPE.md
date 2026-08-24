@@ -1,7 +1,7 @@
 # ZEKE v0.46.0 — Current Release Scope
 
-**Runtime build:** 2026.08.24.1  
-**Governance revision:** 2026.08.24.2  
+**Runtime build:** 2026.08.24.2  
+**Governance revision:** 2026.08.24.3  
 **Continuity review:** 2026-08-24  
 **Status:** runtime implementation package-local verified; continuity reconciled; environment verification outstanding.
 
@@ -59,9 +59,9 @@ v0.46.0 is a UX stabilization and connected-knowledge release. It preserves the 
 ZEKE is decision support, not diagnosis, prescription, contraindication, or medical clearance. Clinician/PT restrictions outrank AI suggestions. Missing pain/symptom data remains unknown. Source facts, restrictions, AI inferences, reference knowledge, and observed response retain separate provenance/evidence classes.
 
 ## Governance reconciliation in revision 2026.08.24.2
-The first v0.46.0 package correctly carried much of the runtime scope but did **not** update every standing continuity authority. Governance revision 2026.08.24.2 corrects that documentation drift, adds current-review metadata to all registered authoritative artifacts, updates the current architecture/design/decision/continuity chain, and strengthens `tools/project_audit.py` so the same class of stale-authority package cannot pass silently.
+The first v0.46.0 package correctly carried much of the runtime scope but did **not** update every standing continuity authority. Governance revision 2026.08.24.3 corrects that documentation drift, adds current-review metadata to all registered authoritative artifacts, updates the current architecture/design/decision/continuity chain, and strengthens `tools/project_audit.py` so the same class of stale-authority package cannot pass silently.
 
-This governance reconciliation does not claim new runtime features beyond build 2026.08.24.1.
+This governance reconciliation does not claim new runtime features beyond build 2026.08.24.2.
 
 ## Environment verification outstanding
 - owner physical-phone acceptance;

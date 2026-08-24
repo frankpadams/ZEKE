@@ -42,7 +42,7 @@ with sync_playwright() as p:
         text=page.locator('#root').inner_text()
         rec={'errors':errors,'text_length':len(text),'horizontal_overflow':page.evaluate('document.documentElement.scrollWidth>document.documentElement.clientWidth+1')}
         if route=='health/dashboard':
-            rec.update({'dashboard_v3':page.locator('.dashboard-v46, .dashboard-v3').count()==1,'story_cards':page.locator('.story-card').count(),'weekly_plan':page.locator('.weekly-plan-card').count()==1,'review_card':page.locator('.review-status-card').count()==1,'mobile_log_label':page.locator('#mobileLogButton').inner_text() if page.locator('#mobileLogButton').count() else ''})
+            rec.update({'dashboard_v3':page.locator('.dashboard-v47, .dashboard-v46, .dashboard-v3').count()==1,'story_cards':page.locator('.story-card').count(),'weekly_plan':page.locator('.weekly-plan-card').count()==1,'review_card':page.locator('.review-status-card').count()==1,'mobile_log_label':page.locator('#mobileLogButton').inner_text() if page.locator('#mobileLogButton').count() else ''})
         if route=='fitness':
             page.locator('#activityLibrarySelect').select_option('all');page.wait_for_timeout(180)
             rec.update({'catalog_cards':page.locator('[data-activity-name]').count(),'routines_button':page.locator('#manageRoutinesBtn').count()>=1})
