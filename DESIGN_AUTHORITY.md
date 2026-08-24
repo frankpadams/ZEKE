@@ -1,6 +1,6 @@
 # ZEKE Design Authority — Whole Product UX
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.3 · governance 2026.08.24.4  
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.4 · governance 2026.08.24.5
 **Status:** Binding visual/composition/interaction contract.
 
 This document combines the approved historic mobile references with the v0.46.0 desktop and cross-product UX decisions. A future developer should be able to reproduce the intended experience without prior chat history.

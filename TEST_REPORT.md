@@ -1,6 +1,6 @@
 # ZEKE Current Test Report — v0.46.0
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.3 · governance 2026.08.24.4
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.4 · governance 2026.08.24.5
 
 **Build:** 2026.08.24.3  
 **Package-local status:** release-gate checks passed before final ZIP generation.  
@@ -53,3 +53,7 @@ These are not counted as passes.
 - First real PDF/screenshot/DEXA extraction review in the deployed browser/network environment.
 
 Package-local tests do not substitute for these environment checks.
+
+
+## 2026-08-24 visual acceptance correction
+Build 2026.08.24.4 replaces the failed build 2026.08.24.3 desktop attempt. The approved desktop mockup is binding visual authority for geometry, density, spacing, icon language, and information hierarchy. A UI build may not be described as visually accepted without rendered geometry checks and human screenshot comparison.

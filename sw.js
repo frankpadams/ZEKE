@@ -1,7 +1,7 @@
-const CACHE_NAME = 'project-zeke-v0.46.0-2026.08.24.2';
+const CACHE_NAME = 'project-zeke-v0.46.0-2026.08.24.4';
 const RUNTIME = [
   './','./index.html','./manifest.webmanifest','./version.js','./zeke-config.js','./xlsx-bundle.js',
-  './assets/styles.css','./assets/data-layer.js','./assets/parser.js','./assets/ai-router.js',
+  './assets/styles.css','./assets/desktop-dashboard.css','./assets/data-layer.js','./assets/parser.js','./assets/ai-router.js',
   './assets/workflow-engine.js','./assets/exercise-guides.js','./assets/knowledge-base.js','./assets/anatomy-knowledge.js',
   './assets/integrity-engine.js','./assets/longitudinal-schema.js','./assets/ingestion-engine.js','./assets/document-intake.js','./assets/calendar-privacy.js','./assets/training-intelligence.js','./assets/app.js','./assets/mobile-native.js','./assets/mobile-polish-v0441.js','./assets/mobile-native.css','./assets/mobile-polish-v0441.css','./assets/branding/zeke-mark-provisional.png'
 ];

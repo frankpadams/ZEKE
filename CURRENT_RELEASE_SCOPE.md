@@ -1,7 +1,7 @@
 # ZEKE v0.46.0 — Current Release Scope
 
-**Runtime build:** 2026.08.24.3  
-**Governance revision:** 2026.08.24.3  
+**Runtime build:** 2026.08.24.4  
+**Governance revision:** 2026.08.24.5  
 **Continuity review:** 2026-08-24  
 **Status:** runtime implementation package-local verified; continuity reconciled; environment verification outstanding.
 
@@ -78,3 +78,7 @@ This governance reconciliation does not claim new runtime features beyond build 
 
 ## 2026-08-24 desktop visual-authority rebuild
 Build 2026.08.24.3 replaces the legacy desktop Dashboard presentation with the approved desktop mockup as visual authority: one shared 12-column geometry, consistent gutters and spacing tokens, compact icon-led activity and insight rows, 2×2 health sparkline tiles, bounded Next Up and Quick Actions, visual timeline/goals composition, and preserved ZEKE data/business logic. This is a presentation-layer rebuild rather than incremental margin/card patching. Governance review: 2026.08.24.4.
+
+
+## 2026-08-24 visual acceptance correction
+Build 2026.08.24.4 replaces the failed build 2026.08.24.3 desktop attempt. The approved desktop mockup is binding visual authority for geometry, density, spacing, icon language, and information hierarchy. A UI build may not be described as visually accepted without rendered geometry checks and human screenshot comparison.

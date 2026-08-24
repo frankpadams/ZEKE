@@ -641,3 +641,6 @@ See DEPLOYMENT_MANIFEST_v0.40.0.md and BUILD_MANIFEST_v0.40.0.json.
 
 
 Current continuity review: v0.46.0 · build 2026.08.24.3 · governance 2026.08.24.4.
+
+
+Current continuity identity: v0.46.0 · build 2026.08.24.4 · governance 2026.08.24.5

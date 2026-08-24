@@ -4,7 +4,7 @@
   "current_release": {
     "version": "0.46.0",
     "build": "2026.08.24.2",
-    "label": "UX Architecture + Connected Anatomy — Continuity Reconciled",
+    "label": "UX Architecture + Connected Anatomy \u2014 Continuity Reconciled",
     "status": "release_package_local_verified_continuity_reconciled_environment_outstanding",
     "publish_ready": true,
     "verification_boundary": "Runtime package-local verification complete; governance continuity reconciled; owner/live-provider environment acceptance outstanding.",
@@ -181,7 +181,7 @@
         "schema_version": 1,
         "version": "0.40.4",
         "build": "2026.08.06.4",
-        "label": "Sprint 4 · Governance & Continuity",
+        "label": "Sprint 4 \u00b7 Governance & Continuity",
         "runtime_files": [
           {
             "path": "index.html",
@@ -27956,10 +27956,10 @@
     }
   ],
   "current_version": "0.46.0",
-  "current_build": "2026.08.24.2",
-  "governance_revision": "2026.08.24.3",
+  "current_build": "2026.08.24.4",
+  "governance_revision": "2026.08.24.5",
   "release": "0.46.0",
-  "build": "2026.08.24.2",
+  "build": "2026.08.24.4",
   "history": [
     {
       "version": "0.43.1",
@@ -27971,7 +27971,7 @@
         "Variation-first workout coaching workflow",
         "Independent exact-variation chart lines with missing-load omission",
         "Responsive mobile navigation/header/card cleanup",
-        "Package-local 320–430 px workflow/overflow verification"
+        "Package-local 320\u2013430 px workflow/overflow verification"
       ]
     },
     {
@@ -27995,7 +27995,7 @@
       "build": "2026.08.24.2",
       "governance_revision": "2026.08.24.3",
       "date": "2026-08-24",
-      "label": "UX Architecture + Connected Anatomy — Continuity Reconciled",
+      "label": "UX Architecture + Connected Anatomy \u2014 Continuity Reconciled",
       "status": "release_package_local_verified_environment_outstanding",
       "notes": [
         "Desktop UX composition and visual activity cues",
@@ -28030,7 +28030,7 @@
       "version": "0.45.0",
       "build": "2026.08.23.2",
       "date": "2026-08-23",
-      "label": "Adaptive Training + Mobile-First Recovery — Governance Reconciled",
+      "label": "Adaptive Training + Mobile-First Recovery \u2014 Governance Reconciled",
       "provenance": [
         "v0.43.1 full package",
         "v0.44.1 verified mobile polish patch",
