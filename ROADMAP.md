@@ -1,14 +1,13 @@
 # ZEKE Roadmap
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.4 · governance 2026.08.24.5
+**Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6
 **Status:** Canonical current roadmap. Completed work remains in `RELEASE_NOTES.md` and `DEVELOPMENT_MEMORY/ITERATION_HISTORY.md`.
 
 ## Current acceptance boundary
-- Owner desktop acceptance of Dashboard composition, visual cues, Recent Activity scrolling/density, Questions feedback, and Talk close/expand/collapse.
-- Owner physical-phone acceptance of major mobile routes and first-load scroll behavior.
-- Live Google Drive/Calendar verification and connected-AI behavior in deployment.
-- First real PDF/screenshot/DEXA ingestion review.
-- Confirm actual deployed screens against `DESIGN_AUTHORITY.md`; package-local rendered checks are necessary but not equivalent to owner visual acceptance.
+- v0.47.0 browser-rendered desktop/mobile visual gates and functional carry-forward regressions must pass before packaging.
+- Live Google Drive/Calendar and connected-AI verification remain deployed-environment checks.
+- First real PDF/screenshot/DEXA ingestion review remains an environment/data check.
+- Continue visual-system migration only after the approved Dashboard geometry remains stable across adversarial data states.
 
 ## Near-term
 - Refine Dashboard/Health/Fitness information hierarchy from real use without adding duplicate status cards.

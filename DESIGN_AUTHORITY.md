@@ -1,9 +1,41 @@
 # ZEKE Design Authority — Whole Product UX
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.4 · governance 2026.08.24.5
+**Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6
 **Status:** Binding visual/composition/interaction contract.
 
-This document combines the approved historic mobile references with the v0.46.0 desktop and cross-product UX decisions. A future developer should be able to reproduce the intended experience without prior chat history.
+## v0.47.0 binding desktop visual reference
+
+The exact reference image is `docs/design-authority/ZEKE-desktop-dashboard-reference-2026-08-24.png`. It is not sample decoration; it defines the desired **spatial grammar** for the desktop Dashboard. Functional data remains real and may differ, but the composition, spacing rhythm, icon language, compact density, hierarchy, blue/navy identity, and repeated alignment lines must remain recognizably faithful.
+
+Required desktop Dashboard structure:
+- first row: **Today’s Status · Next Up · Quick Actions**;
+- second row: **Recent Activity · ZEKE Insights · Health at a Glance**;
+- third row: **Timeline Snapshot · Goals**;
+- compact contextual ZEKE tip/notice below when supported by real data.
+
+The visual system must use recurring column guides and uniform gutters. Recent Activity and other summaries are bounded; empty/sparse modules consume less content internally rather than exploding in height. Health at a Glance uses a compact 2×2 metric unit when four metrics exist. Icons are controlled graphical UI components with explicit boxes and may never scale to container size.
+
+**Rendered acceptance is binding.** A UI release does not pass merely because elements exist, CSS parses, or no horizontal overflow is detected. Representative browser screenshots must be inspected against this reference for alignment, spacing, density, icon size, typography, wrapping, dead space, and hierarchy.
+
+Desktop and mobile may use different purpose-built compositions while preserving the same semantics and capabilities. Desktop presentation rules must not override the proven mobile presentation layer.
+
+
+## v0.47.0 binding desktop visual reference
+
+The exact reference image is `docs/design-authority/ZEKE-desktop-dashboard-reference-2026-08-24.png`. It is not sample decoration; it defines the desired **spatial grammar** for the desktop Dashboard. Functional data remains real and may differ, but the composition, spacing rhythm, icon language, compact density, hierarchy, blue/navy identity, and repeated alignment lines must remain recognizably faithful.
+
+Required desktop Dashboard structure:
+- first row: **Today’s Status · Next Up · Quick Actions**;
+- second row: **Recent Activity · ZEKE Insights · Health at a Glance**;
+- third row: **Timeline Snapshot · Goals**;
+- compact contextual ZEKE tip/notice below when supported by real data.
+
+The visual system must use recurring column guides and uniform gutters. Recent Activity and other summaries are bounded; empty/sparse modules consume less content internally rather than exploding in height. Health at a Glance uses a compact 2×2 metric unit when four metrics exist. Icons are controlled graphical UI components with explicit boxes and may never scale to container size.
+
+**Rendered acceptance is binding.** A UI release does not pass merely because elements exist, CSS parses, or no horizontal overflow is detected. Representative browser screenshots must be inspected against this reference for alignment, spacing, density, icon size, typography, wrapping, dead space, and hierarchy.
+
+Desktop and mobile may use different purpose-built compositions while preserving the same semantics and capabilities. Desktop presentation rules must not override the proven mobile presentation layer.
+
 
 ## 1. Whole-screen composition
 
@@ -141,7 +173,3 @@ Historic reference: `Fitness Library: Bicep Curl Analytics.png` (August 11, 2026
 - Search is optional; exercise browsing must work through body/context navigation.
 - Exercise variations remain distinct series on shared axes.
 - Visible user actions visibly respond.
-
-
-## 2026-08-24 desktop visual-authority rebuild
-Build 2026.08.24.3 replaces the legacy desktop Dashboard presentation with the approved desktop mockup as visual authority: one shared 12-column geometry, consistent gutters and spacing tokens, compact icon-led activity and insight rows, 2×2 health sparkline tiles, bounded Next Up and Quick Actions, visual timeline/goals composition, and preserved ZEKE data/business logic. This is a presentation-layer rebuild rather than incremental margin/card patching. Governance review: 2026.08.24.4.

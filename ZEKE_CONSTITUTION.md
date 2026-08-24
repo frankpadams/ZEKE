@@ -1,6 +1,6 @@
 # Project Zeke Constitution
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.4 · governance 2026.08.24.5
+**Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6
 
 ## 1. User ownership
 
@@ -323,5 +323,18 @@ A canonical exercise may summarize multiple variations, but each equipment/varia
 When ZEKE recommends a workout or other meaningful action, it provides a short concrete reason up front when that reason helps the user decide. Deeper reasoning, evidence, uncertainty, and provenance remain available on demand.
 
 
-## 2026-08-24 visual acceptance correction
-Build 2026.08.24.4 replaces the failed build 2026.08.24.3 desktop attempt. The approved desktop mockup is binding visual authority for geometry, density, spacing, icon language, and information hierarchy. A UI build may not be described as visually accepted without rendered geometry checks and human screenshot comparison.
+## 46. Rendered experience is release evidence
+
+For visual/interface releases, syntax checks, DOM assertions, overflow tests, and component presence are necessary but not sufficient. A representative browser render must be inspected against the active Design Authority before a release can claim visual acceptance. An obviously broken or materially off-authority screen fails even if automated structural checks pass.
+
+## 47. Functional continuity and presentation recovery are separable
+
+ZEKE’s user-owned records, workflow semantics, and verified functional capabilities must not be discarded merely because a presentation layer fails. A recovery may replace the presentation layer while preserving verified data and behavior. Failed presentation experiments are not forward baselines unless explicitly rehabilitated and verified.
+
+## 48. Approved visual references may be binding
+
+When the user approves a specific visual reference and Design Authority incorporates it, implementation must preserve its spatial grammar, spacing rhythm, visual hierarchy, icon language, and information-density intent unless the user later reopens that decision. Real data and truthful empty states take precedence over fictional mockup content.
+
+## 49. UI graphics are bounded components
+
+Icons, SVGs, sparklines, and other microvisuals must have explicit, context-appropriate bounds. Generic presentation rules must not allow a small UI graphic to expand into page-scale content or distort layout.

@@ -1,84 +1,53 @@
-# ZEKE v0.46.0 — Current Release Scope
+# ZEKE v0.47.0 — Current Release Scope
 
-**Runtime build:** 2026.08.24.4  
-**Governance revision:** 2026.08.24.5  
-**Continuity review:** 2026-08-24  
-**Status:** runtime implementation package-local verified; continuity reconciled; environment verification outstanding.
+**Runtime build:** 2026.08.24.1  
+**Governance revision:** 2026.08.24.6  
+**Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6  
+**Status:** implementation complete; package verification in progress; live-provider environment verification outstanding.
 
 ## Release purpose
+v0.47.0 is a controlled UI recovery that **preserves functional progress**. It starts from the stable v0.45.1 recovery baseline and the reconciled v0.46.0 build 2026.08.24.2 functional donor, while excluding the failed later v0.46 presentation experiments. The approved 2026-08-24 desktop mockup is the visual authority for the Dashboard.
 
-v0.46.0 is a UX stabilization and connected-knowledge release. It preserves the v0.45.1 longitudinal/adaptive-training foundation while rebuilding the desktop composition and interaction grammar so ZEKE is easier to scan, navigate, understand, and trust.
+## Must preserve
+- Unified Talk to ZEKE; explicit close/compact/expanded behavior; no stale scroll locks.
+- Questions for You durable decisions plus immediate saving/selection/error feedback.
+- Adaptive workout proposals, accepted proposal → editable active workout, workout-order/fatigue context, and adaptation of remaining work only.
+- Browse-first exercise discovery; optional search; body-area links; injury/PT relationships; versioned anatomy/body-structure knowledge.
+- Variation histories ordered by recency with load, reps, **sets**, date, and independent shared-axis chart series; missing load remains unknown.
+- Short decision-relevant workout **Why this** first, deeper reasoning on demand.
+- Generic PDF/image document intake, embedded text before OCR, classification/confidence/source preview, DEXA support, review-before-commit.
+- Illness/injury intervals, medication reconciliation, staged Calendar privacy/consent, PT movement-specific visual guide gates, manual/connected AI paths, and provider-backed persistence boundaries.
+- Purpose-built mobile workout/health flows and the v0.45.1 mobile Save Workout protection.
 
-## Included — UX architecture
-- Purpose-driven desktop Dashboard organized around current state, meaningful change, next action, recent activity, and questions/attention rather than component categories.
-- Dashboard uses a selective Health snapshot rather than duplicating the Health page.
-- Structured Recent Activity feed with stable visual category cues; bounded desktop scrolling is permitted when it improves comprehension.
-- Cold-load/page-scroll hardening so content remains reachable and temporary scroll locks are cleaned up.
-- Talk to ZEKE explicit closed/compact/expanded behavior with obvious close control and preserved access to the rest of ZEKE.
-- Questions for You/duplicate-resolution actions provide immediate persistent selected/working feedback; Edit is separated from answer choices.
-- Repeated information, oversized empty states, and narrow narrative-card patterns are reduced.
+## Desktop visual recovery
+- `docs/design-authority/ZEKE-desktop-dashboard-reference-2026-08-24.png` is the approved visual reference incorporated by `DESIGN_AUTHORITY.md`.
+- Desktop uses one coherent dark-blue shell and a disciplined shared grid: **Today’s Status / Next Up / Quick Actions**, then **Recent Activity / ZEKE Insights / Health at a Glance**, then **Timeline Snapshot / Goals**, with a compact contextual tip.
+- External gutters, card spacing, icon boxes, typography hierarchy, and density are controlled by the page visual system, not arbitrary component margins.
+- Dashboard summaries are bounded by item count. Full histories remain in their domain pages.
+- UI icons use controlled explicit SVG boxes. Generic or unconstrained SVG sizing rules are prohibited.
+- Weekly workout planning remains available in Fitness rather than distorting Dashboard composition.
 
-## Included — Fitness and exercise navigation
-- Browse-first Exercise Library with Recent, Favorites, PT/Rehab, body-area/context pathways and optional search.
-- Exercise detail shows linked primary/secondary body areas instead of internal “canonical exercise” labeling.
-- Body-area views can connect exercises, PT/rehab, anatomy context, recent training, and known injury/symptom context.
-- Variation rows are ordered by recency and show their own latest load × reps × sets/date without redundant “Last,” “Current,” or variation-count labels.
-- Selecting a variation focuses its detail/history while retaining the parent exercise comparison context.
-- Collapsed sparklines provide glance-level trend recognition; detailed exercise charts preserve separate variation series on shared axes, omit missing load, and preserve one-point series.
+## Mobile continuity
+Desktop geometry is not forced onto phones. v0.47.0 keeps a separate proven mobile Dashboard composition and existing mobile domain flows while the new desktop presentation layer is isolated behind desktop breakpoints.
 
-## Included — connected anatomy/reference knowledge
-- Versioned reference knowledge maps relevant exercise/PT/injury concepts to muscles, joints, bones/body regions, clinically useful soft-tissue structures, laterality, and movement patterns.
-- Relationships distinguish primary, secondary, stabilizing, direct, and indirect involvement where the knowledge supports that distinction.
-- Anatomy links provide navigation/context, not automatic contraindications.
-- General reference knowledge remains separate from personal history and clinician/PT facts and carries provenance/version/review metadata with stale detection/refresh governance.
+## Verification required before packaging
+- deep authority/continuity audit and negative controls;
+- all active JavaScript syntax checks;
+- package-local functional regression suite, including v0.45.1 and v0.46 carry-forward tests;
+- Chromium renders of major desktop and mobile routes;
+- Dashboard renders at representative desktop widths and 320/375/390/430/768 mobile widths;
+- sparse/normal/dense/long-text adversarial Dashboard states;
+- explicit oversized-SVG regression check;
+- cold-load reachability and no horizontal overflow;
+- final manifest/hash verification and clean ZIP re-extraction.
 
-## Included — workout planning
-- Recommended workouts are proposals until accepted.
-- Normal planning UI leads with the user task, not internal diagnostic-state language.
-- Each meaningful recommendation may present a short decision-relevant **Why this** first, with deeper training/clinical/evidence reasoning on demand.
-- Active-workout adaptation still preserves completed work and may revise only remaining unsaved work using order/fatigue, pain/RPE, user choices, and explicit restrictions.
+## Rejected forward presentation baselines
+The v0.46.0 build 2026.08.24.3 and later failed mockup/UI experiments are retained only as failure evidence. Their presentation rules must not be merged forward.
 
-## Inherited and preserved from v0.45.1
-- Top-level Log plus non-mutating Fitness exploration/planning/training workflow.
-- Generic PDF/image intake with embedded-text-first PDF extraction, OCR fallback, source provenance/preview, and review-before-save.
-- DEXA structured extraction within generic Body Composition/document intake.
-- Illness/injury/context intervals with ongoing/approximate dates.
-- Medication reconciliation and dated occurrence semantics.
-- Staged Calendar privacy consent.
-- Movement-specific PT guide release gate.
-- Manual plus connected-AI consultation paths.
+## Environment boundary
+Live Google Drive/Calendar and connected AI-provider behavior require the authorized deployed environment. Those checks are separate from the package-local UI/functional release gate.
 
-## Binding interaction behavior
-- Navigation is informational by default; Start/Log/Save/Complete/Correct/Delete are explicit mutations.
-- Every consequential user action visibly responds and eventually ends in a truthful state.
-- All rendered content remains reachable; first-load and refreshed behavior are distinct test conditions.
-- Search is useful but not required for ordinary exercise navigation.
-- Visual category cues are stable across Dashboard, Recent Activity, Health/Fitness context, and related detail surfaces.
-
-## Safety / truth boundary
-ZEKE is decision support, not diagnosis, prescription, contraindication, or medical clearance. Clinician/PT restrictions outrank AI suggestions. Missing pain/symptom data remains unknown. Source facts, restrictions, AI inferences, reference knowledge, and observed response retain separate provenance/evidence classes.
-
-## Governance reconciliation in revision 2026.08.24.3
-The first v0.46.0 package correctly carried much of the runtime scope but did **not** update every standing continuity authority. Governance revision 2026.08.24.3 corrects that documentation drift, adds current-review metadata to all registered authoritative artifacts, updates the current architecture/design/decision/continuity chain, and strengthens `tools/project_audit.py` so the same class of stale-authority package cannot pass silently.
-
-This governance reconciliation does not claim new runtime features beyond build 2026.08.24.3.
-
-## Environment verification outstanding
-- owner physical-phone acceptance;
-- representative owner desktop hands-on acceptance;
-- live Google Drive/Calendar behavior;
-- connected-AI provider behavior;
-- first real PDF/screenshot/DEXA extraction review in deployment.
-
-## Preserved continuity contracts
-- **Generated spreadsheets are reports**, not a second canonical database.
-- **Medication occurrence history** remains dated, revision-safe, and distinguishable from schedule-derived assumptions.
-- **Package continuity** remains a release requirement: a competent future team must be able to understand and continue the project from the package without prior chat history.
-
-
-## 2026-08-24 desktop visual-authority rebuild
-Build 2026.08.24.3 replaces the legacy desktop Dashboard presentation with the approved desktop mockup as visual authority: one shared 12-column geometry, consistent gutters and spacing tokens, compact icon-led activity and insight rows, 2×2 health sparkline tiles, bounded Next Up and Quick Actions, visual timeline/goals composition, and preserved ZEKE data/business logic. This is a presentation-layer rebuild rather than incremental margin/card patching. Governance review: 2026.08.24.4.
-
-
-## 2026-08-24 visual acceptance correction
-Build 2026.08.24.4 replaces the failed build 2026.08.24.3 desktop attempt. The approved desktop mockup is binding visual authority for geometry, density, spacing, icon language, and information hierarchy. A UI build may not be described as visually accepted without rendered geometry checks and human screenshot comparison.
+## Preserved release contracts
+- Generated spreadsheets are reports; canonical records and provenance remain governed by ZEKE's durable data model.
+- Medication occurrence history remains part of the longitudinal record and reconciliation workflow.
+- Package continuity requires verified functional carry-forward, governance reconciliation, and clean package re-extraction before release.

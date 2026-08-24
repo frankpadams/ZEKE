@@ -1,3 +1,3 @@
-ZEKE v0.46.0
-build 2026.08.24.4
-UX Architecture + Connected Anatomy
+ZEKE v0.47.0
+build 2026.08.24.1
+Visual System Recovery + Preserved Functionality

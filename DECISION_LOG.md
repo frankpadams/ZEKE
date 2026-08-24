@@ -1,8 +1,16 @@
 # ZEKE Decision Log — Current Index
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.4 · governance 2026.08.24.5
+**Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6
 
 **Status:** Canonical index. Full historical decisions remain in `DEVELOPMENT_MEMORY/DECISION_LOG.md`.
+
+## v0.47.0 recovery decisions
+
+- v0.45.1 is the known stable rollback baseline; reconciled v0.46.0 build 2026.08.24.2 is the functional donor. Failed later v0.46 presentation experiments are rejected as forward UI baselines.
+- The approved 2026-08-24 desktop mockup is incorporated into Design Authority as the binding desktop Dashboard visual reference.
+- v0.47 desktop presentation is isolated from mobile and legacy styling; real browser renders are required before visual release claims.
+- Verified functionality added after v0.45.1 must be preserved through the UI recovery rather than reimplemented from memory or dropped.
+- Materially different future packages increment the semantic version; build suffixes do not substitute for release-version changes.
 
 ## Current binding decisions
 
@@ -73,7 +81,3 @@
 - Fitness is not a logging mode: users can explore exercises, form guides, history, PT/rehab, progress, and proposed workouts without creating records.
 - Contextual logging remains available where naturally useful, including inside an active workout.
 - No separate Explore/Workout mode selector is introduced; the distinction is expressed through explicit mutating actions.
-
-
-## 2026-08-24 desktop visual-authority rebuild
-Build 2026.08.24.3 replaces the legacy desktop Dashboard presentation with the approved desktop mockup as visual authority: one shared 12-column geometry, consistent gutters and spacing tokens, compact icon-led activity and insight rows, 2×2 health sparkline tiles, bounded Next Up and Quick Actions, visual timeline/goals composition, and preserved ZEKE data/business logic. This is a presentation-layer rebuild rather than incremental margin/card patching. Governance review: 2026.08.24.4.

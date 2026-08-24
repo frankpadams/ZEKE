@@ -1,15 +1,23 @@
 # ZEKE Consolidated Test Guide
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.4 · governance 2026.08.24.5
+**Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6
 
 Living manual and environment-dependent validation guide. Historical guide content is retained below and should be edited in place for future releases.
 
-## v0.46.0 release / continuity checks
+## v0.47.0 release / recovery checks
+
+### Browser-rendered visual acceptance
+- Run `python3 tests/v047-desktop-visual-gate.py`.
+- Run `python3 tests/v047-route-render-gate.py`.
+- Run `python3 tests/v047-dashboard-adversarial-gate.py`.
+- Inspect the generated screenshots against `docs/design-authority/ZEKE-desktop-dashboard-reference-2026-08-24.png`.
+- Confirm no page-scale icon/SVG, irregular shared gutters, cross-column dead-space cascade, or unbounded Dashboard list.
+- Run mobile rendered checks at 320/375/390/430/768px and confirm the separate mobile composition remains intact.
 
 ### Governance and authority
 - Run `python3 tools/project_audit.py`. It must verify **all registered authoritative documents** have the exact current release/build/governance review stamp and that standing supporting-continuity documents are current.
 - Run `python3 tests/governance-negative-controls.py`.
-- Confirm runtime identity remains v0.46.0 build 2026.08.24.3; governance reconciliation is 2026.08.24.3.
+- Confirm runtime identity is v0.47.0 build 2026.08.24.1; governance revision is 2026.08.24.6.
 - Search active runtime-facing files for stale startup/build strings. Historical documentation may contain old versions when clearly historical.
 
 ### Desktop/UX

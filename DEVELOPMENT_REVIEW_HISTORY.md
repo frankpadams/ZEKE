@@ -1,6 +1,9 @@
 # ZEKE Consolidated Development Review History
 
-## v0.46.0 · build 2026.08.24.3 · governance 2026.08.24.3 — continuity reconciliation review
+**Current continuity stamp:** v0.47.0 · build 2026.08.24.1 · governance 2026.08.24.6 · reviewed 2026-08-24
+
+
+## v0.46.0 · build 2026.08.24.2 · governance 2026.08.24.3 — continuity reconciliation review
 
 A post-build review found that runtime and feature documentation had advanced to v0.46.0, while several standing current authorities still carried earlier release identities or lacked the new UX/anatomy decisions. This was a governance defect, not a new runtime feature implementation.
 
@@ -638,9 +641,3 @@ ZEKE v0.40.0 · build 2026.08.03.1
 Upload the complete package contents to the repository root. Do not upload only files that appear newer by timestamp. Verify version/build at startup after GitHub Pages deploys.
 
 See DEPLOYMENT_MANIFEST_v0.40.0.md and BUILD_MANIFEST_v0.40.0.json.
-
-
-Current continuity review: v0.46.0 · build 2026.08.24.3 · governance 2026.08.24.4.
-
-
-Current continuity identity: v0.46.0 · build 2026.08.24.4 · governance 2026.08.24.5

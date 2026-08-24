@@ -1,8 +1,8 @@
-# ZEKE Architecture — v0.46.0
+# ZEKE Architecture — v0.47.0
 
-**Runtime build:** 2026.08.24.3  
-**Governance revision:** 2026.08.24.3  
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.4 · governance 2026.08.24.5
+**Runtime build:** 2026.08.24.1  
+**Governance revision:** 2026.08.24.6  
+**Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6
 **Repository schema:** 5
 
 ## Product and data boundary
@@ -10,6 +10,19 @@
 ZEKE is a private, user-owned personal knowledge and management system. The active provider-backed JSON repository is canonical. Raw observations, confirmed records, schedule-derived assumptions, corrections, supersessions, quarantined artifacts, derived insights, source documents, generated reports, and temporary UI state are distinct classes of information.
 
 AI interprets, summarizes, and proposes. Deterministic code plus explicit user choices govern canonical writes. Missing is unknown, not zero. A provider-backed save is complete only after the provider acknowledges the write.
+
+## v0.47 presentation recovery architecture
+
+The domain/data/workflow layers remain the functional continuity boundary. v0.47 replaces only the desktop presentation surface. The new desktop system is isolated in `assets/desktop-v047.css`, scoped under `.v47-shell`, and loaded after inherited mobile/base styles. It does not alter canonical persistence.
+
+Dashboard rendering intentionally has two compositions:
+- `.v47-desktop-dashboard` — mockup-authoritative desktop grid at >=1000px;
+- `.v47-mobile-dashboard` — the proven mobile continuity composition below 1000px.
+
+This separation prevents desktop layout decisions from contaminating mobile. Controlled `v47Icon()` SVGs have explicit width/height/viewBox contracts; the desktop stylesheet may style `.v47-icon-svg` but may not introduce generic `svg { ... }` sizing.
+
+The v0.45.1 package is the stability recovery baseline. Reconciled v0.46.0 build 2026.08.24.2 is the functional donor for anatomy, Questions/Talk, variation, and workout-reasoning improvements. Later failed v0.46 visual experiments are excluded from presentation inheritance.
+
 
 ## Runtime
 

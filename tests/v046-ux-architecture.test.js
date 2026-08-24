@@ -1,12 +1,13 @@
 const fs=require('fs');
 const read=f=>fs.readFileSync(f,'utf8');
-const app=read('assets/app.js'),css=read('assets/styles.css')+read('assets/desktop-dashboard.css'),training=read('assets/training-intelligence.js'),anatomy=read('assets/anatomy-knowledge.js'),version=read('version.js'),index=read('index.html'),mobile=read('assets/mobile-polish-v0441.js');
+const app=read('assets/app.js'),baseCss=read('assets/styles.css'),desktop=read('assets/desktop-v047.css'),training=read('assets/training-intelligence.js'),anatomy=read('assets/anatomy-knowledge.js'),version=read('version.js'),index=read('index.html'),mobile=read('assets/mobile-polish-v0441.js');
 const must=(x,m)=>{if(!x)throw new Error(m)};
-must(version.includes("version: '0.46.0'")&&version.includes("build: '2026.08.24.4'"),'v0.46 runtime identity missing');
+const v=(version.match(/version: '([^']+)'/)||[])[1];
+must(v&&Number(v.split('.')[1])>=46,'v0.46+ runtime identity missing');
 must(index.includes('anatomy-knowledge.js')&&index.indexOf('anatomy-knowledge.js')<index.indexOf('app.js'),'anatomy registry not loaded before app');
-must(app.includes('dashboard-mockup-shell')&&css.includes('.mock-grid')&&css.includes('grid-template-columns:repeat(12'),'mockup-authority desktop composition missing');
-must(app.includes('recent-activity-scroll')&&css.includes('.dashboard-mockup-shell .recent-activity-row'),'compact recent activity presentation missing');
-must(app.includes('globalTalkClose')&&app.includes('global-talk-expanded')&&css.includes('.global-talk-close'),'Talk to ZEKE close/expand interaction missing');
+must((app.includes('v47-top-row')&&desktop.includes('.v47-main-row'))||(app.includes('dashboard-v47')&&baseCss.includes('.dashboard-overview-band')),'purpose-driven dashboard composition missing');
+must(app.includes('truthfulRecentActivityHTML')&&app.includes('v47RecentHTML'),'recent activity continuity / compact desktop feed missing');
+must(app.includes('globalTalkClose')&&app.includes('global-talk-expanded')&&(baseCss.includes('.global-talk-close')||desktop.includes('.global-talk-close')),'Talk to ZEKE close/expand interaction missing');
 must(app.includes('review-live-feedback')&&app.includes("el.textContent='Saving…'"),'review decision feedback missing');
 must(app.includes('data-body-browse')&&app.includes('Search (optional)'),'browse-first exercise navigation missing');
 must(app.includes('bodyAreaLinksHTML')&&app.includes('bodyAreaInjuryMatches'),'body area / injury linkage missing');
@@ -16,4 +17,4 @@ must(app.includes('familyVariationChart')&&app.includes('Separate lines · share
 must(training.includes('WHY THIS CAN HELP')&&training.includes('See the context ZEKE will use'),'short why / deeper reasoning pattern missing');
 must(mobile.includes('window.ZEKE_BUILD'),'mobile build label must derive from runtime authority');
 must(!mobile.includes("v0.44.1 · build 2026.08.18.1"),'stale mobile build string remains');
-console.log(JSON.stringify({ok:true,release:'0.46.0',checks:14},null,2));
+console.log(JSON.stringify({ok:true,release:v,carried_forward_from:'0.46.0',checks:14},null,2));

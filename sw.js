@@ -1,9 +1,9 @@
-const CACHE_NAME = 'project-zeke-v0.46.0-2026.08.24.4';
+const CACHE_NAME = 'project-zeke-v0.47.0-2026.08.24.1';
 const RUNTIME = [
   './','./index.html','./manifest.webmanifest','./version.js','./zeke-config.js','./xlsx-bundle.js',
-  './assets/styles.css','./assets/desktop-dashboard.css','./assets/data-layer.js','./assets/parser.js','./assets/ai-router.js',
+  './assets/styles.css','./assets/data-layer.js','./assets/parser.js','./assets/ai-router.js',
   './assets/workflow-engine.js','./assets/exercise-guides.js','./assets/knowledge-base.js','./assets/anatomy-knowledge.js',
-  './assets/integrity-engine.js','./assets/longitudinal-schema.js','./assets/ingestion-engine.js','./assets/document-intake.js','./assets/calendar-privacy.js','./assets/training-intelligence.js','./assets/app.js','./assets/mobile-native.js','./assets/mobile-polish-v0441.js','./assets/mobile-native.css','./assets/mobile-polish-v0441.css','./assets/branding/zeke-mark-provisional.png'
+  './assets/integrity-engine.js','./assets/longitudinal-schema.js','./assets/ingestion-engine.js','./assets/document-intake.js','./assets/calendar-privacy.js','./assets/training-intelligence.js','./assets/app.js','./assets/mobile-native.js','./assets/mobile-polish-v0441.js','./assets/mobile-native.css','./assets/mobile-polish-v0441.css','./assets/desktop-v047.css','./assets/branding/zeke-mark-provisional.png'
 ];
 self.addEventListener('install',event=>event.waitUntil(caches.open(CACHE_NAME).then(cache=>cache.addAll(RUNTIME)).then(()=>self.skipWaiting())));
 self.addEventListener('activate',event=>event.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(key=>key.startsWith('project-zeke-')&&key!==CACHE_NAME).map(key=>caches.delete(key)))).then(()=>self.clients.claim())));

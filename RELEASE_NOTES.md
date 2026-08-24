@@ -1,18 +1,39 @@
 # ZEKE Release Notes
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.4 · governance 2026.08.24.5
+## v0.47.0 · build 2026.08.24.1 — Visual System Recovery + Preserved Functionality
 
-## v0.46.0 · build 2026.08.24.3 — UX Architecture + Connected Anatomy
+**Governance revision:** 2026.08.24.6
+
+This release recovers ZEKE’s desktop presentation without discarding verified functional progress. It uses v0.45.1 as the stable rollback source, reconciled v0.46.0 build 2026.08.24.2 as the functional donor, and rejects the later failed v0.46 visual experiments as presentation baselines.
+
+### Visual system recovery
+- Approved 2026-08-24 desktop mockup stored as in-package visual reference and incorporated into Design Authority.
+- New scoped desktop visual layer with dark navy shell, disciplined mockup-like grid, uniform gutters, compact information density, controlled icons, 2×2 Health snapshot, bounded Recent/Insights/Next Up, Timeline/Goals, and no Dashboard nested-scroll dependency.
+- Purpose-built mobile Dashboard continuity retained separately.
+- Weekly workout planning preserved in Fitness rather than deleted.
+- Documents route corrected.
+
+### Preserved functionality
+Talk/Questions state behavior, adaptive workout proposal/remaining-workout adaptation, browse-first exercise/body navigation, anatomy/injury/PT relationships, variation recency/sets/shared-axis charts, short-Why workout reasoning, document/DEXA intake, medication reconciliation, Calendar privacy, PT media validation, and provider-backed persistence rules remain carried forward.
+
+### Verification
+Actual Chromium visual gates now supplement functional/governance tests and explicitly cover oversized SVGs, multiple desktop/mobile widths, major routes, and sparse/dense/long-text Dashboard states. Final package status is recorded in `DEVELOPMENT_MEMORY/RELEASE_GATE.md`; live provider verification remains a separate environment boundary.
+
+---
+
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.2 · governance 2026.08.24.3
+
+## v0.46.0 · build 2026.08.24.2 — UX Architecture + Connected Anatomy
 
 ### Governance reconciliation — 2026.08.24.3
 
 - Reconciled the current governance identity tuple across the Constitution, Design Authority, decision/continuity authorities, project state/gate, artifact registry, release scope, test/reporting documents, README/deployment guidance, and standing continuity documents.
-- Runtime remains **v0.46.0 · build 2026.08.24.3**; governance revision **2026.08.24.3** is documentation/audit-only.
+- Runtime remains **v0.46.0 · build 2026.08.24.2**; governance revision **2026.08.24.3** is documentation/audit-only.
 - Strengthened `tools/project_audit.py` so an authoritative document whose visible current-review header disagrees with the governance source of truth fails the release audit.
 - Added a matching negative control; the governance negative-control suite is now **12/12**.
 
 
-### Build 2026.08.24.3 — Desktop composition structural correction
+### Build 2026.08.24.2 — Desktop composition structural correction
 - Replaced the height-coupled desktop Dashboard arrangement with page-owned horizontal bands and independent nested layout contexts.
 - Removed the tall side-rail composition that allowed Today/Upcoming/Data Integrity height to delay unrelated Dashboard content.
 - Dashboard Recent Activity is now a bounded summary by item count rather than a nested vertical scroll region.
@@ -24,11 +45,11 @@
 
 This release is a UX stabilization and architecture pass. It rebuilds the desktop Dashboard around user priorities, makes consequential interactions visibly responsive, improves exercise browsing and variation history, and adds a versioned anatomy knowledge layer connecting Fitness, PT, body areas, and injury context.
 
-### Governance reconciliation — 2026.08.24.3
+### Governance reconciliation — 2026.08.24.2
 - Re-read the complete registered authoritative continuity set after discovering that the first v0.46.0 package still contained stale current-state declarations in several standing documents.
 - Updated the Constitution, Design Authority, Architecture, scope, decision/iteration/continuity records, Project State/Identity/Health, roadmap, test guidance, README/deploy guidance, status/diagnostic metadata, and package history to the v0.46.0 UX/anatomy decisions.
 - Added full-authority current-review stamps to the Artifact Registry and strengthened `tools/project_audit.py` so a stale standing authority can no longer pass merely because a smaller identity subset agrees.
-- Runtime code remains **v0.46.0 · build 2026.08.24.3**; this is governance/documentation revision **2026.08.24.3**, not a hidden runtime feature change.
+- Runtime code remains **v0.46.0 · build 2026.08.24.2**; this is governance/documentation revision **2026.08.24.2**, not a hidden runtime feature change.
 
 ### User experience and desktop composition
 - Rebuilt the Dashboard around **what matters now, what changed, what is next, and what needs attention** rather than equal-sized feature cards.
@@ -53,7 +74,7 @@ This release is a UX stabilization and architecture pass. It rebuilds the deskto
 - Reference knowledge carries version/review metadata and remains separate from personal records.
 
 ### Identity and release safety
-- Runtime build identity is centralized at **v0.46.0 · build 2026.08.24.3** and stale v0.44 startup strings were removed from inherited mobile-polish layers.
+- Runtime build identity is centralized at **v0.46.0 · build 2026.08.24.2** and stale v0.44 startup strings were removed from inherited mobile-polish layers.
 - Package-local governance, syntax, regression, PT visual, rendered workflow, mobile rendered, and support-report checks pass. External-real-data fixture tests remain explicitly skipped when their fixture is unavailable.
 
 ### Environment checks still required
@@ -3983,11 +4004,3 @@ This release adds a read-only Data Integrity workspace so missing display data c
 - No canonical JSON file is rewritten by opening or filtering the Data Integrity page.
 - No uncertain record is automatically reclassified or merged.
 - Export creates a local audit download only.
-
-
-## 2026-08-24 desktop visual-authority rebuild
-Build 2026.08.24.3 replaces the legacy desktop Dashboard presentation with the approved desktop mockup as visual authority: one shared 12-column geometry, consistent gutters and spacing tokens, compact icon-led activity and insight rows, 2×2 health sparkline tiles, bounded Next Up and Quick Actions, visual timeline/goals composition, and preserved ZEKE data/business logic. This is a presentation-layer rebuild rather than incremental margin/card patching. Governance review: 2026.08.24.4.
-
-
-## 2026-08-24 visual acceptance correction
-Build 2026.08.24.4 replaces the failed build 2026.08.24.3 desktop attempt. The approved desktop mockup is binding visual authority for geometry, density, spacing, icon language, and information hierarchy. A UI build may not be described as visually accepted without rendered geometry checks and human screenshot comparison.

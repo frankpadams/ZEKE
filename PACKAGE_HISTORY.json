@@ -2,15 +2,28 @@
   "schema_version": 1,
   "purpose": "Living consolidated package/build/provenance/verification history. Superseded individual files are intentionally removed after their contents are retained here.",
   "current_release": {
-    "version": "0.46.0",
-    "build": "2026.08.24.2",
-    "label": "UX Architecture + Connected Anatomy \u2014 Continuity Reconciled",
-    "status": "release_package_local_verified_continuity_reconciled_environment_outstanding",
-    "publish_ready": true,
-    "verification_boundary": "Runtime package-local verification complete; governance continuity reconciled; owner/live-provider environment acceptance outstanding.",
-    "governance_revision": "2026.08.24.3"
+    "version": "0.47.0",
+    "build": "2026.08.24.1",
+    "label": "Visual System Recovery + Preserved Functionality",
+    "status": "verification_in_progress",
+    "publish_ready": false,
+    "verification_boundary": "Implementation and browser-rendered UX gates are being verified before packaging; live provider environment verification remains separate.",
+    "governance_revision": "2026.08.24.6"
   },
   "historical_records": [
+    {
+      "source_file": "CURRENT_RELEASE_v0.46.0_RECONCILED",
+      "sha256": null,
+      "content": {
+        "version": "0.46.0",
+        "build": "2026.08.24.2",
+        "label": "UX Architecture + Connected Anatomy \u2014 Continuity Reconciled",
+        "status": "release_package_local_verified_continuity_reconciled_environment_outstanding",
+        "publish_ready": true,
+        "verification_boundary": "Runtime package-local verification complete; governance continuity reconciled; owner/live-provider environment acceptance outstanding.",
+        "governance_revision": "2026.08.24.3"
+      }
+    },
     {
       "source_file": "ARCHIVE_MANIFEST_v0.40.0.json",
       "sha256": "5d63e1d47b138960fa92053703ef4783a0e1b61151ef98fd60ba11cc360e02cf",
@@ -27956,10 +27969,10 @@
     }
   ],
   "current_version": "0.46.0",
-  "current_build": "2026.08.24.4",
-  "governance_revision": "2026.08.24.5",
+  "current_build": "2026.08.24.2",
+  "governance_revision": "2026.08.24.3",
   "release": "0.46.0",
-  "build": "2026.08.24.4",
+  "build": "2026.08.24.2",
   "history": [
     {
       "version": "0.43.1",
