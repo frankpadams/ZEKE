@@ -1,7 +1,10 @@
 # Runtime Diagnostics
 
+**Current continuity stamp:** v0.47.0 · build 2026.08.24.1 · governance 2026.08.24.6 · reviewed 2026-08-24
+
+
 **Status:** Supporting current design  
-**Current baseline:** v0.46.0 · build 2026.08.24.3 · governance 2026.08.24.3
+**Current baseline:** v0.46.0 · build 2026.08.24.2 · governance 2026.08.24.3
 
 Runtime diagnostics support product repair. They are not canonical health data, not proof that a feature works, and not a substitute for a reproducible test.
 
@@ -67,9 +70,3 @@ The local runtime logger must not intentionally store:
 ## Verification boundary
 
 A diagnostic entry demonstrates that ZEKE recorded an event. It does not demonstrate root cause, successful persistence, correct UI behavior, or a fixed defect. Compare diagnostics with deterministic tests, rendered runs, deployed-origin evidence, and the original workflow before making a conclusion.
-
-
-Current continuity review: v0.46.0 · build 2026.08.24.3 · governance 2026.08.24.4.
-
-
-Current continuity identity: v0.46.0 · build 2026.08.24.4 · governance 2026.08.24.5

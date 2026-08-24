@@ -1,10 +1,13 @@
 # Comprehension Checkpoint
 
-**Reviewed:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.3 · governance 2026.08.24.3
+**Current continuity stamp:** v0.47.0 · build 2026.08.24.1 · governance 2026.08.24.6 · reviewed 2026-08-24
+
+
+**Reviewed:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.2 · governance 2026.08.24.3
 
 Before proposing edits, answer from the package:
 
-1. What exact runtime version/build and governance revision are current, and why does governance 2026.08.24.3 not imply additional runtime code?
+1. What exact runtime version/build and governance revision are current, and why does governance 2026.08.24.2 not imply additional runtime code?
 2. Which documents are authoritative, what is the authority order, and what must happen when current authorities conflict?
 3. Name five immutable data/safety principles and five current UX principles.
 4. Why is Dashboard a cross-domain briefing rather than a mini Health page?
@@ -21,9 +24,3 @@ Before proposing edits, answer from the package:
 15. Which post-v0.46 backlog items are critical before the next broad behavioral verification claim?
 
 Failure or uncertainty requires more reading, not guessing. Present the checkpoint and stop for explicit scope approval before new code work.
-
-
-Current continuity review: v0.46.0 · build 2026.08.24.3 · governance 2026.08.24.4.
-
-
-Current continuity identity: v0.46.0 · build 2026.08.24.4 · governance 2026.08.24.5

@@ -1,6 +1,6 @@
 # Authority, Consistency, and Artifact Lifecycle
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.4 · governance 2026.08.24.5
+**Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6
 
 ## Authority order
 

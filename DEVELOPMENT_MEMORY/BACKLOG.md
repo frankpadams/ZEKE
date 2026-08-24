@@ -1,11 +1,16 @@
 # ZEKE Backlog
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.4 · governance 2026.08.24.5
+**Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6
 
-## Post-v0.46.0 environment / follow-up queue
+## Post-v0.47.0 environment / follow-up queue
 
 | ID | Item | Priority | Status / prerequisite |
 |---|---|---:|---|
+| UI-047-A | Continue extending the mockup-authoritative visual system into deeper Health/Fitness/detail surfaces without regressing the now-shared shell | High | Only after v0.47 Dashboard/browser gate remains stable |
+| PROV-047 | Live Google Drive/Calendar durable read/write and staged privacy verification | Critical | Requires deployed authorized provider |
+| AI-047 | Live connected-AI workout recommendation and short-Why/deep-reasoning verification | High | Requires user-authorized provider |
+| KNOW-047 | Production reference-knowledge source-review/signing/update pipeline | High | Architecture/governance locked; implementation remains future |
+| QA-047 | Keep approved mockup and failed-render screenshots as permanent positive/negative visual regression evidence | Critical | Every visual release |
 | UX-046-A | Owner desktop acceptance of Dashboard composition, Recent Activity density/scrolling, Questions feedback, and Talk close/expand/collapse | Critical | Environment verification outstanding; requires deployed hands-on use |
 | UX-046-B | Owner physical-phone acceptance of current mobile routes and Talk state behavior | Critical | Environment verification outstanding |
 | PROV-046 | Live Google Drive/Calendar durable read/write and staged privacy acceptance | Critical | Requires deployed connected provider |

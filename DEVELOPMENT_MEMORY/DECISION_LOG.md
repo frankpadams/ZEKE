@@ -1,8 +1,21 @@
 # Decision Log
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.4 · governance 2026.08.24.5
+**Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6
 
 **Status:** Authoritative and cumulative
+
+
+## 2026-08-24 — v0.47.0 Visual System Recovery + Preserved Functionality
+
+- Recover from the known stable v0.45.1 package while using reconciled v0.46.0 build 2026.08.24.2 as the verified functional donor.
+- Do not merge presentation code from the failed later v0.46 visual experiments.
+- Preserve all verified post-v0.45 functionality: Talk close/expand states; Questions saving feedback and durable resolution; browse-first exercise/body navigation; anatomy/injury/PT links; variation recency/sets/shared-axis charts; short-Why workout reasoning; document intake; medication/calendar privacy; adaptive remaining-workout behavior.
+- The exact approved desktop mockup at `docs/design-authority/ZEKE-desktop-dashboard-reference-2026-08-24.png` is binding through Design Authority.
+- Desktop Dashboard uses the mockup’s coordinated rows and compact density; weekly workout planning moves to Fitness rather than being deleted.
+- Desktop and mobile use separate purpose-built presentation compositions over the same functional model.
+- UI icons are explicitly bounded SVG components; generic SVG sizing rules are prohibited.
+- A visual release requires actual browser rendering plus visual inspection and adversarial states, not merely syntax/DOM/overflow tests.
+- v0.47.0 is a real semantic release because the package is materially different; future material changes also increment the release version.
 
 
 ## 2026-08-24 — v0.46.0 UX Architecture + Connected Anatomy
@@ -21,7 +34,7 @@
 - Variation rows are recency-ordered and show their latest own performance; redundant “Last,” “Current,” or variation-count labels are removed.
 - Expanded exercise charts keep variation histories as independent series on shared axes and preserve missing-as-unknown semantics.
 - Workout recommendations show a short “Why this” up front with deeper reasoning available on demand.
-- Runtime v0.46.0 build 2026.08.24.3 remains unchanged by governance revision 2026.08.24.3; this revision reconciles standing documentation and hardens the release audit.
+- Runtime v0.46.0 build 2026.08.24.2 remains unchanged by governance revision 2026.08.24.3; this revision reconciles standing documentation and hardens the release audit.
 - **DEC-001:** AI proposes; deterministic code commits canonical data.
 - **DEC-002:** Empty data never reserves visualization space.
 - **DEC-003:** Dashboard uses independent content-sized rows rather than paired long columns.

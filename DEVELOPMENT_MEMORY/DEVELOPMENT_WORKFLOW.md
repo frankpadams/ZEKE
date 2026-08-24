@@ -1,6 +1,6 @@
 
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.4 · governance 2026.08.24.5
+**Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6
 ## Full standing-authority reconciliation
 Before packaging any release, review **every artifact registered as authoritative**, not merely files containing the version string. Update the Artifact Registry review stamp for each authority only after reading it for contradictions, stale current-state claims, newly binding user decisions, implementation status, and verification boundaries. Also review the standing supporting-continuity set defined by the registry/audit.
 
@@ -62,3 +62,13 @@ Always state exactly which levels passed and which remain unverified.
 5. Reopen the ZIP into a fresh verification directory.
 6. Re-run checksum, version, syntax, structural, document, and applicable regression checks.
 7. Deliver only the verified ZIP.
+
+
+## Visual-release workflow — required
+1. Identify the active visual authority/reference before coding.
+2. Separate functional donor code from presentation donor code; do not inherit failed visual experiments by default.
+3. Render the real application in Chromium at representative widths before claiming visual completion.
+4. Inspect whole screens, not only components, including sparse/dense/long-text states and scrolling.
+5. Fail on visible pathology even when structural checks pass.
+6. Re-run functional carry-forward regressions after presentation work.
+7. Only then reconcile governance/package identity and create the archive.

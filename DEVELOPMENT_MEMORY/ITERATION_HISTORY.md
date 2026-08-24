@@ -1,12 +1,44 @@
 # ZEKE Iteration History
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.4 · governance 2026.08.24.5
+**Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6
+
+## Current iteration — ZEKE v0.47.0 — Visual System Recovery + Preserved Functionality
+
+**Build:** 2026.08.24.1  
+**Date:** 2026-08-24  
+**Status:** Implementation complete; browser/functional/governance/package verification in progress; live-provider environment verification outstanding.
+
+### Approved scope
+- Preserve all verified v0.45.1 and v0.46 functionality while replacing the failed desktop presentation layer
+- Make the approved 2026-08-24 desktop mockup the binding visual reference for Dashboard geometry, spacing, iconography, density, and hierarchy
+- Isolate the v0.47 desktop presentation in a scoped layer so legacy styling cannot distort mockup composition or SVG icon sizing
+- Keep purpose-built mobile Dashboard continuity rather than forcing desktop geometry onto mobile
+- Preserve Talk to ZEKE state fixes, Questions feedback/persistence, browse-first exercise/body navigation, anatomy knowledge, variation-aware charts, adaptive workout Why-this reasoning, and document/medication/calendar workflows
+- Move weekly workout planning to Fitness so Dashboard matches the approved cross-domain briefing without losing capability
+- Add real browser-rendered visual gates at desktop/mobile widths plus sparse/dense/long-text adversarial Dashboard states
+- Treat v0.46.0 mockup-rebuild visual experiments as rejected presentation baselines and do not merge their styling forward
+- Use actual semantic version increments for materially different future packages rather than build-only renaming
+- Package only after governance/continuity, runtime identity, visual rendering, functional regressions, manifest, extraction structure, and clean re-extraction all agree
+
+### Recovery provenance
+- Stability rollback source: v0.45.1 build 2026.08.23.4.
+- Functional donor: reconciled v0.46.0 build 2026.08.24.2.
+- Rejected presentation evidence: later v0.46 mockup/visual experiments that produced irregular layouts or unbounded icons.
+- Binding visual reference: `docs/design-authority/ZEKE-desktop-dashboard-reference-2026-08-24.png`.
+
+### Implementation
+- Added scoped `assets/desktop-v047.css` and controlled `v47Icon()` SVG components.
+- Rebuilt desktop Dashboard into coordinated mockup-authoritative regions while retaining a separate mobile Dashboard continuity path.
+- Moved weekly planning to Fitness so capability remains present without distorting Dashboard.
+- Repaired Documents routing.
+- Added v0.47 visual/route/adversarial/carry-forward gates.
+
 
 ## Current iteration — ZEKE v0.46.0 — UX Architecture + Connected Anatomy
 
-**Build:** 2026.08.24.3  
+**Build:** 2026.08.24.2  
 **Date:** 2026-08-24  
-**Status:** Runtime package-local verification complete; continuity reconciled in governance 2026.08.24.3; environment verification outstanding.
+**Status:** Runtime package-local verification complete; continuity reconciled in governance 2026.08.24.2; environment verification outstanding.
 
 ### Approved scope
 - Rebuild desktop Dashboard around user priorities rather than component categories
@@ -36,7 +68,7 @@
 - Corrected stale current-state declarations inherited from v0.45.1/v0.40/v0.29-era documents.
 - Added binding Constitution/Design/Architecture rules for screen-level UX, visible action feedback, reachability, body/anatomy relationships, and governed reference-knowledge updates.
 - Strengthened the project audit to require current-release review stamps across the full authoritative set.
-- Runtime behavior remains build 2026.08.24.3; documentation/governance revision is 2026.08.24.3.
+- Runtime behavior remains build 2026.08.24.2; documentation/governance revision is 2026.08.24.2.
 
 ---
 

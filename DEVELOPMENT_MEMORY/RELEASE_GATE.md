@@ -1,43 +1,36 @@
-# ZEKE v0.46.0 Release Gate
+# ZEKE v0.47.0 Release Gate
 
-**Runtime build:** 2026.08.24.4  
-**Governance revision:** 2026.08.24.5
+**Runtime build:** 2026.08.24.1  
+**Governance revision:** 2026.08.24.6  
+**Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6
 
 ## Current status
-- Runtime implementation: complete for approved v0.46.0 package scope.
-- Continuity/governance reconciliation: complete for governance 2026.08.24.3.
-- **Package verification complete.**
+- Runtime implementation: complete for approved v0.47.0 scope.
+- Deep continuity/governance reconciliation: complete for governance 2026.08.24.6.
+- **Package verification in progress.**
 - **Environment verification outstanding.**
 
 ## Continuity gate
-- Complete registered authoritative set re-read for current release, not only identity-bearing files.
-- Every authoritative Artifact Registry entry carries release/build/governance/review-date metadata.
-- Standing supporting continuity documents were reviewed and current-state declarations corrected.
-- Constitution, Design Authority, Architecture, Current Release Scope, Decision Logs, Iteration/Continuity History, Project State/Identity/Health, Roadmap, Test Guide/Report, Package History, and release notes encode the v0.46.0 UX/anatomy decisions.
-- `tools/project_audit.py` now fails on stale/missing full-authority review metadata.
+- Full registered authoritative set reviewed before recovery implementation.
+- Recent Project ZEKE decisions and the v0.45.1/v0.46 functional delta were reviewed specifically to prevent functional regression during rollback-based UI recovery.
+- Approved desktop mockup is stored as visual evidence and referenced by Design Authority.
+- Failed later v0.46 presentation experiments are explicitly rejected as forward UI baselines.
 
-## Package-local gates passed
-- project audit: 0 errors / 0 warnings; governance negative controls: 12/12 intentional failures detected;
-- active JavaScript syntax checks and package-local regression suite; all executable JS tests passed; three external-fixture tests explicitly SKIPPED;
-- movement-specific PT visual gate for all 14 included rehab entries;
-- rendered mobile/desktop workflow checks, including 320/375/390/430/768 mobile widths and current desktop workflow routes;
-- runtime dependency/cache/identity checks;
-- refreshed file-level SHA-256/provenance manifest;
-- clean ZIP extraction, safe paths, portable permissions, ZIP integrity, and extracted-tree hash comparison.
+## Visual gate
+- Chromium desktop Dashboard renders exist at 1024/1280/1440/1600 widths.
+- Major desktop/mobile routes render without page errors or horizontal overflow in current package-local fixtures.
+- Sparse/normal/dense/long-text Dashboard variants remain bounded.
+- Controlled v0.47 UI SVG icons remain within their explicit size contract; page-scale icon regression is blocked.
+- Final release requires the complete test matrix and clean-package rerun below.
+
+## Remaining before package verification can become complete
+- full JavaScript regression matrix;
+- current and historical rendered workflow/mobile gates;
+- PT visual gate and support-report browser smoke;
+- zero-error project audit and governance negative controls;
+- manifest/hash regeneration;
+- one correctly named top-level ZIP folder;
+- clean re-extraction, manifest comparison, archive-path/permission/integrity checks, and repeated project audit.
 
 ## Environment verification outstanding
-- owner physical-phone visual/workflow acceptance against `DESIGN_AUTHORITY.md`;
-- representative owner desktop hands-on workflow acceptance;
-- live Google Drive/Calendar behavior;
-- connected-AI provider workout/clinical consultation behavior;
-- first real PDF/screenshot/DEXA extraction review in deployment.
-
-No environment-dependent item is counted as passed by package-local inspection.
-
-
-## 2026-08-24 desktop visual-authority rebuild
-Build 2026.08.24.3 replaces the legacy desktop Dashboard presentation with the approved desktop mockup as visual authority: one shared 12-column geometry, consistent gutters and spacing tokens, compact icon-led activity and insight rows, 2×2 health sparkline tiles, bounded Next Up and Quick Actions, visual timeline/goals composition, and preserved ZEKE data/business logic. This is a presentation-layer rebuild rather than incremental margin/card patching. Governance review: 2026.08.24.4.
-
-
-## 2026-08-24 visual acceptance correction
-Build 2026.08.24.4 replaces the failed build 2026.08.24.3 desktop attempt. The approved desktop mockup is binding visual authority for geometry, density, spacing, icon language, and information hierarchy. A UI build may not be described as visually accepted without rendered geometry checks and human screenshot comparison.
+Live Google Drive/Calendar and connected AI-provider behavior require deployed authorization and are not falsely represented as package-local passes.

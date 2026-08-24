@@ -1,9 +1,9 @@
 {
   "schema_version": 3,
-  "current_version": "0.46.0",
-  "current_build": "2026.08.24.4",
-  "release_label": "UX Architecture + Connected Anatomy",
-  "baseline": "Reconstructed from last available full v0.43.1 package plus verified v0.44.1 patch; missing v0.44.0 mobile-native layer recreated explicitly.",
+  "current_version": "0.47.0",
+  "current_build": "2026.08.24.1",
+  "release_label": "Visual System Recovery + Preserved Functionality",
+  "baseline": "v0.45.1 is the known stable recovery baseline; reconciled v0.46.0 build 2026.08.24.2 is the verified functional donor. Failed later v0.46 presentation experiments are excluded.",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
   "authoritative_documents": [
     "00_AI_START_HERE.md",
@@ -31,17 +31,14 @@
     "DESIGN_AUTHORITY.md"
   ],
   "implemented_this_release": [
-    "Purpose-driven desktop Dashboard composition with selective Health snapshot, Recent Activity scan window, cross-domain Insights, Next Up, Timeline, Fitness planning/coaching, and integrity status",
-    "Cold-load/page scroll hardening so content remains vertically reachable",
-    "Talk to ZEKE explicit close plus reliable compact/expanded state handling",
-    "Questions for You duplicate decisions now give immediate persistent working/selection feedback and separate editing tools from decisions",
-    "Browse-first exercise library with body-area navigation and search demoted to optional lookup",
-    "Exercise detail body-area links for primary and secondary involvement, with related injury/symptom context and exercise lists",
-    "Versioned anatomy/body-structure knowledge registry with joints, bones, soft-tissue mappings, review age, stale detection, and source metadata",
-    "Variation summaries ordered by recency with load, reps, sets, date, and variation-focused shared-axis charts",
-    "Adaptive training planner rewritten around user task and short Why-this context with deeper details on demand",
-    "Single runtime version authority used by inherited mobile startup layer; stale v0.44 runtime labels removed",
-    "New UX regression checks for composition, visual navigation, Talk panel state, review feedback, and anatomy knowledge"
+    "New mockup-authoritative desktop shell and Dashboard visual system isolated in assets/desktop-v047.css",
+    "Shared desktop geometry with controlled gaps, compact information density, real SVG icon sizing contracts, and no generic SVG sizing rules",
+    "Desktop Dashboard regions: Today\u2019s Status, Next Up, Quick Actions, Recent Activity, ZEKE Insights, Health at a Glance, Timeline Snapshot, Goals, and contextual Quick Tip",
+    "Separate mobile Dashboard continuity path preserves the proven v0.46 mobile composition rather than forcing desktop layout onto phone widths",
+    "Weekly workout planning preserved in Fitness rather than occupying the desktop Dashboard",
+    "All verified v0.45.1/v0.46 behavior retained, including adaptive workout proposals/remaining-workout adaptation, document intake, medication/calendar privacy, Talk state controls, Questions feedback, anatomy/body-area relationships, browse-first exercise navigation, and variation-aware charts",
+    "Documents navigation repaired so the Documents route cannot fall back to Dashboard",
+    "Actual Chromium visual gates added for multi-width Dashboard geometry, major desktop/mobile routes, oversized-SVG regression, and sparse/normal/dense/long-text adversarial states"
   ],
   "inherited_verified_evidence": [
     "v0.25.2 direct mobile workout save handler and visible failure path",
@@ -49,18 +46,16 @@
     "deterministic medication, sleep, workbook, provenance, and workflow regressions"
   ],
   "known_issues": [
-    "Owner physical-phone and representative desktop visual/workflow acceptance against DESIGN_AUTHORITY.md remains outstanding until the deployed package is tested.",
-    "Live Google Drive/Calendar/provider and connected-AI behavior requires deployed verification; package-local checks cannot prove third-party environment behavior.",
+    "Live Google Drive/Calendar/provider and connected-AI behavior still requires the deployed authorized environment; package-local tests cannot prove third-party availability.",
     "Browser PDF/OCR extraction uses lazy third-party CDN modules and requires network availability when those extraction paths are used.",
-    "The local anatomy/reference pack has version/review/staleness metadata; a mature externally refreshed/signed source-update pipeline remains future work and must follow the versioned validation/rollback governance.",
-    "Calendar write privacy choices are stored, but future exposed writes must honor staged/per-event consent before writing sensitive events."
+    "The local anatomy/reference pack has version/review/staleness metadata; a mature externally refreshed/signed source-update pipeline remains future work.",
+    "Calendar write privacy choices are stored; future exposed sensitive writes must continue to honor staged/per-event consent."
   ],
   "next_review_items": [
-    "Owner hands-on mobile and desktop acceptance",
     "Live Google/provider verification",
-    "Connected-AI workout-generation acceptance with real provider",
-    "Review first real PDF/screenshot ingestion",
-    "Design production reference-knowledge refresh pipeline under the locked version/diff/validation/rollback model"
+    "Connected-AI workout-generation verification with an authorized provider",
+    "First real PDF/screenshot ingestion review",
+    "Continue extending the v0.47 visual system across deeper domain-detail surfaces without regressing mobile UX"
   ],
   "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_HISTORY.md",
   "files_to_read_first": [
@@ -75,9 +70,9 @@
     "real-data workbook regression when fixture is available",
     "final ZIP reopened and compared with provenance"
   ],
-  "current_release_label": "ZEKE v0.46.0 \u2014 UX Architecture + Connected Anatomy",
-  "current_focus": "UX-stable cross-domain Dashboard, visible interaction feedback, browse-first exercise/body navigation, variation-aware analytics, and versioned connected anatomy/reference knowledge over the preserved longitudinal/adaptive-training foundation.",
-  "governance_revision": "2026.08.24.5",
+  "current_release_label": "ZEKE v0.47.0 \u2014 Visual System Recovery + Preserved Functionality",
+  "current_focus": "Recover ZEKE presentation quality without losing functional progress: mockup-authoritative desktop Dashboard, preserved purpose-built mobile UX, and verified v0.45.1/v0.46 functional carry-forward.",
+  "governance_revision": "2026.08.24.6",
   "runtime_changed_by_governance_revision": false,
   "rejected_forward_baselines": [
     "v0.28.0",
@@ -91,15 +86,19 @@
     "mature research-reviewed readiness and adaptive periodization methodology",
     "locally controlled full exercise media library"
   ],
-  "current_release": "ZEKE v0.46.0 \u2014 UX Architecture + Connected Anatomy",
-  "updated_at": "2026-08-24T13:24:32-04:00",
+  "current_release": "ZEKE v0.47.0 \u2014 Visual System Recovery + Preserved Functionality",
+  "updated_at": "2026-08-24T16:10:00-04:00",
   "known_limitations": [
-    "Physical-phone visual/workflow acceptance against DESIGN_AUTHORITY.md remains outstanding.",
-    "Live Drive/Calendar/provider behavior and cross-device credential continuity require deployed verification.",
-    "PDF/OCR extraction depends on lazy network-loaded third-party modules when that path is used.",
-    "Calendar write UI is not currently exposed; future write actions must honor staged/per-event privacy consent."
+    "Live Google Drive/Calendar/provider and connected-AI behavior still requires the deployed authorized environment; package-local tests cannot prove third-party availability.",
+    "Browser PDF/OCR extraction uses lazy third-party CDN modules and requires network availability when those extraction paths are used.",
+    "The local anatomy/reference pack has version/review/staleness metadata; a mature externally refreshed/signed source-update pipeline remains future work.",
+    "Calendar write privacy choices are stored; future exposed sensitive writes must continue to honor staged/per-event consent."
   ],
-  "continuity_reviewed_at": "2026-08-24T13:24:32-04:00",
-  "continuity_review_scope": "all registered authoritative documents plus standing supporting-continuity documents",
-  "continuity_reconciliation_status": "complete_governance_2026.08.24.2"
+  "continuity_reviewed_at": "2026-08-24T16:10:00-04:00",
+  "continuity_review_scope": "deep read of all registered authoritative documents, standing supporting-continuity documents, recent Project ZEKE decisions, v0.45.1 baseline, and reconciled v0.46 functional donor",
+  "continuity_reconciliation_status": "complete_governance_2026.08.24.6",
+  "rejected_presentation_baselines": [
+    "v0.46.0 build 2026.08.24.3 mockup visual rebuild",
+    "v0.46.0 build 2026.08.24.4 failed visual experiment"
+  ]
 }

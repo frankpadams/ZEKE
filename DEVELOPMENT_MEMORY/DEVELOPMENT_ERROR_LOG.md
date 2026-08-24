@@ -1,6 +1,6 @@
 # Development Error Log
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.4 · governance 2026.08.24.5
+**Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6
 
 **Status:** Authoritative and cumulative
 
@@ -225,3 +225,24 @@
 **Prevention:** Every registered authoritative artifact now receives a release/build/governance review stamp in `ARTIFACT_REGISTRY.json`; the audit compares the full authoritative set. A standing supporting-continuity list is also checked. Current release claims must fail when those reviews are absent or stale.
 
 **Lesson:** Passing an automated governance check is not itself evidence that the check covers the actual continuity contract. The audit must validate the whole authority graph, not only a convenient subset.
+
+
+## ERR-051 — Visual release claims were made without rendered acceptance
+- **Failure:** Major desktop UI rebuilds were described as release-ready after syntax/DOM/overflow/governance checks without an actual representative browser render against the approved mockup.
+- **Impact:** The user received packages whose spacing, density, hierarchy, and composition were visibly unacceptable.
+- **Prevention:** A visual release must include representative Chromium renders, direct inspection against Design Authority, and explicit failure when the screen is materially off-reference even if structural tests pass.
+
+## ERR-052 — Unbounded UI graphics destroyed Dashboard rendering
+- **Failure:** Presentation rules allowed small SVG/icon graphics to expand to page-scale black shapes.
+- **Impact:** The Dashboard became effectively unusable despite the underlying application/data shell still loading.
+- **Prevention:** v0.47 uses controlled `v47Icon()` SVG boxes and scoped `.v47-icon-svg` rules. Generic SVG sizing rules are prohibited; rendered gates fail when a visible icon exceeds its contract.
+
+## ERR-053 — Presentation experiments were allowed to become forward baselines
+- **Failure:** Successive visual patches inherited styling from already-failed visual attempts, compounding layout drift.
+- **Impact:** Functional progress became psychologically entangled with broken presentation work and raised the risk of unnecessary full-app rollback.
+- **Prevention:** Separate functional donor from presentation donor. v0.45.1/v0.46.2 preserve functional continuity; failed later v0.46 visual experiments are quarantined as evidence only.
+
+## ERR-054 — Build-number churn obscured material release changes
+- **Failure:** Materially different packages reused v0.46.0 and changed only build suffixes/descriptive filenames.
+- **Impact:** Package identity became confusing and rollback/recovery history was harder to reason about.
+- **Prevention:** Materially different packages increment the semantic version. v0.47.0 begins the recovered visual-system line.

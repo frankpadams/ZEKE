@@ -1,8 +1,8 @@
-# Project Identity — ZEKE v0.46.0
+# Project Identity — ZEKE v0.47.0
 
-**Runtime build:** 2026.08.24.3  
-**Governance revision:** 2026.08.24.3  
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.4 · governance 2026.08.24.5
+**Runtime build:** 2026.08.24.1  
+**Governance revision:** 2026.08.24.6  
+**Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6
 
 ZEKE is a private, user-owned personal-management and knowledge system, beginning with health and fitness but not limited to them. It is not merely a chatbot, fitness logger, medical device, or cloud-owned personal database.
 
@@ -20,6 +20,10 @@ ZEKE is a private, user-owned personal-management and knowledge system, beginnin
 - Exercise/PT/injury/body-area relationships use a shared governable reference layer; reference anatomy is not the personal health record and does not automatically prohibit activity.
 
 ## Current architecture — challengeable with justification
-ZEKE v0.46.0 build 2026.08.24.3 is the current forward baseline. The historical recovery source remains v0.43.1 plus the verified v0.44.1 patch lineage; v0.28.x remains a rejected development path. Google Drive is the active provider implementation while provider-neutral semantics remain binding. The current release adds explicit UX composition, body-area navigation, variation-aware analytics, and versioned anatomy/reference knowledge over the existing longitudinal/adaptive-training architecture.
+ZEKE v0.46.0 build 2026.08.24.2 is the current forward baseline. The historical recovery source remains v0.43.1 plus the verified v0.44.1 patch lineage; v0.28.x remains a rejected development path. Google Drive is the active provider implementation while provider-neutral semantics remain binding. The current release adds explicit UX composition, body-area navigation, variation-aware analytics, and versioned anatomy/reference knowledge over the existing longitudinal/adaptive-training architecture.
 
-Governance revision 2026.08.24.3 updates continuity/audit documentation only; it does not silently change runtime behavior beyond build 2026.08.24.3.
+Governance revision 2026.08.24.3 updates continuity/audit documentation only; it does not silently change runtime behavior beyond build 2026.08.24.2.
+
+
+## Current recovery baseline
+For v0.47.0, v0.45.1 is the known stable rollback package and reconciled v0.46.0 build 2026.08.24.2 is the functional donor. Failed later v0.46 visual experiments are not current identity or presentation authority.
