@@ -1,6 +1,6 @@
 # ZEKE Continuity & Reconciliation History
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.3 · governance 2026.08.24.4
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.4 · governance 2026.08.24.5
 
 ## 2026-08-24 — v0.46.0 continuity reconciliation, governance 2026.08.24.3
 

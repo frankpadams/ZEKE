@@ -1,10 +1,10 @@
 {
   "schema_version": 3,
   "release": "0.46.0",
-  "build": "2026.08.24.2",
+  "build": "2026.08.24.4",
   "current_version": "0.46.0",
-  "current_build": "2026.08.24.3",
-  "governance_revision": "2026.08.24.4",
+  "current_build": "2026.08.24.4",
+  "governance_revision": "2026.08.24.5",
   "current_iteration": {
     "status": "v0460_runtime_verified_continuity_reconciled",
     "baseline_verified": true,
@@ -48,7 +48,7 @@
     "verification_complete": true,
     "package_verification": "complete",
     "environment_verification": "outstanding",
-    "unpacked_file_count": 143,
+    "unpacked_file_count": 144,
     "pt_visual_gate": {
       "status": "package_local_pass",
       "note": "All 14 included rehab entries have verified movement-specific two-frame visual-guide metadata; local guides include accessible title/description. Clinician-specific instructions still outrank generic guides."

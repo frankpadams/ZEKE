@@ -24,3 +24,6 @@ Failure or uncertainty requires more reading, not guessing. Present the checkpoi
 
 
 Current continuity review: v0.46.0 · build 2026.08.24.3 · governance 2026.08.24.4.
+
+
+Current continuity identity: v0.46.0 · build 2026.08.24.4 · governance 2026.08.24.5

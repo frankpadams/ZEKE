@@ -2,7 +2,7 @@
 
 **Runtime build:** 2026.08.24.3  
 **Governance revision:** 2026.08.24.3  
-**Current authority review:** 2026-08-24
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.4 · governance 2026.08.24.5
 
 ZEKE is a private, user-owned personal-management and knowledge system, beginning with health and fitness but not limited to them. It is not merely a chatbot, fitness logger, medical device, or cloud-owned personal database.
 
