@@ -1,12 +1,12 @@
 # ZEKE Current Test Report — v0.46.0
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.2 · governance 2026.08.24.3
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.3 · governance 2026.08.24.4
 
-**Build:** 2026.08.24.2  
+**Build:** 2026.08.24.3  
 **Package-local status:** release-gate checks passed before final ZIP generation.  
 **Environment status:** outstanding where noted below.
 
-## Continuity reconciliation verification — governance 2026.08.24.2
+## Continuity reconciliation verification — governance 2026.08.24.3
 
 The post-package continuity audit identified stale standing authority documents that the original project audit did not detect. Governance revision 2026.08.24.3 re-read/reconciled the entire registered authoritative set and strengthened `tools/project_audit.py` to require current review stamps across that set plus standing supporting-continuity documents.
 
@@ -19,7 +19,7 @@ Verification for this reconciliation includes:
 - active JavaScript syntax/regression suites to confirm the documentation reconciliation did not damage runtime files;
 - reopened ZIP integrity/path/permission/hash comparison before final delivery.
 
-Runtime behavior remains build 2026.08.24.2; this continuity revision does not promote unrun environment behavior to Verified.
+Runtime behavior remains build 2026.08.24.3; this continuity revision does not promote unrun environment behavior to Verified.
 
 
 ## Passed package-local checks

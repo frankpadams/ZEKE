@@ -1,6 +1,6 @@
 # ZEKE Architecture — v0.46.0
 
-**Runtime build:** 2026.08.24.2  
+**Runtime build:** 2026.08.24.3  
 **Governance revision:** 2026.08.24.3  
 **Current authority review:** 2026-08-24  
 **Repository schema:** 5

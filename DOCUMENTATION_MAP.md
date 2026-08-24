@@ -1,6 +1,6 @@
 # ZEKE Documentation Map
 
-**Reviewed:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.2 · governance 2026.08.24.3
+**Reviewed:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.3 · governance 2026.08.24.3
 
 ## Authority chain
 1. `00_AI_START_HERE.md`
@@ -20,3 +20,6 @@ The full authoritative set is machine-registered in `DEVELOPMENT_SYSTEM/ARTIFACT
 
 ## Historical continuity
 Historical implementation/status/handoff/deployment evidence is consolidated in `DEVELOPMENT_REVIEW_HISTORY.md`, `DEVELOPMENT_MEMORY/ITERATION_HISTORY.md`, `DEVELOPMENT_MEMORY/CONTINUITY_HISTORY.md`, `PACKAGE_HISTORY.json`, `LEGACY_ARTIFACT_HISTORY.json`, and the cumulative release/test sections. Historical old-version strings are allowed only when clearly historical; they do not define current state.
+
+
+Current continuity review: v0.46.0 · build 2026.08.24.3 · governance 2026.08.24.4.

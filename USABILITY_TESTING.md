@@ -1,6 +1,6 @@
 # Usability Testing Standard
 
-**Reviewed:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.2 · governance 2026.08.24.3
+**Reviewed:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.3 · governance 2026.08.24.3
 
 Project Zeke must be testable as an end-user product without asking the tester to become a developer.
 
@@ -46,3 +46,6 @@ Usability verification is screen- and workflow-level, not merely component-level
 - mobile and desktop compositions that preserve the same data/workflow semantics.
 
 Package-local rendering is evidence, not owner acceptance. Physical-device/actual-deployment review remains explicit.
+
+
+Current continuity review: v0.46.0 · build 2026.08.24.3 · governance 2026.08.24.4.

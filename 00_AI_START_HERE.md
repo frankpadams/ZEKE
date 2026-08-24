@@ -1,11 +1,11 @@
 # AI / Developer Start Here — ZEKE v0.46.0
 
-**Runtime build:** 2026.08.24.2  
+**Runtime build:** 2026.08.24.3  
 **Governance revision:** 2026.08.24.3  
 **Release:** UX Architecture + Connected Anatomy  
 **Continuity review:** 2026-08-24 — current authority chain reconciled after post-package audit.
 
-This package is the current authoritative Project ZEKE baseline. Runtime behavior is v0.46.0 build 2026.08.24.2; governance revision 2026.08.24.3 corrects the release/continuity documentation and strengthens the audit so stale standing authorities cannot silently pass again. This reconciliation does not claim additional runtime behavior beyond build 2026.08.24.2.
+This package is the current authoritative Project ZEKE baseline. Runtime behavior is v0.46.0 build 2026.08.24.3; governance revision 2026.08.24.3 corrects the release/continuity documentation and strengthens the audit so stale standing authorities cannot silently pass again. This reconciliation does not claim additional runtime behavior beyond build 2026.08.24.3.
 
 ## Read in this order
 1. `ZEKE_CONSTITUTION.md` — binding product principles.
@@ -44,4 +44,4 @@ This package is the current authoritative Project ZEKE baseline. Runtime behavio
 - Physical-device/deployed-provider checks are not considered passed unless they actually ran.
 
 ## Release state
-Package-local governance/static/rendered verification is reconciled for runtime build 2026.08.24.2 and governance revision 2026.08.24.3. The continuity audit now checks every registered authoritative document for current-release review metadata in addition to identity agreement. Physical-device visual acceptance and live connected-provider verification remain environment gates and are not implied by package-local checks.
+Package-local governance/static/rendered verification is reconciled for runtime build 2026.08.24.3 and governance revision 2026.08.24.3. The continuity audit now checks every registered authoritative document for current-release review metadata in addition to identity agreement. Physical-device visual acceptance and live connected-provider verification remain environment gates and are not implied by package-local checks.

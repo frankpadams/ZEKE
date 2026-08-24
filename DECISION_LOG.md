@@ -1,6 +1,6 @@
 # ZEKE Decision Log — Current Index
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.2 · governance 2026.08.24.3
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.3 · governance 2026.08.24.4
 
 **Status:** Canonical index. Full historical decisions remain in `DEVELOPMENT_MEMORY/DECISION_LOG.md`.
 
@@ -73,3 +73,7 @@
 - Fitness is not a logging mode: users can explore exercises, form guides, history, PT/rehab, progress, and proposed workouts without creating records.
 - Contextual logging remains available where naturally useful, including inside an active workout.
 - No separate Explore/Workout mode selector is introduced; the distinction is expressed through explicit mutating actions.
+
+
+## 2026-08-24 desktop visual-authority rebuild
+Build 2026.08.24.3 replaces the legacy desktop Dashboard presentation with the approved desktop mockup as visual authority: one shared 12-column geometry, consistent gutters and spacing tokens, compact icon-led activity and insight rows, 2×2 health sparkline tiles, bounded Next Up and Quick Actions, visual timeline/goals composition, and preserved ZEKE data/business logic. This is a presentation-layer rebuild rather than incremental margin/card patching. Governance review: 2026.08.24.4.

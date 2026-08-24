@@ -34,9 +34,9 @@ def stale_authority_review(d):
         if a.get('status')=='authoritative' and a.get('path')=='DESIGN_AUTHORITY.md': a['reviewed_governance_revision']='stale'
     p.write_text(json.dumps(j,indent=2))
 def stale_supporting_continuity(d):
-    p=d/'DEVELOPMENT_SYSTEM/STATUS_LANGUAGE.md'; p.write_text(p.read_text().replace('2026.08.24.2','2026.07.25.2'))
+    p=d/'DEVELOPMENT_SYSTEM/STATUS_LANGUAGE.md'; p.write_text(p.read_text().replace('2026.08.24.3','2026.07.25.2'))
 def stale_authority_header_governance(d):
-    p=d/'DESIGN_AUTHORITY.md'; p.write_text(p.read_text().replace('governance 2026.08.24.3','governance 2026.08.24.2',1))
+    p=d/'DESIGN_AUTHORITY.md'; p.write_text(p.read_text().replace('governance 2026.08.24.3','governance 2026.08.24.3',1))
 def wrong_iteration_lifecycle(d):
     p=d/'DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json'; j=json.loads(p.read_text());
     for a in j['artifacts']:

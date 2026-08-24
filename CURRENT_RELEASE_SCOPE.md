@@ -1,6 +1,6 @@
 # ZEKE v0.46.0 — Current Release Scope
 
-**Runtime build:** 2026.08.24.2  
+**Runtime build:** 2026.08.24.3  
 **Governance revision:** 2026.08.24.3  
 **Continuity review:** 2026-08-24  
 **Status:** runtime implementation package-local verified; continuity reconciled; environment verification outstanding.
@@ -58,10 +58,10 @@ v0.46.0 is a UX stabilization and connected-knowledge release. It preserves the 
 ## Safety / truth boundary
 ZEKE is decision support, not diagnosis, prescription, contraindication, or medical clearance. Clinician/PT restrictions outrank AI suggestions. Missing pain/symptom data remains unknown. Source facts, restrictions, AI inferences, reference knowledge, and observed response retain separate provenance/evidence classes.
 
-## Governance reconciliation in revision 2026.08.24.2
+## Governance reconciliation in revision 2026.08.24.3
 The first v0.46.0 package correctly carried much of the runtime scope but did **not** update every standing continuity authority. Governance revision 2026.08.24.3 corrects that documentation drift, adds current-review metadata to all registered authoritative artifacts, updates the current architecture/design/decision/continuity chain, and strengthens `tools/project_audit.py` so the same class of stale-authority package cannot pass silently.
 
-This governance reconciliation does not claim new runtime features beyond build 2026.08.24.2.
+This governance reconciliation does not claim new runtime features beyond build 2026.08.24.3.
 
 ## Environment verification outstanding
 - owner physical-phone acceptance;
@@ -74,3 +74,7 @@ This governance reconciliation does not claim new runtime features beyond build 
 - **Generated spreadsheets are reports**, not a second canonical database.
 - **Medication occurrence history** remains dated, revision-safe, and distinguishable from schedule-derived assumptions.
 - **Package continuity** remains a release requirement: a competent future team must be able to understand and continue the project from the package without prior chat history.
+
+
+## 2026-08-24 desktop visual-authority rebuild
+Build 2026.08.24.3 replaces the legacy desktop Dashboard presentation with the approved desktop mockup as visual authority: one shared 12-column geometry, consistent gutters and spacing tokens, compact icon-led activity and insight rows, 2×2 health sparkline tiles, bounded Next Up and Quick Actions, visual timeline/goals composition, and preserved ZEKE data/business logic. This is a presentation-layer rebuild rather than incremental margin/card patching. Governance review: 2026.08.24.4.

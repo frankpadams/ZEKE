@@ -1,6 +1,6 @@
 # ZEKE Design Authority — Whole Product UX
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.2 · governance 2026.08.24.3  
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.3 · governance 2026.08.24.4  
 **Status:** Binding visual/composition/interaction contract.
 
 This document combines the approved historic mobile references with the v0.46.0 desktop and cross-product UX decisions. A future developer should be able to reproduce the intended experience without prior chat history.
@@ -141,3 +141,7 @@ Historic reference: `Fitness Library: Bicep Curl Analytics.png` (August 11, 2026
 - Search is optional; exercise browsing must work through body/context navigation.
 - Exercise variations remain distinct series on shared axes.
 - Visible user actions visibly respond.
+
+
+## 2026-08-24 desktop visual-authority rebuild
+Build 2026.08.24.3 replaces the legacy desktop Dashboard presentation with the approved desktop mockup as visual authority: one shared 12-column geometry, consistent gutters and spacing tokens, compact icon-led activity and insight rows, 2×2 health sparkline tiles, bounded Next Up and Quick Actions, visual timeline/goals composition, and preserved ZEKE data/business logic. This is a presentation-layer rebuild rather than incremental margin/card patching. Governance review: 2026.08.24.4.
