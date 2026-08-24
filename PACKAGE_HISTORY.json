@@ -2,22 +2,12 @@
   "schema_version": 1,
   "purpose": "Living consolidated package/build/provenance/verification history. Superseded individual files are intentionally removed after their contents are retained here.",
   "current_release": {
-    "version": "0.43.1",
-    "build": "2026.08.17.1",
-    "label": "Mobile Professional Polish",
-    "status": "package-local-verified-release-candidate-blocked",
-    "publish_ready": false,
-    "blockers": [
-      "6 PT/rehab entries lack exact reviewed two-frame visual media",
-      "physical-phone visual acceptance outstanding",
-      "live Google Drive/Calendar and cross-device credential verification outstanding"
-    ],
-    "notes": [
-      "Focused mobile-only interface pass preserves v0.43 longitudinal and connected-data functionality.",
-      "Exact variation is selected before variation-dependent coaching in workout entry.",
-      "Canonical strength charts use independent exact-variation line series on shared axes; missing load remains unknown.",
-      "Package-local phone-width and broad maintained-workflow regressions pass."
-    ]
+    "version": "0.45.1",
+    "build": "2026.08.23.4",
+    "label": "Integrated Fitness + Adaptive Training",
+    "status": "release_package_complete_environment_verification_outstanding",
+    "publish_ready": true,
+    "verification_boundary": "Package-local verification complete; owner/live-provider environment acceptance outstanding."
   },
   "historical_records": [
     {
@@ -27964,11 +27954,11 @@
       }
     }
   ],
-  "current_version": "0.43.1",
-  "current_build": "2026.08.17.1",
-  "governance_revision": "2026.08.17.1",
-  "release": "0.43.1",
-  "build": "2026.08.17.1",
+  "current_version": "0.45.1",
+  "current_build": "2026.08.23.4",
+  "governance_revision": "2026.08.23.4",
+  "release": "0.45.1",
+  "build": "2026.08.23.4",
   "history": [
     {
       "version": "0.43.1",
@@ -28000,11 +27990,35 @@
   ],
   "releases": [
     {
-      "version": "0.44.0",
-      "build": "2026.08.18.0",
-      "label": "Mobile Mockup Rebuild",
-      "baseline": "0.43.1 full package",
-      "notes": "Mobile interface rebuilt against approved mockup while preserving shared data/business logic."
+      "version": "0.45.1",
+      "build": "2026.08.23.4",
+      "label": "Integrated Fitness + Adaptive Training",
+      "date": "2026-08-23",
+      "baseline": "v0.43.1 full package + verified v0.44.1 patch + audited subsequent implementation",
+      "status": "release_package_complete_environment_verification_outstanding",
+      "notes": [
+        "Integrated Fitness/Log workflow",
+        "Adaptive workout handoff and remaining-work adaptation",
+        "Truthful PT visual gate",
+        "Generic PDF/image/DEXA intake",
+        "Medication reconciliation",
+        "Interval health events",
+        "Staged calendar privacy",
+        "Living-document governance reconciliation"
+      ],
+      "publish_ready": true
+    },
+    {
+      "version": "0.45.0",
+      "build": "2026.08.23.2",
+      "date": "2026-08-23",
+      "label": "Adaptive Training + Mobile-First Recovery \u2014 Governance Reconciled",
+      "provenance": [
+        "v0.43.1 full package",
+        "v0.44.1 verified mobile polish patch",
+        "Project ZEKE decisions through 2026-08-23"
+      ],
+      "notes": "Complete reconstructed release; governance/current-authority drift from build 2026.08.23.1 corrected after full Constitution/package review."
     }
   ]
 }

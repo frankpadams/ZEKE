@@ -79,3 +79,11 @@ Legacy connected workbooks (including SJN1-style data sources) are import/migrat
 ## Verification boundary
 
 Automated package and rendered-browser evidence does not prove live-provider permissions, physical-device usability, external image availability, or clinical effectiveness. Physical-phone acceptance and complete PT media verification remain explicit release gates.
+
+## v0.45.1 integrated training and document-intake runtime
+
+`assets/training-intelligence.js` is the bounded AI consultation layer for clinical-context mapping and adaptive PT/strength/cardio planning. It receives structured repository context and returns proposals; canonical writes remain owned by deterministic application/data-layer code and explicit user actions. Active-workout adaptation preserves completed work and may revise only remaining proposed work.
+
+`assets/document-intake.js` is a source-first extraction adapter. PDFs attempt embedded text through pdf.js before rendered-page OCR; screenshots/images use OCR through Tesseract.js. These libraries are loaded lazily from pinned jsDelivr package versions only when required and are not bundled ZEKE source. Extraction output is a proposal linked to filename/type/SHA-256/method/source preview and requires user review/confirmation before canonical event writes.
+
+Navigation itself is non-mutating. Fitness detail/exploration views and proposed workouts are ordinary read/planning surfaces; Start/Log/Save/Complete/Correct/Delete are explicit state transitions.

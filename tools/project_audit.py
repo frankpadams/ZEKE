@@ -26,7 +26,7 @@ ver=str(state.get('current_version','')); build=str(state.get('current_build',''
 if not ver or not build: errors.append('project state lacks current version/build')
 
 # Identity agreement in current authorities/supporting release docs
-identity_files=['VERSION.txt','version.js','README.md','DEVELOPMENT_MEMORY/PROJECT_STATE.json','DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json','DEVELOPMENT_MEMORY/RELEASE_GATE.md',state.get('current_iteration_record',''),'CHANGELOG.md','TEST_REPORT.md','PACKAGE_HISTORY.json']
+identity_files=['VERSION.txt','version.js','README.md','DEVELOPMENT_MEMORY/PROJECT_STATE.json','DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json','DEVELOPMENT_MEMORY/RELEASE_GATE.md',state.get('current_iteration_record',''),'CURRENT_RELEASE_SCOPE.md','TEST_REPORT.md','PACKAGE_HISTORY.json']
 for rel in [x for x in identity_files if x]:
     t=text(rel)
     if ver not in t: errors.append(f'current version {ver} absent from {rel}')
@@ -40,7 +40,7 @@ for name,obj in [('development gate',gate),('governance rules',rules),('artifact
 
 # Active runtime file coverage
 runtime_files=registry.get('runtime_files',[])
-required_runtime=['index.html','version.js','assets/app.js','assets/data-layer.js','assets/parser.js','assets/ai-router.js','assets/workflow-engine.js','assets/styles.css']
+required_runtime=['index.html','version.js','assets/app.js','assets/data-layer.js','assets/parser.js','assets/ai-router.js','assets/workflow-engine.js','assets/styles.css','assets/training-intelligence.js','assets/mobile-native.js','assets/mobile-native.css']
 for rel in required_runtime:
     if rel not in runtime_files: errors.append(f'active runtime file absent from registry: {rel}')
 for rel in runtime_files:

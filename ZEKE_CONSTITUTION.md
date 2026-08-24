@@ -154,7 +154,7 @@ ZEKE may open another application only when it directly completes a ZEKE workflo
 
 Panels size from their own content. Expandable analysis receives adequate width. Avoid shared-height or masonry layouts that create large blank areas, and use restrained rounding, density, and hierarchy to make the daily briefing understandable.## Governance reconciliation — July 25, 2026
 
-The following principles are binding for ZEKE work. They were approved before the v0.29.0 recovery implementation. Current implementation status varies by principle and is recorded in `FEATURE_STATUS.md`; governance approval never substitutes for evidence.
+The following principles are binding for ZEKE work. They were approved before the v0.29.0 recovery implementation. Current implementation status varies by principle and is recorded in `CURRENT_RELEASE_SCOPE.md` and `TEST_REPORT.md`; governance approval never substitutes for evidence.
 
 ## 35. Provider-agnostic durable storage
 
@@ -247,3 +247,25 @@ Charts, timelines, gauges, body maps, comparison graphics, and status indicators
 ## 57. Examples validate mechanisms; they do not become product rules
 
 User-specific examples may be used as regression scenarios, but implementation remains generalized across activities, exposures, body areas, symptoms, outcomes, and users. A single anecdote must not become hard-coded coaching logic.
+
+
+## 58. Clinical training intelligence preserves evidence classes
+
+Clinical source facts, explicit clinician/PT restrictions, AI-generated anatomical or movement inferences, and observed exercise responses are separate evidence classes. ZEKE may combine them for transparent training decision support, but it must preserve provenance and confidence and may not silently promote an AI inference into a clinician restriction, diagnosis, contraindication, prescription, or medical clearance.
+
+## 59. Adaptive progression is response-bounded
+
+PT/rehab, strength, cardio, and return-to-activity progression may share one adaptive training model, but progression must remain evidence-bounded. Missing symptom data is unknown; a blank pain field is not pain-free. Clinician restrictions outrank AI recommendations. Clinically relevant movements require both progression criteria and regression/stop criteria, and meaningful worsening during, later the same day, or the next day must prevent automatic progression.
+
+
+## 60. Navigation is informational by default
+
+Opening Fitness, an exercise, variation, workout plan, PT guide, history, or other content does not itself create, complete, or modify a record. Mutating actions such as Start, Log, Save, Complete, Correct, or Delete must be explicit and distinguishable. ZEKE may offer contextual actions without forcing an artificial browse/workout mode dichotomy.
+
+## 61. Workout recommendations remain proposals until accepted
+
+A generated regimen is inspectable and editable before use. Starting a proposed workout is explicit. During an active workout, ZEKE may adapt unsaved remaining work using actual completed order, effort, symptoms, clinical constraints, and user choices, but completed records are preserved and user actions remain reversible/traceable.
+
+## 62. Rehab media must depict the named movement truthfully
+
+Passing a file-count or image-count test is not sufficient. A PT/rehab guide must depict the named movement/setup closely enough to be useful, identify schematic/illustrative media honestly, include accessible text, and defer to clinician-specific instructions. Generic filler imagery cannot satisfy a movement-level visual release gate.

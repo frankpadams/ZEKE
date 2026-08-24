@@ -314,3 +314,317 @@ Base package: `Zeke-026-1.zip`
 
 ## Packaging rule
 Untouched entries were copied from the original ZIP using their original ZIP metadata, timestamps, compression settings, and file bytes. Only modified or added files use the v0.27.3 build timestamp.
+
+
+---
+
+# Consolidated legacy status and handoff records
+
+
+## Imported from PROJECT_STATE.md
+
+# ZEKE Current Project State
+
+**Package:** v0.43.1  
+**Build:** 2026.08.17.1  
+**Release label:** Mobile Professional Polish  
+**Parent candidate:** v0.43.0 RC2.1 · build 2026.08.16.3  
+**Last known user-deployed baseline before this package:** v0.43.0 RC2.1 screenshot review
+
+## Current direction
+
+v0.43.1 is a focused mobile-interface implementation pass over the RC2.1 longitudinal runtime. The goal is not feature reduction: existing data, health, calendar, medication, report/export, AI-credential, editing, and coaching infrastructure is retained while mobile task order, responsiveness, and visual polish are corrected.
+
+## Mobile changes now implemented
+
+- Mockup-aligned dark navy/teal/white mobile hierarchy and professional card treatment.
+- Balanced five-item bottom navigation; no oversized blue center blob; no duplicate floating ZEKE orb at phone widths.
+- Narrower vertical drawer with coherent active-state styling.
+- Variation/equipment selection at the top of workout entry before Coach's Eye can depend on it.
+- Exact-variation last-session/coaching context.
+- Per-set load/reps plus optional per-set effort/RPE and pain.
+- Compact progression when there is not enough comparable data to graph.
+- Independent variation line series on canonical exercise charts; missing load is omitted rather than treated as zero.
+- Fitness period control moved inside the library context it governs.
+- Workout header/date/sticky controls corrected to avoid covering content.
+
+## Canonical data boundary
+
+User-owned provider-backed JSON remains canonical. Schedule-derived medication events are explicitly marked assumed. Calendar items remain candidate evidence until confirmed. DEXA is measurement provenance. Generated spreadsheets are reports. AI credentials are system configuration stored in connected user-owned storage and excluded from exports.
+
+## Current blockers outside the completed mobile package-local pass
+
+Six PT/rehab movements still lack verified exact visual media. Final physical-phone acceptance and live Google Drive/Calendar/cross-device behavior remain environment verification. Package-local rendered mobile acceptance currently passes at 320, 375, 390, and 430 px.
+
+
+## Imported from FEATURE_STATUS.md
+
+# ZEKE v0.43.1 Feature Status
+
+**Build:** 2026.08.17.1
+
+## Implemented in package
+
+- Professional mockup-aligned mobile visual system across Dashboard/Health/Fitness/workout surfaces.
+- Variation-first batch workout entry; exact variation is resolved before variation-dependent coaching.
+- Canonical strength charts with independent exact-variation line series and missing-load omission.
+- Compact truthful progression state when fewer than two comparable observations exist.
+- Mobile bottom navigation without oversized center blob or duplicate floating ZEKE control.
+
+- Canonical user-owned JSON repository with provenance/corrections.
+- Unified Talk to ZEKE conversation and workflow engine.
+- Mobile `+ Log Exercise` page using inline editable set rows, variation selector/creation, optional per-set effort/pain, ZEKE Coach, and variation-aware Form Guide.
+- Canonical exercise families with separate variation series on shared chart axes.
+- Reviewable historical exercise-name consolidation with preserved original wording.
+- Health Measurements/Body Composition schema including DEXA-derived fields and source/method provenance.
+- Recent Health Record edit/remove with correction history.
+- Medication schedules plus individual dated dose occurrences.
+- Opt-in assumed-from-schedule occurrences and historical reconstruction from known schedule start.
+- Retroactive medication occurrence editing (taken/missed/delayed/partial/unknown/not-yet-taken).
+- Longitudinal last-dose question answering with evidence disclosure.
+- Meta/product-feedback separation from health records.
+- Read-only conversational interruption of unfinished workflows.
+- Upcoming Google Calendar context.
+- Mobile-first retrospective calendar scan (past year) with Relevant / Not relevant / Unsure first pass.
+- Calendar candidate → Questions for You → confirmed health-record backfill with provenance/deduplication.
+- On-demand Health Record Workbook and canonical health JSON export.
+- Legacy workbook migration/reconciliation workflow retained but demoted from source-of-truth role.
+- AI Router with connected-workspace credential sync across devices.
+- Vertical responsive side navigation and mobile overflow gates.
+- Consolidated living release/test/provenance histories.
+
+## Implemented but requires environment/user acceptance
+
+- Live Google Drive persistence/reconnect.
+- Cross-device AI credential hydration on separate physical devices.
+- Calendar retrospective scan against the user's real calendar.
+- Physical-phone visual fidelity/touch ergonomics.
+- Generated health workbook review against the user's real longitudinal data.
+
+## Incomplete release gates
+
+- Verified visual media for every included PT/rehab movement.
+- Physical-phone visual comparison to approved mobile exercise/dashboard design authority.
+
+## Planned / not claimed complete
+
+- Encrypted cross-device credential vault beyond Drive-account protection.
+- Additional storage providers (OneDrive/Dropbox/WebDAV/SFTP/local adapter).
+- Apple/Outlook calendar connectors.
+- Automated causal inference; ZEKE remains association/context oriented.
+- Mature learned cross-variation progression prediction (data architecture supports it; learning model remains future work).
+
+
+## Imported from HANDOFF_BRIEF.md
+
+# ZEKE Handoff Brief — v0.43.1
+
+**Build:** 2026.08.17.1  
+**Release label:** Mobile Professional Polish
+
+Start with `00_AI_START_HERE.md`. The package is designed to stand alone without prior conversation history.
+
+## What changed in v0.43.1
+
+The runtime was not simplified. This pass corrected the phone interface around the existing v0.43 feature set. The authoritative mobile visual language is again dark navy / teal / white with compact, information-rich cards and clear hierarchy. Workout entry now resolves exact variation before variation-dependent coaching; exact-variation histories stay mechanically distinct; canonical charts display separate variation lines on shared axes; missing load is unknown rather than zero; per-set effort/pain is preserved; insufficient-data progression does not waste a large empty chart; and phone header/drawer/bottom-navigation/sticky-action geometry was corrected.
+
+## Design authority
+
+Read `DESIGN_AUTHORITY.md`. Do not reintroduce Gym Mode. Do not separate set display from set entry. Do not hide a required variation decision under optional details. Do not join unlike equipment histories into one line. Do not reintroduce the oversized mobile ZEKE center blob or duplicate floating action.
+
+## Data authority
+
+Canonical longitudinal JSON is source of truth. Generated XLSX/JSON outputs are reports. Calendar items are candidate evidence. Medication schedule assumptions are evidence-labeled occurrences, not confirmed administrations. DEXA is measurement provenance/method.
+
+## Release status
+
+Package-local mobile rendered verification passes across phone widths and the main workout/analytics regression paths. The broader release remains gated by the six missing PT visual guides plus physical-device/live-provider verification. Run `TEST_GUIDE.md`, `tests/mobile-professional-polish.test.js`, `tests/mobile-professional-polish.test.py`, the full JS suite, and `python tools/project_audit.py` before any further promotion.
+
+
+## Imported from KNOWN_ISSUES.md
+
+# ZEKE Known Issues — v0.43.1
+
+**Build:** 2026.08.17.1
+
+## Release blockers
+
+1. **PT visual coverage is incomplete.** The last RC1 audit identified verified two-frame/appropriate visual coverage for 8 of 14 rehab/PT entries. Remaining known visual gaps: Band Internal Rotation, Doorway Chest Stretch, D1, D2, No Monies, and Cheerleaders. Do not substitute mechanically different images merely to make the count pass.
+2. **Physical-phone visual acceptance is outstanding.** Package-local rendered checks now pass at 320, 375, 390, and 430 px and the current screenshots have been visually reviewed, but browser viewport tests are not equivalent to final real-device comparison against `DESIGN_AUTHORITY.md`.
+
+## Environment verification outstanding
+
+- Live Drive read/write/reconnect across multiple devices.
+- Cross-device AI credential sync and provider test on a second device.
+- Real-calendar 365-day retrospective scan volume/performance and user acceptance.
+- External form-guide media availability in deployed environment.
+
+## Security limitation
+
+AI API keys are synced through the user-owned connected ZEKE workspace to satisfy cross-device persistence. In RC2 they rely on Drive account/OAuth confidentiality rather than a separate end-to-end encrypted credential vault. Keys are excluded from reports, diagnostics, and public package files. A hardened encrypted vault is a future security enhancement.
+
+## Historical issues resolved or structurally addressed through v0.43.1
+
+- Side menu collapsing into horizontal button rows at mobile/intermediate widths.
+- Mobile body-measurement flow assuming waist only.
+- Recent Health Record lacking edit/remove.
+- Exercise entry separating set display from set input.
+- Canonical exercise tile incorrectly splitting variation histories.
+- DEXA treated as a separate navigation concept rather than measurement provenance.
+- Device-only AI API key persistence.
+- Old connected workbook presented as an ongoing authoritative health store.
+- Medication history represented only as standing schedule rather than dated occurrences.
+- Last-dose question requiring redundant user input despite stored schedule/history.
+- Product feedback being eligible for health-event interpretation.
+- Pending write workflow monopolizing later read-only conversation.
+- Canonical exercise chart connecting unlike variation points into one line.
+- Missing workout load rendered as a false 0 lb chart point.
+- Variation selector buried below Coach guidance as an optional detail.
+- Oversized mobile center-navigation blue blob and duplicate floating ZEKE action.
+- Workout header/date controls overlapping phone content.
+
+
+## Imported from DEPLOYMENT_HISTORY.md
+
+# ZEKE Deployment / Replacement History
+
+Historical file-replacement and upload instructions retained for traceability. Current deployment instructions live in README_DEPLOY.md.
+
+
+---
+
+## Current candidate status — v0.43.1
+
+**Build:** 2026.08.17.1  
+**Deployment status:** Not deployed by this package-generation step.
+
+v0.43.1 is the mobile professional-polish successor to v0.43.0 RC2.1. Use the full package as the replacement unit when/if deployment is approved; do not selectively copy files by timestamp. Existing broader release gates remain in `DEVELOPMENT_MEMORY/RELEASE_GATE.md`.
+
+---
+
+
+## Historical source: `FILES_TO_REPLACE_v0.17.7.txt`
+
+Replace these files in the ZEKE repository:
+
+index.html
+version.js
+assets/app.js
+assets/data-layer.js
+assets/styles.css
+
+Optional documentation:
+RELEASE_NOTES_v0.17.7.md
+TEST_GUIDE_v0.17.7.md
+
+
+---
+
+## Historical source: `DEPLOYMENT_MANIFEST_v0.40.0.md`
+
+# ZEKE v0.40.0 Deployment Manifest
+
+**Build:** 2026.08.03.1
+
+## Recommended deployment
+
+Replace the complete contents of the GitHub Pages repository with the contents of this package. Do not select files solely by modification date.
+
+## Required runtime files
+
+- `index.html`
+- `manifest.webmanifest`
+- `sw.js`
+- `version.js`
+- `zeke-config.js`
+- `xlsx-bundle.js`
+- `assets/styles.css`
+- `assets/data-layer.js`
+- `assets/parser.js`
+- `assets/ai-router.js`
+- `assets/workflow-engine.js`
+- `assets/exercise-guides.js`
+- `assets/knowledge-base.js`
+- `assets/integrity-engine.js`
+- `assets/app.js`
+- `assets/branding/zeke-mark-provisional.png`
+
+## Post-deployment checks
+
+1. Startup displays **v0.40.0 · build 2026.08.03.1** on mobile and desktop.
+2. Hard refresh once after GitHub Pages finishes deploying.
+3. Verify the dashboard shows the lighter v0.40 composition.
+4. Connect Google Drive and verify the repository loads.
+5. Open the dashboard review card / Data Integrity route.
+6. Review every proposed repair; do not batch-approve unfamiliar items.
+7. Confirm an integrity backup is created before the first approved repair.
+8. Verify repaired records no longer affect current charts/insights and remain visible in audit history.
+
+## Cache behavior
+
+The service worker uses `project-zeke-v0.40.0-20260803.1` and deletes earlier `project-zeke-*` caches on activation. A mixed runtime set is unsupported.
+
+
+---
+
+## Historical source: `FILES_TO_REPLACE_v0.40.0.txt`
+
+ZEKE v0.40.0 / build 2026.08.03.1
+
+Recommended: replace the complete repository contents.
+
+Minimum verified runtime set:
+index.html
+manifest.webmanifest
+sw.js
+version.js
+zeke-config.js
+xlsx-bundle.js
+assets/styles.css
+assets/data-layer.js
+assets/parser.js
+assets/ai-router.js
+assets/workflow-engine.js
+assets/exercise-guides.js
+assets/knowledge-base.js
+assets/integrity-engine.js
+assets/app.js
+assets/branding/zeke-mark-provisional.png
+
+
+---
+
+## Historical source: `FILES_TO_REPLACE.txt`
+
+ZEKE v0.40.0 / build 2026.08.03.1
+
+Recommended: replace the complete repository contents.
+
+Minimum verified runtime set:
+index.html
+manifest.webmanifest
+sw.js
+version.js
+zeke-config.js
+xlsx-bundle.js
+assets/styles.css
+assets/data-layer.js
+assets/parser.js
+assets/ai-router.js
+assets/workflow-engine.js
+assets/exercise-guides.js
+assets/knowledge-base.js
+assets/integrity-engine.js
+assets/app.js
+assets/branding/zeke-mark-provisional.png
+
+
+---
+
+## Historical source: `UPLOAD_THESE_FILES.txt`
+
+ZEKE v0.40.0 · build 2026.08.03.1
+
+Upload the complete package contents to the repository root. Do not upload only files that appear newer by timestamp. Verify version/build at startup after GitHub Pages deploys.
+
+See DEPLOYMENT_MANIFEST_v0.40.0.md and BUILD_MANIFEST_v0.40.0.json.

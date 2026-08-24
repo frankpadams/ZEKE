@@ -1,46 +1,30 @@
-# AI / Developer Start Here — ZEKE v0.43.1
+# AI / Developer Start Here — ZEKE v0.45.1
 
-**Build:** 2026.08.17.1  
-**Release label:** Mobile Professional Polish  
-**Last known user-deployed baseline:** v0.40.5 · build 2026.08.06.5
+**Build:** 2026.08.23.4  
+**Release:** Integrated Fitness + Adaptive Training
 
-This package is intentionally self-describing. A new developer or AI team should be able to continue ZEKE using this package alone. Do not assume access to prior chats.
+This package is the current authoritative Project ZEKE baseline. It was reconstructed from the last available full v0.43.1 package plus the verified v0.44.1 patch, then reconciled against the Constitution and current governance system.
 
 ## Read in this order
+1. `ZEKE_CONSTITUTION.md` — binding product principles.
+2. `DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md` — document authority/lifecycle rules.
+3. `DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json` — machine-readable release invariants.
+4. `CURRENT_RELEASE_SCOPE.md` — current implementation scope, boundaries, and status.
+5. `TEST_REPORT.md` — current consolidated verification evidence and open gates.
+6. `DESIGN_AUTHORITY.md` — approved interface direction and mobile acceptance authority.
+7. `ARCHITECTURE.md` — current architecture and durable data boundaries.
+8. `DECISION_LOG.md` and `DEVELOPMENT_MEMORY/ITERATION_HISTORY.md` — current decisions and continuity.
+9. `DOCUMENTATION_MAP.md` — map of remaining living documentation.
 
-1. `ZEKE_CONSTITUTION.md` — product invariants.
-2. `RELEASE_NOTES.md` — what this candidate changes and what still blocks promotion
-3. `PROJECT_STATE.md` — current truth and release boundary.
-3. `CURRENT_RELEASE_SCOPE.md` — complete v0.43 work scope and acceptance criteria.
-5. `DESIGN_AUTHORITY.md` — authoritative mobile/fitness mockup decisions and what is superseded.
-5. `ARCHITECTURE.md` — storage, longitudinal data, AI, calendar, and provenance contracts.
-6. `FEATURE_STATUS.md` — implemented vs incomplete vs planned.
-7. `KNOWN_ISSUES.md` — current blockers only.
-8. `DECISION_LOG.md` — durable product/architecture decisions.
-9. `TEST_REPORT.md` — consolidated current and historical test evidence.
-10. `DEVELOPMENT_MEMORY/ITERATION_HISTORY.md` — consolidated iteration history.
-11. `DOCUMENTATION_MAP.md` — package map.
+## Non-negotiable current boundaries
+- User-owned canonical data remains authoritative; AI output is advisory.
+- Missing data remains unknown. Blank pain is not pain-free.
+- Clinical source facts, clinician restrictions, AI inference, and observed exercise response remain distinct evidence classes.
+- ZEKE may provide evidence-bounded training decision support, but does not diagnose, prescribe, provide medical clearance, or silently convert an imaging mention into a prohibition.
+- Explicit clinician/PT restrictions outrank AI-generated workout suggestions.
+- Manual AI packets remain supported when an API/provider connection is unavailable.
+- Mobile may use a purpose-built presentation layer, but it must preserve the same canonical data, workflows, provenance, and desktop capability.
+- Physical-device/deployed-provider checks are not considered passed unless they actually ran.
 
-## Runtime
-
-ZEKE is a readable static web application. `index.html` loads the runtime directly; there is no compile step. Canonical user data lives in the connected user-owned storage repository (Google Drive in alpha). Browser storage is for limited device/session UI state, not the authoritative health record.
-
-## Non-negotiable current rules
-
-- Preserve original user wording, provenance, corrections, missing-as-unknown, and reversible history.
-- Medication schedules and medication dose occurrences are different entities. A schedule may generate clearly labeled assumed occurrences; later corrections modify the occurrence without rewriting history.
-- A calendar appointment is candidate evidence, never proof that an event occurred.
-- Calendar retrospective health reconciliation is a mobile-first workflow: screen candidates quickly, then confirm only selected items.
-- AI/provider credentials are stored in the connected ZEKE workspace for cross-device use, not in localStorage. They are excluded from all reports/diagnostics.
-- DEXA is provenance/method for Health → Measurements / Body Composition, not a top-level navigation destination.
-- The authoritative mobile exercise-entry design is the normal `+ Log Exercise` page. Do not reintroduce “Gym Mode.”
-- Canonical exercises own variation-specific histories. Variations are plotted as separate series on the same canonical exercise axes and are never assumed mechanically equivalent.
-- Inline set rows are both display and input; reps/load may differ per set; effort and pain are optional per set.
-- High-quality PT visual guides are a release gate.
-- The side navigation must remain vertical on mobile/intermediate widths; horizontal compressed menu buttons are a regression.
-- Generated spreadsheets are reports/exports. They are not a competing database. Legacy workbooks are migration/reconciliation sources only.
-- Consolidate release/test/provenance documentation into living histories; do not recreate file sprawl.
-
-## Before publishing
-
-Run the package-local suites, rendered mobile gates, project audit, and ZIP readback. Then perform physical-phone visual acceptance against `DESIGN_AUTHORITY.md`. Do not promote an RC if PT visual coverage, mobile visual acceptance, longitudinal medication correction, calendar reconciliation, or storage credential sync is unverified.
+## Release state
+Package-local governance/static/rendered verification is reconciled for build 2026.08.23.4, including the movement-specific PT visual gate. Physical-device visual acceptance and live connected-provider verification remain environment gates and are not implied by package-local checks.

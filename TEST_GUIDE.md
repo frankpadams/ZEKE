@@ -115,3 +115,9 @@ Replace the files listed in `FILES_TO_REPLACE_v0.17.7.txt`, then hard-refresh ZE
 8. Open Pattern Lab. With fewer than five paired days, confirm it reports insufficient overlapping observations.
 9. After at least five dates contain two varying numeric variables, confirm Pattern Lab can display an exploratory association with r and n.
 10. Open Insight Center and confirm research context is visually separate from personal trends and questions.
+
+## v0.45.1 release checks
+
+Run `node tests/v0451-integrated-release.test.js` for the integrated Fitness/adaptive-training/document-intake/medication/calendar/Constitution contract. Run `node tests/pt-visual-release-gate.js` for movement-specific PT media verification and `node tests/workflow-exploration-and-log.test.js` for the non-mutating Fitness/top-level Log workflow. The rendered suites must load the complete current runtime chain, including longitudinal schema, ingestion, document intake, calendar privacy, and training intelligence.
+
+External real-data fixture tests may report SKIP when `ZEKE_TEST_DATA_ROOT` is not provided; a SKIP is not a pass. Live Google/AI-provider and owner physical-device acceptance are environment checks and must remain outstanding until actually run.
