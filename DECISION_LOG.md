@@ -1,5 +1,7 @@
 # ZEKE Decision Log — Current Index
 
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.1 · governance 2026.08.24.2
+
 **Status:** Canonical index. Full historical decisions remain in `DEVELOPMENT_MEMORY/DECISION_LOG.md`.
 
 ## Current binding decisions
@@ -16,6 +18,24 @@
 10. A feature is called Implemented only when code/artifact evidence exists; Verified only when the named check actually ran; environment-dependent claims remain explicit.
 11. Whitespace is purposeful: information density should improve usefulness without reducing readability or touch accessibility.
 12. An unfamiliar future team must be able to continue from the package alone.
+
+
+## v0.46.0 binding UX / connected-knowledge decisions
+
+28. **Whole-screen UX:** the screen is the unit of quality; layout primitives own geometry and must prevent unreadable widths, accidental dead space, and unreachable content.
+29. **Dashboard role:** Dashboard is a selective cross-domain briefing, not a mini Health page or equal-weight card wall.
+30. **Microvisuals:** stable icons, sparklines, status markers, and timeline cues are functional orientation aids and must remain truthful.
+31. **Visible action feedback:** every consequential action immediately enters a visible selected/working/result state; silent clicks are defects.
+32. **Talk window:** Talk to ZEKE uses predictable closed/compact/expanded states with an obvious close control and no stale scroll lock.
+33. **Browse-first exercise navigation:** search is optional; body area, Recent, Favorites, PT/Rehab, equipment/location, and movement/context routes provide practical discovery.
+34. **Exercise/body links:** exercise detail uses linked primary/secondary body areas and body-area hubs may surface related exercises, PT/rehab, and current/past injury context.
+35. **Anatomy relationship layer:** exercise/PT/injury/symptom concepts share governable structure relationships (muscles/joints/bones/soft tissue/laterality/movement) with direct/indirect and primary/secondary/stabilizer distinctions where supported.
+36. **No automatic prohibition:** anatomy overlap is context, not a contraindication; explicit restrictions and actual response retain separate authority.
+37. **Reference-knowledge updates:** general knowledge is versioned, source-traceable, diffed/validated before activation, rollback-capable, and separate from personal records.
+38. **Variation presentation:** variation rows show their own latest useful details and are ordered by recency; redundant Last/Current/count badges are omitted.
+39. **Variation chart truth:** detailed charts compare independent variation series on shared axes; missing load is unknown/gapped, never zero.
+40. **Recommendation explanation:** show a concise decision-relevant Why this up front, with deeper reasoning on demand.
+41. **Intentional scrolling:** a readable scrollable Recent Activity window is acceptable on desktop; nested scrolling is minimized on mobile.
 
 ## New Sprint 4 decision
 

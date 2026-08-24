@@ -1,5 +1,7 @@
 # Project Zeke Constitution
 
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.1 · governance 2026.08.24.2
+
 ## 1. User ownership
 
 Zeke never owns the user's personal history. The durable repository is chosen and authorized by the user.
@@ -152,7 +154,9 @@ ZEKE may open another application only when it directly completes a ZEKE workflo
 
 ## 34. Visual composition serves comprehension
 
-Panels size from their own content. Expandable analysis receives adequate width. Avoid shared-height or masonry layouts that create large blank areas, and use restrained rounding, density, and hierarchy to make the daily briefing understandable.## Governance reconciliation — July 25, 2026
+Panels size from their own content. Expandable analysis receives adequate width. Avoid shared-height or masonry layouts that create large blank areas, and use restrained rounding, density, and hierarchy to make the daily briefing understandable.
+
+## Governance reconciliation — July 25, 2026
 
 The following principles are binding for ZEKE work. They were approved before the v0.29.0 recovery implementation. Current implementation status varies by principle and is recorded in `CURRENT_RELEASE_SCOPE.md` and `TEST_REPORT.md`; governance approval never substitutes for evidence.
 
@@ -269,3 +273,51 @@ A generated regimen is inspectable and editable before use. Starting a proposed 
 ## 62. Rehab media must depict the named movement truthfully
 
 Passing a file-count or image-count test is not sufficient. A PT/rehab guide must depict the named movement/setup closely enough to be useful, identify schematic/illustrative media honestly, include accessible text, and defer to clinician-specific instructions. Generic filler imagery cannot satisfy a movement-level visual release gate.
+
+## Governance reconciliation — 2026-08-24
+
+The following principles were approved during the v0.46.0 UX Architecture + Connected Anatomy iteration and are binding going forward.
+
+## 63. Screen-level UX quality is a release requirement
+
+A screen is the unit of user-experience quality, not an isolated component. Layout systems must preserve hierarchy, readable widths, reachable content, intentional whitespace, and coherent composition across supported sizes. A page may not be called acceptable merely because its individual controls render or automated overflow checks pass.
+
+## 64. Consequential actions visibly respond
+
+Every consequential click, tap, save, selection, merge, dismissal, correction, or destructive action produces an immediate visible state change and a truthful eventual outcome. Silent clicks, ambiguous selected state, and UI that leaves the user wondering whether an action registered are defects.
+
+## 65. Reachability and scroll are functional requirements
+
+Content that exists must remain reachable. Loading states, modal/sheet locks, fixed shells, sticky controls, nested scrollers, or responsive transitions may not leave the application unintentionally non-scrollable or cover the final meaningful content. First-load behavior is tested separately from refreshed behavior.
+
+## 66. Talk to ZEKE has predictable window states
+
+Talk to ZEKE uses explicit closed, compact, and expanded states where those states exist on the form factor. Close is always obvious and reliable. Expanding, collapsing, closing, reopening, or resizing must preserve the conversation and unsent user work where appropriate and must not trap page scroll or navigation.
+
+## 67. Visual identity supports recognition before reading
+
+Recurring domains and event types use stable visual identities across ZEKE. Icons, sparklines, status markers, compact diagrams, and other microvisuals should improve orientation, scanning, trend recognition, or actionability. They are not decorative substitutes for truthful data.
+
+## 68. Progressive disclosure protects attention
+
+ZEKE shows decision-relevant information first, then offers detail, evidence, provenance, biomechanics, and deeper reasoning on demand. Repeated or already-visible facts should not be restated merely to fill cards or panels. Empty and sparse states consume space in proportion to their information value.
+
+## 69. Body structures form a shared relationship layer
+
+Exercises, PT/rehab movements, injuries, and symptoms may link through relevant muscles, joints, bones/body regions, clinically useful tendons/soft tissues, laterality, and movement patterns. ZEKE distinguishes primary movers, secondary movers, stabilizers, and direct versus indirect involvement. These relationships support navigation and context in both directions; they do not by themselves create a diagnosis, contraindication, or prohibition.
+
+## 70. Reference knowledge is versioned and governable
+
+General anatomy, exercise, biomechanics, terminology, and injury-relationship knowledge is separate from the user's personal record. Reference knowledge carries source/provenance, version, review date/state, and update history. Refreshes are diffed and validated before activation, can be rolled back, and may be marked stale. A reference update never overwrites personal history, clinician/PT instructions, source documents, or confirmed user facts.
+
+## 71. Exercise detail is body-aware and browseable
+
+User-facing exercise detail prioritizes useful body-area context over internal implementation terminology. Primary and secondary body areas may be navigable links to body-area hubs containing relevant anatomy, exercises, PT/rehab, current/past injury context, and history. Search remains available but must not be the only practical way to navigate the exercise library.
+
+## 72. Exercise variation analytics remain distinct
+
+A canonical exercise may summarize multiple variations, but each equipment/variation history remains an independent series. Expanded charts compare relevant variations on shared axes without connecting unrelated variation points. Missing load remains unknown and is omitted/gapped; a single valid observation remains a point until a second observation exists. Set count, reps, load basis, pain/RPE, and context remain available at appropriate detail levels.
+
+## 73. Recommended actions explain enough to decide
+
+When ZEKE recommends a workout or other meaningful action, it provides a short concrete reason up front when that reason helps the user decide. Deeper reasoning, evidence, uncertainty, and provenance remain available on demand.

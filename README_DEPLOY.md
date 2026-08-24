@@ -1,15 +1,17 @@
-# Deploy ZEKE v0.41.0 RC1
+# Deploy ZEKE v0.46.0
 
-**Build:** 2026.08.07.1  
-**Rollback baseline:** user-deployed v0.40.5 · build 2026.08.06.5
+**Runtime build:** 2026.08.24.1  
+**Governance revision:** 2026.08.24.2
 
-1. Back up the current GitHub repository / deployed v0.40.5 package.
-2. Replace the ZEKE repository contents with this v0.41.0 RC1 package as one consistent set; do not mix files from different builds.
-3. Commit/publish and wait for GitHub Pages deployment to complete.
-4. Open ZEKE and confirm the startup/interface identity shows **v0.41.0 · 2026.08.07.1**.
-5. Hard refresh once if needed so the v0.41.0 service-worker cache activates.
-6. Connect Google Drive and verify a safe test write/readback before relying on the new build for ongoing records.
-7. Smoke-test Dashboard, Fitness/workout logging, Discover, Questions for You, medication schedule/adherence, and mobile navigation.
-8. If a blocking regression appears, restore the complete v0.40.5 package rather than mixing rollback files selectively.
+1. Back up the currently deployed ZEKE repository/package.
+2. Replace the repository contents with this complete v0.46.0 package as one consistent set; never mix release files selectively.
+3. Commit/publish and wait for the host deployment to finish.
+4. Open ZEKE from a cold load and confirm the startup/interface identity shows **v0.46.0 · build 2026.08.24.1**.
+5. Verify the Dashboard scrolls without requiring refresh and inspect composition at the actual desktop width.
+6. Exercise Talk to ZEKE open → expand → collapse → close → reopen and confirm the page remains scrollable.
+7. Exercise a Questions for You decision and confirm immediate visible selected/working feedback.
+8. Browse Fitness to an exercise without search, follow a body-area link, inspect variation rows/chart, and verify sets/variation context.
+9. Connect Google Drive and perform a safe durable write/readback before relying on the build for new ongoing records.
+10. If a blocking regression appears, restore the complete prior deployed package rather than mixing rollback files.
 
-Package verification is complete; live Google Drive and physical-device/environment verification remain outstanding until deployment.
+Governance revision 2026.08.24.2 reconciles package documentation/audit only; the runtime build remains 2026.08.24.1. Package-local verification does not substitute for live provider or owner physical-device acceptance.

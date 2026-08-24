@@ -1,6 +1,38 @@
 # ZEKE Consolidated Test Guide
 
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.1 · governance 2026.08.24.2
+
 Living manual and environment-dependent validation guide. Historical guide content is retained below and should be edited in place for future releases.
+
+## v0.46.0 release / continuity checks
+
+### Governance and authority
+- Run `python3 tools/project_audit.py`. It must verify **all registered authoritative documents** have the exact current release/build/governance review stamp and that standing supporting-continuity documents are current.
+- Run `python3 tests/governance-negative-controls.py`.
+- Confirm runtime identity remains v0.46.0 build 2026.08.24.1; governance reconciliation is 2026.08.24.2.
+- Search active runtime-facing files for stale startup/build strings. Historical documentation may contain old versions when clearly historical.
+
+### Desktop/UX
+- Cold-load Dashboard before any refresh and verify the page can reach its final meaningful content.
+- Confirm Dashboard uses deliberate readable columns; no text-heavy narrative card collapses into a narrow strip and no unrelated sibling creates large dead space.
+- Confirm Recent Activity uses stable visual cues and remains intentionally scrollable on desktop when content exceeds its bounded window.
+- Confirm Dashboard remains cross-domain rather than duplicating the full Health metric grid.
+- Open Talk to ZEKE; exercise compact/expanded/close/reopen and verify page scrolling/navigation are restored after close.
+- On Questions for You duplicate resolution, verify each consequential choice immediately produces visible selected/working feedback and Edit remains a separate tool.
+
+### Fitness/body-area/variation
+- Browse to an exercise without search using body/context navigation.
+- Confirm exercise detail exposes linked primary/secondary body areas; body-area views can surface related exercise and existing injury/PT context.
+- Confirm variation rows are recency-ordered and do not show redundant Last/Current/count labels.
+- Confirm latest variation performance includes sets where applicable.
+- Confirm detailed chart renders each variation as an independent shared-axis series; missing load is absent/gapped and one-observation variations remain points.
+- Confirm a selected variation can be emphasized without losing the parent comparison.
+- Confirm workout recommendation displays a short decision-relevant Why this before deeper explanation.
+
+### Environment checks
+Physical-device acceptance, deployed Google/Calendar/provider behavior, live AI-provider behavior, and real PDF/OCR ingestion remain environment checks and are not package-local passes.
+
+---
 
 
 ---

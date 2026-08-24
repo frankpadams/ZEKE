@@ -26,7 +26,7 @@ ver=str(state.get('current_version','')); build=str(state.get('current_build',''
 if not ver or not build: errors.append('project state lacks current version/build')
 
 # Identity agreement in current authorities/supporting release docs
-identity_files=['VERSION.txt','version.js','README.md','DEVELOPMENT_MEMORY/PROJECT_STATE.json','DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json','DEVELOPMENT_MEMORY/RELEASE_GATE.md',state.get('current_iteration_record',''),'CURRENT_RELEASE_SCOPE.md','TEST_REPORT.md','PACKAGE_HISTORY.json']
+identity_files=['VERSION.txt','version.js','README.md','00_AI_START_HERE.md','ARCHITECTURE.md','DESIGN_AUTHORITY.md','DEVELOPMENT_SYSTEM/PROJECT_IDENTITY.md','DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md','DEVELOPMENT_MEMORY/PROJECT_STATE.json','DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json','DEVELOPMENT_MEMORY/RELEASE_GATE.md',state.get('current_iteration_record',''),'CURRENT_RELEASE_SCOPE.md','TEST_REPORT.md','PACKAGE_HISTORY.json']
 for rel in [x for x in identity_files if x]:
     t=text(rel)
     if ver not in t: errors.append(f'current version {ver} absent from {rel}')
@@ -69,6 +69,32 @@ for rel in registry.get('superseded_entry_files',[]):
     t=text(rel).lower()
     if 'superseded' not in t or '00_ai_start_here.md' not in t: errors.append(f'superseded entry is not a clear redirect: {rel}')
 
+
+
+# Full authority current-review stamps: identity agreement alone is not continuity reconciliation.
+govrev=str(rules.get('governance_revision',''))
+if not govrev: errors.append('governance rules lack governance_revision')
+for rel in sorted(reg_auth):
+    a=registered.get(rel,{})
+    if str(a.get('reviewed_release',''))!=ver: errors.append(f'authoritative artifact not reviewed for current release: {rel}')
+    if str(a.get('reviewed_build',''))!=build: errors.append(f'authoritative artifact review build stale: {rel}')
+    if str(a.get('reviewed_governance_revision',''))!=govrev: errors.append(f'authoritative artifact governance review stale: {rel}')
+    if not a.get('reviewed_date'): errors.append(f'authoritative artifact has no review date: {rel}')
+
+# Standing supporting continuity documents can be supporting rather than authoritative, but any
+# document on this list is part of the current handoff and may not silently describe an old current state.
+for rel in registry.get('standing_supporting_continuity',[]):
+    t=text(rel)
+    if ver not in t: errors.append(f'standing continuity document lacks current version: {rel}')
+    if build not in t: errors.append(f'standing continuity document lacks current build: {rel}')
+    if govrev not in t: errors.append(f'standing continuity document lacks current governance revision: {rel}')
+
+# Explicit continuity-review metadata must match current release.
+cr=registry.get('continuity_review',{})
+if str(cr.get('release',''))!=ver or str(cr.get('build',''))!=build or str(cr.get('governance_revision',''))!=govrev or cr.get('status')!='complete':
+    errors.append('artifact-registry continuity review is missing or stale')
+if str(state.get('governance_revision',''))!=govrev: errors.append('project state governance revision disagrees')
+if str(gate.get('governance_revision',''))!=govrev: errors.append('development gate governance revision disagrees')
 
 # Current continuity metadata must be internally current, not merely present
 project_health=text('DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md')

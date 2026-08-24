@@ -1,6 +1,8 @@
-# ZEKE Architecture — v0.43.1
+# ZEKE Architecture — v0.46.0
 
-**Runtime build:** 2026.08.17.1  
+**Runtime build:** 2026.08.24.1  
+**Governance revision:** 2026.08.24.2  
+**Current authority review:** 2026-08-24  
 **Repository schema:** 5
 
 ## Product and data boundary
@@ -87,3 +89,30 @@ Automated package and rendered-browser evidence does not prove live-provider per
 `assets/document-intake.js` is a source-first extraction adapter. PDFs attempt embedded text through pdf.js before rendered-page OCR; screenshots/images use OCR through Tesseract.js. These libraries are loaded lazily from pinned jsDelivr package versions only when required and are not bundled ZEKE source. Extraction output is a proposal linked to filename/type/SHA-256/method/source preview and requires user review/confirmation before canonical event writes.
 
 Navigation itself is non-mutating. Fitness detail/exploration views and proposed workouts are ordinary read/planning surfaces; Start/Log/Save/Complete/Correct/Delete are explicit state transitions.
+
+
+## v0.46 UX composition and connected-anatomy architecture
+
+### Composition layer
+The runtime preserves common data/services while allowing form-factor-specific presentation. Desktop Dashboard geometry is owned by explicit layout primitives and bounded grid tracks rather than feature cards independently sizing themselves. Mobile remains a purpose-built presentation layer over the same records and actions. Screen-level constraints include readable text widths, content reachability, responsive reflow, stable action feedback, and intentional scroll behavior.
+
+### Interaction state layer
+Talk to ZEKE and consequential review workflows use explicit UI state rather than relying on incidental CSS visibility. Talk states are closed/compact/expanded; closure removes temporary scroll locks. Review decisions expose selected/working/success/failure state so the interface never depends on a silent click.
+
+### Exercise/body relationship layer
+`assets/anatomy-knowledge.js` is a reference-knowledge adapter used to connect exercise/PT/body-area concepts with relevant muscles, joints, bones/body regions, soft-tissue structures, laterality, and movement patterns. It is not canonical personal health data. Personal injury/symptom/PT records remain in the longitudinal repository and are joined to reference relationships at read/recommendation time.
+
+The relationship model supports navigation in both directions:
+- exercise → primary/secondary body areas → structures → injury/PT/history context;
+- injury/body area → structures/movements → related exercises → observed tolerance/history.
+
+Reference overlap alone never becomes a prohibition. Explicit clinician/PT restrictions, source facts, user-reported symptoms, and observed response remain separate evidence classes.
+
+### Reference-knowledge lifecycle
+Reference objects carry source/provenance, pack/version, review date/state, and staleness metadata. Future knowledge refreshes are staged as new versions, diffed, validated, and activated separately from user data. Rollback restores the prior reference pack without touching personal records.
+
+### Exercise analytics
+A parent exercise owns related variation histories for navigation only; mechanical histories remain variation-specific. The glance layer may show a simplified sparkline. Detailed comparison renders each relevant variation as an independent series on shared axes, gaps unknown load, and retains set/reps/RPE/pain/location metadata for point-level detail where recorded.
+
+### UX verification boundary
+Structural/rendered checks verify more than viewport overflow: minimum usable widths, reachable final content, interaction-state feedback, stable navigation, and representative cold-load/refresh paths. Human/owner visual acceptance remains an environment gate and is not implied by package-local rendering.

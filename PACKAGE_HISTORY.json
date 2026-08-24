@@ -2,12 +2,13 @@
   "schema_version": 1,
   "purpose": "Living consolidated package/build/provenance/verification history. Superseded individual files are intentionally removed after their contents are retained here.",
   "current_release": {
-    "version": "0.45.1",
-    "build": "2026.08.23.4",
-    "label": "Integrated Fitness + Adaptive Training",
-    "status": "release_package_complete_environment_verification_outstanding",
+    "version": "0.46.0",
+    "build": "2026.08.24.1",
+    "label": "UX Architecture + Connected Anatomy \u2014 Continuity Reconciled",
+    "status": "release_package_local_verified_continuity_reconciled_environment_outstanding",
     "publish_ready": true,
-    "verification_boundary": "Package-local verification complete; owner/live-provider environment acceptance outstanding."
+    "verification_boundary": "Runtime package-local verification complete; governance continuity reconciled; owner/live-provider environment acceptance outstanding.",
+    "governance_revision": "2026.08.24.2"
   },
   "historical_records": [
     {
@@ -27954,11 +27955,11 @@
       }
     }
   ],
-  "current_version": "0.45.1",
-  "current_build": "2026.08.23.4",
-  "governance_revision": "2026.08.23.4",
-  "release": "0.45.1",
-  "build": "2026.08.23.4",
+  "current_version": "0.46.0",
+  "current_build": "2026.08.24.1",
+  "governance_revision": "2026.08.24.2",
+  "release": "0.46.0",
+  "build": "2026.08.24.1",
   "history": [
     {
       "version": "0.43.1",
@@ -27989,6 +27990,23 @@
     }
   ],
   "releases": [
+    {
+      "version": "0.46.0",
+      "build": "2026.08.24.1",
+      "governance_revision": "2026.08.24.2",
+      "date": "2026-08-24",
+      "label": "UX Architecture + Connected Anatomy \u2014 Continuity Reconciled",
+      "status": "release_package_local_verified_environment_outstanding",
+      "notes": [
+        "Desktop UX composition and visual activity cues",
+        "Talk/Questions visible interaction feedback",
+        "Browse-first exercise/body-area navigation",
+        "Variation-aware chart/detail UX",
+        "Versioned connected anatomy/reference knowledge",
+        "Full standing-authority continuity reconciliation and audit hardening"
+      ],
+      "publish_ready": true
+    },
     {
       "version": "0.45.1",
       "build": "2026.08.23.4",

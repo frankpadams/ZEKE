@@ -1,3 +1,3 @@
-ZEKE v0.45.1
-build 2026.08.23.4
-Integrated Fitness + Adaptive Training
+ZEKE v0.46.0
+build 2026.08.24.1
+UX Architecture + Connected Anatomy

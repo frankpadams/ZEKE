@@ -1,4 +1,14 @@
-# ZEKE Development Review History
+# ZEKE Consolidated Development Review History
+
+## v0.46.0 · build 2026.08.24.1 · governance 2026.08.24.2 — continuity reconciliation review
+
+A post-build review found that runtime and feature documentation had advanced to v0.46.0, while several standing current authorities still carried earlier release identities or lacked the new UX/anatomy decisions. This was a governance defect, not a new runtime feature implementation.
+
+Corrective review covered the complete registered authoritative set plus current supporting continuity documents. The authority chain now records the v0.46.0 Dashboard/composition model, visible action feedback, Talk window state, browse-first exercise library, linked body-area/injury/PT navigation, versioned anatomy knowledge, variation chart semantics, short “Why this” explanation pattern, and rendered UX release gate. The release audit was hardened so this class of drift fails automatically.
+
+Environment verification remains outstanding and is not promoted by this reconciliation.
+
+---
 
 Consolidated sprint, pre/post implementation, and independent-review history. Distinct architectural decisions remain in DECISION_LOG/ADRs.
 

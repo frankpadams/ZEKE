@@ -1,5 +1,48 @@
 # ZEKE Release Notes
 
+**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.1 · governance 2026.08.24.2
+
+## v0.46.0 · build 2026.08.24.1 — UX Architecture + Connected Anatomy
+
+This release is a UX stabilization and architecture pass. It rebuilds the desktop Dashboard around user priorities, makes consequential interactions visibly responsive, improves exercise browsing and variation history, and adds a versioned anatomy knowledge layer connecting Fitness, PT, body areas, and injury context.
+
+### Governance reconciliation — 2026.08.24.2
+- Re-read the complete registered authoritative continuity set after discovering that the first v0.46.0 package still contained stale current-state declarations in several standing documents.
+- Updated the Constitution, Design Authority, Architecture, scope, decision/iteration/continuity records, Project State/Identity/Health, roadmap, test guidance, README/deploy guidance, status/diagnostic metadata, and package history to the v0.46.0 UX/anatomy decisions.
+- Added full-authority current-review stamps to the Artifact Registry and strengthened `tools/project_audit.py` so a stale standing authority can no longer pass merely because a smaller identity subset agrees.
+- Runtime code remains **v0.46.0 · build 2026.08.24.1**; this is governance/documentation revision **2026.08.24.2**, not a hidden runtime feature change.
+
+### User experience and desktop composition
+- Rebuilt the Dashboard around **what matters now, what changed, what is next, and what needs attention** rather than equal-sized feature cards.
+- Recent Activity is now a structured visual feed with stable category cues and an intentional desktop scroll window; mobile continues to flow naturally.
+- Reduced duplicate summaries, oversized empty states, and narrow narrative columns.
+- Added stronger first-load/page-scroll safeguards so content remains reachable.
+
+### Talk to ZEKE and Questions for You
+- Rebuilt Talk to ZEKE around explicit **closed / compact / expanded** states with a reliable close control and preserved page access.
+- Duplicate-review decisions now show immediate selected/working feedback before persistence; editing is separated from the decision choices.
+
+### Fitness, exercise browsing, and charts
+- Exercise discovery is **browse-first** with body-area navigation; search remains optional.
+- Exercise detail uses linked primary/secondary body areas instead of internal “canonical exercise” terminology.
+- Variation rows are ordered by recency and show the latest load × reps × sets and date without redundant “Last” or variation-count labels.
+- Variation charts preserve independent series on shared axes; selecting a variation emphasizes it without discarding the comparison. Missing load remains unknown rather than zero.
+- Workout planning now presents a concise decision-relevant **Why this** explanation first, with deeper context available on demand.
+
+### Connected anatomy knowledge
+- Added a versioned anatomy reference pack mapping common exercise/body-area concepts to muscles, joints, bones, and useful soft-tissue context.
+- Body-area views can connect exercises with recorded injury/symptom and PT context without automatically converting anatomical overlap into a prohibition.
+- Reference knowledge carries version/review metadata and remains separate from personal records.
+
+### Identity and release safety
+- Runtime build identity is centralized at **v0.46.0 · build 2026.08.24.1** and stale v0.44 startup strings were removed from inherited mobile-polish layers.
+- Package-local governance, syntax, regression, PT visual, rendered workflow, mobile rendered, and support-report checks pass. External-real-data fixture tests remain explicitly skipped when their fixture is unavailable.
+
+### Environment checks still required
+Physical-device/representative-desktop acceptance and live Google/AI-provider behavior require the deployed environment and are not represented as package-local passes.
+
+---
+
 ## v0.45.1 · build 2026.08.23.4 — Integrated Fitness + Adaptive Training
 
 This release integrates the recent Fitness/workout, rehab, ingestion, medication, calendar-privacy, and mobile workflow decisions into one complete package.
