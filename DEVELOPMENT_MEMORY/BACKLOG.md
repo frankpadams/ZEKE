@@ -1,3 +1,9 @@
+# v0.48.0 active development backlog
+
+**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
+
+Priority: live-test duplicate-resolution persistence repair; then implement the approved ZEKE-owned Timeline, medication recurrence correction, workout planner redesign, natural-language transaction engine, and mobile navigation refinement without regressing v0.47.
+
 # ZEKE Backlog
 
 **Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6

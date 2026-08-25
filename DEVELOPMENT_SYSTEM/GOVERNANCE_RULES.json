@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
-  "current_version": "0.47.0",
-  "current_build": "2026.08.24.1",
+  "current_version": "0.48.0",
+  "current_build": "2026.08.25.1",
   "immutable_principles": [
     "user_owned_canonical_data",
     "ai_advisory_deterministic_commit",
@@ -61,7 +61,12 @@
     "approved_visual_reference_is_release_evidence",
     "rendered_visual_acceptance_not_dom_proxy",
     "presentation_recovery_preserves_verified_functionality",
-    "ui_icons_explicitly_bounded"
+    "ui_icons_explicitly_bounded",
+    "observation_before_expectation",
+    "artifact_evidence_over_narration",
+    "explicit_evidence_state_ladder",
+    "contradiction_stops_dependent_development",
+    "failed_writes_rollback_local_state"
   ],
   "supersessions": [
     {
@@ -114,15 +119,18 @@
     "approved visual reference is registered and consulted for visual releases",
     "representative browser renders are inspected before UI release claims",
     "generic icon/svg sizing cannot escape component bounds",
-    "materially different packages increment semantic release version"
+    "materially different packages increment semantic release version",
+    "screenshot diagnostic fields read literally before interpretation",
+    "implementation claims require current artifact evidence",
+    "consequential write claims require provider acknowledgement and reload persistence where applicable"
   ],
-  "governance_revision": "2026.08.24.6",
+  "governance_revision": "2026.08.25.2",
   "rejected_forward_baselines": [
     "0.28.0",
     "0.28.1"
   ],
   "approved_recovery_baseline": "0.45.1",
   "current_forward_baseline": "0.47.0",
-  "release": "0.47.0",
-  "build": "2026.08.24.1"
+  "release": "0.48.0",
+  "build": "2026.08.25.1"
 }

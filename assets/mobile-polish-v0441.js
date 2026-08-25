@@ -1,7 +1,7 @@
 (()=>{
 'use strict';
 const MOBILE='(max-width:760px)';
-const BUILD=`v${window.ZEKE_BUILD?.version||'0.47.0'} · build ${window.ZEKE_BUILD?.build||'2026.08.24.1'}`;
+const BUILD=`v${window.ZEKE_BUILD?.version||'0.48.0'} · build ${window.ZEKE_BUILD?.build||'2026.08.25.1'}`;
 const mobile=()=>matchMedia(MOBILE).matches;
 const $=(s,r=document)=>r.querySelector(s);
 const $$=(s,r=document)=>[...r.querySelectorAll(s)];

@@ -1,3 +1,7 @@
+# Comprehension checkpoint — v0.48.0
+
+**Build:** 2026.08.25.1 · **Governance:** 2026.08.25.2. Before work: identify the actual working tree/package; state evidence level for each claimed capability; read screenshot text literally; stop on contradictions.
+
 # Comprehension Checkpoint
 
 **Current continuity stamp:** v0.47.0 · build 2026.08.24.1 · governance 2026.08.24.6 · reviewed 2026-08-24

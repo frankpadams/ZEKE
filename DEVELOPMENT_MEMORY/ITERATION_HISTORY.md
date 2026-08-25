@@ -1,6 +1,6 @@
 # ZEKE Iteration History
 
-**Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6
+**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
 
 ## Current iteration — ZEKE v0.47.0 — Visual System Recovery + Preserved Functionality
 
@@ -1278,3 +1278,20 @@ Runtime implementation is in progress and the package remains an RC. Current wor
 ### Verification boundary
 - Package-local regression/governance/syntax/media checks must pass before packaging.
 - Physical-device and live-provider validation remain environment verification and may not be claimed without execution.
+
+
+# v0.48.0 development restart — 2026-08-25
+
+**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
+
+**User-approved scope:**
+- Correct v0.47 Questions-for-You persistence failure so failed writes roll back local state, retry one expired authorization silently, and use a single truthful feedback region.
+- Adopt evidence-integrity governance: observation before interpretation, artifact-backed claims, explicit evidence-state ladder, and contradiction stop rules.
+- Preserve all verified v0.47 functionality and visual recovery while v0.48 Timeline, medication recurrence, workout-planning, natural-language transaction, and mobile-navigation work proceeds.
+- Keep v0.48 as a development build until browser interaction, persistence, environment, and user verification establish higher evidence states.
+
+**Integrity trigger:** owner identified a literal screenshot-reading error and requested a wider reasoning/development audit plus constitutional safeguards. The audit found that prior v0.48 implementation claims were not backed by the preserved tree. v0.48 therefore restarts from the actual v0.47.0 package.
+
+**Current coded delta:** transactional rollback for failed factor/preference/action/AI-connection writes; one silent expired-authorization retry; single duplicate-review feedback region; evidence-integrity governance.
+
+**Evidence state:** coded + source-tested after applicable package-local tests; live provider persistence remains outstanding.

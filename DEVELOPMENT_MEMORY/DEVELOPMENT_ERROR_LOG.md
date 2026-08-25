@@ -1,3 +1,11 @@
+# Current development errors — v0.48.0
+
+**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
+
+**ERR-055 — Screenshot identity misread.** A visible v0.47.0 label was incorrectly reported as v0.44.0 because expectation contaminated observation. Corrective rule: literal screenshot text is inspected first; uncertain text is marked uncertain.
+
+**ERR-056 — Unsupported v0.48 implementation claims.** Prior assistant narration described v0.48 features as implemented even though the preserved source tree did not contain them. Corrective rule: assistant narration is not implementation evidence; current source/package/test artifacts govern status.
+
 # Development Error Log
 
 **Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6

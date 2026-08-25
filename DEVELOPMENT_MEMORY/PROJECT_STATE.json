@@ -1,8 +1,8 @@
 {
   "schema_version": 3,
-  "current_version": "0.47.0",
-  "current_build": "2026.08.24.1",
-  "release_label": "Visual System Recovery + Preserved Functionality",
+  "current_version": "0.48.0",
+  "current_build": "2026.08.25.1",
+  "release_label": "Development Integrity + Interaction Repair",
   "baseline": "v0.45.1 is the known stable recovery baseline; reconciled v0.46.0 build 2026.08.24.2 is the verified functional donor. Failed later v0.46 presentation experiments are excluded.",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
   "authoritative_documents": [
@@ -28,17 +28,15 @@
     "TEST_GUIDE.md",
     "PACKAGE_HISTORY.json",
     "CURRENT_RELEASE_SCOPE.md",
-    "DESIGN_AUTHORITY.md"
+    "DESIGN_AUTHORITY.md",
+    "DEVELOPMENT_SYSTEM/EVIDENCE_INTEGRITY.md"
   ],
   "implemented_this_release": [
-    "New mockup-authoritative desktop shell and Dashboard visual system isolated in assets/desktop-v047.css",
-    "Shared desktop geometry with controlled gaps, compact information density, real SVG icon sizing contracts, and no generic SVG sizing rules",
-    "Desktop Dashboard regions: Today\u2019s Status, Next Up, Quick Actions, Recent Activity, ZEKE Insights, Health at a Glance, Timeline Snapshot, Goals, and contextual Quick Tip",
-    "Separate mobile Dashboard continuity path preserves the proven v0.46 mobile composition rather than forcing desktop layout onto phone widths",
-    "Weekly workout planning preserved in Fitness rather than occupying the desktop Dashboard",
-    "All verified v0.45.1/v0.46 behavior retained, including adaptive workout proposals/remaining-workout adaptation, document intake, medication/calendar privacy, Talk state controls, Questions feedback, anatomy/body-area relationships, browse-first exercise navigation, and variation-aware charts",
-    "Documents navigation repaired so the Documents route cannot fall back to Dashboard",
-    "Actual Chromium visual gates added for multi-width Dashboard geometry, major desktop/mobile routes, oversized-SVG regression, and sparse/normal/dense/long-text adversarial states"
+    "Evidence-integrity standard and constitutional observation-before-interpretation rules",
+    "Transactional rollback for failed clarification-factor, preference, action, and AI-connection persistence writes",
+    "Single silent retry for expired Google authorization on provider writes with reconnect-required fallback",
+    "Single reusable duplicate-review status region instead of stacked failure notices",
+    "v0.48 runtime identity and preserved v0.47 functional/presentation baseline"
   ],
   "inherited_verified_evidence": [
     "v0.25.2 direct mobile workout save handler and visible failure path",
@@ -46,16 +44,18 @@
     "deterministic medication, sleep, workbook, provenance, and workflow regressions"
   ],
   "known_issues": [
-    "Live Google Drive/Calendar/provider and connected-AI behavior still requires the deployed authorized environment; package-local tests cannot prove third-party availability.",
-    "Browser PDF/OCR extraction uses lazy third-party CDN modules and requires network availability when those extraction paths are used.",
-    "The local anatomy/reference pack has version/review/staleness metadata; a mature externally refreshed/signed source-update pipeline remains future work.",
-    "Calendar write privacy choices are stored; future exposed sensitive writes must continue to honor staged/per-event consent."
+    "Questions duplicate-resolution repair is not yet persistence-tested in the owner\u2019s live Google workspace.",
+    "ZEKE-owned Day/Week/Month/Year Timeline is approved but not implemented in this preserved development tree.",
+    "Medication recurring-regimen correction, workout-planning redesign, natural-language transaction engine, and expanded mobile navigation remain approved development work.",
+    "Live Google Drive/Calendar/provider and connected-AI behavior require the deployed authorized environment."
   ],
   "next_review_items": [
-    "Live Google/provider verification",
-    "Connected-AI workout-generation verification with an authorized provider",
-    "First real PDF/screenshot ingestion review",
-    "Continue extending the v0.47 visual system across deeper domain-detail surfaces without regressing mobile UX"
+    "Owner/live Google persistence test of duplicate-resolution repair",
+    "Implement and render-test ZEKE-owned Timeline",
+    "Medication recurrence correction",
+    "Workout planner redesign",
+    "Natural-language transaction engine",
+    "Mobile navigation workflow test matrix"
   ],
   "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_HISTORY.md",
   "files_to_read_first": [
@@ -70,10 +70,10 @@
     "real-data workbook regression when fixture is available",
     "final ZIP reopened and compared with provenance"
   ],
-  "current_release_label": "ZEKE v0.47.0 \u2014 Visual System Recovery + Preserved Functionality",
-  "current_focus": "Recover ZEKE presentation quality without losing functional progress: mockup-authoritative desktop Dashboard, preserved purpose-built mobile UX, and verified v0.45.1/v0.46 functional carry-forward.",
-  "governance_revision": "2026.08.24.6",
-  "runtime_changed_by_governance_revision": false,
+  "current_release_label": "ZEKE v0.48.0 \u2014 Development Integrity + Interaction Repair",
+  "current_focus": "Restart v0.48 from verified v0.47 source, enforce evidence-integrity governance, repair owner-observed persistence defects, and continue approved Timeline/medication/workout/natural-language/mobile work without losing v0.47 functionality.",
+  "governance_revision": "2026.08.25.2",
+  "runtime_changed_by_governance_revision": true,
   "rejected_forward_baselines": [
     "v0.28.0",
     "v0.28.1"
@@ -86,17 +86,17 @@
     "mature research-reviewed readiness and adaptive periodization methodology",
     "locally controlled full exercise media library"
   ],
-  "current_release": "ZEKE v0.47.0 \u2014 Visual System Recovery + Preserved Functionality",
-  "updated_at": "2026-08-24T16:10:00-04:00",
+  "current_release": "ZEKE v0.48.0 \u2014 Development Integrity + Interaction Repair",
+  "updated_at": "2026-08-25T18:45:00-04:00",
   "known_limitations": [
     "Live Google Drive/Calendar/provider and connected-AI behavior still requires the deployed authorized environment; package-local tests cannot prove third-party availability.",
     "Browser PDF/OCR extraction uses lazy third-party CDN modules and requires network availability when those extraction paths are used.",
     "The local anatomy/reference pack has version/review/staleness metadata; a mature externally refreshed/signed source-update pipeline remains future work.",
     "Calendar write privacy choices are stored; future exposed sensitive writes must continue to honor staged/per-event consent."
   ],
-  "continuity_reviewed_at": "2026-08-24T16:10:00-04:00",
+  "continuity_reviewed_at": "2026-08-25T18:45:00-04:00",
   "continuity_review_scope": "deep read of all registered authoritative documents, standing supporting-continuity documents, recent Project ZEKE decisions, v0.45.1 baseline, and reconciled v0.46 functional donor",
-  "continuity_reconciliation_status": "complete_governance_2026.08.24.6",
+  "continuity_reconciliation_status": "complete",
   "rejected_presentation_baselines": [
     "v0.46.0 build 2026.08.24.3 mockup visual rebuild",
     "v0.46.0 build 2026.08.24.4 failed visual experiment"

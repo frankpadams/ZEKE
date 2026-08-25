@@ -1,3 +1,7 @@
+# Runtime diagnostics — v0.48.0 development
+
+**Build:** 2026.08.25.1 · **Governance:** 2026.08.25.2. Runtime identity must be read from the deployed page/version metadata rather than inferred from filename or expected release.
+
 # Runtime Diagnostics
 
 **Current continuity stamp:** v0.47.0 · build 2026.08.24.1 · governance 2026.08.24.6 · reviewed 2026-08-24

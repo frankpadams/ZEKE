@@ -496,7 +496,27 @@ Content-Type: ${mimeType}
 
   async function persist(key) {
     if (!state.provider) throw new Error('Connect storage before saving personal data.');
-    await state.provider.writeJson(PATHS[key], state[key]);
+    try {
+      await state.provider.writeJson(PATHS[key], state[key]);
+      return;
+    } catch (error) {
+      if (error?.code !== 'reauth_required' || typeof state.provider?.reconnectSilently !== 'function') throw error;
+      try {
+        await state.provider.reconnectSilently();
+        await state.provider.writeJson(PATHS[key], state[key]);
+        state.status = 'connected';
+        state.reconnectRequired = false;
+        state.lastError = '';
+        emit('zeke:storage-state');
+        return;
+      } catch (retryError) {
+        state.status = 'reconnect-required';
+        state.reconnectRequired = true;
+        state.lastError = retryError?.message || String(retryError);
+        emit('zeke:storage-state');
+        throw retryError;
+      }
+    }
   }
 
   const byTimeAsc = (a, b) => new Date(a.timestamp || a.recorded_at || 0) - new Date(b.timestamp || b.recorded_at || 0);
@@ -690,8 +710,14 @@ Content-Type: ${mimeType}
         ...factor,
         updated_at: nowIso()
       };
+      const priorFactors = state.factors;
       state.factors = [...state.factors.filter(f => f.id !== normalized.id), normalized];
-      await persist('factors');
+      try {
+        await persist('factors');
+      } catch (error) {
+        state.factors = priorFactors;
+        throw error;
+      }
       emit();
       return normalized;
     })();
@@ -705,9 +731,21 @@ Content-Type: ${mimeType}
     return saveFactor({ ...current, status, answer, resolved_at: ['resolved','dismissed','unknown'].includes(status) ? nowIso() : current.resolved_at });
   }
 
-  async function saveActions(actions) { state.actions = clone(actions); await persist('actions'); emit(); return clone(state.actions); }
-  async function savePreferences(preferences) { state.preferences = clone(preferences); await persist('preferences'); emit(); return clone(state.preferences); }
-  async function saveAIConnections(connections) { state.aiConnections = clone(connections); await persist('aiConnections'); emit('zeke:ai-connection-changed'); return clone(state.aiConnections); }
+  async function saveActions(actions) {
+    const prior=state.actions; state.actions=clone(actions);
+    try{await persist('actions')}catch(error){state.actions=prior;throw error}
+    emit(); return clone(state.actions);
+  }
+  async function savePreferences(preferences) {
+    const prior=state.preferences; state.preferences=clone(preferences);
+    try{await persist('preferences')}catch(error){state.preferences=prior;throw error}
+    emit(); return clone(state.preferences);
+  }
+  async function saveAIConnections(connections) {
+    const prior=state.aiConnections; state.aiConnections=clone(connections);
+    try{await persist('aiConnections')}catch(error){state.aiConnections=prior;throw error}
+    emit('zeke:ai-connection-changed'); return clone(state.aiConnections);
+  }
   async function addAIExchange(exchange) { state.aiExchanges = [...state.aiExchanges, { id: crypto.randomUUID(), timestamp: nowIso(), ...exchange }]; await persist('aiExchanges'); emit('zeke:ai-exchange-changed'); }
 
   async function listConversation() { return clone([...state.conversation]); }
