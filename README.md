@@ -1,3 +1,9 @@
+# ZEKE v0.48.0 Development Build
+
+**Build:** 2026.08.25.1 · **Governance:** 2026.08.25.2 · **Status:** development/test package, not a promoted release.
+
+This package carries forward ZEKE v0.47.0 and adds the first verified v0.48 integrity/interaction changes. See `DEVELOPMENT_INTEGRITY_AUDIT_2026-08-25.md` and `DEVELOPMENT_SYSTEM/EVIDENCE_INTEGRITY.md`.
+
 # Project ZEKE v0.46.0
 
 **Current continuity stamp:** v0.47.0 · build 2026.08.24.1 · governance 2026.08.24.6 · reviewed 2026-08-24

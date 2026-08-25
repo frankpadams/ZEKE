@@ -1,3 +1,14 @@
+# ZEKE Consolidated Test Guide — v0.48.0 current development
+
+**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
+
+## v0.48 integrity/interaction checks
+1. Run JavaScript syntax checks and `node tests/v048-interaction-integrity.test.js`.
+2. Run `node tests/factor-idempotency.test.js` and existing v0.47 carry-forward tests.
+3. In the deployed authorized Google environment, open the duplicate-event question and choose **Same event — keep one**. Verify immediate Saving state, provider acknowledgement, question disappearance, reload persistence, and no duplicate error notices.
+4. Force/encounter expired authorization where practical. Confirm one silent retry; if it cannot recover, one reconnect-required status is shown and the question remains unresolved after reload.
+5. Do not describe the defect as fixed until the persistence round-trip is demonstrated.
+
 # ZEKE Consolidated Test Guide
 
 **Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6

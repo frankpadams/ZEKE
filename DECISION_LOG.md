@@ -1,3 +1,12 @@
+# Current v0.48.0 decisions — 2026-08-25
+
+**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
+
+- Observation precedes interpretation; screenshot text is never completed from expectation.
+- Development claims use the evidence ladder in `DEVELOPMENT_SYSTEM/EVIDENCE_INTEGRITY.md`.
+- v0.48 restarts from actual v0.47 source; prior unpreserved v048 experiments are design evidence only.
+- Failed durable writes must not leave local state presented as saved.
+
 # ZEKE Decision Log — Current Index
 
 **Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6

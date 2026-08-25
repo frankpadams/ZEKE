@@ -1,0 +1,15 @@
+const fs=require('fs'),path=require('path');
+const root=path.resolve(__dirname,'..');
+const read=f=>fs.readFileSync(path.join(root,f),'utf8');
+const assert=(v,m)=>{if(!v)throw new Error(m)};
+const app=read('assets/app.js'), data=read('assets/data-layer.js'), version=read('version.js'), constitution=read('ZEKE_CONSTITUTION.md'), evidence=read('DEVELOPMENT_SYSTEM/EVIDENCE_INTEGRITY.md');
+assert(version.includes("version: '0.48.0'")&&version.includes("build: '2026.08.25.1'"),'v0.48 development identity missing');
+assert(data.includes("error?.code !== 'reauth_required'")&&data.includes('reconnectSilently')&&data.includes("await state.provider.writeJson(PATHS[key], state[key])"),'single silent reauth retry missing from persistence');
+assert(data.includes('const priorFactors = state.factors')&&data.includes('state.factors = priorFactors'),'factor persistence rollback missing');
+assert(data.includes('const prior=state.preferences')&&data.includes('state.preferences=prior'),'preference persistence rollback missing');
+assert(app.includes("feedback.id='reviewSaveFeedback'")&&app.includes("document.querySelectorAll('.review-live-feedback')"),'single review feedback region missing');
+assert(app.includes("el.classList.remove('is-working','is-selected')")&&app.includes('Nothing was changed'),'failed question action must visibly roll back');
+assert(app.includes('Reconnect ZEKE storage, then try again.'),'reconnect-required feedback missing');
+assert(/Observation precedes interpretation/i.test(evidence)&&/Artifact evidence outranks assistant narration/i.test(evidence),'evidence-integrity standard missing');
+assert(/observation/i.test(constitution)&&/evidence/i.test(constitution),'Constitution must carry evidence-integrity principles');
+console.log(JSON.stringify({ok:true,checks:9},null,2));

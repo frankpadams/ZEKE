@@ -1,1047 +1,919 @@
 {
   "schema_version": 2,
-  "release": "0.47.0",
-  "build": "2026.08.24.1",
-  "governance_revision": "2026.08.24.6",
-  "hash_algorithm": "sha256",
-  "scope": "All package files except BUILD_MANIFEST.json itself to avoid self-referential hashing. Final ZIP hash is published externally.",
-  "file_count_hashed": 148,
+  "product": "Project ZEKE",
+  "release": "0.48.0",
+  "build": "2026.08.25.1",
+  "status": "development",
+  "governance_revision": "2026.08.25.2",
+  "generated_at": "2026-08-25T22:47:46.988314Z",
+  "root_folder": "ZEKE-v0.48.0-dev-build-2026.08.25.1",
+  "file_count_excluding_manifest": 151,
   "files": [
     {
       "path": "00_AI_START_HERE.md",
-      "sha256": "43f3f88708f56eb303ed49d73b1e18a19328167b18c873c47a05fe46626d6d8b",
-      "bytes": 2564,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 3240,
+      "sha256": "025142ff6d072b00913add4fca412ccc0ece2c8afb13221a912a82b54bf25167",
+      "modified_utc": "2026-08-25T22:44:24.278625Z"
     },
     {
       "path": "AI_PACKET_WORKFLOW.md",
-      "sha256": "9501418b8725c0ae5a6af759164d88c984d23e4e55bc16a7e3cf2349735adb9f",
       "bytes": 1430,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "9501418b8725c0ae5a6af759164d88c984d23e4e55bc16a7e3cf2349735adb9f",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "AI_PROVIDER_MATRIX_v0.6.0.md",
-      "sha256": "ea310e03abdff4f02022a24a379e8af973d6b7b9a3679494d41de0b4bb01fd4c",
       "bytes": 2145,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "ea310e03abdff4f02022a24a379e8af973d6b7b9a3679494d41de0b4bb01fd4c",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "AI_SETUP.md",
-      "sha256": "0583e186e20eff68ea360a0804d5603ed8c8a1ead80b364a9423fcaf9a004b05",
       "bytes": 2074,
-      "mtime": "2026-08-17T04:04:24+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "0583e186e20eff68ea360a0804d5603ed8c8a1ead80b364a9423fcaf9a004b05",
+      "modified_utc": "2026-08-17T04:04:24Z"
     },
     {
       "path": "ALPHA_GOOGLE_CONNECTION.md",
-      "sha256": "060990365fc9cdd05ea1ad72321f6bb9250c9ee24f5ec7af85e3ed0a73294c9d",
       "bytes": 3210,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "060990365fc9cdd05ea1ad72321f6bb9250c9ee24f5ec7af85e3ed0a73294c9d",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "APPLE_HEALTH_SETUP.md",
-      "sha256": "808f4462a12a575ecde4451fabbe9a94eff0a11f55709d939122dac7cb6f6905",
       "bytes": 1399,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "808f4462a12a575ecde4451fabbe9a94eff0a11f55709d939122dac7cb6f6905",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "ARCHITECTURE.md",
-      "sha256": "0620e019fbc677a6059a687da7e089c24e90167e11816682303f860bd0fbacf0",
-      "bytes": 12470,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 13007,
+      "sha256": "c695ffafe1821b7c7848aaaa52d5bb38c686ad34a2f49242f7e2d7408c0d89ba",
+      "modified_utc": "2026-08-25T22:44:24.278744Z"
     },
     {
       "path": "CURRENT_RELEASE_SCOPE.md",
-      "sha256": "32831eca8ca0bd62d9d6dd2ad55d2882a6622ca4899d2ca47fdaf58bf4ffca8c",
-      "bytes": 4374,
-      "mtime": "2026-08-24T20:49:23+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 2626,
+      "sha256": "6ebefb4323791c7d146ac2e6b2fd8ca33bc69357678825fc014ee05a4aaa4ee3",
+      "modified_utc": "2026-08-25T22:45:50.376746Z"
     },
     {
       "path": "DECISION_LOG.md",
-      "sha256": "76d760932e083e2407edfc34802614e3ff9cfa8beac28f817abce2dbee962c3b",
-      "bytes": 9856,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 10367,
+      "sha256": "912264c9adfa565bad24519a490a3333d0178ca533d82600d0966be5c6069f8d",
+      "modified_utc": "2026-08-25T22:44:24.281152Z"
     },
     {
       "path": "DESIGN_AUTHORITY.md",
-      "sha256": "5064402925b5f2442b210786d0792386f686ba63002fdf038631980d12a8ca32",
-      "bytes": 12481,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 12937,
+      "sha256": "6062e92331b0bcc1a63e5278b6845592612f3b8d67779c7c860c1fa2f7cd4a10",
+      "modified_utc": "2026-08-25T22:44:24.278854Z"
+    },
+    {
+      "path": "DEVELOPMENT_INTEGRITY_AUDIT_2026-08-25.md",
+      "bytes": 4081,
+      "sha256": "1bff300eff9b1b54a26e6f445c72c70c33bc42f3f52a4df564bd45629c1ddd97",
+      "modified_utc": "2026-08-25T22:41:30.981025Z"
     },
     {
       "path": "DEVELOPMENT_MEMORY/BACKLOG.md",
-      "sha256": "e31d5e3bc5d5003b8f17890f649ccd9436f6106a2a8b450e4afd605dccaf53ed",
-      "bytes": 13294,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 13706,
+      "sha256": "a775772ec663436b7147facbdd61829a300ad34e4a3a5dc24d31e9ae64b038ed",
+      "modified_utc": "2026-08-25T22:44:24.281837Z"
     },
     {
       "path": "DEVELOPMENT_MEMORY/CONTINUITY_HISTORY.md",
-      "sha256": "6451fe4c07bdb890c84dde9c5318783f99ec72d32bd57457f16c80a7225c1660",
-      "bytes": 20066,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 20471,
+      "sha256": "37e145b91f997bc9f831d2d8c7edde67f4b2be9d2c782ab68b33c70a97d5e1d4",
+      "modified_utc": "2026-08-25T22:44:24.281954Z"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DECISION_LOG.md",
-      "sha256": "fb23fd5d9d0df136079682c2dfcd5312ea1daf5def6ebca6b68152e108f87f01",
-      "bytes": 19669,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 20033,
+      "sha256": "00820bdb197b2ccf390a8dc87b1cb44a0757bb38b76180ab25b377cef775e74a",
+      "modified_utc": "2026-08-25T22:44:24.281268Z"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
-      "sha256": "e4242978d2719276f68a3350020e5fc127b8610c4a2a265829eb9fe2dd4b1438",
-      "bytes": 23856,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 24560,
+      "sha256": "ca8287ea7faaed5b0a3b3515e65ecefcf1433358825e613da58571e0c40cd75c",
+      "modified_utc": "2026-08-25T22:44:24.281387Z"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json",
-      "sha256": "5fd4c770f27d7c47d9b6666d3a659dc73f93a974f2b036cb2daa33c710bbde4f",
-      "bytes": 4668,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 2904,
+      "sha256": "333f279a8782a85647b1c83baee184f21fda2e5902fc6fbf3f7c2acc402f5e51",
+      "modified_utc": "2026-08-25T22:44:50.948376Z"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
-      "sha256": "f94abdaa3f6972e8bc4a5b3af2d6ed03dc81ec21c739525d85ed63c9de37a879",
-      "bytes": 4662,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 5140,
+      "sha256": "d78a609d2d75b637e0b6eeee244729f8ce5cea97affe2fc765d304910ddc9cc6",
+      "modified_utc": "2026-08-25T22:44:24.281464Z"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DOCUMENT_INDEX.md",
-      "sha256": "f64439ccbc825ebc37ae156e02ca4fcb629ddbea466b3e05b84c7f232ba0ba50",
       "bytes": 267,
-      "mtime": "2026-08-15T04:44:00+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "f64439ccbc825ebc37ae156e02ca4fcb629ddbea466b3e05b84c7f232ba0ba50",
+      "modified_utc": "2026-08-15T04:44:00Z"
     },
     {
       "path": "DEVELOPMENT_MEMORY/GOVERNANCE_ITERATION_2026-07-25.md",
-      "sha256": "60c496a6fecc106301bc048d3c014f711fdb8a7fc2d55dd00b03e0b8c4488581",
       "bytes": 933,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "60c496a6fecc106301bc048d3c014f711fdb8a7fc2d55dd00b03e0b8c4488581",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "DEVELOPMENT_MEMORY/ITERATION_HISTORY.md",
-      "sha256": "eec4258da9cff83ff3bcc1ab0cbb6baf389612330a7909fa2ac5d7e23aeee3f4",
-      "bytes": 75655,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 77170,
+      "sha256": "794576a0f8d59033df643c006f662627f894d66bb1fb1c6009371392d9ff508b",
+      "modified_utc": "2026-08-25T22:44:50.362567Z"
     },
     {
       "path": "DEVELOPMENT_MEMORY/PROJECT_STATE.json",
-      "sha256": "cdb809c679815a1c857568ac33348bbab1b7f88b04bb9484ba5058557e0c2e83",
-      "bytes": 6479,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 5677,
+      "sha256": "1e598449372cfc578e49c22a473a8fc2642ba589378b5ec01375cbd69bb58084",
+      "modified_utc": "2026-08-25T22:44:24.282218Z"
     },
     {
       "path": "DEVELOPMENT_MEMORY/README_FIRST.md",
-      "sha256": "24537f6875fa49c7e95358c1f6572eca3774473c9dd2ead14f264a977f7203d0",
       "bytes": 193,
-      "mtime": "2026-08-15T04:44:00+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "24537f6875fa49c7e95358c1f6572eca3774473c9dd2ead14f264a977f7203d0",
+      "modified_utc": "2026-08-15T04:44:00Z"
     },
     {
       "path": "DEVELOPMENT_MEMORY/RELEASE_CHECKSUMS.json",
-      "sha256": "479ceb9ec389b384c6ca6fe008bbb3b8b5e731ee447533e5def3353ec9a68355",
       "bytes": 15326,
-      "mtime": "2026-08-24T18:42:16+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "479ceb9ec389b384c6ca6fe008bbb3b8b5e731ee447533e5def3353ec9a68355",
+      "modified_utc": "2026-08-24T18:42:16Z"
     },
     {
       "path": "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
-      "sha256": "3e895237fa375c9e0d1d42b7b6dd9e9448229ddc1f4e012e5640a8b0c4129cd1",
-      "bytes": 2022,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 777,
+      "sha256": "d47fa4ce800c882e75d14c19f2a032a14d7b12904beb9fa361019d42e4567ce4",
+      "modified_utc": "2026-08-25T22:44:24.280634Z"
     },
     {
       "path": "DEVELOPMENT_REVIEW_HISTORY.md",
-      "sha256": "0d7ad33566a8dbca616e1ebc301fb0c67e131e144a2ae283fb819ca40957dc7d",
-      "bytes": 33920,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 34146,
+      "sha256": "4e1fa7efcfe193fc3a45685bb77f514571fd20b8ddbf1f7de10491a2cabade7a",
+      "modified_utc": "2026-08-25T22:44:24.279248Z"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
-      "sha256": "d9761969361272a7702319b7c32ef3a990dccb55b3310c54c51714335329a63f",
-      "bytes": 12714,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 12976,
+      "sha256": "620f6f0237003cead1904af579e41f8eb4aac2fb50d51dc967f15a0cd50b1f5c",
+      "modified_utc": "2026-08-25T22:44:24.282714Z"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md",
-      "sha256": "d5c0d452614751d06ba93afe0a1e092e90fa84b94a579b2a485cfc6080e24234",
-      "bytes": 2541,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 2955,
+      "sha256": "0cb9fe2b4096a96809b19f2de3fe6ef59eaf3888f3c4e7b4eed7b361a9862f27",
+      "modified_utc": "2026-08-25T22:44:24.281551Z"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/COMPREHENSION_CHECKPOINT.md",
-      "sha256": "d72066dfd815717e507fa079ed824f112ad302bd084c0e0ea45dfad4c22ccda0",
-      "bytes": 2095,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 2354,
+      "sha256": "29728e0278ee2f1a83f67981ebb864e0844bd09f86516f94909eb88a9735a3a0",
+      "modified_utc": "2026-08-25T22:44:24.279425Z"
+    },
+    {
+      "path": "DEVELOPMENT_SYSTEM/EVIDENCE_INTEGRITY.md",
+      "bytes": 5470,
+      "sha256": "7ebe135cccce1d50a0f4d4e8bcfacaa621fed9a88c148a0d284dc24cc049e031",
+      "modified_utc": "2026-08-25T22:41:30.981952Z"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
-      "sha256": "bbeee4094315068f0561794f350f2d35a8d5b62fe90697d132800ff338c2759e",
-      "bytes": 5869,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 6319,
+      "sha256": "682db170ab0f768d26243f65af92db775a703270aaae560147e2b8333485234c",
+      "modified_utc": "2026-08-25T22:44:24.282511Z"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md",
-      "sha256": "7e3ec843f562f92aebb2b1e83a40d62da54848bf1546ef01fe4169ba3939f18d",
-      "bytes": 1803,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 2077,
+      "sha256": "b1fa37c9326c18355c6b09d7251a588734e739869a2d5fa3c37d4f696e46e02f",
+      "modified_utc": "2026-08-25T22:44:24.279827Z"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/PROJECT_IDENTITY.md",
-      "sha256": "69bd8b81ffda6343ff0e6697ff3af2d63d291466afcb25a2523969490bb32fe1",
-      "bytes": 2654,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 3149,
+      "sha256": "27f8496282dab5c1c4ab2886f9caec231975c93657a51d7eb9b7a5e4411b1735",
+      "modified_utc": "2026-08-25T22:44:24.279651Z"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/REJECTED_AND_SUPERSEDED_PATHS.md",
-      "sha256": "284dafa99c454b83e063c5b75037068f2cea3b9b331d72e75eb47f61069b60c5",
       "bytes": 2299,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "284dafa99c454b83e063c5b75037068f2cea3b9b331d72e75eb47f61069b60c5",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/RUNTIME_DIAGNOSTICS.md",
-      "sha256": "33bdb6d52f6a341fc28c848adc722315def617a0c00b5d41cfc6f0e8a0b58b0b",
-      "bytes": 3339,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 3570,
+      "sha256": "d7661dfff58c1e273de47254aae935269c26fccd95c1494344e212694ccad234",
+      "modified_utc": "2026-08-25T22:44:24.279504Z"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/STATUS_LANGUAGE.md",
-      "sha256": "92f7365e74620016f96c119f02784cfd5e2f804ae2bfb92f0e9ef3c22fc33312",
-      "bytes": 2666,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 3033,
+      "sha256": "305cc77e163d3feb32c4156b1cabffe599264f76a40a69446d47719301467304",
+      "modified_utc": "2026-08-25T22:44:24.279579Z"
     },
     {
       "path": "DOCUMENTATION_MAP.md",
-      "sha256": "1bf895a43b278c5b62414e9e8a14c618f5549c8ec7e26dc8d56fbe5fa7a9e987",
-      "bytes": 1924,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 2198,
+      "sha256": "4a8cb02e6f34c38e2453aa68ee4f8a8b2d53c082a3fc51a907cd01f8a083afa1",
+      "modified_utc": "2026-08-25T22:44:24.279097Z"
     },
     {
       "path": "EVIDENCE_LIBRARY_v0.6.0.md",
-      "sha256": "0e48723392852d13921df8529e4b961874e17b5f49d2c9eb38e7fd3d9ce1c535",
       "bytes": 2111,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "0e48723392852d13921df8529e4b961874e17b5f49d2c9eb38e7fd3d9ce1c535",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "FORM_GUIDE_MEDIA_LICENSES.md",
-      "sha256": "5e364a8570b57a5883981ae6e0937a28eb4dd0d1db41e98dd29cfd22ed1faee6",
       "bytes": 1157,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "5e364a8570b57a5883981ae6e0937a28eb4dd0d1db41e98dd29cfd22ed1faee6",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "GOOGLE_SETUP.md",
-      "sha256": "060990365fc9cdd05ea1ad72321f6bb9250c9ee24f5ec7af85e3ed0a73294c9d",
       "bytes": 3210,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "060990365fc9cdd05ea1ad72321f6bb9250c9ee24f5ec7af85e3ed0a73294c9d",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "HISTORICAL_ARTIFACTS_NOTE.md",
-      "sha256": "a4babeab7ff12e75d77e01b2d9a64d11dca0d41e6af27c66e542085ea1725bc6",
       "bytes": 664,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "a4babeab7ff12e75d77e01b2d9a64d11dca0d41e6af27c66e542085ea1725bc6",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "LEGACY_ARTIFACT_HISTORY.json",
-      "sha256": "54a67f51583cef3c5ad998c49e22a55d9e721e33ee7113a45d0f795c7eb964e7",
       "bytes": 1015453,
-      "mtime": "2026-08-15T04:56:58+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "54a67f51583cef3c5ad998c49e22a55d9e721e33ee7113a45d0f795c7eb964e7",
+      "modified_utc": "2026-08-15T04:56:58Z"
     },
     {
       "path": "PACKAGE_HISTORY.json",
-      "sha256": "2770414531e00002b53d756a216e2240bc1de065e523e4ccef47f97a975c8319",
-      "bytes": 1215752,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 1215968,
+      "sha256": "c4404738bd8192b12b13d88660d1b98218546ba961c2282cb993793772016674",
+      "modified_utc": "2026-08-25T22:44:24.289560Z"
     },
     {
       "path": "README.md",
-      "sha256": "e10ce9b96e6e5eef07ad0a0e42a0c3e7b35a3c6726556952d8fd0b78e3c12f63",
-      "bytes": 1928,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 2288,
+      "sha256": "c26f1b8fcee790e3248f167470e6f447bb46e75861631d3177b5e879a1c7d841",
+      "modified_utc": "2026-08-25T22:44:24.278943Z"
     },
     {
       "path": "README_DEPLOY.md",
-      "sha256": "1f89829a0e121e681691b1e33fc74a4cf13f9e18133bdf75782a8351b11c1b91",
-      "bytes": 1494,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 1793,
+      "sha256": "e3ace2e2d6dd0469d0dad764b450b9d9ef3a198b76282b4b59181c86a2a27a03",
+      "modified_utc": "2026-08-25T22:44:24.279022Z"
     },
     {
       "path": "READ_THIS_FIRST.md",
-      "sha256": "9923d444eca7f18a1230b151264c612f56517a66c5bffe22f9446106beb71021",
       "bytes": 321,
-      "mtime": "2026-08-15T04:47:52+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "9923d444eca7f18a1230b151264c612f56517a66c5bffe22f9446106beb71021",
+      "modified_utc": "2026-08-15T04:47:52Z"
     },
     {
       "path": "RELEASE_NOTES.md",
-      "sha256": "d14efc1468179dc71156eda71942e8903e70522141a39f27cb6c09ed083e2e6f",
-      "bytes": 221982,
-      "mtime": "2026-08-24T20:08:51+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 222416,
+      "sha256": "45e2c948e29a3f842fa1c03e7cbde14898220dce5407834f6c6c520c49115b5d",
+      "modified_utc": "2026-08-25T22:44:24.280467Z"
     },
     {
       "path": "ROADMAP.md",
-      "sha256": "88360dc65c92759fa7b803a51609b6fc0add01fd4f73f9a7b31e97cd6b8a7cb8",
-      "bytes": 1873,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 2470,
+      "sha256": "070cef8839fccf75c416ffc036b3dd5803ce97c411f600e246a3404c72914120",
+      "modified_utc": "2026-08-25T22:44:50.362987Z"
     },
     {
       "path": "STORAGE_SETUP.md",
-      "sha256": "99e33bf8a5099ff7264f425e5ab6b10d9d96ea9bceb33499cc84ff427208b4e0",
       "bytes": 2045,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "99e33bf8a5099ff7264f425e5ab6b10d9d96ea9bceb33499cc84ff427208b4e0",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "TEST_GUIDE.md",
-      "sha256": "e3915f44fb50d514eb4ac20c1cb3d07805c6601803e12a09340c74d76fb435ff",
-      "bytes": 9551,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 10474,
+      "sha256": "9175073cf4db4cedff6d35d4dd475966e429b627d2fc6ed0fcbcf63cfc041fba",
+      "modified_utc": "2026-08-25T22:44:24.281041Z"
     },
     {
       "path": "TEST_REPORT.md",
-      "sha256": "13f585faff24f3c51cb455ff154a1d989220984979d3939eac5895e4979a9b60",
-      "bytes": 1783,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 3272,
+      "sha256": "41218aa5993c284b3ac652acd896083a1ad0d2241b6cefa42071fe72d673d8dc",
+      "modified_utc": "2026-08-25T22:47:38.791242Z"
     },
     {
       "path": "THIRD_PARTY_LICENSES/xlsx-LICENSE",
-      "sha256": "4d2a38ac35cda06a555c84074a819d413339cd3691b822cae50f8f322fe01f64",
       "bytes": 11355,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "4d2a38ac35cda06a555c84074a819d413339cd3691b822cae50f8f322fe01f64",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "USABILITY_TESTING.md",
-      "sha256": "0ff8681cb9ec7e374f5c91f354d378300ed73c7d727c229bcb27c1273e85997b",
-      "bytes": 1956,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 2292,
+      "sha256": "79a5d2236f4bbaa7c7e5c5681d7c4ba5ebfa77d460fcb7a9e00b4644a69ad941",
+      "modified_utc": "2026-08-25T22:44:24.279333Z"
     },
     {
       "path": "VERSION.txt",
-      "sha256": "7fa56270d832161a16442a40617ab01e474037a5f46785a855e87269415b83ec",
-      "bytes": 81,
-      "mtime": "2026-08-24T20:49:11+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 85,
+      "sha256": "ac29902c600bdc15969d605a681c2faac21239495bc7e67f64def2081d175b7a",
+      "modified_utc": "2026-08-25T22:42:17.572529Z"
     },
     {
       "path": "ZEKE_CONSTITUTION.md",
-      "sha256": "e5d5754322b89358c93d39b99d087854b7fa67f326064cec48b1626ecdc3942b",
-      "bytes": 27765,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 29791,
+      "sha256": "6126727cf7e8f69379d53cf82df375722ac56298eeee02ac11a38775540c1018",
+      "modified_utc": "2026-08-25T22:44:24.278478Z"
     },
     {
       "path": "alpha-connection-setup.html",
-      "sha256": "e157eb676be7991b3a5ef2c55af368535f3840a8965a78725e6b47b64966b2fe",
       "bytes": 2958,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "e157eb676be7991b3a5ef2c55af368535f3840a8965a78725e6b47b64966b2fe",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "apps-script/CalendarSync.gs",
-      "sha256": "526123b6cefb3e7083101d19414b2bf452da3b50b6b5919a9433f8a59a0721bf",
       "bytes": 2263,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "526123b6cefb3e7083101d19414b2bf452da3b50b6b5919a9433f8a59a0721bf",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "apps-script/Code.gs",
-      "sha256": "272cdb7fe3e3048da91eec53dbb883c626da71a4c063085601296e591bcdbd5c",
       "bytes": 30558,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "272cdb7fe3e3048da91eec53dbb883c626da71a4c063085601296e591bcdbd5c",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "apps-script/Config.gs",
-      "sha256": "8ca0a49106837058fe02cb914cfdbfa1915c217e97e39d52742d705ca4ef6724",
       "bytes": 2188,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "8ca0a49106837058fe02cb914cfdbfa1915c217e97e39d52742d705ca4ef6724",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "apps-script/DashboardData.gs",
-      "sha256": "034fc94a2f2d0f8a4c9ea0011e21302fb8fd72882f95d54836e89a2c2749cb69",
       "bytes": 3824,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "034fc94a2f2d0f8a4c9ea0011e21302fb8fd72882f95d54836e89a2c2749cb69",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "apps-script/ExerciseEngine.gs",
-      "sha256": "a41dd31473fee5e04a87180856bec943cfa5ddcf973646fcbdeb4d9060a382c2",
       "bytes": 3598,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "a41dd31473fee5e04a87180856bec943cfa5ddcf973646fcbdeb4d9060a382c2",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "apps-script/Gemini.gs",
-      "sha256": "7bf65ff9ddd1109604c79eccfb9571e86329cd24a08e09e653ae9928854b2d4b",
       "bytes": 5171,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "7bf65ff9ddd1109604c79eccfb9571e86329cd24a08e09e653ae9928854b2d4b",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "apps-script/ImportHealth.gs",
-      "sha256": "ce2fe008202954163bd2d7a9ff49fe2f265dddcb80af498e167165a66046c840",
       "bytes": 4536,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "ce2fe008202954163bd2d7a9ff49fe2f265dddcb80af498e167165a66046c840",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "apps-script/Index.html",
-      "sha256": "98d7db23b80e12c48c5dc9fde9f3bdab3a5d43f937f7dc2cfb02c2de1bdc13b8",
       "bytes": 6750,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "98d7db23b80e12c48c5dc9fde9f3bdab3a5d43f937f7dc2cfb02c2de1bdc13b8",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "apps-script/appsscript.json",
-      "sha256": "9711ade640d5771bca4e4c6eb471bbe70225b491ab5ccc84cc50a458262dd5c8",
       "bytes": 362,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "9711ade640d5771bca4e4c6eb471bbe70225b491ab5ccc84cc50a458262dd5c8",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "assets/ai-router.js",
-      "sha256": "2bd50103cc42d012e4100fb016427d7c8ef7070e663859d2f893e56d2cd37c78",
       "bytes": 24207,
-      "mtime": "2026-08-17T04:06:22+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "2bd50103cc42d012e4100fb016427d7c8ef7070e663859d2f893e56d2cd37c78",
+      "modified_utc": "2026-08-17T04:06:22Z"
     },
     {
       "path": "assets/anatomy-knowledge.js",
-      "sha256": "c54648e851664db0a59f18c9f7d1e640594a8721b692b1a8cd69c74ccdf2efd5",
       "bytes": 3538,
-      "mtime": "2026-08-24T18:09:22+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "c54648e851664db0a59f18c9f7d1e640594a8721b692b1a8cd69c74ccdf2efd5",
+      "modified_utc": "2026-08-24T18:09:22Z"
     },
     {
       "path": "assets/app.js",
-      "sha256": "e9ece6a5b2e7da5bc3f178720734c352b406866a53105fa6544fd29595c74084",
-      "bytes": 639922,
-      "mtime": "2026-08-24T19:58:54+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 640687,
+      "sha256": "2fac3ff9f3d23cc27fa0b36aa105649a7d0a36f407dcea00ede3ccf54dd14379",
+      "modified_utc": "2026-08-25T22:42:17.571437Z"
     },
     {
       "path": "assets/branding/ZEKE_Brand_Board_2026-07.jpg",
-      "sha256": "5a99895d95da193eff44c60c1f5f1f06e4e1450256a03cf223a8728e529e5d9f",
       "bytes": 354484,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "5a99895d95da193eff44c60c1f5f1f06e4e1450256a03cf223a8728e529e5d9f",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "assets/branding/zeke-app-icon-provisional.png",
-      "sha256": "6a70f91a168347461b9c07e72876861b2e926b6dbec77773b997ab20f89a8d5b",
       "bytes": 126974,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "6a70f91a168347461b9c07e72876861b2e926b6dbec77773b997ab20f89a8d5b",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "assets/branding/zeke-mark-provisional.png",
-      "sha256": "ab793947dbfa9368b810678cbcf9558394b06fb962ce9547ec5efcad91298ac2",
       "bytes": 117701,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "ab793947dbfa9368b810678cbcf9558394b06fb962ce9547ec5efcad91298ac2",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "assets/calendar-privacy.js",
-      "sha256": "b7955395b111adb3f5cbc9352167ab045e1442c751d8f4f70704d3d9e733266a",
       "bytes": 820,
-      "mtime": "2026-08-11T04:20:28+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "b7955395b111adb3f5cbc9352167ab045e1442c751d8f4f70704d3d9e733266a",
+      "modified_utc": "2026-08-11T04:20:28Z"
     },
     {
       "path": "assets/data-layer.js",
-      "sha256": "381de67d994c3b3869b781d4f7aa1b9ce1d67fb5a2142c2862730b3399cbb47f",
-      "bytes": 54891,
-      "mtime": "2026-08-17T03:59:28+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 56031,
+      "sha256": "b34c97dd693054417dd1353b140075b5d59720b24c4506697c4fcde43278900a",
+      "modified_utc": "2026-08-25T22:41:48.180083Z"
     },
     {
       "path": "assets/desktop-v047.css",
-      "sha256": "4109e01479df872c355597a64e56461c41fe42f5b30ddf39be91093daa677194",
       "bytes": 16092,
-      "mtime": "2026-08-24T19:56:15+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "4109e01479df872c355597a64e56461c41fe42f5b30ddf39be91093daa677194",
+      "modified_utc": "2026-08-24T19:56:15Z"
     },
     {
       "path": "assets/document-intake.js",
-      "sha256": "3c38410386263bd735c57c39727f13d14958dafcb6c3fca8c7e700872b684e50",
       "bytes": 6393,
-      "mtime": "2026-08-23T18:08:18+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "3c38410386263bd735c57c39727f13d14958dafcb6c3fca8c7e700872b684e50",
+      "modified_utc": "2026-08-23T18:08:18Z"
     },
     {
       "path": "assets/exercise-guides/pt-band-internal-rotation-1.svg",
-      "sha256": "07aee73e0537aa7a218484ba7fb8e774d0983d19ea36c5b86442c506c90fc627",
       "bytes": 1271,
-      "mtime": "2026-08-23T18:04:22+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "07aee73e0537aa7a218484ba7fb8e774d0983d19ea36c5b86442c506c90fc627",
+      "modified_utc": "2026-08-23T18:04:22Z"
     },
     {
       "path": "assets/exercise-guides/pt-band-internal-rotation-2.svg",
-      "sha256": "1383053d58bb3209728b7fe039aba43b2f1fb69c006b71331cf47f2996b5811f",
       "bytes": 1293,
-      "mtime": "2026-08-23T18:04:22+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "1383053d58bb3209728b7fe039aba43b2f1fb69c006b71331cf47f2996b5811f",
+      "modified_utc": "2026-08-23T18:04:22Z"
     },
     {
       "path": "assets/exercise-guides/pt-cheerleaders-1.svg",
-      "sha256": "16ae50fd075c2397388339515d0e0a1bdaa82a1ba770c152aada99d876151c14",
       "bytes": 1277,
-      "mtime": "2026-08-23T18:04:22+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "16ae50fd075c2397388339515d0e0a1bdaa82a1ba770c152aada99d876151c14",
+      "modified_utc": "2026-08-23T18:04:22Z"
     },
     {
       "path": "assets/exercise-guides/pt-cheerleaders-2.svg",
-      "sha256": "f8632ee9f86ba8c641be113b4d4a7b6fc7bed618b7cfef2df590110057e2a007",
       "bytes": 1309,
-      "mtime": "2026-08-23T18:04:22+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "f8632ee9f86ba8c641be113b4d4a7b6fc7bed618b7cfef2df590110057e2a007",
+      "modified_utc": "2026-08-23T18:04:22Z"
     },
     {
       "path": "assets/exercise-guides/pt-doorway-chest-stretch-1.svg",
-      "sha256": "78424f64a9da6ec4484e04b2f6513376fcb28047ec6be37f04c0672bb9666440",
       "bytes": 1266,
-      "mtime": "2026-08-23T18:04:22+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "78424f64a9da6ec4484e04b2f6513376fcb28047ec6be37f04c0672bb9666440",
+      "modified_utc": "2026-08-23T18:04:22Z"
     },
     {
       "path": "assets/exercise-guides/pt-doorway-chest-stretch-2.svg",
-      "sha256": "65877433e6495be6ec21b3e165024f5958460fc0cc7dbecda77ebeae3fdbd7e7",
       "bytes": 1298,
-      "mtime": "2026-08-23T18:04:22+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "65877433e6495be6ec21b3e165024f5958460fc0cc7dbecda77ebeae3fdbd7e7",
+      "modified_utc": "2026-08-23T18:04:22Z"
     },
     {
       "path": "assets/exercise-guides/pt-no-monies-1.svg",
-      "sha256": "ea924da833183f5113d2fc35e74fafe0c9222210580b0ed21031ebfec2fd5162",
       "bytes": 1256,
-      "mtime": "2026-08-23T18:04:22+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "ea924da833183f5113d2fc35e74fafe0c9222210580b0ed21031ebfec2fd5162",
+      "modified_utc": "2026-08-23T18:04:22Z"
     },
     {
       "path": "assets/exercise-guides/pt-no-monies-2.svg",
-      "sha256": "cf0c3f0dcccd280ebfeade45bede2276a2c5797f891d9773c547c3ceec967741",
       "bytes": 1287,
-      "mtime": "2026-08-23T18:04:22+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "cf0c3f0dcccd280ebfeade45bede2276a2c5797f891d9773c547c3ceec967741",
+      "modified_utc": "2026-08-23T18:04:22Z"
     },
     {
       "path": "assets/exercise-guides/pt-pnf-d1-1.svg",
-      "sha256": "8641362181b7f40c57b3eb19558e356c435fb09bb8eb5355403682bd364785a9",
       "bytes": 1215,
-      "mtime": "2026-08-23T18:04:22+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "8641362181b7f40c57b3eb19558e356c435fb09bb8eb5355403682bd364785a9",
+      "modified_utc": "2026-08-23T18:04:22Z"
     },
     {
       "path": "assets/exercise-guides/pt-pnf-d1-2.svg",
-      "sha256": "03b75c8c146be4db256699dbb7dd267cb6dc7b3ceda40f066584d076949710d7",
       "bytes": 1270,
-      "mtime": "2026-08-23T18:04:22+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "03b75c8c146be4db256699dbb7dd267cb6dc7b3ceda40f066584d076949710d7",
+      "modified_utc": "2026-08-23T18:04:22Z"
     },
     {
       "path": "assets/exercise-guides/pt-pnf-d2-1.svg",
-      "sha256": "538dc73bcc0d98de3c3498d3942d005778410bfc00b851df21df4d9b65ac1cb0",
       "bytes": 1224,
-      "mtime": "2026-08-23T18:04:22+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "538dc73bcc0d98de3c3498d3942d005778410bfc00b851df21df4d9b65ac1cb0",
+      "modified_utc": "2026-08-23T18:04:22Z"
     },
     {
       "path": "assets/exercise-guides/pt-pnf-d2-2.svg",
-      "sha256": "7c99c05ed60be2db497a9623247580efdf09e6add268f85f119d05bcd34266c4",
       "bytes": 1240,
-      "mtime": "2026-08-23T18:04:22+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "7c99c05ed60be2db497a9623247580efdf09e6add268f85f119d05bcd34266c4",
+      "modified_utc": "2026-08-23T18:04:22Z"
     },
     {
       "path": "assets/exercise-guides.js",
-      "sha256": "d28ae11d1ae7fd1d292b0b80afee68cf1ca63e0e9edb25b498072f29dcd53660",
       "bytes": 35331,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "d28ae11d1ae7fd1d292b0b80afee68cf1ca63e0e9edb25b498072f29dcd53660",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "assets/ingestion-engine.js",
-      "sha256": "0c7ff28e4473ea68438d475c7cba3fa035d6aa404a04cd7ea1ed5378489108b9",
       "bytes": 1858,
-      "mtime": "2026-08-11T04:20:28+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "0c7ff28e4473ea68438d475c7cba3fa035d6aa404a04cd7ea1ed5378489108b9",
+      "modified_utc": "2026-08-11T04:20:28Z"
     },
     {
       "path": "assets/integrity-engine.js",
-      "sha256": "c92d59e6025285c92b7caaac9270c2f8406b62a5a50f1aa636ec40e9018885f4",
       "bytes": 8135,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "c92d59e6025285c92b7caaac9270c2f8406b62a5a50f1aa636ec40e9018885f4",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "assets/knowledge-base.js",
-      "sha256": "b3a5478f30b8e1d6b13d82ab5356eb0516f60ea0bcfb5202168f82eae87fefc1",
       "bytes": 209347,
-      "mtime": "2026-08-23T18:04:22+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "b3a5478f30b8e1d6b13d82ab5356eb0516f60ea0bcfb5202168f82eae87fefc1",
+      "modified_utc": "2026-08-23T18:04:22Z"
     },
     {
       "path": "assets/longitudinal-schema.js",
-      "sha256": "8334748961c493b4bce7abd6861635b522fd46c8f72f47890ee32c59aabbe0bd",
       "bytes": 2554,
-      "mtime": "2026-08-11T04:20:28+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "8334748961c493b4bce7abd6861635b522fd46c8f72f47890ee32c59aabbe0bd",
+      "modified_utc": "2026-08-11T04:20:28Z"
     },
     {
       "path": "assets/mobile-native.css",
-      "sha256": "b36155ec76daf700db0370749dcca955aebdf7542a186012e39c902a1327c72d",
       "bytes": 11890,
-      "mtime": "2026-08-23T18:09:46+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "b36155ec76daf700db0370749dcca955aebdf7542a186012e39c902a1327c72d",
+      "modified_utc": "2026-08-23T18:09:46Z"
     },
     {
       "path": "assets/mobile-native.js",
-      "sha256": "6ceabaa8ad13eafa1abe940ed0b3c1b420fce769cc69871725c0de811562fef1",
       "bytes": 816,
-      "mtime": "2026-08-23T17:24:52+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "6ceabaa8ad13eafa1abe940ed0b3c1b420fce769cc69871725c0de811562fef1",
+      "modified_utc": "2026-08-23T17:24:52Z"
     },
     {
       "path": "assets/mobile-polish-v0441.css",
-      "sha256": "92d5f370b376ad1ad6545bdede7176e1e6ac8cad1531f6249f06af89eff09a68",
       "bytes": 8155,
-      "mtime": "2026-08-24T17:14:50+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "92d5f370b376ad1ad6545bdede7176e1e6ac8cad1531f6249f06af89eff09a68",
+      "modified_utc": "2026-08-24T17:14:50Z"
     },
     {
       "path": "assets/mobile-polish-v0441.js",
-      "sha256": "e87567c11ea59297dbb63e793705a8a68c3700bf3612a9c955a2f76030235a56",
       "bytes": 2725,
-      "mtime": "2026-08-24T19:49:31+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "0dea9d15eb4cc9949d5000b7d4c89b5f6213f677376b6e6844df62486b8de2c1",
+      "modified_utc": "2026-08-25T22:42:17.572160Z"
     },
     {
       "path": "assets/parser.js",
-      "sha256": "b0da21accf12f0a8e40045d5373ba0981d821d061ddb230cfdfc5e21297578a2",
       "bytes": 21346,
-      "mtime": "2026-08-11T04:21:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "b0da21accf12f0a8e40045d5373ba0981d821d061ddb230cfdfc5e21297578a2",
+      "modified_utc": "2026-08-11T04:21:04Z"
     },
     {
       "path": "assets/styles.css",
-      "sha256": "20a9eb3abec24deb60475eaadff862ad0c3fd80b2622ba15744739cb2e353055",
-      "bytes": 248681,
-      "mtime": "2026-08-24T18:08:08+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 248855,
+      "sha256": "e9015a9c90f045deadc062ec03d9f399a3ff13e53bb8ff99f2abcfb5a9cedccf",
+      "modified_utc": "2026-08-25T22:41:56.115521Z"
     },
     {
       "path": "assets/training-intelligence.js",
-      "sha256": "1a9120ba3e2ee0e627b90cb68ee8d7b958609f4cfa62aa9c318f31b5b8e2c7ba",
       "bytes": 11391,
-      "mtime": "2026-08-24T17:14:02+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "1a9120ba3e2ee0e627b90cb68ee8d7b958609f4cfa62aa9c318f31b5b8e2c7ba",
+      "modified_utc": "2026-08-24T17:14:02Z"
     },
     {
       "path": "assets/workflow-engine.js",
-      "sha256": "e333f55ad8fbc7ec15c998bea1e6072335e2ec7baa4283363b0d94c3e7e1264a",
       "bytes": 10840,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "e333f55ad8fbc7ec15c998bea1e6072335e2ec7baa4283363b0d94c3e7e1264a",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "docs/branding/Brand_Guidelines.md",
-      "sha256": "26255721cc7e990a6319a6390dcb441ec795db6226e67944e5bb813738829625",
       "bytes": 1346,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "26255721cc7e990a6319a6390dcb441ec795db6226e67944e5bb813738829625",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "docs/design-authority/ZEKE-desktop-dashboard-reference-2026-08-24.png",
-      "sha256": "97c2f2e849e682aa3bbd3055368e419efdca5dd570746c9733b29590c41c6841",
       "bytes": 1878467,
-      "mtime": "2026-08-24T20:05:43+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "97c2f2e849e682aa3bbd3055368e419efdca5dd570746c9733b29590c41c6841",
+      "modified_utc": "2026-08-24T20:05:43Z"
     },
     {
       "path": "index.html",
-      "sha256": "781315ee09258902ed83b7b09b716c0880727a1ea293b9341152ad1cae4d28a0",
-      "bytes": 2851,
-      "mtime": "2026-08-24T19:51:44+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 2866,
+      "sha256": "db8230fc9fce30becaa7990c384e003d523aac6638753ba3a2ba607a17a8cce7",
+      "modified_utc": "2026-08-25T22:46:00.499296Z"
     },
     {
       "path": "manifest.webmanifest",
-      "sha256": "11ba4a60cb917444701dee14feeca5c5eeab5027daf9e2e8737aa6f4db65b308",
       "bytes": 426,
-      "mtime": "2026-08-23T17:51:46+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "da4b52b8c4f5b8614a7471e4942055c532c1ed6dde4f48d47bd962c599908a77",
+      "modified_utc": "2026-08-25T22:42:17.572376Z"
     },
     {
       "path": "oauth-callback.html",
-      "sha256": "b8996ea857264c42d8d99956c8cee00677f83ab2e68af29df19d80b49dc48cb3",
       "bytes": 158,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "b8996ea857264c42d8d99956c8cee00677f83ab2e68af29df19d80b49dc48cb3",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "sw.js",
-      "sha256": "3869c5f268aea4220f7726d5e0216fabc06ef2a31c763fa326ad6be91224b181",
       "bytes": 1924,
-      "mtime": "2026-08-24T20:03:51+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "8d0a3ea64191196a73ec9dfce887cc5c4e42e42f8c8059796f2212bfd81dc913",
+      "modified_utc": "2026-08-25T22:45:50.376610Z"
     },
     {
       "path": "tests/activity-foundation.test.js",
-      "sha256": "4adc8eedf169485334a06c641b88febab8d753637f35eb8134ab22326bc146fe",
       "bytes": 1068,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "4adc8eedf169485334a06c641b88febab8d753637f35eb8134ab22326bc146fe",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "tests/conversation-security-and-editing.test.js",
-      "sha256": "b8f18d004ba258cc622a6c4d11957b7c55d6945372b82ea2dd1ca6af7b53e620",
       "bytes": 1245,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "b8f18d004ba258cc622a6c4d11957b7c55d6945372b82ea2dd1ca6af7b53e620",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "tests/dashboard-layout-acceptance.test.js",
-      "sha256": "9b5cf0745f32f94f9b56a4a2050a523a669c1608e03c44f3b9ab353aa3fd7920",
       "bytes": 1859,
-      "mtime": "2026-08-24T20:04:24+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "9b5cf0745f32f94f9b56a4a2050a523a669c1608e03c44f3b9ab353aa3fd7920",
+      "modified_utc": "2026-08-24T20:04:24Z"
     },
     {
       "path": "tests/factor-idempotency.test.js",
-      "sha256": "323607bd722df0dedfe342bb0ed4ca42c53b4bdd00ca4dc57aa7fd0195351137",
       "bytes": 1920,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "323607bd722df0dedfe342bb0ed4ca42c53b4bdd00ca4dc57aa7fd0195351137",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "tests/form-guide-library.test.js",
-      "sha256": "bb9b90958565fff2acb912867c15af084b8270f63df01d137f3497db394bb5d1",
       "bytes": 1578,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "bb9b90958565fff2acb912867c15af084b8270f63df01d137f3497db394bb5d1",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "tests/governance-negative-controls.py",
-      "sha256": "477549b309599f049b405e88ef997c9f25493af26ecc3f655e4c60276873e461",
       "bytes": 3747,
-      "mtime": "2026-08-24T20:49:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "477549b309599f049b405e88ef997c9f25493af26ecc3f655e4c60276873e461",
+      "modified_utc": "2026-08-24T20:49:04Z"
     },
     {
       "path": "tests/integrity-live-repair-transaction.test.js",
-      "sha256": "287bc3cccdb26fc7615e39cf29a847abc6c934ba26e7de0d4563dd26052ddd18",
       "bytes": 5762,
-      "mtime": "2026-08-15T04:50:30+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "287bc3cccdb26fc7615e39cf29a847abc6c934ba26e7de0d4563dd26052ddd18",
+      "modified_utc": "2026-08-15T04:50:30Z"
     },
     {
       "path": "tests/medication-action-status.test.js",
-      "sha256": "a51193ca7e62be82259852880c04d458b0081427878a5e7ce8ef4374f69e5041",
       "bytes": 2568,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "a51193ca7e62be82259852880c04d458b0081427878a5e7ce8ef4374f69e5041",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "tests/medication-parser.test.js",
-      "sha256": "159b03e00349324bfc802ef33ba1fcc8851b86106d75e4462100666643999eb3",
       "bytes": 1896,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "159b03e00349324bfc802ef33ba1fcc8851b86106d75e4462100666643999eb3",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "tests/mobile-professional-polish.test.js",
-      "sha256": "f816d7891dacfd5bca2bedb0fa578646296bcfc3ba168b9fe761bd2f3258dc8f",
       "bytes": 3010,
-      "mtime": "2026-08-17T05:24:54+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "f816d7891dacfd5bca2bedb0fa578646296bcfc3ba168b9fe761bd2f3258dc8f",
+      "modified_utc": "2026-08-17T05:24:54Z"
     },
     {
       "path": "tests/mobile-professional-polish.test.py",
-      "sha256": "e814010dda8f8fe09d3f2a73200695deeaed8da57f1affb349a2cce7a5222336",
       "bytes": 12633,
-      "mtime": "2026-08-23T18:14:36+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "e814010dda8f8fe09d3f2a73200695deeaed8da57f1affb349a2cce7a5222336",
+      "modified_utc": "2026-08-23T18:14:36Z"
     },
     {
       "path": "tests/navigation-coaching-profile.test.js",
-      "sha256": "88101624f94a280c4ee58461d02a033090aa55744abda910765143109a8e7eea",
       "bytes": 1500,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "88101624f94a280c4ee58461d02a033090aa55744abda910765143109a8e7eea",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "tests/pt-visual-release-gate.js",
-      "sha256": "a194bfe65e2776b5cd485feb86524a183635e13a19221c998d1122968290d9ef",
       "bytes": 1419,
-      "mtime": "2026-08-23T18:04:28+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "a194bfe65e2776b5cd485feb86524a183635e13a19221c998d1122968290d9ef",
+      "modified_utc": "2026-08-23T18:04:28Z"
     },
     {
       "path": "tests/release-structure.test.js",
-      "sha256": "a48c2424ebe8150d0462f0a80b4e03a5b1cc92223d1774d4ab41d8592e569069",
       "bytes": 1458,
-      "mtime": "2026-08-15T04:43:12+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "a48c2424ebe8150d0462f0a80b4e03a5b1cc92223d1774d4ab41d8592e569069",
+      "modified_utc": "2026-08-15T04:43:12Z"
     },
     {
       "path": "tests/rendered-workflow-smoke.py",
-      "sha256": "41b10d128f38298dcb38100486bee274e9f2b02d743410e79494ad75076c71c7",
       "bytes": 22247,
-      "mtime": "2026-08-24T17:17:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "41b10d128f38298dcb38100486bee274e9f2b02d743410e79494ad75076c71c7",
+      "modified_utc": "2026-08-24T17:17:32Z"
     },
     {
       "path": "tests/sleep-and-insight-stabilization.test.js",
-      "sha256": "93f010a0bace90a7d5c02ff31480b45084a5dd3ec60b7cab67086ed18cd41899",
       "bytes": 3600,
-      "mtime": "2026-08-06T14:26:04+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "93f010a0bace90a7d5c02ff31480b45084a5dd3ec60b7cab67086ed18cd41899",
+      "modified_utc": "2026-08-06T14:26:04Z"
     },
     {
       "path": "tests/sleep-data-transaction.test.js",
-      "sha256": "09054674563756fed53999519e1227900358e6c3848f767d12f78224dac94362",
       "bytes": 2065,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "09054674563756fed53999519e1227900358e6c3848f767d12f78224dac94362",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "tests/sprint-3-workout-intelligence.test.js",
-      "sha256": "8b512581530ae811b86e73c946055ea2fde2359519179640db9c2bd4163fb1e1",
       "bytes": 905,
-      "mtime": "2026-08-06T13:02:10+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "8b512581530ae811b86e73c946055ea2fde2359519179640db9c2bd4163fb1e1",
+      "modified_utc": "2026-08-06T13:02:10Z"
     },
     {
       "path": "tests/sprint2-adaptive-activity.test.js",
-      "sha256": "877dbb443648b6e20918cc1a15843e58f6da0a361417ce776f4b2f28dc7d4ed8",
       "bytes": 1350,
-      "mtime": "2026-08-15T04:43:22+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "877dbb443648b6e20918cc1a15843e58f6da0a361417ce776f4b2f28dc7d4ed8",
+      "modified_utc": "2026-08-15T04:43:22Z"
     },
     {
       "path": "tests/support-report-browser-smoke.py",
-      "sha256": "5776bd421f40bf9f71f2e202990ab7969c651617ad2d971aa62732ba62933470",
       "bytes": 6038,
-      "mtime": "2026-08-23T18:16:36+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "5776bd421f40bf9f71f2e202990ab7969c651617ad2d971aa62732ba62933470",
+      "modified_utc": "2026-08-23T18:16:36Z"
     },
     {
       "path": "tests/trust-workflow-ux.test.js",
-      "sha256": "94928a0447870755384cca2a07a77456704a66f0e6952df54de178c506a51a66",
       "bytes": 2766,
-      "mtime": "2026-08-23T18:10:14+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "94928a0447870755384cca2a07a77456704a66f0e6952df54de178c506a51a66",
+      "modified_utc": "2026-08-23T18:10:14Z"
     },
     {
       "path": "tests/v040-major-milestone.test.js",
-      "sha256": "0afbbdf568317a3e1008c2463227d7dce1c025371606c074b02ab7716515cfb1",
       "bytes": 5133,
-      "mtime": "2026-08-24T18:08:58+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "0afbbdf568317a3e1008c2463227d7dce1c025371606c074b02ab7716515cfb1",
+      "modified_utc": "2026-08-24T18:08:58Z"
     },
     {
       "path": "tests/v040-rendered-smoke.py",
-      "sha256": "574efaf1d775929b5fea54779a60af15ed9250456aa64be67c1d3b9137211704",
       "bytes": 8279,
-      "mtime": "2026-08-24T18:07:18+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "574efaf1d775929b5fea54779a60af15ed9250456aa64be67c1d3b9137211704",
+      "modified_utc": "2026-08-24T18:07:18Z"
     },
     {
       "path": "tests/v041-fitness-intelligence.test.js",
-      "sha256": "47a26f383b5df0f8bf3a1a085b970104a850beefcf5635fb9d68f9dc4615cd5f",
       "bytes": 2876,
-      "mtime": "2026-08-15T04:43:12+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "47a26f383b5df0f8bf3a1a085b970104a850beefcf5635fb9d68f9dc4615cd5f",
+      "modified_utc": "2026-08-15T04:43:12Z"
     },
     {
       "path": "tests/v042-longitudinal-ingestion.test.js",
-      "sha256": "87ee0c711ae77869771a6fb85d2b23101e59d9e4098d8c1ade74a62354d86e76",
       "bytes": 1986,
-      "mtime": "2026-08-11T04:21:36+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "87ee0c711ae77869771a6fb85d2b23101e59d9e4098d8c1ade74a62354d86e76",
+      "modified_utc": "2026-08-11T04:21:36Z"
     },
     {
       "path": "tests/v043-mobile-exercise-measurement.test.js",
-      "sha256": "5d954041a6603b8a4043943562754476d615d05c8c56c837b955aa521936c409",
       "bytes": 2601,
-      "mtime": "2026-08-24T17:16:38+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "5d954041a6603b8a4043943562754476d615d05c8c56c837b955aa521936c409",
+      "modified_utc": "2026-08-24T17:16:38Z"
     },
     {
       "path": "tests/v043-mobile-rendered-smoke.py",
-      "sha256": "e2e6e7ab585d522ae8e5fa09625a5d7aaaa3af96e81973744acf3b9832e2821c",
       "bytes": 5829,
-      "mtime": "2026-08-17T05:22:56+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "e2e6e7ab585d522ae8e5fa09625a5d7aaaa3af96e81973744acf3b9832e2821c",
+      "modified_utc": "2026-08-17T05:22:56Z"
     },
     {
       "path": "tests/v043-rc2-longitudinal.test.js",
-      "sha256": "b8264e02b298493afdc83f1821784ba479ef7780b9b6f7b37270b462625d1c17",
       "bytes": 2746,
-      "mtime": "2026-08-24T17:16:38+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "b8264e02b298493afdc83f1821784ba479ef7780b9b6f7b37270b462625d1c17",
+      "modified_utc": "2026-08-24T17:16:38Z"
     },
     {
       "path": "tests/v043-rc21-continuity.test.js",
-      "sha256": "e18bab253dbb96fbeabd65dac427c4e9e9a5c19c8a925d0d85af44819a8fcfe5",
       "bytes": 918,
-      "mtime": "2026-08-23T18:10:14+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "e18bab253dbb96fbeabd65dac427c4e9e9a5c19c8a925d0d85af44819a8fcfe5",
+      "modified_utc": "2026-08-23T18:10:14Z"
     },
     {
       "path": "tests/v0451-integrated-release.test.js",
-      "sha256": "82b9720d412d93ef62275ce1403d9a9356920904d9184770b7a75f5a3ad72494",
       "bytes": 2714,
-      "mtime": "2026-08-23T18:12:54+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "82b9720d412d93ef62275ce1403d9a9356920904d9184770b7a75f5a3ad72494",
+      "modified_utc": "2026-08-23T18:12:54Z"
     },
     {
       "path": "tests/v046-ux-architecture.test.js",
-      "sha256": "9447203dc33046202d2c3ccc4fcbf260a5d9e220b8466d15a8e0dc86ccbb3c60",
       "bytes": 2463,
-      "mtime": "2026-08-24T20:04:37+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "9447203dc33046202d2c3ccc4fcbf260a5d9e220b8466d15a8e0dc86ccbb3c60",
+      "modified_utc": "2026-08-24T20:04:37Z"
     },
     {
       "path": "tests/v047-dashboard-adversarial-gate.py",
-      "sha256": "570a85501a84471a08d11fc2d09afc07491cbff12f0a15319cd054eef8139a30",
       "bytes": 8212,
-      "mtime": "2026-08-24T20:02:30+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "570a85501a84471a08d11fc2d09afc07491cbff12f0a15319cd054eef8139a30",
+      "modified_utc": "2026-08-24T20:02:30Z"
     },
     {
       "path": "tests/v047-desktop-visual-gate.py",
-      "sha256": "6753e4563fa325d596d01b071e82cf465e592e5ad931d5d4f250b3d9a55aa487",
       "bytes": 7858,
-      "mtime": "2026-08-24T19:52:08+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "6753e4563fa325d596d01b071e82cf465e592e5ad931d5d4f250b3d9a55aa487",
+      "modified_utc": "2026-08-24T19:52:08Z"
     },
     {
       "path": "tests/v047-preserved-functionality.test.js",
-      "sha256": "ffa07a18e5174a72ade46718e5ed6e8914f2d9871f70aac8668156b47036bbd8",
-      "bytes": 2821,
-      "mtime": "2026-08-24T20:04:24+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 2862,
+      "sha256": "04e20933687e5918ef8678a2f2e7194c4051e18a7cd3936ced1043e17298f2dd",
+      "modified_utc": "2026-08-25T22:45:50.376667Z"
     },
     {
       "path": "tests/v047-route-render-gate.py",
-      "sha256": "4d32e115a296ef251216ba5ee395b36e536c279150a614de0237560cb3b73060",
       "bytes": 7533,
-      "mtime": "2026-08-24T20:00:06+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "4d32e115a296ef251216ba5ee395b36e536c279150a614de0237560cb3b73060",
+      "modified_utc": "2026-08-24T20:00:06Z"
+    },
+    {
+      "path": "tests/v048-interaction-integrity.test.js",
+      "bytes": 1806,
+      "sha256": "69a09dab3f6c28a384fa9a6fb47087bb4ca817975115f0f27688b6f6bc2f9893",
+      "modified_utc": "2026-08-25T22:43:08.368769Z"
     },
     {
       "path": "tests/workbook-commit-verify.test.js",
-      "sha256": "4d6ccee9cdd448b7820ce1bd2d9c79a3be1cd2519b8acf3771ffdb25d12741b9",
       "bytes": 3168,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "4d6ccee9cdd448b7820ce1bd2d9c79a3be1cd2519b8acf3771ffdb25d12741b9",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "tests/workbook-preflight.test.js",
-      "sha256": "b83d14bf01c8cf5e504257971d51d4a4fbc49eb3ce0ce2b6520198824d68efd8",
       "bytes": 3279,
-      "mtime": "2026-08-15T04:50:30+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "b83d14bf01c8cf5e504257971d51d4a4fbc49eb3ce0ce2b6520198824d68efd8",
+      "modified_utc": "2026-08-15T04:50:30Z"
     },
     {
       "path": "tests/workbook-real-data-idempotency.test.js",
-      "sha256": "f2d6fc26b8c913b3712528ad4d5ff9f3b4db2d176808759b6c8cba918a93ae53",
       "bytes": 4190,
-      "mtime": "2026-08-15T04:50:30+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "f2d6fc26b8c913b3712528ad4d5ff9f3b4db2d176808759b6c8cba918a93ae53",
+      "modified_utc": "2026-08-15T04:50:30Z"
     },
     {
       "path": "tests/workbook-source-replacement-backup.test.js",
-      "sha256": "78fc4a4b7a32657780f4a0e0d1fe0011d07ee6ae4ce3da9a00b9ed0ab07cf28c",
       "bytes": 2473,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "78fc4a4b7a32657780f4a0e0d1fe0011d07ee6ae4ce3da9a00b9ed0ab07cf28c",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "tests/workflow-engine.test.js",
-      "sha256": "68a6cd2b25a48ce26b03efa6dc6d21fe34cd4e9ff3342f317bfda545225893d0",
       "bytes": 2043,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "68a6cd2b25a48ce26b03efa6dc6d21fe34cd4e9ff3342f317bfda545225893d0",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "tests/workflow-exploration-and-log.test.js",
-      "sha256": "e421862e50396339280204184be547f0b1ee7c6f1f04d2598785828d0b770e94",
       "bytes": 1211,
-      "mtime": "2026-08-23T17:51:46+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "e421862e50396339280204184be547f0b1ee7c6f1f04d2598785828d0b770e94",
+      "modified_utc": "2026-08-23T17:51:46Z"
     },
     {
       "path": "tools/project_audit.py",
-      "sha256": "5d74c82ead7a8768593319a152a81b08d65cc2fc0348ff278177dad18594321e",
       "bytes": 12051,
-      "mtime": "2026-08-24T18:42:30+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "5d74c82ead7a8768593319a152a81b08d65cc2fc0348ff278177dad18594321e",
+      "modified_utc": "2026-08-24T18:42:30Z"
     },
     {
       "path": "version.js",
-      "sha256": "4f8811780e81a67d2e6c4d6c21d50fae15a742cb673c26a16241556ee832cea3",
-      "bytes": 238,
-      "mtime": "2026-08-24T19:49:31+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "bytes": 247,
+      "sha256": "8b7aa48bbb7700fc0c713f4d929374fa4c7cc12b5daf4021177a94a62de56789",
+      "modified_utc": "2026-08-25T22:42:17.572441Z"
     },
     {
       "path": "xlsx-bundle.js",
-      "sha256": "cd4c81425faae9b42cbbe384c49fccf5cb2c8c1d6195d989f9df10ecbd28d1a5",
       "bytes": 432475,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "cd4c81425faae9b42cbbe384c49fccf5cb2c8c1d6195d989f9df10ecbd28d1a5",
+      "modified_utc": "2026-08-06T13:00:32Z"
     },
     {
       "path": "zeke-config.js",
-      "sha256": "bbfad67bbca5456c596d6949c77de86133f1285d81939b1d108ac638106b5c39",
       "bytes": 289,
-      "mtime": "2026-08-06T13:00:32+0000",
-      "provenance": "v0.47.0 recovery package; preserved baseline/donor bytes or explicitly modified current-release file"
+      "sha256": "bbfad67bbca5456c596d6949c77de86133f1285d81939b1d108ac638106b5c39",
+      "modified_utc": "2026-08-06T13:00:32Z"
     }
   ]
 }

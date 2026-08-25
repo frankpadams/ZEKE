@@ -2,7 +2,7 @@
   "name": "Project ZEKE",
   "short_name": "ZEKE",
   "description": "Private personal knowledge and health workspace",
-  "start_url": "./index.html?v=20260823.3",
+  "start_url": "./index.html?v=20260825.1",
   "display": "standalone",
   "background_color": "#f4f7fb",
   "theme_color": "#f4f7fb",

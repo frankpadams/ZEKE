@@ -2,13 +2,13 @@
   "schema_version": 1,
   "purpose": "Living consolidated package/build/provenance/verification history. Superseded individual files are intentionally removed after their contents are retained here.",
   "current_release": {
-    "version": "0.47.0",
-    "build": "2026.08.24.1",
-    "label": "Visual System Recovery + Preserved Functionality",
-    "status": "verification_in_progress",
+    "version": "0.48.0",
+    "build": "2026.08.25.1",
+    "label": "Development Integrity + Interaction Repair",
+    "status": "development_package",
     "publish_ready": false,
-    "verification_boundary": "Implementation and browser-rendered UX gates are being verified before packaging; live provider environment verification remains separate.",
-    "governance_revision": "2026.08.24.6"
+    "verification_boundary": "Package-local/source tests only; live Google persistence and remaining v0.48 scope outstanding.",
+    "governance_revision": "2026.08.25.2"
   },
   "historical_records": [
     {
@@ -27968,11 +27968,11 @@
       }
     }
   ],
-  "current_version": "0.46.0",
-  "current_build": "2026.08.24.2",
-  "governance_revision": "2026.08.24.3",
-  "release": "0.46.0",
-  "build": "2026.08.24.2",
+  "current_version": "0.48.0",
+  "current_build": "2026.08.25.1",
+  "governance_revision": "2026.08.25.2",
+  "release": "0.48.0",
+  "build": "2026.08.25.1",
   "history": [
     {
       "version": "0.43.1",
@@ -28050,6 +28050,13 @@
         "Project ZEKE decisions through 2026-08-23"
       ],
       "notes": "Complete reconstructed release; governance/current-authority drift from build 2026.08.23.1 corrected after full Constitution/package review."
+    },
+    {
+      "version": "0.48.0",
+      "build": "2026.08.25.1",
+      "date": "2026-08-25",
+      "status": "development",
+      "notes": "Restarted from verified v0.47.0 after integrity audit; added evidence governance and initial Questions persistence repair."
     }
   ]
 }

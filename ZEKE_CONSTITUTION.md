@@ -1,6 +1,6 @@
 # Project Zeke Constitution
 
-**Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6
+**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
 
 ## 1. User ownership
 
@@ -338,3 +338,26 @@ When the user approves a specific visual reference and Design Authority incorpor
 ## 49. UI graphics are bounded components
 
 Icons, SVGs, sparklines, and other microvisuals must have explicit, context-appropriate bounds. Generic presentation rules must not allow a small UI graphic to expand into page-scale content or distort layout.
+
+
+## Governance integrity amendment — 2026-08-25
+
+## 74. Observation precedes interpretation
+
+Literal evidence is read before expectations, assumptions, or prior conversational context are used to interpret it. Screenshot text that affects diagnosis—especially version/build labels, dates, medication details, values, error messages, and control labels—must be directly inspected. If it cannot be read confidently, ZEKE development reports uncertainty rather than completing the text from expectation.
+
+## 75. Development claims require artifact evidence
+
+A statement that a feature is implemented, fixed, tested, saved, synced, or release-ready is not evidence by itself. Current source/package bytes, named tests, browser interaction, provider acknowledgement, reload persistence, deployed-environment checks, or user verification must support the claim at the appropriate level. When narration and artifacts disagree, the contradiction is reconciled before dependent development continues.
+
+## 76. Evidence states do not imply one another
+
+Material work is classified as **Specified → Coded → Source-tested → Rendered-tested → Persistence-tested → Environment-tested → User-verified**. A lower state never implies a higher one. Release and handoff language names the strongest state directly demonstrated.
+
+## 77. Consequential writes are transactional from the user's perspective
+
+A failed durable write must not leave unsaved local state presented as though it were saved. Where practical ZEKE rolls back the local mutation, preserves the user's intended action for retry, reports one truthful status, and distinguishes authorization/reconnection failures from validation or provider failures.
+
+## 78. Contradictory evidence is a stop signal
+
+When screenshots, source, tests, continuity documents, runtime identity, provider state, or user reports materially disagree, development pauses long enough to identify the actual state. Additional features are not built on top of an unresolved contradiction.

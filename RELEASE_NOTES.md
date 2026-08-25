@@ -1,3 +1,9 @@
+# ZEKE v0.48.0 Development Notes
+
+**Build:** 2026.08.25.1 · **Governance:** 2026.08.25.2 · **Not a promoted release.**
+
+Current delta from v0.47.0: development-integrity governance plus transactional repair of Questions-for-You persistence/error feedback. Live Google persistence verification remains outstanding. Planned Timeline, medication, workout-planner, natural-language transaction, and mobile work remains in development.
+
 # ZEKE Release Notes
 
 ## v0.47.0 · build 2026.08.24.1 — Visual System Recovery + Preserved Functionality

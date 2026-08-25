@@ -1,3 +1,12 @@
+# AI / Developer Start Here — ZEKE v0.48.0 DEVELOPMENT
+
+**Runtime build:** 2026.08.25.1  
+**Governance revision:** 2026.08.25.2  
+**Release state:** active development package; v0.47.0 remains the user-tested release baseline.  
+**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
+
+Read `ZEKE_CONSTITUTION.md` and `DEVELOPMENT_SYSTEM/EVIDENCE_INTEGRITY.md` before making or describing changes. This v0.48 working tree is a real preserved source tree restarted from the verified v0.47.0 package after the 2026-08-25 integrity audit. Do not treat prior v048 screenshots or assistant narration as implementation evidence.
+
 # AI / Developer Start Here — ZEKE v0.47.0
 
 **Runtime build:** 2026.08.24.1  

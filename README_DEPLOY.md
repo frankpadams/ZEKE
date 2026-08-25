@@ -1,3 +1,7 @@
+# Deployment Note — ZEKE v0.48.0 Development
+
+**Build:** 2026.08.25.1 · **Governance:** 2026.08.25.2. This is a development package intended for owner testing. Deploying it does not promote it to a verified release. Confirm the visible runtime label after deployment before diagnosing behavior.
+
 # Deploy ZEKE v0.46.0
 
 **Current continuity stamp:** v0.47.0 · build 2026.08.24.1 · governance 2026.08.24.6 · reviewed 2026-08-24

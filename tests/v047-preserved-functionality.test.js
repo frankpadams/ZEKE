@@ -2,7 +2,7 @@ const fs=require('fs'),path=require('path');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
 const app=read('assets/app.js'),css=read('assets/desktop-v047.css'),training=read('assets/training-intelligence.js'),anatomy=read('assets/anatomy-knowledge.js'),doc=read('assets/document-intake.js'),calendar=read('assets/calendar-privacy.js'),mobile=read('assets/mobile-polish-v0441.js'),index=read('index.html'),version=read('version.js'),sw=read('sw.js');
 const must=(x,m)=>{if(!x)throw new Error(m)};
-must(version.includes("version: '0.47.0'")&&version.includes("build: '2026.08.24.1'"),'v0.47 runtime identity missing');
+must(version.includes("version: '0.48.0'")&&version.includes("build: '2026.08.25.1'"),'current v0.48 runtime identity missing');
 must(index.includes('desktop-v047.css')&&index.indexOf('desktop-v047.css')>index.indexOf('mobile-polish-v0441.css'),'new desktop layer must load after legacy/mobile styles');
 must(index.includes('anatomy-knowledge.js')&&index.indexOf('anatomy-knowledge.js')<index.indexOf('app.js'),'anatomy registry load order lost');
 for(const token of ['globalTalkClose','global-talk-expanded','review-live-feedback',"el.textContent='Saving…'",'data-body-browse','Search (optional)','bodyAreaLinksHTML','bodyAreaInjuryMatches','variationSummaryHTML','data-variation-focus','familyVariationChart','Separate lines · shared axes'])must(app.includes(token),`post-v0.45 UX/functionality lost: ${token}`);
@@ -13,6 +13,6 @@ must(calendar.toLowerCase().includes('medication')&&calendar.toLowerCase().inclu
 must(app.includes('fitness-secondary-planning')&&app.includes('weeklyPlanHTML()'),'weekly workout planning was dropped instead of moved out of Dashboard');
 must(app.includes("'calendar':'calendar','documents':'documents','questions':'questions'")&&app.includes("documents:'documents'"),'Documents navigation must resolve to Documents');
 must(mobile.includes('window.ZEKE_BUILD'),'mobile version identity must derive from runtime authority');
-must(sw.includes('project-zeke-v0.47.0-2026.08.24.1')&&sw.includes('assets/desktop-v047.css'),'service-worker cache identity/runtime surface incomplete');
+must(sw.includes('project-zeke-v0.48.0-2026.08.25.1')&&sw.includes('assets/desktop-v047.css'),'service-worker cache identity/runtime surface incomplete');
 must(css.includes('.v47-icon-svg')&&!/(^|\})\s*svg\s*\{/m.test(css),'unbounded generic SVG rules are forbidden');
-console.log(JSON.stringify({ok:true,release:'0.47.0',carry_forward:'v0.45.1 + verified v0.46 functionality'},null,2));
+console.log(JSON.stringify({ok:true,runtime:'0.48.0',preserved_release:'0.47.0',carry_forward:'v0.45.1 + verified v0.46/v0.47 functionality'},null,2));

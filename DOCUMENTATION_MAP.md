@@ -1,3 +1,7 @@
+# Documentation Map — ZEKE v0.48.0 Development
+
+**Build:** 2026.08.25.1 · **Governance:** 2026.08.25.2. `DEVELOPMENT_SYSTEM/EVIDENCE_INTEGRITY.md` is a current authority and `DEVELOPMENT_INTEGRITY_AUDIT_2026-08-25.md` records the audit that triggered the v0.48 restart.
+
 # ZEKE Documentation Map
 
 **Current continuity stamp:** v0.47.0 · build 2026.08.24.1 · governance 2026.08.24.6 · reviewed 2026-08-24

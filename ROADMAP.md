@@ -1,7 +1,15 @@
 # ZEKE Roadmap
 
-**Current authority review:** 2026-08-24 · runtime v0.47.0 build 2026.08.24.1 · governance 2026.08.24.6
+**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
 **Status:** Canonical current roadmap. Completed work remains in `RELEASE_NOTES.md` and `DEVELOPMENT_MEMORY/ITERATION_HISTORY.md`.
+
+
+## v0.48 current development priorities
+- Environment-test the duplicate-resolution persistence repair against the owner’s Google workspace.
+- Implement the ZEKE-owned Day/Week/Month/Year longitudinal explorer with semantic zoom and clickable domain lanes.
+- Correct recurring-medication regimen/due/confirmed-administration semantics.
+- Redesign workout planning and strengthen mobile navigation/workflow usability.
+- Implement the natural-language transaction engine with deterministic-first interpretation, strict AI candidate-operation schema, validation, clarification, and confirmation.
 
 ## Current acceptance boundary
 - v0.47.0 browser-rendered desktop/mobile visual gates and functional carry-forward regressions must pass before packaging.
