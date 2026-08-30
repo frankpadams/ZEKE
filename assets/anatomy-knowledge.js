@@ -41,5 +41,17 @@
     const reviewed=new Date(`${PACK.reviewed_at}T12:00:00Z`),age=Math.floor((now-reviewed)/864e5),stale=age>PACK.review_interval_days;
     return {...PACK,age_days:age,stale,next_review_due:new Date(reviewed.getTime()+PACK.review_interval_days*864e5).toISOString().slice(0,10)};
   }
-  window.ZekeKnowledgeRegistry=Object.freeze({pack:PACK,anatomyForExercise,packStatus,areaMap:AREA_MAP});
+  function validatePack(candidate){
+    const errors=[];if(!candidate||typeof candidate!=='object')errors.push('Pack must be an object.');
+    for(const key of ['id','version','reviewed_at','source'])if(!String(candidate?.[key]||'').trim())errors.push(`Missing ${key}.`);
+    if(candidate?.id&&candidate.id!==PACK.id)errors.push('Pack id does not match the active knowledge family.');
+    if(candidate?.review_interval_days!=null&&(!Number.isFinite(Number(candidate.review_interval_days))||Number(candidate.review_interval_days)<1))errors.push('review_interval_days must be a positive number.');
+    return {ok:errors.length===0,errors};
+  }
+  function diffPack(candidate){
+    const keys=['version','reviewed_at','review_interval_days','source','status'],changes=[];for(const key of keys){const before=PACK[key]??null,after=candidate?.[key]??before;if(JSON.stringify(before)!==JSON.stringify(after))changes.push({field:key,before,after});}
+    return {pack_id:PACK.id,from_version:PACK.version,to_version:candidate?.version||PACK.version,changes,requires_validation:true,personal_record_changes:0};
+  }
+  function activationPlan(candidate){const validation=validatePack(candidate),diff=diffPack(candidate);return {validation,diff,can_activate:validation.ok&&diff.changes.length>0,rollback:{pack_id:PACK.id,restore_version:PACK.version},rule:'Reference-pack activation never rewrites personal records.'};}
+  window.ZekeKnowledgeRegistry=Object.freeze({pack:PACK,anatomyForExercise,packStatus,validatePack,diffPack,activationPlan,areaMap:AREA_MAP});
 })();

@@ -1,6 +1,6 @@
 # Current development errors — v0.48.0
 
-**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
+**Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
 
 **ERR-055 — Screenshot identity misread.** A visible v0.47.0 label was incorrectly reported as v0.44.0 because expectation contaminated observation. Corrective rule: literal screenshot text is inspected first; uncertain text is marked uncertain.
 

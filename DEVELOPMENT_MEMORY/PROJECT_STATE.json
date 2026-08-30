@@ -1,8 +1,8 @@
 {
   "schema_version": 3,
-  "current_version": "0.48.0",
-  "current_build": "2026.08.25.1",
-  "release_label": "Development Integrity + Interaction Repair",
+  "current_version": "0.48.0.2",
+  "current_build": "2026.08.30.1",
+  "release_label": "Longitudinal Intelligence + Product Coherence",
   "baseline": "v0.45.1 is the known stable recovery baseline; reconciled v0.46.0 build 2026.08.24.2 is the verified functional donor. Failed later v0.46 presentation experiments are excluded.",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
   "authoritative_documents": [
@@ -32,11 +32,19 @@
     "DEVELOPMENT_SYSTEM/EVIDENCE_INTEGRITY.md"
   ],
   "implemented_this_release": [
-    "Evidence-integrity standard and constitutional observation-before-interpretation rules",
-    "Transactional rollback for failed clarification-factor, preference, action, and AI-connection persistence writes",
-    "Single silent retry for expired Google authorization on provider writes with reconnect-required fallback",
-    "Single reusable duplicate-review status region instead of stacked failure notices",
-    "v0.48 runtime identity and preserved v0.47 functional/presentation baseline"
+    "Evidence-integrity governance and transactional rollback/reconnect behavior carried forward from v0.48.0",
+    "Unique numeric version identity v0.48.0.2 / build 2026.08.30.1",
+    "ZEKE Timeline with Day/Week/Month/Year scales, clickable records, and record-specific correction editors",
+    "Trend-first sleep period analysis with current/prior week, 30d/prior 30d, and 90d context",
+    "Bidirectional connected exploration across body/anatomy/exercise/injury/PT/measurement/timeline relationships",
+    "Medication regimen/occurrence separation, reconciliation, schedule editing, and assumed-versus-confirmed occurrence semantics",
+    "Illness/injury/symptom/life-event period editing with ongoing/approximate dates and correction history",
+    "Workout proposal to active-workout handoff plus saved-work preservation and adaptation of remaining unsaved blocks",
+    "Provenance-preserving document review/confirm ingestion runtime",
+    "Knowledge-pack staleness, validation, diff, activation-plan, and rollback foundation",
+    "Talk compact/expanded/closed behavior and rendered release-gate acceptance",
+    "No readiness score/gauge/substitute and no social/community product layer",
+    "Authoritative scope/Constitution/Design Authority/Architecture/Decision Log/cold-handoff reconciliation"
   ],
   "inherited_verified_evidence": [
     "v0.25.2 direct mobile workout save handler and visible failure path",
@@ -44,18 +52,14 @@
     "deterministic medication, sleep, workbook, provenance, and workflow regressions"
   ],
   "known_issues": [
-    "Questions duplicate-resolution repair is not yet persistence-tested in the owner\u2019s live Google workspace.",
-    "ZEKE-owned Day/Week/Month/Year Timeline is approved but not implemented in this preserved development tree.",
-    "Medication recurring-regimen correction, workout-planning redesign, natural-language transaction engine, and expanded mobile navigation remain approved development work.",
-    "Live Google Drive/Calendar/provider and connected-AI behavior require the deployed authorized environment."
+    "Live Google Drive/Calendar/provider persistence requires deployed owner-authorized environment verification; package-local code and rollback/reconnect paths are verified but environment behavior is not implied.",
+    "Live AI-provider behavior, physical-device acceptance, and real external PDF/OCR edge cases remain environment/user verification.",
+    "Future external knowledge-pack source acquisition is not automated; pack validation/diff/activation/rollback and staleness lifecycle are present."
   ],
   "next_review_items": [
-    "Owner/live Google persistence test of duplicate-resolution repair",
-    "Implement and render-test ZEKE-owned Timeline",
-    "Medication recurrence correction",
-    "Workout planner redesign",
-    "Natural-language transaction engine",
-    "Mobile navigation workflow test matrix"
+    "Run owner/live Google persistence verification",
+    "Run physical-device acceptance",
+    "Promote or patch with a new unique numeric version based on owner environment findings"
   ],
   "current_iteration_record": "DEVELOPMENT_MEMORY/ITERATION_HISTORY.md",
   "files_to_read_first": [
@@ -70,9 +74,9 @@
     "real-data workbook regression when fixture is available",
     "final ZIP reopened and compared with provenance"
   ],
-  "current_release_label": "ZEKE v0.48.0 \u2014 Development Integrity + Interaction Repair",
-  "current_focus": "Restart v0.48 from verified v0.47 source, enforce evidence-integrity governance, repair owner-observed persistence defects, and continue approved Timeline/medication/workout/natural-language/mobile work without losing v0.47 functionality.",
-  "governance_revision": "2026.08.25.2",
+  "current_release_label": "ZEKE v0.48.0.2 \u2014 Longitudinal Intelligence + Product Coherence",
+  "current_focus": "Owner/environment verification of v0.48.0.2 after package-local implementation, rendered acceptance, governance, and package verification are complete.",
+  "governance_revision": "2026.08.30.1",
   "runtime_changed_by_governance_revision": true,
   "rejected_forward_baselines": [
     "v0.28.0",
@@ -86,15 +90,15 @@
     "mature research-reviewed readiness and adaptive periodization methodology",
     "locally controlled full exercise media library"
   ],
-  "current_release": "ZEKE v0.48.0 \u2014 Development Integrity + Interaction Repair",
-  "updated_at": "2026-08-25T18:45:00-04:00",
+  "current_release": "ZEKE v0.48.0.2 \u2014 Longitudinal Intelligence + Product Coherence",
+  "updated_at": "2026-08-29T01:15:00-04:00",
   "known_limitations": [
     "Live Google Drive/Calendar/provider and connected-AI behavior still requires the deployed authorized environment; package-local tests cannot prove third-party availability.",
     "Browser PDF/OCR extraction uses lazy third-party CDN modules and requires network availability when those extraction paths are used.",
     "The local anatomy/reference pack has version/review/staleness metadata; a mature externally refreshed/signed source-update pipeline remains future work.",
     "Calendar write privacy choices are stored; future exposed sensitive writes must continue to honor staged/per-event consent."
   ],
-  "continuity_reviewed_at": "2026-08-25T18:45:00-04:00",
+  "continuity_reviewed_at": "2026-08-29T01:15:00-04:00",
   "continuity_review_scope": "deep read of all registered authoritative documents, standing supporting-continuity documents, recent Project ZEKE decisions, v0.45.1 baseline, and reconciled v0.46 functional donor",
   "continuity_reconciliation_status": "complete",
   "rejected_presentation_baselines": [

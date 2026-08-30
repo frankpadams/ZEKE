@@ -1,6 +1,6 @@
 # v0.48.0 continuity update — 2026-08-25
 
-**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
+**Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
 
 v0.48 is restarted from the actual v0.47.0 package. Prior unpreserved v048 render experiments remain references only. Evidence-integrity governance is now binding and the first Questions persistence repair is present in the preserved v0.48 source tree.
 

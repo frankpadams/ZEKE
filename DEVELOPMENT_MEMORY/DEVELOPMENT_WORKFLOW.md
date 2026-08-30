@@ -1,6 +1,6 @@
 # v0.48.0 evidence-first workflow amendment
 
-**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
+**Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
 
 Before coding or reporting status: verify current artifact identity; separate observation from interpretation; classify the feature on the evidence ladder; derive tests from requirements; stop on contradictions; verify consequential writes through provider acknowledgement and reload before using “fixed” or “saved.”
 

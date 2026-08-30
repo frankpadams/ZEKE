@@ -1,7 +1,7 @@
 {
   "schema_version": 3,
-  "current_version": "0.48.0",
-  "current_build": "2026.08.25.1",
+  "current_version": "0.48.0.2",
+  "current_build": "2026.08.30.1",
   "immutable_principles": [
     "user_owned_canonical_data",
     "ai_advisory_deterministic_commit",
@@ -124,13 +124,13 @@
     "implementation claims require current artifact evidence",
     "consequential write claims require provider acknowledgement and reload persistence where applicable"
   ],
-  "governance_revision": "2026.08.25.2",
+  "governance_revision": "2026.08.30.1",
   "rejected_forward_baselines": [
     "0.28.0",
     "0.28.1"
   ],
   "approved_recovery_baseline": "0.45.1",
   "current_forward_baseline": "0.47.0",
-  "release": "0.48.0",
-  "build": "2026.08.25.1"
+  "release": "0.48.0.2",
+  "build": "2026.08.30.1"
 }

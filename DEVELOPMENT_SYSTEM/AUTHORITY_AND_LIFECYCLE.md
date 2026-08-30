@@ -1,6 +1,6 @@
 # v0.48.0 authority amendment — evidence integrity
 
-**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
+**Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
 
 `DEVELOPMENT_SYSTEM/EVIDENCE_INTEGRITY.md` is authoritative. Conversation history can establish intent/approval, but current source/package/runtime evidence establishes implementation state. Contradictions require reconciliation before dependent work.
 

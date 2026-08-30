@@ -2,7 +2,7 @@
 
 **Runtime build:** 2026.08.25.1  
 **Governance revision:** 2026.08.25.2  
-**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
+**Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
 
 ZEKE v0.47.0 remains the user-tested release baseline. v0.48.0 is the current development line and must preserve verified v0.47 functionality while correcting integrity/interaction defects and implementing approved next-release work with explicit evidence states.
 

@@ -1,6 +1,6 @@
-# Project Health — v0.48.0
+# Project Health — v0.48.0.2
 
-**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
+**Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
 
 **Development health:** continuity reconciled; first interaction repair coded/source-tested; live-provider persistence and remaining v0.48 feature work outstanding.
 

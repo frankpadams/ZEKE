@@ -1,5 +1,8 @@
 # Comprehension checkpoint — v0.48.0
 
+**Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
+
+
 **Build:** 2026.08.25.1 · **Governance:** 2026.08.25.2. Before work: identify the actual working tree/package; state evidence level for each claimed capability; read screenshot text literally; stop on contradictions.
 
 # Comprehension Checkpoint

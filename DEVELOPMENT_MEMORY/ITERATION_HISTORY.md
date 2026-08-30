@@ -1,6 +1,24 @@
 # ZEKE Iteration History
 
-**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
+**Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
+
+## Current iteration — ZEKE v0.48.0.2 — Longitudinal Intelligence + Product Coherence
+
+**Build:** 2026.08.30.1  
+**Date:** 2026-08-29  
+**Status:** Package-local implementation and rendered verification complete; owner-authorized Google/provider and physical-device environment verification outstanding.
+
+### Implemented / verified
+- Day/Week/Month/Year Timeline with clickable records and period-aware correction paths.
+- Trend-first sleep period comparisons and evidence-bounded interpretation.
+- Medication regimen/occurrence/reconciliation behavior and illness/injury/symptom period editing.
+- Workout proposal → editable active workout → saved-work preservation → adapt remaining unsaved work.
+- Connected body/anatomy/exercise/injury/PT exploration, truthful PT media gating, document review-before-commit ingestion, and knowledge-pack lifecycle foundation.
+- Talk compact/expanded/closed rendered behavior; no readiness score/gauge/substitute; no social/community layer.
+- Unique numeric build identity and cold-handoff governance.
+
+### Verification boundary
+Live Google Drive/Calendar behavior, live AI-provider behavior, physical-device acceptance, and real external PDF/OCR edge cases remain environment/user evidence and are not implied by package-local tests.
 
 ## Current iteration — ZEKE v0.47.0 — Visual System Recovery + Preserved Functionality
 
@@ -1295,3 +1313,22 @@ Runtime implementation is in progress and the package remains an RC. Current wor
 **Current coded delta:** transactional rollback for failed factor/preference/action/AI-connection writes; one silent expired-authorization retry; single duplicate-review feedback region; evidence-integrity governance.
 
 **Evidence state:** coded + source-tested after applicable package-local tests; live provider persistence remains outstanding.
+
+
+## v0.48.0.1 — 2026-08-29 — Longitudinal Intelligence + Product Coherence
+
+**Current authority review:** 2026-08-29 · runtime v0.48.0.1 build 2026.08.29.1 · governance 2026.08.29.1
+
+**User-approved scope:**
+- Implement one longitudinal record with Day / Week / Month / Year Timeline views and trend-first period comparisons.
+- Preserve and expand bidirectional clickable exploration across body areas, anatomy, exercises, variations, injury/symptom, PT, measurements, and relevant timeline events.
+- Complete workout recommendation, Why-this rationale, editable proposal-to-active-workout handoff, and evidence-bounded adaptation of unsaved remaining work.
+- Complete medication schedule/occurrence/reconciliation and illness/injury period behavior without rewriting historical facts.
+- Complete provenance-preserving ingestion and versioned knowledge-pack governance paths to the evidence level supportable in this release.
+- Rebuild/verify Google persistence states, truthful consequential saves, Questions for You, and Talk to ZEKE interaction reliability.
+- Apply the approved product-coherence visual system across Home, Health, Fitness, Timeline, Body, and mobile/desktop workflows.
+- Exclude social/community features and universal readiness scoring.
+- Use a unique numerical version for every distinct distributed build and make the package cold-handoff complete.
+- Verify source tests, rendered workflows, persistence/environment boundaries, version consistency, documentation integrity, and final ZIP re-extraction before promotion.
+
+**Evidence boundary:** development in progress; package-local source tests do not imply live-provider, rendered, or user verification.

@@ -1,5 +1,8 @@
 # Required Status Language — v0.48.0 development
 
+**Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
+
+
 **Current continuity stamp:** v0.48.0 · build 2026.08.25.1 · governance 2026.08.25.2 · reviewed 2026-08-25
 
 Evidence ladder: **Specified → Coded → Source-tested → Rendered-tested → Persistence-tested → Environment-tested → User-verified**. Use the highest directly demonstrated level and no higher.

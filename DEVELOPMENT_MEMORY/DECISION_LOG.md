@@ -1,6 +1,6 @@
 # v0.48.0 integrity decisions — 2026-08-25
 
-**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
+**Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
 
 See root `DECISION_LOG.md` and `DEVELOPMENT_SYSTEM/EVIDENCE_INTEGRITY.md`. Current v0.48 work is evidence-calibrated; user-approved next-release features remain specified until preserved implementation exists.
 
