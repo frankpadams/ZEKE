@@ -1,6 +1,6 @@
 # ZEKE v0.48.0 Design Authority — Development Continuity
 
-**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
+**Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
 
 The approved 2026-08-24 desktop mockup and v0.47 visual recovery remain the current presentation authority while v0.48 develops. Visual continuity may be refined, but the clean grid, compact information density, bounded iconography, and purpose-built mobile composition must not regress.
 
@@ -179,3 +179,14 @@ Historic reference: `Fitness Library: Bicep Curl Analytics.png` (August 11, 2026
 - Search is optional; exercise browsing must work through body/context navigation.
 - Exercise variations remain distinct series on shared axes.
 - Visible user actions visibly respond.
+
+
+## 2026-08-29 product-coherence amendment
+
+- Home prioritizes one daily briefing, selective signals, and progressive disclosure over equal-weight card grids.
+- Timeline is a first-class ZEKE view with Day/Week/Month/Year semantic zoom.
+- Fitness prioritizes exploration and active-workout efficiency; browsing never logs.
+- Body areas/anatomy/exercises/injury/PT relationships use contextual clickable cross-links and avoid dead ends.
+- Sleep and other repeated measures are presented as trends/period comparisons rather than a stream of per-day judgments.
+- No readiness score or social/community visual language.
+- Competitive references inform discipline, not imitation: Bevel hierarchy; Hevy/Strong task focus; Lyfta discovery; ZOZOFIT spatial body thinking; Apple Health depth.

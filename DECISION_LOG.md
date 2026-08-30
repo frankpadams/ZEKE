@@ -1,6 +1,6 @@
 # Current v0.48.0 decisions — 2026-08-25
 
-**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
+**Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
 
 - Observation precedes interpretation; screenshot text is never completed from expectation.
 - Development claims use the evidence ladder in `DEVELOPMENT_SYSTEM/EVIDENCE_INTEGRITY.md`.
@@ -90,3 +90,15 @@
 - Fitness is not a logging mode: users can explore exercises, form guides, history, PT/rehab, progress, and proposed workouts without creating records.
 - Contextual logging remains available where naturally useful, including inside an active workout.
 - No separate Explore/Workout mode selector is introduced; the distinction is expressed through explicit mutating actions.
+
+
+## 2026-08-29 locked decisions
+
+- Every distinct distributed build receives a unique numeric version.
+- v0.48.0.2 is the next development candidate after the uploaded v0.48.0 build.
+- Social/community features are excluded.
+- Universal readiness scoring is excluded; use concrete evidence-bounded recommendations.
+- Longitudinal trend interpretation, including week/prior-week and month/prior-month sleep comparison, is release scope.
+- Connected body/exercise/anatomy/injury/PT entities must be explorable bidirectionally.
+- “Locked” means recorded in authoritative package documentation, not merely discussed.
+- Release packages must pass a cold-handoff/self-documentation standard.

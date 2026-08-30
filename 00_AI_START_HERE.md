@@ -3,7 +3,7 @@
 **Runtime build:** 2026.08.25.1  
 **Governance revision:** 2026.08.25.2  
 **Release state:** active development package; v0.47.0 remains the user-tested release baseline.  
-**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
+**Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
 
 Read `ZEKE_CONSTITUTION.md` and `DEVELOPMENT_SYSTEM/EVIDENCE_INTEGRITY.md` before making or describing changes. This v0.48 working tree is a real preserved source tree restarted from the verified v0.47.0 package after the 2026-08-25 integrity audit. Do not treat prior v048 screenshots or assistant narration as implementation evidence.
 
@@ -35,3 +35,13 @@ Carry forward the v0.45.1 integrated Fitness/adaptive-training/document/medicati
 
 ## Verification boundary
 Package-local functional, governance, browser-rendered desktop/mobile, adversarial-layout, manifest, and archive checks must complete before this package is called release-ready. Live Google/AI-provider behavior remains an environment check.
+
+
+## Current v0.48.0.2 handoff
+
+- **Runtime:** v0.48.0.2, build 2026.08.30.1.
+- **Release thesis:** Longitudinal Intelligence + Product Coherence.
+- Read `CURRENT_RELEASE_SCOPE.md`, `ZEKE_CONSTITUTION.md`, `DESIGN_AUTHORITY.md`, and `DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json` before changing runtime code.
+- Every distinct distributed build must receive a unique numerical version.
+- Do not infer higher evidence states: package-local tests do not prove live Google persistence or user verification.
+- Current implementation adds Timeline semantic zoom, trend-first sleep period comparisons, connected-entity exploration requirements, and knowledge-pack diff/validation/rollback planning while preserving prior verified functionality.

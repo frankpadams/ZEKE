@@ -2,7 +2,7 @@ const fs=require('fs'),path=require('path');
 const root=path.resolve(__dirname,'..'),read=f=>fs.readFileSync(path.join(root,f),'utf8');
 const app=read('assets/app.js'),data=read('assets/data-layer.js'),ai=read('assets/ai-router.js'),docs=read('CURRENT_RELEASE_SCOPE.md'),design=read('DESIGN_AUTHORITY.md'),version=read('version.js');
 const must=(v,m)=>{if(!v)throw new Error(m)};
-must(/version: '0\.\d+\.\d+'/.test(version)&&/build: '2026\.08\.\d{2}\.\d+'/.test(version)&&version.includes("repositorySchema: 5"),'current longitudinal runtime identity/schema missing');
+must(/version: '0(?:\.\d+){2,}'/.test(version)&&/build: '2026\.08\.\d{2}\.\d+'/.test(version)&&version.includes("repositorySchema: 5"),'current longitudinal runtime identity/schema missing');
 for(const token of ['history_start_date','assumed_from_schedule','confirmation_status','openMedicationOccurrenceEditModal','saveMedicationOccurrence','medicationLastDoseAnswer'])must(app.includes(token),`medication occurrence requirement missing: ${token}`);
 must(app.includes('corrected_from_assumption')&&app.includes('user_corrected'),'retroactive medication assumption correction missing');
 must(app.includes('suspendedWorkflowId')&&app.includes('isConversationInterruption')&&app.includes('product_feedback_or_meta_conversation'),'workflow interruption/meta-conversation protection missing');

@@ -6,7 +6,7 @@ assert(coach.includes("WHAT SHOULD I DO?"));assert(coach.includes('Nothing needs
 assert(app.includes('function activityRecommendation'));
 assert(app.includes('data-insights-view="pattern-lab"'));
 const nav=app.slice(app.indexOf('function navHTML()'),app.indexOf('function openGlobalSearchModal'));
-for(const label of ['Dashboard','Health','Fitness','Calendar','Discover','Documents','Talk to ZEKE'])assert(nav.includes(label),`${label} missing from navigation`);
+for(const label of ['Dashboard','Health','Fitness','Timeline','Discover','Documents','Talk to ZEKE'])assert(nav.includes(label),`${label} missing from navigation`);
 for(const label of ["['labs','Labs'","['medications','Medications'","['life-events','Life & Symptoms'","['measurements','Measurements'"])assert(!nav.includes(label),`${label} must not be a global navigation peer`);
 assert(nav.includes("Question${questions===1?'':'s'} for You"));assert(app.includes('<h1>Questions for You</h1>'));
 assert(app.includes('zeke-user-profile'));assert(!app.includes('Good evening, Frank'));assert(!app.includes('Good morning, Frank'));

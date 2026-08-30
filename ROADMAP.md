@@ -1,6 +1,6 @@
 # ZEKE Roadmap
 
-**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
+**Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
 **Status:** Canonical current roadmap. Completed work remains in `RELEASE_NOTES.md` and `DEVELOPMENT_MEMORY/ITERATION_HISTORY.md`.
 
 
@@ -29,5 +29,5 @@
 - Provider adapters beyond Google Drive.
 - Encrypted provider-backed AI credential vault with independent security review.
 - Apple Health and other explicitly authorized user-controlled integrations.
-- Mature research-reviewed readiness/adaptive periodization methodology.
+- Mature research-reviewed adaptive training methodology using concrete contextual recommendations without a readiness score or gauge.
 - Broader personal-management modules without weakening the health-first provenance-preserving model.

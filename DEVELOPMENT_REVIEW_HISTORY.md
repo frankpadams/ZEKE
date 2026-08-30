@@ -1,5 +1,8 @@
 # Current development review — v0.48.0
 
+**Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
+
+
 **Build:** 2026.08.25.1 · **Governance:** 2026.08.25.2. 2026-08-25 integrity review restarted v0.48 from the verified v0.47 package and prohibited unsupported implementation claims.
 
 # ZEKE Consolidated Development Review History

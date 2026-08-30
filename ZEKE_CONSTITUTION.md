@@ -1,6 +1,6 @@
 # Project Zeke Constitution
 
-**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
+**Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
 
 ## 1. User ownership
 
@@ -170,7 +170,7 @@ ZEKE uses one active primary storage provider at a time. That provider is the du
 
 ## 37. Local recovery is temporary and noncanonical
 
-Normal-browser use may employ device-local storage only as a temporary recovery cache for unfinished forms. Local recovery content is never canonical, never presented as saved, and never used for history, charts, readiness, Coach's Eye, Discovery, or health interpretation. Incognito/private browsing may be supported, but ZEKE does not promise that unsaved work survives closure of a private session.
+Normal-browser use may employ device-local storage only as a temporary recovery cache for unfinished forms. Local recovery content is never canonical, never presented as saved, and never used for history, charts, Coach's Eye, Discovery, workout guidance, or health interpretation. Incognito/private browsing may be supported, but ZEKE does not promise that unsaved work survives closure of a private session.
 
 ## 38. Effective dates are visible and editable
 
@@ -196,9 +196,9 @@ Opening an exercise may prefill primary workout fields from the most recent conf
 
 A confirmed record is not saved until the active provider acknowledges the durable write. When provider storage is the primary write target, the truthful sequence is **Saving to provider → Saved**. ZEKE must not display Saved, Synced, completed indicators, or green checks before the operation they describe succeeds.
 
-## 44. Readiness is qualitative and evidence-bounded
+## 44. Workout guidance is concrete and evidence-bounded
 
-Exercise-readiness guidance uses evidence-based categories and a written explanation. A numberless visual gauge may provide a rough qualitative cue, but it must not imply false precision. Missing information remains missing. Pain is optional; absence of a pain entry is not zero pain. When evidence is insufficient, ZEKE says so and does not offer a progression action.
+ZEKE does not use a readiness score, readiness gauge, or numberless readiness substitute. Workout and progression guidance states a concrete action such as proceed, modify, defer a movement, or request more context, together with the evidence and limiting factors that support it. Missing information remains missing. Pain is optional; absence of a pain entry is not zero pain. When evidence is insufficient, ZEKE says so and does not offer an unsupported progression action.
 
 ## 45. Mobile exercise-entry navigation preserves context
 
@@ -323,19 +323,19 @@ A canonical exercise may summarize multiple variations, but each equipment/varia
 When ZEKE recommends a workout or other meaningful action, it provides a short concrete reason up front when that reason helps the user decide. Deeper reasoning, evidence, uncertainty, and provenance remain available on demand.
 
 
-## 46. Rendered experience is release evidence
+## 79. Rendered experience is release evidence
 
 For visual/interface releases, syntax checks, DOM assertions, overflow tests, and component presence are necessary but not sufficient. A representative browser render must be inspected against the active Design Authority before a release can claim visual acceptance. An obviously broken or materially off-authority screen fails even if automated structural checks pass.
 
-## 47. Functional continuity and presentation recovery are separable
+## 80. Functional continuity and presentation recovery are separable
 
 ZEKE’s user-owned records, workflow semantics, and verified functional capabilities must not be discarded merely because a presentation layer fails. A recovery may replace the presentation layer while preserving verified data and behavior. Failed presentation experiments are not forward baselines unless explicitly rehabilitated and verified.
 
-## 48. Approved visual references may be binding
+## 81. Approved visual references may be binding
 
 When the user approves a specific visual reference and Design Authority incorporates it, implementation must preserve its spatial grammar, spacing rhythm, visual hierarchy, icon language, and information-density intent unless the user later reopens that decision. Real data and truthful empty states take precedence over fictional mockup content.
 
-## 49. UI graphics are bounded components
+## 82. UI graphics are bounded components
 
 Icons, SVGs, sparklines, and other microvisuals must have explicit, context-appropriate bounds. Generic presentation rules must not allow a small UI graphic to expand into page-scale content or distort layout.
 
@@ -361,3 +361,34 @@ A failed durable write must not leave unsaved local state presented as though it
 ## 78. Contradictory evidence is a stop signal
 
 When screenshots, source, tests, continuity documents, runtime identity, provider state, or user reports materially disagree, development pauses long enough to identify the actual state. Additional features are not built on top of an unresolved contradiction.
+
+
+## Governance reconciliation — 2026-08-29
+
+## 83. Distinct distributed builds have distinct numeric versions
+
+Every externally distinguishable ZEKE build or release receives a unique numerical version. A new ZIP, deployed build, or distributed candidate may not reuse the exact numeric version of a prior distinct artifact. Additional version components may be added as needed. Runtime UI, startup screen, manifests, tests, checksums, release notes, and package identity must agree.
+
+## 84. Longitudinal intelligence prioritizes trends over isolated commentary
+
+Individual observations remain available and editable, but ZEKE should generally interpret repeated measures through personal baselines, rolling/calendar-period summaries, variability, direction, persistence, and meaningful change. Sleep is a required acceptance case: current week versus prior week, recent 30 days versus prior 30 days, and longer-term context when enough verified observations exist. Missing data remains unknown.
+
+## 85. No universal readiness score
+
+ZEKE does not compress health, recovery, or training context into a universal readiness/recovery score. When action guidance is warranted, ZEKE states the concrete recommendation, limiting factors, relevant evidence, uncertainty, and confidence in plain language.
+
+## 86. No social or community product layer by default
+
+ZEKE is a private personal-management system. Feeds, followers, likes, leaderboards, public challenges, and community competition are outside the product roadmap unless the user explicitly reopens that decision.
+
+## 87. Connected entities are explorable in multiple directions
+
+Body areas, muscles, joints, bones, tendons, exercises, equipment/variations, injuries, symptoms, PT/rehab movements, measurements, and relevant timeline events should be navigable through contextual links wherever the relationship is useful. Exploration is bidirectional and may enter from multiple paths; it must not create or modify records without an explicit mutating action. Dead-end detail screens are avoided when a meaningful related path exists.
+
+## 88. Sleep guidance distinguishes population guidance from personal trend
+
+ZEKE may compare sleep duration with established adult guidance when relevant, but it distinguishes general guidance from the user's personal baseline and does not label a single night healthy/unhealthy. Duration, consistency, interruptions/quality when available, trend direction, and evidence sufficiency remain distinct.
+
+## 89. Release packages are cold-handoff complete
+
+A release package must be self-documenting enough for a competent developer with no prior conversation history to identify the current version/build, architecture, authoritative decisions, implemented capabilities, partial/specification-only work, known defects, tests/evidence states, provider/environment verification still required, and next priorities. Superseded documents may remain only when clearly historical and non-authoritative.

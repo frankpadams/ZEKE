@@ -1,6 +1,6 @@
 # ZEKE Consolidated Test Guide — v0.48.0 current development
 
-**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
+**Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
 
 ## v0.48 integrity/interaction checks
 1. Run JavaScript syntax checks and `node tests/v048-interaction-integrity.test.js`.

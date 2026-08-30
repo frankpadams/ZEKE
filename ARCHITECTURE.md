@@ -1,6 +1,6 @@
 # ZEKE v0.48.0 Development Architecture Note
 
-**Current authority review:** 2026-08-25 · runtime v0.48.0 build 2026.08.25.1 · governance 2026.08.25.2
+**Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
 
 The v0.48 development line preserves the v0.47 runtime architecture while adding evidence-integrity rules and transactional interaction repairs. Planned Longitudinal Explorer, medication-regimen correction, workout-planning redesign, natural-language transaction engine, and expanded mobile navigation remain **specified unless current source/test evidence demonstrates otherwise**.
 
@@ -135,3 +135,8 @@ A parent exercise owns related variation histories for navigation only; mechanic
 
 ### UX verification boundary
 Structural/rendered checks verify more than viewport overflow: minimum usable widths, reachable final content, interaction-state feedback, stable navigation, and representative cold-load/refresh paths. Human/owner visual acceptance remains an environment gate and is not implied by package-local rendering.
+
+
+## v0.48.0.2 longitudinal/product-coherence amendment
+
+The runtime presents the same canonical longitudinal records through multiple lenses (Home, Health, Fitness, Timeline, body-area/exercise detail). Cross-links are navigation references, not duplicated records. Repeated-measure analysis should derive period summaries and personal-baseline comparisons deterministically where possible; AI is not required to calculate averages or simple trend direction. Timeline scale is presentation state, not record state. No readiness-score aggregate is introduced.

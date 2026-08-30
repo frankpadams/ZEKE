@@ -1,3 +1,3 @@
-ZEKE v0.48.0
-build 2026.08.25.1
-DEVELOPMENT BUILD — Integrity + Interaction Repair
+ZEKE v0.48.0.2
+build 2026.08.30.1
+RELEASE CANDIDATE — Longitudinal Intelligence + Product Coherence

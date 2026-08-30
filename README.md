@@ -1,5 +1,8 @@
 # ZEKE v0.48.0 Development Build
 
+**Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
+
+
 **Build:** 2026.08.25.1 · **Governance:** 2026.08.25.2 · **Status:** development/test package, not a promoted release.
 
 This package carries forward ZEKE v0.47.0 and adds the first verified v0.48 integrity/interaction changes. See `DEVELOPMENT_INTEGRITY_AUDIT_2026-08-25.md` and `DEVELOPMENT_SYSTEM/EVIDENCE_INTEGRITY.md`.
@@ -38,3 +41,8 @@ ZEKE is a private, user-owned personal-management application. This package pres
 
 ## Verification boundary
 Package-local static/governance/syntax/regression/rendered evidence is documented in `TEST_REPORT.md`. Owner physical-device/desktop acceptance and live third-party provider behavior remain environment checks and are never called passed until actually performed.
+
+
+## Current development candidate — v0.48.0.2
+
+Build **2026.08.30.1** implements the current Longitudinal Intelligence + Product Coherence development line. The authoritative scope is `CURRENT_RELEASE_SCOPE.md`. The package is designed for cold handoff: current versus historical claims must remain explicit, and packaging never upgrades evidence state.

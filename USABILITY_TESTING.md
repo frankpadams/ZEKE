@@ -1,5 +1,8 @@
 # Current usability test boundary — v0.48.0
 
+**Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
+
+
 **Build:** 2026.08.25.1 · **Governance:** 2026.08.25.2. Current owner-observed defect: duplicate-event resolution in v0.47 can fail to persist and stack error notices. v0.48 contains a coded/source-tested repair; live Google-provider persistence remains to be user/environment verified.
 
 # Usability Testing Standard

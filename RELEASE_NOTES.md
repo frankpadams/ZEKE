@@ -1,10 +1,28 @@
 # ZEKE v0.48.0 Development Notes
 
+**Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
+
+
 **Build:** 2026.08.25.1 · **Governance:** 2026.08.25.2 · **Not a promoted release.**
 
 Current delta from v0.47.0: development-integrity governance plus transactional repair of Questions-for-You persistence/error feedback. Live Google persistence verification remains outstanding. Planned Timeline, medication, workout-planner, natural-language transaction, and mobile work remains in development.
 
 # ZEKE Release Notes
+
+## v0.48.0.2 · build 2026.08.30.1 — Longitudinal Intelligence + Product Coherence
+
+**Governance revision:** 2026.08.30.1  
+**Status:** Package-local release candidate; owner-authorized provider/environment verification outstanding.
+
+- Added Timeline Day/Week/Month/Year exploration with working clickable record editors.
+- Added trend-first sleep period comparisons.
+- Completed medication reconciliation UX and period-aware injury/illness/symptom editing.
+- Verified recommended-workout → editable active workout → save → adapt remaining unsaved work in rendered Chromium.
+- Preserved connected body/exercise/anatomy/PT exploration and independent variation histories.
+- Completed document review-before-commit ingestion path and knowledge-pack validation/diff/rollback foundation.
+- Reconciled Talk states, unique versioning, cold-handoff documentation, and explicit no-readiness/no-social rules.
+- Live Google/provider behavior remains an explicit environment verification boundary.
+
 
 ## v0.47.0 · build 2026.08.24.1 — Visual System Recovery + Preserved Functionality
 
@@ -27,7 +45,7 @@ Actual Chromium visual gates now supplement functional/governance tests and expl
 
 ---
 
-**Current authority review:** 2026-08-24 · runtime v0.46.0 build 2026.08.24.2 · governance 2026.08.24.3
+**Current authority review:** 2026-08-29 · runtime v0.48.0.1 build 2026.08.29.1 · governance 2026.08.29.1
 
 ## v0.46.0 · build 2026.08.24.2 — UX Architecture + Connected Anatomy
 
@@ -4010,3 +4028,26 @@ This release adds a read-only Data Integrity workspace so missing display data c
 - No canonical JSON file is rewritten by opening or filtering the Data Integrity page.
 - No uncertain record is automatically reclassified or merged.
 - Export creates a local audit download only.
+
+
+## v0.48.0.1 — build 2026.08.29.1 — development candidate
+
+### Added / revised
+- Unique four-component numeric version identity; no distinct build may reuse a previous numeric version.
+- Full ZEKE Timeline route with Day / Week / Month / Year semantic scale controls.
+- Timeline records are clickable when backed by an editable ZEKE record.
+- Sleep analysis now emphasizes period trends: current/prior week, recent/prior 30 days, and 90-day context when sufficient observations exist.
+- General adult sleep-duration guidance is contextualized separately from personal trend; no single-night healthy/unhealthy badge.
+- Constitution formalizes no universal readiness score and no social/community product layer.
+- Constitution formalizes bidirectional connected exploration across body/anatomy/exercise/injury/PT/measurement/timeline relationships.
+- Knowledge registry now exposes pack validation, diffing, activation planning, and rollback target metadata; reference updates remain separate from personal history.
+- Visible navigation names the longitudinal route **Timeline**; Calendar remains contextual evidence/relevance input.
+- Current scope, Design Authority, Architecture, Decision Log, project state/gate, and handoff continuity were reconciled for v0.48.0.1.
+
+### Preserved / verified in source
+- Medication reconciliation and assumed-vs-confirmed dose architecture.
+- PDF embedded-text extraction with OCR fallback and source-traceable DEXA/health extraction contract.
+- Browse-first Fitness, independent variation series, body-area links, active workout editing, and PT form-guide release gate.
+
+### Evidence boundary
+Source and targeted rendered verification are package-local. Live Google Drive/Calendar persistence remains environment verification and must not be represented as passed until tested in the authorized owner environment.

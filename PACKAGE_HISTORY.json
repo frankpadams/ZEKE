@@ -2,15 +2,28 @@
   "schema_version": 1,
   "purpose": "Living consolidated package/build/provenance/verification history. Superseded individual files are intentionally removed after their contents are retained here.",
   "current_release": {
-    "version": "0.48.0",
-    "build": "2026.08.25.1",
-    "label": "Development Integrity + Interaction Repair",
-    "status": "development_package",
-    "publish_ready": false,
-    "verification_boundary": "Package-local/source tests only; live Google persistence and remaining v0.48 scope outstanding.",
-    "governance_revision": "2026.08.25.2"
+    "version": "0.48.0.2",
+    "build": "2026.08.30.1",
+    "label": "Longitudinal Intelligence + Product Coherence",
+    "status": "package_local_release_candidate",
+    "publish_ready": true,
+    "verification_boundary": "Package-local implementation/rendered/governance/package verification complete; owner-authorized Google/provider and physical-device environment verification outstanding.",
+    "governance_revision": "2026.08.30.1"
   },
   "historical_records": [
+    {
+      "source_file": "ZEKE-v0.48.0.1-dev-build-2026.08.29.1.zip",
+      "sha256": "0853199f04b1567412843335a3bfcb213699979fb4e8094d392a42b65e473ffa",
+      "content": {
+        "version": "0.48.0.1",
+        "build": "2026.08.29.1",
+        "label": "Longitudinal Intelligence + Product Coherence \u2014 first implementation pass",
+        "status": "development_candidate",
+        "publish_ready": false,
+        "verification_boundary": "Package-local first pass; later scope remained incomplete.",
+        "governance_revision": "2026.08.29.1"
+      }
+    },
     {
       "source_file": "CURRENT_RELEASE_v0.46.0_RECONCILED",
       "sha256": null,
@@ -27968,8 +27981,8 @@
       }
     }
   ],
-  "current_version": "0.48.0",
-  "current_build": "2026.08.25.1",
+  "current_version": "0.48.0.2",
+  "current_build": "2026.08.30.1",
   "governance_revision": "2026.08.25.2",
   "release": "0.48.0",
   "build": "2026.08.25.1",
@@ -28000,6 +28013,13 @@
         "Conversation interruption/meta-data integrity",
         "Self-describing design authority and release scope"
       ]
+    },
+    {
+      "version": "0.48.0.2",
+      "build": "2026.08.30.1",
+      "date": "2026-08-29",
+      "status": "development_candidate",
+      "summary": "Longitudinal Intelligence + Product Coherence candidate; unique version identity, Timeline semantic zoom, trend-first sleep analysis, connected exploration governance, and reconciled release authority."
     }
   ],
   "releases": [

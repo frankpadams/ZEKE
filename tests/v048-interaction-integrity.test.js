@@ -3,7 +3,7 @@ const root=path.resolve(__dirname,'..');
 const read=f=>fs.readFileSync(path.join(root,f),'utf8');
 const assert=(v,m)=>{if(!v)throw new Error(m)};
 const app=read('assets/app.js'), data=read('assets/data-layer.js'), version=read('version.js'), constitution=read('ZEKE_CONSTITUTION.md'), evidence=read('DEVELOPMENT_SYSTEM/EVIDENCE_INTEGRITY.md');
-assert(version.includes("version: '0.48.0'")&&version.includes("build: '2026.08.25.1'"),'v0.48 development identity missing');
+assert(version.includes("version: '0.48.0.2'")&&version.includes("build: '2026.08.30.1'"),'v0.48 development identity missing');
 assert(data.includes("error?.code !== 'reauth_required'")&&data.includes('reconnectSilently')&&data.includes("await state.provider.writeJson(PATHS[key], state[key])"),'single silent reauth retry missing from persistence');
 assert(data.includes('const priorFactors = state.factors')&&data.includes('state.factors = priorFactors'),'factor persistence rollback missing');
 assert(data.includes('const prior=state.preferences')&&data.includes('state.preferences=prior'),'preference persistence rollback missing');
