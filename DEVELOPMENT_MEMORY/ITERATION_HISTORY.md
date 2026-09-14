@@ -1,5 +1,8 @@
 # ZEKE Iteration History
 
+**Current authority review:** 2026-09-14 · runtime v0.49.0 build 2026.09.14.1 · governance 2026.09.14.1
+
+
 **Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
 
 ## Current iteration — ZEKE v0.48.0.2 — Longitudinal Intelligence + Product Coherence
@@ -1332,3 +1335,16 @@ Runtime implementation is in progress and the package remains an RC. Current wor
 - Verify source tests, rendered workflows, persistence/environment boundaries, version consistency, documentation integrity, and final ZIP re-extraction before promotion.
 
 **Evidence boundary:** development in progress; package-local source tests do not imply live-provider, rendered, or user verification.
+
+## v0.49.0 · build 2026.09.14.1 — Convergence/refinement development package
+
+User-approved scope (2026-09-14):
+- Timeframe-aware analytical metric tiles and comprehensive detail views.
+- Actionable non-duplicative Home information architecture.
+- Domain-row/date-column scrollable longitudinal timeline.
+- Semantic goal model with direction-aware progress and meaningful goal analysis.
+- Persistent Improvements Log and AI/application mishap diagnostics.
+- Questions for You independent from Talk to ZEKE.
+- Carry forward fitness/anatomy/injury/PT intelligence, medication, ingestion, Google persistence, provenance, mobile/desktop polish, Action Integrity, and navigation-state requirements from the prior month.
+
+Status: source implementation package prepared; release-candidate verification remains outstanding.

@@ -1,3 +1,11 @@
+# Project Health — v0.49.0
+
+**Current authority review:** 2026-09-14 · runtime v0.49.0 build 2026.09.14.1 · governance 2026.09.14.1
+
+**Status:** Development package. Source/static verification is in progress; rendered/device/live-provider acceptance is outstanding.
+
+---
+
 # Project Health — v0.48.0.2
 
 **Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
@@ -30,3 +38,5 @@
 - Content reachability and first-load scrolling are functional requirements.
 - Mobile composition may differ from desktop without creating a competing data model.
 - Release claims may not exceed checks actually performed.
+
+**Current continuity context:** v0.49.0 · build 2026.09.14.1 · governance 2026.09.14.1 · reviewed 2026-09-14.

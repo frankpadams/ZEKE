@@ -47,3 +47,5 @@ A separate **Synced** state is valid only after ZEKE implements and verifies a d
 ## Talk to ZEKE closure language
 
 Every meaningful interaction states what changed—or that nothing changed. Retry and correction paths distinguish saved, already recorded, duplicate, failed, dismissed, waiting for clarification, and not saved.
+
+**Current continuity context:** v0.49.0 · build 2026.09.14.1 · governance 2026.09.14.1 · reviewed 2026-09-14.

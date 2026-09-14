@@ -31,3 +31,5 @@ Before proposing edits, answer from the package:
 15. Which post-v0.46 backlog items are critical before the next broad behavioral verification claim?
 
 Failure or uncertainty requires more reading, not guessing. Present the checkpoint and stop for explicit scope approval before new code work.
+
+**Current continuity context:** v0.49.0 · build 2026.09.14.1 · governance 2026.09.14.1 · reviewed 2026-09-14.

@@ -179,17 +179,17 @@
         const result=await callConnection(c,prompt,{history,temperature,maxTokens});
         if(window.ZekeData) ZekeData.addAIExchange({provider:result.provider,model:result.model,task,request_summary:redactMinimum(String(prompt).slice(0,240)),response_summary:String(result.text).slice(0,500),status:'success'}).catch(()=>{});
         return result;
-      }catch(error){errors.push(`${c.provider}: ${error.message}`);if(window.ZekeData) ZekeData.addAIExchange({provider:c.provider,model:c.model,task,status:'failed',error:error.message}).catch(()=>{});}
+      }catch(error){errors.push(`${c.provider}: ${error.message}`);window.dispatchEvent(new CustomEvent('zeke:ai-mishap',{detail:{stage:'provider_call',provider:c.provider,model:c.model,task,severity:'high',summary:`AI provider failure: ${c.provider}`,error:error.message}}));if(window.ZekeData) ZekeData.addAIExchange({provider:c.provider,model:c.model,task,status:'failed',error:error.message}).catch(()=>{});}
     }
     throw new Error(`All connected AI services failed. ${errors.join(' | ')}`);
   }
 
   const SAFE_OUTCOMES=new Set(['ANSWER_USER','ASK_CLARIFICATION','PROPOSE_NEW_RECORD','PROPOSE_RECORD_CORRECTION','SUGGEST_REORGANIZATION','NO_ACTION']);
   function validateConsultation(parsed,allowedOutcomes=[]){
-    if(!parsed||typeof parsed!=='object'||Array.isArray(parsed))throw new Error('AI consultation returned an invalid envelope.');
+    if(!parsed||typeof parsed!=='object'||Array.isArray(parsed)){window.dispatchEvent(new CustomEvent('zeke:ai-mishap',{detail:{stage:'schema_validation',severity:'high',summary:'AI consultation returned an invalid envelope',validation:'invalid_envelope'}}));throw new Error('AI consultation returned an invalid envelope.');}
     const outcome=String(parsed.outcome||'NO_ACTION');
-    if(!SAFE_OUTCOMES.has(outcome)||!allowedOutcomes.includes(outcome))throw new Error('AI consultation requested an unauthorized outcome.');
-    if(parsed.execute||parsed.tool||parsed.function_call||parsed.commands)throw new Error('AI consultation attempted to initiate an action.');
+    if(!SAFE_OUTCOMES.has(outcome)||!allowedOutcomes.includes(outcome)){window.dispatchEvent(new CustomEvent('zeke:ai-mishap',{detail:{stage:'schema_validation',severity:'high',summary:'AI consultation requested an unauthorized outcome',validation:outcome}}));throw new Error('AI consultation requested an unauthorized outcome.');}
+    if(parsed.execute||parsed.tool||parsed.function_call||parsed.commands){window.dispatchEvent(new CustomEvent('zeke:ai-mishap',{detail:{stage:'authority_validation',severity:'high',summary:'AI consultation attempted an unauthorized action'}}));throw new Error('AI consultation attempted to initiate an action.');}
     return {outcome,confidence:Math.max(0,Math.min(1,Number(parsed.confidence)||0)),interpretation:String(parsed.interpretation||''),answer:String(parsed.answer||''),userResponse:String(parsed.userResponse||parsed.answer||''),clarificationQuestion:String(parsed.clarificationQuestion||''),missingInformation:Array.isArray(parsed.missingInformation)?parsed.missingInformation.map(String).slice(0,8):[],evidence:Array.isArray(parsed.evidence)?parsed.evidence.slice(0,20):[]};
   }
   async function consult({role='background_consultant',userGoal='',latestUserText='',activeQuestion='',history=[],evidence=[],allowedOutcomes=['ANSWER_USER','ASK_CLARIFICATION','NO_ACTION']}={}){
@@ -216,7 +216,7 @@
     try{return JSON.parse(cleaned);}catch{}
     const first=cleaned.indexOf('{'), last=cleaned.lastIndexOf('}');
     if(first>=0&&last>first){try{return JSON.parse(cleaned.slice(first,last+1));}catch{}}
-    throw new Error('The AI response could not be parsed safely. ZEKE will not save it automatically.');
+    window.dispatchEvent(new CustomEvent('zeke:ai-mishap',{detail:{stage:'parse',severity:'high',summary:'AI response could not be parsed safely',detail:String(text||'').slice(0,500)}}));throw new Error('The AI response could not be parsed safely. ZEKE will not save it automatically.');
   }
 
   function normalizeWorkoutAI(parsed,rawText){

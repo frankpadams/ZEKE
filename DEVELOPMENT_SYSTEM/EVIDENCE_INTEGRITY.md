@@ -1,5 +1,8 @@
 # ZEKE Development Evidence Integrity Standard
 
+**Current authority review:** 2026-09-14 · runtime v0.49.0 build 2026.09.14.1 · governance 2026.09.14.1
+
+
 **Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
 
 **Status:** Authoritative. This standard governs how observations, implementation claims, tests, screenshots, logs, and development status are interpreted.

@@ -1,8 +1,8 @@
 {
   "schema_version": 3,
-  "current_version": "0.48.0.2",
-  "current_build": "2026.08.30.1",
-  "release_label": "Longitudinal Intelligence + Product Coherence",
+  "current_version": "0.49.0",
+  "current_build": "2026.09.14.1",
+  "release_label": "Analytical Detail + Goal Semantics + Longitudinal Timeline",
   "baseline": "v0.45.1 is the known stable recovery baseline; reconciled v0.46.0 build 2026.08.24.2 is the verified functional donor. Failed later v0.46 presentation experiments are excluded.",
   "authority_registry": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
   "authoritative_documents": [
@@ -32,19 +32,14 @@
     "DEVELOPMENT_SYSTEM/EVIDENCE_INTEGRITY.md"
   ],
   "implemented_this_release": [
-    "Evidence-integrity governance and transactional rollback/reconnect behavior carried forward from v0.48.0",
-    "Unique numeric version identity v0.48.0.2 / build 2026.08.30.1",
-    "ZEKE Timeline with Day/Week/Month/Year scales, clickable records, and record-specific correction editors",
-    "Trend-first sleep period analysis with current/prior week, 30d/prior 30d, and 90d context",
-    "Bidirectional connected exploration across body/anatomy/exercise/injury/PT/measurement/timeline relationships",
-    "Medication regimen/occurrence separation, reconciliation, schedule editing, and assumed-versus-confirmed occurrence semantics",
-    "Illness/injury/symptom/life-event period editing with ongoing/approximate dates and correction history",
-    "Workout proposal to active-workout handoff plus saved-work preservation and adaptation of remaining unsaved blocks",
-    "Provenance-preserving document review/confirm ingestion runtime",
-    "Knowledge-pack staleness, validation, diff, activation-plan, and rollback foundation",
-    "Talk compact/expanded/closed behavior and rendered release-gate acceptance",
-    "No readiness score/gauge/substitute and no social/community product layer",
-    "Authoritative scope/Constitution/Design Authority/Architecture/Decision Log/cold-handoff reconciliation"
+    "Reworked dashboard information architecture so Today\u2019s Status is actionable rather than duplicate recent measurements.",
+    "Added visible metric timeframe controls and comprehensive analytical metric drill-downs with charts, statistics, comparisons, contextual events, and underlying records.",
+    "Rebuilt Home Timeline Snapshot as a horizontally navigable domain-row by date-column longitudinal grid with Previous/Next/Today controls.",
+    "Added semantic goals with baseline/date, target, progress direction, current-value evaluation, 0% start semantics, meaningful dashboard progress, and goal detail trajectory view.",
+    "Added persistent Improvements Log with runtime capture, repository mirroring when connected, export, resolve/waive states, and release-continuity documentation.",
+    "Added AI mishap diagnostic events for provider failures, invalid envelopes, parsing failures, schema/authorization failures, and action-authority violations.",
+    "Changed Questions for You so Answer This stays in the Questions workspace and supports inline answers/choices rather than bouncing to Talk/dashboard.",
+    "Preserved prior v0.48 longitudinal, fitness, medication, ingestion, Google persistence, provenance, anatomy, PT, and workout-intelligence foundations."
   ],
   "inherited_verified_evidence": [
     "v0.25.2 direct mobile workout save handler and visible failure path",
@@ -76,7 +71,7 @@
   ],
   "current_release_label": "ZEKE v0.48.0.2 \u2014 Longitudinal Intelligence + Product Coherence",
   "current_focus": "Owner/environment verification of v0.48.0.2 after package-local implementation, rendered acceptance, governance, and package verification are complete.",
-  "governance_revision": "2026.08.30.1",
+  "governance_revision": "2026.09.14.1",
   "runtime_changed_by_governance_revision": true,
   "rejected_forward_baselines": [
     "v0.28.0",
@@ -104,5 +99,11 @@
   "rejected_presentation_baselines": [
     "v0.46.0 build 2026.08.24.3 mockup visual rebuild",
     "v0.46.0 build 2026.08.24.4 failed visual experiment"
-  ]
+  ],
+  "verification_state": {
+    "package_local": "development verification; source/static tests complete to TEST_REPORT.md",
+    "rendered_browser": "not completed in this environment",
+    "live_google_provider": "outstanding",
+    "physical_mobile": "outstanding"
+  }
 }

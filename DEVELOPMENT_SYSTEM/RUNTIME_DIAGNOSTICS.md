@@ -77,3 +77,5 @@ The local runtime logger must not intentionally store:
 ## Verification boundary
 
 A diagnostic entry demonstrates that ZEKE recorded an event. It does not demonstrate root cause, successful persistence, correct UI behavior, or a fixed defect. Compare diagnostics with deterministic tests, rendered runs, deployed-origin evidence, and the original workflow before making a conclusion.
+
+**Current continuity context:** v0.49.0 · build 2026.09.14.1 · governance 2026.09.14.1 · reviewed 2026-09-14.
