@@ -1,5 +1,8 @@
 # AI / Developer Start Here — ZEKE v0.48.0 DEVELOPMENT
 
+**Current authority review:** 2026-09-14 · runtime v0.49.0 build 2026.09.14.1 · governance 2026.09.14.1
+
+
 **Runtime build:** 2026.08.25.1  
 **Governance revision:** 2026.08.25.2  
 **Release state:** active development package; v0.47.0 remains the user-tested release baseline.  

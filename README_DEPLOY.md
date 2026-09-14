@@ -25,3 +25,5 @@
 10. If a blocking regression appears, restore the complete prior deployed package rather than mixing rollback files.
 
 Governance revision 2026.08.24.3 reconciles package documentation/audit only; the runtime build remains 2026.08.24.2. Package-local verification does not substitute for live provider or owner physical-device acceptance.
+
+**Current continuity context:** v0.49.0 · build 2026.09.14.1 · governance 2026.09.14.1 · reviewed 2026-09-14.

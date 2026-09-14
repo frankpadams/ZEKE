@@ -1,5 +1,8 @@
 # ZEKE v0.48.0 Development Architecture Note
 
+**Current authority review:** 2026-09-14 · runtime v0.49.0 build 2026.09.14.1 · governance 2026.09.14.1
+
+
 **Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
 
 The v0.48 development line preserves the v0.47 runtime architecture while adding evidence-integrity rules and transactional interaction repairs. Planned Longitudinal Explorer, medication-regimen correction, workout-planning redesign, natural-language transaction engine, and expanded mobile navigation remain **specified unless current source/test evidence demonstrates otherwise**.

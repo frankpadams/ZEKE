@@ -1,5 +1,8 @@
 # ZEKE Roadmap
 
+**Current authority review:** 2026-09-14 · runtime v0.49.0 build 2026.09.14.1 · governance 2026.09.14.1
+
+
 **Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
 **Status:** Canonical current roadmap. Completed work remains in `RELEASE_NOTES.md` and `DEVELOPMENT_MEMORY/ITERATION_HISTORY.md`.
 

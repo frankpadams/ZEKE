@@ -1,5 +1,8 @@
 # Current v0.48.0 decisions — 2026-08-25
 
+**Current authority review:** 2026-09-14 · runtime v0.49.0 build 2026.09.14.1 · governance 2026.09.14.1
+
+
 **Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
 
 - Observation precedes interpretation; screenshot text is never completed from expectation.

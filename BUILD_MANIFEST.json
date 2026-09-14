@@ -1,18 +1,18 @@
 {
   "schema_version": 2,
   "product": "Project ZEKE",
-  "release": "0.48.0.2",
-  "build": "2026.08.30.1",
-  "status": "package_verified_release_candidate",
-  "governance_revision": "2026.08.30.1",
-  "generated_at": "2026-08-30T04:16:57.358832Z",
-  "root_folder": "ZEKE-v0.48.0.2-build-2026.08.30.1",
-  "file_count_excluding_manifest": 154,
+  "release": "0.49.0",
+  "build": "2026.09.14.1",
+  "status": "development_package",
+  "governance_revision": "2026.09.14.1",
+  "generated_at": "2026-09-14T05:34:19.202701Z",
+  "root_folder": "",
+  "file_count_excluding_manifest": 156,
   "files": [
     {
       "path": "00_AI_START_HERE.md",
-      "bytes": 3977,
-      "sha256": "9f9a4200d547ffefd56579d80157b77c5f708c3849fe89770e3df06a151a8148"
+      "bytes": 4085,
+      "sha256": "861defc922484902335038f5ee447573c8fc3524d85304dca68c35c98f86c6ac"
     },
     {
       "path": "AI_PACKET_WORKFLOW.md",
@@ -41,23 +41,23 @@
     },
     {
       "path": "ARCHITECTURE.md",
-      "bytes": 13569,
-      "sha256": "75b7e1274013064cfbb18378b7bbb8592f185c72ab33f637a3c342ace1284c2e"
+      "bytes": 13677,
+      "sha256": "6e3bef2a13ffb08579934a92c8514a3d8b3dba10f7565bf1ed2d5d5ae3bf9321"
     },
     {
       "path": "CURRENT_RELEASE_SCOPE.md",
-      "bytes": 8725,
-      "sha256": "7ffd73f7cb05815c2bde928e88b1f38aa83323a3b07762566b99e8fb12ddaf8e"
+      "bytes": 3369,
+      "sha256": "a50bdfeeacb801e100ebbd66008d773a92bc1b2d9d7f58997a0a07b515ff80f5"
     },
     {
       "path": "DECISION_LOG.md",
-      "bytes": 11060,
-      "sha256": "80cfefd29bd8c03742e8411a152946e599f00dcf1976cfa2e9828af668357eae"
+      "bytes": 11168,
+      "sha256": "d54ac97b388d1d8cfa69246d2d3e9bacbbc3c0f99b0c8f099e12026ecbf235f7"
     },
     {
       "path": "DESIGN_AUTHORITY.md",
-      "bytes": 13724,
-      "sha256": "a344c1cab5a6b83bc42fe09b6cf3cd01a9d9878b9c78741137aca071d1844733"
+      "bytes": 13832,
+      "sha256": "edb7eced47ea84829184d001d03385d14882039fd3f9c06108be6f3ef1226ac0"
     },
     {
       "path": "DEVELOPMENT_INTEGRITY_AUDIT_2026-08-25.md",
@@ -66,33 +66,33 @@
     },
     {
       "path": "DEVELOPMENT_MEMORY/BACKLOG.md",
-      "bytes": 13708,
-      "sha256": "923bd8e849d29d1164ed48db93b0f545b657d1634d0e72fbca517407e792ea1d"
+      "bytes": 13816,
+      "sha256": "583fae5337b9b82b912dfd869ac990a26419edf8e001e4788cb998f43b99a362"
     },
     {
       "path": "DEVELOPMENT_MEMORY/CONTINUITY_HISTORY.md",
-      "bytes": 20473,
-      "sha256": "d23292a5abedfb1440223a7a85398e49c3d4c328bd5ea7c4cd3491dfbc00e61c"
+      "bytes": 20581,
+      "sha256": "0e5492277db28571d044bdc9af219dd05b8075fa2d0b5ccef0465313b05195d2"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DECISION_LOG.md",
-      "bytes": 20035,
-      "sha256": "7dcd25e6c8d189184e22e681fbb5643a2c6f387f82b337b491ab03d23795d691"
+      "bytes": 20143,
+      "sha256": "5b4ce81ec4f74795be5b931d27c0f6da0a99b21214f0203cbd68082d1bce80c5"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_ERROR_LOG.md",
-      "bytes": 24562,
-      "sha256": "a93395e9b75868a2f61d5634a9c636b2d632d4f3cb8f5fb697f1e4378c33c6a0"
+      "bytes": 24670,
+      "sha256": "46357b34504301c3985625a1c169aa257354209b452270e5b17f419e14693184"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_GATE.json",
-      "bytes": 3725,
-      "sha256": "8a409cdba0e00fa5823101ae94e732370034ff41783cba64082d4db50ea687c2"
+      "bytes": 2885,
+      "sha256": "42da6c3ef5da0891c58c7757d581dbeda119336f34af2b8ab2461bcd909ba989"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DEVELOPMENT_WORKFLOW.md",
-      "bytes": 5142,
-      "sha256": "5314cb781521d9445a268114de49650d7e4772f24be8faf3e27d26b077dbe03f"
+      "bytes": 5250,
+      "sha256": "d1728135d133d55ee0a339ae1ae82740ae9645b1a4bb35af5800fcf8f439e381"
     },
     {
       "path": "DEVELOPMENT_MEMORY/DOCUMENT_INDEX.md",
@@ -106,13 +106,13 @@
     },
     {
       "path": "DEVELOPMENT_MEMORY/ITERATION_HISTORY.md",
-      "bytes": 80142,
-      "sha256": "0c0ffef8fa360a3ba9c8af35c9baad18fd956d172b8f9bb7a94cb8e8c2d963d0"
+      "bytes": 81070,
+      "sha256": "9cc9aae87fe7553e0865ace2d12ddf55119f6f6dac87c7935d48fa4c710d2e69"
     },
     {
       "path": "DEVELOPMENT_MEMORY/PROJECT_STATE.json",
-      "bytes": 6300,
-      "sha256": "aad8c6dd91e4f7e3fc7b6939e9a2b4af970026b91fb6f9330fe891eb7d7e6f00"
+      "bytes": 6556,
+      "sha256": "fc320a39c7323f22488b5dc05f358f0f5170e3e2f48b400fb3d9b8e83f00bd02"
     },
     {
       "path": "DEVELOPMENT_MEMORY/README_FIRST.md",
@@ -126,48 +126,48 @@
     },
     {
       "path": "DEVELOPMENT_MEMORY/RELEASE_GATE.md",
-      "bytes": 1909,
-      "sha256": "517b05d41f84373b0cf5745ec249102e8592293a40229753eb43a5d21fb29207"
+      "bytes": 1380,
+      "sha256": "736cbd2858d59961ea895639be972e15ec755234047f3b1fcfe2560bcb1d3504"
     },
     {
       "path": "DEVELOPMENT_REVIEW_HISTORY.md",
-      "bytes": 34256,
-      "sha256": "2ebb290b2eb3c4e393951b2078a2dbacf22f562c64c5bc322ba0d137344f9478"
+      "bytes": 34370,
+      "sha256": "f9c7a1bf252912ab6dd3d4d13b633b43b777d11d30c8e6a118415fddd8cb3cfb"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/ARTIFACT_REGISTRY.json",
-      "bytes": 13077,
-      "sha256": "8e9297dfa480ffad6f0f57acba6d6e047cc96f387e2cc94553a659ec0e6f9f9b"
+      "bytes": 12967,
+      "sha256": "da4d31f578f34778203ed7e1ea96a759fa54995239cd809daef898350bcf5ba7"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/AUTHORITY_AND_LIFECYCLE.md",
-      "bytes": 2957,
-      "sha256": "c31b0c559dc81aa9a5c14fc7027965b1351fcb8e1fe7a69b3160be0ba92860ec"
+      "bytes": 3065,
+      "sha256": "1fa33c891e25b23797d46ab1b8bc632f70e82480ef16ae96b38ae2105400bc1b"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/COMPREHENSION_CHECKPOINT.md",
-      "bytes": 2464,
-      "sha256": "2508887cbdeb28d37dbe3105cf9b15cfa1db1c5b2080dee0275bbb2ea9448469"
+      "bytes": 2578,
+      "sha256": "f1e45196aa7dcdb9f14e61df5127be1f21ddc244dfb36fa389d7d78125e29aa5"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/EVIDENCE_INTEGRITY.md",
-      "bytes": 5472,
-      "sha256": "64225902eada29e4de91e5611927487ab126c5f5b025652750d9319f3a633437"
+      "bytes": 5580,
+      "sha256": "4f51cfe656fe1c648c1ce30d4d5627d86b07c6f7637ac4001d066e92065497ba"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/GOVERNANCE_RULES.json",
-      "bytes": 6323,
-      "sha256": "b359d02ae95f05209e8821ad6dd43069dc4c8638bce4c5519ae2325203aa9361"
+      "bytes": 6321,
+      "sha256": "4fa2b1c8ebf82f0b9537c24736c00084e801674929e0fafda096da544096b376"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/PROJECT_HEALTH.md",
-      "bytes": 2081,
-      "sha256": "e0b6b8bdc985a7ecc25f8ddada90f1e1012ca6138dd3cdceaaf1e5d6537e1786"
+      "bytes": 2471,
+      "sha256": "10ef619517a03ce198427e4f17f751249c50fea9d8183b19a843f6453c64d21c"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/PROJECT_IDENTITY.md",
-      "bytes": 3151,
-      "sha256": "39525dccab9264be45f7c6918c7c3c682cf75fb33f4ac0eeadf138e47e35a511"
+      "bytes": 3259,
+      "sha256": "95feb908f6af09e439448dba74e8f6d4f37f6125107e98db69d39fa8b2e22092"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/REJECTED_AND_SUPERSEDED_PATHS.md",
@@ -176,18 +176,18 @@
     },
     {
       "path": "DEVELOPMENT_SYSTEM/RUNTIME_DIAGNOSTICS.md",
-      "bytes": 3680,
-      "sha256": "e59d1c33da625d9f915eab1ce0ea649de9faf62fe7e512a97218fedad33f733a"
+      "bytes": 3794,
+      "sha256": "c4d8d142a9885af4b78dd88f0883e3b7c876469e9218ee368ac1365f6ee82a63"
     },
     {
       "path": "DEVELOPMENT_SYSTEM/STATUS_LANGUAGE.md",
-      "bytes": 3143,
-      "sha256": "5abf03eec9ffd87c9951390c3540aa9e7f77a76f0e2df808a0f91980ccce3bbb"
+      "bytes": 3257,
+      "sha256": "fbd60c22601c82449fe6c015e979a89c88131a9df66693ce37a81bf7c1db3ba8"
     },
     {
       "path": "DOCUMENTATION_MAP.md",
-      "bytes": 2308,
-      "sha256": "7caa1a9574ecca355f0526703eb08b132028bbefed721e2e0d9d032d06de63b7"
+      "bytes": 2422,
+      "sha256": "4d92ef00f399fc687fdcce824865a66e5d2003b852e7baf2407247b616b9d7cc"
     },
     {
       "path": "EVIDENCE_LIBRARY_v0.6.0.md",
@@ -210,24 +210,29 @@
       "sha256": "a4babeab7ff12e75d77e01b2d9a64d11dca0d41e6af27c66e542085ea1725bc6"
     },
     {
+      "path": "IMPROVEMENTS_LOG.md",
+      "bytes": 1347,
+      "sha256": "676060f4cbbba0e8b66a514664cdb886149362020861242e1fc1837d736094c9"
+    },
+    {
       "path": "LEGACY_ARTIFACT_HISTORY.json",
       "bytes": 1015453,
       "sha256": "54a67f51583cef3c5ad998c49e22a55d9e721e33ee7113a45d0f795c7eb964e7"
     },
     {
       "path": "PACKAGE_HISTORY.json",
-      "bytes": 1216993,
-      "sha256": "815bafb02ce61cff3203c684629385fcb8b2d1a26163130554239e832aa63e6d"
+      "bytes": 1217491,
+      "sha256": "f5b60a607fa4c1968050fca3eaabf35737ea4cd9092ce3d8c04e3a2c222ecbdd"
     },
     {
       "path": "README.md",
-      "bytes": 2755,
-      "sha256": "91d9c6254c2a9216357cc41da9cc8e2ec23478c0ccb874f62ca07ff932223444"
+      "bytes": 2869,
+      "sha256": "9d818b7f2250cc7672fa899ca4193463b4bbdc4a0a401bab0c04d42035e00cd2"
     },
     {
       "path": "README_DEPLOY.md",
-      "bytes": 1903,
-      "sha256": "bebc548fc6f73b3b2035bda4c814a1ad5eb2cb908a1b8b2cdae56ecbd06a47d4"
+      "bytes": 2017,
+      "sha256": "e0ede5f4121e914e91d57a479ff0ad0ec94f07a4c740325666a0b2f037980bdf"
     },
     {
       "path": "READ_THIS_FIRST.md",
@@ -236,13 +241,13 @@
     },
     {
       "path": "RELEASE_NOTES.md",
-      "bytes": 225382,
-      "sha256": "a01c08b30e1c58ce8e00ddcea12a54c013665263a1242311a5de093805209753"
+      "bytes": 2373,
+      "sha256": "d070c24d90d8afd34a3729b3ffc4472c27d24457c8f920b3bced952cc2224770"
     },
     {
       "path": "ROADMAP.md",
-      "bytes": 2534,
-      "sha256": "20512b180ccb2fe41593e3601a206977090a7ff59b3926840f44e3b2364e48c5"
+      "bytes": 2642,
+      "sha256": "47aae5b46deb0033c7d171d86f383dbc61f6035533143e2c4a87b7594c9662dc"
     },
     {
       "path": "STORAGE_SETUP.md",
@@ -251,13 +256,13 @@
     },
     {
       "path": "TEST_GUIDE.md",
-      "bytes": 10476,
-      "sha256": "974bcfaa90a72e23310bad1f244d15cd947d1dd11627dc5d1cc2811dfd7611aa"
+      "bytes": 10584,
+      "sha256": "164eb5ab462cf281f4f97ec77e48e37c883d64727b4f2c7ca3223c63f586d7f6"
     },
     {
       "path": "TEST_REPORT.md",
-      "bytes": 7911,
-      "sha256": "4ef5620f110b65a8d8c423985e8cc632a65710a7603c3548b1d852448c4964b6"
+      "bytes": 2944,
+      "sha256": "515dbaccfcfcae36d027877f6e2fc2eeef1a2a29e3b1fddba042c7f960a8da8b"
     },
     {
       "path": "THIRD_PARTY_LICENSES/xlsx-LICENSE",
@@ -266,18 +271,18 @@
     },
     {
       "path": "USABILITY_TESTING.md",
-      "bytes": 2402,
-      "sha256": "26305ceb478f9358657f23b1571eb63d6a4830de0a5fa914ba253bd874594935"
+      "bytes": 2516,
+      "sha256": "305f5ccbf0829f7347dd65964335c9a25d431c1f09f34d7b802bfb65f5cfa6e0"
     },
     {
       "path": "VERSION.txt",
-      "bytes": 102,
-      "sha256": "f9e81458a780c9d469e27e98dd6a6f7c6190fe62367f5d79fc6d4ba509bb2a22"
+      "bytes": 115,
+      "sha256": "ae5d30155fd8d7b0a6d30e336e1641e3b80ecdf3d7951c1393d8833510e0d29c"
     },
     {
       "path": "ZEKE_CONSTITUTION.md",
-      "bytes": 32897,
-      "sha256": "88ce0d6af2430f4ded6571157ce20fc58b8069d64614448bcf1aab0466d9b0f2"
+      "bytes": 33005,
+      "sha256": "19285e8f79585a7daf6dded9d3c3934e8c4311e81262b616f123b71c56f1b75e"
     },
     {
       "path": "alpha-connection-setup.html",
@@ -331,8 +336,8 @@
     },
     {
       "path": "assets/ai-router.js",
-      "bytes": 24207,
-      "sha256": "2bd50103cc42d012e4100fb016427d7c8ef7070e663859d2f893e56d2cd37c78"
+      "bytes": 25158,
+      "sha256": "3c3ecae084f88b55c9ce4b5d8b320c6b897384880d729b2a4ba1e6472554a6ac"
     },
     {
       "path": "assets/anatomy-knowledge.js",
@@ -341,8 +346,8 @@
     },
     {
       "path": "assets/app.js",
-      "bytes": 650070,
-      "sha256": "ab7a018b936683c21101aa07e48a14a2d54d1b0f31af72241c4e6b7678291314"
+      "bytes": 672727,
+      "sha256": "604759cbf28041412e52360ccceaf4ef1356914623fe95890a19d1789d0f1a2b"
     },
     {
       "path": "assets/branding/ZEKE_Brand_Board_2026-07.jpg",
@@ -371,8 +376,8 @@
     },
     {
       "path": "assets/desktop-v047.css",
-      "bytes": 16092,
-      "sha256": "4109e01479df872c355597a64e56461c41fe42f5b30ddf39be91093daa677194"
+      "bytes": 19321,
+      "sha256": "636ae64c2341b6438e1cb481b00d3bf1081bf6b7efc34547a4e69221eeb6c10f"
     },
     {
       "path": "assets/document-intake.js",
@@ -491,8 +496,8 @@
     },
     {
       "path": "assets/styles.css",
-      "bytes": 250929,
-      "sha256": "60486fabde0e16f007df5cae8f8d09f16bc473185227706a1c4b4160a9abb9b3"
+      "bytes": 257598,
+      "sha256": "3572c590de590d69c3983f1021f5c34ca31f37729e08dd6f8a0ac8ef2c0d43c3"
     },
     {
       "path": "assets/training-intelligence.js",
@@ -516,8 +521,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 2923,
-      "sha256": "3beaccd1165666b3b3c8f65f431ceef11770fe367040af1c3c12495bc50281e6"
+      "bytes": 2906,
+      "sha256": "c2d2573d724a0ada6bb08b5822927cfb7f4f8cb4934ed7e6267324b58f522c10"
     },
     {
       "path": "manifest.webmanifest",
@@ -531,8 +536,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 1926,
-      "sha256": "8a040d8ae402a40d0a4ca3b5bf5a7a58775f43857bd295378d2b062a0cb8e733"
+      "bytes": 1924,
+      "sha256": "2325b64f942e8b7faa3da7d49208691e4ffc228df9e2f73edb4c7b4521bb084d"
     },
     {
       "path": "tests/activity-foundation.test.js",
@@ -730,6 +735,11 @@
       "sha256": "9fde0abc400a380908c635604c7d7a2eab1c7feee2cef2e1c2bef0218cce5127"
     },
     {
+      "path": "tests/v049-coherence.test.js",
+      "bytes": 1508,
+      "sha256": "3acd49b590d2c69a5695ad9060eb75cbff50b610d2239d7368ba544bfca7b2f4"
+    },
+    {
       "path": "tests/workbook-commit-verify.test.js",
       "bytes": 3168,
       "sha256": "4d6ccee9cdd448b7820ce1bd2d9c79a3be1cd2519b8acf3771ffdb25d12741b9"
@@ -766,8 +776,8 @@
     },
     {
       "path": "version.js",
-      "bytes": 256,
-      "sha256": "ba18c1b57e7bf03ec9fdf16efc3203b0c0c2e665ef58222c269aeca7381ddf4b"
+      "bytes": 265,
+      "sha256": "3aac574669ffe59aa27aa236b144bbd947cc393e289108318aaea2bf36b7d392"
     },
     {
       "path": "xlsx-bundle.js",

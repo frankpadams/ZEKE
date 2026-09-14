@@ -1,5 +1,8 @@
 # ZEKE v0.48.0 Design Authority — Development Continuity
 
+**Current authority review:** 2026-09-14 · runtime v0.49.0 build 2026.09.14.1 · governance 2026.09.14.1
+
+
 **Current authority review:** 2026-08-29 · runtime v0.48.0.2 build 2026.08.30.1 · governance 2026.08.30.1
 
 The approved 2026-08-24 desktop mockup and v0.47 visual recovery remain the current presentation authority while v0.48 develops. Visual continuity may be refined, but the clean grid, compact information density, bounded iconography, and purpose-built mobile composition must not regress.

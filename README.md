@@ -46,3 +46,5 @@ Package-local static/governance/syntax/regression/rendered evidence is documente
 ## Current development candidate — v0.48.0.2
 
 Build **2026.08.30.1** implements the current Longitudinal Intelligence + Product Coherence development line. The authoritative scope is `CURRENT_RELEASE_SCOPE.md`. The package is designed for cold handoff: current versus historical claims must remain explicit, and packaging never upgrades evidence state.
+
+**Current continuity context:** v0.49.0 · build 2026.09.14.1 · governance 2026.09.14.1 · reviewed 2026-09-14.

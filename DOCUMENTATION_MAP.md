@@ -30,3 +30,5 @@ The full authoritative set is machine-registered in `DEVELOPMENT_SYSTEM/ARTIFACT
 
 ## Historical continuity
 Historical implementation/status/handoff/deployment evidence is consolidated in `DEVELOPMENT_REVIEW_HISTORY.md`, `DEVELOPMENT_MEMORY/ITERATION_HISTORY.md`, `DEVELOPMENT_MEMORY/CONTINUITY_HISTORY.md`, `PACKAGE_HISTORY.json`, `LEGACY_ARTIFACT_HISTORY.json`, and the cumulative release/test sections. Historical old-version strings are allowed only when clearly historical; they do not define current state.
+
+**Current continuity context:** v0.49.0 · build 2026.09.14.1 · governance 2026.09.14.1 · reviewed 2026-09-14.

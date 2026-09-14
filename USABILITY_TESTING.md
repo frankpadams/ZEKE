@@ -56,3 +56,5 @@ Usability verification is screen- and workflow-level, not merely component-level
 - mobile and desktop compositions that preserve the same data/workflow semantics.
 
 Package-local rendering is evidence, not owner acceptance. Physical-device/actual-deployment review remains explicit.
+
+**Current continuity context:** v0.49.0 · build 2026.09.14.1 · governance 2026.09.14.1 · reviewed 2026-09-14.
