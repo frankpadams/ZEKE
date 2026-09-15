@@ -1,7 +1,7 @@
 (() => {
   'use strict';
 
-  const BUILD = window.ZEKE_BUILD || window.ZEKE_VERSION || { version: '0.49.0', build: '2026.09.14.1', label: 'ZEKE v0.49.0 Analytical Detail + Goal Semantics + Longitudinal Timeline' };
+  const BUILD = window.ZEKE_BUILD || window.ZEKE_VERSION || { version: '0.49.0.1', build: '2026.09.14.2', label: 'ZEKE v0.49.0.1 Dashboard Render Hotfix' };
   const state = {
     route:'dashboard', range:localStorage.getItem('zeke-fitness-range')||'month', dashboardHealthRange:localStorage.getItem('zeke-dashboard-health-range')||'month', dashboardTrendRange:localStorage.getItem('zeke-dashboard-trend-range')||'quarter', timelineScale:localStorage.getItem('zeke.timeline.scale.v1')||'week', timelineOffsetDays:Number(localStorage.getItem('zeke.timeline.offsetDays.v2')||0), selectedMetric:'weight', detailMetricRange:localStorage.getItem('zeke.metric.detail.range.v2')||'quarter',
     events:[], factors:[], discoveries:[], actions:{catalog:[],daily_states:{}}, calendar:[], calendarReview:[], calendarReviewLoaded:false,
@@ -1314,7 +1314,7 @@
   }
   function v47HealthHTML(){
     const available=availableMetrics(),preferred=['weight','a1c','resting_hr','sleep_duration'];const chosen=[...preferred.filter(x=>available.includes(x)),...available.filter(x=>!preferred.includes(x))].slice(0,4);
-    return `<section class="v47-card v47-health"><div class="v47-section-head v49-health-head"><div class="v47-card-title">${v47Icon('heart',24)}<h2>Health at a Glance</h2></div><button class="text-action" data-route="health">View Health</button></div><div class="v49-health-range"><span>Period</span>${dashboardRangeHTML('health')}</div><div class="v47-health-grid">${chosen.map(v47DashboardMetricCard).join('')||'<div class="v47-compact-empty">Log a health value to begin your snapshot.</div>'}</div></section>`;
+    return `<section class="v47-card v47-health"><div class="v47-section-head v49-health-head"><div class="v47-card-title">${v47Icon('heart',24)}<h2>Health at a Glance</h2></div><button class="text-action" data-route="health">View Health</button></div><div class="v49-health-range"><span>Period</span>${dashboardRangeControl('health')}</div><div class="v47-health-grid">${chosen.map(v47DashboardMetricCard).join('')||'<div class="v47-compact-empty">Log a health value to begin your snapshot.</div>'}</div></section>`;
   }
   function timelineDomainRows(){
     const all=window.ZekeLongitudinal?.timeline?.(state.events,state.calendar)||[];
