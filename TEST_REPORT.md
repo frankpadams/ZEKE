@@ -1,3 +1,20 @@
+# ZEKE v0.49.0.1 Hotfix Test Report
+
+**Build:** 2026.09.14.2  
+**Purpose:** dashboard render regression hotfix
+
+## Hotfix verification
+- `node --check assets/app.js`
+- `node --check sw.js`
+- `tests/v049-dashboard-render-hotfix.test.js`
+- `tests/v049-coherence.test.js`
+- Package-local Node suite rerun after patch; results recorded below.
+
+## Root cause
+`v47HealthHTML()` called undefined `dashboardRangeHTML('health')`; the implemented helper is `dashboardRangeControl('health')`. The undefined reference aborted Dashboard rendering.
+
+---
+
 # ZEKE v0.49.0 Current Test Report
 
 **Build:** 2026.09.14.1  

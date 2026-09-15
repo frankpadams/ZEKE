@@ -1,13 +1,13 @@
 {
   "schema_version": 2,
   "product": "Project ZEKE",
-  "release": "0.49.0",
-  "build": "2026.09.14.1",
-  "status": "development_package",
+  "release": "0.49.0.1",
+  "build": "2026.09.14.2",
+  "status": "development_hotfix",
   "governance_revision": "2026.09.14.1",
-  "generated_at": "2026-09-14T05:34:19.202701Z",
+  "generated_at": "2026-09-15T00:02:02.581156Z",
   "root_folder": "",
-  "file_count_excluding_manifest": 156,
+  "file_count_excluding_manifest": 157,
   "files": [
     {
       "path": "00_AI_START_HERE.md",
@@ -211,8 +211,8 @@
     },
     {
       "path": "IMPROVEMENTS_LOG.md",
-      "bytes": 1347,
-      "sha256": "676060f4cbbba0e8b66a514664cdb886149362020861242e1fc1837d736094c9"
+      "bytes": 1936,
+      "sha256": "eedc41d6597d8d203e6b1b70d3a07f0dfaf58394e1c67059f919348a6565acd0"
     },
     {
       "path": "LEGACY_ARTIFACT_HISTORY.json",
@@ -221,8 +221,8 @@
     },
     {
       "path": "PACKAGE_HISTORY.json",
-      "bytes": 1217491,
-      "sha256": "f5b60a607fa4c1968050fca3eaabf35737ea4cd9092ce3d8c04e3a2c222ecbdd"
+      "bytes": 1217763,
+      "sha256": "da1029cf47aac5d4de0ddbe711ad347cd33d2798dd7aef42390abfb71f28d67f"
     },
     {
       "path": "README.md",
@@ -241,8 +241,8 @@
     },
     {
       "path": "RELEASE_NOTES.md",
-      "bytes": 2373,
-      "sha256": "d070c24d90d8afd34a3729b3ffc4472c27d24457c8f920b3bced952cc2224770"
+      "bytes": 2825,
+      "sha256": "f8bec7fb53619700fbfe0bbbe7bd454bfe94cebc3007854abaf5536cd92adf6e"
     },
     {
       "path": "ROADMAP.md",
@@ -261,8 +261,8 @@
     },
     {
       "path": "TEST_REPORT.md",
-      "bytes": 2944,
-      "sha256": "515dbaccfcfcae36d027877f6e2fc2eeef1a2a29e3b1fddba042c7f960a8da8b"
+      "bytes": 3485,
+      "sha256": "dbdbf97b28e67732650df65fe25cf0bfae524ebac8526aa3af24f0e599623031"
     },
     {
       "path": "THIRD_PARTY_LICENSES/xlsx-LICENSE",
@@ -276,8 +276,8 @@
     },
     {
       "path": "VERSION.txt",
-      "bytes": 115,
-      "sha256": "ae5d30155fd8d7b0a6d30e336e1641e3b80ecdf3d7951c1393d8833510e0d29c"
+      "bytes": 60,
+      "sha256": "6914c3b015c0e4c779860c3ed5c4546d3c54eadcad8fbaf2c61530716fd7dd1e"
     },
     {
       "path": "ZEKE_CONSTITUTION.md",
@@ -346,8 +346,8 @@
     },
     {
       "path": "assets/app.js",
-      "bytes": 672727,
-      "sha256": "604759cbf28041412e52360ccceaf4ef1356914623fe95890a19d1789d0f1a2b"
+      "bytes": 672699,
+      "sha256": "5a65ff5ac505c11f31856570ff8e45cd1d89fc1baa4fde69e4d19342634d9073"
     },
     {
       "path": "assets/branding/ZEKE_Brand_Board_2026-07.jpg",
@@ -521,8 +521,8 @@
     },
     {
       "path": "index.html",
-      "bytes": 2906,
-      "sha256": "c2d2573d724a0ada6bb08b5822927cfb7f4f8cb4934ed7e6267324b58f522c10"
+      "bytes": 2917,
+      "sha256": "4360c90e8be20532835aa8f6330a6b126f5eb12b2483ca5d2acedba15a4399c5"
     },
     {
       "path": "manifest.webmanifest",
@@ -536,8 +536,8 @@
     },
     {
       "path": "sw.js",
-      "bytes": 1924,
-      "sha256": "2325b64f942e8b7faa3da7d49208691e4ffc228df9e2f73edb4c7b4521bb084d"
+      "bytes": 1926,
+      "sha256": "e60d927a3e14371ab535b185d1e7e523a5b2580fb732f896c7c171abb3874b8d"
     },
     {
       "path": "tests/activity-foundation.test.js",
@@ -740,6 +740,11 @@
       "sha256": "3acd49b590d2c69a5695ad9060eb75cbff50b610d2239d7368ba544bfca7b2f4"
     },
     {
+      "path": "tests/v049-dashboard-render-hotfix.test.js",
+      "bytes": 351,
+      "sha256": "139d4ff6b4b0f8c0081087c59bed59d3093ec8e7d4058833ab2459b52b98831a"
+    },
+    {
       "path": "tests/workbook-commit-verify.test.js",
       "bytes": 3168,
       "sha256": "4d6ccee9cdd448b7820ce1bd2d9c79a3be1cd2519b8acf3771ffdb25d12741b9"
@@ -776,8 +781,8 @@
     },
     {
       "path": "version.js",
-      "bytes": 265,
-      "sha256": "3aac574669ffe59aa27aa236b144bbd947cc393e289108318aaea2bf36b7d392"
+      "bytes": 193,
+      "sha256": "d926b36d5e490d60c3a09487e8c2e96e0bd7e37b3d02400bc1fc9e31a63c6f04"
     },
     {
       "path": "xlsx-bundle.js",

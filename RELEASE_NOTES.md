@@ -1,3 +1,9 @@
+# ZEKE v0.49.0.1 — Dashboard render hotfix
+
+Build: **2026.09.14.2**
+
+Hotfix to v0.49.0. Corrects the Dashboard/Health-at-a-Glance renderer reference from the nonexistent `dashboardRangeHTML()` helper to the implemented `dashboardRangeControl()` helper. Adds a regression test and advances the service-worker cache identity so deployed clients do not retain the broken application shell. No repository schema or canonical-data migration is required.
+
 # ZEKE v0.49.0 — Development package
 
 Build: **2026.09.14.1**

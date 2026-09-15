@@ -28001,6 +28001,13 @@
   "build": "2026.08.25.1",
   "history": [
     {
+      "version": "0.49.0.1",
+      "build": "2026.09.14.2",
+      "date": "2026-09-14",
+      "status": "development_hotfix",
+      "notes": "Fix undefined dashboardRangeHTML reference in Dashboard Health at a Glance; add regression coverage and cache bump."
+    },
+    {
       "version": "0.43.1",
       "build": "2026.08.17.1",
       "label": "Mobile Professional Polish",

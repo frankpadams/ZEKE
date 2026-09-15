@@ -1,4 +1,4 @@
-const CACHE_NAME = 'project-zeke-v0.49.0-2026.09.14.1';
+const CACHE_NAME = 'project-zeke-v0.49.0.1-2026.09.14.2';
 const RUNTIME = [
   './','./index.html','./manifest.webmanifest','./version.js','./zeke-config.js','./xlsx-bundle.js',
   './assets/styles.css','./assets/data-layer.js','./assets/parser.js','./assets/ai-router.js',
