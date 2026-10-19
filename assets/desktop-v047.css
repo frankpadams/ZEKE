@@ -154,3 +154,15 @@
 .v49-timeline{min-width:0}.v49-timeline .v47-section-head{align-items:flex-start}.v49-timeline-nav{display:flex;align-items:center;gap:5px;flex-wrap:wrap}.v49-timeline-nav>button:not(.text-action){width:32px;height:30px;border:1px solid #d5e1ee;border-radius:9px;background:#fff;color:#17446f;font-weight:800}.v49-timeline-nav>button[data-timeline-today]{width:auto;padding:0 9px}.v49-timeline-scroller{overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}.v49-timeline-grid{display:grid;grid-template-columns:148px repeat(14,minmax(66px,1fr));min-width:1100px;border:1px solid #dbe5ef;border-radius:13px;overflow:hidden}.v49-timeline-corner,.v49-timeline-label{position:sticky;left:0;z-index:3;background:#f8fbff}.v49-timeline-corner{padding:8px 10px;font-size:9px;font-weight:800;color:#5a6c82;border-bottom:1px solid #dbe5ef}.v49-timeline-date{padding:6px 3px;text-align:center;border-left:1px solid #e4ebf3;border-bottom:1px solid #dbe5ef;background:#fbfdff;display:grid;gap:1px}.v49-timeline-date strong{font-size:8px;color:#60728a}.v49-timeline-date span{font-size:9px;font-weight:750}.v49-timeline-date.today,.v49-timeline-cell.today{background:#eef6ff}.v49-timeline-label{padding:9px 10px;font-size:9.5px;font-weight:750;border-top:1px solid #e6edf4}.v49-timeline-cell{min-height:48px;padding:4px;border-left:1px solid #edf1f6;border-top:1px solid #e6edf4;display:grid;align-content:start;gap:3px}.v49-timeline-event{border:0;background:transparent;padding:1px 2px;display:flex;align-items:center;gap:4px;text-align:left;min-width:0;color:#18314e}.v49-timeline-event span{flex:0 0 7px;width:7px;height:7px;border-radius:50%;background:#1e79d8}.v49-timeline-event b{font-size:7.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.v49-timeline-cell>small{font-size:7px;color:#64758a}.v49-timeline-note{margin:7px 0 0;font-size:8.5px;color:#60728a}
 .v47-goal-list button{padding:5px 0}.v49-goal-meta{display:block;font-size:8.5px;color:#53667e;margin-top:3px}.v47-progress{height:8px;margin-top:8px}.v47-progress i[style*="width:0%"]{width:0!important}
 }
+
+/* 2026-10-19: 0.47 visual-density refinement.
+   Presentation-only: no event handlers, storage, or data-layer changes. */
+@media (min-width:1000px){
+  .v47-shell .content-shell{padding:18px 20px 28px}
+  .v47-dashboard,.v47-grid{gap:14px}
+  .v47-dashboard .v47-card{padding:15px 17px}
+  .v47-dashboard .v47-card h2{font-size:18px;line-height:1.2}
+  .v47-dashboard .v47-top-row,
+  .v47-dashboard .v47-main-row,
+  .v47-dashboard .v47-bottom-row{align-items:start}
+}
