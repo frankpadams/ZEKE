@@ -166,3 +166,16 @@
   .v47-dashboard .v47-main-row,
   .v47-dashboard .v47-bottom-row{align-items:start}
 }
+
+/* Dashboard refinement: scoped to the development build's v0.47 shell.
+   Pure presentation; all metric data, chart controls and interactions remain owned by ZEKE. */
+@media (min-width:1000px){
+ .v47-dashboard .v47-card{border:1px solid #dce6f1;border-radius:20px;background:#fff;box-shadow:0 10px 32px rgba(17,47,83,.065);transition:box-shadow .2s ease,transform .2s ease}
+ .v47-dashboard .v47-card:hover{box-shadow:0 16px 42px rgba(17,47,83,.105)}
+ .v47-dashboard .v47-card h2{letter-spacing:-.025em;font-weight:730}
+ .v47-dashboard .v47-metric-tile{border-radius:14px;transition:background-color .2s ease}
+ .v47-dashboard .v47-metric-tile:hover{background:#edf5ff}
+}
+@media (prefers-reduced-motion:reduce){
+ .v47-dashboard .v47-card,.v47-dashboard .v47-metric-tile{transition:none}
+}
